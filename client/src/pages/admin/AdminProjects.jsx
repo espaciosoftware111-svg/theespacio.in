@@ -229,7 +229,7 @@ const AdminProjects = () => {
       try {
         const res = await axios.get('/projects?admin=true&limit=50');
         const fetched = res.data.data?.projects || res.data.data;
-        if (fetched && fetched.length > 0 && !stored) {
+        if (fetched && fetched.length > 0) {
           setProjects(fetched);
           setCMSData(STORAGE_KEYS.PROJECTS, fetched);
         }
@@ -353,23 +353,39 @@ const AdminProjects = () => {
     };
     
     try {
+      let savedProject = null;
       if (editingProject) {
-        await axios.put(`/projects/${editingProject._id}`, payload);
+        const res = await axios.put(`/projects/${editingProject._id}`, payload);
+        if (res.data?.data) savedProject = res.data.data;
       } else {
-        await axios.post('/projects', payload);
+        const res = await axios.post('/projects', payload);
+        if (res.data?.data) savedProject = res.data.data;
       }
-    } catch {}
 
-    setProjects((prev) => {
-      let updated;
-      if (editingProject) {
-        updated = prev.map((p) => (p._id === editingProject._id ? { ...p, ...payload } : p));
-      } else {
-        updated = [{ _id: String(Date.now()), ...payload }, ...prev];
-      }
-      setCMSData(STORAGE_KEYS.PROJECTS, updated);
-      return updated;
-    });
+      setProjects((prev) => {
+        let updated;
+        if (editingProject) {
+          updated = prev.map((p) => (p._id === editingProject._id ? { ...p, ...payload, ...(savedProject || {}) } : p));
+        } else {
+          updated = [savedProject || { _id: String(Date.now()), ...payload }, ...prev];
+        }
+        setCMSData(STORAGE_KEYS.PROJECTS, updated);
+        return updated;
+      });
+    } catch (err) {
+      console.warn('Project save error:', err);
+      // Fallback local update
+      setProjects((prev) => {
+        let updated;
+        if (editingProject) {
+          updated = prev.map((p) => (p._id === editingProject._id ? { ...p, ...payload } : p));
+        } else {
+          updated = [{ _id: String(Date.now()), ...payload }, ...prev];
+        }
+        setCMSData(STORAGE_KEYS.PROJECTS, updated);
+        return updated;
+      });
+    }
 
     setSaved(true);
     setTimeout(() => { setSaved(false); setView('list'); }, 1200);

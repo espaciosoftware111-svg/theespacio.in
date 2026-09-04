@@ -5,7 +5,7 @@ import {
   Loader2, RefreshCw, Filter, Check, Eye, EyeOff, ShieldCheck,
   MessageSquare, User, Upload, Sparkles, Building, Search, X
 } from 'lucide-react';
-import { getCMSData, setCMSData, STORAGE_KEYS, DEFAULT_TESTIMONIALS } from '../../utils/cmsStore';
+import { getCMSData, setCMSData, STORAGE_KEYS, DEFAULT_TESTIMONIALS, notifyCMSUpdate } from '../../utils/cmsStore';
 
 const GoogleGLogo = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" className="shrink-0">
@@ -170,6 +170,8 @@ const AdminTestimonialsCMS = () => {
     } catch {}
 
     setCMSData(STORAGE_KEYS.TESTIMONIALS, testimonials);
+    // Broadcast update to all open live website tabs
+    notifyCMSUpdate();
     setSaving(false);
     setSaved(true);
     showToast('Testimonials CMS published live successfully!');

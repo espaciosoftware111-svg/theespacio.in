@@ -1,4 +1,4 @@
-import { FirestoreModelAdapter } from './MongooseToFirestore.js';
+import { SupabaseModelAdapter } from './SupabaseModelAdapter.js';
 
-const Lead = new FirestoreModelAdapter('Lead');
+const Lead = new SupabaseModelAdapter('Lead');
 export default Lead;

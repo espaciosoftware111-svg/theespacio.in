@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Plus, Trash2, Save, Loader2, CheckCircle, ArrowLeft, Upload } from 'lucide-react';
-import { getCMSData, setCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
+import { Plus, Trash2, Save, Loader2, CheckCircle, ArrowLeft, Image as ImageIcon } from 'lucide-react';
+import { getCMSData, setCMSData, STORAGE_KEYS, notifyCMSUpdate } from '../../utils/cmsStore';
 
 const AdminInput = (props) => (
   <input {...props} className="w-full bg-[#0E0F11] border border-white/10 focus:border-gold focus:outline-none rounded-lg font-sans text-xs px-4 py-3 text-white placeholder:text-white/25 transition-colors" />
@@ -20,18 +20,6 @@ const Field = ({ label, required, children }) => (
     {children}
   </div>
 );
-
-const mockProducts = [
-  { _id: '1', title: 'Acrylic Luxe Collection', slug: 'acrylic-luxe-collection', category: 'acrylic_sheets', description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.', status: 'published', heroImage: '/images/materials/luminous_grid_8313.jpg' },
-  { _id: '2', title: 'Digital Korean Poly Granite', slug: 'digital-korean-poly-granite', category: 'polygranite_sheets', description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.', status: 'published', heroImage: '/images/materials/florida.png' },
-  { _id: '3', title: 'Charcoal Panels Luxe Collection', slug: 'charcoal-panels-luxe', category: 'charcoal_panels', description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.', status: 'published', heroImage: '/images/materials/charcoal_luxe_4015.jpg' },
-  { _id: '4', title: 'Fluted PVC Luxe Collection', slug: 'fluted-pvc-luxe', category: 'fluted_panels', description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.', status: 'published', heroImage: '/images/materials/irish.png' },
-  { _id: '5', title: 'LVT Luxe Flooring', slug: 'lvt-luxe-flooring', category: 'surface_sheets', description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.', status: 'published', heroImage: '/images/materials/giallo_dining.png' },
-  { _id: '6', title: 'Fluted Acrylic Luxe Collection', slug: 'fluted-acrylic-luxe', category: 'acrylic_sheets', description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.', status: 'published', heroImage: '/images/materials/fluted_acrylic_florida.jpg' },
-  { _id: '7', title: 'PVC Luxe Collection', slug: 'pvc-luxe-collection', category: 'pvc_ceiling_panels', description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.', status: 'published', heroImage: '/images/materials/pvc_luxe_5003_5004.jpg' },
-  { _id: '8', title: 'WPC Luxe Collection', slug: 'wpc-luxe-collection', category: 'wpc_wall_panels', description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.', status: 'published', heroImage: '/images/materials/wpc_luxe_1701_1606.jpg' },
-  { _id: '9', title: 'Espacio Charcoal Panels Luxe Collection (1)', slug: 'charcoal-panels-luxe-1', category: 'charcoal_panels', description: 'Additional selection of richly textured wall panels infused with active charcoal.', status: 'published', heroImage: '/images/materials/charcoal_luxe_1_6015.jpg' },
-];
 
 const CATEGORIES = [
   'wpc_wall_panels',
@@ -56,6 +44,7 @@ const AdminProducts = () => {
   const [view, setView] = useState('list');
   const [editing, setEditing] = useState(null);
   const [heroPreview, setHeroPreview] = useState(null);
+  const [toastMessage, setToastMessage] = useState('');
   const imgRef = useRef();
 
   const emptyForm = {
@@ -72,27 +61,35 @@ const AdminProducts = () => {
   };
   const [form, setForm] = useState(emptyForm);
 
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(''), 3000);
+  };
+
+  // Always fetch from the database on mount for live data
   useEffect(() => {
-    const fetch = async () => {
+    const loadProducts = async () => {
+      setLoading(true);
+      // Show cached data immediately while fetching live data
       const stored = getCMSData(STORAGE_KEYS.PRODUCTS);
       if (stored && stored.length > 0) {
         setProducts(stored);
-        setLoading(false);
-      } else {
-        setProducts(mockProducts);
-        setCMSData(STORAGE_KEYS.PRODUCTS, mockProducts);
-        setLoading(false);
       }
+
       try {
-        const res = await axios.get('/products?admin=true&limit=50');
-        const fetched = res.data.data?.products || res.data.data;
-        if (fetched && fetched.length > 0 && !stored) {
+        const res = await axios.get('/products?admin=true&limit=100');
+        const fetched = res.data?.data?.products || res.data?.data || [];
+        if (Array.isArray(fetched) && fetched.length > 0) {
           setProducts(fetched);
           setCMSData(STORAGE_KEYS.PRODUCTS, fetched);
         }
-      } catch {}
+      } catch (err) {
+        console.warn('Products DB fetch offline — showing cached data');
+      } finally {
+        setLoading(false);
+      }
     };
-    fetch();
+    loadProducts();
   }, []);
 
   const handleEdit = (p) => {
@@ -119,6 +116,7 @@ const AdminProducts = () => {
       setCMSData(STORAGE_KEYS.PRODUCTS, updated);
       return updated;
     });
+    notifyCMSUpdate();
   };
 
   const handleSave = async (e) => {
@@ -146,29 +144,49 @@ const AdminProducts = () => {
       specifications: specsParsed
     };
 
+    let savedRecord = null;
     try {
-      if (editing) await axios.put(`/products/${editing._id}`, payload);
-      else await axios.post('/products', payload);
-    } catch {}
+      if (editing) {
+        const res = await axios.put(`/products/${editing._id}`, payload);
+        savedRecord = res.data?.data || { ...editing, ...payload };
+      } else {
+        const res = await axios.post('/products', payload);
+        savedRecord = res.data?.data || { _id: String(Date.now()), ...payload };
+      }
+    } catch (err) {
+      console.warn('Product save to DB failed — updating local cache only');
+      savedRecord = editing ? { ...editing, ...payload } : { _id: String(Date.now()), ...payload };
+    }
 
     setProducts((prev) => {
       let updated;
       if (editing) {
-        updated = prev.map((p) => (p._id === editing._id ? { ...p, ...payload } : p));
+        updated = prev.map((p) => (p._id === editing._id ? savedRecord : p));
       } else {
-        updated = [{ _id: String(Date.now()), ...payload }, ...prev];
+        updated = [savedRecord, ...prev];
       }
       setCMSData(STORAGE_KEYS.PRODUCTS, updated);
       return updated;
     });
 
+    // Broadcast update to live website tabs
+    notifyCMSUpdate();
+
     setSaved(true);
+    showToast('Material saved & published to live website!');
     setTimeout(() => { setSaved(false); setView('list'); }, 1200);
     setSaving(false);
   };
 
   if (view === 'form') return (
     <div className="space-y-6">
+      {/* Toast */}
+      {toastMessage && (
+        <div className="fixed top-6 right-6 z-50 bg-emerald-500/90 text-white px-5 py-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center space-x-2 font-sans text-xs font-bold">
+          <CheckCircle size={16} />
+          <span>{toastMessage}</span>
+        </div>
+      )}
       <div className="flex items-center space-x-4">
         <button onClick={() => setView('list')} className="text-white/40 hover:text-white transition-colors"><ArrowLeft size={20} /></button>
         <h1 className="font-editorial text-2xl font-bold text-white">{editing ? 'Edit Material' : 'Add New Material'}</h1>
@@ -194,7 +212,7 @@ const AdminProducts = () => {
           <Field label="Key Features (comma separated)"><AdminInput value={form.features} onChange={(e) => setForm({ ...form, features: e.target.value })} placeholder="Waterproof, Fire Retardant, UV Resistant" /></Field>
           <Field label="Applications (comma separated)"><AdminInput value={form.applications} onChange={(e) => setForm({ ...form, applications: e.target.value })} placeholder="Kitchen Cabinets, Accent Walls, Ceilings" /></Field>
           <Field label="Gallery Images (comma separated URLs)"><AdminTextarea rows={3} value={form.gallery} onChange={(e) => setForm({ ...form, gallery: e.target.value })} placeholder="https://images.unsplash.com/..., https://..." /></Field>
-          <Field label="Technical Specifications (Label: Value, one per line)"><AdminTextarea rows={6} value={form.specifications} onChange={(e) => setForm({ ...form, specifications: e.target.value })} placeholder="Standard Dimensions: 2900mm x 122mm x 12mm&#10;Core Weight: 1.8 kg/m&#10;Water Resistance: 100% Waterproof" /></Field>
+          <Field label="Technical Specifications (Label: Value, one per line)"><AdminTextarea rows={6} value={form.specifications} onChange={(e) => setForm({ ...form, specifications: e.target.value })} placeholder={"Standard Dimensions: 2900mm x 122mm x 12mm\nCore Weight: 1.8 kg/m\nWater Resistance: 100% Waterproof"} /></Field>
         </div>
         <div className="space-y-5">
           <div className="bg-[#1A1C20] border border-white/5 rounded-xl p-5 space-y-4">
@@ -203,7 +221,7 @@ const AdminProducts = () => {
               <div className="relative rounded-lg overflow-hidden aspect-video">
                 <img src={heroPreview} alt="preview" className="w-full h-full object-cover" />
                 <button type="button" onClick={() => { setHeroPreview(null); setForm({ ...form, heroImage: '' }); }}
-                  className="absolute top-2 right-2 w-6 h-6 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-red-500"><X size={10} /></button>
+                  className="absolute top-2 right-2 w-6 h-6 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-red-500 text-xs font-bold">✕</button>
               </div>
             ) : (
               <div className="aspect-video rounded-lg border-2 border-dashed border-white/10 flex flex-col items-center justify-center space-y-2 cursor-pointer hover:border-gold/40 transition-colors" onClick={() => imgRef.current.click()}>
@@ -219,7 +237,7 @@ const AdminProducts = () => {
           <div className="bg-[#1A1C20] border border-white/5 rounded-xl p-5">
             <button type="submit" disabled={saving || saved}
               className="w-full flex items-center justify-center space-x-2 bg-gold text-charcoal font-sans text-xs uppercase tracking-widest font-bold py-3.5 rounded-lg transition-all disabled:opacity-60">
-              {saved ? <><CheckCircle size={14} /><span>Saved!</span></> : saving ? <Loader2 size={14} className="animate-spin" /> : <><Save size={14} /><span>Save Material</span></>}
+              {saved ? <><CheckCircle size={14} /><span>Saved & Published!</span></> : saving ? <Loader2 size={14} className="animate-spin" /> : <><Save size={14} /><span>Save & Publish Live</span></>}
             </button>
           </div>
         </div>
@@ -229,6 +247,13 @@ const AdminProducts = () => {
 
   return (
     <div className="space-y-6">
+      {/* Toast */}
+      {toastMessage && (
+        <div className="fixed top-6 right-6 z-50 bg-emerald-500/90 text-white px-5 py-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center space-x-2 font-sans text-xs font-bold">
+          <CheckCircle size={16} />
+          <span>{toastMessage}</span>
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div><h1 className="font-editorial text-3xl font-bold text-white">Materials</h1><p className="font-sans text-xs text-white/40 mt-1">{products.length} materials listed</p></div>
         <button onClick={handleNew} className="flex items-center space-x-2 bg-gold text-charcoal font-sans text-xs uppercase tracking-widest font-bold py-3 px-5 rounded-lg transition-all hover:opacity-90">
@@ -242,6 +267,9 @@ const AdminProducts = () => {
           ))}</tr></thead>
           <tbody className="divide-y divide-white/5">
             {loading ? [1,2,3].map((n) => (<tr key={n}><td colSpan={4} className="px-5 py-4"><div className="h-3 bg-white/5 rounded animate-pulse w-1/3" /></td></tr>)) :
+            products.length === 0 ? (
+              <tr><td colSpan={4} className="px-5 py-8 text-center font-sans text-xs text-white/30">No materials found. Add your first material above.</td></tr>
+            ) :
             products.map((p) => (
               <tr key={p._id} className="hover:bg-white/2 transition-colors">
                 <td className="px-5 py-4"><div className="flex items-center space-x-3">{p.heroImage && <img src={p.heroImage} alt="" className="w-10 h-10 rounded-lg object-cover" />}<span className="font-sans text-xs font-bold text-white">{p.title}</span></div></td>

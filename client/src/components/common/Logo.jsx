@@ -36,6 +36,7 @@ const LargeLogo = ({ scrolled, onComplete }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ userSelect: 'none' }}
+      className="w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] max-w-[85vw] max-h-[45vh]"
     >
       <defs>
         <radialGradient id="glowGradLarge" cx="50%" cy="30%" r="60%">

@@ -178,8 +178,8 @@ const Footer = () => {
 
   const defaultSocialItems = [
     { label: 'Instagram', name: 'Instagram', href: 'https://www.instagram.com/theespacio.in', icon: 'instagram', color: '#E4405F', beamColor: 'rgba(228, 64, 95, 0.4)' },
-    { label: 'Facebook', name: 'Facebook', href: 'https://facebook.com', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
-    { label: 'YouTube', name: 'YouTube', href: 'https://youtube.com', icon: 'youtube', color: '#FF0000', beamColor: 'rgba(255, 0, 0, 0.4)' },
+    { label: 'Facebook', name: 'Facebook', href: 'https://www.facebook.com/share/1YCa9RnM8a/', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
+    { label: 'YouTube', name: 'YouTube', href: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL', icon: 'youtube', color: '#FF0000', beamColor: 'rgba(255, 0, 0, 0.4)' },
     { label: 'WhatsApp', name: 'WhatsApp', href: 'https://wa.me/919505151116', icon: 'whatsapp', color: '#25D366', beamColor: 'rgba(37, 211, 102, 0.4)' },
   ];
 

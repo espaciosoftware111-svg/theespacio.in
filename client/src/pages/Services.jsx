@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, MessageSquare, Compass, Layers, Palette, Settings } from 'lucide-react';
 import SEO from '../components/common/SEO';
@@ -392,18 +393,21 @@ const QuotationCalculator = () => {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!phone || phone.trim().replace(/\s+/g, '').length < 10) return;
+
+    const trimmedPhone = phone.trim();
+    const trimmedName = name && name.trim() ? name.trim() : 'Valued Client';
+    const scopeLabel = scope === 'full' ? 'Turnkey Full Home' : scope === 'kitchen' ? 'Modular Kitchen' : 'Panelling & Louvers';
+    const propLabel = propertyType === '2bhk' ? '2 BHK' : propertyType === '3bhk' ? '3 BHK' : propertyType === 'villa' ? 'Villa' : 'Office';
     
-    // Save to CMS enquiries
+    // 1. Save to local CMS enquiries
     try {
       import('../utils/cmsStore').then(({ getCMSData, setCMSData, STORAGE_KEYS, notifyCMSUpdate }) => {
         const existing = getCMSData(STORAGE_KEYS.ENQUIRIES) || [];
         const count = existing.length + 1;
         const enquiryId = `ESP-EST-${String(count).padStart(5, '0')}`;
-        const scopeLabel = scope === 'full' ? 'Turnkey Full Home' : scope === 'kitchen' ? 'Modular Kitchen' : 'Panelling & Louvers';
-        const propLabel = propertyType === '2bhk' ? '2 BHK' : propertyType === '3bhk' ? '3 BHK' : propertyType === 'villa' ? 'Villa' : 'Office';
 
         const newRecord = {
           id: enquiryId,
@@ -411,8 +415,8 @@ const QuotationCalculator = () => {
           type: 'INSTANT_ESTIMATE',
           source: 'INSTANT_PROJECT_ESTIMATE',
           requirementType: 'INSTANT_ESTIMATE',
-          name: name ? name.trim() : 'Valued Client',
-          phone: phone.trim(),
+          name: trimmedName,
+          phone: trimmedPhone,
           email: '',
           location: `Property: ${propLabel}`,
           propertyType: propLabel,
@@ -429,6 +433,77 @@ const QuotationCalculator = () => {
         notifyCMSUpdate();
       });
     } catch {}
+
+    // 2. Dispatch lead to backend server & Google Sheets
+    const servicesPayload = {
+      name: trimmedName,
+      phone: trimmedPhone,
+      phone1: trimmedPhone,
+      phone2: '',
+      email: `${trimmedPhone.replace(/\D/g, '')}@leads.theespacio.com`,
+      location: `Property: ${propLabel}`,
+      projectType: 'Instant Project Estimate',
+      serviceType: scopeLabel,
+      message: `Instant Project Estimate — Property: ${propLabel}, Scope: ${scopeLabel}, Finish Grade: ${finishGrade}`,
+      propertyDetails: {
+        propertyType: propLabel,
+        spaces: scopeLabel,
+        location: `Property: ${propLabel}`
+      },
+      projectDetails: {
+        stage: finishGrade,
+        notes: `Instant Project Estimate Calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
+      },
+      googleSheetData: {
+        name: trimmedName,
+        phone1: trimmedPhone,
+        phone2: '',
+        email: `${trimmedPhone.replace(/\D/g, '')}@leads.theespacio.com`,
+        location: `Property: ${propLabel}`,
+        requirement: scopeLabel,
+        stage: finishGrade,
+        source: 'Services Page (Instant Project Estimate)',
+        notes: `Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
+      }
+    };
+
+    let backendSynced = false;
+    try {
+      await axios.post('/api/leads', servicesPayload);
+      backendSynced = true;
+    } catch (err1) {
+      try {
+        await axios.post('/leads', servicesPayload);
+        backendSynced = true;
+      } catch (err2) {
+        console.warn('Backend leads sync notice:', err2?.message);
+      }
+    }
+
+    // Direct Webhook Fallback if backend was unreachable
+    const directWebhook = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+    if (!backendSynced && directWebhook && directWebhook.startsWith('http')) {
+      try {
+        await fetch(directWebhook, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            source: 'Services Page (Instant Project Estimate)',
+            name: trimmedName,
+            phone1: trimmedPhone,
+            phone2: '',
+            email: `${trimmedPhone.replace(/\D/g, '')}@leads.theespacio.com`,
+            location: `Property: ${propLabel}`,
+            requirement: scopeLabel,
+            stage: finishGrade,
+            notes: `Instant Project Estimate Calculator. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
+            status: 'NEW'
+          })
+        });
+      } catch {}
+    }
 
     setSubmitted(true);
   };

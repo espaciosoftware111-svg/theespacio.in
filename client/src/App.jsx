@@ -317,7 +317,7 @@ function App() {
             </Route>
 
             {/* ── Admin Routes (Isolated Admin Portal Suspense) ───────────────── */}
-            <Route path="/admin/*" element={
+            <Route path="/espesp/admin/*" element={
               <React.Suspense fallback={<AdminLoaderFallback />}>
                 <Routes>
                   <Route path="" element={<AdminLogin />} />
@@ -342,7 +342,7 @@ function App() {
                 </Routes>
               </React.Suspense>
             } />
-            <Route path="/admin" element={
+            <Route path="/espesp/admin" element={
               <React.Suspense fallback={<AdminLoaderFallback />}>
                 <AdminLogin />
               </React.Suspense>

@@ -131,7 +131,7 @@ export const adminNotificationHTML = (lead) => {
       }
       
       <p style="margin-top: 40px; text-align: center;">
-        <a href="http://localhost:5173/admin" style="background-color: #F2B455; color: #4A433D; padding: 12px 25px; text-decoration: none; border-radius: 20px; font-weight: bold; font-size: 14px;">Open Admin Dashboard</a>
+        <a href="${process.env.CLIENT_URL || 'https://theespacio.com'}/espesp/admin" style="background-color: #F2B455; color: #4A433D; padding: 12px 25px; text-decoration: none; border-radius: 20px; font-weight: bold; font-size: 14px;">Open Admin Dashboard</a>
       </p>
     </div>
   `;

@@ -212,8 +212,10 @@ const ProjectDetails = () => {
       },
       heroImage: pool[(index - 1) % pool.length],
       gallery: pool,
-      beforeImage: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80",
+      beforeImage: "/images/spaces/spaces_hero_before.webp",
+      beforeImages: ["/images/spaces/spaces_hero_before.webp"],
       afterImage: pool[(index - 1) % pool.length],
+      afterImages: [pool[(index - 1) % pool.length]],
       testimonialName: clientDemo.name,
       testimonialMobile: clientDemo.mobile,
       testimonialProfession: clientDemo.profession,
@@ -231,6 +233,9 @@ const ProjectDetails = () => {
   };
 
   const p = project || getMockFallback();
+  if (p && Array.isArray(p.gallery)) {
+    p.gallery = Array.from(new Set(p.gallery.filter(img => !img.includes('venkatesh_gallery_22.webp'))));
+  }
 
   return (
     <div className="bg-cream min-h-screen pb-24">

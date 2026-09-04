@@ -1,29 +1,30 @@
+import { query } from './supabase.js';
 import User from '../models/User.js';
 
 const connectDB = async () => {
-  console.log('Firebase Firestore initialized successfully as main database.');
-  
-  // Auto-seed default admin user into Firestore if not exists
   try {
-    console.log('Checking for default administrator in Firestore...');
+    const res = await query("SELECT NOW() as current_time, current_database() as db_name");
+    console.log(`✓ Supabase PostgreSQL connected successfully to '${res.rows[0].db_name}' at ${res.rows[0].current_time}`);
+    
+    // Auto-verify default administrator in Supabase
     const adminEmail = 'tarunuttupulusu@gmail.com';
     const existingAdmin = await User.findOne({ email: adminEmail });
     if (!existingAdmin) {
-      console.log(`Auto-seeding default administrator account: ${adminEmail}`);
+      console.log(`Seeding default administrator account in Supabase: ${adminEmail}`);
       await User.create({
         email: adminEmail,
         password: 'tarun2314638',
-        name: 'Tarun Uttupulusu',
+        name: 'Tarun (Super Admin)',
         role: 'superadmin',
         mustChangePassword: false,
         status: 'active',
       });
-      console.log('Administrator account seeded successfully in Firestore.');
+      console.log('Default administrator created in Supabase.');
     } else {
-      console.log(`Administrator account (${adminEmail}) already exists in Firestore database.`);
+      console.log(`✓ Default administrator (${adminEmail}) verified in Supabase.`);
     }
   } catch (err) {
-    console.error('Failed to auto-seed administrator account in Firestore:', err.message);
+    console.error('Supabase DB connection error:', err.message);
   }
 };
 

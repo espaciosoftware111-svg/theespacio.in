@@ -30,15 +30,19 @@ export const createLead = async (req, res, next) => {
       serviceType, propertyDetails, projectDetails, materialDetails,
     } = leadData;
 
-    if (!name || !email) {
-      return next(new ErrorResponse('Name and email are required', 400));
+    if (!name && !phone && !email) {
+      return next(new ErrorResponse('Name and contact details are required', 400));
     }
+
+    const effectiveName = name ? name.trim() : 'Valued Client';
+    const effectivePhone = phone ? phone.trim() : 'Not provided';
+    const effectiveEmail = email && email.trim() ? email.trim() : (effectivePhone !== 'Not provided' ? `${effectivePhone.replace(/\D/g, '')}@leads.theespacio.com` : 'client@theespacio.com');
 
     // ── Normalise to database schema ──────────────────────────────────
     const normalised = {
-      name,
-      email,
-      phone: phone || 'Not provided',
+      name: effectiveName,
+      email: effectiveEmail,
+      phone: effectivePhone,
       serviceType: serviceType || projectType || 'interior_design',
       propertyDetails: propertyDetails || {
         location: location || '',
@@ -66,80 +70,84 @@ export const createLead = async (req, res, next) => {
       normalised.projectDetails.attachments = attachments;
     }
 
-     const isCatalogueRequest = projectType === 'Catalogue Request';
-    const isFreeEstimateRequest = projectType === 'Free Estimate Request';
- 
+    // ── Build Unified Lead Payload for Google Sheets ─────────────────
     let sheetId;
     try {
       const rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip || 'N/A';
       const ipAddress = typeof rawIp === 'string' ? rawIp.split(',')[0].trim() : rawIp;
- 
-      if (isCatalogueRequest) {
-        // Parse phone numbers
-        let phone1 = phone || '';
-        let phone2 = '';
-        if (phone1.includes('/')) {
-          const parts = phone1.split('/');
-          phone1 = parts[0].trim();
-          phone2 = parts[1].trim();
-        }
 
-        const cataloguePayload = {
-          name: name || 'N/A',
-          phone1,
-          phone2,
-          email: email || 'N/A',
-          location: location || 'N/A',
-          catalogueMaterial: req.body.catalogueMaterial || message || 'N/A',
-          ipAddress
-        };
+      // Extract phone numbers
+      let phone1 = req.body.phone1 || (effectivePhone !== 'Not provided' ? effectivePhone : '');
+      let phone2 = req.body.phone2 || '';
+      if (phone1.includes('/')) {
+        const parts = phone1.split('/');
+        phone1 = parts[0].trim();
+        phone2 = parts[1].trim();
+      }
 
-        const sheetRes = await appendToGoogleSheet('catalogue', cataloguePayload);
-        if (sheetRes) sheetId = sheetRes.id;
-      } else if (isFreeEstimateRequest) {
-        // Parse phone numbers
-        let phone1 = phone || '';
-        let phone2 = '';
-        if (phone1.includes('/')) {
-          const parts = phone1.split('/');
-          phone1 = parts[0].trim();
-          phone2 = parts[1].trim();
-        }
+      // Determine human-readable source / page type
+      let leadSource = 'Website Lead';
+      if (req.body.googleSheetData?.source) {
+        leadSource = req.body.googleSheetData.source;
+      } else if (projectType === 'Instant Project Estimate' || projectType === 'INSTANT_ESTIMATE') {
+        leadSource = 'Services Page (Instant Project Estimate)';
+      } else if (projectType === 'Projects Portfolio Unlock' || req.body.isProjects) {
+        leadSource = 'Projects Section (Get More Projects)';
+      } else if (projectType === 'Catalogue Request' || req.body.isCatalogue) {
+        leadSource = 'Material Catalogue Request';
+      } else if (projectType === 'Free Estimate Request') {
+        leadSource = 'Get More Designs / Free Estimate';
+      } else if (projectType === 'Spaces Estimate Request') {
+        leadSource = `Spaces Gallery (${serviceType || 'More Designs Unlock'})`;
+      } else if (req.body.googleSheetData || serviceType === 'contact_form') {
+        leadSource = 'Contact Us Page';
+      } else if (projectType) {
+        leadSource = `${projectType}`;
+      }
 
-        const estimatePayload = {
-          name: name || 'N/A',
-          phone1,
-          phone2,
-          email: email || 'N/A',
-          location: location || 'N/A',
-          ipAddress
-        };
+      const requirement = (req.body.googleSheetData ? req.body.googleSheetData.requirement : '')
+        || (req.body.googleSheetData ? `${req.body.googleSheetData.propertyType || ''} ${req.body.googleSheetData.spaces || ''}`.trim() : '')
+        || serviceType
+        || projectType
+        || (propertyDetails ? `${propertyDetails.propertyType || ''} ${propertyDetails.spaces || ''}`.trim() : '')
+        || 'N/A';
 
-        const sheetRes = await appendToGoogleSheet('material', estimatePayload);
-        if (sheetRes) sheetId = sheetRes.id;
-      } else {
-        const contactPayload = {
-          name: name || (req.body.googleSheetData ? req.body.googleSheetData.name : 'N/A'),
-          phone: phone || (req.body.googleSheetData ? req.body.googleSheetData.mobile : 'N/A'),
-          email: email || (req.body.googleSheetData ? req.body.googleSheetData.email : 'N/A'),
-          lookingFor: serviceType || projectType || (req.body.googleSheetData ? req.body.googleSheetData.requirement : 'N/A'),
-          propertyType: (req.body.googleSheetData ? req.body.googleSheetData.propertyType : '') || (propertyDetails ? propertyDetails.propertyType : '') || 'N/A',
-          spaces: (req.body.googleSheetData ? req.body.googleSheetData.spaces : '') || (propertyDetails ? (Array.isArray(propertyDetails.spaces) ? propertyDetails.spaces.join(', ') : propertyDetails.spaces) : '') || 'N/A',
-          location: (req.body.googleSheetData ? req.body.googleSheetData.location : '') || location || (propertyDetails ? propertyDetails.location : '') || 'N/A',
-          projectStage: (req.body.googleSheetData ? req.body.googleSheetData.stage : '') || (projectDetails ? projectDetails.stage : '') || 'N/A',
-          notes: (req.body.googleSheetData ? req.body.googleSheetData.notes : '') || message || (projectDetails ? projectDetails.notes : '') || 'None',
-          ipAddress
-        };
+      const stageOrTimeline = (req.body.googleSheetData ? req.body.googleSheetData.stage : '')
+        || timeline
+        || budget
+        || (projectDetails ? `${projectDetails.stage || ''} ${projectDetails.budget || ''}`.trim() : '')
+        || '-';
 
-        const sheetRes = await appendToGoogleSheet('contact', contactPayload);
-        if (sheetRes) sheetId = sheetRes.id;
+      const materialDetails = req.body.catalogueMaterial
+        || (projectType === 'Catalogue Request' ? message : '')
+        || (req.body.materialDetails ? JSON.stringify(req.body.materialDetails) : '')
+        || '-';
+
+      const clientNotes = (req.body.googleSheetData ? req.body.googleSheetData.notes : '')
+        || message
+        || (projectDetails ? projectDetails.notes : '')
+        || 'None';
+
+      const unifiedPayload = {
+        source: leadSource,
+        name: name || (req.body.googleSheetData ? req.body.googleSheetData.name : 'N/A'),
+        phone1,
+        phone2,
+        email: email || (req.body.googleSheetData ? req.body.googleSheetData.email : 'N/A'),
+        location: location || (req.body.googleSheetData ? req.body.googleSheetData.location : '') || (propertyDetails ? propertyDetails.location : '') || 'N/A',
+        requirement,
+        stage: stageOrTimeline,
+        materialDetails,
+        notes: clientNotes,
+        ipAddress
+      };
+
+      const sheetRes = await appendToGoogleSheet(unifiedPayload);
+      if (sheetRes && sheetRes.id) {
+        sheetId = sheetRes.id;
       }
     } catch (sheetErr) {
-      console.error('Google Sheets sync error:', sheetErr.message);
-      return res.status(500).json({
-        success: false,
-        message: "We're unable to submit your request at the moment. Please try again in a few minutes."
-      });
+      console.warn('Google Sheets sync notice (non-fatal):', sheetErr.message);
     }
 
     if (sheetId) {

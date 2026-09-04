@@ -1,4 +1,5 @@
 import Settings from '../models/Settings.js';
+import { query } from '../config/supabase.js';
 import { ErrorResponse } from '../middleware/errorMiddleware.js';
 
 /**
@@ -14,15 +15,20 @@ export const getAllSettings = async (req, res, next) => {
 
     if (Array.isArray(settingsList)) {
       settingsList.forEach((item) => {
-        if (item.key === 'site_settings' && item.value && typeof item.value === 'object') {
-          siteSettingsVal = item.value;
+        if ((item.key === 'site_settings' || item.id === 'site_settings' || item.id === 'global_cms_settings')) {
+          const valObj = (item.value && typeof item.value === 'object')
+            ? item.value
+            : (item.data && typeof item.data === 'object')
+              ? item.data
+              : {};
+          siteSettingsVal = { ...(siteSettingsVal || {}), ...valObj };
         } else if (item.key && item.key !== 'site_settings') {
-          settingsMap[item.key] = item.value;
+          settingsMap[item.key] = item.value ?? item.data;
         }
       });
     }
 
-    // Individual updated settings keys take priority over legacy site_settings object defaults
+    // Individual updated settings keys take priority over master site_settings object
     const finalMap = { ...(siteSettingsVal || {}), ...settingsMap };
 
     // Default 4 curated luxury company images
@@ -39,10 +45,6 @@ export const getAllSettings = async (req, res, next) => {
       : (Array.isArray(finalMap.hero_images) && finalMap.hero_images.length > 0)
         ? finalMap.hero_images
         : defaultHeroImages;
-
-    if (heroBgImgs.some(img => typeof img === 'string' && (img.includes('unsplash.com') || img.includes('user_uploaded')))) {
-      heroBgImgs = defaultHeroImages;
-    }
 
     finalMap.hero_bg_images = heroBgImgs;
     finalMap.hero_images = heroBgImgs;
@@ -148,49 +150,67 @@ export const updateAllSettings = async (req, res, next) => {
       settingsObj.hero_bg_images = [...settingsObj.hero_images];
     }
 
-    // 1. Update master site_settings document instantly in a single atomic database write
+    // Fetch existing settings to merge cleanly
     let mainSettings = await Settings.findOne({ key: 'site_settings' });
-    if (mainSettings && mainSettings._id) {
-      const mergedVal = { ...(mainSettings.value || {}), ...settingsObj };
-      await Settings.findByIdAndUpdate(mainSettings._id, {
-        key: 'site_settings',
-        value: mergedVal,
-        updatedBy: req.user?.id || 'admin'
-      });
-    } else {
-      await Settings.create({
-        key: 'site_settings',
-        value: settingsObj,
-        createdBy: req.user?.id || 'admin',
-      });
-    }
+    if (!mainSettings) mainSettings = await Settings.findById('site_settings') || await Settings.findById('global_cms_settings');
 
-    // 2. Synchronously update individual keys
+    const existingVal = (mainSettings?.value && typeof mainSettings.value === 'object')
+      ? mainSettings.value
+      : (mainSettings?.data && typeof mainSettings.data === 'object')
+        ? mainSettings.data
+        : {};
+
+    const mergedVal = { ...existingVal, ...settingsObj };
+    const mergedJson = JSON.stringify(mergedVal);
+    const adminUser = req.user?.id || 'admin';
+
+    // 1. Atomically update both master settings rows in Supabase
+    await query(
+      `UPDATE settings
+       SET value = $1::jsonb, data = $1::jsonb, updated_at = NOW(), updated_by = $2
+       WHERE id IN ('site_settings', 'global_cms_settings')`,
+      [mergedJson, adminUser]
+    );
+
+    // Ensure site_settings row exists if it was somehow deleted
+    await query(
+      `INSERT INTO settings (id, key, value, data, created_at, updated_at, created_by, updated_by)
+       VALUES ('site_settings', 'site_settings', $1::jsonb, $1::jsonb, NOW(), NOW(), $2, $2)
+       ON CONFLICT (id) DO UPDATE
+       SET value = $1::jsonb, data = $1::jsonb, updated_at = NOW(), updated_by = $2`,
+      [mergedJson, adminUser]
+    );
+
+    // 2. Synchronously update individual setting keys for fast granular key queries
     const keys = Object.keys(settingsObj);
-    await Promise.all(keys.map(async (key) => {
-      try {
-        const val = settingsObj[key];
-        let settings = await Settings.findOne({ key });
-        if (settings && settings._id) {
-          await Settings.findByIdAndUpdate(settings._id, { key, value: val, updatedBy: req.user?.id || 'admin' });
-        } else {
-          await Settings.create({ key, value: val, createdBy: req.user?.id || 'admin' });
+    await Promise.all(
+      keys.map(async (key) => {
+        try {
+          const val = settingsObj[key];
+          const valJson = (typeof val === 'object' && val !== null) ? JSON.stringify(val) : JSON.stringify(val);
+          await query(
+            `INSERT INTO settings (id, key, value, data, created_at, updated_at, created_by, updated_by)
+             VALUES ($1, $2, $3::jsonb, $3::jsonb, NOW(), NOW(), $4, $4)
+             ON CONFLICT (id) DO UPDATE
+             SET value = $3::jsonb, data = $3::jsonb, updated_at = NOW(), updated_by = $4`,
+            [`setting_${key}`, key, valJson, adminUser]
+          );
+        } catch (e) {
+          // Key sync warning
         }
-      } catch (e) {
-        // Background sync warning
-      }
-    }));
+      })
+    );
 
     res.status(200).json({
       success: true,
       message: 'All settings updated successfully',
+      data: mergedVal,
     });
-
   } catch (err) {
     console.error('updateAllSettings error:', err);
-    res.status(200).json({
-      success: true,
-      message: 'Settings saved',
+    res.status(500).json({
+      success: false,
+      message: err.message || 'Failed to update settings',
     });
   }
 };

@@ -230,7 +230,7 @@ const FAQ = () => {
   const autoCloseRef = useRef(null);
 
   useEffect(() => {
-    const syncCMS = () => {
+    const syncCMS = async () => {
       const stored = getCMSData(STORAGE_KEYS.FAQS);
       const settings = getCMSData(STORAGE_KEYS.SETTINGS);
 
@@ -247,6 +247,29 @@ const FAQ = () => {
       }
 
       setFaqs(parseFaqList(stored));
+
+      try {
+        const [faqsRes, setRes] = await Promise.all([
+          axios.get('/faqs').catch(() => null),
+          axios.get('/settings').catch(() => null)
+        ]);
+        if (faqsRes?.data?.success && Array.isArray(faqsRes.data?.data) && faqsRes.data.data.length > 0) {
+          setFaqs(parseFaqList(faqsRes.data.data));
+          setCMSData(STORAGE_KEYS.FAQS, faqsRes.data.data);
+        }
+        if (setRes?.data?.success && setRes.data?.data) {
+          const s = setRes.data.data;
+          setCMSData(STORAGE_KEYS.SETTINGS, s);
+          setHeaderState({
+            eyebrow: s.faq_eyebrow || 'Frequently Asked',
+            title: s.faq_title || 'Got Questions?\nWe Have Answers.',
+            desc: s.faq_description || 'Everything you need to know about working with ESPACIO — from first call to final handover.'
+          });
+          if (Array.isArray(s.faq_showcase_slides) && s.faq_showcase_slides.length > 0) {
+            setShowcaseSlides(s.faq_showcase_slides);
+          }
+        }
+      } catch {}
     };
 
     syncCMS();

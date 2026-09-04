@@ -173,23 +173,80 @@ const QuoteModal = () => {
         console.warn('CMS store error:', cmsErr);
       }
 
-      // Perform non-blocking backend call
+      // Perform backend call to sync to Google Sheets
+      const cleanPhone1 = (formData.phone1 || '').trim().replace(/\s+/g, '');
+      const cleanPhone2 = (formData.phone2 || '').trim().replace(/\s+/g, '');
+      const formattedPhone = cleanPhone2 ? `${cleanPhone1} / ${cleanPhone2}` : cleanPhone1;
+      const quoteSource = isProjects
+        ? 'Projects Section (Get More Projects)'
+        : (isCatalogue ? `Catalogue Request (${productContext || 'Materials'})` : 'Free Estimate Request');
+
+      const leadPayload = {
+        name: (formData.name || '').trim(),
+        email: (formData.email || '').trim(),
+        phone: formattedPhone,
+        phone1: cleanPhone1,
+        phone2: cleanPhone2,
+        location: (formData.location || '').trim() || 'Hyderabad',
+        projectType: isProjects ? 'Projects Portfolio Unlock' : (isCatalogue ? 'Catalogue Request' : 'Free Estimate Request'),
+        catalogueMaterial: isCatalogue ? productContext : undefined,
+        message: isProjects
+          ? `Client requested to load more projects. Location: ${formData.location || 'Hyderabad'}`
+          : (isCatalogue 
+            ? `Catalogue Material: ${productContext || 'N/A'}. Location: ${formData.location || 'Hyderabad'}` 
+            : `Location: ${formData.location || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`),
+        googleSheetData: {
+          name: (formData.name || '').trim(),
+          phone: cleanPhone1,
+          phone1: cleanPhone1,
+          phone2: cleanPhone2,
+          email: (formData.email || '').trim(),
+          location: (formData.location || '').trim() || 'Hyderabad',
+          requirement: isCatalogue ? (productContext || 'Materials') : (isProjects ? 'Architecture & Projects' : 'Free Estimate'),
+          stage: 'Immediate (0-1 Month)',
+          materialDetails: isCatalogue ? (productContext || '-') : '-',
+          source: quoteSource,
+          notes: `Lead captured via Quote Modal. Location: ${formData.location || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`
+        }
+      };
+
+      let backendSynced = false;
       try {
-        await axios.post('/leads', {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone2 ? `${formData.phone1} / ${formData.phone2}` : formData.phone1,
-          location: formData.location,
-          projectType: isProjects ? 'Projects Portfolio Unlock' : (isCatalogue ? 'Catalogue Request' : 'Free Estimate Request'),
-          catalogueMaterial: isCatalogue ? productContext : undefined,
-          message: isProjects
-            ? `Client requested to load more projects. Location: ${formData.location || 'N/A'}`
-            : (isCatalogue 
-              ? `Catalogue Material: ${productContext || 'N/A'}. Location: ${formData.location || 'N/A'}` 
-              : `Location: ${formData.location || 'N/A'}. Secondary Phone: ${formData.phone2 || 'None'}`),
-        });
+        await axios.post('/api/leads', leadPayload);
+        backendSynced = true;
       } catch (backendErr) {
-        console.warn('Backend leads API warning:', backendErr.message);
+        try {
+          await axios.post('/leads', leadPayload);
+          backendSynced = true;
+        } catch (err2) {
+          console.warn('Backend leads API notice:', err2.message);
+        }
+      }
+
+      // Direct Webhook Fallback if backend was unreachable
+      const directWebhook = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+      if (!backendSynced && directWebhook && directWebhook.startsWith('http')) {
+        try {
+          await fetch(directWebhook, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+              source: quoteSource,
+              name: (formData.name || '').trim(),
+              phone1: cleanPhone1,
+              phone2: cleanPhone2,
+              email: (formData.email || '').trim(),
+              location: (formData.location || '').trim() || 'Hyderabad',
+              requirement: isCatalogue ? (productContext || 'Materials') : (isProjects ? 'Architecture & Projects' : 'Free Estimate'),
+              stage: 'Immediate (0-1 Month)',
+              materialDetails: isCatalogue ? (productContext || '-') : '-',
+              notes: `Lead captured via Quote Modal. Location: ${formData.location || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`,
+              status: 'NEW'
+            })
+          });
+        } catch {}
       }
 
       // Dispatch unlock event for any listening project views

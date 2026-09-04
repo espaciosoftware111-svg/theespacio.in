@@ -278,8 +278,9 @@ export const AdminSettings = () => {
     tagline: 'Engineering. Elegance. Experience.',
     adminEmail: 'tarunuttupulusu@gmail.com',
     instagram: 'https://www.instagram.com/theespacio.in',
+    facebook: 'https://www.facebook.com/share/1YCa9RnM8a/',
+    youtube: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL',
     pinterest: '',
-    youtube: '',
     enableChat: false,
     maintenanceMode: false,
     maintenance_title: "We're Upgrading Your Experience!",
@@ -354,8 +355,9 @@ export const AdminSettings = () => {
           <h2 className="font-editorial text-lg font-bold text-white pt-4 border-t border-white/10">Social Links</h2>
           {[
             { label: 'Instagram URL', key: 'instagram', placeholder: 'https://instagram.com/theespacio.in' },
+            { label: 'Facebook URL', key: 'facebook', placeholder: 'https://www.facebook.com/share/1YCa9RnM8a/' },
+            { label: 'YouTube URL', key: 'youtube', placeholder: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL' },
             { label: 'Pinterest URL', key: 'pinterest', placeholder: 'https://pinterest.com/...' },
-            { label: 'YouTube URL', key: 'youtube', placeholder: 'https://youtube.com/...' },
           ].map(({ label, key, placeholder }) => (
             <div key={key} className="space-y-1.5">
               <label className="font-sans text-[10px] text-white/40 uppercase tracking-widest">{label}</label>

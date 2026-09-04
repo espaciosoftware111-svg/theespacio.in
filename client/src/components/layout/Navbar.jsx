@@ -11,9 +11,12 @@ const Navbar = () => {
   const location = useLocation();
 
   // Pages that start with a dark cinematic hero
-  const hasDarkHero = ['/', '/about', '/services', '/projects', '/spaces', '/what-we-do', '/materials', '/products'].some(path => 
-    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
-  ) && !location.search.includes('success=true');
+  // Note: /projects/:slug (project detail) has an inset hero within a light cream background, so navbar sits on light bg
+  const hasDarkHero = ['/', '/about', '/services', '/projects', '/spaces', '/what-we-do', '/materials', '/products'].some(path => {
+    if (path === '/') return location.pathname === '/';
+    if (path === '/projects') return location.pathname === '/projects' || location.pathname === '/projects/';
+    return location.pathname.startsWith(path);
+  }) && !location.search.includes('success=true');
 
   useEffect(() => {
     const handleScroll = () => {

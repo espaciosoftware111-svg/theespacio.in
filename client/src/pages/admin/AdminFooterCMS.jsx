@@ -42,7 +42,7 @@ const defaultFooterData = {
     {
       name: 'Facebook',
       label: 'Facebook',
-      href: 'https://facebook.com',
+      href: 'https://www.facebook.com/share/1YCa9RnM8a/',
       icon: 'facebook',
       color: '#1877F2',
       beamColor: 'rgba(24, 119, 242, 0.4)'
@@ -50,7 +50,7 @@ const defaultFooterData = {
     {
       name: 'YouTube',
       label: 'YouTube',
-      href: 'https://youtube.com',
+      href: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL',
       icon: 'youtube',
       color: '#FF0000',
       beamColor: 'rgba(255, 0, 0, 0.4)'

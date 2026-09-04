@@ -3,6 +3,7 @@ import {
   getTestimonials,
   createTestimonial,
   updateTestimonial,
+  updateTestimonialsBulk,
   deleteTestimonial,
   syncGoogleReviews,
 } from '../controllers/testimonialController.js';
@@ -19,8 +20,13 @@ const testimonialUploads = upload.fields([
 router.get('/', getTestimonials);
 router.get('/google-sync', protect, authorize('admin', 'superadmin'), syncGoogleReviews);
 
+// Batch updates from Admin Testimonials CMS
+router.put('/bulk', updateTestimonialsBulk);
+router.put('/', updateTestimonialsBulk);
+
 router.post('/', protect, authorize('admin', 'superadmin'), testimonialUploads, createTestimonial);
 router.put('/:id', protect, authorize('admin', 'superadmin'), testimonialUploads, updateTestimonial);
 router.delete('/:id', protect, authorize('admin', 'superadmin'), deleteTestimonial);
 
 export default router;
+

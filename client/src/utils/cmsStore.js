@@ -37,9 +37,25 @@ export const STORAGE_KEYS = {
   MEDIA: 'espacio_cms_media',
 };
 
+// Setup cross-tab real-time sync channel
+const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('espacio_cms_sync') : null;
+
+if (syncChannel) {
+  syncChannel.onmessage = (event) => {
+    if (event.data && event.data.type === 'CMS_UPDATED') {
+      window.dispatchEvent(new Event('espacio_cms_update'));
+    }
+  };
+}
+
 // Dispatch change event to all tabs and active components
 export const notifyCMSUpdate = () => {
   window.dispatchEvent(new Event('espacio_cms_update'));
+  if (syncChannel) {
+    try {
+      syncChannel.postMessage({ type: 'CMS_UPDATED', timestamp: Date.now() });
+    } catch {}
+  }
 };
 
 export const DEFAULT_PROJECTS = [
@@ -364,8 +380,7 @@ export const DEFAULT_PROJECTS = [
       "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_18.webp",
       "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_19.webp",
       "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_20.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_21.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_22.webp"
+      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_21.webp"
     ],
     beforeImage: '/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp',
     afterImage: '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp',
@@ -1050,8 +1065,8 @@ export const DEFAULT_SETTINGS = {
   ],
   footer_social_items: [
     { name: 'Instagram', label: 'Instagram', href: 'https://www.instagram.com/theespacio.in', icon: 'instagram', color: '#E4405F', beamColor: 'rgba(228, 64, 95, 0.4)' },
-    { name: 'Facebook', label: 'Facebook', href: 'https://facebook.com', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
-    { name: 'YouTube', label: 'YouTube', href: 'https://youtube.com', icon: 'youtube', color: '#FF0000', beamColor: 'rgba(255, 0, 0, 0.4)' },
+    { name: 'Facebook', label: 'Facebook', href: 'https://www.facebook.com/share/1YCa9RnM8a/', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
+    { name: 'YouTube', label: 'YouTube', href: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL', icon: 'youtube', color: '#FF0000', beamColor: 'rgba(255, 0, 0, 0.4)' },
     { name: 'WhatsApp', label: 'WhatsApp', href: 'https://wa.me/919505151116', icon: 'whatsapp', color: '#25D366', beamColor: 'rgba(37, 211, 102, 0.4)' }
   ]
 };
@@ -1124,6 +1139,14 @@ export const getCMSData = (key, fallback = null) => {
             }
             updated = true;
           }
+          // Sanitize gallery images and remove duplicates
+          data.forEach(p => {
+            if (p && Array.isArray(p.gallery)) {
+              const origLen = p.gallery.length;
+              p.gallery = p.gallery.filter((img, idx, arr) => !img.includes('venkatesh_gallery_22.webp') && arr.indexOf(img) === idx);
+              if (p.gallery.length !== origLen) updated = true;
+            }
+          });
           if (updated) {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
@@ -1347,7 +1370,6 @@ export const getCMSData = (key, fallback = null) => {
               'cafes-restaurants': ["Specialty Coffee Bistro", "Fine Dining Hall", "Industrial Rooftop Bar", "Bohemian Lounge", "Quick-Service Gourmet Counter"],
               'villas': ["Grand Double-Height Foyer", "Courtyard & Lightwell Villa", "Contemporary Gated Villa", "Indo-Classical Luxury Villa", "Private Pent-Villa Deck"],
               'apartments': ["Compact 2BHK Smart Home", "Luxury 3BHK Residence", "Studio & Loft Space", "High-Rise Balcony Suite", "Open Concept Apartment"],
-              'luxury-homes': ["Penthouse Sky Mansion", "Architectural Estate", "Italian Marble Residence", "Private Screening Room", "Wellness Spa & Home Gym"],
               'foyer': ["Modern Floating Console", "Luxury Backlit Onyx", "Minimalist Drop-Zone", "Traditional Jali Screen", "Statement Mirror Wall"],
               'bar': ["Backlit Onyx Counter", "Temperature-Controlled Wine Cellar", "Compact Dry Bar", "Fluted Glass Cocktail Station", "Classic Walnut Lounge"],
               'walk-in-wardrobe': ["Central Island Suite", "Tinted Bronze Glass Wardrobe", "Velvet Boutique Salon", "Minimalist Open Dressing", "360-Degree Illuminated Vanity"]
@@ -1524,84 +1546,6 @@ export const getCMSData = (key, fallback = null) => {
               "/images/spaces/ceiling/ceiling_drive_44.webp",
               "/images/spaces/ceiling/ceiling_drive_45.webp",
               "/images/spaces/ceiling/ceiling_drive_46.webp"
-            ];
-
-            const LUXURY_DRIVE_IMAGES = [
-              "/images/spaces/luxury_homes/luxury_drive_1.webp",
-              "/images/spaces/luxury_homes/luxury_drive_2.webp",
-              "/images/spaces/luxury_homes/luxury_drive_3.webp",
-              "/images/spaces/luxury_homes/luxury_drive_4.webp",
-              "/images/spaces/luxury_homes/luxury_drive_5.webp",
-              "/images/spaces/luxury_homes/luxury_drive_6.webp",
-              "/images/spaces/luxury_homes/luxury_drive_7.webp",
-              "/images/spaces/luxury_homes/luxury_drive_8.webp",
-              "/images/spaces/luxury_homes/luxury_drive_9.webp",
-              "/images/spaces/luxury_homes/luxury_drive_10.webp",
-              "/images/spaces/luxury_homes/luxury_drive_11.webp",
-              "/images/spaces/luxury_homes/luxury_drive_12.webp",
-              "/images/spaces/luxury_homes/luxury_drive_13.webp",
-              "/images/spaces/luxury_homes/luxury_drive_14.webp",
-              "/images/spaces/luxury_homes/luxury_drive_15.webp",
-              "/images/spaces/luxury_homes/luxury_drive_16.webp",
-              "/images/spaces/luxury_homes/luxury_drive_17.webp",
-              "/images/spaces/luxury_homes/luxury_drive_18.webp",
-              "/images/spaces/luxury_homes/luxury_drive_19.webp",
-              "/images/spaces/luxury_homes/luxury_drive_20.webp",
-              "/images/spaces/luxury_homes/luxury_drive_21.webp",
-              "/images/spaces/luxury_homes/luxury_drive_22.webp",
-              "/images/spaces/luxury_homes/luxury_drive_23.webp",
-              "/images/spaces/luxury_homes/luxury_drive_24.webp",
-              "/images/spaces/luxury_homes/luxury_drive_25.webp",
-              "/images/spaces/luxury_homes/luxury_drive_26.webp",
-              "/images/spaces/luxury_homes/luxury_drive_27.webp",
-              "/images/spaces/luxury_homes/luxury_drive_28.webp",
-              "/images/spaces/luxury_homes/luxury_drive_29.webp",
-              "/images/spaces/luxury_homes/luxury_drive_30.webp",
-              "/images/spaces/luxury_homes/luxury_drive_31.webp",
-              "/images/spaces/luxury_homes/luxury_drive_32.webp",
-              "/images/spaces/luxury_homes/luxury_drive_33.webp",
-              "/images/spaces/luxury_homes/luxury_drive_34.webp",
-              "/images/spaces/luxury_homes/luxury_drive_35.webp",
-              "/images/spaces/luxury_homes/luxury_drive_36.webp",
-              "/images/spaces/luxury_homes/luxury_drive_37.webp",
-              "/images/spaces/luxury_homes/luxury_drive_39.webp",
-              "/images/spaces/luxury_homes/luxury_drive_40.webp",
-              "/images/spaces/luxury_homes/luxury_drive_41.webp",
-              "/images/spaces/luxury_homes/luxury_drive_42.webp",
-              "/images/spaces/luxury_homes/luxury_drive_43.webp",
-              "/images/spaces/luxury_homes/luxury_drive_44.webp",
-              "/images/spaces/luxury_homes/luxury_drive_45.webp",
-              "/images/spaces/luxury_homes/luxury_drive_46.webp",
-              "/images/spaces/luxury_homes/luxury_drive_47.webp",
-              "/images/spaces/luxury_homes/luxury_drive_48.webp",
-              "/images/spaces/luxury_homes/luxury_drive_49.webp",
-              "/images/spaces/luxury_homes/luxury_drive_50.webp",
-              "/images/spaces/luxury_homes/luxury_drive_51.webp",
-              "/images/spaces/luxury_homes/luxury_drive_52.webp",
-              "/images/spaces/luxury_homes/luxury_drive_53.webp",
-              "/images/spaces/luxury_homes/luxury_drive_54.webp",
-              "/images/spaces/luxury_homes/luxury_drive_55.webp",
-              "/images/spaces/luxury_homes/luxury_drive_56.webp",
-              "/images/spaces/luxury_homes/luxury_drive_57.webp",
-              "/images/spaces/luxury_homes/luxury_drive_58.webp",
-              "/images/spaces/luxury_homes/luxury_drive_59.webp",
-              "/images/spaces/luxury_homes/luxury_drive_60.webp",
-              "/images/spaces/luxury_homes/luxury_drive_61.webp",
-              "/images/spaces/luxury_homes/luxury_drive_62.webp",
-              "/images/spaces/luxury_homes/luxury_drive_63.webp",
-              "/images/spaces/luxury_homes/luxury_drive_64.webp",
-              "/images/spaces/luxury_homes/luxury_drive_65.webp",
-              "/images/spaces/luxury_homes/luxury_drive_66.webp",
-              "/images/spaces/luxury_homes/luxury_drive_67.webp",
-              "/images/spaces/luxury_homes/luxury_drive_68.webp",
-              "/images/spaces/luxury_homes/luxury_drive_69.webp",
-              "/images/spaces/luxury_homes/luxury_drive_70.webp",
-              "/images/spaces/luxury_homes/luxury_drive_71.webp",
-              "/images/spaces/luxury_homes/luxury_drive_72.webp",
-              "/images/spaces/luxury_homes/luxury_drive_73.webp",
-              "/images/spaces/luxury_homes/luxury_drive_74.webp",
-              "/images/spaces/luxury_homes/luxury_drive_75.webp",
-              "/images/spaces/luxury_homes/luxury_drive_76.webp"
             ];
 
             const WARDROBE_DRIVE_IMAGES = [
@@ -2189,7 +2133,18 @@ export const getCMSData = (key, fallback = null) => {
               "/images/spaces/modular_kitchen/kitchen_drive_32.webp"
             ];
 
+            if (Array.isArray(data.spaces_list)) {
+              const origCount = data.spaces_list.length;
+              data.spaces_list = data.spaces_list.filter(cat => cat.slug !== 'luxury-homes');
+              if (data.spaces_list.length !== origCount) modified = true;
+            }
+
             data.spaces_list.forEach(cat => {
+              if (Array.isArray(cat.galleryImages)) {
+                const prevL = cat.galleryImages.length;
+                cat.galleryImages = cat.galleryImages.filter(img => !img.includes('walk_in_wardrobe_drive_6.webp'));
+                if (cat.galleryImages.length !== prevL) modified = true;
+              }
               if (SPACES_FILTERS_MAP[cat.slug] && (!cat.filters || cat.filters.length !== 5 || cat.filters.includes('Japandi Minimal'))) {
                 cat.filters = SPACES_FILTERS_MAP[cat.slug];
                 modified = true;
@@ -2237,11 +2192,6 @@ export const getCMSData = (key, fallback = null) => {
               if (cat.slug === 'false-ceilings' && (!cat.galleryImages || cat.galleryImages.length !== 46 || !cat.galleryImages[0]?.includes('.webp'))) {
                 cat.galleryImages = CEILING_DRIVE_IMAGES;
                 cat.heroImage = "/images/spaces/ceiling/ceiling_drive_1.webp";
-                modified = true;
-              }
-              if (cat.slug === 'luxury-homes' && (!cat.galleryImages || cat.galleryImages.length !== 75 || cat.galleryImages.includes('/images/spaces/luxury_homes/luxury_drive_38.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = LUXURY_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/luxury_homes/luxury_drive_1.webp";
                 modified = true;
               }
               if (cat.slug === 'wardrobes' && (!cat.galleryImages || cat.galleryImages.length !== 34 || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_20.webp') || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_28.webp') || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_35.webp') || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_36.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
@@ -2365,6 +2315,22 @@ export const getCMSData = (key, fallback = null) => {
           if (!Array.isArray(data.hero_bg_images) || data.hero_bg_images.length === 0) {
             data.hero_bg_images = DEFAULT_SETTINGS.hero_bg_images;
             modified = true;
+          }
+          if (Array.isArray(data.footer_social_items)) {
+            data.footer_social_items.forEach(item => {
+              if (item.name === 'Facebook' || item.icon === 'facebook' || item.label === 'Facebook') {
+                if (item.href === 'https://facebook.com' || item.href === 'https://www.facebook.com' || !item.href?.includes('1YCa9RnM8a')) {
+                  item.href = 'https://www.facebook.com/share/1YCa9RnM8a/';
+                  modified = true;
+                }
+              }
+              if (item.name === 'YouTube' || item.icon === 'youtube' || item.label === 'YouTube') {
+                if (item.href === 'https://youtube.com' || item.href === 'https://www.youtube.com' || !item.href?.includes('@theespacio')) {
+                  item.href = 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL';
+                  modified = true;
+                }
+              }
+            });
           }
           if (modified) {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}

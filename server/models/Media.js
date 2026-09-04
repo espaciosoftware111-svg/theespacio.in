@@ -1,4 +1,4 @@
-import { FirestoreModelAdapter } from './MongooseToFirestore.js';
+import { SupabaseModelAdapter } from './SupabaseModelAdapter.js';
 
-const Media = new FirestoreModelAdapter('Media');
+const Media = new SupabaseModelAdapter('Media');
 export default Media;

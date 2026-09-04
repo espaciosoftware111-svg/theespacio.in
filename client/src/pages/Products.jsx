@@ -43,6 +43,7 @@ const Products = () => {
         const response = await axios.get('/products');
         if (response.data.success && Array.isArray(response.data.data) && response.data.data.length > 0) {
           setProducts(response.data.data);
+          setCMSData(STORAGE_KEYS.PRODUCTS, response.data.data);
         }
       } catch {}
     };

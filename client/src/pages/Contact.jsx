@@ -357,18 +357,71 @@ const Contact = () => {
       }
 
       // 2. Send to local backend server (which performs Google Sheets synchronization)
+      let backendSynced = false;
+      const contactPayload = {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.mobile,
+        phone1: formData.mobile,
+        phone2: '',
+        location: formData.location || 'Hyderabad',
+        projectType: formData.requirement,
+        budget: isMaterials ? 'Materials Path' : formData.stage,
+        message: `Mobile: ${formData.mobile}\n\n${notes}`,
+        propertyDetails: {
+          propertyType: formData.propertyType === 'Others' ? formData.otherPropertyType : (formData.propertyType || 'N/A'),
+          spaces: formData.spaces ? formData.spaces.map(s => s === 'Others' ? formData.otherSpaces : s).join(', ') : 'N/A',
+          location: formData.location || 'N/A'
+        },
+        projectDetails: {
+          stage: formData.stage || 'N/A',
+          notes: notes
+        },
+        googleSheetData: {
+          ...googleSheetData,
+          phone1: formData.mobile,
+          phone2: '',
+          source: 'Contact Us (Consultation Form)'
+        }
+      };
+
       try {
-        await axios.post('/leads', {
-          name: formData.fullName,
-          email: formData.email,
-          phone: formData.mobile,
-          projectType: formData.requirement,
-          budget: isMaterials ? 'Materials Path' : formData.stage,
-          message: `Mobile: ${formData.mobile}\n\n${notes}`,
-          googleSheetData
-        });
-      } catch (bErr) {
-        console.warn('Backend server leads call warning:', bErr.message);
+        await axios.post('/api/leads', contactPayload);
+        backendSynced = true;
+      } catch (bErr1) {
+        try {
+          await axios.post('/leads', contactPayload);
+          backendSynced = true;
+        } catch (bErr2) {
+          console.warn('Backend server leads call warning:', bErr2.message);
+        }
+      }
+
+      // Direct Webhook Fallback if backend was unreachable
+      const directWebhook = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+      if (!backendSynced && directWebhook && directWebhook.startsWith('http')) {
+        try {
+          await fetch(directWebhook, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+              source: 'Contact Us (Consultation Form)',
+              name: formData.fullName,
+              phone1: formData.mobile,
+              phone2: '',
+              email: formData.email,
+              location: formData.location || 'Hyderabad',
+              requirement: formData.requirement || 'Turnkey Interiors',
+              stage: formData.stage || 'N/A',
+              notes: notes,
+              status: 'NEW'
+            })
+          });
+        } catch (e) {
+          console.warn('Direct webhook fallback notice:', e);
+        }
       }
 
       navigate('/contact?success=true', { replace: true });

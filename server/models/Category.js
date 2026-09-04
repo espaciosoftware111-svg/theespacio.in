@@ -1,4 +1,4 @@
-import { FirestoreModelAdapter } from './MongooseToFirestore.js';
+import { SupabaseModelAdapter } from './SupabaseModelAdapter.js';
 
-const Category = new FirestoreModelAdapter('Category');
+const Category = new SupabaseModelAdapter('Category');
 export default Category;

@@ -512,7 +512,28 @@ const Testimonials = () => {
             const mid = Math.ceil(cmsData.length / 2);
             setTopItems([...cmsData.slice(0, mid)]);
             setBottomItems([...cmsData.slice(mid)]);
-            return;
+          }
+        }
+
+        const res = await axios.get('/testimonials').catch(() => null);
+        if (res?.data?.success && Array.isArray(res.data?.data) && res.data.data.length > 0) {
+          const fresh = res.data.data;
+          setCMSData(STORAGE_KEYS.TESTIMONIALS, fresh);
+          const visibleWithAvatar = fresh.filter(item => item.visible !== false && item.avatar && item.avatar.trim() !== '');
+          if (visibleWithAvatar.length > 0) {
+            const cmsData = visibleWithAvatar.map((item) => ({
+              source: item.source || 'GOOGLE',
+              rating: item.rating || 5,
+              title: item.title || `${item.name || 'Client'} Review`,
+              body: item.body || item.reviewText || item.review || '',
+              name: item.name || item.clientName || 'Anonymous Client',
+              role: item.designation || item.role || 'Homeowner • ESPACIO Client',
+              avatar: item.avatar || item.photo || '',
+              date: item.date || 'Recently'
+            }));
+            const mid = Math.ceil(cmsData.length / 2);
+            setTopItems([...cmsData.slice(0, mid)]);
+            setBottomItems([...cmsData.slice(mid)]);
           }
         }
       } catch {}

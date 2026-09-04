@@ -1,5 +1,4 @@
-import bcrypt from 'bcrypt';
-import { FirestoreModelAdapter } from './MongooseToFirestore.js';
+import { SupabaseModelAdapter } from './SupabaseModelAdapter.js';
 
-const User = new FirestoreModelAdapter('User');
+const User = new SupabaseModelAdapter('User');
 export default User;

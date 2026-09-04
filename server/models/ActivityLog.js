@@ -1,4 +1,4 @@
-import { FirestoreModelAdapter } from './MongooseToFirestore.js';
+import { SupabaseModelAdapter } from './SupabaseModelAdapter.js';
 
-const ActivityLog = new FirestoreModelAdapter('ActivityLog');
+const ActivityLog = new SupabaseModelAdapter('ActivityLog');
 export default ActivityLog;

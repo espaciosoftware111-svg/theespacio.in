@@ -19,22 +19,22 @@ export const useAdminAuth = () => {
 
 // ── SIDEBAR NAV ───────────────────────────────────────────────────────────────
 const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
-  { icon: Layers, label: 'Home Hero CMS', path: '/admin/hero' },
-  { icon: Package, label: 'Services CMS', path: '/admin/services' },
-  { icon: FolderKanban, label: 'Projects CMS', path: '/admin/projects' },
-  { icon: Layers, label: 'Spaces CMS', path: '/admin/spaces' },
-  { icon: Package, label: 'Materials CMS', path: '/admin/materials' },
-  { icon: FileText, label: 'About CMS', path: '/admin/about' },
-  { icon: HelpCircle, label: 'FAQ CMS', path: '/admin/faqs' },
-  { icon: Mail, label: 'Contact CMS', path: '/admin/contact' },
-  { icon: Star, label: 'Testimonials CMS', path: '/admin/testimonials' },
-  { icon: FileText, label: 'Footer CMS', path: '/admin/footer' },
-  { icon: Mail, label: 'Enquiries', path: '/admin/enquiries' },
-  { icon: Image, label: 'Gallery', path: '/admin/gallery' },
-  { icon: Users, label: 'Admin Users', path: '/admin/users' },
-  { icon: Activity, label: 'Audit Logs', path: '/admin/audit' },
-  { icon: Settings, label: 'Settings', path: '/admin/settings' },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/espesp/admin/dashboard' },
+  { icon: Layers, label: 'Home Hero CMS', path: '/espesp/admin/hero' },
+  { icon: Package, label: 'Services CMS', path: '/espesp/admin/services' },
+  { icon: FolderKanban, label: 'Projects CMS', path: '/espesp/admin/projects' },
+  { icon: Layers, label: 'Spaces CMS', path: '/espesp/admin/spaces' },
+  { icon: Package, label: 'Materials CMS', path: '/espesp/admin/materials' },
+  { icon: FileText, label: 'About CMS', path: '/espesp/admin/about' },
+  { icon: HelpCircle, label: 'FAQ CMS', path: '/espesp/admin/faqs' },
+  { icon: Mail, label: 'Contact CMS', path: '/espesp/admin/contact' },
+  { icon: Star, label: 'Testimonials CMS', path: '/espesp/admin/testimonials' },
+  { icon: FileText, label: 'Footer CMS', path: '/espesp/admin/footer' },
+  { icon: Mail, label: 'Enquiries', path: '/espesp/admin/enquiries' },
+  { icon: Image, label: 'Gallery', path: '/espesp/admin/gallery' },
+  { icon: Users, label: 'Admin Users', path: '/espesp/admin/users' },
+  { icon: Activity, label: 'Audit Logs', path: '/espesp/admin/audit' },
+  { icon: Settings, label: 'Settings', path: '/espesp/admin/settings' },
 ];
 
 const AdminLayout = ({ children }) => {
@@ -56,7 +56,7 @@ const AdminLayout = ({ children }) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/admin');
+      navigate('/espesp/admin');
     }
   }, [isAuthenticated, navigate]);
 
@@ -68,7 +68,7 @@ const AdminLayout = ({ children }) => {
     localStorage.removeItem('espacio_token');
     sessionStorage.removeItem('active_admin_user');
     delete axios.defaults.headers.common['Authorization'];
-    navigate('/admin');
+    navigate('/espesp/admin');
   };
 
   if (!isAuthenticated) {
@@ -79,10 +79,10 @@ const AdminLayout = ({ children }) => {
   const filteredNavItems = navItems.filter(item => {
     if (userRole === 'Super Admin') return true;
     if (userRole === 'Editor') {
-      return !['/admin/users', '/admin/audit', '/admin/settings'].includes(item.path);
+      return !['/espesp/admin/users', '/espesp/admin/audit', '/espesp/admin/settings'].includes(item.path);
     }
     if (userRole === 'Manager') {
-      return ['/admin/dashboard', '/admin/enquiries', '/admin/projects', '/admin/materials', '/admin/products'].includes(item.path);
+      return ['/espesp/admin/dashboard', '/espesp/admin/enquiries', '/espesp/admin/projects', '/espesp/admin/materials', '/espesp/admin/products'].includes(item.path);
     }
     return true;
   });
@@ -92,10 +92,10 @@ const AdminLayout = ({ children }) => {
     if (userRole === 'Super Admin') return true;
     const currentPath = location.pathname;
     if (userRole === 'Editor') {
-      return !['/admin/users', '/admin/audit', '/admin/settings'].includes(currentPath);
+      return !['/espesp/admin/users', '/espesp/admin/audit', '/espesp/admin/settings'].includes(currentPath);
     }
     if (userRole === 'Manager') {
-      return ['/admin/dashboard', '/admin/enquiries', '/admin/projects', '/admin/materials', '/admin/products'].includes(currentPath);
+      return ['/espesp/admin/dashboard', '/espesp/admin/enquiries', '/espesp/admin/projects', '/espesp/admin/materials', '/espesp/admin/products'].includes(currentPath);
     }
     return true;
   };
@@ -185,7 +185,7 @@ const AdminLayout = ({ children }) => {
                 Your current account role (<span className="text-gold font-bold">{userRole}</span>) does not have permission to access this module.
               </p>
               <Link
-                to="/admin/dashboard"
+                to="/espesp/admin/dashboard"
                 className="inline-flex items-center space-x-2 bg-gold hover:bg-gold-hover text-charcoal font-sans text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl transition-all shadow-lg"
               >
                 <span>Return to Dashboard</span>
@@ -270,7 +270,7 @@ const AdminDashboardHome = () => {
         <div className="xl:col-span-2 bg-white border border-stone-200 rounded-xl overflow-hidden shadow-xs">
           <div className="flex items-center justify-between px-6 py-5 border-b border-stone-200">
             <h2 className="font-editorial text-lg font-bold text-stone-900">Recent Enquiries ({enquiries.length})</h2>
-            <Link to="/admin/enquiries" className="font-sans text-[10px] uppercase tracking-widest text-[#967332] font-bold hover:underline">View All Enquiries</Link>
+            <Link to="/espesp/admin/enquiries" className="font-sans text-[10px] uppercase tracking-widest text-[#967332] font-bold hover:underline">View All Enquiries</Link>
           </div>
           <div className="divide-y divide-stone-100">
             {enquiries.length > 0 ? enquiries.slice(0, 6).map((item, idx) => (
@@ -316,11 +316,11 @@ const AdminDashboardHome = () => {
           </div>
           <div className="p-5 space-y-3">
             {[
-              { label: '1. Homepage CMS', path: '/admin/hero', icon: Layers },
-              { label: '2. Services CMS', path: '/admin/services', icon: Package },
-              { label: '3. Spaces CMS', path: '/admin/spaces', icon: Layers },
-              { label: '4. Materials CMS', path: '/admin/materials', icon: Package },
-              { label: '5. Admin Users', path: '/admin/users', icon: Users },
+              { label: '1. Homepage CMS', path: '/espesp/admin/hero', icon: Layers },
+              { label: '2. Services CMS', path: '/espesp/admin/services', icon: Package },
+              { label: '3. Spaces CMS', path: '/espesp/admin/spaces', icon: Layers },
+              { label: '4. Materials CMS', path: '/espesp/admin/materials', icon: Package },
+              { label: '5. Admin Users', path: '/espesp/admin/users', icon: Users },
             ].map((action, idx) => (
               <Link key={idx} to={action.path}
                 className="flex items-center space-x-3 p-3.5 rounded-xl bg-stone-50 hover:bg-amber-50/60 border border-stone-200 hover:border-gold/40 transition-all duration-200 group">

@@ -38,6 +38,7 @@ import dashboardRoutes from '../server/routes/dashboardRoutes.js';
 connectDB();
 
 const app = express();
+app.set('trust proxy', 1);
 
 // Security headers
 app.use(helmet({ crossOriginResourcePolicy: false }));
@@ -57,6 +58,14 @@ app.use(cors({
 // Request parsers with 50mb payload limit for image uploads
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// URL normalizer: gracefully fix redundant /api/api/ paths
+app.use((req, res, next) => {
+  if (req.url.startsWith('/api/api/')) {
+    req.url = req.url.replace('/api/api/', '/api/');
+  }
+  next();
+});
 
 // Serve uploaded images statically with aggressive 1-year browser caching
 const uploadsDir = path.resolve(__dirname, '../client/public/uploads');
@@ -136,25 +145,38 @@ if (process.env.NODE_ENV !== 'production') {
 // Compression
 app.use(compression());
 
-// Rate limiter for general API routes
+// Rate limiter for general API routes (relaxed in dev, exempting leads and health checks)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
+  max: process.env.NODE_ENV === 'production' ? 1000 : 50000,
   message: { success: false, message: 'Too many requests, try again in 15 minutes.' },
+  skip: (req) => {
+    return req.originalUrl?.includes('/leads') || req.path?.includes('/leads') || req.path?.includes('/health');
+  }
 });
 app.use('/api/', limiter);
 
-// Mount routes
+// Mount routes (supporting both /api/path and /path)
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
 app.use('/api/leads', leadRoutes);
+app.use('/leads', leadRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/projects', projectRoutes);
 app.use('/api/products', productRoutes);
+app.use('/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/categories', categoryRoutes);
 app.use('/api/testimonials', testimonialRoutes);
+app.use('/testimonials', testimonialRoutes);
 app.use('/api/faqs', faqRoutes);
+app.use('/faqs', faqRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/settings', settingsRoutes);
 app.use('/api/media', mediaRoutes);
+app.use('/media', mediaRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 // Serve user-uploaded bedroom image
 const serveBedroomImage = (req, res) => {

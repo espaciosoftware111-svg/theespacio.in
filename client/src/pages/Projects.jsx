@@ -123,9 +123,30 @@ const Projects = () => {
       } catch {}
 
       try {
-        const response = await axios.get('/projects');
-        if (response.data.success && Array.isArray(response.data.data) && response.data.data.length > 0) {
-          setProjects(response.data.data);
+        const [projRes, setRes] = await Promise.all([
+          axios.get('/projects').catch(() => null),
+          axios.get('/settings').catch(() => null)
+        ]);
+
+        if (projRes?.data?.success && Array.isArray(projRes.data?.data) && projRes.data.data.length > 0) {
+          setProjects(projRes.data.data);
+          setCMSData(STORAGE_KEYS.PROJECTS, projRes.data.data);
+        }
+
+        if (setRes?.data?.success && setRes.data?.data) {
+          const settings = setRes.data.data;
+          setCMSData(STORAGE_KEYS.SETTINGS, settings);
+          const rawImgs = (Array.isArray(settings.projects_hero_images) && settings.projects_hero_images.length > 0)
+            ? settings.projects_hero_images
+            : heroImages;
+          const uniqueImgs = Array.from(new Set(rawImgs.filter(Boolean)));
+
+          setHeroContent({
+            badge: settings.projects_hero_badge || 'Portfolio & Case Studies',
+            title: settings.projects_hero_title || 'Our Projects',
+            subtitle: settings.projects_hero_subtitle || 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
+            images: uniqueImgs.length > 0 ? uniqueImgs : heroImages
+          });
         }
       } catch (err) {
       } finally {

@@ -1,8 +1,17 @@
 import { google } from 'googleapis';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import axios from 'axios';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ensure env is loaded regardless of execution cwd
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../client/.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 dotenv.config();
 
 // Helper to authenticate with Google Sheets API
@@ -39,6 +48,24 @@ const getAuth = () => {
 
   return null;
 };
+
+// Unified Standard Headers for the single master sheet
+export const UNIFIED_HEADERS = [
+  'Date & Time',
+  'Lead ID',
+  'Source / Form Type',
+  'Customer Name',
+  'Primary Phone',
+  'Secondary Phone',
+  'Email Address',
+  'Project Location',
+  'Requirement / Space',
+  'Stage / Timeline',
+  'Material / Catalogue Details',
+  'Notes / Message',
+  'Status',
+  'IP Address'
+];
 
 // Helper to ensure a sheet exists and has headers
 const ensureSheetExists = async (sheets, spreadsheetId, sheetName, headers) => {
@@ -80,251 +107,213 @@ const ensureSheetExists = async (sheets, spreadsheetId, sheetName, headers) => {
 };
 
 /**
- * Appends a lead or material enquiry to the target Google Sheet.
- * @param {string} type - 'contact' or 'material'
- * @param {object} data - Form data payload
+ * Appends a lead to the unified Google Sheet.
+ * Supports both:
+ * 1. Google Apps Script Webhook (GOOGLE_SHEETS_WEBHOOK_URL and/or VITE_GOOGLE_SHEET_WEBHOOK_URL)
+ * 2. Google Cloud Service Account API (GOOGLE_SERVICE_ACCOUNT_EMAIL & GOOGLE_PRIVATE_KEY or google-credentials.json)
+ *
+ * @param {string|object} typeOrData - Form data payload or type string
+ * @param {object} [optionalData] - Form data payload if type passed first
  */
-export const appendToGoogleSheet = async (type, data) => {
+export const appendToGoogleSheet = async (typeOrData, optionalData) => {
   try {
+    const data = (optionalData || (typeof typeOrData === 'object' ? typeOrData : {})) || {};
+    const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+    const name = data.name || data.fullName || data['Customer Name'] || 'Valued Client';
+    const phone1 = data.phone1 || data.phone || data.mobile || data['Primary Phone'] || data['Contact Number 1'] || '';
+    const phone2 = data.phone2 || data['Secondary Phone'] || data['Contact Number 2'] || '';
+    const email = data.email || data['Email Address'] || '';
+    const location = data.location || data['Project Location'] || '';
+    const requirement = data.requirement || data.serviceType || data.spaces || data['Requirement / Space'] || data['Looking For'] || '';
+    const stage = data.stage || data.timeline || data.budget || data['Stage / Timeline'] || data['Project Stage'] || '';
+    const materialDetails = data.materialDetails || data.catalogueMaterial || data['Material / Catalogue Details'] || '-';
+    const notes = data.notes || data.message || data['Notes / Message'] || data['Additional Notes'] || '';
+    const source = data.source || data['Source / Form Type'] || data.Source || 'Website Lead';
+    const status = data.status || 'NEW';
+    const ipAddress = data.ipAddress || 'N/A';
+
+    const rowArray = [
+      timestamp,
+      data.leadId || '',
+      source,
+      name,
+      phone1,
+      phone2,
+      email,
+      location,
+      requirement,
+      stage,
+      materialDetails,
+      notes,
+      status,
+      ipAddress
+    ];
+
+    const comprehensivePayload = {
+      ...data,
+      timestamp,
+      date: timestamp,
+      'Date & Time': timestamp,
+      Timestamp: timestamp,
+      Date: timestamp,
+      name,
+      fullName: name,
+      'Customer Name': name,
+      'Full Name': name,
+      Name: name,
+      phone: phone1,
+      phone1,
+      phone2,
+      mobile: phone1,
+      'Primary Phone': phone1,
+      'Contact Number 1': phone1,
+      'Contact Number 2': phone2,
+      'Secondary Phone': phone2,
+      'Mobile Number': phone1,
+      Phone: phone1,
+      Mobile: phone1,
+      email,
+      'Email Address': email,
+      Email: email,
+      location,
+      'Project Location': location,
+      Location: location,
+      requirement,
+      spaces: requirement,
+      serviceType: requirement,
+      'Requirement / Space': requirement,
+      'Looking For': requirement,
+      'Spaces / Rooms': requirement,
+      'Property Type': data.propertyType || 'Residential',
+      stage,
+      timeline: stage,
+      'Stage / Timeline': stage,
+      'Project Stage': stage,
+      materialDetails,
+      catalogueMaterial: materialDetails,
+      'Material / Catalogue Details': materialDetails,
+      'Catalogue Material': materialDetails,
+      notes,
+      message: notes,
+      'Notes / Message': notes,
+      'Additional Notes': notes,
+      Notes: notes,
+      Message: notes,
+      source,
+      'Source / Form Type': source,
+      Source: source,
+      status,
+      Status: status,
+      ipAddress,
+      'IP Address': ipAddress,
+      row: rowArray,
+      values: rowArray,
+      rowData: rowArray
+    };
+
+    // 1. Method A: Google Apps Script Webhooks
+    const webhookUrls = [
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL,
+      process.env.VITE_GOOGLE_SHEET_WEBHOOK_URL
+    ].filter(url => url && typeof url === 'string' && url.startsWith('http'));
+
+    const uniqueWebhooks = [...new Set(webhookUrls)];
+
+    if (uniqueWebhooks.length > 0) {
+      let leadId = 'ESP-000001';
+      let anySuccess = false;
+      for (const webhookUrl of uniqueWebhooks) {
+        try {
+          const response = await axios.post(webhookUrl, comprehensivePayload, {
+            headers: { 'Content-Type': 'application/json' },
+            timeout: 25000,
+            maxRedirects: 5
+          });
+          if (response.data?.leadId) {
+            leadId = response.data.leadId;
+          }
+          anySuccess = true;
+          console.log(`Google Sheets: Successfully synced lead [${data.name}] to Webhook URL (${webhookUrl.substring(0, 45)}...) (ID: ${leadId})`);
+        } catch (webhookErr) {
+          console.warn(`Google Sheets Webhook sync error (${webhookUrl.substring(0, 45)}...):`, webhookErr.message);
+        }
+      }
+      if (anySuccess) {
+        return { success: true, id: leadId, method: 'webhook' };
+      }
+    }
+
+    // 2. Method B: Official Google Sheets API v4 (Service Account)
     const auth = getAuth();
     if (!auth) {
-      console.warn('Google Sheets API: No credentials found. Check your GOOGLE_SERVICE_ACCOUNT_EMAIL & GOOGLE_PRIVATE_KEY or google-credentials.json.');
+      console.warn('Google Sheets: No Google credentials found (GOOGLE_SHEETS_WEBHOOK_URL or GOOGLE_SERVICE_ACCOUNT_EMAIL & GOOGLE_PRIVATE_KEY or google-credentials.json).');
       return null;
     }
 
     const sheets = google.sheets({ version: 'v4', auth });
-    const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || '1xT3RbueFsMwGm8FgtvZwK6J_U8sa9YNfwu2yVYYMTE0';
-
-    const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-
-    if (type === 'contact') {
-      const sheetName = process.env.GOOGLE_SHEETS_CONTACT_SHEET_NAME || 'Contact Requests';
-      const headers = [
-        'Timestamp',
-        'Lead ID',
-        'Looking For',
-        'Property Type',
-        'Spaces / Rooms',
-        'Location',
-        'Project Stage',
-        'Additional Notes',
-        'Full Name',
-        'Mobile Number',
-        'Email Address',
-        'Source',
-        'Status',
-        'Assigned To',
-        'Follow-up Date',
-        'Last Updated',
-        'Remarks',
-        'IP Address'
-      ];
-
-      // 1. Ensure sheet exists
-      await ensureSheetExists(sheets, spreadsheetId, sheetName, headers);
-
-      // 2. Fetch Lead IDs to determine next ID
-      let nextId = 'ESP-000001';
-      try {
-        const response = await sheets.spreadsheets.values.get({
-          spreadsheetId,
-          range: `${sheetName}!B2:B`,
-        });
-        const rows = response.data.values;
-        if (rows && rows.length > 0) {
-          const lastIdStr = rows[rows.length - 1][0];
-          if (lastIdStr && lastIdStr.startsWith('ESP-')) {
-            const match = lastIdStr.match(/ESP-(\d+)/);
-            if (match) {
-              const num = parseInt(match[1], 10);
-              nextId = `ESP-${String(num + 1).padStart(6, '0')}`;
-            }
-          }
-        }
-      } catch (err) {
-        console.warn('Google Sheets API: Read error, defaulting to ESP-000001. Error:', err.message);
-      }
-
-      // Column ordering exactly as requested
-      const rowValues = [
-        timestamp,                  // Timestamp
-        nextId,                     // Lead ID
-        data.lookingFor || 'N/A',   // Looking For
-        data.propertyType || 'N/A', // Property Type
-        data.spaces || 'N/A',       // Spaces / Rooms
-        data.location || 'N/A',     // Location
-        data.projectStage || 'N/A', // Project Stage
-        data.notes || 'None',       // Additional Notes
-        data.name || 'N/A',         // Full Name
-        data.phone || 'N/A',        // Mobile Number
-        data.email || 'N/A',        // Email Address
-        'Website',                  // Source (Default: Website)
-        'New',                      // Status (Default: New)
-        '',                         // Assigned To (Default: Blank)
-        '',                         // Follow-up Date (Default: Blank)
-        timestamp,                  // Last Updated
-        '',                         // Remarks (Default: Blank)
-        data.ipAddress || 'N/A'     // IP Address
-      ];
-
-      await sheets.spreadsheets.values.append({
-        spreadsheetId,
-        range: `${sheetName}!A:R`,
-        valueInputOption: 'USER_ENTERED',
-        requestBody: {
-          values: [rowValues],
-        },
-      });
-
-      console.log(`Google Sheets API: Appended row to "${sheetName}" with ID ${nextId}`);
-      return { id: nextId };
-
-    } else if (type === 'catalogue') {
-      const sheetName = process.env.GOOGLE_SHEETS_CATALOGUE_SHEET_NAME || 'Catalogue Requests';
-      const headers = [
-        'Timestamp',
-        'Enquiry ID',
-        'Customer Name',
-        'Contact Number 1',
-        'Contact Number 2',
-        'Email Address',
-        'Project Location',
-        'Catalogue Material',
-        'Source',
-        'Status',
-        'Last Updated',
-        'IP Address'
-      ];
-
-      // 1. Ensure sheet exists
-      await ensureSheetExists(sheets, spreadsheetId, sheetName, headers);
-
-      // 2. Fetch Enquiry IDs to determine next ID
-      let nextId = 'CAT-000001';
-      try {
-        const response = await sheets.spreadsheets.values.get({
-          spreadsheetId,
-          range: `${sheetName}!B2:B`,
-        });
-        const rows = response.data.values;
-        if (rows && rows.length > 0) {
-          const lastIdStr = rows[rows.length - 1][0];
-          if (lastIdStr && lastIdStr.startsWith('CAT-')) {
-            const match = lastIdStr.match(/CAT-(\d+)/);
-            if (match) {
-              const num = parseInt(match[1], 10);
-              nextId = `CAT-${String(num + 1).padStart(6, '0')}`;
-            }
-          }
-        }
-      } catch (err) {
-        console.warn('Google Sheets API: Read error, defaulting to CAT-000001. Error:', err.message);
-      }
-
-      // Column ordering
-      const rowValues = [
-        timestamp,                  // Timestamp
-        nextId,                     // Enquiry ID
-        data.name || 'N/A',         // Customer Name
-        data.phone1 || 'N/A',       // Contact Number 1
-        data.phone2 || '',          // Contact Number 2 (Optional)
-        data.email || 'N/A',        // Email Address
-        data.location || 'N/A',     // Project Location
-        data.catalogueMaterial || 'N/A', // Catalogue Material
-        'Website',                  // Source
-        'New',                      // Status
-        timestamp,                  // Last Updated
-        data.ipAddress || 'N/A'     // IP Address
-      ];
-
-      await sheets.spreadsheets.values.append({
-        spreadsheetId,
-        range: `${sheetName}!A:L`,
-        valueInputOption: 'USER_ENTERED',
-        requestBody: {
-          values: [rowValues],
-        },
-      });
-
-      console.log(`Google Sheets API: Appended row to "${sheetName}" with ID ${nextId}`);
-      return { id: nextId };
-
-    } else if (type === 'material') {
-      const sheetName = process.env.GOOGLE_SHEETS_MATERIAL_SHEET_NAME || 'Material Enquiries';
-      const headers = [
-        'Timestamp',
-        'Enquiry ID',
-        'Customer Name',
-        'Contact Number 1',
-        'Contact Number 2',
-        'Email Address',
-        'Project Location',
-        'Source',
-        'Status',
-        'Assigned To',
-        'Follow-up Date',
-        'Last Updated',
-        'Remarks',
-        'IP Address'
-      ];
-
-      // 1. Ensure sheet exists
-      await ensureSheetExists(sheets, spreadsheetId, sheetName, headers);
-
-      // 2. Fetch Enquiry IDs to determine next ID
-      let nextId = 'MAT-000001';
-      try {
-        const response = await sheets.spreadsheets.values.get({
-          spreadsheetId,
-          range: `${sheetName}!B2:B`,
-        });
-        const rows = response.data.values;
-        if (rows && rows.length > 0) {
-          const lastIdStr = rows[rows.length - 1][0];
-          if (lastIdStr && lastIdStr.startsWith('MAT-')) {
-            const match = lastIdStr.match(/MAT-(\d+)/);
-            if (match) {
-              const num = parseInt(match[1], 10);
-              nextId = `MAT-${String(num + 1).padStart(6, '0')}`;
-            }
-          }
-        }
-      } catch (err) {
-        console.warn('Google Sheets API: Read error, defaulting to MAT-000001. Error:', err.message);
-      }
-
-      // Column ordering exactly as requested
-      const rowValues = [
-        timestamp,                  // Timestamp
-        nextId,                     // Enquiry ID
-        data.name || 'N/A',         // Customer Name
-        data.phone1 || 'N/A',       // Contact Number 1
-        data.phone2 || '',          // Contact Number 2 (Optional)
-        data.email || 'N/A',        // Email Address
-        data.location || 'N/A',     // Project Location
-        'Website',                  // Source (Default: Website)
-        'New',                      // Status (Default: New)
-        '',                         // Assigned To (Default: Blank)
-        '',                         // Follow-up Date (Default: Blank)
-        timestamp,                  // Last Updated
-        '',                         // Remarks (Default: Blank)
-        data.ipAddress || 'N/A'     // IP Address
-      ];
-
-      await sheets.spreadsheets.values.append({
-        spreadsheetId,
-        range: `${sheetName}!A:N`,
-        valueInputOption: 'USER_ENTERED',
-        requestBody: {
-          values: [rowValues],
-        },
-      });
-
-      console.log(`Google Sheets API: Appended row to "${sheetName}" with ID ${nextId}`);
-      return { id: nextId };
+    const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    if (!spreadsheetId) {
+      console.warn('Google Sheets: GOOGLE_SHEETS_SPREADSHEET_ID not set in .env.');
+      return null;
     }
+
+    const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME || 'All Leads';
+    await ensureSheetExists(sheets, spreadsheetId, sheetName, UNIFIED_HEADERS);
+
+    // Fetch Lead IDs to determine next ID
+    let nextId = 'ESP-000001';
+    try {
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: `${sheetName}!B2:B`,
+      });
+      const rows = response.data.values;
+      if (rows && rows.length > 0) {
+        const lastIdStr = rows[rows.length - 1][0];
+        if (lastIdStr && lastIdStr.startsWith('ESP-')) {
+          const match = lastIdStr.match(/ESP-(\d+)/);
+          if (match) {
+            const num = parseInt(match[1], 10);
+            nextId = `ESP-${String(num + 1).padStart(6, '0')}`;
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Google Sheets API: Read error, defaulting to ESP-000001. Error:', err.message);
+    }
+
+    // Prepare unified row values matching UNIFIED_HEADERS
+    const rowValues = [
+      timestamp,
+      nextId,
+      data.source || 'Website Lead',
+      data.name || 'N/A',
+      data.phone1 || data.phone || 'N/A',
+      data.phone2 || '',
+      data.email || 'N/A',
+      data.location || 'N/A',
+      data.requirement || data.lookingFor || 'N/A',
+      data.stage || data.projectStage || 'N/A',
+      data.materialDetails || data.catalogueMaterial || '-',
+      data.notes || data.message || 'None',
+      data.status || 'NEW',
+      data.ipAddress || 'N/A'
+    ];
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range: `${sheetName}!A:N`,
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [rowValues],
+      },
+    });
+
+    console.log(`Google Sheets API: Appended row to "${sheetName}" with ID ${nextId} (Source: ${data.source || 'Website'})`);
+    return { id: nextId, method: 'service_account' };
+
   } catch (err) {
-    console.error('Google Sheets API Error in appendToGoogleSheet:', err);
-    throw err;
+    console.error('Google Sheets Service Error:', err.message);
+    return null;
   }
 };

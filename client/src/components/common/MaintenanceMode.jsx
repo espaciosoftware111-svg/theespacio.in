@@ -23,7 +23,7 @@ const MaintenanceMode = ({ settings = {} }) => {
         </div>
 
         <a
-          href="/admin"
+          href="/espesp/admin"
           className="flex items-center space-x-1.5 text-white/40 hover:text-gold transition-colors font-sans text-xs font-bold uppercase tracking-wider"
           title="Admin Staff Portal"
         >

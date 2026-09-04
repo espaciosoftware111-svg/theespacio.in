@@ -244,3 +244,37 @@ export const deleteProduct = async (req, res, next) => {
     next(err);
   }
 };
+
+/**
+ * @desc    Batch update multiple products/materials (from Admin Materials CMS)
+ * @route   PUT /api/products
+ * @access  Private (Admin)
+ */
+export const updateProductsBatch = async (req, res, next) => {
+  try {
+    const list = Array.isArray(req.body) ? req.body : req.body?.products;
+    if (!Array.isArray(list)) {
+      return next(new ErrorResponse('Expected an array of products', 400));
+    }
+    const saved = [];
+    for (const item of list) {
+      const id = item.id || item._id;
+      if (id) {
+        const updated = await Product.saveOrUpdate(id, { ...item, updatedBy: req.user?.id || 'admin' });
+        saved.push(updated);
+      } else {
+        const created = await Product.create({ ...item, createdBy: req.user?.id || 'admin' });
+        saved.push(created);
+      }
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Products updated successfully',
+      count: saved.length,
+      data: saved
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+

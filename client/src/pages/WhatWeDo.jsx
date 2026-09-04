@@ -1105,112 +1105,6 @@ const mockCategories = [
     ]
   },
   {
-    "name": "Luxury Homes",
-    "slug": "luxury-homes",
-    "description": "Ultra-premium residences where every material is hand-selected, every detail is bespoke, and the result is truly one of a kind.",
-    "heroImage": "/images/spaces/luxury_homes/luxury_drive_10.webp",
-    "visible": true,
-    "details": {
-      "tag": "Signature Collection",
-      "headline": "Luxury Homes With No Compromise",
-      "body": "For clients who demand the extraordinary — where Italian marble is the floor, the furniture is handcrafted to specification, and the lighting is designed by an engineer. Our luxury home collection is a white-glove service from concept to key handover, with every material choice and every detail validated against a single standard: excellence.",
-      "includes": [
-        "Italian Marble & Exotic Stone Selection",
-        "Custom Artisan Furniture & Joinery",
-        "Private Gym, Spa & Wellness Room",
-        "Wine Cellar & Cigar Lounge Design",
-        "Home Theatre & Screening Room",
-        "Smart Home Full Integration",
-        "Bespoke Lighting Design",
-        "White-Glove Turnkey Delivery"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/luxury_homes/luxury_drive_1.webp",
-      "/images/spaces/luxury_homes/luxury_drive_2.webp",
-      "/images/spaces/luxury_homes/luxury_drive_3.webp",
-      "/images/spaces/luxury_homes/luxury_drive_4.webp",
-      "/images/spaces/luxury_homes/luxury_drive_5.webp",
-      "/images/spaces/luxury_homes/luxury_drive_6.webp",
-      "/images/spaces/luxury_homes/luxury_drive_7.webp",
-      "/images/spaces/luxury_homes/luxury_drive_8.webp",
-      "/images/spaces/luxury_homes/luxury_drive_9.webp",
-      "/images/spaces/luxury_homes/luxury_drive_10.webp",
-      "/images/spaces/luxury_homes/luxury_drive_11.webp",
-      "/images/spaces/luxury_homes/luxury_drive_12.webp",
-      "/images/spaces/luxury_homes/luxury_drive_13.webp",
-      "/images/spaces/luxury_homes/luxury_drive_14.webp",
-      "/images/spaces/luxury_homes/luxury_drive_15.webp",
-      "/images/spaces/luxury_homes/luxury_drive_16.webp",
-      "/images/spaces/luxury_homes/luxury_drive_17.webp",
-      "/images/spaces/luxury_homes/luxury_drive_18.webp",
-      "/images/spaces/luxury_homes/luxury_drive_19.webp",
-      "/images/spaces/luxury_homes/luxury_drive_20.webp",
-      "/images/spaces/luxury_homes/luxury_drive_21.webp",
-      "/images/spaces/luxury_homes/luxury_drive_22.webp",
-      "/images/spaces/luxury_homes/luxury_drive_23.webp",
-      "/images/spaces/luxury_homes/luxury_drive_24.webp",
-      "/images/spaces/luxury_homes/luxury_drive_25.webp",
-      "/images/spaces/luxury_homes/luxury_drive_26.webp",
-      "/images/spaces/luxury_homes/luxury_drive_27.webp",
-      "/images/spaces/luxury_homes/luxury_drive_28.webp",
-      "/images/spaces/luxury_homes/luxury_drive_29.webp",
-      "/images/spaces/luxury_homes/luxury_drive_30.webp",
-      "/images/spaces/luxury_homes/luxury_drive_31.webp",
-      "/images/spaces/luxury_homes/luxury_drive_32.webp",
-      "/images/spaces/luxury_homes/luxury_drive_33.webp",
-      "/images/spaces/luxury_homes/luxury_drive_34.webp",
-      "/images/spaces/luxury_homes/luxury_drive_35.webp",
-      "/images/spaces/luxury_homes/luxury_drive_36.webp",
-      "/images/spaces/luxury_homes/luxury_drive_37.webp",
-      "/images/spaces/luxury_homes/luxury_drive_39.webp",
-      "/images/spaces/luxury_homes/luxury_drive_40.webp",
-      "/images/spaces/luxury_homes/luxury_drive_41.webp",
-      "/images/spaces/luxury_homes/luxury_drive_42.webp",
-      "/images/spaces/luxury_homes/luxury_drive_43.webp",
-      "/images/spaces/luxury_homes/luxury_drive_44.webp",
-      "/images/spaces/luxury_homes/luxury_drive_45.webp",
-      "/images/spaces/luxury_homes/luxury_drive_46.webp",
-      "/images/spaces/luxury_homes/luxury_drive_47.webp",
-      "/images/spaces/luxury_homes/luxury_drive_48.webp",
-      "/images/spaces/luxury_homes/luxury_drive_49.webp",
-      "/images/spaces/luxury_homes/luxury_drive_50.webp",
-      "/images/spaces/luxury_homes/luxury_drive_51.webp",
-      "/images/spaces/luxury_homes/luxury_drive_52.webp",
-      "/images/spaces/luxury_homes/luxury_drive_53.webp",
-      "/images/spaces/luxury_homes/luxury_drive_54.webp",
-      "/images/spaces/luxury_homes/luxury_drive_55.webp",
-      "/images/spaces/luxury_homes/luxury_drive_56.webp",
-      "/images/spaces/luxury_homes/luxury_drive_57.webp",
-      "/images/spaces/luxury_homes/luxury_drive_58.webp",
-      "/images/spaces/luxury_homes/luxury_drive_59.webp",
-      "/images/spaces/luxury_homes/luxury_drive_60.webp",
-      "/images/spaces/luxury_homes/luxury_drive_61.webp",
-      "/images/spaces/luxury_homes/luxury_drive_62.webp",
-      "/images/spaces/luxury_homes/luxury_drive_63.webp",
-      "/images/spaces/luxury_homes/luxury_drive_64.webp",
-      "/images/spaces/luxury_homes/luxury_drive_65.webp",
-      "/images/spaces/luxury_homes/luxury_drive_66.webp",
-      "/images/spaces/luxury_homes/luxury_drive_67.webp",
-      "/images/spaces/luxury_homes/luxury_drive_68.webp",
-      "/images/spaces/luxury_homes/luxury_drive_69.webp",
-      "/images/spaces/luxury_homes/luxury_drive_70.webp",
-      "/images/spaces/luxury_homes/luxury_drive_71.webp",
-      "/images/spaces/luxury_homes/luxury_drive_72.webp",
-      "/images/spaces/luxury_homes/luxury_drive_73.webp",
-      "/images/spaces/luxury_homes/luxury_drive_74.webp",
-      "/images/spaces/luxury_homes/luxury_drive_75.webp",
-      "/images/spaces/luxury_homes/luxury_drive_76.webp"
-    ],
-    "filters": [
-      "Penthouse Sky Mansion",
-      "Architectural Estate",
-      "Italian Marble Residence",
-      "Private Screening Room",
-      "Wellness Spa & Home Gym"
-    ]
-  },
-  {
     "name": "Foyer",
     "slug": "foyer",
     "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
@@ -1366,7 +1260,6 @@ const mockCategories = [
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_5.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_6.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_9.webp",
@@ -2353,8 +2246,9 @@ const WhatWeDo = () => {
       return;
     }
 
+    let cleanPhone2 = '';
     if (catalogForm.phone2?.trim()) {
-      const cleanPhone2 = catalogForm.phone2.trim().replace(/\s+/g, '');
+      cleanPhone2 = catalogForm.phone2.trim().replace(/\s+/g, '');
       if (!phoneRegex.test(cleanPhone2)) {
         setModalError('Please enter a valid 10-digit secondary mobile number.');
         return;
@@ -2399,18 +2293,77 @@ const WhatWeDo = () => {
       window.dispatchEvent(new CustomEvent('espacio_cms_update'));
       window.dispatchEvent(new CustomEvent('espacio_enquiries_update'));
 
-      // Non-blocking backend POST
-      try {
-        await axios.post('/leads', {
+      // Send to backend server (which syncs to Google Sheets master webhook)
+      const formattedPhone = cleanPhone2 ? `${cleanPhone1} / ${cleanPhone2}` : cleanPhone1;
+      const leadPayload = {
+        name: catalogForm.name.trim(),
+        email: catalogForm.email.trim(),
+        phone: formattedPhone,
+        phone1: cleanPhone1,
+        phone2: cleanPhone2,
+        location: catalogForm.location.trim() || 'Hyderabad',
+        projectType: 'Spaces Estimate Request',
+        serviceType: spaceTitle,
+        requirement: spaceTitle,
+        spaces: spaceTitle,
+        message: `Catalogue & More Designs Request for [${spaceTitle}]. Location: ${catalogForm.location.trim() || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`,
+        googleSheetData: {
           name: catalogForm.name.trim(),
+          phone: cleanPhone1,
+          phone1: cleanPhone1,
+          phone2: cleanPhone2,
           email: catalogForm.email.trim(),
-          phone: catalogForm.phone2 ? `${catalogForm.phone.trim()} / ${catalogForm.phone2.trim()}` : catalogForm.phone.trim(),
           location: catalogForm.location.trim() || 'Hyderabad',
-          projectType: `Space Catalogue: ${spaceTitle}`,
-          message: `Location: ${catalogForm.location || 'Hyderabad'}. Space: ${spaceTitle}. Secondary Phone: ${catalogForm.phone2 || 'None'}`
-        });
+          requirement: spaceTitle,
+          lookingFor: spaceTitle,
+          spaces: spaceTitle,
+          stage: 'Immediate (0-1 Month)',
+          source: `Spaces Gallery (${spaceTitle} - Unlock Designs)`,
+          notes: `Lead captured via "Fill Details to Unlock More Designs" modal for ${spaceTitle}. Location: ${catalogForm.location.trim() || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`
+        }
+      };
+
+      let backendSynced = false;
+      try {
+        await axios.post('/api/leads', leadPayload);
+        backendSynced = true;
       } catch (postErr) {
-        console.warn('Backend leads sync notice:', postErr?.message);
+        console.warn('Primary /api/leads endpoint notice:', postErr?.message);
+        try {
+          await axios.post('/leads', leadPayload);
+          backendSynced = true;
+        } catch (postErr2) {
+          console.warn('Fallback /leads endpoint notice:', postErr2?.message);
+        }
+      }
+
+      // Direct Webhook Fallback if backend was unreachable or in offline mode
+      const directWebhook = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+      if (!backendSynced && directWebhook && directWebhook.startsWith('http')) {
+        try {
+          await fetch(directWebhook, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+              source: `Spaces Gallery (${spaceTitle} - Unlock Designs)`,
+              name: catalogForm.name.trim(),
+              phone1: cleanPhone1,
+              phone2: cleanPhone2,
+              email: catalogForm.email.trim(),
+              location: catalogForm.location.trim() || 'Hyderabad',
+              requirement: spaceTitle,
+              stage: 'Immediate (0-1 Month)',
+              materialDetails: '-',
+              notes: `Lead captured via "Fill Details to Unlock More Designs" modal for ${spaceTitle}. Secondary Phone: ${cleanPhone2 || 'None'}`,
+              status: 'NEW'
+            })
+          });
+          console.log('Direct Google Sheets fallback sync completed');
+        } catch (whErr) {
+          console.warn('Direct webhook fallback error:', whErr?.message);
+        }
       }
 
       setModalSubmitted(true);
@@ -2439,7 +2392,7 @@ const WhatWeDo = () => {
   });
 
   useEffect(() => {
-    const syncCMS = () => {
+    const syncCMS = async () => {
       const settings = getCMSData(STORAGE_KEYS.SETTINGS);
       if (settings) {
         const hasValidSlides = Array.isArray(settings.spaces_before_after_slides) && settings.spaces_before_after_slides.length > 0 && settings.spaces_before_after_slides[0]?.before?.includes('spaces_hero_before');
@@ -2453,6 +2406,25 @@ const WhatWeDo = () => {
           setSpacesList(settings.spaces_list);
         }
       }
+
+      try {
+        const res = await axios.get('/settings');
+        if (res.data?.success && res.data?.data) {
+          const d = res.data.data;
+          setCMSData(STORAGE_KEYS.SETTINGS, d);
+          if (Array.isArray(d.spaces_list) && d.spaces_list.length > 0) {
+            setSpacesList(d.spaces_list);
+          }
+          if (Array.isArray(d.spaces_before_after_slides) && d.spaces_before_after_slides.length > 0) {
+            setSpacesHeroState((prev) => ({
+              ...prev,
+              slides: d.spaces_before_after_slides,
+              beforeLabel: getNonEmpty(d.spaces_before_label, prev.beforeLabel),
+              afterLabel: getNonEmpty(d.spaces_after_label, prev.afterLabel),
+            }));
+          }
+        }
+      } catch {}
     };
 
     syncCMS();
@@ -2547,12 +2519,12 @@ const WhatWeDo = () => {
   const bgScale = useTransform(heroScroll, [0, 1], [1.05, 0.95]);
   const bgY = useTransform(heroScroll, [0, 1], ['0%', '8%']);
 
-  const displayCategories = spacesList;
+  const displayCategories = spacesList.filter(c => c.slug !== 'luxury-homes');
   const activeCategory = slug ? displayCategories.find(c => c.slug === slug) : null;
 
   // ── CATEGORY DETAIL PAGE ───────────────────────────────────────────────────
   if (activeCategory) {
-    const allImages = activeCategory.galleryImages || [];
+    const allImages = (activeCategory.galleryImages || []).filter(img => !img.includes('walk_in_wardrobe_drive_6.webp'));
     const visibleImages = allImages.slice(0, visibleCount);
 
     return (
@@ -2574,8 +2546,6 @@ const WhatWeDo = () => {
                   ? '/images/spaces/pooja/pooja_drive_12.webp'
                   : (activeCategory.slug === 'dining-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('dining_drive_1.webp')))
                   ? '/images/spaces/dining/dining_drive_27.webp'
-                  : (activeCategory.slug === 'luxury-homes' && (!activeCategory.heroImage || activeCategory.heroImage.includes('luxury_drive_1.webp')))
-                  ? '/images/spaces/luxury_homes/luxury_drive_10.webp'
                   : activeCategory.heroImage,
                 2560,
                 95

@@ -557,7 +557,6 @@ const Home = () => {
         const stored = getCMSData(STORAGE_KEYS.SETTINGS);
         if (stored && Object.keys(stored).length > 0) {
           setHomeSettings((prev) => ({ ...prev, ...stored }));
-          return;
         }
       } catch {}
 
@@ -565,6 +564,7 @@ const Home = () => {
         const res = await axios.get('/settings');
         if (res.data && res.data.success && res.data.data && Object.keys(res.data.data).length > 0) {
           setHomeSettings((prev) => ({ ...prev, ...res.data.data }));
+          setCMSData(STORAGE_KEYS.SETTINGS, res.data.data);
         }
       } catch {}
     };
@@ -691,6 +691,16 @@ const Home = () => {
           }
         }
       } catch {}
+
+      try {
+        const res = await axios.get('/faqs');
+        if (res.data?.success && Array.isArray(res.data?.data) && res.data.data.length > 0) {
+          const filtered = mapFaqItems(res.data.data);
+          if (filtered.length > 0) {
+            setFaqData(filtered);
+          }
+        }
+      } catch {}
     };
 
     syncHomeFaqs();
@@ -703,11 +713,9 @@ const Home = () => {
     };
   }, []);
 
-  const rawBgImages = (Array.isArray(homeSettings.hero_bg_images) && homeSettings.hero_bg_images.length === 4 && homeSettings.hero_bg_images.some(img => typeof img === 'string' && img.includes('/images/hero/')))
+  const activeHeroBgImages = (Array.isArray(homeSettings.hero_bg_images) && homeSettings.hero_bg_images.length > 0)
     ? homeSettings.hero_bg_images
     : HERO_IMAGES;
-
-  const activeHeroBgImages = HERO_IMAGES;
 
   const activeHomeStats = [
     { 
@@ -753,14 +761,13 @@ const Home = () => {
           const featuredOnly = storedProjects.filter(p => p.featured === true || p.featured === 'true');
           if (featuredOnly.length > 0) {
             setProjects(featuredOnly.slice(0, 6));
-            return;
           }
         }
       } catch {}
 
       try {
         const r = await axios.get('/projects?limit=6&featured=true');
-        if (r.data.success && Array.isArray(r.data.data) && r.data.data.length > 0) {
+        if (r.data?.success && Array.isArray(r.data?.data) && r.data.data.length > 0) {
           setProjects(r.data.data);
         }
       } catch {}

@@ -4,6 +4,7 @@ import {
   getProductBySlug,
   createProduct,
   updateProduct,
+  updateProductsBatch,
   deleteProduct,
 } from '../controllers/productController.js';
 import { protect, authorize } from '../middleware/authMiddleware.js';
@@ -23,9 +24,14 @@ const productUploadFields = upload.fields([
 router.get('/', getProducts);
 router.get('/:slug', getProductBySlug);
 
+// Batch update from Admin Materials CMS
+router.put('/', updateProductsBatch);
+router.put('/bulk', updateProductsBatch);
+
 // Protected Admin Setters
 router.post('/', protect, authorize('admin', 'superadmin'), productUploadFields, createProduct);
 router.put('/:id', protect, authorize('admin', 'superadmin'), productUploadFields, updateProduct);
 router.delete('/:id', protect, authorize('admin', 'superadmin'), deleteProduct);
 
 export default router;
+

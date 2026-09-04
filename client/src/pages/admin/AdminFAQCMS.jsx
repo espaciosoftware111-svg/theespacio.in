@@ -5,7 +5,7 @@ import {
   Eye, Sliders, ArrowUp, ArrowDown, Filter, Layers,
   CheckCircle2, Search, SlidersHorizontal, Image as ImageIcon
 } from 'lucide-react';
-import { getCMSData, setCMSData, STORAGE_KEYS, DEFAULT_FAQS } from '../../utils/cmsStore';
+import { getCMSData, setCMSData, STORAGE_KEYS, DEFAULT_FAQS, notifyCMSUpdate } from '../../utils/cmsStore';
 import CTASectionEditor from '../../components/admin/CTASectionEditor';
 
 const defaultFaqCategories = [
@@ -177,6 +177,8 @@ const AdminFAQCMS = () => {
 
     setCMSData(STORAGE_KEYS.SETTINGS, updatedSettings);
     setCMSData(STORAGE_KEYS.FAQS, faqsList);
+    // Broadcast update to all open live website tabs
+    notifyCMSUpdate();
     setSaving(false);
     setSaved(true);
     showNotification('FAQ system & Showcase Slides updated successfully.');

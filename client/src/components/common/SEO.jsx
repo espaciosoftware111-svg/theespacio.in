@@ -52,7 +52,8 @@ const SEO = ({
     },
     sameAs: [
       'https://www.instagram.com/theespacio.in',
-      'https://www.facebook.com/theespacio.in'
+      'https://www.facebook.com/share/1YCa9RnM8a/',
+      'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL'
     ]
   };
 
