@@ -4,7 +4,7 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'fra
 import { 
   ArrowUpRight, Sparkles, CheckCircle2, ChevronRight, Sliders, Layers, Eye, 
   X, Phone, Mail, User, MapPin, Send, Loader2, Lock, ShieldCheck, Download,
-  ChevronDown, Maximize2, Shield, Award, Clock, Compass, HelpCircle, Layers2
+  ChevronDown, Maximize2, Shield, Award, Clock, Compass, HelpCircle, Layers2, Building2
 } from 'lucide-react';
 import axios from 'axios';
 import SEO from '../components/common/SEO';
@@ -2689,25 +2689,150 @@ const WhatWeDo = () => {
           </div>
         </section>
 
-        {/* ── 2. TRUST STRIP (Projects / Legacy / Sq.Ft / Warranty) ────────────── */}
-        <section className="border-y border-ink-border/30 bg-bg-card/70 py-6 sm:py-7">
-          <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/20">
-            <div className="pt-2 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">25+ Projects</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Completed Turnkey Residences</p>
+        {/* ── 2. ARCHITECTURAL TRUST CONSOLE (Projects / Legacy / Sq.Ft / Warranty) ────────────── */}
+        <section className="py-8 sm:py-12 px-4 sm:px-6 md:px-12 2xl:px-16 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+            
+            {/* 1. Projects Delivered */}
+            <div className="group relative bg-white/95 border border-walnut/15 hover:border-gold/60 rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 shadow-[0_4px_24px_rgba(16,16,20,0.04)] hover:shadow-[0_16px_36px_rgba(201,169,110,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-gold/15 via-gold/5 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 text-[#B8924A] flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-charcoal group-hover:scale-105 transition-all duration-300 shadow-sm">
+                    <Building2 size={22} className="stroke-[1.8]" />
+                  </div>
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-[#A88344] px-2.5 py-1 rounded-full bg-gold/10 border border-gold/25">
+                    Delivered
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl sm:text-4xl font-bold text-charcoal tracking-tight group-hover:text-gold transition-colors">
+                      25+
+                    </span>
+                    <span className="font-display text-base sm:text-lg font-semibold text-charcoal/75">
+                      Projects
+                    </span>
+                  </div>
+                  <p className="font-sans text-xs text-walnut/80 font-medium">
+                    Turnkey Luxury Residences
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3.5 border-t border-walnut/10 flex items-center justify-between text-[11px] font-sans text-walnut/70">
+                <span>Prime Hyderabad Sites</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold group-hover:scale-125 transition-all" />
+              </div>
             </div>
-            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">40+ Years</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Combined Construction Legacy</p>
+
+            {/* 2. Construction Legacy */}
+            <div className="group relative bg-white/95 border border-walnut/15 hover:border-gold/60 rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 shadow-[0_4px_24px_rgba(16,16,20,0.04)] hover:shadow-[0_16px_36px_rgba(201,169,110,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-gold/15 via-gold/5 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 text-[#B8924A] flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-charcoal group-hover:scale-105 transition-all duration-300 shadow-sm">
+                    <Award size={22} className="stroke-[1.8]" />
+                  </div>
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-[#A88344] px-2.5 py-1 rounded-full bg-gold/10 border border-gold/25">
+                    Heritage
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl sm:text-4xl font-bold text-charcoal tracking-tight group-hover:text-gold transition-colors">
+                      40+
+                    </span>
+                    <span className="font-display text-base sm:text-lg font-semibold text-charcoal/75">
+                      Years
+                    </span>
+                  </div>
+                  <p className="font-sans text-xs text-walnut/80 font-medium">
+                    Construction Legacy
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3.5 border-t border-walnut/10 flex items-center justify-between text-[11px] font-sans text-walnut/70">
+                <span>4 Generations of Craft</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold group-hover:scale-125 transition-all" />
+              </div>
             </div>
-            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">50,000+ Sq.Ft</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Designed & Executed</p>
+
+            {/* 3. Sq.Ft Executed */}
+            <div className="group relative bg-white/95 border border-walnut/15 hover:border-gold/60 rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 shadow-[0_4px_24px_rgba(16,16,20,0.04)] hover:shadow-[0_16px_36px_rgba(201,169,110,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-gold/15 via-gold/5 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 text-[#B8924A] flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-charcoal group-hover:scale-105 transition-all duration-300 shadow-sm">
+                    <Maximize2 size={22} className="stroke-[1.8]" />
+                  </div>
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-[#A88344] px-2.5 py-1 rounded-full bg-gold/10 border border-gold/25">
+                    Precision
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl sm:text-4xl font-bold text-charcoal tracking-tight group-hover:text-gold transition-colors">
+                      50,000+
+                    </span>
+                    <span className="font-display text-base sm:text-lg font-semibold text-charcoal/75">
+                      Sq.Ft
+                    </span>
+                  </div>
+                  <p className="font-sans text-xs text-walnut/80 font-medium">
+                    Designed & Executed
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3.5 border-t border-walnut/10 flex items-center justify-between text-[11px] font-sans text-walnut/70">
+                <span>High-Tolerance Joinery</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold group-hover:scale-125 transition-all" />
+              </div>
             </div>
-            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">10-Year</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Comprehensive Hardware Warranty</p>
+
+            {/* 4. Comprehensive Warranty */}
+            <div className="group relative bg-white/95 border border-walnut/15 hover:border-gold/60 rounded-[22px] sm:rounded-[26px] p-5 sm:p-6 shadow-[0_4px_24px_rgba(16,16,20,0.04)] hover:shadow-[0_16px_36px_rgba(201,169,110,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-gold/15 via-gold/5 to-transparent rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 text-[#B8924A] flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-charcoal group-hover:scale-105 transition-all duration-300 shadow-sm">
+                    <ShieldCheck size={22} className="stroke-[1.8]" />
+                  </div>
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-[#A88344] px-2.5 py-1 rounded-full bg-gold/10 border border-gold/25">
+                    Guaranteed
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl sm:text-4xl font-bold text-charcoal tracking-tight group-hover:text-gold transition-colors">
+                      10-Year
+                    </span>
+                    <span className="font-display text-base sm:text-lg font-semibold text-charcoal/75">
+                      Warranty
+                    </span>
+                  </div>
+                  <p className="font-sans text-xs text-walnut/80 font-medium">
+                    Comprehensive Guarantee
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3.5 border-t border-walnut/10 flex items-center justify-between text-[11px] font-sans text-walnut/70">
+                <span>German Hardware & Fittings</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold group-hover:scale-125 transition-all" />
+              </div>
             </div>
+
           </div>
         </section>
 
