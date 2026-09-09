@@ -519,7 +519,7 @@ const Home = () => {
   const [homeSettings, setHomeSettings] = useState({
     hero_title: 'Engineering. Elegance. Experience.',
     hero_subtitle: 'Bespoke Luxury Interiors & Turned-Key Executions in Hyderabad',
-    hero_cta_text: 'Get Free Estimate',
+    hero_cta_text: 'Get Estimate',
     hero_visible: true,
 
     hero_bg_images: HERO_IMAGES,
@@ -544,6 +544,19 @@ const Home = () => {
     hero_stat3_visible: true,
     hero_stat3_order: 3,
 
+    intro_heading: 'Turnkey interiors, done properly.',
+    intro_description: "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.",
+    intro_cta_text1: 'Our Story ↗',
+    intro_cta_text2: 'Read More ↗',
+    intro_cta_link: '/about',
+
+    grid_stat1_val: '25+',
+    grid_stat1_label: 'Projects Completed',
+    grid_stat2_val: '100+',
+    grid_stat2_label: 'Happy Clients',
+    grid_stat3_val: '40+',
+    grid_stat3_label: 'Years Combined Legacy',
+
     about_title: 'Four Decades of Structural Excellence',
     about_subtitle: 'HERITAGE & CRAFTSMANSHIP',
     about_description: 'Born out of a multi-generational legacy in civil construction, ESPACIO brings structural rigor and high-tolerance engineering to luxury interior architecture across Hyderabad.',
@@ -556,15 +569,29 @@ const Home = () => {
       try {
         const stored = getCMSData(STORAGE_KEYS.SETTINGS);
         if (stored && Object.keys(stored).length > 0) {
-          setHomeSettings((prev) => ({ ...prev, ...stored }));
+          const sanitizedStored = { ...stored };
+          if (sanitizedStored.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.') {
+            sanitizedStored.intro_heading = 'Turnkey interiors, done properly.';
+          }
+          if (sanitizedStored.intro_description && sanitizedStored.intro_description.includes('We bring 40+ years of family construction heritage')) {
+            sanitizedStored.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+          }
+          setHomeSettings((prev) => ({ ...prev, ...sanitizedStored }));
         }
       } catch {}
 
       try {
         const res = await axios.get('/settings');
         if (res.data && res.data.success && res.data.data && Object.keys(res.data.data).length > 0) {
-          setHomeSettings((prev) => ({ ...prev, ...res.data.data }));
-          setCMSData(STORAGE_KEYS.SETTINGS, res.data.data);
+          const apiData = { ...res.data.data };
+          if (apiData.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.') {
+            apiData.intro_heading = 'Turnkey interiors, done properly.';
+          }
+          if (apiData.intro_description && apiData.intro_description.includes('We bring 40+ years of family construction heritage')) {
+            apiData.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+          }
+          setHomeSettings((prev) => ({ ...prev, ...apiData }));
+          setCMSData(STORAGE_KEYS.SETTINGS, apiData);
         }
       } catch {}
     };
@@ -593,63 +620,63 @@ const Home = () => {
   const defaultHomeFaqItems = [
     {
       q: "How long does a project usually take?",
-      a: "Typically 2–3 months, depending on the level of detailing and customization involved in your project.",
+      a: "Most projects take about two to three months from start to finish. The exact timeline depends on how detailed and customized your space is, but we'll give you a clear schedule before work begins so there are no surprises along the way.",
       img: "/images/faq/faq_1_timeline.jpg",
       tag: "TIMELINE"
     },
     {
       q: "Do you provide turnkey interior solutions?",
-      a: "Yes. Every project we take on, residential or commercial, is delivered turnkey, with design, materials, execution, and finishing handled entirely by our team.",
+      a: "Yes. Every project we take on, whether it's a home or a commercial space, is handled fully by our own team. Design, materials, execution, and final finishing all happen under one roof, so you're never left coordinating between different vendors.",
       img: "/images/faq/faq_2_services.jpg",
       tag: "SERVICES"
     },
     {
       q: "What is your consultation process?",
-      a: "We begin with a free consultation to understand your space, requirements, and vision, before moving into detailed design and planning.",
+      a: "We start with a free consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.",
       img: "/images/faq/faq_3_process.jpg",
       tag: "PROCESS"
     },
     {
       q: "Which locations do you currently serve?",
-      a: "We're proudly based in Hyderabad and have delivered residential and commercial projects across the city.",
+      a: "We're based in Hyderabad and have delivered homes and commercial spaces across the city.",
       img: "/images/faq/faq_4_location.jpg",
       tag: "LOCATION"
     },
     {
       q: "How can customers request a quotation?",
-      a: "Simply fill out our contact form on the website, and our team will get back to you to discuss your project.",
+      a: "Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.",
       img: "/images/faq/faq_5_pricing.jpg",
       tag: "PRICING"
     },
     {
       q: "Do you sell materials separately from design services?",
-      a: "Yes. Our materials including WPC panels, polygranite sheets, acrylic sheets, and more are available for standalone purchase, without needing to book a full design or execution project with us.",
+      a: "Yes. Materials like WPC panels, polygranite sheets, and acrylic sheets are available for standalone purchase, even if you're not booking a full design or execution project with us.",
       img: "/images/faq/faq_6_materials.jpg",
       tag: "MATERIALS"
     },
     {
-      q: "Do I need to be involved throughout the project, or can it be handled remotely?",
-      a: "We keep you informed at every key stage with regular updates and site visits, so you're never left in the dark, but you don't need to manage day-to-day execution yourself. That's what turnkey means.",
-      img: "/images/faq/faq_7_involvement.jpg",
-      tag: "INVOLVEMENT"
-    },
-    {
       q: "What if I already have a design in mind, can you just execute it?",
-      a: "Absolutely. Whether you come with a finalized design or need us to design from scratch, we can adapt to execution-only or full design-and-build depending on what you need.",
+      a: "Of course. Whether you already have a finalized design or need us to build one from scratch, we can step in wherever you need us, whether that's execution only or a complete design and build package.",
       img: "/images/faq/faq_8_custom.jpg",
       tag: "CUSTOM"
     },
     {
       q: "Can I customize designs, or do you offer fixed packages?",
-      a: "Every project is fully customized around your space and preferences — we don't work off fixed templates or set packages.",
+      a: "Every project is designed around your space and your preferences. We don't work off fixed templates or one size fits all packages, so what you get is built specifically for you.",
       img: "/images/faq/faq_9_design.jpg",
       tag: "DESIGN"
     },
     {
-      q: "What happens if something needs repair after project completion?",
-      a: "Any issues within our warranty period are addressed directly by our team. Reach out through the contact form and we'll take care of it.",
+      q: "Do you provide warranties on completed projects?",
+      a: "Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.",
       img: "/images/faq/faq_10_support.jpg",
       tag: "SUPPORT"
+    },
+    {
+      q: "What does the design and execution process actually look like?",
+      a: "We start with a design consultation to understand your space and what you're looking for. Once the overall theme is locked in, we move into 3D visualizations so you can see exactly how the space will look before anything is built. After the designs are finalized, our team takes over execution, keeping you updated along the way until final handover.",
+      img: "/images/faq/faq_7_involvement.jpg",
+      tag: "PROCESS"
     }
   ];
 
@@ -852,7 +879,7 @@ const Home = () => {
     content: (
       <div className="h-full w-full relative overflow-hidden rounded-[24px]">
         <img
-          src={getOptimizedImageUrl(p.heroImage, 800, 70)}
+          src={getOptimizedImageUrl(p.heroImage, 1400, 92)}
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-700 ease-out"
@@ -999,7 +1026,7 @@ const Home = () => {
 
   const parallaxProducts = rawParallaxProducts.map(item => ({
     ...item,
-    thumbnail: getOptimizedImageUrl(item.thumbnail, 600, 65)
+    thumbnail: getOptimizedImageUrl(item.thumbnail, 1200, 92)
   }));
 
   return (
@@ -1291,13 +1318,13 @@ const Home = () => {
             
             <Reveal delay={0.1}>
               <h2 className="font-display text-[clamp(34px,4.2vw,56px)] font-medium leading-[1.1] tracking-tight text-ink">
-                {homeSettings.intro_heading || 'From Concept to Handover — ESPACIO Delivers Complete Interiors.'}
+                {homeSettings.intro_heading || 'Turnkey interiors, done properly.'}
               </h2>
             </Reveal>
             
             <Reveal delay={0.2}>
               <p className="font-sans text-[15.5px] text-ink-soft leading-relaxed max-w-[520px]">
-                {homeSettings.intro_description || 'We bring 40+ years of family construction heritage to luxury interior design. Every space we create is backed by structural thinking, premium materials sourced directly from our own warehouses, and meticulous execution.'}
+                {homeSettings.intro_description || "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site."}
               </p>
             </Reveal>
             

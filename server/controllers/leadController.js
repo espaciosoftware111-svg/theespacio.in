@@ -89,8 +89,8 @@ export const createLead = async (req, res, next) => {
       let leadSource = 'Website Lead';
       if (req.body.googleSheetData?.source) {
         leadSource = req.body.googleSheetData.source;
-      } else if (projectType === 'Instant Project Estimate' || projectType === 'INSTANT_ESTIMATE') {
-        leadSource = 'Services Page (Instant Project Estimate)';
+      } else if (projectType === 'Project Estimate' || projectType === 'Instant Project Estimate' || projectType === 'INSTANT_ESTIMATE') {
+        leadSource = 'Services Page (Project Estimate)';
       } else if (projectType === 'Projects Portfolio Unlock' || req.body.isProjects) {
         leadSource = 'Projects Section (Get More Projects)';
       } else if (projectType === 'Catalogue Request' || req.body.isCatalogue) {

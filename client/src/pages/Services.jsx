@@ -45,59 +45,99 @@ const Reveal = ({ children, delay = 0, className = '', direction = 'up' }) => {
 const services = [
   { 
     num: '01', 
-    title: 'Full Home Interior Design & Execution', 
+    title: 'Full Home Interior Design and Execution', 
     tag: 'Turnkey Design & Build', 
-    desc: 'Bespoke residential interior architecture engineered from concept to final handover. We integrate custom modular joinery, lighting layouts, and premium wall finishes into a seamless turnkey execution.', 
-    includes: ['Living & Dining Spatial Architecture', 'Custom Modular Wardrobe Systems', 'Ergonomic Modular Kitchen Layouts', 'Ambient Cove & Architectural Lighting', 'Curated Wall & Surface Textures', 'Turnkey Execution & Project Oversight'], 
+    desc: 'A complete home interior, planned and built by one team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
+    includes: [
+      'Living & Dining Layouts Built Around You',
+      'Kitchens Designed for Real Everyday Use',
+      'Curated Wall & Surface Finishes',
+      'Wardrobes Tailored to How You Store',
+      'Lighting That Sets the Mood, Room by Room',
+      'Full Execution, Managed Start to Finish'
+    ], 
     img: '/images/company/2bhk_mordern_retro/hall.jpg',
-    ctaText: 'Enquire About Interior Design'
+    ctaText: 'Enquire About Residential Interiors',
+    ctaLink: '/contact'
   },
   { 
     num: '02', 
-    title: 'Commercial & Office Interiors', 
+    title: 'Commercial and Office Interiors', 
     tag: 'Workspaces & Retail', 
-    desc: 'High-tolerance commercial fit-outs for corporate offices, experience centers, and retail environments. Engineered for acoustic optimization, brand elevation, and maximum workspace efficiency.', 
-    includes: ['Corporate Office Spatial Planning', 'Retail & Studio Flow Optimization', 'Acoustic WPC Conference Suites', 'Ergonomic Workstation Clusters', 'Tech & AV Concealed Channels', 'Turnkey Commercial Buildout'], 
+    desc: 'A space that works as hard as your business does. For retail and experience stores, we design around your product, using layout, lighting, and material choices that make what you sell the hero of the room and turn browsing into buying. For offices, we build spaces that reflect how your brand wants to be seen, while keeping the day to day workflow smooth, quiet, and genuinely comfortable for the people working in it.', 
+    includes: [
+      'Store Layouts That Highlight Your Product',
+      'Retail Flow Designed to Guide the Customer',
+      'Offices Built Around How Your Team Works',
+      'Quiet, Distraction Free Meeting Spaces',
+      'Clean Tech and Cabling, Nothing on Show',
+      'Full Commercial Buildout, Start to Finish'
+    ], 
     img: '/images/company/2bhk_mordern_retro/office_3.jpg',
-    ctaText: 'Enquire About Modular Solutions'
+    ctaText: 'Enquire About Commercial Fit-Outs',
+    ctaLink: '/contact'
   },
   { 
     num: '03', 
-    title: 'Styling & Decor Curation', 
+    title: 'Styling and Decor', 
     tag: 'Curated Styling', 
-    desc: 'Tailored aesthetic curation, soft furnishings, and architectural accent styling. Designed to harmonize color palettes, art installations, and spatial lighting into a cohesive luxury statement.', 
-    includes: ['Bespoke Art & Wall Installations', 'Luxury Soft Furnishing Selection', 'Architectural Accent & Mood Lighting', 'Indoor Botanical & Greenery Curation', 'Harmonized Color & Texture Audits', 'Turnkey Final Styling Installation'], 
-    img: '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg',
-    ctaText: 'Enquire About Styling & Decor'
+    desc: 'The finishing touches that turn a finished space into a home you actually feel something in. This works as its own standalone service, or as the final layer we add to wrap up any full Espacio project.', 
+    includes: [
+      'Art and Wall Decor, Chosen With Intent',
+      'Lighting and Accessories That Set the Mood',
+      'Colors That Work Together, Not Against Each Other',
+      'Soft Furnishings Made to Match Your Space',
+      'Greenery Picked to Suit the Light and Layout',
+      'A Styling Review for Homes Already Done'
+    ], 
+    img: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg',
+    ctaText: 'Enquire About Styling Services',
+    ctaLink: '/contact'
   },
   { 
     num: '04', 
-    title: 'Turnkey Renovation & Remodeling', 
+    title: 'Renovation', 
     tag: 'Upgrade Existing Spaces', 
-    desc: 'Transforming existing residential and commercial properties into modern architectural showcases. Complete structural upgrades, re-wiring, and finish overhauls handled without multi-vendor hassle.', 
-    includes: ['Full Kitchen & Bath Overhauls', 'Living Area Structural Spatial Redesign', 'Precision Electrical & Plumbing Re-lay', 'Italian Marble & Flooring Replacement', 'Custom Ceiling & Louver Upgrades', 'Complete Turnkey Project Management'], 
+    desc: "Your space already has good bones, it just needs the right hands on it. Whether it's a home that's grown tired over the years or a commercial space ready for a refresh, we take what's already there and rebuild it into something that actually feels new. No need to move out, start from scratch, or manage the process yourself, our team handles the design, materials, and execution from beginning to end.", 
+    includes: [
+      'Outdated Kitchens and Bathrooms, Modernized',
+      'Living Spaces Reworked to Feel New Again',
+      'Structural Changes Handled Safely and Properly',
+      'Old Flooring Replaced With Finishes Built to Last',
+      'Electrical and Plumbing Re-Laid the Right Way',
+      'A Fully Managed Renovation, Start to Finish'
+    ], 
     img: '/images/services/services_after.webp', 
-    ctaText: 'Enquire About Turnkey Renovation'
+    ctaText: 'Enquire About Renovation',
+    ctaLink: '/contact'
   },
   { 
     num: '05', 
     title: 'Materials Supply (Standalone Purchase)', 
     tag: 'Direct Warehouse Sourcing', 
-    desc: 'Direct access to our extensive inventory of WPC wall & ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware. Available for standalone purchase directly from our Aziznagar warehouse.', 
-    includes: ['WPC Wall & Exterior Cladding Panels', 'Polygranite & High-Gloss Acrylic Sheets', 'Charcoal & Wood Grain Fluted Louvers', 'Architectural Trim & Edge Hardware', 'Standalone Wholesale & Retail Purchase', 'Rapid Delivery from Hyderabad Godowns'], 
+    desc: "Need premium materials without a full design project attached? Our warehouse across Andhra Pradesh and Telangana carries a wide range of WPC wall and ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware, all available to purchase directly, whether you're a homeowner, a contractor, or a fellow designer.", 
+    includes: [
+      'Wall and Exterior Cladding Panels',
+      'Fluted Louvers in Charcoal and Wood Grain Finishes',
+      'High-Gloss Acrylic and Polygranite Sheets',
+      'Trim and Edge Hardware for a Clean Finish',
+      'Wholesale and Retail Purchase Available',
+      'Fast Delivery Straight From Our Hyderabad Warehouse'
+    ], 
     img: '/images/services/service_materials.jpg',
     ctaText: 'Enquire About Materials',
+    ctaLink: '/materials',
     hasSecondaryLink: true
   },
 ];
 
 const processSteps = [
-  { step: '01', name: 'Initial Consultation', desc: 'We understand your vision, lifestyle, and budget constraints with absolute clarity.' },
-  { step: '02', name: 'Site Visit & Measurement', desc: 'Our team surveys site dimensions, structural constraints, and wiring channels.' },
-  { step: '03', name: '3D Concept Design', desc: 'Photorealistic 3D renders of your space before a single nail goes in.' },
-  { step: '04', name: 'Material Selection', desc: 'Walk through our material library. Touch, see, and confirm every finish.' },
-  { step: '05', name: 'Production & Execution', desc: 'On-time, on-spec execution with regular progress photo updates.' },
-  { step: '06', name: 'Quality Handover', desc: 'Final punch-list inspection, clean-up, and keys handover on your timeline.' },
+  { step: '01', name: 'Initial Consultation', desc: "We start by getting to know you, your space, your lifestyle, and what you're hoping to achieve, so every decision that follows is built around what actually matters to you." },
+  { step: '02', name: 'Site Visit and Measurement', desc: "Our team visits your space in person to take precise measurements and understand the structural details, wiring, and layout we'll be designing around." },
+  { step: '03', name: '3D Concept Design', desc: "Before a single wall is touched, you'll see photorealistic 3D renders of your space, so you know exactly what you're getting." },
+  { step: '04', name: 'Material Selection', desc: "You'll walk through our material library in person, touching and seeing every finish up close before confirming what goes into your home." },
+  { step: '05', name: 'Production and Execution', desc: "We build to the exact spec, on schedule, with regular photo updates so you always know where things stand." },
+  { step: '06', name: 'Quality Handover', desc: "A final inspection catches every last detail, followed by a full clean up and handover, keys in hand, exactly on your timeline." },
 ];
 
 const getStepIcon = (step) => {
@@ -255,7 +295,7 @@ const Services = () => {
               <div key={s.num || i} className="py-8 sm:py-12 md:py-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <Reveal delay={0.05} direction={isOdd ? 'right' : 'left'} className={isOdd ? 'lg:order-2' : ''}>
                   <div className="aspect-[4/3] rounded-card overflow-hidden bg-bg-card">
-                    <img src={getOptimizedImageUrl(s.img, 800, 75)} alt={s.title} loading="lazy" decoding="async" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                    <img src={getOptimizedImageUrl(s.img, 1400, 92)} alt={s.title} loading="lazy" decoding="async" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                   </div>
                 </Reveal>
                 <Reveal delay={0.15} direction={isOdd ? 'left' : 'right'} className={`space-y-4 sm:space-y-6 ${isOdd ? 'lg:order-1' : ''}`}>
@@ -303,7 +343,14 @@ const Services = () => {
               const Icon = getStepIcon(p.step);
               return (
                 <Reveal key={p.step} delay={i * 0.07} className="h-full">
-                  <MovingBorderButton as="div" borderRadius="20px" duration={3000 + i * 500} containerClassName="w-full h-full" className="group relative bg-bg border border-ink-border/10 rounded-[20px] sm:rounded-card p-4 sm:p-6 lg:p-8 min-h-[195px] sm:min-h-[220px] hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(16,16,20,0.04)] transition-all duration-500 flex flex-col justify-between h-full overflow-hidden text-left items-stretch">
+                  <MovingBorderButton
+                    as="div"
+                    borderRadius="20px"
+                    duration={3500 + i * 500}
+                    containerClassName="w-full h-full"
+                    borderClassName="bg-[radial-gradient(circle,#dfc28d_0%,#c5a572_45%,transparent_70%)]"
+                    className="group relative bg-bg rounded-[18px] sm:rounded-card p-4 sm:p-6 lg:p-8 min-h-[195px] sm:min-h-[220px] hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(197,165,114,0.12)] transition-all duration-500 flex flex-col justify-between h-full overflow-hidden text-left items-stretch"
+                  >
                     <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                       <div className="flex items-center justify-between">
                         <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-pill bg-black/10 flex items-center justify-center text-black group-hover:bg-black group-hover:text-cream transition-all duration-500">
@@ -331,9 +378,9 @@ const Services = () => {
             <div className="lg:col-span-5 space-y-4 sm:space-y-6">
               <Reveal>
                 <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">Project Planner</span>
-                <h2 className="font-display text-[clamp(26px,3.5vw,48px)] font-bold text-charcoal leading-tight">Instant Project Estimate</h2>
+                <h2 className="font-display text-[clamp(26px,3.5vw,48px)] font-bold text-charcoal leading-tight">Project Estimate</h2>
                 <p className="font-sans text-[13.5px] sm:text-sm text-walnut leading-relaxed">
-                  Select your property type, scope, and finish tier below. Since actual site conditions affect final BOQ significantly, our principal design team will share your personalized range on a quick call.
+                  Tell us a bit about your space, and we'll get you a real, personalized range instead of a generic number. Since every site has its own quirks that affect the final cost, our principal design team will walk you through your estimate on a quick call, no guesswork, no copy paste pricing.
                 </p>
               </Reveal>
             </div>
@@ -392,14 +439,32 @@ const QuotationCalculator = () => {
   const [submitted, setSubmitted] = useState(false);
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!phone || phone.trim().replace(/\s+/g, '').length < 10) return;
+    if (!name || name.trim().length < 3) {
+      setErrorMsg('Please enter your name (minimum 3 characters).');
+      return;
+    }
+    const cleanPhone = phone.trim().replace(/\D/g, '');
+    if (!cleanPhone || cleanPhone.length < 10) {
+      setErrorMsg('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    setErrorMsg('');
 
     const trimmedPhone = phone.trim();
-    const trimmedName = name && name.trim() ? name.trim() : 'Valued Client';
-    const scopeLabel = scope === 'full' ? 'Turnkey Full Home' : scope === 'kitchen' ? 'Modular Kitchen' : 'Panelling & Louvers';
+    const trimmedName = name.trim();
+    const scopeMap = {
+      full: 'Full Home Interior Design',
+      commercial: 'Commercial & Office Interiors',
+      renovation: 'Renovation',
+      styling: 'Styling & Decor',
+      materials: 'Materials Supply',
+      other: 'Other'
+    };
+    const scopeLabel = scopeMap[scope] || 'Full Home Interior Design';
     const propLabel = propertyType === '2bhk' ? '2 BHK' : propertyType === '3bhk' ? '3 BHK' : propertyType === 'villa' ? 'Villa' : 'Office';
     
     // 1. Save to local CMS enquiries
@@ -422,8 +487,8 @@ const QuotationCalculator = () => {
           propertyType: propLabel,
           scopeOfWork: scopeLabel,
           finishGrade: finishGrade,
-          notesText: `Instant Project Estimate Submission — Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
-          notes: [{ id: `n-${Date.now()}`, text: `Captured via Instant Project Estimate calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}.`, createdAt: new Date().toISOString() }],
+          notesText: `Project Estimate Submission — Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
+          notes: [{ id: `n-${Date.now()}`, text: `Captured via Project Estimate calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}.`, createdAt: new Date().toISOString() }],
           status: 'NEW',
           read: false,
           submittedAt: new Date().toISOString(),
@@ -442,9 +507,9 @@ const QuotationCalculator = () => {
       phone2: '',
       email: `${trimmedPhone.replace(/\D/g, '')}@leads.theespacio.com`,
       location: `Property: ${propLabel}`,
-      projectType: 'Instant Project Estimate',
+      projectType: 'Project Estimate',
       serviceType: scopeLabel,
-      message: `Instant Project Estimate — Property: ${propLabel}, Scope: ${scopeLabel}, Finish Grade: ${finishGrade}`,
+      message: `Project Estimate — Property: ${propLabel}, Scope: ${scopeLabel}, Finish Grade: ${finishGrade}`,
       propertyDetails: {
         propertyType: propLabel,
         spaces: scopeLabel,
@@ -452,7 +517,7 @@ const QuotationCalculator = () => {
       },
       projectDetails: {
         stage: finishGrade,
-        notes: `Instant Project Estimate Calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
+        notes: `Project Estimate Calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
       },
       googleSheetData: {
         name: trimmedName,
@@ -462,7 +527,7 @@ const QuotationCalculator = () => {
         location: `Property: ${propLabel}`,
         requirement: scopeLabel,
         stage: finishGrade,
-        source: 'Services Page (Instant Project Estimate)',
+        source: 'Services Page (Project Estimate)',
         notes: `Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
       }
     };
@@ -490,7 +555,7 @@ const QuotationCalculator = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-            source: 'Services Page (Instant Project Estimate)',
+            source: 'Services Page (Project Estimate)',
             name: trimmedName,
             phone1: trimmedPhone,
             phone2: '',
@@ -498,7 +563,7 @@ const QuotationCalculator = () => {
             location: `Property: ${propLabel}`,
             requirement: scopeLabel,
             stage: finishGrade,
-            notes: `Instant Project Estimate Calculator. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
+            notes: `Project Estimate Calculator. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
             status: 'NEW'
           })
         });
@@ -513,7 +578,7 @@ const QuotationCalculator = () => {
       {!submitted ? (
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1 pb-3 border-b border-walnut/10">
-            <h3 className="font-display text-xl font-bold text-charcoal">Instant Project Estimate</h3>
+            <h3 className="font-display text-xl font-bold text-charcoal">Project Estimate</h3>
             <p className="font-sans text-xs text-walnut">Configure your project details to unlock your personalized estimate</p>
           </div>
 
@@ -546,11 +611,14 @@ const QuotationCalculator = () => {
           {/* Scope */}
           <div className="space-y-2">
             <label className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal">2. Scope of Work</label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {[
-                { id: 'full', label: 'Turnkey Full Home' },
-                { id: 'kitchen', label: 'Modular Kitchen' },
-                { id: 'louvers', label: 'Panelling & Louvers' }
+                { id: 'full', label: 'Full Home Interior Design' },
+                { id: 'commercial', label: 'Commercial & Office Interiors' },
+                { id: 'renovation', label: 'Renovation' },
+                { id: 'styling', label: 'Styling & Decor' },
+                { id: 'materials', label: 'Materials Supply' },
+                { id: 'other', label: 'Other' }
               ].map(item => (
                 <button
                   type="button"
@@ -572,9 +640,14 @@ const QuotationCalculator = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <input
               type="text"
-              placeholder="Your Name (Optional)"
+              placeholder="Your Name *"
+              required
+              minLength={3}
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                if (errorMsg) setErrorMsg('');
+              }}
               className="w-full px-4 py-3 rounded-xl border border-walnut/20 bg-white text-xs font-sans focus:outline-none focus:border-gold"
             />
             <input
@@ -582,10 +655,17 @@ const QuotationCalculator = () => {
               placeholder="Mobile / WhatsApp Number *"
               required
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => {
+                setPhone(e.target.value);
+                if (errorMsg) setErrorMsg('');
+              }}
               className="w-full px-4 py-3 rounded-xl border border-walnut/20 bg-white text-xs font-sans focus:outline-none focus:border-gold"
             />
           </div>
+
+          {errorMsg && (
+            <p className="text-red-500 font-sans text-xs text-center font-medium">{errorMsg}</p>
+          )}
 
           <button
             type="submit"

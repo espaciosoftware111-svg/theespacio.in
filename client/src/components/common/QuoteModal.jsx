@@ -9,7 +9,7 @@ const QuoteModal = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [modalMode, setModalMode] = useState('estimate'); // 'estimate' or 'catalogue'
-  const [modalTitle, setModalTitle] = useState('Get Free Estimate');
+  const [modalTitle, setModalTitle] = useState('Get Estimate');
   const [productContext, setProductContext] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -62,7 +62,7 @@ const QuoteModal = () => {
         setProductContext(detail.context || null);
       } else {
         setModalMode('estimate');
-        setModalTitle('Get Free Estimate');
+        setModalTitle('Get Estimate');
         setProductContext(null);
       }
       setIsOpen(true);
@@ -81,8 +81,15 @@ const QuoteModal = () => {
     } else {
       document.body.style.overflow = '';
     }
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        handleClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen]);
 
@@ -179,7 +186,7 @@ const QuoteModal = () => {
       const formattedPhone = cleanPhone2 ? `${cleanPhone1} / ${cleanPhone2}` : cleanPhone1;
       const quoteSource = isProjects
         ? 'Projects Section (Get More Projects)'
-        : (isCatalogue ? `Catalogue Request (${productContext || 'Materials'})` : 'Free Estimate Request');
+        : (isCatalogue ? `Catalogue Request (${productContext || 'Materials'})` : 'Estimate Request');
 
       const leadPayload = {
         name: (formData.name || '').trim(),
@@ -188,7 +195,7 @@ const QuoteModal = () => {
         phone1: cleanPhone1,
         phone2: cleanPhone2,
         location: (formData.location || '').trim() || 'Hyderabad',
-        projectType: isProjects ? 'Projects Portfolio Unlock' : (isCatalogue ? 'Catalogue Request' : 'Free Estimate Request'),
+        projectType: isProjects ? 'Projects Portfolio Unlock' : (isCatalogue ? 'Catalogue Request' : 'Estimate Request'),
         catalogueMaterial: isCatalogue ? productContext : undefined,
         message: isProjects
           ? `Client requested to load more projects. Location: ${formData.location || 'Hyderabad'}`
@@ -202,7 +209,7 @@ const QuoteModal = () => {
           phone2: cleanPhone2,
           email: (formData.email || '').trim(),
           location: (formData.location || '').trim() || 'Hyderabad',
-          requirement: isCatalogue ? (productContext || 'Materials') : (isProjects ? 'Architecture & Projects' : 'Free Estimate'),
+          requirement: isCatalogue ? (productContext || 'Materials') : (isProjects ? 'Architecture & Projects' : 'Estimate'),
           stage: 'Immediate (0-1 Month)',
           materialDetails: isCatalogue ? (productContext || '-') : '-',
           source: quoteSource,

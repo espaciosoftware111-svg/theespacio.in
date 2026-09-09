@@ -126,10 +126,11 @@
   }
 
   img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: high-quality;
+    image-rendering: auto;
+    image-rendering: smooth;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    transform: translateZ(0);
   }
 }
 
@@ -379,7 +380,7 @@
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: #101014; color: #fafafa;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: 14px 28px; border-radius: 8px;
@@ -393,7 +394,7 @@
 .btn-gold {
   display: inline-flex; align-items: center; gap: 8px;
   background: #C9A96E; color: #101014;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: 14px 28px; border-radius: 8px;
@@ -407,7 +408,7 @@
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
   background: transparent; color: #101014;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: 13px 27px; border-radius: 8px;

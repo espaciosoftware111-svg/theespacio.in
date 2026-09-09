@@ -37,19 +37,19 @@ const AdminHomeHeroCMS = () => {
     hero_stat1_visible: true,
     hero_stat1_order: 1,
 
-    hero_stat2_value: '1 Year',
-    hero_stat2_label: 'Since 2025',
+    hero_stat2_value: '100+',
+    hero_stat2_label: 'Happy Clients',
     hero_stat2_visible: true,
     hero_stat2_order: 2,
 
     hero_stat3_value: '40+',
-    hero_stat3_label: 'Years of Family Legacy',
+    hero_stat3_label: 'Years Combined Legacy',
     hero_stat3_visible: true,
     hero_stat3_order: 3,
 
-    // Concept to Handover Intro Section
-    intro_heading: 'From Concept to Handover — ESPACIO Delivers Complete Interiors.',
-    intro_description: 'We bring 40+ years of family construction heritage to luxury interior design. Every space we create is backed by structural thinking, premium materials sourced directly from our own warehouses, and meticulous execution.',
+    // Turnkey Interiors Intro Section
+    intro_heading: 'Turnkey interiors, done properly.',
+    intro_description: "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.",
     intro_cta_text1: 'Our Story ↗',
     intro_cta_text2: 'Read More ↗',
     intro_cta_link: '/about',
@@ -58,7 +58,7 @@ const AdminHomeHeroCMS = () => {
     grid_stat1_val: '25+',
     grid_stat1_label: 'Projects Completed',
     grid_stat2_val: '100+',
-    grid_stat2_label: 'Happy Clients (including materials clients)',
+    grid_stat2_label: 'Happy Clients',
     grid_stat3_val: '40+',
     grid_stat3_label: 'Years Combined Legacy',
 
@@ -626,13 +626,13 @@ const AdminHomeHeroCMS = () => {
             </div>
           </div>
 
-          {/* SECTION 4: INTRO & HERITAGE SHOWCASE ("From Concept to Handover") */}
+          {/* SECTION 4: INTRO & HERITAGE SHOWCASE ("Turnkey interiors, done properly.") */}
           <div className="bg-[#141518] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6">
             <div className="flex items-center justify-between border-b border-white/5 pb-4">
               <div>
                 <h2 className="font-editorial text-xl font-bold text-white flex items-center space-x-2">
                   <Sliders size={18} className="text-gold" />
-                  <span>Homepage Intro Section ("From Concept to Handover")</span>
+                  <span>Homepage Intro Section ("Turnkey interiors, done properly.")</span>
                 </h2>
                 <p className="font-sans text-xs text-white/40 mt-0.5">Manage heading, description paragraph, and "Our Story ↗ / Read More ↗" button.</p>
               </div>
@@ -646,7 +646,7 @@ const AdminHomeHeroCMS = () => {
                   value={heroState.intro_heading}
                   onChange={(e) => handleFieldChange('intro_heading', e.target.value)}
                   className={`${inpClass} resize-none`}
-                  placeholder="From Concept to Handover — ESPACIO Delivers Complete Interiors."
+                  placeholder="Turnkey interiors, done properly."
                 />
               </div>
 
@@ -657,7 +657,7 @@ const AdminHomeHeroCMS = () => {
                   value={heroState.intro_description}
                   onChange={(e) => handleFieldChange('intro_description', e.target.value)}
                   className={`${inpClass} resize-none`}
-                  placeholder="We bring 40+ years of family construction heritage to luxury interior design..."
+                  placeholder="ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship..."
                 />
               </div>
 
@@ -794,7 +794,7 @@ const AdminHomeHeroCMS = () => {
             </div>
           </div>
 
-          {/* SECTION 6: SHOWCASE CAROUSEL SLIDES ("From Concept to Handover" Card) */}
+          {/* SECTION 6: SHOWCASE CAROUSEL SLIDES ("Turnkey Interiors" Showcase Card) */}
           <div className="bg-[#141518] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6">
             <div className="flex items-center justify-between border-b border-white/5 pb-4">
               <div>
@@ -802,7 +802,7 @@ const AdminHomeHeroCMS = () => {
                   <ImageIcon size={18} className="text-gold" />
                   <span>Showcase Carousel Images & Badges</span>
                 </h2>
-                <p className="font-sans text-xs text-white/40 mt-0.5">Manage the luxury interior images and project labels for the "From Concept to Handover" slider card.</p>
+                <p className="font-sans text-xs text-white/40 mt-0.5">Manage the luxury interior images and project labels for the showcase slider card.</p>
               </div>
             </div>
 

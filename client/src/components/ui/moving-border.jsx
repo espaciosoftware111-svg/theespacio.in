@@ -10,8 +10,8 @@ import {
 export const MovingBorder = ({
   children,
   duration = 2000,
-  rx,
-  ry,
+  rx = "20",
+  ry = "20",
   ...otherProps
 }) => {
   const pathRef = useRef(null);
@@ -65,18 +65,18 @@ export const MovingBorder = ({
 };
 
 export const Button = ({
-  borderRadius = "1.75rem",
+  borderRadius = "20px",
   children,
   as: Component = "button",
   containerClassName,
   borderClassName,
-  duration,
+  duration = 3500,
   className,
   ...otherProps
 }) => {
   return (
     <Component
-      className={`bg-transparent relative p-[1px] overflow-hidden ${containerClassName || ""}`}
+      className={`bg-transparent relative p-[1.5px] overflow-hidden ${containerClassName || ""}`}
       style={{
         borderRadius: borderRadius,
       }}
@@ -84,19 +84,19 @@ export const Button = ({
     >
       <div
         className="absolute inset-0"
-        style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
+        style={{ borderRadius: borderRadius }}
       >
-        <MovingBorder duration={duration} rx="30%" ry="30%">
+        <MovingBorder duration={duration} rx="20" ry="20">
           <div
-            className={`h-24 w-24 opacity-[0.8] bg-[radial-gradient(#000000_40%,transparent_60%)] ${borderClassName || ""}`}
+            className={`h-24 w-24 opacity-100 bg-[radial-gradient(circle,#dfc28d_0%,#c5a572_45%,transparent_70%)] ${borderClassName || ""}`}
           />
         </MovingBorder>
       </div>
 
       <div
-        className={`relative bg-bg/90 border border-ink-border/30 backdrop-blur-xl text-ink w-full h-full antialiased ${className || "flex items-center justify-center"}`}
+        className={`relative bg-bg border border-ink-border/20 text-ink w-full h-full antialiased ${className || "flex items-center justify-center"}`}
         style={{
-          borderRadius: `calc(${borderRadius} * 0.96)`,
+          borderRadius: `calc(${borderRadius} - 1.5px)`,
         }}
       >
         {children}

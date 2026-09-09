@@ -338,7 +338,7 @@ async function initSchemaAndData() {
     console.log(`  ✓ Seeded products (${(DEFAULT_PRODUCTS || []).length} materials)`);
 
     // Seed Categories (Spaces)
-    const spacesList = DEFAULT_SETTINGS.spaces_list || [];
+    const spacesList = (DEFAULT_SETTINGS.spaces_list || []).filter(c => c.slug !== 'apartments' && c.slug !== 'villas');
     let catIdx = 0;
     for (const cat of spacesList) {
       const id = cat.id || cat._id || `cat_${cat.slug || catIdx}`;

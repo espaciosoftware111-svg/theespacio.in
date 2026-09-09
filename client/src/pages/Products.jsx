@@ -143,7 +143,7 @@ const Products = () => {
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 sm:pt-14 pb-6 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
         <div className="space-y-1.5 sm:space-y-2">
           <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Premium Collection</span>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-charcoal">Browse Materials</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">Curated Material Library</h2>
         </div>
       </div>
 
@@ -151,43 +151,50 @@ const Products = () => {
       <section className="max-w-[1440px] mx-auto px-6 md:px-12 pb-16">
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[1,2,3,4,5,6,7,8].map((n) => <div key={n} className="aspect-[3/4] bg-offwhite animate-pulse rounded-card" />)}
+            {[1,2,3,4,5,6,7,8].map((n) => <div key={n} className="aspect-[3/4] bg-bg-card animate-pulse rounded-[24px]" />)}
           </div>
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredProducts.map((product, idx) => (
               <Link key={product.slug || idx} to={`/materials/${product.slug}`}
-                className="group block rounded-card overflow-hidden bg-offwhite border border-walnut/5 hover:-translate-y-2 transition-all duration-400 shadow-sm">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={getOptimizedImageUrl(product.heroImage || fallbacks[idx % fallbacks.length], 600, 70)} alt={product.title}
+                className="group block rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 hover:border-gold/50 hover:-translate-y-2 transition-all duration-400 shadow-sm hover:shadow-xl">
+                <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
+                  <img src={getOptimizedImageUrl(product.heroImage || fallbacks[idx % fallbacks.length], 1200, 92)} alt={product.title}
                     loading="lazy" decoding="async"
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {product.category && (
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[9.5px] font-sans font-semibold uppercase tracking-wider text-white border border-white/15">
+                        {product.category}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6 space-y-3">
-                  <h3 className="font-display text-lg font-bold text-charcoal group-hover:text-gold transition-colors">{product.title}</h3>
-                  <p className="font-sans text-xs text-walnut leading-relaxed line-clamp-2">{product.description}</p>
-                  <div className="pt-2 flex items-center space-x-1.5 text-[10px] text-gold uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                  <h3 className="font-display text-lg font-bold text-ink group-hover:text-gold transition-colors">{product.title}</h3>
+                  <p className="font-sans text-xs text-ink-soft leading-relaxed line-clamp-2">{product.description}</p>
+                  <div className="pt-2 flex items-center space-x-1.5 text-[10.5px] text-gold uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                     <span>{product.ctaText || 'Explore Material'}</span>
-                    <ArrowRight size={10} />
+                    <ArrowRight size={11} />
                   </div>
                 </div>
               </Link>
             ))}
           </div>
         ) : (
-          <div className="py-20 text-center space-y-5 bg-bg-card rounded-card border border-ink-border p-8 max-w-[540px] mx-auto">
+          <div className="py-20 text-center space-y-5 bg-bg-card rounded-[24px] border border-ink-border/30 p-8 max-w-[540px] mx-auto">
             <div className="w-12 h-12 rounded-full bg-gold/10 text-gold flex items-center justify-center mx-auto border border-gold/30">
               <Search size={22} />
             </div>
-            <h3 className="font-display text-xl font-bold text-charcoal">No Materials Found</h3>
-            <p className="font-sans text-xs text-walnut leading-relaxed">
+            <h3 className="font-display text-xl font-bold text-ink">No Materials Found</h3>
+            <p className="font-sans text-xs text-ink-soft leading-relaxed">
               No materials match "{searchQuery}". Try searching another keyword like WPC, Polygranite, Acrylic, or Fluted.
             </p>
             <div className="pt-2 flex items-center justify-center gap-3">
               <button
                 onClick={() => setSearchQuery('')}
-                className="px-6 py-3 rounded-full bg-gold text-charcoal font-sans text-xs uppercase tracking-widest font-bold hover:bg-charcoal hover:text-cream transition-all shadow-md cursor-pointer"
+                className="px-6 py-3 rounded-full bg-gold text-charcoal font-sans text-xs uppercase tracking-widest font-bold hover:bg-ink hover:text-white transition-all shadow-md cursor-pointer"
               >
                 Clear Search & Browse All
               </button>

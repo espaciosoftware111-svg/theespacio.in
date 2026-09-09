@@ -61,23 +61,24 @@ export const notifyCMSUpdate = () => {
 export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_1_rajapushpa_provincia',
-    title: 'Rajapushpa Provincia 3BHK Residence',
+    title: 'A 3BHK Residence, Narsingi',
     slug: 'rajapushpa-provincia-3bhk',
     category: 'apartment',
     area: '2,850 sq.ft.',
     location: 'Narsingi, Hyderabad',
     year: 2025,
     style: 'Contemporary Warm Minimalist',
-    description: 'A bespoke 3BHK turnkey interior design and execution project at Rajapushpa Provincia, Narsingi. Seamless timber paneling, concealed lighting tracks, and high-tolerance modular finishes.',
+    description: 'Warm wood tones, sculpted feature walls, and hidden lighting that transforms the mood room to room — this 3BHK turns every corner into something worth showing off. Every finish built to stay flawless for years, not just on move-in day.',
     story: {
-      vision: 'The client, Dharma Teja, envisioned an uncluttered, modern contemporary sanctuary celebrating rich timber grain textures, clean line aesthetics, and warm indirect cove illumination. The space needed to maximize natural daylight from high-rise balconies while maintaining functional storage ergonomics.',
-      challenges: 'Achieving millimeter-level planar alignment for continuous fluted wall cladding across doorway transitions, and concealing AC ducting channels within minimalist peripheral ceiling drops without sacrificing vertical room height.',
+      vision: 'The brief was clear from day one: give the client a living room that feels warm and welcoming the moment you walk in — never stiff, never showroom-y. We planned to bring in wood paneling with a soft vertical texture, pair it with a marble-look backdrop behind the TV, and layer the ceiling with gentle cove lighting that could shift the whole mood of the room after sunset. A statement chandelier would tie the space together — the goal was a room that works just as well for a quiet evening in as it does when guests are over.',
+      challenges: 'The trickiest part was the feature wall — the one with all the arches and niches. Getting that wall to look like one flowing design, instead of a bunch of separate shapes stuck together, took a lot of careful planning. Every arch had to line up, every light strip had to sit exactly right, and the wall itself wasn\'t even flat to begin with — so we had to work around real-world imperfections while keeping the final look completely smooth.',
       solutions: 'Engineered custom lightweight composite backer structures with laser-guided leveling and integrated concealed magnetic shadowline profiles.',
-      engineering: 'Calculated structural tolerances for heavy stone consoles and reinforced load-bearing TV and cabinetry joinery with mild steel sub-framing.',
+      engineering: 'None of that "effortless" look happens by accident. Behind that wall is hidden wiring, precisely cut stone panels, and layered plasterwork — all planned out before a single piece went up, so nothing pokes through and nothing looks patched together later. That\'s really what you\'re paying for with us — not just how it looks on day one, but how solid it still feels five years down the line.',
       outcome: 'An impeccably detailed residential benchmark with zero visible hardware, ambient mood scenes, and seamless spatial flow.'
     },
-    heroImage: '/images/projects/rajapushpa_provincia/rajapushpa_1.webp',
+    heroImage: '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
     gallery: [
+      "/images/projects/rajapushpa_provincia/rajapushpa_after.webp",
       "/images/projects/rajapushpa_provincia/rajapushpa_1.webp",
       "/images/projects/rajapushpa_provincia/rajapushpa_2.webp",
       "/images/projects/rajapushpa_provincia/rajapushpa_3.webp",
@@ -97,9 +98,8 @@ export const DEFAULT_PROJECTS = [
       "/images/projects/rajapushpa_provincia/rajapushpa_17.webp",
       "/images/projects/rajapushpa_provincia/rajapushpa_18.webp",
       "/images/projects/rajapushpa_provincia/rajapushpa_19.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_20.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_after.webp"
-],
+      "/images/projects/rajapushpa_provincia/rajapushpa_20.webp"
+    ],
     beforeImage: '/images/projects/rajapushpa_provincia/rajapushpa_before.webp',
     afterImage: '/images/projects/rajapushpa_provincia/rajapushpa_after.webp',
     beforeImages: ['/images/projects/rajapushpa_provincia/rajapushpa_before.webp'],
@@ -120,19 +120,19 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_2_my_home_sayuk',
-    title: 'My Home Sayuk 3BHK Residence',
+    title: 'A 3BHK Residence, Tellapur',
     slug: 'my-home-sayuk-3bhk',
     category: 'apartment',
     area: '2,750 sq.ft.',
     location: 'Tellapur, Hyderabad',
     year: 2025,
     style: 'Japandi Contemporary Luxury',
-    description: 'A bespoke 3BHK turnkey interior design and execution project at My Home Sayuk, Tellapur. Incorporating elevated timber platforms, Japanese latticework screens, integrated linear cove lighting, and acoustic master bedrooms.',
+    description: 'A calm, nature inspired home with raised wooden lounge platforms, delicate latticework screens, soft layered lighting throughout, and bedrooms designed to stay peaceful and quiet. Every corner was built to slow you down after a long day.',
     story: {
-      vision: 'The client, Ganesh, sought a tranquil, Japandi-infused modern haven featuring organic wood accents, low-slung lounge ergonomics, and expansive natural light across the open living hall. The spatial design needed to balance private relaxation with open entertainment.',
-      challenges: 'Executing a raised hardwood tea platform flush with expansive floor-to-ceiling balcony glazing, while engineering hidden linear HVAC diffusers into seamless perimeter ceiling drops.',
+      vision: 'Ganesh wanted a home that felt calm the second he walked in. Natural wood tones, low relaxed seating, and plenty of daylight pouring into the main living area were all part of the plan. The idea was to create a space that could do two things at once. Give the family a quiet corner to unwind, and still open up easily when it was time to host friends and family.',
+      challenges: 'One of the toughest parts was the raised wooden platform near the balcony. It had to sit perfectly flush against the floor to ceiling glass, with no gaps or awkward edges anywhere. At the same time, we needed to hide all the AC ducting inside slim ceiling drops running around the room, without making the ceiling feel low or boxed in.',
       solutions: 'Fabricated precision sub-frame floor joists with acoustic underlay buffers, combined with laser-cut geometric wooden screen dividers and flush-mounted indirect warm LED profiles.',
-      engineering: 'Engineered structural load-bearing tolerances for cantilevered timber elements and reinforced acoustic wall paneling in all 3 bedroom suites.',
+      engineering: 'To make that wooden platform work, we had to calculate exactly how much weight it could hold without any sagging or shifting over time. In the bedrooms, we also built in extra wall paneling designed to soften sound, so the rooms feel calmer and more private even in a busy household. It\'s the kind of detail you don\'t see, but you definitely feel every time you walk in.',
       outcome: 'An architectural masterpiece characterized by harmonious natural textures, zero visual clutter, and serene atmosphere.'
     },
     heroImage: '/images/projects/my_home_sayuk/sayuk_after_open_hall.webp',
@@ -145,7 +145,7 @@ export const DEFAULT_PROJECTS = [
       "/images/projects/my_home_sayuk/sayuk_2.webp",
       "/images/projects/my_home_sayuk/sayuk_3.webp",
       "/images/projects/my_home_sayuk/sayuk_7.webp"
-],
+    ],
     beforeImage: '/images/projects/my_home_sayuk/sayuk_before_raw.webp',
     afterImage: '/images/projects/my_home_sayuk/sayuk_after_open_hall.webp',
     beforeImages: ['/images/projects/my_home_sayuk/sayuk_before_raw.webp'],
@@ -166,19 +166,19 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_3_kokapet_nagesh',
-    title: 'Kokapet 2BHK Residence',
+    title: 'A 2BHK Residence, Kokapet',
     slug: 'kokapet-2bhk',
     category: 'apartment',
     area: '1,650 sq.ft.',
     location: 'Kokapet, Hyderabad',
     year: 2025,
     style: 'Contemporary Warm Minimalist',
-    description: 'A bespoke 2BHK turnkey interior design and execution project for Nagesh at Kokapet, Hyderabad. High-precision modular kitchen cabinetry, integrated designer TV unit, custom crockery unit, and serene bedroom suites.',
+    description: 'A refined 2BHK home with handleless modular cabinetry, a striking marble TV feature wall, a beautifully lit crockery display, and bedrooms designed purely for rest. Every inch was planned to feel bigger, brighter, and effortlessly put together.',
     story: {
-      vision: 'The client, Nagesh, envisioned an elegant, functional 2BHK home in Kokapet with contemporary aesthetics, optimized spatial flow, ambient illumination, and bespoke modular cabinetry tailored for modern living.',
-      challenges: 'Maximizing usable floor space and storage efficiency in a 2BHK layout while executing customized handleless modular joinery and flush TV wall paneling without visual bulk.',
+      vision: 'Nagesh wanted his 2BHK to feel elegant without feeling tight. Even though the layout was compact, the goal was to make every room feel open, well lit, and thoughtfully planned. Clean modern lines, warm ambient lighting, and custom cabinetry built specifically for how he lives were all part of the plan from day one.',
+      challenges: 'In a 2BHK, every inch matters. The real challenge was fitting in generous storage and a fully handleless kitchen and wardrobe system without the space ever feeling cramped or heavy. On top of that, the TV wall had to sit completely flush against the surrounding paneling, with no visible gaps or bulk breaking the clean look.',
       solutions: 'Engineered custom fluted wall paneling, integrated floating crockery and entertainment units, and premium modular storage solutions with soft-close German hardware.',
-      engineering: 'Precision-aligned ceiling drop coves with concealed warm LED profiles, high-load anchor points for floating cabinetry, and anti-scratch acrylic finishes.',
+      engineering: 'Getting that seamless look meant planning the ceiling coves down to the millimeter, so the lighting sits perfectly aligned all the way around the room. The floating cabinetry needed strong hidden anchor points to carry its weight safely over time, and every surface was finished with an anti scratch coating so the home stays looking new for years, not just on the day it\'s handed over.',
       outcome: 'A flawless, turnkey residential masterpiece delivered on schedule with benchmark craftsmanship and enduring aesthetic charm.'
     },
     heroImage: '/images/projects/kokapet_nagesh_2bhk/kokapet_after.webp',
@@ -211,19 +211,19 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_4_kokapet_rahul',
-    title: 'Kokapet Urban 2BHK Residence',
+    title: 'A 2BHK Residence, Kokapet',
     slug: 'kokapet-urban-2bhk',
     category: 'apartment',
     area: '1,450 sq.ft.',
     location: 'Kokapet, Hyderabad',
     year: 2025,
     style: 'Clean Contemporary Luxury',
-    description: 'A sophisticated 2BHK turnkey interior design and execution project for Rahul at Kokapet, Hyderabad. Featuring seamless acrylic modular kitchen cabinetry, custom floating TV consoles, high-gloss master wardrobes, and modern spatial lighting.',
+    description: 'A bright, airy 2BHK with high gloss finishes, a bookmatched marble bedroom wall, sleek floating consoles, and calm bedroom retreats bathed in soft lighting. Every room was planned around comfort and light, giving Rahul a home that feels fresh from the moment he steps in.',
     story: {
-      vision: 'The client, Rahul, wanted a clean, contemporary 2BHK home in Kokapet prioritizing spatial flow, high-gloss surfaces, integrated modular storage, and serene bedroom retreats with ambient lighting.',
-      challenges: 'Precision alignment of full-height wardrobe shutters and acrylic cabinetry in a compact high-rise footprint, while creating integrated LED shadowlines without lowering visible ceiling height.',
+      vision: 'Rahul wanted his 2BHK to feel clean and contemporary, with nothing crowding the space. Smooth spatial flow, high gloss surfaces, and generous modular storage were all part of the early plan, along with calm bedroom retreats that would feel like a proper escape from the rest of the day. In the main bedroom, the idea was to let one material do all the talking, a bookmatched marble wall running the full height behind the bed, quiet enough to relax into but striking enough to become the room\'s focal point.',
+      challenges: 'With a compact high rise layout, every wardrobe shutter and cabinet had to line up perfectly, since even a small gap would stand out in such a tight space. We also wanted integrated LED lighting running along the ceiling edges, but without dropping the ceiling height in a home where every inch of headroom already mattered. That same lighting logic carried into the bedroom, where soft edge lighting needed to trace the marble wall just right, so the veining would glow after dark instead of getting lost in shadow.',
       solutions: 'Deployed moisture-resistant HDHMR core structures, German Häfele soft-close hardware, and laser-guided leveling for seamless wall-to-cabinet joints.',
-      engineering: 'Engineered load-bearing anchors for cantilevered entertainment consoles and integrated flush perimeter mood lighting circuits across all rooms.',
+      engineering: 'The floating TV console needed strong hidden anchors so it could hold its weight without any sagging over the years. We also ran mood lighting circuits flush into the ceiling across every room, so the light feels built into the architecture rather than added on top of it. The bedroom\'s marble panels were matched and aligned piece by piece before installation, so the pattern reads as one continuous sheet rather than a row of separate slabs. Small choices like these are what make a home feel finished rather than just decorated.',
       outcome: 'A pristine, modern 2BHK residence delivered on schedule with flawless finishes, high storage utility, and timeless contemporary appeal.'
     },
     heroImage: '/images/projects/kokapet_rahul_2bhk/rahul_after.webp',
@@ -279,19 +279,19 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_5_gandipet_kiran',
-    title: 'Gandipet Modern Retro 2BHK',
+    title: 'A 2BHK Residence, Gandipet',
     slug: 'gandipet-modern-retro-2bhk',
     category: 'apartment',
     area: '1,750 sq.ft.',
     location: 'Gandipet, Hyderabad',
     year: 2025,
     style: 'Modern Retro Timber',
-    description: 'A bespoke 2BHK turnkey interior design and execution project for Kiran Raja at Gandipet, Hyderabad. Featuring architectural timber louvers, fluted glass partitions, customized study suites, and warm ambient backlighting.',
+    description: 'A warm, retro modern 2BHK with rich timber louvers, classic wall paneling, a dedicated home office corner, and richly layered lighting throughout. Every room mixes old world charm with modern comfort, giving Kiran a home that feels timeless rather than trendy.',
     story: {
-      vision: 'The client, Kiran Raja, envisioned a warm, retro-modern 2BHK home in Gandipet integrating rich natural timber louvers, dedicated home office zones, sleek entertainment walls, and serene ambient illumination.',
-      challenges: 'Seamlessly aligning custom wooden slats and fluted acoustic paneling across dining and study areas without visible joints or exposed fasteners.',
+      vision: 'Kiran wanted his 2BHK to feel warm and retro modern, somewhere between classic and contemporary. Rich natural timber, detailed wall paneling, and a proper home office zone were all part of the early plan, along with an entertainment wall that would anchor the living room and soft ambient lighting that would carry that warmth into every corner.',
+      challenges: 'Getting those custom wooden slats and fluted panels to line up across the dining and study areas took a lot of careful planning, since even one visible joint or exposed screw would break the whole look. On top of that, every wall panel had to sit flush with the next, so the classic paneling reads as one continuous design instead of a patchwork of separate pieces.',
       solutions: 'Crafted interlocking tongue-and-groove wooden wall slats with concealed rear clip fasteners and integrated low-voltage LED profile channels.',
-      engineering: 'Engineered precision heat sinks for embedded LED lighting profiles inside the timber framework and reinforced load-bearing TV joinery.',
+      engineering: 'Running LED lighting inside the timber framework meant working out proper heat management first, so the wood stays safe and doesn\'t warp or discolor over time. The TV wall also needed reinforced joinery underneath to carry its weight safely for years. It\'s the kind of planning that never shows on the surface, but it\'s exactly what keeps a home looking as good on day one thousand as it did on day one.',
       outcome: 'A warm, tactile, character-filled 2BHK residence with editorial-grade craftsmanship delivered turnkey on schedule.'
     },
     heroImage: '/images/projects/gandipet_kiran_2bhk/kiran_after.webp',
@@ -342,19 +342,19 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_6_kondapur_venkatesh',
-    title: 'Kondapur Minimalist Contemporary 2BHK',
+    title: 'A 2BHK Residence, Kondapur',
     slug: 'kondapur-minimalist-2bhk',
     category: 'apartment',
     area: '1,520 sq.ft.',
     location: 'Kondapur, Hyderabad',
     year: 2025,
     style: 'Contemporary Minimalist Gray',
-    description: 'A bespoke 2BHK turnkey interior design and execution project for Venkatesh at Kondapur, Hyderabad. Minimalist matte gray modular kitchen, customized living entertainment media wall, and tailored master bedroom wardrobe suites.',
+    description: 'A clean, contemporary 2BHK built around a calming grey palette, full height wardrobes, a sleek floating media wall, and a kitchen designed for real everyday use. Every detail here was chosen to keep the home feeling open, organized, and quietly luxurious.',
     story: {
-      vision: 'The client, Venkatesh, envisioned a contemporary 2BHK apartment in Kondapur with clean geometric lines, a monochromatic gray tone palette, high-efficiency kitchen storage, and luxurious bedroom retreats.',
-      challenges: 'Integrating full-height wardrobe storage and floating entertainment cabinetry while preserving open walkway clearances and maximizing natural daylight flow.',
+      vision: 'Venkatesh wanted his 2BHK to feel contemporary and composed, built around clean geometric lines and a soft monochromatic grey palette. The kitchen needed to work as hard as it looked good, with smart, efficient storage built in from the start, and the bedrooms were planned as proper retreats, calm spaces to unwind at the end of the day.',
+      challenges: 'Fitting in full height wardrobes and a floating media unit without the rooms feeling boxed in took careful planning. We had to protect the open walkway space and make sure natural light could still move freely through the apartment, so the extra storage never came at the cost of how open the home felt.',
       solutions: 'Engineered seamless floor-to-ceiling acrylic wardrobes with concealed edge pulls, ultra-matte cabinetry finishes, and integrated architectural perimeter cove lighting.',
-      engineering: 'Precision-crafted moisture-resistant HDHMR substrates paired with German Häfele soft-close hardware and concealed cable routing channels.',
+      engineering: 'Every cabinet and wardrobe was built using moisture resistant boards paired with premium soft close hardware, so the doors stay smooth and quiet for years, even in Hyderabad\'s humidity. Cable routing was also planned and hidden from the start, so the entertainment wall stays clean and clutter free, with nothing dangling or exposed to spoil the look.',
       outcome: 'A sleek, modern 2BHK residence with pristine geometric alignment, maximum storage utility, and timeless contemporary luxury.'
     },
     heroImage: '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp',
@@ -403,19 +403,19 @@ export const DEFAULT_PROJECTS = [
 ,
   {
     _id: 'proj_7_gachibowli_koteswara',
-    title: 'Gachibowli Minimalist Beige 2BHK',
+    title: 'A 2BHK Residence, Gachibowli',
     slug: 'gachibowli-minimalist-beige-2bhk',
     category: 'apartment',
     area: '1,480 sq.ft.',
     location: 'Gachibowli, Hyderabad',
     year: 2025,
     style: 'Minimalist Warm Beige',
-    description: 'A serene 2BHK turnkey interior design and execution project for Koteswara Rao at Gachibowli, Hyderabad. Featuring minimalist warm beige master suites, fluted acoustic paneling, customized TV media consoles, and seamless cove spatial illumination.',
+    description: 'A calm, uncluttered 2BHK built around soft beige tones, seamless wardrobe integration, and warm ambient light throughout. Every corner was planned to feel peaceful, with a home entry that still makes a striking first impression.',
     story: {
-      vision: 'The client, Koteswara Rao, wanted a tranquil, clutter-free 2BHK home in Gachibowli focusing on soft beige palettes, seamless wall-to-wardrobe integrations, cozy reading alcoves, and warm ambient illumination.',
-      challenges: 'Crafting continuous fluted wall panels and flush concealed doors across living and master suites while ensuring flawless grain alignment.',
+      vision: 'Koteswara Rao wanted his 2BHK to feel calm and completely clutter free, built around a soft beige palette that would carry through every room. Wardrobes were planned to blend directly into the walls rather than stand out, with a cozy reading corner and warm ambient lighting designed to make the whole home feel like a place to unwind.',
+      challenges: 'Getting the fluted wall panels to run continuously across the living area and master bedroom, with doors that disappear flush into the paneling, took a lot of careful planning. Every panel had to line up perfectly, and the wood grain had to match seamlessly from one section to the next, so nothing ever looked pieced together.',
       solutions: 'Utilized calibrated HDHMR boards with anti-scratch PU coatings, precision CNC routed fluting, and hidden soft-close hinges.',
-      engineering: 'Engineered recessed ceiling channels with high-CRI warm LED fixtures to wash natural textured surfaces with soft indirect light.',
+      engineering: 'Ceiling channels were built in to house warm, high quality LED lighting that softly washes across the textured walls, bringing out the natural grain without ever feeling harsh. Even the entryway got the same attention to detail, with a striking gold console table and framed wall accents that turn a simple hallway into a proper welcome home moment.',
       outcome: 'A tranquil, sophisticated 2BHK haven delivering five-star hotel comfort with pristine finishes on schedule.'
     },
     heroImage: '/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp',
@@ -471,19 +471,19 @@ export const DEFAULT_PROJECTS = [
 ,
   {
     _id: 'proj_8_kachiguda_subbarao',
-    title: 'Kachiguda Fusion Duplex Villa',
+    title: 'A Duplex Residence, Kachiguda',
     slug: 'kachiguda-fusion-duplex-villa',
     category: 'duplex',
     area: '3,800 sq.ft.',
     location: 'Kachiguda, Hyderabad',
     year: 2025,
     style: 'Modern & Traditional Fusion',
-    description: 'An exquisite fusion duplex residence for K Subbarao at Kachiguda, Hyderabad. Harmonizing contemporary architectural joinery, vibrant custom accents, dedicated parents suites, boys study chambers, and grand living-dining spatial continuity.',
+    description: 'A grand duplex built for a multi generational family, blending modern comfort with the warmth of traditional Indian design. From a striking staircase to a kids room wrapped in a vintage airplane blueprint mural, every level tells its own story while still feeling like one connected home.',
     story: {
-      vision: 'The client, K Subbarao, envisioned a grand duplex villa in Kachiguda that elegantly bridges modern luxury with rich Indian design heritage for a multi-generational family.',
-      challenges: 'Integrating multi-level ceiling designs, customized double-height statement accents, and cohesive transition palettes across parents and boys suites.',
+      vision: 'K Subbarao wanted a duplex that could hold the whole family comfortably, parents and children, while still feeling like one cohesive home rather than two separate floors stitched together. The plan blended modern luxury with rich touches of Indian design heritage, so the home would feel current without losing its cultural warmth. For the boys\' room, the idea was to give them something entirely their own, a space with personality and imagination built right into the walls.',
+      challenges: 'With multiple ceiling levels and a double height space to design around, keeping a consistent look across both the parents\' and the boys\' suites took real care. Every material and color choice had to feel connected across floors, so the home reads as one story from top to bottom instead of feeling like two different houses stacked together. In the boys\' room specifically, we wanted a bold vintage airplane blueprint mural to feel like a natural extension of the room, not just wallpaper slapped on, so the furniture, lighting, and colors all had to work around it rather than against it.',
       solutions: 'Bespoke fluted wood paneling, premium PU lacquer detailing, high-durability acrylic storage systems, and ambient architectural cove lighting.',
-      engineering: 'Seamlessly routed concealed wiring, multi-tier ambient profile illumination, and anti-warp calibrated plywood frames.',
+      engineering: 'Wiring was routed carefully through the multi level ceilings so nothing was ever left exposed, and lighting was layered at different heights to bring warmth into every corner, including the dramatic double height areas. The plywood used throughout was specially treated to resist warping over time, so the home holds its shape and finish for years, not just for the first few seasons. Even the statement mural in the boys\' room was planned around the lighting fixtures above it, so the pendant lights complement the artwork instead of casting awkward shadows across it.',
       outcome: 'A magnificent, warm duplex masterpiece celebrated for its craftsmanship and delivered with turnkey precision.'
     },
     heroImage: '/images/projects/kachiguda_subbarao_duplex/subbarao_after.webp',
@@ -681,8 +681,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-1',
     q: 'How long does a project usually take?',
     question: 'How long does a project usually take?',
-    a: 'Typically 2–3 months, depending on the level of detailing and customization involved in your project.',
-    answer: 'Typically 2–3 months, depending on the level of detailing and customization involved in your project.',
+    a: 'Most projects take about two to three months from start to finish. The exact timeline depends on how detailed and customized your space is, but we\'ll give you a clear schedule before work begins so there are no surprises along the way.',
+    answer: 'Most projects take about two to three months from start to finish. The exact timeline depends on how detailed and customized your space is, but we\'ll give you a clear schedule before work begins so there are no surprises along the way.',
     img: '/images/faq/faq_1_timeline.jpg',
     image: '/images/faq/faq_1_timeline.jpg',
     imageLabel: 'TIMELINE',
@@ -700,8 +700,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-2',
     q: 'Do you provide turnkey interior solutions?',
     question: 'Do you provide turnkey interior solutions?',
-    a: 'Yes. Every project we take on, residential or commercial, is delivered turnkey, with design, materials, execution, and finishing handled entirely by our team.',
-    answer: 'Yes. Every project we take on, residential or commercial, is delivered turnkey, with design, materials, execution, and finishing handled entirely by our team.',
+    a: 'Yes. Every project we take on, whether it\'s a home or a commercial space, is handled fully by our own team. Design, materials, execution, and final finishing all happen under one roof, so you\'re never left coordinating between different vendors.',
+    answer: 'Yes. Every project we take on, whether it\'s a home or a commercial space, is handled fully by our own team. Design, materials, execution, and final finishing all happen under one roof, so you\'re never left coordinating between different vendors.',
     img: '/images/faq/faq_2_services.jpg',
     image: '/images/faq/faq_2_services.jpg',
     imageLabel: 'SERVICES',
@@ -719,8 +719,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-3',
     q: 'What is your consultation process?',
     question: 'What is your consultation process?',
-    a: 'We begin with a free consultation to understand your space, requirements, and vision, before moving into detailed design and planning.',
-    answer: 'We begin with a free consultation to understand your space, requirements, and vision, before moving into detailed design and planning.',
+    a: 'We start with a free consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.',
+    answer: 'We start with a free consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.',
     img: '/images/faq/faq_3_process.jpg',
     image: '/images/faq/faq_3_process.jpg',
     imageLabel: 'PROCESS',
@@ -738,8 +738,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-4',
     q: 'Which locations do you currently serve?',
     question: 'Which locations do you currently serve?',
-    a: "We're proudly based in Hyderabad and have delivered residential and commercial projects across the city.",
-    answer: "We're proudly based in Hyderabad and have delivered residential and commercial projects across the city.",
+    a: 'We\'re based in Hyderabad and have delivered homes and commercial spaces across the city.',
+    answer: 'We\'re based in Hyderabad and have delivered homes and commercial spaces across the city.',
     img: '/images/faq/faq_4_location.jpg',
     image: '/images/faq/faq_4_location.jpg',
     imageLabel: 'LOCATION',
@@ -757,8 +757,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-5',
     q: 'How can customers request a quotation?',
     question: 'How can customers request a quotation?',
-    a: 'Simply fill out our contact form on the website, and our team will get back to you to discuss your project.',
-    answer: 'Simply fill out our contact form on the website, and our team will get back to you to discuss your project.',
+    a: 'Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.',
+    answer: 'Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.',
     img: '/images/faq/faq_5_pricing.jpg',
     image: '/images/faq/faq_5_pricing.jpg',
     imageLabel: 'PRICING',
@@ -776,8 +776,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-6',
     q: 'Do you sell materials separately from design services?',
     question: 'Do you sell materials separately from design services?',
-    a: 'Yes. Our materials including WPC panels, polygranite sheets, acrylic sheets, and more are available for standalone purchase, without needing to book a full design or execution project with us.',
-    answer: 'Yes. Our materials including WPC panels, polygranite sheets, acrylic sheets, and more are available for standalone purchase, without needing to book a full design or execution project with us.',
+    a: 'Yes. Materials like WPC panels, polygranite sheets, and acrylic sheets are available for standalone purchase, even if you\'re not booking a full design or execution project with us.',
+    answer: 'Yes. Materials like WPC panels, polygranite sheets, and acrylic sheets are available for standalone purchase, even if you\'re not booking a full design or execution project with us.',
     img: '/images/faq/faq_6_materials.jpg',
     image: '/images/faq/faq_6_materials.jpg',
     imageLabel: 'MATERIALS',
@@ -793,16 +793,16 @@ export const DEFAULT_FAQS = [
   },
   {
     id: 'faq-7',
-    q: 'Do I need to be involved throughout the project, or can it be handled remotely?',
-    question: 'Do I need to be involved throughout the project, or can it be handled remotely?',
-    a: "We keep you informed at every key stage with regular updates and site visits, so you're never left in the dark, but you don't need to manage day-to-day execution yourself. That's what turnkey means.",
-    answer: "We keep you informed at every key stage with regular updates and site visits, so you're never left in the dark, but you don't need to manage day-to-day execution yourself. That's what turnkey means.",
-    img: '/images/faq/faq_7_involvement.jpg',
-    image: '/images/faq/faq_7_involvement.jpg',
-    imageLabel: 'INVOLVEMENT',
-    imageCaption: 'Do I need to be involved throughout the project?',
-    tag: 'Involvement',
-    category: 'INVOLVEMENT',
+    q: 'What if I already have a design in mind, can you just execute it?',
+    question: 'What if I already have a design in mind, can you just execute it?',
+    a: 'Of course. Whether you already have a finalized design or need us to build one from scratch, we can step in wherever you need us, whether that\'s execution only or a complete design and build package.',
+    answer: 'Of course. Whether you already have a finalized design or need us to build one from scratch, we can step in wherever you need us, whether that\'s execution only or a complete design and build package.',
+    img: '/images/faq/faq_8_custom.jpg',
+    image: '/images/faq/faq_8_custom.jpg',
+    imageLabel: 'CUSTOM',
+    imageCaption: 'What if I already have a design in mind, can you just execute it?',
+    tag: 'Custom',
+    category: 'CUSTOM',
     showOnFaqPage: true,
     showOnHome: true,
     faqPageOrder: 7,
@@ -812,16 +812,16 @@ export const DEFAULT_FAQS = [
   },
   {
     id: 'faq-8',
-    q: 'What if I already have a design in mind, can you just execute it?',
-    question: 'What if I already have a design in mind, can you just execute it?',
-    a: 'Absolutely. Whether you come with a finalized design or need us to design from scratch, we can adapt to execution-only or full design-and-build depending on what you need.',
-    answer: 'Absolutely. Whether you come with a finalized design or need us to design from scratch, we can adapt to execution-only or full design-and-build depending on what you need.',
-    img: '/images/faq/faq_8_custom.jpg',
-    image: '/images/faq/faq_8_custom.jpg',
-    imageLabel: 'CUSTOM',
-    imageCaption: 'What if I already have a design in mind, can you just execute it?',
-    tag: 'Custom',
-    category: 'CUSTOM',
+    q: 'Can I customize designs, or do you offer fixed packages?',
+    question: 'Can I customize designs, or do you offer fixed packages?',
+    a: 'Every project is designed around your space and your preferences. We don\'t work off fixed templates or one size fits all packages, so what you get is built specifically for you.',
+    answer: 'Every project is designed around your space and your preferences. We don\'t work off fixed templates or one size fits all packages, so what you get is built specifically for you.',
+    img: '/images/faq/faq_9_design.jpg',
+    image: '/images/faq/faq_9_design.jpg',
+    imageLabel: 'DESIGN',
+    imageCaption: 'Can I customize designs, or do you offer fixed packages?',
+    tag: 'Design',
+    category: 'DESIGN',
     showOnFaqPage: true,
     showOnHome: true,
     faqPageOrder: 8,
@@ -831,16 +831,16 @@ export const DEFAULT_FAQS = [
   },
   {
     id: 'faq-9',
-    q: 'Can I customize designs, or do you offer fixed packages?',
-    question: 'Can I customize designs, or do you offer fixed packages?',
-    a: "Every project is fully customized around your space and preferences — we don't work off fixed templates or set packages.",
-    answer: "Every project is fully customized around your space and preferences — we don't work off fixed templates or set packages.",
-    img: '/images/faq/faq_9_design.jpg',
-    image: '/images/faq/faq_9_design.jpg',
-    imageLabel: 'DESIGN',
-    imageCaption: 'Can I customize designs, or do you offer fixed packages?',
-    tag: 'Design',
-    category: 'DESIGN',
+    q: 'Do you provide warranties on completed projects?',
+    question: 'Do you provide warranties on completed projects?',
+    a: 'Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.',
+    answer: 'Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.',
+    img: '/images/faq/faq_10_support.jpg',
+    image: '/images/faq/faq_10_support.jpg',
+    imageLabel: 'SUPPORT',
+    imageCaption: 'Do you provide warranties on completed projects?',
+    tag: 'Support',
+    category: 'SUPPORT',
     showOnFaqPage: true,
     showOnHome: true,
     faqPageOrder: 9,
@@ -850,16 +850,16 @@ export const DEFAULT_FAQS = [
   },
   {
     id: 'faq-10',
-    q: 'Do you provide warranties on completed projects?',
-    question: 'Do you provide warranties on completed projects?',
-    a: 'Yes. We offer up to 10-year comprehensive warranties on hardware and core modular components, backed directly by our factory certifications.',
-    answer: 'Yes. We offer up to 10-year comprehensive warranties on hardware and core modular components, backed directly by our factory certifications.',
-    img: '/images/faq/faq_10_support.jpg',
-    image: '/images/faq/faq_10_support.jpg',
-    imageLabel: 'SUPPORT',
-    imageCaption: 'Do you provide warranties on completed projects?',
-    tag: 'Support',
-    category: 'SUPPORT',
+    q: 'What does the design and execution process actually look like?',
+    question: 'What does the design and execution process actually look like?',
+    a: 'We start with a design consultation to understand your space and what you\'re looking for. Once the overall theme is locked in, we move into 3D visualizations so you can see exactly how the space will look before anything is built. After the designs are finalized, our team takes over execution, keeping you updated along the way until final handover.',
+    answer: 'We start with a design consultation to understand your space and what you\'re looking for. Once the overall theme is locked in, we move into 3D visualizations so you can see exactly how the space will look before anything is built. After the designs are finalized, our team takes over execution, keeping you updated along the way until final handover.',
+    img: '/images/faq/faq_7_involvement.jpg',
+    image: '/images/faq/faq_7_involvement.jpg',
+    imageLabel: 'PROCESS',
+    imageCaption: 'What does the design and execution process actually look like?',
+    tag: 'Process',
+    category: 'PROCESS',
     showOnFaqPage: true,
     showOnHome: true,
     faqPageOrder: 10,
@@ -873,12 +873,19 @@ export const DEFAULT_FAQS = [
 export const DEFAULT_SERVICES = [
   { 
     num: '01', 
-    title: 'Full Home Interior Design & Execution', 
+    title: 'Full Home Interior Design and Execution', 
     tag: 'Turnkey Design & Build', 
-    desc: 'Bespoke residential interior architecture engineered from concept to final handover. We integrate custom modular joinery, lighting layouts, and premium wall finishes into a seamless turnkey execution.', 
-    includes: ['Living & Dining Spatial Architecture', 'Custom Modular Wardrobe Systems', 'Ergonomic Modular Kitchen Layouts', 'Ambient Cove & Architectural Lighting', 'Curated Wall & Surface Textures', 'Turnkey Execution & Project Oversight'], 
+    desc: 'A complete home interior, planned and built by one team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
+    includes: [
+      'Living & Dining Layouts Built Around You',
+      'Kitchens Designed for Real Everyday Use',
+      'Curated Wall & Surface Finishes',
+      'Wardrobes Tailored to How You Store',
+      'Lighting That Sets the Mood, Room by Room',
+      'Full Execution, Managed Start to Finish'
+    ], 
     img: '/images/company/2bhk_mordern_retro/hall.jpg',
-    ctaText: 'Enquire About Interior Design',
+    ctaText: 'Enquire About Residential Interiors',
     ctaLink: '/contact',
     ctaVisible: true,
     visible: true,
@@ -886,10 +893,17 @@ export const DEFAULT_SERVICES = [
   },
   { 
     num: '02', 
-    title: 'Commercial & Office Interiors', 
+    title: 'Commercial and Office Interiors', 
     tag: 'Workspaces & Retail', 
-    desc: 'High-tolerance commercial fit-outs for corporate offices, experience centers, and retail environments. Engineered for acoustic optimization, brand elevation, and maximum workspace efficiency.', 
-    includes: ['Corporate Office Spatial Planning', 'Retail & Studio Flow Optimization', 'Acoustic WPC Conference Suites', 'Ergonomic Workstation Clusters', 'Tech & AV Concealed Channels', 'Turnkey Commercial Buildout'], 
+    desc: 'A space that works as hard as your business does. For retail and experience stores, we design around your product, using layout, lighting, and material choices that make what you sell the hero of the room and turn browsing into buying. For offices, we build spaces that reflect how your brand wants to be seen, while keeping the day to day workflow smooth, quiet, and genuinely comfortable for the people working in it.', 
+    includes: [
+      'Store Layouts That Highlight Your Product',
+      'Retail Flow Designed to Guide the Customer',
+      'Offices Built Around How Your Team Works',
+      'Quiet, Distraction Free Meeting Spaces',
+      'Clean Tech and Cabling, Nothing on Show',
+      'Full Commercial Buildout, Start to Finish'
+    ], 
     img: '/images/company/2bhk_mordern_retro/office_3.jpg',
     ctaText: 'Enquire About Commercial Fit-Outs',
     ctaLink: '/contact',
@@ -899,10 +913,17 @@ export const DEFAULT_SERVICES = [
   },
   { 
     num: '03', 
-    title: 'Styling & Decor', 
+    title: 'Styling and Decor', 
     tag: 'Curated Styling', 
-    desc: 'Curated styling, accessories, and finishing touches that bring a space to life — offered as a standalone service or as the final turnkey step on any Espacio project.', 
-    includes: ['Art & Wall Decor Curation', 'Custom Soft Furnishings', 'Lighting & Accessory Styling', 'Plants & Greenery Selection', 'Color Palette Harmony', 'Bespoke Styling Audits'], 
+    desc: 'The finishing touches that turn a finished space into a home you actually feel something in. This works as its own standalone service, or as the final layer we add to wrap up any full Espacio project.', 
+    includes: [
+      'Art and Wall Decor, Chosen With Intent',
+      'Lighting and Accessories That Set the Mood',
+      'Colors That Work Together, Not Against Each Other',
+      'Soft Furnishings Made to Match Your Space',
+      'Greenery Picked to Suit the Light and Layout',
+      'A Styling Review for Homes Already Done'
+    ], 
     img: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg',
     ctaText: 'Enquire About Styling Services',
     ctaLink: '/contact',
@@ -914,8 +935,15 @@ export const DEFAULT_SERVICES = [
     num: '04', 
     title: 'Renovation', 
     tag: 'Upgrade Existing Spaces', 
-    desc: 'Redesigning and upgrading existing spaces, residential or commercial, without starting from scratch — delivered turnkey, with design, materials, and execution handled entirely by us.', 
-    includes: ['Kitchen & Bath Upgrades', 'Living Space Redesign', 'Structural Alterations', 'Flooring Replacement', 'Electrical & Plumbing Re-lay', 'Turnkey Execution'], 
+    desc: "Your space already has good bones, it just needs the right hands on it. Whether it's a home that's grown tired over the years or a commercial space ready for a refresh, we take what's already there and rebuild it into something that actually feels new. No need to move out, start from scratch, or manage the process yourself, our team handles the design, materials, and execution from beginning to end.", 
+    includes: [
+      'Outdated Kitchens and Bathrooms, Modernized',
+      'Living Spaces Reworked to Feel New Again',
+      'Structural Changes Handled Safely and Properly',
+      'Old Flooring Replaced With Finishes Built to Last',
+      'Electrical and Plumbing Re-Laid the Right Way',
+      'A Fully Managed Renovation, Start to Finish'
+    ], 
     img: '/images/services/services_after.webp',
     ctaText: 'Enquire About Renovation',
     ctaLink: '/contact',
@@ -927,11 +955,19 @@ export const DEFAULT_SERVICES = [
     num: '05', 
     title: 'Materials Supply (Standalone Purchase)', 
     tag: 'Direct Warehouse Sourcing', 
-    desc: 'Direct access to our extensive inventory of WPC wall & ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware. Available for standalone purchase directly from our Aziznagar warehouse.', 
-    includes: ['WPC Wall & Exterior Cladding Panels', 'Polygranite & High-Gloss Acrylic Sheets', 'Charcoal & Wood Grain Fluted Louvers', 'Architectural Trim & Edge Hardware', 'Standalone Wholesale & Retail Purchase', 'Rapid Delivery from Hyderabad Godowns'], 
+    desc: "Need premium materials without a full design project attached? Our warehouse across Andhra Pradesh and Telangana carries a wide range of WPC wall and ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware, all available to purchase directly, whether you're a homeowner, a contractor, or a fellow designer.", 
+    includes: [
+      'Wall and Exterior Cladding Panels',
+      'Fluted Louvers in Charcoal and Wood Grain Finishes',
+      'High-Gloss Acrylic and Polygranite Sheets',
+      'Trim and Edge Hardware for a Clean Finish',
+      'Wholesale and Retail Purchase Available',
+      'Fast Delivery Straight From Our Hyderabad Warehouse'
+    ], 
     img: '/images/services/service_materials.jpg',
     ctaText: 'Enquire About Materials',
     ctaLink: '/materials',
+    hasSecondaryLink: true,
     ctaVisible: true,
     visible: true,
     order: 5
@@ -1012,12 +1048,12 @@ export const DEFAULT_SETTINGS = {
   hero_card_cta_visible: true,
   hero_stat1_value: '25+',
   hero_stat1_label: 'Projects Completed',
-  hero_stat2_value: '1 Year',
-  hero_stat2_label: 'Since 2025',
+  hero_stat2_value: '100+',
+  hero_stat2_label: 'Happy Clients',
   hero_stat3_value: '40+',
-  hero_stat3_label: 'Years of Family Legacy',
-  intro_heading: 'From Concept to Handover — ESPACIO Delivers Complete Interiors.',
-  intro_description: 'We bring 40+ years of family construction heritage to luxury interior design. Every space we create is backed by structural thinking, premium materials sourced directly from our own warehouses, and meticulous execution.',
+  hero_stat3_label: 'Years Combined Legacy',
+  intro_heading: 'Turnkey interiors, done properly.',
+  intro_description: 'ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don\'t just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what\'s happening on site.',
   intro_cta_text1: 'Our Story ↗',
   intro_cta_text2: 'Read More ↗',
   intro_cta_link: '/about',
@@ -1032,7 +1068,7 @@ export const DEFAULT_SETTINGS = {
   exp_heading: 'Experience Centers & Studio',
   exp_description: 'Walk into our flagship material experience studio. Touch, feel, and compare over 200+ live panel and finish samples in person.',
   exp_card1_title: 'Our Studio',
-  exp_card1_address: '1st floor, H.No. 6-63/14B,\nMoinabad Road, Aziznagar,\nHyderabad, Telangana 500075',
+  exp_card1_address: 'Moinabad Road, Aziznagar',
   exp_card1_bottomLabel: 'EXPERIENCE CENTER',
   exp_card1_visible: true,
   exp_card2_title: 'Direct Line',
@@ -1048,7 +1084,7 @@ export const DEFAULT_SETTINGS = {
   exp_card3_bottomLabel: 'CONSULTATION HOURS',
   exp_card3_visible: true,
   footer_location_title: 'LOCATION',
-  footer_address: '1st floor, H.No. 6-63/14B, Moinabad Road, Aziznagar, Hyderabad, Telangana 500075',
+  footer_address: 'Moinabad Road, Aziznagar',
   footer_map_url: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
   footer_contact_title: 'CONTACT',
   footer_phone: '+91 95051 51116',
@@ -1196,6 +1232,14 @@ export const getCMSData = (key, fallback = null) => {
         }
         if (key === STORAGE_KEYS.SETTINGS && data) {
           let modified = false;
+          if (data.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.') {
+            data.intro_heading = 'Turnkey interiors, done properly.';
+            modified = true;
+          }
+          if (data.intro_description && data.intro_description.includes('We bring 40+ years of family construction heritage')) {
+            data.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+            modified = true;
+          }
           if (Array.isArray(data.nav_items)) {
             data.nav_items.forEach(item => {
               if (item.path === '/what-we-do' || item.path?.startsWith('/what-we-do/')) {
@@ -1368,8 +1412,6 @@ export const getCMSData = (key, fallback = null) => {
               'commercial-interiors': ["Corporate Headquarters", "Retail & Showroom Store", "Clinic & Wellness Center", "Law & Financial Atelier", "Tech Innovation Hub"],
               'reception-areas': ["Monolithic Stone Reception Desk", "Corporate Brand Identity Wall", "Luxury Client Lounge", "Fluted Wood & Green Wall", "Double-Height Entry Lobby"],
               'cafes-restaurants': ["Specialty Coffee Bistro", "Fine Dining Hall", "Industrial Rooftop Bar", "Bohemian Lounge", "Quick-Service Gourmet Counter"],
-              'villas': ["Grand Double-Height Foyer", "Courtyard & Lightwell Villa", "Contemporary Gated Villa", "Indo-Classical Luxury Villa", "Private Pent-Villa Deck"],
-              'apartments': ["Compact 2BHK Smart Home", "Luxury 3BHK Residence", "Studio & Loft Space", "High-Rise Balcony Suite", "Open Concept Apartment"],
               'foyer': ["Modern Floating Console", "Luxury Backlit Onyx", "Minimalist Drop-Zone", "Traditional Jali Screen", "Statement Mirror Wall"],
               'bar': ["Backlit Onyx Counter", "Temperature-Controlled Wine Cellar", "Compact Dry Bar", "Fluted Glass Cocktail Station", "Classic Walnut Lounge"],
               'walk-in-wardrobe': ["Central Island Suite", "Tinted Bronze Glass Wardrobe", "Velvet Boutique Salon", "Minimalist Open Dressing", "360-Degree Illuminated Vanity"]
@@ -2135,7 +2177,7 @@ export const getCMSData = (key, fallback = null) => {
 
             if (Array.isArray(data.spaces_list)) {
               const origCount = data.spaces_list.length;
-              data.spaces_list = data.spaces_list.filter(cat => cat.slug !== 'luxury-homes');
+              data.spaces_list = data.spaces_list.filter(cat => cat.slug !== 'luxury-homes' && cat.slug !== 'apartments' && cat.slug !== 'villas');
               if (data.spaces_list.length !== origCount) modified = true;
             }
 
@@ -2199,11 +2241,6 @@ export const getCMSData = (key, fallback = null) => {
                 cat.heroImage = "/images/spaces/wardrobes/wardrobe_drive_1.webp";
                 modified = true;
               }
-              if (cat.slug === 'apartments' && (!cat.galleryImages || cat.galleryImages.length !== 88 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = APARTMENT_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/apartments/apartment_drive_1.webp";
-                modified = true;
-              }
               if (cat.slug === 'commercial-interiors' && (!cat.galleryImages || cat.galleryImages.length !== 41 || !cat.galleryImages[0]?.includes('.webp'))) {
                 cat.galleryImages = COMMERCIAL_INTERIORS_DRIVE_IMAGES;
                 cat.heroImage = "/images/spaces/commercial/commercial_drive_1.webp";
@@ -2234,11 +2271,6 @@ export const getCMSData = (key, fallback = null) => {
                 cat.heroImage = "/images/spaces/reception/reception_drive_1.webp";
                 modified = true;
               }
-              if (cat.slug === 'villas' && (!cat.galleryImages || cat.galleryImages.length !== 35 || !cat.galleryImages[0]?.includes('villas'))) {
-                cat.galleryImages = VILLAS_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/villas/villa_drive_30.webp";
-                modified = true;
-              }
             });
           }
           if (Array.isArray(data.spaces_before_after_slides) && data.spaces_before_after_slides.length > 0) {
@@ -2257,18 +2289,39 @@ export const getCMSData = (key, fallback = null) => {
               return img;
             });
           }
+          if (data.commit_card4_title === 'Free 3D Render') {
+            data.commit_card4_title = 'Complimentary 3D Design';
+            modified = true;
+          }
           if (modified) {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
         }
         if (key === STORAGE_KEYS.FAQS && Array.isArray(data)) {
           let modified = false;
-          data.forEach(item => {
-            if (typeof item.image === 'string' && item.image.includes('Guest_restaurant_18')) {
-              item.image = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg';
-              modified = true;
-            }
-          });
+          if (data.some(item => (item.question && item.question.includes('remotely')) || (item.q && item.q.includes('remotely'))) || data.length < 10) {
+            data = DEFAULT_FAQS;
+            modified = true;
+          } else {
+            DEFAULT_FAQS.forEach(def => {
+              const match = data.find(item => item.id === def.id || item._id === def.id);
+              if (match) {
+                if (match.question !== def.question || match.answer !== def.answer || match.q !== def.q || match.a !== def.a) {
+                  match.question = def.question;
+                  match.q = def.q;
+                  match.answer = def.answer;
+                  match.a = def.a;
+                  modified = true;
+                }
+              }
+            });
+            data.forEach(item => {
+              if (typeof item.image === 'string' && item.image.includes('Guest_restaurant_18')) {
+                item.image = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg';
+                modified = true;
+              }
+            });
+          }
           if (modified) {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
@@ -2279,12 +2332,168 @@ export const getCMSData = (key, fallback = null) => {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           } else {
             const p1 = data.find(p => p.slug === 'rajapushpa-provincia-3bhk');
-            if (p1 && (!p1.beforeImage || p1.beforeImage.includes('spaces_hero'))) {
-              p1.beforeImage = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
-              p1.afterImage = '/images/projects/rajapushpa_provincia/rajapushpa_after.webp';
-              p1.beforeImages = ['/images/projects/rajapushpa_provincia/rajapushpa_before.webp'];
-              p1.afterImages = ['/images/projects/rajapushpa_provincia/rajapushpa_after.webp'];
-              try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+            if (p1) {
+              let changed = false;
+              if (!p1.beforeImage || p1.beforeImage.includes('spaces_hero')) {
+                p1.beforeImage = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
+                p1.afterImage = '/images/projects/rajapushpa_provincia/rajapushpa_after.webp';
+                p1.beforeImages = ['/images/projects/rajapushpa_provincia/rajapushpa_before.webp'];
+                p1.afterImages = ['/images/projects/rajapushpa_provincia/rajapushpa_after.webp'];
+                changed = true;
+              }
+              if (p1.heroImage !== '/images/projects/rajapushpa_provincia/rajapushpa_8.webp' || p1.hero_image !== '/images/projects/rajapushpa_provincia/rajapushpa_8.webp') {
+                p1.heroImage = '/images/projects/rajapushpa_provincia/rajapushpa_8.webp';
+                p1.hero_image = '/images/projects/rajapushpa_provincia/rajapushpa_8.webp';
+                changed = true;
+              }
+              if (!p1.story || !p1.story.vision || p1.story.vision.includes('Dharma Teja')) {
+                p1.story = DEFAULT_PROJECTS[0].story;
+                changed = true;
+              }
+              if (p1.title !== 'A 3BHK Residence, Narsingi') {
+                p1.title = 'A 3BHK Residence, Narsingi';
+                changed = true;
+              }
+              if (p1.description !== DEFAULT_PROJECTS[0].description) {
+                p1.description = DEFAULT_PROJECTS[0].description;
+                changed = true;
+              }
+              if (changed) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p2 = data.find(p => p.slug === 'my-home-sayuk-3bhk');
+            if (p2) {
+              let changed2 = false;
+              if (p2.title !== 'A 3BHK Residence, Tellapur') {
+                p2.title = 'A 3BHK Residence, Tellapur';
+                changed2 = true;
+              }
+              if (p2.description !== DEFAULT_PROJECTS[1].description) {
+                p2.description = DEFAULT_PROJECTS[1].description;
+                changed2 = true;
+              }
+              if (!p2.story || !p2.story.vision || p2.story.vision.includes('Japandi-infused')) {
+                p2.story = DEFAULT_PROJECTS[1].story;
+                changed2 = true;
+              }
+              if (changed2) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p3 = data.find(p => p.slug === 'kokapet-2bhk');
+            if (p3) {
+              let changed3 = false;
+              if (p3.title !== 'A 2BHK Residence, Kokapet') {
+                p3.title = 'A 2BHK Residence, Kokapet';
+                changed3 = true;
+              }
+              if (p3.description !== DEFAULT_PROJECTS[2].description) {
+                p3.description = DEFAULT_PROJECTS[2].description;
+                changed3 = true;
+              }
+              if (!p3.story || !p3.story.vision || p3.story.vision.includes('Nagesh, envisioned')) {
+                p3.story = DEFAULT_PROJECTS[2].story;
+                changed3 = true;
+              }
+              if (changed3) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk');
+            if (p4) {
+              let changed4 = false;
+              if (p4.title !== 'A 2BHK Residence, Kokapet') {
+                p4.title = 'A 2BHK Residence, Kokapet';
+                changed4 = true;
+              }
+              if (p4.description !== DEFAULT_PROJECTS[3].description) {
+                p4.description = DEFAULT_PROJECTS[3].description;
+                changed4 = true;
+              }
+              if (!p4.story || !p4.story.vision || p4.story.vision.includes('Rahul, wanted')) {
+                p4.story = DEFAULT_PROJECTS[3].story;
+                changed4 = true;
+              }
+              if (changed4) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk');
+            if (p5) {
+              let changed5 = false;
+              if (p5.title !== 'A 2BHK Residence, Gandipet') {
+                p5.title = 'A 2BHK Residence, Gandipet';
+                changed5 = true;
+              }
+              if (p5.description !== DEFAULT_PROJECTS[4].description) {
+                p5.description = DEFAULT_PROJECTS[4].description;
+                changed5 = true;
+              }
+              if (!p5.story || !p5.story.vision || p5.story.vision.includes('Kiran Raja, envisioned')) {
+                p5.story = DEFAULT_PROJECTS[4].story;
+                changed5 = true;
+              }
+              if (changed5) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p6 = data.find(p => p.slug === 'kondapur-minimalist-2bhk');
+            if (p6) {
+              let changed6 = false;
+              if (p6.title !== 'A 2BHK Residence, Kondapur') {
+                p6.title = 'A 2BHK Residence, Kondapur';
+                changed6 = true;
+              }
+              if (p6.description !== DEFAULT_PROJECTS[5].description) {
+                p6.description = DEFAULT_PROJECTS[5].description;
+                changed6 = true;
+              }
+              if (!p6.story || !p6.story.vision || p6.story.vision.includes('Venkatesh, envisioned')) {
+                p6.story = DEFAULT_PROJECTS[5].story;
+                changed6 = true;
+              }
+              if (changed6) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p7 = data.find(p => p.slug === 'gachibowli-minimalist-beige-2bhk');
+            if (p7) {
+              let changed7 = false;
+              if (p7.title !== 'A 2BHK Residence, Gachibowli') {
+                p7.title = 'A 2BHK Residence, Gachibowli';
+                changed7 = true;
+              }
+              if (p7.description !== DEFAULT_PROJECTS[6].description) {
+                p7.description = DEFAULT_PROJECTS[6].description;
+                changed7 = true;
+              }
+              if (!p7.story || !p7.story.vision || p7.story.vision.includes('Koteswara Rao, wanted')) {
+                p7.story = DEFAULT_PROJECTS[6].story;
+                changed7 = true;
+              }
+              if (changed7) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
+            const p8 = data.find(p => p.slug === 'kachiguda-fusion-duplex-villa');
+            if (p8) {
+              let changed8 = false;
+              if (p8.title !== 'A Duplex Residence, Kachiguda') {
+                p8.title = 'A Duplex Residence, Kachiguda';
+                changed8 = true;
+              }
+              if (p8.description !== DEFAULT_PROJECTS[7].description) {
+                p8.description = DEFAULT_PROJECTS[7].description;
+                changed8 = true;
+              }
+              if (!p8.story || !p8.story.vision || p8.story.vision.includes('envisioned a grand duplex')) {
+                p8.story = DEFAULT_PROJECTS[7].story;
+                changed8 = true;
+              }
+              if (changed8) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
             }
           }
         }
@@ -2308,7 +2517,7 @@ export const getCMSData = (key, fallback = null) => {
         }
         if (key === STORAGE_KEYS.SETTINGS && data) {
           let modified = false;
-          if (!Array.isArray(data.services_list) || data.services_list.length === 0 || data.services_list.some(s => typeof s.img === 'string' && s.img.includes('unsplash.com'))) {
+          if (!Array.isArray(data.services_list) || data.services_list.length === 0 || data.services_list.some(s => typeof s.img === 'string' && s.img.includes('unsplash.com')) || !data.services_list.some(s => s.title === 'Full Home Interior Design and Execution')) {
             data.services_list = DEFAULT_SERVICES;
             modified = true;
           }
@@ -2621,7 +2830,10 @@ export const getCtaDataForPage = (settings = {}, pageKey = 'home', defaultCta = 
 
   const headline = ctaObj.heading || pageTitle || defaultCta.headline || defaultCta.heading || 'Ready to Transform Your Space?';
   const subtext  = ctaObj.description || pageDesc || defaultCta.subtext || defaultCta.description || "Every great space starts with a single conversation. Let's talk about your vision and bring it to life together.";
-  const buttonText = ctaObj.buttonText || pageBtn || defaultCta.buttonText || "LET'S TALK ↗";
+  const rawButtonText = ctaObj.buttonText || pageBtn || defaultCta.buttonText || "LET'S TALK ↗";
+  const buttonText = typeof rawButtonText === 'string'
+    ? rawButtonText.replace(/Book Free Consultation/gi, 'Book Consultation')
+    : rawButtonText;
   const buttonLink = ctaObj.buttonLink || pageLink || defaultCta.path || defaultCta.buttonLink || '/contact';
   const bgImage    = ctaObj.bgImage || pageBg || defaultCta.bgImage || '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg';
   const opacity    = ctaObj.opacity !== undefined ? Number(ctaObj.opacity) : (defaultCta.opacity ?? 80);

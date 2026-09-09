@@ -365,7 +365,7 @@ const Projects = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-ink-border pb-6 sm:pb-8 mb-8 sm:mb-12 gap-4">
             <div>
-              <h2 className="font-display text-2xl font-bold text-ink">All Architectural Projects</h2>
+              <h2 className="font-display text-2xl font-bold text-ink">All Featured Projects</h2>
               <p className="font-sans text-xs text-ink-soft mt-1">Explore our turnkey interior design and execution portfolio</p>
             </div>
           </div>
@@ -393,7 +393,7 @@ const Projects = () => {
                       >
                         <div className="relative overflow-hidden aspect-[4/3]">
                           <img
-                            src={getOptimizedImageUrl(project.heroImage, 600, 70)}
+                            src={getOptimizedImageUrl(project.heroImage, 1200, 92)}
                             loading="lazy"
                             decoding="async"
                             alt={project.title}

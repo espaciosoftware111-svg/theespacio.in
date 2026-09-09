@@ -832,28 +832,44 @@ const ProductDetails = () => {
         {/* Scroll Down Indicator */}
         <ScrollDownIndicator />
       </section>
-      {(p.showOverviewSection !== false || p.showFinishesSection !== false || p.showSpecificationsSection !== false) && (
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left Column: Overview + Features */}
-          {p.showOverviewSection !== false && (
-            <div className="space-y-6">
-              <h2 className="font-editorial text-3xl font-bold text-charcoal">{p.overviewSectionTitle || 'Material Overview'}</h2>
-              <p className="font-sans text-sm text-walnut leading-relaxed">{p.description}</p>
+      {(p.showOverviewSection !== false || p.showFinishesSection !== false || p.showSpecificationsSection !== false || p.showApplicationsSection !== false) && (
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-12 md:pt-16 pb-12 md:pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left Column: Overview + Features + Applications */}
+          <div className="space-y-6">
+            {p.showOverviewSection !== false && (
+              <>
+                <h2 className="font-editorial text-3xl font-bold text-charcoal">{p.overviewSectionTitle || 'Material Overview'}</h2>
+                <p className="font-sans text-sm text-walnut leading-relaxed">{p.description}</p>
 
-              {/* Feature Tags */}
-              <div className="space-y-3">
-                <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.featuresSectionTitle || 'Key Features'}</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {(p.features || mockProduct.features).map((feat, idx) => (
-                    <div key={idx} className="flex items-center space-x-2 text-xs font-sans text-walnut">
-                      <CheckCircle size={14} className="text-gold shrink-0" />
-                      <span>{feat}</span>
-                    </div>
+                {/* Feature Tags */}
+                <div className="space-y-3 pt-2">
+                  <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.featuresSectionTitle || 'Key Features'}</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {(p.features || mockProduct.features).map((feat, idx) => (
+                      <div key={idx} className="flex items-center space-x-2 text-xs font-sans text-walnut">
+                        <CheckCircle size={14} className="text-gold shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Applications */}
+            {p.showApplicationsSection !== false && (p.applications || mockProduct.applications)?.length > 0 && (
+              <div className="space-y-3 pt-2">
+                <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.applicationsSectionTitle || 'Applications'}</h3>
+                <div className="flex flex-wrap gap-2.5">
+                  {(p.applications || mockProduct.applications).map((app, idx) => (
+                    <span key={idx} className="bg-offwhite border border-walnut/15 text-charcoal font-sans text-xs px-3.5 py-1.5 rounded-full font-medium">
+                      {app}
+                    </span>
                   ))}
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Right Column: Color Swatches + Specifications */}
           <div className="space-y-6">
@@ -893,23 +909,9 @@ const ProductDetails = () => {
         </section>
       )}
 
-      {/* Applications */}
-      {p.showApplicationsSection !== false && (
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 pb-20">
-          <h2 className="font-editorial text-2xl font-bold mb-8">{p.applicationsSectionTitle || 'Applications'}</h2>
-          <div className="flex flex-wrap gap-3">
-            {(p.applications || mockProduct.applications).map((app, idx) => (
-              <span key={idx} className="bg-offwhite border border-walnut/10 text-walnut font-sans text-xs px-4 py-2 rounded-full">
-                {app}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* ── CATALOGUE PREVIEW GATE ──────────────────────────────────────────── */}
       {p.showCataloguePreviewSection !== false && (
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 pb-20">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 md:pt-12 pb-16 md:pb-20 border-t border-walnut/15">
           <div className="flex items-center justify-between mb-8">
             <div>
               <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">{p.catalogueEyebrow || 'Catalog & Shades'}</span>
@@ -982,29 +984,6 @@ const ProductDetails = () => {
               );
             })}
           </div>
-        </div>
-
-        {/* Bottom Banner overlay for locked pages */}
-        <div className="mt-8 relative z-20 bg-charcoal text-cream p-8 md:p-12 text-center flex flex-col items-center justify-center space-y-4 border border-gold/20 rounded-card shadow-lg">
-          <div className="max-w-[500px] space-y-2">
-            <h3 className="font-editorial text-2xl font-bold text-white">Want to Unlock the Remaining Catalogue?</h3>
-            <p className="font-sans text-xs text-cream/75 leading-relaxed">
-              Contact ESPACIO to receive full digital access to all {allPages.length} shade variations, high-resolution textures, and physical sample boxes.
-            </p>
-          </div>
-          <button
-            onClick={() => window.dispatchEvent(new CustomEvent('open-quote-modal', {
-              detail: {
-                mode: 'catalogue',
-                title: 'To Unlock More Catalogs, Fill the Details',
-                productName: p.title
-              }
-            }))}
-            className="inline-flex items-center space-x-2 bg-gold hover:bg-gold-hover text-charcoal font-sans text-xs uppercase tracking-widest font-bold py-4 px-8 rounded-button transition-transform duration-300 hover:scale-105 shadow-lg cursor-pointer"
-          >
-            <span>Contact Us to Unlock Full Catalogue 🔒</span>
-            <ArrowRight size={14} />
-          </button>
         </div>
       </section>
       )}

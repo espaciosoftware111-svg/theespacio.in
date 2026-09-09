@@ -98,6 +98,17 @@ const ProjectDetails = () => {
     };
   }, [slug]);
 
+  // Global Escape key listener to close lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Offline mock project metadata fallbacks matching display expectations
   const getMockFallback = () => {
     const unsplashPool = {
@@ -421,24 +432,40 @@ const ProjectDetails = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {p.gallery.map((imgUrl, index) => (
-              <div
-                key={index}
-                onClick={() => { setActivePhotoIdx(index); setLightboxOpen(true); }}
-                className="rounded-card overflow-hidden border border-walnut/10 shadow-sm group cursor-pointer relative bg-charcoal aspect-[4/3]"
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Project Photo ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                    <Maximize2 size={16} strokeWidth={2} />
+            {p.gallery.map((imgUrl, index) => {
+              const roomTags = ['Living Lounge & Foyer', 'Entertainment Wall & TV Unit', 'Modular Culinary Suite', 'Master Bedroom Sanctuary', 'Guest Room & Study', 'Custom Wardrobe Joinery', 'Dining Nook & Crockery Unit', 'Balcony & Reading Retreat'];
+              const captionTag = roomTags[index % roomTags.length];
+
+              return (
+                <div
+                  key={index}
+                  onClick={() => { setActivePhotoIdx(index); setLightboxOpen(true); }}
+                  className="rounded-[22px] overflow-hidden border border-walnut/10 shadow-sm group cursor-pointer relative bg-charcoal flex flex-col hover:border-gold/40 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
+                    <img
+                      src={imgUrl}
+                      alt={`${p.title} - ${captionTag} (Photo ${index + 1})`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                        <Maximize2 size={16} strokeWidth={2} />
+                      </div>
+                    </div>
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-sans font-semibold uppercase tracking-wider text-white border border-white/15">
+                        {captionTag}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-3.5 bg-bg-card border-t border-ink-border/20 flex items-center justify-between text-xs font-sans">
+                    <span className="text-ink font-medium truncate">{captionTag} • Shot #{index + 1}</span>
+                    <span className="text-gold font-bold shrink-0 text-[10.5px] uppercase tracking-wider">Expand ↗</span>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}
@@ -449,11 +476,13 @@ const ProjectDetails = () => {
           <div className="w-full max-w-[1440px] flex items-center justify-between text-white border-b border-white/10 pb-4">
             <div>
               <h3 className="font-editorial text-lg font-bold">{p.title}</h3>
-              <p className="font-sans text-xs text-white/50">Photo {activePhotoIdx + 1} of {p.gallery.length}</p>
+              <p className="font-sans text-xs text-white/60">
+                Photo {activePhotoIdx + 1} of {p.gallery.length} • Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]">Esc</kbd> to close
+              </p>
             </div>
             <button
               onClick={() => setLightboxOpen(false)}
-              className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors font-bold text-xs uppercase px-4 py-2"
+              className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors font-bold text-xs uppercase px-4 py-2 cursor-pointer"
             >
               ✕ Close Viewer
             </button>
@@ -468,7 +497,7 @@ const ProjectDetails = () => {
             {p.gallery.length > 1 && (
               <button
                 onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? p.gallery.length - 1 : prev - 1))}
-                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20"
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
               >
                 ◀
               </button>
@@ -476,7 +505,7 @@ const ProjectDetails = () => {
             {p.gallery.length > 1 && (
               <button
                 onClick={() => setActivePhotoIdx((prev) => (prev === p.gallery.length - 1 ? 0 : prev + 1))}
-                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
               >
                 ▶
               </button>
@@ -488,7 +517,7 @@ const ProjectDetails = () => {
               <button
                 key={i}
                 onClick={() => setActivePhotoIdx(i)}
-                className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
+                className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
                   activePhotoIdx === i ? 'border-gold scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-80'
                 }`}
               >

@@ -434,7 +434,7 @@ const seedData = async () => {
     await Settings.create({
       key: 'office_info',
       value: {
-        address: '1st floor, H.No. 6-63/14B, Moinabad Road, Aziznagar, Hyderabad, Telangana 500075',
+        address: 'Moinabad Road, Aziznagar',
         hours: '10 AM - 7:30 PM',
         email: 'Espacio.hyd@gmail.com',
         instagram: 'https://www.instagram.com/theespacio.in?igsh=MWswNjRtdjVscGF6MQ==',

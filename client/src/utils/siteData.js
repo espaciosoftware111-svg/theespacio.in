@@ -26,7 +26,7 @@ export const PAGE_CTAS = {
   HOME: {
     headline: "Engineering. Elegance.\nExperience.",
     subtext: "From concept to handover, we build luxury spaces with master craftsmanship and transparent pricing.",
-    buttonText: "Book Free Consultation ↗",
+    buttonText: "Book Consultation ↗",
     buttonHoverText: "Let's Connect ↗",
     path: "/contact",
     bgImage: DEFAULT_CTA_BG,

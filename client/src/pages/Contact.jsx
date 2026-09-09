@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { CheckCircle, ArrowRight, ArrowLeft, Loader2, Check, MapPin, Phone, Mail, Clock, ShieldCheck, FileText, Sparkles, Award } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Loader2, Check, MapPin, Phone, Mail, Clock, ShieldCheck, FileText, Box, Award } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import axios from 'axios';
 import { db, collection, addDoc } from '../lib/firebaseClient';
@@ -12,7 +12,7 @@ const defaultContactCMS = {
   exp_heading: 'Experience Centers & Studio',
   exp_description: 'Walk into our flagship material experience studio. Touch, feel, and compare over 200+ live panel and finish samples in person.',
   exp_card1_title: 'Our Studio',
-  exp_card1_address: '1st floor, H.No. 6-63/14B,\nMoinabad Road, Aziznagar,\nHyderabad, Telangana 500075',
+  exp_card1_address: 'Moinabad Road, Aziznagar',
   exp_card1_bottomLabel: 'EXPERIENCE CENTER',
   exp_card1_visible: true,
   exp_card2_title: 'Direct Line',
@@ -40,7 +40,7 @@ const defaultContactCMS = {
   commit_card3_title: 'Transparent Pricing',
   commit_card3_desc: 'No hidden charges or unexpected costs. Every quotation is clear, detailed, and fully transparent before execution.',
   commit_card3_visible: true,
-  commit_card4_title: 'Free 3D Render',
+  commit_card4_title: 'Complimentary 3D Design',
   commit_card4_desc: 'Visualize your living room, kitchen, and wardrobes in photorealistic 3D before starting site execution.',
   commit_card4_visible: true
 };
@@ -1284,10 +1284,10 @@ const Contact = () => {
             {contactCMS.commit_card4_visible !== false && (
               <div className="bg-cream border border-walnut/10 rounded-[20px] p-5 sm:p-6 space-y-3.5 shadow-sm hover:border-gold/40 transition-all">
                 <div className="w-11 h-11 rounded-full bg-gold/15 flex items-center justify-center text-gold shadow-sm">
-                  <Sparkles size={20} />
+                  <Box size={20} />
                 </div>
                 <h3 className="font-editorial text-lg font-bold text-charcoal">
-                  {contactCMS.commit_card4_title || 'Free 3D Render'}
+                  {contactCMS.commit_card4_title && contactCMS.commit_card4_title !== 'Free 3D Render' ? contactCMS.commit_card4_title : 'Complimentary 3D Design'}
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-walnut leading-relaxed">
                   {contactCMS.commit_card4_desc || 'Visualize your living room, kitchen, and wardrobes in photorealistic 3D before starting site execution.'}

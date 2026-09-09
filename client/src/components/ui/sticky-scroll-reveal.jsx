@@ -24,11 +24,13 @@ export const StickyScroll = ({ content, className }) => {
     }
   });
 
+  const CARD_HEIGHT = 340;
+
   // Direct 1:1 scroll transform for instant responsiveness without spring lag
   const textTranslateY = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, -(cardLength - 1) * 360]
+    [0, -(cardLength - 1) * CARD_HEIGHT]
   );
 
   return (
@@ -36,16 +38,19 @@ export const StickyScroll = ({ content, className }) => {
       {/* Desktop Sticky Scroll (lg and above) - Full Screen Height */}
       <div
         ref={ref}
-        className={`hidden lg:block relative w-full h-[180vh] ${className || ""}`}
+        className={`hidden lg:block relative w-full h-[200vh] ${className || ""}`}
       >
         {/* Sticky box locked in viewport occupying full screen height */}
         <div className="sticky top-[95px] w-full h-[82vh] flex justify-between gap-10 rounded-[32px] p-6 lg:p-10 bg-bg border border-ink-border/30 items-center shadow-2xl">
           
-          {/* Left: interactive scrolling text column */}
-          <div className="relative w-[38%] shrink-0 h-full overflow-hidden pt-[90px] px-2 lg:px-6">
+          {/* Left: interactive scrolling text column centered in middle */}
+          <div 
+            className="relative w-[40%] shrink-0 h-full overflow-hidden px-2 lg:px-6"
+            style={{ paddingTop: `calc(41vh - ${CARD_HEIGHT / 2}px)` }}
+          >
             {/* Top/Bottom gradient mask overlays for text fade */}
-            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-bg via-bg/80 to-transparent z-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-bg via-bg/80 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-bg via-bg/90 to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-bg via-bg/90 to-transparent z-10 pointer-events-none" />
 
             <motion.div 
               style={{ y: textTranslateY, willChange: 'transform' }}
@@ -54,7 +59,8 @@ export const StickyScroll = ({ content, className }) => {
               {content.map((item, index) => (
                 <motion.div
                   key={item.title + index}
-                  className="h-[360px] flex flex-col justify-center text-left py-2"
+                  style={{ height: `${CARD_HEIGHT}px` }}
+                  className="flex flex-col justify-center text-left py-2"
                   animate={{
                     opacity: activeCard === index ? 1 : 0.12,
                     scale: activeCard === index ? 1 : 0.95,

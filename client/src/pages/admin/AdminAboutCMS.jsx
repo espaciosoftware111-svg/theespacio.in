@@ -109,7 +109,7 @@ const AdminAboutCMS = () => {
     // Four Generations
     about_gen_badge: 'The Evolution',
     about_gen_title: 'Four Generations of Mastery',
-    about_gen_subtitle: 'Hover to Expand Era',
+    about_gen_subtitle: 'Four Decades of Heritage',
     about_generations: defaultGenerations,
 
     // Mission & Vision
@@ -160,7 +160,7 @@ const AdminAboutCMS = () => {
 
           about_gen_badge: getNonEmpty(storedSettings.about_gen_badge, 'The Evolution'),
           about_gen_title: getNonEmpty(storedSettings.about_gen_title, 'Four Generations of Mastery'),
-          about_gen_subtitle: getNonEmpty(storedSettings.about_gen_subtitle, 'Hover to Expand Era'),
+          about_gen_subtitle: getNonEmpty(storedSettings.about_gen_subtitle, 'Four Decades of Heritage'),
           about_generations: (Array.isArray(storedSettings.about_generations) && storedSettings.about_generations.length > 0 && !storedSettings.about_generations.some(g => g.image && g.image.includes('open_hall.png')))
             ? storedSettings.about_generations
             : defaultGenerations,

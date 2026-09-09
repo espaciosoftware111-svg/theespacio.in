@@ -5,63 +5,63 @@ import SEO from '../components/common/SEO';
 const faqItems = [
   {
     q: "How long does a project usually take?",
-    a: "Typically 2–3 months, depending on the level of detailing and customization involved in your project.",
+    a: "Most projects take about two to three months from start to finish. The exact timeline depends on how detailed and customized your space is, but we'll give you a clear schedule before work begins so there are no surprises along the way.",
     img: "/images/faq/faq_1_timeline.jpg",
     tag: "Timeline"
   },
   {
     q: "Do you provide turnkey interior solutions?",
-    a: "Yes. Every project we take on, residential or commercial, is delivered turnkey, with design, materials, execution, and finishing handled entirely by our team.",
+    a: "Yes. Every project we take on, whether it's a home or a commercial space, is handled fully by our own team. Design, materials, execution, and final finishing all happen under one roof, so you're never left coordinating between different vendors.",
     img: "/images/faq/faq_2_services.jpg",
     tag: "Services"
   },
   {
     q: "What is your consultation process?",
-    a: "We begin with a free consultation to understand your space, requirements, and vision, before moving into detailed design and planning.",
+    a: "We start with a free consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.",
     img: "/images/faq/faq_3_process.jpg",
     tag: "Process"
   },
   {
     q: "Which locations do you currently serve?",
-    a: "We're proudly based in Hyderabad and have delivered residential and commercial projects across the city.",
+    a: "We're based in Hyderabad and have delivered homes and commercial spaces across the city.",
     img: "/images/faq/faq_4_location.jpg",
     tag: "Location"
   },
   {
     q: "How can customers request a quotation?",
-    a: "Simply fill out our contact form on the website, and our team will get back to you to discuss your project.",
+    a: "Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.",
     img: "/images/faq/faq_5_pricing.jpg",
     tag: "Pricing"
   },
   {
     q: "Do you sell materials separately from design services?",
-    a: "Yes. Our materials including WPC panels, polygranite sheets, acrylic sheets, and more are available for standalone purchase, without needing to book a full design or execution project with us.",
+    a: "Yes. Materials like WPC panels, polygranite sheets, and acrylic sheets are available for standalone purchase, even if you're not booking a full design or execution project with us.",
     img: "/images/faq/faq_6_materials.jpg",
     tag: "Materials"
   },
   {
-    q: "Do I need to be involved throughout the project, or can it be handled remotely?",
-    a: "We keep you informed at every key stage with regular updates and site visits, so you're never left in the dark, but you don't need to manage day-to-day execution yourself. That's what turnkey means.",
-    img: "/images/faq/faq_7_involvement.jpg",
-    tag: "Involvement"
-  },
-  {
     q: "What if I already have a design in mind, can you just execute it?",
-    a: "Absolutely. Whether you come with a finalized design or need us to design from scratch, we can adapt to execution-only or full design-and-build depending on what you need.",
+    a: "Of course. Whether you already have a finalized design or need us to build one from scratch, we can step in wherever you need us, whether that's execution only or a complete design and build package.",
     img: "/images/faq/faq_8_custom.jpg",
     tag: "Custom"
   },
   {
     q: "Can I customize designs, or do you offer fixed packages?",
-    a: "Every project is fully customized around your space and preferences — we don't work off fixed templates or set packages.",
+    a: "Every project is designed around your space and your preferences. We don't work off fixed templates or one size fits all packages, so what you get is built specifically for you.",
     img: "/images/faq/faq_9_design.jpg",
     tag: "Design"
   },
   {
-    q: "What happens if something needs repair after project completion?",
-    a: "Any issues within our warranty period are addressed directly by our team. Reach out through the contact form and we'll take care of it.",
+    q: "Do you provide warranties on completed projects?",
+    a: "Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.",
     img: "/images/faq/faq_10_support.jpg",
     tag: "Support"
+  },
+  {
+    q: "What does the design and execution process actually look like?",
+    a: "We start with a design consultation to understand your space and what you're looking for. Once the overall theme is locked in, we move into 3D visualizations so you can see exactly how the space will look before anything is built. After the designs are finalized, our team takes over execution, keeping you updated along the way until final handover.",
+    img: "/images/faq/faq_7_involvement.jpg",
+    tag: "Process"
   }
 ];
 
@@ -332,15 +332,6 @@ const FAQ = () => {
         url="/faqs"
       />
 
-      {/* ── Animated grain / noise overlay ── */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0 opacity-[0.025]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: '128px',
-        }}
-      />
 
       {/* ── Large ambient gold gradient orb ── */}
       <motion.div

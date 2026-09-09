@@ -165,7 +165,6 @@ const getValidGallery = (val) => {
 };
 
 const About = () => {
-  const [activeTimeline, setActiveTimeline] = useState(null);
   const heroRef = useRef(null);
 
   // Page-level scroll for subtle parallax on the background image
@@ -207,7 +206,7 @@ const About = () => {
 
       genBadge: getNonEmpty(s?.about_gen_badge, 'The Evolution'),
       genTitle: getNonEmpty(s?.about_gen_title, 'Four Generations of Mastery'),
-      genSubtitle: getNonEmpty(s?.about_gen_subtitle, 'Hover to Expand Era'),
+      genSubtitle: getNonEmpty(s?.about_gen_subtitle, 'Four Decades of Heritage'),
       generations: getValidGenerations(s?.about_generations),
 
       missionQuote: getNonEmpty(s?.about_mission_quote, '"We design spaces with intention — engineered first, styled second — so every home we touch is as functional as it is beautiful."'),
@@ -250,7 +249,7 @@ const About = () => {
 
           genBadge: getNonEmpty(s.about_gen_badge, 'The Evolution'),
           genTitle: getNonEmpty(s.about_gen_title, 'Four Generations of Mastery'),
-          genSubtitle: getNonEmpty(s.about_gen_subtitle, 'Hover to Expand Era'),
+          genSubtitle: getNonEmpty(s.about_gen_subtitle, 'Four Decades of Heritage'),
           generations: getValidGenerations(s.about_generations),
 
           missionQuote: getNonEmpty(s.about_mission_quote, '"We design spaces with intention — engineered first, styled second — so every home we touch is as functional as it is beautiful."'),
@@ -345,8 +344,7 @@ const About = () => {
               <img
                 src={aboutData.heroImage}
                 alt="ESPACIO Luxury Background"
-                className="w-full h-full object-cover object-center"
-                style={{ filter: 'brightness(0.9)', transform: 'scale(1.02)' }}
+                className="w-full h-full object-cover object-center brightness-95"
               />
             </motion.div>
             {/* Dark overlays for depth */}
@@ -392,7 +390,7 @@ const About = () => {
           <div className="lg:col-span-5 sticky top-[72px] sm:top-20 lg:top-28 z-20 pb-3 lg:pb-0 bg-bg/95 backdrop-blur-md -mx-4 px-4 sm:mx-0 sm:px-0 pt-3 sm:pt-4 lg:pt-0">
             <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-[18px] sm:rounded-[24px] overflow-hidden shadow-xl border border-ink-border group">
               <img
-                src={getOptimizedImageUrl(aboutData.storyImage, 800, 75)}
+                src={getOptimizedImageUrl(aboutData.storyImage, 1400, 92)}
                 alt="ESPACIO Studio Craft"
                 loading="lazy"
                 decoding="async"
@@ -414,22 +412,22 @@ const About = () => {
 
           {/* Right Column — Narrative Story */}
           <Reveal delay={0.15} className="lg:col-span-7 space-y-6 pt-2">
-            <h2 className="text-gold leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(36px,5.5vw,64px)', fontWeight: 'normal', letterSpacing: '0.02em' }}>
+            <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em' }}>
               {aboutData.storyBadge}
             </h2>
-            <p className="text-ink leading-relaxed" style={{ fontFamily: "'Canela', 'Cormorant Garamond', 'Cinzel', serif", fontSize: 'clamp(18px,2.5vw,28px)', fontWeight: 700 }}>
+            <p className="font-sans text-ink leading-relaxed font-semibold text-[clamp(17px,2.2vw,24px)] tracking-tight">
               {aboutData.storyMain}
             </p>
-            <p className="text-gold" style={{ fontFamily: "'Manrope', sans-serif", fontSize: '20px', fontWeight: 700, lineHeight: 1.9, letterSpacing: '-0.01em' }}>
+            <p className="font-sans text-gold font-semibold text-[16px] sm:text-[18px] leading-relaxed">
               {aboutData.storyHighlight}
             </p>
-            <p className="text-ink-soft" style={{ fontFamily: "'Manrope', sans-serif", fontSize: '17px', fontWeight: 400, lineHeight: 1.9, letterSpacing: '-0.01em' }}>
+            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
               {aboutData.storyP1}
             </p>
-            <p className="text-ink-soft" style={{ fontFamily: "'Manrope', sans-serif", fontSize: '17px', fontWeight: 400, lineHeight: 1.9, letterSpacing: '-0.01em' }}>
+            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
               {aboutData.storyP2}
             </p>
-            <p className="text-ink-soft" style={{ fontFamily: "'Manrope', sans-serif", fontSize: '17px', fontWeight: 400, lineHeight: 1.9, letterSpacing: '-0.01em' }}>
+            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
               {aboutData.storyP3}
             </p>
           </Reveal>
@@ -437,99 +435,53 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── 3. INTERACTIVE 4-GENERATION EXPANDABLE ACCORDION (Soft Card Background) ──── */}
-      <section className="py-24 px-6 md:px-12 border-b border-ink-border bg-bg-card">
-        <div className="max-w-[1440px] mx-auto space-y-12">
-          <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-ink-border/60 pb-6">
+      {/* ── 3. 4-GENERATION TIMELINE (Standard Functional Cards) ──── */}
+      <section className="py-20 sm:py-24 px-4 sm:px-6 md:px-12 border-b border-ink-border bg-bg-card">
+        <div className="max-w-[1440px] mx-auto space-y-10 sm:space-y-12">
+          <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-ink-border/60 pb-6">
             <div>
               <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-gold">{aboutData.genBadge}</span>
               <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-bold text-ink mt-1">{aboutData.genTitle}</h2>
             </div>
-            <span className="font-sans text-xs text-ink-muted tracking-widest uppercase font-semibold">{aboutData.genSubtitle}</span>
+            <span className="font-sans text-xs text-ink-muted tracking-widest uppercase font-semibold">
+              {aboutData.genSubtitle && aboutData.genSubtitle !== 'Hover to Expand Era' ? aboutData.genSubtitle : 'Four Decades of Heritage'}
+            </span>
           </Reveal>
 
-          {/* Expandable Accordion Container */}
-          <div 
-            className="flex flex-col lg:flex-row gap-5 min-h-[460px] items-stretch"
-            onMouseLeave={() => setActiveTimeline(null)}
-          >
-            {(aboutData.generations || defaultGenerations).map((item, idx) => {
-              const isActive = activeTimeline === idx;
-              const isHoveringAny = activeTimeline !== null;
-              const isDimmed = isHoveringAny && !isActive;
-
-              return (
-                <motion.div
-                  key={idx}
-                  layout
-                  onMouseEnter={() => setActiveTimeline(idx)}
-                  onClick={() => setActiveTimeline(idx)}
-                  transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-                  className={`relative rounded-[24px] overflow-hidden transition-all duration-500 cursor-pointer flex flex-col justify-between border ${
-                    isActive
-                      ? 'lg:flex-[3.2] bg-bg text-ink border-gold shadow-2xl z-20 ring-1 ring-gold/40 p-8 md:p-10 scale-[1.01]'
-                      : isDimmed
-                      ? 'lg:flex-1 bg-bg/40 text-ink-soft border-ink-border/70 z-10 p-6 md:p-8 opacity-75'
-                      : 'lg:flex-1 bg-bg/80 text-ink border-ink-border hover:border-gold/50 z-10 p-6 md:p-8 opacity-100'
-                  }`}
-                >
-                  {/* Subtle Image Backdrop for Expanded Card */}
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 0.06 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="absolute inset-0 pointer-events-none"
-                    >
-                      <img
-                        src={getOptimizedImageUrl(item.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=60&fm=webp', 600, 60)}
-                        alt="Background Texture"
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                  )}
-
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-gold">
-                        {item.gen}
-                      </span>
-                    </div>
-
-                    <h3 className={`font-display font-bold text-ink transition-all ${
-                      isActive ? 'text-2xl md:text-3xl mb-2' : 'text-xl md:text-2xl mb-1'
-                    }`}>
-                      {item.title}
-                    </h3>
-
-                    <p className="font-sans text-xs font-semibold text-gold uppercase tracking-wider mb-4">
-                      {item.company}
-                    </p>
-
-                    <motion.p
-                      layout
-                      className={`font-sans text-sm text-ink-soft leading-relaxed transition-all ${
-                        isActive ? 'opacity-100 max-w-[620px]' : 'opacity-80 line-clamp-3 lg:line-clamp-4'
-                      }`}
-                    >
-                      {item.desc}
-                    </motion.p>
-                  </div>
-
-                  <div className="relative z-10 pt-6 mt-6 border-t border-ink-border/40 flex items-center justify-between text-xs font-bold uppercase tracking-wider">
-                    <span className={isActive ? 'text-gold' : 'text-ink-muted'}>
-                      {isActive ? 'Active Era Details' : 'Hover to Expand'}
+          {/* Standard 4-Column Responsive Grid — Equal width, static, fully readable */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch">
+            {(aboutData.generations || defaultGenerations).map((item, idx) => (
+              <div
+                key={idx}
+                className="relative rounded-[22px] sm:rounded-[24px] overflow-hidden bg-bg text-ink border border-ink-border/80 hover:border-gold/50 transition-colors duration-200 p-6 sm:p-7 flex flex-col justify-between shadow-sm"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3.5">
+                    <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-gold">
+                      {item.gen}
                     </span>
-                    <span className={`w-2 h-2 rounded-full transition-all ${
-                      isActive ? 'bg-gold scale-125 shadow-[0_0_10px_rgba(201,169,110,0.8)]' : 'bg-ink-line'
-                    }`} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold/50" />
                   </div>
-                </motion.div>
-              );
-            })}
+
+                  <h3 className="font-display font-bold text-ink text-xl sm:text-2xl mb-1.5 leading-snug">
+                    {item.title}
+                  </h3>
+
+                  <p className="font-sans text-xs font-semibold text-gold uppercase tracking-wider mb-4 leading-normal">
+                    {item.company}
+                  </p>
+
+                  <p className="font-sans text-[13.5px] sm:text-sm text-ink-soft leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="relative pt-5 mt-6 border-t border-ink-border/40 flex items-center justify-between text-xs font-semibold text-ink-muted uppercase tracking-wider">
+                  <span>Phase 0{idx + 1}</span>
+                  <span className="text-gold font-mono text-[11px]">40+ YRS</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -582,30 +534,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── 5. MISSION & VISION (Dual Cards) ─────────────────────────────── */}
-      <section className="py-24 px-6 md:px-12 border-b border-ink-border bg-bg-card">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Reveal delay={0}>
-            <div className="p-8 md:p-12 rounded-[20px] bg-bg border border-ink-border shadow-sm relative overflow-hidden group hover:border-gold/40 transition-all">
-              <div className="absolute top-0 left-0 w-1.5 h-full bg-gold" />
-              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-gold">Our Mission</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-ink leading-snug mt-4">
-                {aboutData.missionQuote}
-              </h3>
-            </div>
-          </Reveal>
 
-          <Reveal delay={0.15}>
-            <div className="p-8 md:p-12 rounded-[20px] bg-bg border border-ink-border shadow-sm relative overflow-hidden group hover:border-gold/40 transition-all">
-              <div className="absolute top-0 left-0 w-1.5 h-full bg-gold" />
-              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-gold">Our Vision</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-ink leading-snug mt-4">
-                {aboutData.visionQuote}
-              </h3>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* ── 6. CRAFTSMANSHIP GALLERY GRID ─────────────────────────────────── */}
       <section className="py-14 sm:py-20 lg:py-24 px-6 md:px-12 bg-bg">

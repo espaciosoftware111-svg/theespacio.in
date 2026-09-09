@@ -9,7 +9,7 @@ import { getCMSData, setCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
 const defaultFooterData = {
   // Location
   footer_location_title: 'LOCATION',
-  footer_address: '1st floor, H.No. 6-63/14B, Moinabad Road, Aziznagar, Hyderabad, Telangana 500075',
+  footer_address: 'Moinabad Road, Aziznagar',
   footer_map_url: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
 
   // Contact
@@ -346,7 +346,7 @@ const AdminFooterCMS = () => {
                 value={footerState.footer_address || ''}
                 onChange={(e) => updateField('footer_address', e.target.value)}
                 className={`${inpClass} resize-none`}
-                placeholder="1st floor, H.No. 6-63/14B, Moinabad Road, Aziznagar, Hyderabad, Telangana 500075"
+                placeholder="Moinabad Road, Aziznagar"
               />
             </div>
 

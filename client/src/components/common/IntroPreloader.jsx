@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from './Logo';
+import { Volume2, VolumeX } from 'lucide-react';
 
 export const IntroPreloader = () => {
   const [showIntro, setShowIntro] = useState(() => {
     try {
       if (typeof window === 'undefined') return false;
       if (typeof navigator !== 'undefined' && (
-        navigator.webdriver ||
-        /Chrome-Lighthouse|Lighthouse|PageSpeed|HeadlessChrome/i.test(navigator.userAgent)
+        /Chrome-Lighthouse|Lighthouse|PageSpeed/i.test(navigator.userAgent)
       )) {
         return false;
       }
@@ -18,13 +17,11 @@ export const IntroPreloader = () => {
     }
   });
 
-  // Ensure any stale legacy keys in storage are cleared so preloader always works properly
-  useEffect(() => {
-    try {
-      localStorage.removeItem('espacio_intro_shown');
-      sessionStorage.removeItem('espacio_intro_shown');
-    } catch {}
-  }, []);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [isLit, setIsLit] = useState(false);
+  const videoRef = useRef(null);
+  const bgVideoRef = useRef(null);
 
   const handleComplete = () => {
     setShowIntro(false);
@@ -32,87 +29,133 @@ export const IntroPreloader = () => {
 
   useEffect(() => {
     if (!showIntro) return;
-    // Auto-dismiss safely after full animation completes (3.6s)
+
+    // Start video playback safely
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+    if (bgVideoRef.current) {
+      bgVideoRef.current.play().catch(() => {});
+    }
+
+    // Safety timeout: dismiss after 6 seconds max
     const timer = setTimeout(() => {
       handleComplete();
-    }, 3600);
+    }, 6200);
 
     return () => {
       clearTimeout(timer);
     };
   }, [showIntro]);
 
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.duration) {
+      const cur = videoRef.current.currentTime;
+      const pct = (cur / videoRef.current.duration) * 100;
+      setProgress(pct);
+
+      // Keep ambient background video in tight sync with main video
+      if (bgVideoRef.current && Math.abs(bgVideoRef.current.currentTime - cur) > 0.08) {
+        bgVideoRef.current.currentTime = cur;
+      }
+
+      // The video lamp illuminates the room starting at ~0.8s and completes transition to ivory by ~2.0s
+      if (cur >= 0.8 && !isLit) {
+        setIsLit(true);
+      }
+    }
+  };
+
+  const toggleSound = (e) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const nextMuted = !isMuted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+    }
+  };
+
   return (
     <AnimatePresence>
       {showIntro && (
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          exit={{ 
+          key="espacio-intro-overlay"
+          initial={{ opacity: 1 }}
+          exit={{
             opacity: 0,
-            y: '-100%',
-            transition: { duration: 0.75, ease: [0.77, 0, 0.175, 1] }
+            scale: 1.02,
+            transition: { duration: 0.8, ease: [0.77, 0, 0.175, 1] }
           }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center select-none overflow-hidden cursor-pointer"
-          style={{
-            background: 'radial-gradient(circle at center, #16171d 0%, #0a0b0d 85%)'
-          }}
+          className={`fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden cursor-pointer transition-colors duration-1000 ease-in-out ${
+            isLit ? 'bg-[#F4EAE1]' : 'bg-[#0c0b0a]'
+          }`}
           onClick={handleComplete}
         >
-          <motion.div
-            initial={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ 
-              opacity: 0,
-              y: -60,
-              scale: 0.94,
-              transition: { duration: 0.55, ease: [0.77, 0, 0.175, 1] }
-            }}
-            className="flex flex-col items-center select-none px-4"
-          >
-            <Logo scrolled={false} size="large" onComplete={handleComplete} />
+          {/* Ambient blurred cover video that fills the widescreen edges without cutoffs */}
+          <video
+            ref={bgVideoRef}
+            src="/videos/intro.mp4"
+            autoPlay
+            muted
+            playsInline
+            aria-hidden="true"
+            className="absolute inset-[-40px] w-[calc(100%+80px)] h-[calc(100%+80px)] object-cover blur-[60px] scale-110 opacity-95 pointer-events-none z-[1]"
+          />
 
-            {/* Tagline: DESIGNING SPACES / DEFINING LIFESTYLES */}
-            <div className="mt-2 flex flex-col items-center text-center space-y-0.5 pointer-events-none">
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.8, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 800,
-                  letterSpacing: '0.24em',
-                  textShadow: '0 2px 20px rgba(201, 169, 110, 0.4)'
-                }}
-                className="text-[14px] sm:text-[18px] md:text-[22px] text-[#C9A96E] uppercase font-extrabold leading-tight"
-              >
-                Designing Spaces
-              </motion.div>
+          {/* Crisp foreground video with feathered edge mask to seamlessly melt into the ambient backdrop */}
+          <video
+            ref={videoRef}
+            src="/videos/intro.mp4"
+            autoPlay
+            muted={isMuted}
+            playsInline
+            preload="auto"
+            onTimeUpdate={handleTimeUpdate}
+            onEnded={handleComplete}
+            onError={handleComplete}
+            className="relative z-[2] w-full h-full object-contain pointer-events-none [mask-image:linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)]"
+          />
 
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.1, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 800,
-                  letterSpacing: '0.24em',
-                  textShadow: '0 2px 20px rgba(255, 255, 255, 0.25)'
-                }}
-                className="text-[14px] sm:text-[18px] md:text-[22px] text-[#FFFFFF] uppercase font-extrabold leading-tight"
-              >
-                Defining Lifestyles
-              </motion.div>
-            </div>
-          </motion.div>
-
+          {/* Sound Toggle Button */}
           <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={isMuted ? 'Unmute video sound' : 'Mute video sound'}
+            className="absolute top-6 right-6 flex items-center gap-2 text-white hover:text-gold font-sans text-[11px] font-medium tracking-wider uppercase transition-all px-3.5 py-1.5 rounded-full border border-black/10 bg-black/70 hover:bg-black/85 backdrop-blur-md z-30 shadow-md"
+          >
+            {isMuted ? (
+              <>
+                <VolumeX size={14} className="text-white/80" />
+                <span className="hidden sm:inline">Sound Off</span>
+              </>
+            ) : (
+              <>
+                <Volume2 size={14} className="text-gold" />
+                <span className="hidden sm:inline text-gold">Sound On</span>
+              </>
+            )}
+          </button>
+
+          {/* Skip Button */}
+          <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleComplete();
             }}
-            className="absolute bottom-6 right-6 text-white/40 hover:text-gold font-sans text-[11px] tracking-widest uppercase transition-colors px-3.5 py-1.5 rounded-full border border-white/10 hover:border-gold/40 backdrop-blur-sm"
+            className="absolute bottom-6 right-6 flex items-center gap-1.5 text-white hover:text-gold font-sans text-[11px] font-semibold tracking-widest uppercase transition-all px-4 py-2 rounded-full border border-black/10 bg-black/70 hover:bg-black/85 backdrop-blur-md z-30 shadow-md"
           >
-            Skip ↗
+            <span>Skip</span>
+            <span className="text-gold">↗</span>
           </button>
+
+          {/* Sleek Progress Bar at the Bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-black/10 overflow-hidden pointer-events-none z-30">
+            <div
+              className="h-full bg-gradient-to-r from-gold/50 via-gold to-gold-hover transition-[width] duration-100 ease-linear"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

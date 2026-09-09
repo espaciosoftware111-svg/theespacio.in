@@ -3,13 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   ArrowUpRight, Sparkles, CheckCircle2, ChevronRight, Sliders, Layers, Eye, 
-  X, Phone, Mail, User, MapPin, Send, Loader2, Lock, ShieldCheck, Download
+  X, Phone, Mail, User, MapPin, Send, Loader2, Lock, ShieldCheck, Download,
+  ChevronDown, Maximize2, Shield, Award, Clock, Compass, HelpCircle, Layers2
 } from 'lucide-react';
 import axios from 'axios';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 import { getCMSData, setCMSData, STORAGE_KEYS, notifyCMSUpdate } from '../utils/cmsStore';
+import { getCatalogItem } from '../data/spacesCatalog';
 
 const Reveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
@@ -49,37 +51,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_2.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_3.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_6.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_10.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_11.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_12.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_15.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_16.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_17.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_20.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_21.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_22.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_25.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_27.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_25.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_27.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_11.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_32.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_30.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_31.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_32.webp"
+      "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_12.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_10.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_16.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_15.webp"
     ],
     "filters": [
       "Island Kitchen",
@@ -111,35 +105,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/bedroom/bedroom_drive_1.webp",
-      "/images/spaces/bedroom/bedroom_drive_2.webp",
-      "/images/spaces/bedroom/bedroom_drive_3.webp",
-      "/images/spaces/bedroom/bedroom_drive_4.webp",
-      "/images/spaces/bedroom/bedroom_drive_5.webp",
-      "/images/spaces/bedroom/bedroom_drive_6.webp",
-      "/images/spaces/bedroom/bedroom_drive_7.webp",
-      "/images/spaces/bedroom/bedroom_drive_8.webp",
-      "/images/spaces/bedroom/bedroom_drive_9.webp",
-      "/images/spaces/bedroom/bedroom_drive_10.webp",
-      "/images/spaces/bedroom/bedroom_drive_11.webp",
-      "/images/spaces/bedroom/bedroom_drive_12.webp",
-      "/images/spaces/bedroom/bedroom_drive_13.webp",
-      "/images/spaces/bedroom/bedroom_drive_14.webp",
-      "/images/spaces/bedroom/bedroom_drive_15.webp",
-      "/images/spaces/bedroom/bedroom_drive_16.webp",
-      "/images/spaces/bedroom/bedroom_drive_17.webp",
-      "/images/spaces/bedroom/bedroom_drive_18.webp",
-      "/images/spaces/bedroom/bedroom_drive_19.webp",
-      "/images/spaces/bedroom/bedroom_drive_20.webp",
-      "/images/spaces/bedroom/bedroom_drive_21.webp",
-      "/images/spaces/bedroom/bedroom_drive_22.webp",
-      "/images/spaces/bedroom/bedroom_drive_23.webp",
       "/images/spaces/bedroom/bedroom_drive_24.webp",
-      "/images/spaces/bedroom/bedroom_drive_25.webp",
+      "/images/spaces/bedroom/bedroom_drive_12.webp",
       "/images/spaces/bedroom/bedroom_drive_26.webp",
+      "/images/spaces/bedroom/bedroom_drive_29.webp",
+      "/images/spaces/bedroom/bedroom_drive_4.webp",
+      "/images/spaces/bedroom/bedroom_drive_20.webp",
+      "/images/spaces/bedroom/bedroom_drive_15.webp",
+      "/images/spaces/bedroom/bedroom_drive_11.webp",
+      "/images/spaces/bedroom/bedroom_drive_6.webp",
+      "/images/spaces/bedroom/bedroom_drive_1.webp",
+      "/images/spaces/bedroom/bedroom_drive_3.webp",
+      "/images/spaces/bedroom/bedroom_drive_5.webp",
+      "/images/spaces/bedroom/bedroom_drive_22.webp",
       "/images/spaces/bedroom/bedroom_drive_27.webp",
+      "/images/spaces/bedroom/bedroom_drive_9.webp",
+      "/images/spaces/bedroom/bedroom_drive_19.webp",
+      "/images/spaces/bedroom/bedroom_drive_25.webp",
       "/images/spaces/bedroom/bedroom_drive_28.webp",
-      "/images/spaces/bedroom/bedroom_drive_29.webp"
+      "/images/spaces/bedroom/bedroom_drive_2.webp",
+      "/images/spaces/bedroom/bedroom_drive_16.webp",
+      "/images/spaces/bedroom/bedroom_drive_13.webp",
+      "/images/spaces/bedroom/bedroom_drive_21.webp",
+      "/images/spaces/bedroom/bedroom_drive_8.webp"
     ],
     "filters": [
       "Luxury Master Suite",
@@ -172,43 +160,28 @@ const mockCategories = [
     },
     "galleryImages": [
       "/images/spaces/living/living_drive_1.webp",
-      "/images/spaces/living/living_drive_2.webp",
-      "/images/spaces/living/living_drive_3.webp",
-      "/images/spaces/living/living_drive_4.webp",
-      "/images/spaces/living/living_drive_6.webp",
-      "/images/spaces/living/living_drive_7.webp",
-      "/images/spaces/living/living_drive_8.webp",
-      "/images/spaces/living/living_drive_9.webp",
-      "/images/spaces/living/living_drive_10.webp",
-      "/images/spaces/living/living_drive_11.webp",
-      "/images/spaces/living/living_drive_12.webp",
-      "/images/spaces/living/living_drive_13.webp",
-      "/images/spaces/living/living_drive_14.webp",
-      "/images/spaces/living/living_drive_15.webp",
-      "/images/spaces/living/living_drive_16.webp",
-      "/images/spaces/living/living_drive_17.webp",
-      "/images/spaces/living/living_drive_18.webp",
-      "/images/spaces/living/living_drive_19.webp",
-      "/images/spaces/living/living_drive_20.webp",
-      "/images/spaces/living/living_drive_21.webp",
-      "/images/spaces/living/living_drive_22.webp",
-      "/images/spaces/living/living_drive_23.webp",
-      "/images/spaces/living/living_drive_24.webp",
-      "/images/spaces/living/living_drive_25.webp",
-      "/images/spaces/living/living_drive_26.webp",
-      "/images/spaces/living/living_drive_27.webp",
-      "/images/spaces/living/living_drive_28.webp",
       "/images/spaces/living/living_drive_29.webp",
       "/images/spaces/living/living_drive_30.webp",
-      "/images/spaces/living/living_drive_31.webp",
-      "/images/spaces/living/living_drive_32.webp",
-      "/images/spaces/living/living_drive_33.webp",
-      "/images/spaces/living/living_drive_34.webp",
-      "/images/spaces/living/living_drive_36.webp",
-      "/images/spaces/living/living_drive_37.webp",
+      "/images/spaces/living/living_drive_6.webp",
+      "/images/spaces/living/living_drive_8.webp",
+      "/images/spaces/living/living_drive_13.webp",
+      "/images/spaces/living/living_drive_14.webp",
+      "/images/spaces/living/living_drive_7.webp",
+      "/images/spaces/living/living_drive_23.webp",
+      "/images/spaces/living/living_drive_28.webp",
+      "/images/spaces/living/living_drive_25.webp",
+      "/images/spaces/living/living_drive_20.webp",
+      "/images/spaces/living/living_drive_24.webp",
       "/images/spaces/living/living_drive_38.webp",
-      "/images/spaces/living/living_drive_39.webp",
-      "/images/spaces/living/living_drive_40.webp"
+      "/images/spaces/living/living_drive_31.webp",
+      "/images/spaces/living/living_drive_21.webp",
+      "/images/spaces/living/living_drive_34.webp",
+      "/images/spaces/living/living_drive_4.webp",
+      "/images/spaces/living/living_drive_33.webp",
+      "/images/spaces/living/living_drive_36.webp",
+      "/images/spaces/living/living_drive_16.webp",
+      "/images/spaces/living/living_drive_15.webp",
+      "/images/spaces/living/living_drive_3.webp"
     ],
     "filters": [
       "Minimalist Lounge",
@@ -240,40 +213,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/wardrobes/wardrobe_drive_1.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_2.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_3.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_4.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_5.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_6.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_7.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_8.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_9.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_10.webp",
       "/images/spaces/wardrobes/wardrobe_drive_11.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_12.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_13.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_21.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_29.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_22.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_6.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_1.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_5.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_32.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_25.webp",
       "/images/spaces/wardrobes/wardrobe_drive_14.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_15.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_23.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_10.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_27.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_24.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_30.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_18.webp",
       "/images/spaces/wardrobes/wardrobe_drive_16.webp",
       "/images/spaces/wardrobes/wardrobe_drive_17.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_18.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_19.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_21.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_22.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_23.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_24.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_25.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_26.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_27.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_29.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_30.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_31.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_32.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_33.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_34.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_37.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_38.webp"
+      "/images/spaces/wardrobes/wardrobe_drive_38.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_12.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_15.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_9.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_7.webp"
     ],
     "filters": [
       "Floor-to-Ceiling Sliding",
@@ -305,49 +267,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/home_office/home_office_drive_1.webp",
-      "/images/spaces/home_office/home_office_drive_2.webp",
-      "/images/spaces/home_office/home_office_drive_3.webp",
-      "/images/spaces/home_office/home_office_drive_4.webp",
-      "/images/spaces/home_office/home_office_drive_5.webp",
-      "/images/spaces/home_office/home_office_drive_6.webp",
-      "/images/spaces/home_office/home_office_drive_7.webp",
-      "/images/spaces/home_office/home_office_drive_8.webp",
-      "/images/spaces/home_office/home_office_drive_9.webp",
-      "/images/spaces/home_office/home_office_drive_10.webp",
-      "/images/spaces/home_office/home_office_drive_11.webp",
-      "/images/spaces/home_office/home_office_drive_12.webp",
-      "/images/spaces/home_office/home_office_drive_13.webp",
-      "/images/spaces/home_office/home_office_drive_14.webp",
-      "/images/spaces/home_office/home_office_drive_15.webp",
-      "/images/spaces/home_office/home_office_drive_16.webp",
-      "/images/spaces/home_office/home_office_drive_17.webp",
-      "/images/spaces/home_office/home_office_drive_18.webp",
-      "/images/spaces/home_office/home_office_drive_19.webp",
-      "/images/spaces/home_office/home_office_drive_20.webp",
-      "/images/spaces/home_office/home_office_drive_21.webp",
-      "/images/spaces/home_office/home_office_drive_22.webp",
-      "/images/spaces/home_office/home_office_drive_23.webp",
-      "/images/spaces/home_office/home_office_drive_24.webp",
-      "/images/spaces/home_office/home_office_drive_25.webp",
-      "/images/spaces/home_office/home_office_drive_26.webp",
-      "/images/spaces/home_office/home_office_drive_27.webp",
-      "/images/spaces/home_office/home_office_drive_28.webp",
-      "/images/spaces/home_office/home_office_drive_30.webp",
-      "/images/spaces/home_office/home_office_drive_31.webp",
-      "/images/spaces/home_office/home_office_drive_32.webp",
       "/images/spaces/home_office/home_office_drive_33.webp",
-      "/images/spaces/home_office/home_office_drive_34.webp",
-      "/images/spaces/home_office/home_office_drive_35.webp",
-      "/images/spaces/home_office/home_office_drive_36.webp",
-      "/images/spaces/home_office/home_office_drive_37.webp",
-      "/images/spaces/home_office/home_office_drive_38.webp",
-      "/images/spaces/home_office/home_office_drive_39.webp",
-      "/images/spaces/home_office/home_office_drive_40.webp",
-      "/images/spaces/home_office/home_office_drive_41.webp",
-      "/images/spaces/home_office/home_office_drive_42.webp",
+      "/images/spaces/home_office/home_office_drive_25.webp",
+      "/images/spaces/home_office/home_office_drive_22.webp",
+      "/images/spaces/home_office/home_office_drive_12.webp",
+      "/images/spaces/home_office/home_office_drive_32.webp",
+      "/images/spaces/home_office/home_office_drive_18.webp",
+      "/images/spaces/home_office/home_office_drive_14.webp",
+      "/images/spaces/home_office/home_office_drive_16.webp",
+      "/images/spaces/home_office/home_office_drive_24.webp",
       "/images/spaces/home_office/home_office_drive_43.webp",
-      "/images/spaces/home_office/home_office_drive_44.webp"
+      "/images/spaces/home_office/home_office_drive_20.webp",
+      "/images/spaces/home_office/home_office_drive_19.webp",
+      "/images/spaces/home_office/home_office_drive_23.webp",
+      "/images/spaces/home_office/home_office_drive_27.webp",
+      "/images/spaces/home_office/home_office_drive_42.webp",
+      "/images/spaces/home_office/home_office_drive_17.webp",
+      "/images/spaces/home_office/home_office_drive_34.webp",
+      "/images/spaces/home_office/home_office_drive_2.webp",
+      "/images/spaces/home_office/home_office_drive_1.webp",
+      "/images/spaces/home_office/home_office_drive_3.webp",
+      "/images/spaces/home_office/home_office_drive_31.webp",
+      "/images/spaces/home_office/home_office_drive_35.webp",
+      "/images/spaces/home_office/home_office_drive_39.webp"
     ],
     "filters": [
       "Executive Study",
@@ -379,43 +321,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/office/office_drive_1.webp",
-      "/images/spaces/office/office_drive_2.webp",
-      "/images/spaces/office/office_drive_3.webp",
-      "/images/spaces/office/office_drive_4.webp",
-      "/images/spaces/office/office_drive_5.webp",
-      "/images/spaces/office/office_drive_6.webp",
-      "/images/spaces/office/office_drive_7.webp",
-      "/images/spaces/office/office_drive_8.webp",
-      "/images/spaces/office/office_drive_9.webp",
-      "/images/spaces/office/office_drive_10.webp",
-      "/images/spaces/office/office_drive_11.webp",
-      "/images/spaces/office/office_drive_12.webp",
-      "/images/spaces/office/office_drive_13.webp",
-      "/images/spaces/office/office_drive_14.webp",
-      "/images/spaces/office/office_drive_15.webp",
-      "/images/spaces/office/office_drive_16.webp",
-      "/images/spaces/office/office_drive_17.webp",
-      "/images/spaces/office/office_drive_18.webp",
-      "/images/spaces/office/office_drive_19.webp",
       "/images/spaces/office/office_drive_20.webp",
-      "/images/spaces/office/office_drive_21.webp",
-      "/images/spaces/office/office_drive_22.webp",
-      "/images/spaces/office/office_drive_23.webp",
-      "/images/spaces/office/office_drive_24.webp",
-      "/images/spaces/office/office_drive_25.webp",
-      "/images/spaces/office/office_drive_26.webp",
-      "/images/spaces/office/office_drive_27.webp",
-      "/images/spaces/office/office_drive_28.webp",
+      "/images/spaces/office/office_drive_4.webp",
       "/images/spaces/office/office_drive_29.webp",
-      "/images/spaces/office/office_drive_30.webp",
-      "/images/spaces/office/office_drive_31.webp",
       "/images/spaces/office/office_drive_32.webp",
       "/images/spaces/office/office_drive_33.webp",
-      "/images/spaces/office/office_drive_34.webp",
-      "/images/spaces/office/office_drive_35.webp",
+      "/images/spaces/office/office_drive_37.webp",
       "/images/spaces/office/office_drive_36.webp",
-      "/images/spaces/office/office_drive_37.webp"
+      "/images/spaces/office/office_drive_10.webp",
+      "/images/spaces/office/office_drive_6.webp",
+      "/images/spaces/office/office_drive_31.webp",
+      "/images/spaces/office/office_drive_27.webp",
+      "/images/spaces/office/office_drive_17.webp",
+      "/images/spaces/office/office_drive_19.webp",
+      "/images/spaces/office/office_drive_13.webp",
+      "/images/spaces/office/office_drive_16.webp",
+      "/images/spaces/office/office_drive_7.webp",
+      "/images/spaces/office/office_drive_12.webp",
+      "/images/spaces/office/office_drive_35.webp",
+      "/images/spaces/office/office_drive_14.webp",
+      "/images/spaces/office/office_drive_23.webp",
+      "/images/spaces/office/office_drive_24.webp",
+      "/images/spaces/office/office_drive_18.webp",
+      "/images/spaces/office/office_drive_34.webp"
     ],
     "filters": [
       "Executive Boardroom",
@@ -447,34 +375,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/pooja/pooja_drive_1.webp",
-      "/images/spaces/pooja/pooja_drive_2.webp",
-      "/images/spaces/pooja/pooja_drive_3.webp",
-      "/images/spaces/pooja/pooja_drive_4.webp",
-      "/images/spaces/pooja/pooja_drive_5.webp",
-      "/images/spaces/pooja/pooja_drive_6.webp",
-      "/images/spaces/pooja/pooja_drive_7.webp",
-      "/images/spaces/pooja/pooja_drive_8.webp",
-      "/images/spaces/pooja/pooja_drive_9.webp",
-      "/images/spaces/pooja/pooja_drive_10.webp",
       "/images/spaces/pooja/pooja_drive_11.webp",
       "/images/spaces/pooja/pooja_drive_12.webp",
-      "/images/spaces/pooja/pooja_drive_13.webp",
-      "/images/spaces/pooja/pooja_drive_14.webp",
-      "/images/spaces/pooja/pooja_drive_15.webp",
-      "/images/spaces/pooja/pooja_drive_16.webp",
       "/images/spaces/pooja/pooja_drive_17.webp",
       "/images/spaces/pooja/pooja_drive_18.webp",
-      "/images/spaces/pooja/pooja_drive_19.webp",
-      "/images/spaces/pooja/pooja_drive_20.webp",
-      "/images/spaces/pooja/pooja_drive_21.webp",
       "/images/spaces/pooja/pooja_drive_22.webp",
-      "/images/spaces/pooja/pooja_drive_23.webp",
-      "/images/spaces/pooja/pooja_drive_25.webp",
-      "/images/spaces/pooja/pooja_drive_26.webp",
-      "/images/spaces/pooja/pooja_drive_27.webp",
+      "/images/spaces/pooja/pooja_drive_13.webp",
+      "/images/spaces/pooja/pooja_drive_20.webp",
+      "/images/spaces/pooja/pooja_drive_16.webp",
+      "/images/spaces/pooja/pooja_drive_8.webp",
+      "/images/spaces/pooja/pooja_drive_15.webp",
       "/images/spaces/pooja/pooja_drive_28.webp",
-      "/images/spaces/pooja/pooja_drive_29.webp"
+      "/images/spaces/pooja/pooja_drive_4.webp",
+      "/images/spaces/pooja/pooja_drive_25.webp",
+      "/images/spaces/pooja/pooja_drive_9.webp",
+      "/images/spaces/pooja/pooja_drive_14.webp",
+      "/images/spaces/pooja/pooja_drive_23.webp",
+      "/images/spaces/pooja/pooja_drive_6.webp",
+      "/images/spaces/pooja/pooja_drive_7.webp",
+      "/images/spaces/pooja/pooja_drive_3.webp",
+      "/images/spaces/pooja/pooja_drive_1.webp",
+      "/images/spaces/pooja/pooja_drive_21.webp",
+      "/images/spaces/pooja/pooja_drive_2.webp",
+      "/images/spaces/pooja/pooja_drive_10.webp"
     ],
     "filters": [
       "Dedicated Mandir Room",
@@ -506,55 +429,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/dining/dining_drive_1.webp",
-      "/images/spaces/dining/dining_drive_2.webp",
-      "/images/spaces/dining/dining_drive_3.webp",
-      "/images/spaces/dining/dining_drive_4.webp",
-      "/images/spaces/dining/dining_drive_5.webp",
-      "/images/spaces/dining/dining_drive_6.webp",
-      "/images/spaces/dining/dining_drive_7.webp",
-      "/images/spaces/dining/dining_drive_8.webp",
-      "/images/spaces/dining/dining_drive_9.webp",
-      "/images/spaces/dining/dining_drive_10.webp",
-      "/images/spaces/dining/dining_drive_11.webp",
-      "/images/spaces/dining/dining_drive_12.webp",
-      "/images/spaces/dining/dining_drive_13.webp",
-      "/images/spaces/dining/dining_drive_14.webp",
-      "/images/spaces/dining/dining_drive_15.webp",
-      "/images/spaces/dining/dining_drive_16.webp",
-      "/images/spaces/dining/dining_drive_17.webp",
-      "/images/spaces/dining/dining_drive_18.webp",
-      "/images/spaces/dining/dining_drive_19.webp",
-      "/images/spaces/dining/dining_drive_20.webp",
-      "/images/spaces/dining/dining_drive_21.webp",
-      "/images/spaces/dining/dining_drive_22.webp",
-      "/images/spaces/dining/dining_drive_23.webp",
-      "/images/spaces/dining/dining_drive_24.webp",
-      "/images/spaces/dining/dining_drive_25.webp",
-      "/images/spaces/dining/dining_drive_26.webp",
       "/images/spaces/dining/dining_drive_27.webp",
+      "/images/spaces/dining/dining_drive_42.webp",
+      "/images/spaces/dining/dining_drive_12.webp",
+      "/images/spaces/dining/dining_drive_26.webp",
+      "/images/spaces/dining/dining_drive_38.webp",
+      "/images/spaces/dining/dining_drive_40.webp",
+      "/images/spaces/dining/dining_drive_15.webp",
+      "/images/spaces/dining/dining_drive_3.webp",
+      "/images/spaces/dining/dining_drive_49.webp",
+      "/images/spaces/dining/dining_drive_1.webp",
+      "/images/spaces/dining/dining_drive_11.webp",
+      "/images/spaces/dining/dining_drive_35.webp",
+      "/images/spaces/dining/dining_drive_10.webp",
+      "/images/spaces/dining/dining_drive_24.webp",
       "/images/spaces/dining/dining_drive_28.webp",
-      "/images/spaces/dining/dining_drive_29.webp",
-      "/images/spaces/dining/dining_drive_30.webp",
+      "/images/spaces/dining/dining_drive_2.webp",
+      "/images/spaces/dining/dining_drive_44.webp",
+      "/images/spaces/dining/dining_drive_21.webp",
       "/images/spaces/dining/dining_drive_31.webp",
       "/images/spaces/dining/dining_drive_32.webp",
-      "/images/spaces/dining/dining_drive_33.webp",
-      "/images/spaces/dining/dining_drive_35.webp",
+      "/images/spaces/dining/dining_drive_9.webp",
       "/images/spaces/dining/dining_drive_36.webp",
-      "/images/spaces/dining/dining_drive_37.webp",
-      "/images/spaces/dining/dining_drive_38.webp",
-      "/images/spaces/dining/dining_drive_39.webp",
-      "/images/spaces/dining/dining_drive_40.webp",
-      "/images/spaces/dining/dining_drive_41.webp",
-      "/images/spaces/dining/dining_drive_42.webp",
-      "/images/spaces/dining/dining_drive_43.webp",
-      "/images/spaces/dining/dining_drive_44.webp",
-      "/images/spaces/dining/dining_drive_45.webp",
-      "/images/spaces/dining/dining_drive_46.webp",
-      "/images/spaces/dining/dining_drive_47.webp",
-      "/images/spaces/dining/dining_drive_48.webp",
-      "/images/spaces/dining/dining_drive_49.webp",
-      "/images/spaces/dining/dining_drive_50.webp"
+      "/images/spaces/dining/dining_drive_19.webp"
     ],
     "filters": [
       "8-Seater Formal Dining",
@@ -568,7 +465,7 @@ const mockCategories = [
     "name": "TV Units",
     "slug": "tv-units",
     "description": "Custom TV walls and entertainment units that serve as the centrepiece of your living space — built-in storage, LED niches, and seamless cable management.",
-    "heroImage": "/images/spaces/tv_units/tv_drive_1.webp",
+    "heroImage": "/images/spaces/tv_units/tv_drive_25.webp",
     "visible": true,
     "details": {
       "tag": "Focal Point",
@@ -586,43 +483,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/tv_units/tv_drive_1.webp",
-      "/images/spaces/tv_units/tv_drive_2.webp",
-      "/images/spaces/tv_units/tv_drive_3.webp",
-      "/images/spaces/tv_units/tv_drive_4.webp",
-      "/images/spaces/tv_units/tv_drive_5.webp",
-      "/images/spaces/tv_units/tv_drive_6.webp",
-      "/images/spaces/tv_units/tv_drive_7.webp",
-      "/images/spaces/tv_units/tv_drive_8.webp",
-      "/images/spaces/tv_units/tv_drive_9.webp",
-      "/images/spaces/tv_units/tv_drive_10.webp",
-      "/images/spaces/tv_units/tv_drive_11.webp",
-      "/images/spaces/tv_units/tv_drive_12.webp",
-      "/images/spaces/tv_units/tv_drive_13.webp",
-      "/images/spaces/tv_units/tv_drive_14.webp",
-      "/images/spaces/tv_units/tv_drive_15.webp",
-      "/images/spaces/tv_units/tv_drive_16.webp",
-      "/images/spaces/tv_units/tv_drive_17.webp",
-      "/images/spaces/tv_units/tv_drive_18.webp",
-      "/images/spaces/tv_units/tv_drive_19.webp",
-      "/images/spaces/tv_units/tv_drive_20.webp",
-      "/images/spaces/tv_units/tv_drive_21.webp",
-      "/images/spaces/tv_units/tv_drive_22.webp",
-      "/images/spaces/tv_units/tv_drive_23.webp",
-      "/images/spaces/tv_units/tv_drive_24.webp",
       "/images/spaces/tv_units/tv_drive_25.webp",
-      "/images/spaces/tv_units/tv_drive_26.webp",
-      "/images/spaces/tv_units/tv_drive_27.webp",
-      "/images/spaces/tv_units/tv_drive_28.webp",
-      "/images/spaces/tv_units/tv_drive_29.webp",
       "/images/spaces/tv_units/tv_drive_30.webp",
+      "/images/spaces/tv_units/tv_drive_15.webp",
       "/images/spaces/tv_units/tv_drive_31.webp",
-      "/images/spaces/tv_units/tv_drive_32.webp",
-      "/images/spaces/tv_units/tv_drive_33.webp",
-      "/images/spaces/tv_units/tv_drive_34.webp",
-      "/images/spaces/tv_units/tv_drive_35.webp",
+      "/images/spaces/tv_units/tv_drive_12.webp",
+      "/images/spaces/tv_units/tv_drive_11.webp",
+      "/images/spaces/tv_units/tv_drive_4.webp",
+      "/images/spaces/tv_units/tv_drive_3.webp",
+      "/images/spaces/tv_units/tv_drive_21.webp",
+      "/images/spaces/tv_units/tv_drive_37.webp",
+      "/images/spaces/tv_units/tv_drive_20.webp",
+      "/images/spaces/tv_units/tv_drive_8.webp",
+      "/images/spaces/tv_units/tv_drive_16.webp",
+      "/images/spaces/tv_units/tv_drive_18.webp",
+      "/images/spaces/tv_units/tv_drive_2.webp",
+      "/images/spaces/tv_units/tv_drive_5.webp",
       "/images/spaces/tv_units/tv_drive_36.webp",
-      "/images/spaces/tv_units/tv_drive_37.webp"
+      "/images/spaces/tv_units/tv_drive_6.webp",
+      "/images/spaces/tv_units/tv_drive_34.webp",
+      "/images/spaces/tv_units/tv_drive_13.webp",
+      "/images/spaces/tv_units/tv_drive_10.webp",
+      "/images/spaces/tv_units/tv_drive_19.webp",
+      "/images/spaces/tv_units/tv_drive_28.webp"
     ],
     "filters": [
       "Full-Wall Marble Console",
@@ -654,52 +537,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/ceiling/ceiling_drive_1.webp",
-      "/images/spaces/ceiling/ceiling_drive_2.webp",
-      "/images/spaces/ceiling/ceiling_drive_3.webp",
-      "/images/spaces/ceiling/ceiling_drive_4.webp",
-      "/images/spaces/ceiling/ceiling_drive_5.webp",
-      "/images/spaces/ceiling/ceiling_drive_6.webp",
-      "/images/spaces/ceiling/ceiling_drive_7.webp",
-      "/images/spaces/ceiling/ceiling_drive_8.webp",
-      "/images/spaces/ceiling/ceiling_drive_9.webp",
-      "/images/spaces/ceiling/ceiling_drive_10.webp",
-      "/images/spaces/ceiling/ceiling_drive_11.webp",
-      "/images/spaces/ceiling/ceiling_drive_12.webp",
-      "/images/spaces/ceiling/ceiling_drive_13.webp",
-      "/images/spaces/ceiling/ceiling_drive_14.webp",
-      "/images/spaces/ceiling/ceiling_drive_15.webp",
-      "/images/spaces/ceiling/ceiling_drive_16.webp",
-      "/images/spaces/ceiling/ceiling_drive_17.webp",
-      "/images/spaces/ceiling/ceiling_drive_18.webp",
-      "/images/spaces/ceiling/ceiling_drive_19.webp",
-      "/images/spaces/ceiling/ceiling_drive_20.webp",
-      "/images/spaces/ceiling/ceiling_drive_21.webp",
-      "/images/spaces/ceiling/ceiling_drive_22.webp",
-      "/images/spaces/ceiling/ceiling_drive_23.webp",
-      "/images/spaces/ceiling/ceiling_drive_24.webp",
-      "/images/spaces/ceiling/ceiling_drive_25.webp",
-      "/images/spaces/ceiling/ceiling_drive_26.webp",
-      "/images/spaces/ceiling/ceiling_drive_27.webp",
       "/images/spaces/ceiling/ceiling_drive_28.webp",
-      "/images/spaces/ceiling/ceiling_drive_29.webp",
-      "/images/spaces/ceiling/ceiling_drive_30.webp",
-      "/images/spaces/ceiling/ceiling_drive_31.webp",
-      "/images/spaces/ceiling/ceiling_drive_32.webp",
-      "/images/spaces/ceiling/ceiling_drive_33.webp",
-      "/images/spaces/ceiling/ceiling_drive_34.webp",
-      "/images/spaces/ceiling/ceiling_drive_35.webp",
-      "/images/spaces/ceiling/ceiling_drive_36.webp",
-      "/images/spaces/ceiling/ceiling_drive_37.webp",
-      "/images/spaces/ceiling/ceiling_drive_38.webp",
-      "/images/spaces/ceiling/ceiling_drive_39.webp",
-      "/images/spaces/ceiling/ceiling_drive_40.webp",
-      "/images/spaces/ceiling/ceiling_drive_41.webp",
+      "/images/spaces/ceiling/ceiling_drive_17.webp",
       "/images/spaces/ceiling/ceiling_drive_42.webp",
-      "/images/spaces/ceiling/ceiling_drive_43.webp",
-      "/images/spaces/ceiling/ceiling_drive_44.webp",
-      "/images/spaces/ceiling/ceiling_drive_45.webp",
-      "/images/spaces/ceiling/ceiling_drive_46.webp"
+      "/images/spaces/ceiling/ceiling_drive_16.webp",
+      "/images/spaces/ceiling/ceiling_drive_30.webp",
+      "/images/spaces/ceiling/ceiling_drive_23.webp",
+      "/images/spaces/ceiling/ceiling_drive_41.webp",
+      "/images/spaces/ceiling/ceiling_drive_14.webp",
+      "/images/spaces/ceiling/ceiling_drive_7.webp",
+      "/images/spaces/ceiling/ceiling_drive_3.webp",
+      "/images/spaces/ceiling/ceiling_drive_27.webp",
+      "/images/spaces/ceiling/ceiling_drive_19.webp",
+      "/images/spaces/ceiling/ceiling_drive_37.webp",
+      "/images/spaces/ceiling/ceiling_drive_9.webp",
+      "/images/spaces/ceiling/ceiling_drive_36.webp",
+      "/images/spaces/ceiling/ceiling_drive_38.webp",
+      "/images/spaces/ceiling/ceiling_drive_24.webp",
+      "/images/spaces/ceiling/ceiling_drive_46.webp",
+      "/images/spaces/ceiling/ceiling_drive_35.webp",
+      "/images/spaces/ceiling/ceiling_drive_1.webp",
+      "/images/spaces/ceiling/ceiling_drive_11.webp",
+      "/images/spaces/ceiling/ceiling_drive_39.webp",
+      "/images/spaces/ceiling/ceiling_drive_32.webp"
     ],
     "filters": [
       "Magnetic Track & Warm Coves",
@@ -713,7 +573,7 @@ const mockCategories = [
     "name": "Commercial Interiors",
     "slug": "commercial-interiors",
     "description": "Retail showrooms, clinics, salons, and brand spaces designed to communicate identity while maximising customer experience.",
-    "heroImage": "/images/spaces/commercial/commercial_drive_1.webp",
+    "heroImage": "/images/spaces/commercial/commercial_drive_41.webp",
     "visible": true,
     "details": {
       "tag": "Brand Experience",
@@ -731,47 +591,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/commercial/commercial_drive_1.webp",
-      "/images/spaces/commercial/commercial_drive_2.webp",
-      "/images/spaces/commercial/commercial_drive_3.webp",
-      "/images/spaces/commercial/commercial_drive_4.webp",
-      "/images/spaces/commercial/commercial_drive_5.webp",
-      "/images/spaces/commercial/commercial_drive_6.webp",
-      "/images/spaces/commercial/commercial_drive_7.webp",
-      "/images/spaces/commercial/commercial_drive_8.webp",
-      "/images/spaces/commercial/commercial_drive_9.webp",
-      "/images/spaces/commercial/commercial_drive_10.webp",
-      "/images/spaces/commercial/commercial_drive_11.webp",
-      "/images/spaces/commercial/commercial_drive_12.webp",
-      "/images/spaces/commercial/commercial_drive_13.webp",
-      "/images/spaces/commercial/commercial_drive_14.webp",
-      "/images/spaces/commercial/commercial_drive_15.webp",
-      "/images/spaces/commercial/commercial_drive_16.webp",
-      "/images/spaces/commercial/commercial_drive_17.webp",
+      "/images/spaces/commercial/commercial_drive_41.webp",
       "/images/spaces/commercial/commercial_drive_18.webp",
-      "/images/spaces/commercial/commercial_drive_19.webp",
-      "/images/spaces/commercial/commercial_drive_20.webp",
-      "/images/spaces/commercial/commercial_drive_21.webp",
-      "/images/spaces/commercial/commercial_drive_22.webp",
-      "/images/spaces/commercial/commercial_drive_23.webp",
-      "/images/spaces/commercial/commercial_drive_24.webp",
-      "/images/spaces/commercial/commercial_drive_25.webp",
-      "/images/spaces/commercial/commercial_drive_26.webp",
-      "/images/spaces/commercial/commercial_drive_27.webp",
-      "/images/spaces/commercial/commercial_drive_28.webp",
+      "/images/spaces/commercial/commercial_drive_11.webp",
       "/images/spaces/commercial/commercial_drive_29.webp",
-      "/images/spaces/commercial/commercial_drive_30.webp",
-      "/images/spaces/commercial/commercial_drive_31.webp",
-      "/images/spaces/commercial/commercial_drive_32.webp",
-      "/images/spaces/commercial/commercial_drive_33.webp",
-      "/images/spaces/commercial/commercial_drive_34.webp",
+      "/images/spaces/commercial/commercial_drive_6.webp",
       "/images/spaces/commercial/commercial_drive_35.webp",
-      "/images/spaces/commercial/commercial_drive_36.webp",
-      "/images/spaces/commercial/commercial_drive_37.webp",
-      "/images/spaces/commercial/commercial_drive_38.webp",
-      "/images/spaces/commercial/commercial_drive_39.webp",
-      "/images/spaces/commercial/commercial_drive_40.webp",
-      "/images/spaces/commercial/commercial_drive_41.webp"
+      "/images/spaces/commercial/commercial_drive_9.webp",
+      "/images/spaces/commercial/commercial_drive_14.webp",
+      "/images/spaces/commercial/commercial_drive_23.webp",
+      "/images/spaces/commercial/commercial_drive_17.webp",
+      "/images/spaces/commercial/commercial_drive_33.webp",
+      "/images/spaces/commercial/commercial_drive_16.webp",
+      "/images/spaces/commercial/commercial_drive_21.webp",
+      "/images/spaces/commercial/commercial_drive_3.webp",
+      "/images/spaces/commercial/commercial_drive_22.webp",
+      "/images/spaces/commercial/commercial_drive_28.webp",
+      "/images/spaces/commercial/commercial_drive_12.webp",
+      "/images/spaces/commercial/commercial_drive_10.webp",
+      "/images/spaces/commercial/commercial_drive_5.webp",
+      "/images/spaces/commercial/commercial_drive_26.webp",
+      "/images/spaces/commercial/commercial_drive_32.webp",
+      "/images/spaces/commercial/commercial_drive_7.webp",
+      "/images/spaces/commercial/commercial_drive_20.webp"
     ],
     "filters": [
       "Corporate Headquarters",
@@ -803,40 +645,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/reception/reception_drive_1.webp",
-      "/images/spaces/reception/reception_drive_2.webp",
-      "/images/spaces/reception/reception_drive_3.webp",
-      "/images/spaces/reception/reception_drive_4.webp",
-      "/images/spaces/reception/reception_drive_5.webp",
-      "/images/spaces/reception/reception_drive_6.webp",
-      "/images/spaces/reception/reception_drive_7.webp",
-      "/images/spaces/reception/reception_drive_8.webp",
-      "/images/spaces/reception/reception_drive_9.webp",
-      "/images/spaces/reception/reception_drive_10.webp",
-      "/images/spaces/reception/reception_drive_11.webp",
-      "/images/spaces/reception/reception_drive_12.webp",
-      "/images/spaces/reception/reception_drive_13.webp",
-      "/images/spaces/reception/reception_drive_14.webp",
-      "/images/spaces/reception/reception_drive_15.webp",
-      "/images/spaces/reception/reception_drive_16.webp",
-      "/images/spaces/reception/reception_drive_17.webp",
-      "/images/spaces/reception/reception_drive_18.webp",
-      "/images/spaces/reception/reception_drive_19.webp",
-      "/images/spaces/reception/reception_drive_20.webp",
-      "/images/spaces/reception/reception_drive_21.webp",
-      "/images/spaces/reception/reception_drive_22.webp",
-      "/images/spaces/reception/reception_drive_23.webp",
-      "/images/spaces/reception/reception_drive_24.webp",
-      "/images/spaces/reception/reception_drive_25.webp",
-      "/images/spaces/reception/reception_drive_26.webp",
-      "/images/spaces/reception/reception_drive_27.webp",
       "/images/spaces/reception/reception_drive_28.webp",
-      "/images/spaces/reception/reception_drive_30.webp",
-      "/images/spaces/reception/reception_drive_31.webp",
-      "/images/spaces/reception/reception_drive_32.webp",
-      "/images/spaces/reception/reception_drive_33.webp",
+      "/images/spaces/reception/reception_drive_15.webp",
       "/images/spaces/reception/reception_drive_34.webp",
-      "/images/spaces/reception/reception_drive_35.webp"
+      "/images/spaces/reception/reception_drive_30.webp",
+      "/images/spaces/reception/reception_drive_33.webp",
+      "/images/spaces/reception/reception_drive_16.webp",
+      "/images/spaces/reception/reception_drive_31.webp",
+      "/images/spaces/reception/reception_drive_21.webp",
+      "/images/spaces/reception/reception_drive_17.webp",
+      "/images/spaces/reception/reception_drive_22.webp",
+      "/images/spaces/reception/reception_drive_19.webp",
+      "/images/spaces/reception/reception_drive_1.webp",
+      "/images/spaces/reception/reception_drive_24.webp",
+      "/images/spaces/reception/reception_drive_4.webp",
+      "/images/spaces/reception/reception_drive_8.webp",
+      "/images/spaces/reception/reception_drive_23.webp",
+      "/images/spaces/reception/reception_drive_7.webp",
+      "/images/spaces/reception/reception_drive_9.webp",
+      "/images/spaces/reception/reception_drive_20.webp",
+      "/images/spaces/reception/reception_drive_35.webp",
+      "/images/spaces/reception/reception_drive_6.webp",
+      "/images/spaces/reception/reception_drive_11.webp",
+      "/images/spaces/reception/reception_drive_18.webp"
     ],
     "filters": [
       "Monolithic Stone Reception Desk",
@@ -850,7 +681,7 @@ const mockCategories = [
     "name": "Cafes & Restaurants",
     "slug": "cafes-restaurants",
     "description": "Atmospheric F&B spaces built for dwell time — bespoke seating zones, bar counters, acoustic treatment, and curated ambient lighting.",
-    "heroImage": "/images/spaces/cafes/cafe_drive_1.webp",
+    "heroImage": "/images/spaces/cafes/cafe_drive_16.webp",
     "visible": true,
     "details": {
       "tag": "Hospitality Design",
@@ -868,48 +699,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/cafes/cafe_drive_1.webp",
-      "/images/spaces/cafes/cafe_drive_2.webp",
-      "/images/spaces/cafes/cafe_drive_3.webp",
+      "/images/spaces/cafes/cafe_drive_16.webp",
       "/images/spaces/cafes/cafe_drive_4.webp",
+      "/images/spaces/cafes/cafe_drive_41.webp",
+      "/images/spaces/cafes/cafe_drive_22.webp",
       "/images/spaces/cafes/cafe_drive_5.webp",
-      "/images/spaces/cafes/cafe_drive_6.webp",
-      "/images/spaces/cafes/cafe_drive_7.webp",
-      "/images/spaces/cafes/cafe_drive_8.webp",
-      "/images/spaces/cafes/cafe_drive_9.webp",
-      "/images/spaces/cafes/cafe_drive_10.webp",
-      "/images/spaces/cafes/cafe_drive_11.webp",
-      "/images/spaces/cafes/cafe_drive_12.webp",
+      "/images/spaces/cafes/cafe_drive_40.webp",
+      "/images/spaces/cafes/cafe_drive_30.webp",
+      "/images/spaces/cafes/cafe_drive_29.webp",
+      "/images/spaces/cafes/cafe_drive_27.webp",
       "/images/spaces/cafes/cafe_drive_13.webp",
       "/images/spaces/cafes/cafe_drive_14.webp",
-      "/images/spaces/cafes/cafe_drive_15.webp",
-      "/images/spaces/cafes/cafe_drive_16.webp",
-      "/images/spaces/cafes/cafe_drive_17.webp",
-      "/images/spaces/cafes/cafe_drive_18.webp",
-      "/images/spaces/cafes/cafe_drive_19.webp",
-      "/images/spaces/cafes/cafe_drive_20.webp",
-      "/images/spaces/cafes/cafe_drive_21.webp",
-      "/images/spaces/cafes/cafe_drive_22.webp",
-      "/images/spaces/cafes/cafe_drive_23.webp",
-      "/images/spaces/cafes/cafe_drive_24.webp",
-      "/images/spaces/cafes/cafe_drive_25.webp",
-      "/images/spaces/cafes/cafe_drive_26.webp",
-      "/images/spaces/cafes/cafe_drive_27.webp",
       "/images/spaces/cafes/cafe_drive_28.webp",
-      "/images/spaces/cafes/cafe_drive_29.webp",
-      "/images/spaces/cafes/cafe_drive_30.webp",
-      "/images/spaces/cafes/cafe_drive_31.webp",
+      "/images/spaces/cafes/cafe_drive_15.webp",
+      "/images/spaces/cafes/cafe_drive_11.webp",
       "/images/spaces/cafes/cafe_drive_32.webp",
-      "/images/spaces/cafes/cafe_drive_33.webp",
+      "/images/spaces/cafes/cafe_drive_31.webp",
       "/images/spaces/cafes/cafe_drive_34.webp",
-      "/images/spaces/cafes/cafe_drive_35.webp",
-      "/images/spaces/cafes/cafe_drive_36.webp",
+      "/images/spaces/cafes/cafe_drive_3.webp",
       "/images/spaces/cafes/cafe_drive_37.webp",
-      "/images/spaces/cafes/cafe_drive_38.webp",
-      "/images/spaces/cafes/cafe_drive_39.webp",
-      "/images/spaces/cafes/cafe_drive_40.webp",
-      "/images/spaces/cafes/cafe_drive_41.webp",
-      "/images/spaces/cafes/cafe_drive_42.webp"
+      "/images/spaces/cafes/cafe_drive_36.webp",
+      "/images/spaces/cafes/cafe_drive_2.webp",
+      "/images/spaces/cafes/cafe_drive_24.webp",
+      "/images/spaces/cafes/cafe_drive_26.webp"
     ],
     "filters": [
       "Specialty Coffee Bistro",
@@ -917,191 +729,6 @@ const mockCategories = [
       "Industrial Rooftop Bar",
       "Bohemian Lounge",
       "Quick-Service Gourmet Counter"
-    ]
-  },
-  {
-    "name": "Villas",
-    "slug": "villas",
-    "description": "Bespoke multi-floor villa interiors with luxury material palettes, indoor-outdoor integration, and smart home readiness.",
-    "heroImage": "/images/spaces/villas/villa_drive_30.webp",
-    "visible": true,
-    "details": {
-      "tag": "Luxury Living",
-      "headline": "Villa Interiors Designed Floor to Ceiling",
-      "body": "A villa is the ultimate canvas for interior design. We coordinate multi-floor design narratives — from ground floor living and entertainment zones to upper-level private suites and terraces — with a singular luxury material palette, smart home readiness, and indoor-outdoor living as a design principle, not an afterthought.",
-      "includes": [
-        "Multi-Floor Design Coordination",
-        "Luxury Material & Stone Selection",
-        "Indoor-Outdoor Living Integration",
-        "Home Theatre & AV Room",
-        "Private Gym & Study Design",
-        "Smart Home Preparation",
-        "Staircase & Landing Design",
-        "Landscaping Coordination"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/villas/villa_drive_30.webp",
-      "/images/spaces/villas/villa_drive_1.webp",
-      "/images/spaces/villas/villa_drive_2.webp",
-      "/images/spaces/villas/villa_drive_3.webp",
-      "/images/spaces/villas/villa_drive_4.webp",
-      "/images/spaces/villas/villa_drive_5.webp",
-      "/images/spaces/villas/villa_drive_6.webp",
-      "/images/spaces/villas/villa_drive_7.webp",
-      "/images/spaces/villas/villa_drive_8.webp",
-      "/images/spaces/villas/villa_drive_9.webp",
-      "/images/spaces/villas/villa_drive_10.webp",
-      "/images/spaces/villas/villa_drive_11.webp",
-      "/images/spaces/villas/villa_drive_12.webp",
-      "/images/spaces/villas/villa_drive_13.webp",
-      "/images/spaces/villas/villa_drive_14.webp",
-      "/images/spaces/villas/villa_drive_15.webp",
-      "/images/spaces/villas/villa_drive_16.webp",
-      "/images/spaces/villas/villa_drive_17.webp",
-      "/images/spaces/villas/villa_drive_18.webp",
-      "/images/spaces/villas/villa_drive_19.webp",
-      "/images/spaces/villas/villa_drive_20.webp",
-      "/images/spaces/villas/villa_drive_21.webp",
-      "/images/spaces/villas/villa_drive_22.webp",
-      "/images/spaces/villas/villa_drive_23.webp",
-      "/images/spaces/villas/villa_drive_24.webp",
-      "/images/spaces/villas/villa_drive_25.webp",
-      "/images/spaces/villas/villa_drive_26.webp",
-      "/images/spaces/villas/villa_drive_27.webp",
-      "/images/spaces/villas/villa_drive_28.webp",
-      "/images/spaces/villas/villa_drive_29.webp",
-      "/images/spaces/villas/villa_drive_31.webp",
-      "/images/spaces/villas/villa_drive_32.webp",
-      "/images/spaces/villas/villa_drive_33.webp",
-      "/images/spaces/villas/villa_drive_34.webp",
-      "/images/spaces/villas/villa_drive_35.webp"
-    ],
-    "filters": [
-      "Grand Double-Height Foyer",
-      "Courtyard & Lightwell Villa",
-      "Contemporary Gated Villa",
-      "Indo-Classical Luxury Villa",
-      "Private Pent-Villa Deck"
-    ]
-  },
-  {
-    "name": "Apartments",
-    "slug": "apartments",
-    "description": "Smart apartment interiors that maximise every square foot — optimised storage, multi-use furniture, and neutral versatile palettes.",
-    "heroImage": "/images/spaces/apartments/apartment_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Optimised Spaces",
-      "headline": "Apartment Interiors That Maximise Every Square Foot",
-      "body": "Smart apartment design is about precision — making 1000 sq ft live like 1400 through clever storage, multi-use furniture, and layouts that open the space up visually. We design apartments from studio configurations to 3BHK full-home packages, all with the same commitment to quality and finish.",
-      "includes": [
-        "Space Optimisation Floor Planning",
-        "Built-in Storage Throughout",
-        "Multi-Use & Convertible Furniture",
-        "Balcony & Utility Integration",
-        "Compact Modular Kitchen",
-        "Full Home Interior Package",
-        "Neutral & Versatile Palette",
-        "2BHK & 3BHK Specialisation"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/apartments/apartment_drive_1.webp",
-      "/images/spaces/apartments/apartment_drive_2.webp",
-      "/images/spaces/apartments/apartment_drive_3.webp",
-      "/images/spaces/apartments/apartment_drive_4.webp",
-      "/images/spaces/apartments/apartment_drive_5.webp",
-      "/images/spaces/apartments/apartment_drive_6.webp",
-      "/images/spaces/apartments/apartment_drive_7.webp",
-      "/images/spaces/apartments/apartment_drive_8.webp",
-      "/images/spaces/apartments/apartment_drive_9.webp",
-      "/images/spaces/apartments/apartment_drive_10.webp",
-      "/images/spaces/apartments/apartment_drive_11.webp",
-      "/images/spaces/apartments/apartment_drive_12.webp",
-      "/images/spaces/apartments/apartment_drive_13.webp",
-      "/images/spaces/apartments/apartment_drive_14.webp",
-      "/images/spaces/apartments/apartment_drive_15.webp",
-      "/images/spaces/apartments/apartment_drive_16.webp",
-      "/images/spaces/apartments/apartment_drive_17.webp",
-      "/images/spaces/apartments/apartment_drive_18.webp",
-      "/images/spaces/apartments/apartment_drive_19.webp",
-      "/images/spaces/apartments/apartment_drive_20.webp",
-      "/images/spaces/apartments/apartment_drive_21.webp",
-      "/images/spaces/apartments/apartment_drive_22.webp",
-      "/images/spaces/apartments/apartment_drive_23.webp",
-      "/images/spaces/apartments/apartment_drive_24.webp",
-      "/images/spaces/apartments/apartment_drive_25.webp",
-      "/images/spaces/apartments/apartment_drive_26.webp",
-      "/images/spaces/apartments/apartment_drive_27.webp",
-      "/images/spaces/apartments/apartment_drive_28.webp",
-      "/images/spaces/apartments/apartment_drive_29.webp",
-      "/images/spaces/apartments/apartment_drive_30.webp",
-      "/images/spaces/apartments/apartment_drive_31.webp",
-      "/images/spaces/apartments/apartment_drive_32.webp",
-      "/images/spaces/apartments/apartment_drive_33.webp",
-      "/images/spaces/apartments/apartment_drive_34.webp",
-      "/images/spaces/apartments/apartment_drive_35.webp",
-      "/images/spaces/apartments/apartment_drive_36.webp",
-      "/images/spaces/apartments/apartment_drive_37.webp",
-      "/images/spaces/apartments/apartment_drive_38.webp",
-      "/images/spaces/apartments/apartment_drive_39.webp",
-      "/images/spaces/apartments/apartment_drive_40.webp",
-      "/images/spaces/apartments/apartment_drive_41.webp",
-      "/images/spaces/apartments/apartment_drive_42.webp",
-      "/images/spaces/apartments/apartment_drive_43.webp",
-      "/images/spaces/apartments/apartment_drive_44.webp",
-      "/images/spaces/apartments/apartment_drive_45.webp",
-      "/images/spaces/apartments/apartment_drive_46.webp",
-      "/images/spaces/apartments/apartment_drive_47.webp",
-      "/images/spaces/apartments/apartment_drive_48.webp",
-      "/images/spaces/apartments/apartment_drive_49.webp",
-      "/images/spaces/apartments/apartment_drive_50.webp",
-      "/images/spaces/apartments/apartment_drive_51.webp",
-      "/images/spaces/apartments/apartment_drive_52.webp",
-      "/images/spaces/apartments/apartment_drive_53.webp",
-      "/images/spaces/apartments/apartment_drive_54.webp",
-      "/images/spaces/apartments/apartment_drive_55.webp",
-      "/images/spaces/apartments/apartment_drive_56.webp",
-      "/images/spaces/apartments/apartment_drive_57.webp",
-      "/images/spaces/apartments/apartment_drive_58.webp",
-      "/images/spaces/apartments/apartment_drive_59.webp",
-      "/images/spaces/apartments/apartment_drive_60.webp",
-      "/images/spaces/apartments/apartment_drive_61.webp",
-      "/images/spaces/apartments/apartment_drive_62.webp",
-      "/images/spaces/apartments/apartment_drive_63.webp",
-      "/images/spaces/apartments/apartment_drive_64.webp",
-      "/images/spaces/apartments/apartment_drive_65.webp",
-      "/images/spaces/apartments/apartment_drive_66.webp",
-      "/images/spaces/apartments/apartment_drive_67.webp",
-      "/images/spaces/apartments/apartment_drive_68.webp",
-      "/images/spaces/apartments/apartment_drive_69.webp",
-      "/images/spaces/apartments/apartment_drive_70.webp",
-      "/images/spaces/apartments/apartment_drive_71.webp",
-      "/images/spaces/apartments/apartment_drive_72.webp",
-      "/images/spaces/apartments/apartment_drive_73.webp",
-      "/images/spaces/apartments/apartment_drive_74.webp",
-      "/images/spaces/apartments/apartment_drive_75.webp",
-      "/images/spaces/apartments/apartment_drive_76.webp",
-      "/images/spaces/apartments/apartment_drive_77.webp",
-      "/images/spaces/apartments/apartment_drive_78.webp",
-      "/images/spaces/apartments/apartment_drive_79.webp",
-      "/images/spaces/apartments/apartment_drive_80.webp",
-      "/images/spaces/apartments/apartment_drive_81.webp",
-      "/images/spaces/apartments/apartment_drive_82.webp",
-      "/images/spaces/apartments/apartment_drive_83.webp",
-      "/images/spaces/apartments/apartment_drive_84.webp",
-      "/images/spaces/apartments/apartment_drive_85.webp",
-      "/images/spaces/apartments/apartment_drive_86.webp",
-      "/images/spaces/apartments/apartment_drive_87.webp",
-      "/images/spaces/apartments/apartment_drive_88.webp"
-    ],
-    "filters": [
-      "Compact 2BHK Smart Home",
-      "Luxury 3BHK Residence",
-      "Studio & Loft Space",
-      "High-Rise Balcony Suite",
-      "Open Concept Apartment"
     ]
   },
   {
@@ -1126,36 +753,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/foyer/foyer_drive_1.webp",
-      "/images/spaces/foyer/foyer_drive_2.webp",
-      "/images/spaces/foyer/foyer_drive_3.webp",
-      "/images/spaces/foyer/foyer_drive_4.webp",
-      "/images/spaces/foyer/foyer_drive_5.webp",
+      "/images/spaces/foyer/foyer_drive_23.webp",
       "/images/spaces/foyer/foyer_drive_6.webp",
+      "/images/spaces/foyer/foyer_drive_12.webp",
       "/images/spaces/foyer/foyer_drive_7.webp",
+      "/images/spaces/foyer/foyer_drive_5.webp",
+      "/images/spaces/foyer/foyer_drive_4.webp",
+      "/images/spaces/foyer/foyer_drive_19.webp",
       "/images/spaces/foyer/foyer_drive_8.webp",
       "/images/spaces/foyer/foyer_drive_9.webp",
-      "/images/spaces/foyer/foyer_drive_10.webp",
-      "/images/spaces/foyer/foyer_drive_11.webp",
-      "/images/spaces/foyer/foyer_drive_12.webp",
-      "/images/spaces/foyer/foyer_drive_13.webp",
-      "/images/spaces/foyer/foyer_drive_14.webp",
-      "/images/spaces/foyer/foyer_drive_15.webp",
+      "/images/spaces/foyer/foyer_drive_26.webp",
       "/images/spaces/foyer/foyer_drive_16.webp",
+      "/images/spaces/foyer/foyer_drive_15.webp",
+      "/images/spaces/foyer/foyer_drive_13.webp",
+      "/images/spaces/foyer/foyer_drive_30.webp",
+      "/images/spaces/foyer/foyer_drive_3.webp",
       "/images/spaces/foyer/foyer_drive_17.webp",
       "/images/spaces/foyer/foyer_drive_18.webp",
-      "/images/spaces/foyer/foyer_drive_19.webp",
-      "/images/spaces/foyer/foyer_drive_20.webp",
-      "/images/spaces/foyer/foyer_drive_21.webp",
       "/images/spaces/foyer/foyer_drive_22.webp",
-      "/images/spaces/foyer/foyer_drive_23.webp",
+      "/images/spaces/foyer/foyer_drive_11.webp",
+      "/images/spaces/foyer/foyer_drive_2.webp",
+      "/images/spaces/foyer/foyer_drive_14.webp",
       "/images/spaces/foyer/foyer_drive_24.webp",
-      "/images/spaces/foyer/foyer_drive_25.webp",
-      "/images/spaces/foyer/foyer_drive_26.webp",
-      "/images/spaces/foyer/foyer_drive_27.webp",
-      "/images/spaces/foyer/foyer_drive_28.webp",
-      "/images/spaces/foyer/foyer_drive_29.webp",
-      "/images/spaces/foyer/foyer_drive_30.webp"
+      "/images/spaces/foyer/foyer_drive_1.webp"
     ],
     "filters": [
       "Modern Floating Console",
@@ -1187,44 +807,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/bar/bar_drive_1.webp",
-      "/images/spaces/bar/bar_drive_2.webp",
-      "/images/spaces/bar/bar_drive_3.webp",
       "/images/spaces/bar/bar_drive_4.webp",
-      "/images/spaces/bar/bar_drive_5.webp",
-      "/images/spaces/bar/bar_drive_6.webp",
-      "/images/spaces/bar/bar_drive_7.webp",
-      "/images/spaces/bar/bar_drive_8.webp",
-      "/images/spaces/bar/bar_drive_9.webp",
-      "/images/spaces/bar/bar_drive_10.webp",
-      "/images/spaces/bar/bar_drive_11.webp",
-      "/images/spaces/bar/bar_drive_12.webp",
-      "/images/spaces/bar/bar_drive_13.webp",
       "/images/spaces/bar/bar_drive_14.webp",
-      "/images/spaces/bar/bar_drive_15.webp",
-      "/images/spaces/bar/bar_drive_16.webp",
-      "/images/spaces/bar/bar_drive_17.webp",
-      "/images/spaces/bar/bar_drive_18.webp",
-      "/images/spaces/bar/bar_drive_19.webp",
-      "/images/spaces/bar/bar_drive_20.webp",
-      "/images/spaces/bar/bar_drive_21.webp",
-      "/images/spaces/bar/bar_drive_22.webp",
-      "/images/spaces/bar/bar_drive_23.webp",
-      "/images/spaces/bar/bar_drive_24.webp",
-      "/images/spaces/bar/bar_drive_25.webp",
-      "/images/spaces/bar/bar_drive_26.webp",
-      "/images/spaces/bar/bar_drive_27.webp",
-      "/images/spaces/bar/bar_drive_28.webp",
-      "/images/spaces/bar/bar_drive_29.webp",
-      "/images/spaces/bar/bar_drive_30.webp",
-      "/images/spaces/bar/bar_drive_31.webp",
-      "/images/spaces/bar/bar_drive_32.webp",
-      "/images/spaces/bar/bar_drive_33.webp",
-      "/images/spaces/bar/bar_drive_34.webp",
-      "/images/spaces/bar/bar_drive_35.webp",
-      "/images/spaces/bar/bar_drive_36.webp",
+      "/images/spaces/bar/bar_drive_2.webp",
+      "/images/spaces/bar/bar_drive_11.webp",
       "/images/spaces/bar/bar_drive_37.webp",
-      "/images/spaces/bar/bar_drive_38.webp"
+      "/images/spaces/bar/bar_drive_18.webp",
+      "/images/spaces/bar/bar_drive_12.webp",
+      "/images/spaces/bar/bar_drive_5.webp",
+      "/images/spaces/bar/bar_drive_3.webp",
+      "/images/spaces/bar/bar_drive_21.webp",
+      "/images/spaces/bar/bar_drive_33.webp",
+      "/images/spaces/bar/bar_drive_23.webp",
+      "/images/spaces/bar/bar_drive_36.webp",
+      "/images/spaces/bar/bar_drive_28.webp",
+      "/images/spaces/bar/bar_drive_16.webp",
+      "/images/spaces/bar/bar_drive_7.webp",
+      "/images/spaces/bar/bar_drive_13.webp",
+      "/images/spaces/bar/bar_drive_24.webp",
+      "/images/spaces/bar/bar_drive_1.webp",
+      "/images/spaces/bar/bar_drive_31.webp",
+      "/images/spaces/bar/bar_drive_9.webp",
+      "/images/spaces/bar/bar_drive_29.webp",
+      "/images/spaces/bar/bar_drive_30.webp"
     ],
     "filters": [
       "Backlit Onyx Counter",
@@ -1256,29 +861,29 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_5.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_9.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_10.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_12.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_18.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_19.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_22.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_23.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_18.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_25.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_25.webp"
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_9.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_12.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_10.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_5.webp"
     ],
     "filters": [
       "Central Island Suite",
@@ -2176,6 +1781,455 @@ const getTagsForImage = (imgUrl, categoryFilters = []) => {
 
 const getNonEmpty = (val, fallback) => (val && typeof val === 'string' && val.trim().length > 0 ? val : fallback);
 
+// ── SPACE-SPECIFIC FAQS (from content.md) ──────────────────────────────────
+const SPACE_FAQS = {
+  "modular-kitchen": [
+    {
+      "q": "What hardware and fittings do you use?",
+      "a": "Every kitchen we build uses concealed soft close hinges and channels from Blum, paired with anti fingerprint acrylic or PU finishes depending on the palette you go with."
+    },
+    {
+      "q": "How long does a modular kitchen installation take?",
+      "a": "Once the design is signed off, most kitchens are built and installed within four to six weeks. The exact timeline depends on how complex the layout is and how quickly materials come in."
+    },
+    {
+      "q": "Can you work around existing plumbing and electrical points?",
+      "a": "Yes. Our team maps out your existing plumbing and wiring first, then designs the modules to work around it, so there's very little disruption to what's already there."
+    },
+    {
+      "q": "What countertop materials do you recommend?",
+      "a": "Quartz and polygranite are what we use most often, mainly because they resist stains well and hold up over time. If you have something else in mind, we can source other stone finishes too."
+    },
+    {
+      "q": "Can the kitchen be designed around a specific cooking style, like heavy Indian cooking?",
+      "a": "Yes. For homes that cook a lot every day, we plan a separate utility or wet kitchen zone alongside the main kitchen, so grease and strong smells stay contained instead of spreading through the house."
+    }
+  ],
+  "master-bedroom": [
+    {
+      "q": "Do you handle everything, wardrobes, bed backs, and lighting, as one design?",
+      "a": "Yes. We design the whole room as one composition, so the wardrobe, the bed back panelling, and the lighting are all planned together instead of being added on separately."
+    },
+    {
+      "q": "Can the design include a dressing or vanity nook?",
+      "a": "Definitely. We often build a dressing unit or vanity nook right into the wardrobe wall or a nearby alcove, matched to the same finishes as the rest of the room."
+    },
+    {
+      "q": "What acoustic or lighting touches do you recommend for a bedroom?",
+      "a": "We usually layer warm cove lighting with a dimmable reading light, and we can also suggest a soft, fabric panelled headboard wall if you want the room to feel quieter and warmer."
+    },
+    {
+      "q": "Can you design around an existing bed or furniture we want to keep?",
+      "a": "Yes. We build the wardrobe and panelling to complement pieces you already own, matching the tone and proportions instead of asking you to replace everything."
+    },
+    {
+      "q": "Do you offer soundproofing or blackout solutions for bedrooms?",
+      "a": "Where it's needed, we can recommend blackout curtain tracks and denser panelling materials that also help cut down on outside noise. It's best to bring this up during the design consultation so we can plan for it early."
+    }
+  ],
+  "living-room": [
+    {
+      "q": "Can you design a TV unit, wall panelling, and seating layout together?",
+      "a": "Yes. We treat the whole living room as one space, so the entertainment wall, the panelling, and the furniture layout are all planned together rather than as separate pieces."
+    },
+    {
+      "q": "Do you offer false ceiling and lighting design as part of this?",
+      "a": "Yes, that's a core part of every living room we design. False ceiling profiles and layered lighting, meaning ambient, accent, and task lighting, are all planned in from the start."
+    },
+    {
+      "q": "Can you work with an open plan living dining layout?",
+      "a": "Yes, we do this often. We use material changes and lighting transitions to visually separate the living and dining areas without needing to put up any physical walls."
+    },
+    {
+      "q": "How do you plan seating layouts for entertaining large groups?",
+      "a": "We start by mapping out how people naturally move through the room and where the eye is drawn, usually toward the TV or a focal wall. From there, we size the seating so the room works just as well for a quiet evening as it does for a full house."
+    },
+    {
+      "q": "Can existing artwork or a specific colour palette guide the design?",
+      "a": "Yes. We often build the entire material and colour palette around one piece of art, a rug, or even just a colour you already love."
+    }
+  ],
+  "wardrobes": [
+    {
+      "q": "What internal organisation options are available?",
+      "a": "We can add pull out trouser and tie racks, jewellery trays, drawer dividers, and dedicated sections for shoes or accessories, all planned around how you actually get ready each day."
+    },
+    {
+      "q": "Sliding or hinged shutters, which do you recommend?",
+      "a": "It really depends on your room. Sliding shutters work well when floor space is tight, while hinged shutters give you full access to every shelf at once. We'll take a look at your room and recommend what fits best."
+    },
+    {
+      "q": "What finishes are available for wardrobe shutters?",
+      "a": "We offer laminate, acrylic, veneer, and PU finishes across a wide range of colours and textures, all chosen to match the rest of your bedroom."
+    },
+    {
+      "q": "Can you design a wardrobe for a shared or children's room?",
+      "a": "Yes. For shared rooms, we plan clear zoning within the same unit, and for kids' rooms, we can add lower sections that adjust in height as they grow."
+    },
+    {
+      "q": "How do you handle wardrobes in irregular or sloped ceiling rooms?",
+      "a": "We size every module to your room's actual dimensions, sloped ceilings and awkward corners included, rather than trying to fit standard sized units into a space that doesn't match."
+    }
+  ],
+  "home-office": [
+    {
+      "q": "How do you balance a professional look with comfort for long work hours?",
+      "a": "We focus on comfortable desk heights, good task lighting, and storage that keeps your desk surface clear, while still tying the whole unit's finish back to the rest of your home."
+    },
+    {
+      "q": "Can you include storage for documents and equipment?",
+      "a": "Yes. Closed cabinetry, filing drawers, and hidden shelving for equipment are all things we plan for as standard in a home office."
+    },
+    {
+      "q": "Do you design for video call backdrops?",
+      "a": "We do. A lot of people ask for a styled shelf or panelled wall right behind the desk, specifically for video calls, and we plan that in from the beginning."
+    },
+    {
+      "q": "Can a home office be designed within a small nook or alcove?",
+      "a": "Yes, this is actually one of the more common requests we get. Compact desk and storage units fit well into alcoves, landing spaces, or the space under a staircase."
+    },
+    {
+      "q": "Do you factor in cable management and power points?",
+      "a": "Yes. We plan the cable routing so nothing is left hanging or visible, and we coordinate power point placement with your electrician before anything gets built."
+    }
+  ],
+  "commercial-office": [
+    {
+      "q": "Can you handle full office fit outs, not just furniture?",
+      "a": "Yes. We cover workstation layout, cabin partitioning, reception design, and joinery, all planned as one complete fit out rather than separate pieces."
+    },
+    {
+      "q": "How do you plan for scalability as a team grows?",
+      "a": "We design modular workstation and storage systems that can be reconfigured or added to later, so your layout can grow along with your team without needing a full redo."
+    },
+    {
+      "q": "Do you factor in branding elements like logo walls or signature colours?",
+      "a": "Yes. We build your brand colours, logo walls, and preferred materials right into the fit out, so the space feels like your company the moment someone walks in."
+    },
+    {
+      "q": "Can you design cabins and meeting rooms with acoustic separation?",
+      "a": "Yes. We choose partitioning materials and door systems with sound separation in mind, so cabins and meeting rooms stay private and quiet."
+    },
+    {
+      "q": "Do you work around an existing office lease or building structure?",
+      "a": "Yes. Our team surveys the existing structure, columns, and services first, then designs the fit out to work within those constraints rather than fighting against them."
+    }
+  ],
+  "pooja-room": [
+    {
+      "q": "Can the pooja room be designed to match the rest of the home's material palette?",
+      "a": "Yes. While we always respect traditional proportions and orientation, we design the shutters, backdrop, and lighting to feel connected to the rest of your home's look and feel."
+    },
+    {
+      "q": "Do you handle lighting and ventilation for pooja spaces?",
+      "a": "Yes. We plan warm accent lighting, and where the layout allows, we'll also work in ventilation or a small window to keep the space feeling naturally lit and airy."
+    },
+    {
+      "q": "Can storage for pooja items be built in?",
+      "a": "Yes. We include concealed drawers and shelving for diyas, prayer items, and other essentials right within the unit."
+    },
+    {
+      "q": "Do you design pooja units for compact apartments as well as larger homes?",
+      "a": "Yes. We scale the design to whatever space you have, from a small wall mounted mandir in a compact apartment to a full walk in pooja room in a larger home."
+    },
+    {
+      "q": "Can you incorporate traditional motifs or jaali (lattice) work into the design?",
+      "a": "Yes. Jaali panels, carved motifs, and other traditional detailing can all be worked into the shutter or backdrop alongside more modern materials."
+    }
+  ],
+  "dining-room": [
+    {
+      "q": "Can you design a dining unit that connects with an adjoining kitchen or living room?",
+      "a": "Yes. We plan the dining space to flow naturally with the kitchen or living area next to it, often using shared materials or a continuous ceiling and lighting design to tie it all together."
+    },
+    {
+      "q": "Do you offer crockery or display units as part of the dining design?",
+      "a": "Yes. A crockery unit or display shelving with glass shutters and accent lighting is something we regularly include as part of the dining setup."
+    },
+    {
+      "q": "Can lighting over the dining table be customised?",
+      "a": "Yes. We plan pendant or cove lighting specifically around your table's size and how many people usually sit at it."
+    },
+    {
+      "q": "Can you design around a dining table we already own?",
+      "a": "Yes. We build the surrounding storage and lighting to complement a table you already have, so you don't need to replace it just to make the room work."
+    },
+    {
+      "q": "Do you offer built in bench seating for smaller dining spaces?",
+      "a": "Yes. Built in bench seating with storage tucked underneath is a common solution we use for smaller dining areas."
+    }
+  ],
+  "tv-units": [
+    {
+      "q": "Can the TV unit include concealed wiring and equipment storage?",
+      "a": "Yes. Every TV unit we design includes hidden cable routing and closed storage for set top boxes, consoles, and anything else you need tucked away."
+    },
+    {
+      "q": "What backdrop finishes work best behind a TV unit?",
+      "a": "Textured veneers, fluted panelling, and stone finish laminates are all popular choices. We'll recommend one based on how your living room is lit and what colours you're already working with."
+    },
+    {
+      "q": "Can the unit include display shelving for décor?",
+      "a": "Yes. Open shelving with accent lighting is something we often build in alongside the closed storage, so you get both function and a place to show off your favorite pieces."
+    },
+    {
+      "q": "Do you design floating or floor mounted TV units?",
+      "a": "We do both. Floating units give you a lighter, more modern look and make the floor easier to clean, while floor mounted units offer more storage space."
+    },
+    {
+      "q": "Can the TV unit size adjust to different screen sizes in future?",
+      "a": "We build in a bit of flexibility in the shelving depth and width, so it can comfortably handle a larger screen down the line without needing to be redone."
+    }
+  ],
+  "reception-areas": [
+    {
+      "q": "Can the reception design reflect our brand identity?",
+      "a": "Yes. We work your logo, brand colours, and preferred materials into the seating, the backdrop, and the signage, so the space feels unmistakably yours."
+    },
+    {
+      "q": "Do you design the seating and waiting area layout as well?",
+      "a": "Yes. We plan the seating capacity, how people move through the space while waiting, and storage together, so the reception feels both functional and welcoming."
+    },
+    {
+      "q": "Can lighting be used to highlight a brand wall or reception desk?",
+      "a": "Yes. Accent and cove lighting are commonly used to draw attention to a reception desk or a branded feature wall."
+    },
+    {
+      "q": "Do you design the reception desk to include concealed storage?",
+      "a": "Yes. We build in hidden storage for daily essentials, files, and equipment, so the desk surface itself always stays clean and clutter free."
+    },
+    {
+      "q": "Can you incorporate digital displays or signage into the design?",
+      "a": "Yes. We can plan the recesses and cable routing needed for digital displays or signage as part of the overall reception wall design."
+    }
+  ],
+  "cafes-restaurants": [
+    {
+      "q": "Do you design the full space, seating, counter, and back of house storage?",
+      "a": "Yes. We cover the front of house seating and counter design as well as the back of house storage and service counters, so the whole space works as one system."
+    },
+    {
+      "q": "Can the design reflect a specific theme or cuisine style?",
+      "a": "Yes. The materials, lighting, and furniture style are all shaped around the concept and cuisine you're building the space for."
+    },
+    {
+      "q": "How do you plan for durability in high footfall spaces?",
+      "a": "We choose finishes and hardware built to handle heavy daily use, especially on counters, seating edges, and busy flooring transitions."
+    },
+    {
+      "q": "Can you design flexible seating for different group sizes?",
+      "a": "Yes. We plan modular or reconfigurable seating, so the space can shift easily between couple seating, group tables, and larger events."
+    },
+    {
+      "q": "Do you factor in kitchen workflow when designing the counter area?",
+      "a": "Yes. The service counter and back of house layout are planned around how your kitchen actually works, so orders and pickups keep moving smoothly."
+    }
+  ],
+  "foyer": [
+    {
+      "q": "What's typically included in a foyer unit design?",
+      "a": "A foyer unit usually combines a console or shoe storage base with a mirror or display piece, along with some accent lighting, all sized to fit your entryway."
+    },
+    {
+      "q": "Can you design a foyer unit for a small entryway?",
+      "a": "Yes. Foyer units are one of the most flexible pieces we design, and we can scale the layout down to fit a compact entryway without losing storage."
+    },
+    {
+      "q": "Do you include seating in foyer designs?",
+      "a": "Where space allows, we can add a bench or a seating ledge built right into the console."
+    },
+    {
+      "q": "Can the foyer unit include concealed storage for keys and everyday items?",
+      "a": "Yes. Small drawers or a hidden tray for keys, mail, and everyday items are a common addition to the console."
+    },
+    {
+      "q": "Does the foyer design need to match the rest of the home?",
+      "a": "We usually tie the foyer's materials and colours back to the living area right next to it, so it feels like a natural entry point rather than a separate style stuck at the front door."
+    }
+  ],
+  "bar": [
+    {
+      "q": "Can the bar console include glass storage and a display backdrop?",
+      "a": "Yes. Glass shelf storage, bottle racks, and a lit up backdrop are all standard elements we design into a bar console."
+    },
+    {
+      "q": "Do you offer a wine chiller or fridge integration?",
+      "a": "Yes. We can plan for appliances like a wine chiller to fit right within the console's dimensions."
+    },
+    {
+      "q": "What lighting works best for a bar console?",
+      "a": "Warm LED strip lighting along the shelves, paired with a backlit panel, tends to give the console that showcase feel people love."
+    },
+    {
+      "q": "Can the console include a fold out or extendable serving surface?",
+      "a": "Yes. We can build in a fold out or pull out serving shelf, so it's ready whenever you're entertaining."
+    },
+    {
+      "q": "Where in the home does a bar console typically work best?",
+      "a": "It depends on your layout, but a feature wall in the living room or a nook near the dining area are the two spots we design for most often."
+    }
+  ],
+  "walk-in-wardrobe": [
+    {
+      "q": "How is a walk in wardrobe different from a standard wardrobe system?",
+      "a": "A walk in wardrobe is really its own room. Instead of a single wall unit, it has open aisles, often a central island or ottoman, and storage zoned out for different needs."
+    },
+    {
+      "q": "Can you include a dedicated space for accessories, jewellery, and bags?",
+      "a": "Yes. Dedicated drawers, trays, and display shelving for accessories are a core part of how we plan a walk in wardrobe."
+    },
+    {
+      "q": "Do walk in wardrobes include a mirror or dressing area?",
+      "a": "Most of our designs include a full length mirror and a dedicated dressing area, usually paired with focused lighting to make getting ready easier."
+    },
+    {
+      "q": "What's the minimum space needed for a walk in wardrobe?",
+      "a": "It really depends on the layout of your home, but generally we can work with a dedicated room or a large alcove. Our team will confirm what's possible during the site visit."
+    },
+    {
+      "q": "Can a walk in wardrobe be zoned separately for two people?",
+      "a": "Yes, we do this often. We design distinct sections for each person, tailored to how each of you actually stores and organizes your things."
+    }
+  ],
+  "false-ceilings": [
+    {
+      "q": "How do you choose between gypsum, POP, or wooden ceiling profiles?",
+      "a": "We evaluate your room's ceiling height, lighting requirements, and overall aesthetic. Gypsum gives crisp, clean modern lines, POP allows for intricate sculptural curves, and wooden rafters or veneer panels bring tactile warmth."
+    },
+    {
+      "q": "Does a false ceiling affect the room's temperature and acoustics?",
+      "a": "Yes, the air pocket created by a false ceiling acts as a natural thermal insulator, keeping the room cooler in summer. Adding acoustic insulation also cuts down sound transmission significantly."
+    },
+    {
+      "q": "How do you integrate cove lighting and AC vents into the ceiling?",
+      "a": "We integrate indirect warm LED coves and concealed AC line diffuser slots directly into the ceiling framing, so the ceiling plane stays uncluttered and glare free."
+    },
+    {
+      "q": "How much ceiling height is lost with a false ceiling?",
+      "a": "Most standard designs require only five to seven inches of drop, which is ample space to conceal wiring, LED fixtures, and cove channels without making the room feel lower."
+    }
+  ],
+  "commercial-interiors": [
+    {
+      "q": "Can you design and execute commercial spaces on strict handover deadlines?",
+      "a": "Yes. We work with detailed milestone schedules and parallel factory fabrication tracks to ensure commercial handovers occur strictly on time."
+    },
+    {
+      "q": "Do you provide MEP and fire safety coordination for commercial spaces?",
+      "a": "Yes. Electrical, HVAC routing, plumbing, data cabling, and fire sprinkler compliance are mapped into the design before any physical execution starts."
+    },
+    {
+      "q": "How do you balance high durability with high aesthetic impact?",
+      "a": "We specify commercial grade laminates, scratch resistant polygranite surfaces, and heavy duty commercial flooring that retain their pristine appearance under heavy foot traffic."
+    },
+    {
+      "q": "Can you build customized breakout zones and acoustic conference rooms?",
+      "a": "Yes. We design collaborative pods, phone booths, and conference rooms lined with acoustic wall panelling to keep discussions private and productive."
+    }
+  ],
+  "villas": [
+    {
+      "q": "How do you ensure design continuity across multiple floors in a villa?",
+      "a": "We establish a cohesive material and palette language across the double height living zones, staircases, and private suites, so every level feels connected while maintaining distinct room personalities."
+    },
+    {
+      "q": "Do you handle landscape integration, courtyards, and terraces?",
+      "a": "Yes. We design transitional spaces where indoor living flows seamlessly into landscaped courtyards, private balconies, and outdoor lounge decks."
+    },
+    {
+      "q": "Can you accommodate home automation and specialized smart lighting across the villa?",
+      "a": "Yes. We coordinate smart multi circuit ambient lighting, motorized curtain tracks, and centralized automation hubs directly during the structural wiring stage."
+    },
+    {
+      "q": "What is the typical timeline for an end-to-end villa interior?",
+      "a": "Complete villa turnkey executions typically span three to five months depending on square footage, structural customization, and bespoke joinery scope."
+    }
+  ],
+  "apartments": [
+    {
+      "q": "How do you maximize space and storage in compact or luxury apartments?",
+      "a": "We utilize floor to ceiling modular cabinetry, multifunctional storage niches, concealed pocket sliding doors, and seamless reflective finishes that make spaces feel significantly larger."
+    },
+    {
+      "q": "Can you manage society permissions and restricted working hours?",
+      "a": "Yes. Our site managers coordinate directly with society associations, adhering strictly to permissible work timings, debris disposal protocols, and noise restrictions."
+    },
+    {
+      "q": "How do you handle ducting, beams, and columns that cannot be moved?",
+      "a": "We design custom architectural panelling, false ceiling reveals, and storage enclosures that incorporate structural columns seamlessly into the room's focal design."
+    },
+    {
+      "q": "Do you provide complete 3D visualization before work begins?",
+      "a": "Yes. You receive photorealistic 3D renders of every room along with material sample boards, ensuring total alignment before a single tool is lifted."
+    }
+  ]
+};
+
+// ── SPACE MATERIALS MACRO CLOSE-UPS ─────────────────────────────────────────
+const SPACE_MATERIAL_MACROS = [
+  {
+    title: 'Concealed Soft-Close Hardware',
+    brand: 'Blum • Häfele German Fitments',
+    tag: 'Hardware Precision',
+    desc: 'Tested for 200,000 opening cycles with silent-dampening Blumotion channels and clip-top hinges.',
+    image: '/images/materials/luminous_grid_8313.jpg'
+  },
+  {
+    title: 'Anti-Fingerprint Acrylic & PU',
+    brand: 'E0-Certified Shutter Fronts',
+    tag: 'Surface Engineering',
+    desc: 'Ultra-gloss 95+ GU or velvety ultra-matte finishes resistant to scratches, heat, and moisture.',
+    image: '/images/materials/irish.png'
+  },
+  {
+    title: 'Mitred Sintered Stone & Quartz',
+    brand: 'Calacatta & Polygranite',
+    tag: 'Waterfall Edging',
+    desc: 'Seamless mitred edge waterfall returns engineered for zero stain absorption and lifetime durability.',
+    image: '/images/materials/florida.png'
+  },
+  {
+    title: 'Concealed 3000K Lighting Tracks',
+    brand: 'Warm Indirect Shadowline',
+    tag: 'Architectural Illumination',
+    desc: 'Concealed LED profiles integrated into cabinet bases and ceiling reveals with flicker-free dimming.',
+    image: '/images/materials/charcoal_luxe_4015.jpg'
+  }
+];
+
+// ── 4-STEP PROCESS STRIP (from content.md) ──────────────────────────────────
+const SPACE_PROCESS_STEPS = [
+  {
+    step: '01',
+    title: 'Design Consultation & 3D',
+    timeline: 'Week 1 – 2',
+    desc: 'Site laser measurements, spatial flow analysis, and photorealistic 3D visualization renders before touching a single wall.'
+  },
+  {
+    step: '02',
+    title: 'Material & Hardware Sign-Off',
+    timeline: 'Week 2 – 3',
+    desc: 'In-person material curation in our physical library. Touch and approve your acrylics, veneers, stone slabs, and German fittings.'
+  },
+  {
+    step: '03',
+    title: 'Precision Factory Fabrication',
+    timeline: 'Week 4 – 6',
+    desc: 'Modular sub-assemblies crafted in state-of-the-art facilities with computerized CNC routing and zero-gap edge banding.'
+  },
+  {
+    step: '04',
+    title: 'White-Glove Installation & Handover',
+    timeline: 'Week 6 – 8',
+    desc: 'Flawless on-site joinery, electrical and appliance integration, exhaustive quality audits, full cleanup, and keys in hand.'
+  }
+];
+
+// Helper to retrieve unique title, layout type, material tag, and architectural description for each gallery image
+const getGalleryItemDetails = (categorySlug, imgUrl, index) => {
+  return getCatalogItem(categorySlug, index);
+};
+
 const WhatWeDo = () => {
   const { slug } = useParams();
   const [activeFilter, setActiveFilter] = useState('All');
@@ -2186,6 +2240,8 @@ const WhatWeDo = () => {
   const [activeSlideIdx, setActiveSlideIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const isDragging = useRef(false);
+  const [zoomedImage, setZoomedImage] = useState(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   // ── Lead Capture Modal State for "Load More Designs" ─────────────────────
   const [isCatalogModalOpen, setIsCatalogModalOpen] = useState(false);
@@ -2388,7 +2444,8 @@ const WhatWeDo = () => {
 
   const [spacesList, setSpacesList] = useState(() => {
     const s = getCMSData(STORAGE_KEYS.SETTINGS);
-    return (Array.isArray(s?.spaces_list) && s.spaces_list.length > 0) ? s.spaces_list : mockCategories;
+    const raw = (Array.isArray(s?.spaces_list) && s.spaces_list.length > 0) ? s.spaces_list : mockCategories;
+    return raw.filter(c => c.slug !== 'apartments' && c.slug !== 'villas');
   });
 
   useEffect(() => {
@@ -2403,7 +2460,7 @@ const WhatWeDo = () => {
           visible: settings.spaces_hero_visible !== false
         });
         if (Array.isArray(settings.spaces_list) && settings.spaces_list.length > 0) {
-          setSpacesList(settings.spaces_list);
+          setSpacesList(settings.spaces_list.filter(c => c.slug !== 'apartments' && c.slug !== 'villas'));
         }
       }
 
@@ -2413,7 +2470,7 @@ const WhatWeDo = () => {
           const d = res.data.data;
           setCMSData(STORAGE_KEYS.SETTINGS, d);
           if (Array.isArray(d.spaces_list) && d.spaces_list.length > 0) {
-            setSpacesList(d.spaces_list);
+            setSpacesList(d.spaces_list.filter(c => c.slug !== 'apartments' && c.slug !== 'villas'));
           }
           if (Array.isArray(d.spaces_before_after_slides) && d.spaces_before_after_slides.length > 0) {
             setSpacesHeroState((prev) => ({
@@ -2440,6 +2497,8 @@ const WhatWeDo = () => {
   useEffect(() => {
     setVisibleCount(6);
     setActiveFilter('All');
+    setZoomedImage(null);
+    setOpenFaqIndex(null);
     if (window.lenis) {
       window.lenis.scrollTo(0, { immediate: true });
     }
@@ -2447,6 +2506,18 @@ const WhatWeDo = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [slug]);
+
+  // Global Escape key listener to close zoomed image lightbox or catalog modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setZoomedImage(null);
+        setIsCatalogModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     setVisibleCount(6);
@@ -2524,8 +2595,50 @@ const WhatWeDo = () => {
 
   // ── CATEGORY DETAIL PAGE ───────────────────────────────────────────────────
   if (activeCategory) {
-    const allImages = (activeCategory.galleryImages || []).filter(img => !img.includes('walk_in_wardrobe_drive_6.webp'));
-    const visibleImages = allImages.slice(0, visibleCount);
+    const allRawImages = (activeCategory.galleryImages || []).filter(img => !img.includes('walk_in_wardrobe_drive_6.webp'));
+    
+    // Enrich all images with layout types, material tags, and descriptions
+    const enrichedImages = allRawImages.map((img, i) => ({
+      img,
+      ...getGalleryItemDetails(activeCategory.slug, img, i)
+    }));
+
+    // Group / order images by layout type so reference images are ordered by type
+    const orderedImages = [...enrichedImages].sort((a, b) => {
+      const filters = activeCategory.filters || [];
+      const indexA = filters.indexOf(a.layoutType);
+      const indexB = filters.indexOf(b.layoutType);
+      return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+    });
+
+    const filteredImages = activeFilter === 'All'
+      ? orderedImages
+      : orderedImages.filter(item => item.layoutType === activeFilter);
+
+    const visibleItems = filteredImages.slice(0, visibleCount);
+
+    const spaceFaqs = SPACE_FAQS[activeCategory.slug] || [
+      {
+        q: `What is the estimated timeline for executing a ${activeCategory.name}?`,
+        a: `From finalized 3D visualizations to final white-glove handover, execution typically spans 4 to 8 weeks depending on layout scope and bespoke material sourcing.`
+      },
+      {
+        q: `Can ${activeCategory.name} designs be customized to my apartment or villa layout?`,
+        a: `Yes. Every module, shutter finish, lighting profile, and internal organizer is engineered to the exact millimeter dimensions of your floor plan.`
+      },
+      {
+        q: `What warranty is provided on materials and hardware?`,
+        a: `We provide up to a 10-year comprehensive warranty on all structural HDHMR/WPC carcasses and genuine German hardware from Blum and Häfele.`
+      },
+      {
+        q: `Do you provide complete turnkey installation?`,
+        a: `Yes. From initial site measurement and 3D modeling to electrical routing, stone fabrication, and on-site fitting, everything is executed by our in-house teams under one roof.`
+      }
+    ];
+
+    const crossLinkCategories = displayCategories
+      .filter(c => c.slug !== activeCategory.slug)
+      .slice(0, 3);
 
     return (
       <div className="bg-bg min-h-screen">
@@ -2535,7 +2648,7 @@ const WhatWeDo = () => {
           url={`/spaces/${activeCategory.slug}`} 
         />
 
-        {/* Cinematic Detail Hero (Sleek Tight Margin & Curved Corners) */}
+        {/* ── 1. CINEMATIC DETAIL HERO ────────────────────────────────────────── */}
         <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-2.5 sm:px-4 md:px-5 lg:px-6 w-full h-[58vh] sm:h-[75vh] lg:h-[90vh] min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
           <div className="relative w-full h-full rounded-[18px] sm:rounded-[26px] lg:rounded-[32px] overflow-hidden bg-bg-dark shadow-[0_16px_40px_rgba(0,0,0,0.22)] border border-white/10 flex items-end">
             <img 
@@ -2576,10 +2689,32 @@ const WhatWeDo = () => {
           </div>
         </section>
 
-        {/* Detailed Domain Info */}
+        {/* ── 2. TRUST STRIP (Projects / Legacy / Sq.Ft / Warranty) ────────────── */}
+        <section className="border-y border-ink-border/30 bg-bg-card/70 py-6 sm:py-7">
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/20">
+            <div className="pt-2 md:pt-0 md:px-4 space-y-1">
+              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">25+ Projects</p>
+              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Completed Turnkey Residences</p>
+            </div>
+            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
+              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">40+ Years</p>
+              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Combined Construction Legacy</p>
+            </div>
+            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
+              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">50,000+ Sq.Ft</p>
+              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Designed & Executed</p>
+            </div>
+            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
+              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">10-Year</p>
+              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Comprehensive Hardware Warranty</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 3. INTRO BLOCK (Framing paragraph + Primary CTA) ────────────────── */}
         {activeCategory.details && (
-          <section id="space-details-section" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 border-b border-ink-border/20">
-            <div className="max-w-[840px] space-y-5">
+          <section id="space-details-section" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+            <div className="max-w-[880px] space-y-5">
               <Reveal>
                 <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
                   {activeCategory.details.tag || `${activeCategory.name} Architecture`}
@@ -2593,10 +2728,10 @@ const WhatWeDo = () => {
                 <div className="pt-4">
                   <Link 
                     to="/contact" 
-                    className="inline-flex items-center gap-2 bg-ink text-bg font-sans text-[12px] uppercase font-bold tracking-widest px-7 py-3.5 rounded-full hover:bg-gold hover:text-ink transition-all duration-300 shadow-md"
+                    className="inline-flex items-center gap-2 bg-ink text-bg font-sans text-[12px] uppercase font-bold tracking-widest px-8 py-4 rounded-full hover:bg-gold hover:text-ink transition-all duration-300 shadow-md cursor-pointer"
                   >
                     <span>Enquire About {activeCategory.name}</span>
-                    <ArrowUpRight size={14} />
+                    <ArrowUpRight size={15} />
                   </Link>
                 </div>
               </Reveal>
@@ -2604,63 +2739,371 @@ const WhatWeDo = () => {
           </section>
         )}
 
-        {/* Gallery Grid */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-2">Design Showcase</p>
-              <h3 className="font-display text-[28px] sm:text-[34px] font-bold text-ink tracking-tight">
-                {activeCategory.name} Gallery
-              </h3>
-            </div>
-            <span className="font-sans text-[12px] text-ink-muted">
-              Showing {visibleImages.length} of {allImages.length} images
-            </span>
+        {/* ── 4. GALLERY SHOWCASE (Ordered by Type + Captions + Zoom Modal) ── */}
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+          <div className="mb-10">
+            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-2">Design Showcase</p>
+            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+              {activeCategory.name} Gallery
+            </h3>
+            <p className="font-sans text-xs text-ink-soft mt-1">
+              Reference designs categorized and ordered by layout configuration. Click any design to zoom in.
+            </p>
           </div>
 
-          {allImages.length > 0 && (
+          {visibleItems.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {visibleImages.map((img, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                {visibleItems.map((item, i) => (
                   <Reveal key={i} delay={Math.min(i * 0.05, 0.2)}>
-                    <div className="group relative rounded-[20px] overflow-hidden aspect-[4/3] bg-bg-dark border border-ink-border/20 shadow-sm">
-                      <img 
-                        src={getOptimizedImageUrl(img, 800, 75)} 
-                        alt={`${activeCategory.name} Design ${i + 1}`} 
-                        loading="lazy" 
-                        decoding="async" 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                        <span className="font-sans text-[11px] font-semibold text-white uppercase tracking-wider">
-                          {activeCategory.name} • View #{i + 1}
-                        </span>
+                    <div 
+                      onClick={() => setZoomedImage(item)}
+                      className="group relative rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 shadow-sm hover:shadow-xl hover:border-gold/40 transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      {/* Photo Container */}
+                      <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
+                        <img 
+                          src={getOptimizedImageUrl(item.img, 1400, 92)} 
+                          alt={`${item.title} — ${activeCategory.name}`} 
+                          loading="lazy" 
+                          decoding="async" 
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        
+
+                        {/* Zoom Indicator */}
+                        <div className="absolute bottom-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
+                          <div className="w-9 h-9 rounded-full bg-gold text-charcoal flex items-center justify-center shadow-lg font-bold">
+                            <Maximize2 size={15} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image Caption & Description Under Image */}
+                      <div className="p-5 bg-bg-card space-y-2 border-t border-ink-border/20">
+                        <div className="flex items-center justify-between gap-2">
+                          <h4 className="font-display font-bold text-sm text-ink group-hover:text-gold transition-colors truncate" title={item.title}>
+                            {item.title}
+                          </h4>
+                          <span className="text-[10px] font-sans font-bold text-gold uppercase tracking-wider shrink-0">
+                            Details ↗
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-sans font-semibold px-2 py-0.5 rounded bg-gold/10 text-gold uppercase tracking-wider shrink-0">
+                            {item.layoutType}
+                          </span>
+                          <p className="font-sans text-[11px] text-ink-muted truncate">
+                            {item.materialTag}
+                          </p>
+                        </div>
+                        <p className="font-sans text-xs text-ink-soft line-clamp-2 leading-relaxed">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   </Reveal>
                 ))}
               </div>
 
-              {allImages.length > 0 && (
-                <div className="mt-12 text-center">
-                  <button 
-                    onClick={() => {
-                      if (allImages.length > visibleCount) {
-                        setVisibleCount(prev => prev + 6);
-                      } else {
-                        handleOpenCatalogModal();
-                      }
-                    }} 
-                    className="inline-flex items-center gap-2 border border-ink text-ink hover:bg-ink hover:text-bg font-sans text-[12px] uppercase font-bold tracking-widest px-8 py-3.5 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
-                  >
-                    <span>Load More Designs</span>
-                    <ArrowUpRight size={14} />
-                  </button>
-                </div>
-              )}
+              {/* Load More Designs CTA */}
+              <div className="mt-14 text-center">
+                <button 
+                  onClick={() => {
+                    if (filteredImages.length > visibleCount) {
+                      setVisibleCount(prev => prev + 6);
+                    } else {
+                      handleOpenCatalogModal();
+                    }
+                  }} 
+                  className="inline-flex items-center gap-2 border border-ink text-ink hover:bg-ink hover:text-bg font-sans text-[12px] uppercase font-bold tracking-widest px-8 py-3.5 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
+                >
+                  <span>{filteredImages.length > visibleCount ? 'Load More Designs' : 'Request Full Design Catalog'}</span>
+                  <ArrowUpRight size={14} />
+                </button>
+              </div>
             </>
+          ) : (
+            <div className="text-center py-16 space-y-3 bg-bg-card rounded-[24px] p-8 border border-ink-border/30">
+              <p className="font-display text-lg text-ink font-bold">No designs found under this filter</p>
+              <button 
+                onClick={() => setActiveFilter('All')} 
+                className="text-gold font-sans text-xs uppercase tracking-widest font-bold underline cursor-pointer"
+              >
+                Reset to View All Designs
+              </button>
+            </div>
           )}
         </section>
+
+        {/* ── 5. MATERIALS CLOSE-UP STRIP (Hardware, Edging, Textures) ──────── */}
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+          <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
+            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Material Integrity</p>
+            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+              Materials & Hardware Close-Up
+            </h3>
+            <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
+              Macro engineering details: genuine German soft-close fittings, seamless edge banding, anti-fingerprint surfaces, and architectural warm lighting.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SPACE_MATERIAL_MACROS.map((macro, idx) => (
+              <div key={idx} className="bg-bg-card rounded-[22px] overflow-hidden border border-ink-border/30 shadow-sm hover:border-gold/30 transition-all duration-300 flex flex-col">
+                <div className="aspect-[4/3] overflow-hidden bg-bg-dark relative">
+                  <img 
+                    src={getOptimizedImageUrl(macro.image, 1200, 92)} 
+                    alt={macro.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-[9.5px] font-sans font-bold uppercase tracking-wider text-gold border border-gold/30">
+                      {macro.tag}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-display text-base font-bold text-ink">{macro.title}</h4>
+                    <p className="font-sans text-[11px] font-semibold text-gold mt-0.5">{macro.brand}</p>
+                    <p className="font-sans text-xs text-ink-soft mt-2 leading-relaxed">{macro.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 6. PROCESS STRIP (Design → Material → Fabrication → Install) ────── */}
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+          <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
+            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Turnkey Execution Flow</p>
+            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+              Our 4-Step Design & Build Process
+            </h3>
+            <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
+              Every detail is planned, confirmed in 3D, precision-cut in our factory, and delivered on schedule without vendor coordination stress.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SPACE_PROCESS_STEPS.map((step, idx) => (
+              <div key={idx} className="relative bg-bg-card rounded-[24px] p-6 sm:p-7 border border-ink-border/30 shadow-sm space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-3xl font-bold text-gold/60">{step.step}</span>
+                  <span className="px-3 py-1 rounded-full bg-gold/10 text-gold text-[10px] font-sans font-bold uppercase tracking-wider border border-gold/20">
+                    {step.timeline}
+                  </span>
+                </div>
+                <div>
+                  <h4 className="font-display text-lg font-bold text-ink mb-2">{step.title}</h4>
+                  <p className="font-sans text-xs text-ink-soft leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 7. FAQ BLOCK (Space-Specific Questions from content.md) ─────────── */}
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+          <div className="max-w-[880px] mx-auto">
+            <div className="text-center mb-12 space-y-3">
+              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Got Questions?</p>
+              <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+                {activeCategory.name} FAQs
+              </h3>
+              <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
+                Clear, straightforward answers about our materials, fittings, timelines, and execution process.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {spaceFaqs.map((faq, idx) => {
+                const isOpen = openFaqIndex === idx;
+                return (
+                  <div 
+                    key={idx}
+                    className="rounded-[20px] bg-bg-card border border-ink-border/30 overflow-hidden transition-all duration-300"
+                  >
+                    <button
+                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                      className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer hover:bg-bg-dark/20 transition-colors"
+                    >
+                      <span className="font-display text-base sm:text-lg font-bold text-ink">
+                        {faq.q}
+                      </span>
+                      <div className={`w-8 h-8 rounded-full bg-ink-border/20 flex items-center justify-center text-gold transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180 bg-gold text-charcoal' : ''}`}>
+                        <ChevronDown size={18} />
+                      </div>
+                    </button>
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 sm:px-6 pb-6 pt-1 font-sans text-xs sm:text-sm text-ink-soft leading-relaxed border-t border-ink-border/20">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 8. CROSS-LINKS (Explore More Spaces) ────────────────────────────── */}
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-1">Continue The Tour</p>
+              <h3 className="font-display text-[26px] sm:text-[34px] font-bold text-ink tracking-tight">
+                Explore More Spaces
+              </h3>
+            </div>
+            <Link 
+              to="/spaces" 
+              className="inline-flex items-center gap-1.5 font-sans text-xs font-bold uppercase tracking-wider text-gold hover:text-ink transition-colors"
+            >
+              <span>View All Spaces</span>
+              <ChevronRight size={14} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {crossLinkCategories.map((cat) => (
+              <Link
+                key={cat.slug}
+                to={`/spaces/${cat.slug}`}
+                className="group rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 hover:border-gold/40 shadow-sm hover:shadow-xl transition-all duration-400 flex flex-col"
+              >
+                <div className="aspect-[16/10] overflow-hidden bg-bg-dark relative">
+                  <img
+                    src={getOptimizedImageUrl(cat.heroImage || cat.galleryImages?.[0], 1400, 92)}
+                    alt={cat.name}
+                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold drop-shadow">
+                      Interior Domain
+                    </span>
+                    <h4 className="font-display text-xl font-bold text-white group-hover:text-gold transition-colors">
+                      {cat.name}
+                    </h4>
+                  </div>
+                </div>
+                <div className="p-5 flex items-center justify-between text-xs font-sans text-ink-soft">
+                  <span className="line-clamp-1">{cat.description}</span>
+                  <ArrowUpRight size={16} className="text-gold shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ── ZOOM LIGHTBOX MODAL (With Escape key dismiss & detailed specs) ───── */}
+        <AnimatePresence>
+          {zoomedImage && (
+            <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 sm:p-6 md:p-10">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setZoomedImage(null)}
+                className="fixed inset-0 bg-black/90 backdrop-blur-xl"
+              />
+
+              <motion.div
+                data-lenis-prevent
+                initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.94, y: 15 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+                className="relative bg-bg-card rounded-[28px] max-w-4xl w-full overflow-hidden border border-white/15 shadow-2xl z-10 flex flex-col md:flex-row max-h-[90vh]"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setZoomedImage(null)}
+                  className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 text-white hover:text-gold flex items-center justify-center border border-white/20 transition-colors cursor-pointer"
+                  aria-label="Close zoom preview"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* Left: High-Resolution Photo */}
+                <div className="md:w-3/5 bg-black flex items-center justify-center relative overflow-hidden min-h-[280px] md:min-h-[480px]">
+                  <img
+                    src={getOptimizedImageUrl(zoomedImage.img, 2400, 95)}
+                    alt={zoomedImage.title || zoomedImage.layoutType}
+                    className="w-full h-full object-contain max-h-[75vh]"
+                  />
+                  <div className="absolute bottom-3 left-3">
+                    <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] font-sans font-semibold uppercase tracking-wider text-white border border-white/20">
+                      {activeCategory.name}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right: Architectural Specifications & Description */}
+                <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-6">
+                  <div className="space-y-4">
+                    <div className="space-y-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full bg-gold/15 text-[10px] font-sans font-bold uppercase tracking-wider text-gold border border-gold/30">
+                          {zoomedImage.layoutType}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-2xl font-bold text-ink">
+                        {zoomedImage.title}
+                      </h3>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-ink-muted font-bold">
+                        Material & Surface Spec
+                      </span>
+                      <p className="font-sans text-xs text-ink font-semibold bg-bg-dark/30 p-3 rounded-xl border border-ink-border/20">
+                        {zoomedImage.materialTag}
+                      </p>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-ink-muted font-bold">
+                        Architectural Note
+                      </span>
+                      <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
+                        {zoomedImage.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-ink-border/20 space-y-3">
+                    <Link
+                      to="/contact"
+                      onClick={() => setZoomedImage(null)}
+                      className="w-full py-3.5 rounded-full bg-gold text-charcoal font-sans text-xs uppercase font-bold tracking-widest hover:bg-ink hover:text-white transition-all text-center flex items-center justify-center gap-2 shadow-md"
+                    >
+                      <span>Consult on this Layout</span>
+                      <ArrowUpRight size={14} />
+                    </Link>
+                    <p className="text-[10px] font-sans text-ink-muted text-center">
+                      Press <kbd className="px-1.5 py-0.5 rounded bg-ink-border/30 text-ink font-mono text-[9px]">Esc</kbd> or click outside to dismiss
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
         {/* ── SPACE CATALOG / MORE DESIGNS LEAD CAPTURE MODAL ────────────────── */}
         <AnimatePresence>

@@ -20,7 +20,7 @@ const AdminPagesCMS = () => {
   const [settings, setSettings] = useState({
     hero_title: 'Engineering. Elegance. Experience.',
     hero_subtitle: 'Bespoke Luxury Interiors & Turned-Key Executions in Hyderabad',
-    hero_cta_text: 'Get Free Estimate',
+    hero_cta_text: 'Get Estimate',
     hero_cta_link: '/contact',
     hero_visible: true,
     hero_images: [
@@ -44,7 +44,7 @@ const AdminPagesCMS = () => {
 
     cta_headline: 'Ready to Transform Your Space?',
     cta_subtext: 'Schedule a private consultation at our Aziznagar experience store or request a custom turnkey quotation.',
-    cta_button_text: 'Book Free Consultation',
+    cta_button_text: 'Book Consultation',
     cta_phone: '+91 90000 00000',
     cta_visible: true,
 
@@ -59,7 +59,7 @@ const AdminPagesCMS = () => {
     ],
 
     footer_description: 'Turnkey interior design and luxury material supply across Hyderabad. Crafted with structural legacy.',
-    footer_address: '1st floor, H.No. 6-63/14B, Moinabad Road, Aziznagar, Hyderabad, Telangana 500075',
+    footer_address: 'Moinabad Road, Aziznagar',
     footer_hours: '10:00 AM – 7:30 PM (Mon - Sat)',
     footer_email: 'Espacio.hyd@gmail.com',
     footer_instagram: 'https://www.instagram.com/theespacio.in',
@@ -92,43 +92,78 @@ const AdminPagesCMS = () => {
     services_list: [
       {
         num: '01',
-        title: 'Full Home Interior Design & Execution',
+        title: 'Full Home Interior Design and Execution',
         tag: 'Turnkey Design & Build',
-        desc: 'From concept to handover, we design and build your home end-to-end — delivered turnkey, so you\'re never juggling multiple vendors or contractors.',
-        includes: ['Living & Dining Design', 'Bedroom & Wardrobe Systems', 'Modular Kitchen Layouts', 'Ceilings & Ambient Lighting', 'Material & Texture Curation', 'Turnkey Project Execution'],
-        img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'
+        desc: 'A complete home interior, planned and built by one team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.',
+        includes: [
+          'Living & Dining Layouts Built Around You',
+          'Kitchens Designed for Real Everyday Use',
+          'Curated Wall & Surface Finishes',
+          'Wardrobes Tailored to How You Store',
+          'Lighting That Sets the Mood, Room by Room',
+          'Full Execution, Managed Start to Finish'
+        ],
+        img: '/images/company/2bhk_mordern_retro/hall.jpg'
       },
       {
         num: '02',
-        title: 'Commercial Interiors',
+        title: 'Commercial and Office Interiors',
         tag: 'Workspaces & Retail',
-        desc: 'Interior design and fit-out for offices, retail, and commercial spaces, delivered turnkey with a single team managing design, materials, and execution from start to finish.',
-        includes: ['Office Layout Optimization', 'Retail Flow Planning', 'Conference & Meeting Rooms', 'Ergonomic Workstations', 'AV & Tech Integration', 'Turnkey Construction'],
-        img: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=90'
+        desc: 'A space that works as hard as your business does. For retail and experience stores, we design around your product, using layout, lighting, and material choices that make what you sell the hero of the room and turn browsing into buying. For offices, we build spaces that reflect how your brand wants to be seen, while keeping the day to day workflow smooth, quiet, and genuinely comfortable for the people working in it.',
+        includes: [
+          'Store Layouts That Highlight Your Product',
+          'Retail Flow Designed to Guide the Customer',
+          'Offices Built Around How Your Team Works',
+          'Quiet, Distraction Free Meeting Spaces',
+          'Clean Tech and Cabling, Nothing on Show',
+          'Full Commercial Buildout, Start to Finish'
+        ],
+        img: '/images/company/2bhk_mordern_retro/office_3.jpg'
       },
       {
         num: '03',
-        title: 'Styling & Decor',
+        title: 'Styling and Decor',
         tag: 'Curated Styling',
-        desc: 'Curated styling, accessories, and finishing touches that bring a space to life — offered as a standalone service or as the final turnkey step on any Espacio project.',
-        includes: ['Art & Wall Decor Curation', 'Custom Soft Furnishings', 'Lighting & Accessory Styling', 'Plants & Greenery Selection', 'Color Palette Harmony', 'Bespoke Styling Audits'],
-        img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80'
+        desc: 'The finishing touches that turn a finished space into a home you actually feel something in. This works as its own standalone service, or as the final layer we add to wrap up any full Espacio project.',
+        includes: [
+          'Art and Wall Decor, Chosen With Intent',
+          'Lighting and Accessories That Set the Mood',
+          'Colors That Work Together, Not Against Each Other',
+          'Soft Furnishings Made to Match Your Space',
+          'Greenery Picked to Suit the Light and Layout',
+          'A Styling Review for Homes Already Done'
+        ],
+        img: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg'
       },
       {
         num: '04',
         title: 'Renovation',
         tag: 'Upgrade Existing Spaces',
-        desc: 'Redesigning and upgrading existing spaces, residential or commercial, without starting from scratch — delivered turnkey, with design, materials, and execution handled entirely by us.',
-        includes: ['Kitchen & Bath Upgrades', 'Living Space Redesign', 'Structural Alterations', 'Flooring Replacement', 'Electrical & Plumbing Re-lay', 'Turnkey Execution'],
-        img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+        desc: "Your space already has good bones, it just needs the right hands on it. Whether it's a home that's grown tired over the years or a commercial space ready for a refresh, we take what's already there and rebuild it into something that actually feels new. No need to move out, start from scratch, or manage the process yourself, our team handles the design, materials, and execution from beginning to end.",
+        includes: [
+          'Outdated Kitchens and Bathrooms, Modernized',
+          'Living Spaces Reworked to Feel New Again',
+          'Structural Changes Handled Safely and Properly',
+          'Old Flooring Replaced With Finishes Built to Last',
+          'Electrical and Plumbing Re-Laid the Right Way',
+          'A Fully Managed Renovation, Start to Finish'
+        ],
+        img: '/images/services/services_after.webp'
       },
       {
         num: '05',
-        title: 'Materials Supply (Sold Separately)',
-        tag: 'Premium Sourced Supply',
-        desc: 'We source globally to bring you WPC wall & ceiling panels, polygranite sheets, and more warehoused in our own godowns for faster availability.',
-        includes: ['WPC Wall & Ceiling Panels', 'Polygranite & Acrylic Sheets', 'Fluted & Charcoal Louvers', 'Bespoke Wall Finishes', 'Stand-alone Purchasing', 'Fast Delivery from Godowns'],
-        img: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=900&q=80'
+        title: 'Materials Supply (Standalone Purchase)',
+        tag: 'Direct Warehouse Sourcing',
+        desc: "Need premium materials without a full design project attached? Our warehouse across Andhra Pradesh and Telangana carries a wide range of WPC wall and ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware, all available to purchase directly, whether you're a homeowner, a contractor, or a fellow designer.",
+        includes: [
+          'Wall and Exterior Cladding Panels',
+          'Fluted Louvers in Charcoal and Wood Grain Finishes',
+          'High-Gloss Acrylic and Polygranite Sheets',
+          'Trim and Edge Hardware for a Clean Finish',
+          'Wholesale and Retail Purchase Available',
+          'Fast Delivery Straight From Our Hyderabad Warehouse'
+        ],
+        img: '/images/services/service_materials.jpg'
       }
     ],
   });
@@ -336,7 +371,7 @@ const AdminPagesCMS = () => {
                     value={settings.hero_cta_text}
                     onChange={(e) => updateSetting('hero_cta_text', e.target.value)}
                     className={inpClass}
-                    placeholder="Get Free Estimate"
+                    placeholder="Get Estimate"
                   />
                 </div>
                 <div>

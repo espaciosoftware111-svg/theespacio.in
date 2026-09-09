@@ -175,7 +175,7 @@ const FloatingLogo = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-14 h-14 rounded-full bg-bg-dark border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.6)] flex items-center justify-center cursor-pointer hover:border-gold/50 hover:shadow-[0_0_25px_rgba(201,169,110,0.35)] hover:bg-[#0c0c0f] select-none transition-all duration-300 group outline-none"
-          aria-label="Get Free Estimate"
+          aria-label="Get Estimate"
         >
           <div 
             className="scale-90 flex items-center justify-center w-full h-full animate-[spin_6s_linear_infinite] will-change-transform"
@@ -185,7 +185,7 @@ const FloatingLogo = () => {
         </motion.button>
       </div>
 
-      {/* MOBILE ONLY: Small Fixed Vertical "GET FREE ESTIMATE" Tab on Right Edge */}
+      {/* MOBILE ONLY: Small Fixed Vertical "GET ESTIMATE" Tab on Right Edge */}
       <div className="lg:hidden fixed right-0 top-1/2 -translate-y-1/2 z-[9999] pointer-events-auto">
         <motion.button
           onClick={handleOpenModal}
@@ -194,13 +194,13 @@ const FloatingLogo = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="bg-black/30 backdrop-blur-md border-l border-t border-b border-white/20 text-white shadow-[0_2px_12px_rgba(0,0,0,0.35)] rounded-l-lg py-2.5 px-1.5 flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-black/45 active:bg-black/55 transition-all select-none group outline-none"
-          aria-label="Get Free Estimate"
+          aria-label="Get Estimate"
         >
           <span 
             className="font-sans text-[8px] font-normal tracking-[0.18em] text-white/90 uppercase whitespace-nowrap"
             style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
           >
-            Get Free Estimate
+            Get Estimate
           </span>
           <span className="w-1 h-1 rounded-full bg-white/70 animate-pulse mt-0.5" />
         </motion.button>

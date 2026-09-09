@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Mail, Save, CheckCircle, Loader2, MapPin, Phone, Clock,
-  ShieldCheck, FileText, Sparkles, Award, Eye, EyeOff, Lock, HelpCircle
+  ShieldCheck, FileText, Box, Award, Eye, EyeOff, Lock, HelpCircle
 } from 'lucide-react';
 import { getCMSData, setCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
 import CTASectionEditor from '../../components/admin/CTASectionEditor';
@@ -14,7 +14,7 @@ const defaultContactSettings = {
   exp_description: 'Walk into our flagship material experience studio. Touch, feel, and compare over 200+ live panel and finish samples in person.',
 
   exp_card1_title: 'Our Studio',
-  exp_card1_address: '1st floor, H.No. 6-63/14B,\nMoinabad Road, Aziznagar,\nHyderabad, Telangana 500075',
+  exp_card1_address: 'Moinabad Road, Aziznagar',
   exp_card1_bottomLabel: 'EXPERIENCE CENTER',
   exp_card1_visible: true,
 
@@ -49,7 +49,7 @@ const defaultContactSettings = {
   commit_card3_desc: 'No hidden charges or unexpected costs. Every quotation is clear, detailed, and fully transparent before execution.',
   commit_card3_visible: true,
 
-  commit_card4_title: 'Free 3D Render',
+  commit_card4_title: 'Complimentary 3D Design',
   commit_card4_desc: 'Visualize your living room, kitchen, and wardrobes in photorealistic 3D before starting site execution.',
   commit_card4_visible: true
 };
@@ -69,7 +69,10 @@ const AdminContactCMS = () => {
       if (storedSettings) {
         setForm((prev) => ({
           ...prev,
-          ...storedSettings
+          ...storedSettings,
+          commit_card4_title: (storedSettings.commit_card4_title && storedSettings.commit_card4_title !== 'Free 3D Render') 
+            ? storedSettings.commit_card4_title 
+            : 'Complimentary 3D Design'
         }));
       }
       setLoading(false);
@@ -601,7 +604,7 @@ const AdminContactCMS = () => {
             <div className="bg-[#141518] border border-white/5 rounded-2xl p-6 space-y-4">
               <div className="flex items-center justify-between border-b border-white/5 pb-3">
                 <div className="flex items-center space-x-2">
-                  <Sparkles size={16} className="text-gold" />
+                  <Box size={16} className="text-gold" />
                   <span className="font-sans text-xs font-bold text-white">Card 04</span>
                 </div>
                 <button

@@ -153,8 +153,27 @@ const Footer = () => {
 
   // Dynamic CMS fields with defaults (checking Footer, Contact, and Studio Card keys)
   const locationTitle = cmsSettings.footer_location_title || cmsSettings.contact_location_title || cmsSettings.exp_eyebrow || 'LOCATION';
-  const locationAddress = cmsSettings.footer_address || cmsSettings.exp_card1_address || cmsSettings.contact_address || cmsSettings.office_info?.address || '1st floor, H.No. 6-63/14B, Moinabad Road, Aziznagar, Hyderabad, Telangana 500075';
-  const locationMapUrl = cmsSettings.footer_map_url || cmsSettings.contact_map_url || cmsSettings.exp_card1_map_url || 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6';
+  const rawLocationAddress = cmsSettings.footer_address || cmsSettings.exp_card1_address || cmsSettings.contact_address || cmsSettings.office_info?.address || 'Moinabad Road, Aziznagar';
+  
+  // Clean address per user requirement: remove '1st floor, H.No. 6-63/14B' and keep 'Moinabad Road, Aziznagar'
+  const cleanLocationAddress = (addr) => {
+    if (!addr) return 'Moinabad Road, Aziznagar';
+    let str = String(addr).trim();
+    if (/1st\s*floor/i.test(str) || /6-63\/14b/i.test(str)) {
+      if (/moinabad\s*road/i.test(str) && /aziznagar/i.test(str)) {
+        return 'Moinabad Road, Aziznagar';
+      }
+      str = str.replace(/1st\s*floor\s*,?\s*(h\.?\s*no\.?\s*6-63\/14b\s*,?\s*)?/i, '');
+      str = str.replace(/h\.?\s*no\.?\s*6-63\/14b\s*,?\s*/i, '').trim();
+    }
+    return str || 'Moinabad Road, Aziznagar';
+  };
+  const locationAddress = cleanLocationAddress(rawLocationAddress);
+  const DEFAULT_MAP_URL = 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6';
+  const locationMapUrl = (cmsSettings.footer_map_url && cmsSettings.footer_map_url.trim()) 
+    || (cmsSettings.contact_map_url && cmsSettings.contact_map_url.trim()) 
+    || (cmsSettings.exp_card1_map_url && cmsSettings.exp_card1_map_url.trim()) 
+    || DEFAULT_MAP_URL;
 
   const contactTitle = cmsSettings.footer_contact_title || cmsSettings.contact_section_title || 'CONTACT';
   const phoneText = cmsSettings.footer_phone || cmsSettings.exp_card2_phone || cmsSettings.contact_phone || cmsSettings.cta_phone || '+91 95051 51116';
@@ -270,7 +289,9 @@ const Footer = () => {
               href={locationMapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-[15px] text-bg/80 hover:text-bg transition-colors block leading-relaxed hover:underline decoration-white/20 underline-offset-4 whitespace-pre-line"
+              title="Open ESPACIO on Google Maps"
+              aria-label="ESPACIO Location on Google Maps - Moinabad Road, Aziznagar"
+              className="font-sans text-[15px] text-bg/80 hover:text-bg transition-colors block leading-relaxed hover:underline decoration-white/20 underline-offset-4 whitespace-pre-line cursor-pointer"
             >
               {locationAddress}
             </a>
