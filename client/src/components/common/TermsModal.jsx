@@ -71,7 +71,7 @@ const TermsModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.93, y: 15 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="relative bg-[#1A1A1E] text-white rounded-[28px] max-w-[640px] w-full p-6 sm:p-9 shadow-2xl z-10 border border-white/10 flex flex-col max-h-[85vh]"
+            className="relative bg-[#1A1A1E] text-white rounded-[24px] sm:rounded-[28px] max-w-[640px] w-full p-5 sm:p-8 shadow-2xl z-10 border border-white/10 flex flex-col max-h-[85vh] my-auto"
           >
             {/* Close Button (Cross icon on top right) */}
             <button

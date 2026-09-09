@@ -549,10 +549,10 @@ const Contact = () => {
       </section>
 
       {/* WIZARD SECTION */}
-      <section ref={formRef} className="max-w-[820px] mx-auto px-6 pb-20 scroll-mt-28">
+      <section ref={formRef} className="max-w-[820px] mx-auto px-4 sm:px-6 pb-28 sm:pb-24 scroll-mt-28">
         
         {/* Dynamic Progress Indicator — Perfectly Aligned 5-Step Row */}
-        <div className="relative mb-14 select-none">
+        <div className="relative mb-12 sm:mb-14 select-none">
           {/* Connecting Line behind step circles */}
           <div className="absolute top-4 left-[10%] right-[10%] h-[2px] bg-ink-border/50 z-0">
             <div
@@ -568,7 +568,7 @@ const Contact = () => {
               : stepsList.length === 4 
                 ? 'grid-cols-4' 
                 : 'grid-cols-5'
-          } gap-2 w-full`}>
+          } gap-1 sm:gap-2 w-full`}>
             {stepsList.map((label, idx) => {
               const done = activeStepIdx > idx;
               const active = activeStepIdx === idx;
@@ -589,7 +589,7 @@ const Contact = () => {
                   }}
                 >
                   <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 shadow-sm ${
+                    className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-bold transition-all duration-300 shadow-sm ${
                       done
                         ? 'bg-gold text-charcoal ring-4 ring-gold/20'
                         : active
@@ -597,10 +597,10 @@ const Contact = () => {
                         : 'bg-white border border-ink-border text-ink-muted'
                     }`}
                   >
-                    {done ? <CheckCircle size={16} /> : idx + 1}
+                    {done ? <CheckCircle size={15} /> : idx + 1}
                   </div>
                   <span
-                    className={`font-sans text-[10px] uppercase tracking-wider font-bold mt-2.5 max-w-[120px] leading-tight text-center ${
+                    className={`font-sans text-[8.5px] sm:text-[10px] uppercase tracking-wider font-bold mt-1.5 sm:mt-2.5 max-w-[120px] leading-tight text-center ${
                       active ? 'text-charcoal font-extrabold' : done ? 'text-gold' : 'text-walnut/50'
                     }`}
                   >
@@ -1224,7 +1224,7 @@ const Contact = () => {
       </section>
 
       {/* ── QUOTATION GUARANTEES & COMMITMENTS ───────────────────────────────── */}
-      <section className="py-20 px-6 md:px-12 bg-offwhite border-t border-walnut/10">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-12 bg-offwhite border-t border-walnut/10 pb-28 sm:pb-24">
         <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
           <div className="text-center max-w-[650px] mx-auto mb-14 space-y-3">
             <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
@@ -1317,7 +1317,7 @@ const Contact = () => {
               exit={{ opacity: 0, scale: 0.93 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[620px] bg-cream rounded-[24px] border border-walnut/15 p-6 md:p-8 shadow-2xl flex flex-col space-y-6 text-charcoal max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-[620px] bg-cream rounded-[24px] border border-walnut/15 p-5 sm:p-6 md:p-8 shadow-2xl flex flex-col space-y-6 text-charcoal max-h-[90vh] overflow-y-auto my-auto"
             >
               {/* Close Button */}
               <button 

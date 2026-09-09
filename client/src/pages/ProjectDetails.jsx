@@ -249,11 +249,11 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="bg-cream min-h-screen pb-24">
+    <div className="bg-cream min-h-screen pb-28 sm:pb-24">
       <SEO title={`${p.title} — Luxury Case Study`} description={p.description ? p.description.substring(0, 150) : 'Case study description...'} image={p.heroImage} url={`/projects/${p.slug}`} />
       
       {/* Hero section with curved borders and side margins */}
-      <section className="pt-24 md:pt-28 px-4 md:px-8 lg:px-12 max-w-[1440px] mx-auto">
+      <section className="pt-24 md:pt-28 px-4 md:px-8 lg:px-12 2xl:px-16 3xl:px-20 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto">
         <div className="relative h-[54vh] sm:h-[65vh] lg:h-[70vh] min-h-[360px] sm:min-h-[480px] lg:min-h-[500px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
           <img
             src={p.heroImage}
@@ -288,7 +288,7 @@ const ProjectDetails = () => {
       </section>
 
       {/* Overview Block */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-walnut/10">
+      <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 py-12 sm:py-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 border-b border-walnut/10">
         <div className="flex items-center space-x-3">
           <MapPin className="text-gold shrink-0" size={20} />
           <div>
@@ -322,7 +322,7 @@ const ProjectDetails = () => {
       </section>
 
       {/* Story Sections */}
-      <section className="max-w-[1000px] mx-auto px-6 py-20 space-y-16">
+      <section className="max-w-[1000px] 2xl:max-w-[1300px] 3xl:max-w-[1500px] mx-auto px-6 py-16 sm:py-20 space-y-12 sm:space-y-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="font-editorial text-2xl font-bold text-charcoal md:col-span-1">The Vision</div>
           <div className="font-sans text-sm text-walnut leading-relaxed md:col-span-2">
@@ -352,7 +352,7 @@ const ProjectDetails = () => {
         if (!beforeImg || !afterImg) return null;
 
         return (
-          <section className="max-w-[1100px] mx-auto px-6 py-16">
+          <section className="max-w-[1100px] 2xl:max-w-[1400px] 3xl:max-w-[1600px] mx-auto px-6 py-16">
             <div className="text-center mb-10">
               <span className="font-sans text-xs font-bold uppercase tracking-widest text-gold block mb-2">Turnkey Execution Benchmark</span>
               <h2 className="font-editorial text-3xl md:text-4xl font-bold text-charcoal">Before & After Transformation</h2>
@@ -422,7 +422,7 @@ const ProjectDetails = () => {
 
       {/* Editorial Masonry Gallery */}
       {p.gallery?.length > 0 && (
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-20">
+        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 py-16 sm:py-20">
           <div className="flex items-center justify-between mb-12">
             <div>
               <h2 className="font-editorial text-3xl md:text-4xl font-bold text-charcoal">Project Gallery & Room Photography</h2>
@@ -431,7 +431,7 @@ const ProjectDetails = () => {
             <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider">Click photo to expand</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
             {p.gallery.map((imgUrl, index) => {
               const roomTags = ['Living Lounge & Foyer', 'Entertainment Wall & TV Unit', 'Modular Culinary Suite', 'Master Bedroom Sanctuary', 'Guest Room & Study', 'Custom Wardrobe Joinery', 'Dining Nook & Crockery Unit', 'Balcony & Reading Retreat'];
               const captionTag = roomTags[index % roomTags.length];

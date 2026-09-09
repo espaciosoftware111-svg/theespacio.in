@@ -2668,7 +2668,7 @@ const WhatWeDo = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/45 to-black/25" />
             
-            <div className="relative max-w-[1440px] w-full mx-auto px-6 sm:px-10 md:px-14 pb-10 sm:pb-14 z-10">
+            <div className="relative max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] w-full mx-auto px-6 sm:px-10 md:px-14 2xl:px-16 3xl:px-20 pb-10 sm:pb-14 z-10">
               <nav className="flex items-center gap-2 font-sans text-[11.5px] uppercase tracking-[0.2em] text-bg/75 mb-4 font-semibold">
                 <Link to="/" className="hover:text-gold transition-colors">Home</Link>
                 <span>/</span>
@@ -2691,7 +2691,7 @@ const WhatWeDo = () => {
 
         {/* ── 2. TRUST STRIP (Projects / Legacy / Sq.Ft / Warranty) ────────────── */}
         <section className="border-y border-ink-border/30 bg-bg-card/70 py-6 sm:py-7">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/20">
+          <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/20">
             <div className="pt-2 md:pt-0 md:px-4 space-y-1">
               <p className="font-display text-2xl sm:text-3xl font-bold text-gold">25+ Projects</p>
               <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Completed Turnkey Residences</p>
@@ -2838,7 +2838,7 @@ const WhatWeDo = () => {
         </section>
 
         {/* ── 5. MATERIALS CLOSE-UP STRIP (Hardware, Edging, Textures) ──────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 py-16 sm:py-20 border-b border-ink-border/20">
           <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
             <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Material Integrity</p>
             <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
@@ -2877,7 +2877,7 @@ const WhatWeDo = () => {
         </section>
 
         {/* ── 6. PROCESS STRIP (Design → Material → Fabrication → Install) ────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 py-16 sm:py-20 border-b border-ink-border/20">
           <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
             <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Turnkey Execution Flow</p>
             <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
@@ -2907,8 +2907,8 @@ const WhatWeDo = () => {
         </section>
 
         {/* ── 7. FAQ BLOCK (Space-Specific Questions from content.md) ─────────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
-          <div className="max-w-[880px] mx-auto">
+        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 py-16 sm:py-20 border-b border-ink-border/20">
+          <div className="max-w-[880px] 2xl:max-w-[1100px] mx-auto">
             <div className="text-center mb-12 space-y-3">
               <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Got Questions?</p>
               <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
@@ -2961,7 +2961,7 @@ const WhatWeDo = () => {
         </section>
 
         {/* ── 8. CROSS-LINKS (Explore More Spaces) ────────────────────────────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 py-16 sm:py-20 border-b border-ink-border/20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-1">Continue The Tour</p>
@@ -3125,7 +3125,7 @@ const WhatWeDo = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-                className="relative bg-white text-ink rounded-[28px] max-w-[480px] w-full p-6 sm:p-9 shadow-2xl z-10 border border-ink-border overflow-hidden select-none"
+                className="relative bg-white text-ink rounded-[28px] max-w-[480px] w-full p-5 sm:p-9 shadow-2xl z-10 border border-ink-border overflow-y-auto max-h-[90vh] my-auto select-none"
               >
                 {/* Close Button */}
                 <button

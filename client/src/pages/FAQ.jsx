@@ -325,7 +325,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="relative bg-[#F8F5F0] min-h-screen pt-16 sm:pt-20 pb-14 overflow-hidden">
+    <div className="relative bg-[#F8F5F0] min-h-screen pt-16 sm:pt-20 pb-28 sm:pb-24 overflow-hidden">
       <SEO
         title="FAQ — ESPACIO Interiors"
         description="Frequently asked questions about design process, timeline, turnkey execution, and custom materials by ESPACIO."
@@ -361,7 +361,7 @@ const FAQ = () => {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20">
 
         {/* ── Page Header ── */}
         <motion.div
@@ -415,7 +415,7 @@ const FAQ = () => {
             >
               {/* 3D Tilt Image Card */}
               <TiltCard className="relative w-full">
-                <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] min-h-[440px] lg:min-h-[520px] w-full overflow-hidden rounded-[28px] shadow-2xl bg-stone-100 cursor-pointer">
+                <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] min-h-[360px] sm:min-h-[440px] lg:min-h-[520px] w-full overflow-hidden rounded-[28px] shadow-2xl bg-stone-100 cursor-pointer">
                   <AnimatePresence mode="sync">
                     <motion.img
                       key={activeImageIdx}

@@ -67,13 +67,13 @@ const PageCTASection = ({ pageKey = 'home', className = '' }) => {
   const darkOpacity = (ctaData.opacity ?? 80) / 100;
 
   return (
-    <section className={`relative w-full overflow-hidden my-8 px-4 sm:px-6 lg:px-12 ${className}`}>
+    <section className={`relative w-full overflow-hidden my-8 px-4 sm:px-6 lg:px-12 2xl:px-16 3xl:px-20 ${className}`}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full max-w-[1440px] mx-auto min-h-[380px] md:min-h-[460px] rounded-[28px] md:rounded-[36px] overflow-hidden flex flex-col items-center justify-center text-center p-8 md:p-16 border border-white/10 shadow-2xl"
+        className="relative w-full max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto min-h-[360px] sm:min-h-[380px] md:min-h-[460px] rounded-[24px] sm:rounded-[28px] md:rounded-[36px] overflow-hidden flex flex-col items-center justify-center text-center p-6 sm:p-8 md:p-16 border border-white/10 shadow-2xl"
       >
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0 overflow-hidden">
