@@ -1225,7 +1225,7 @@ const Contact = () => {
 
       {/* ── QUOTATION GUARANTEES & COMMITMENTS ───────────────────────────────── */}
       <section className="py-20 px-6 md:px-12 bg-offwhite border-t border-walnut/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
           <div className="text-center max-w-[650px] mx-auto mb-14 space-y-3">
             <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
               {contactCMS.commit_eyebrow || 'Why Quote With ESPACIO'}

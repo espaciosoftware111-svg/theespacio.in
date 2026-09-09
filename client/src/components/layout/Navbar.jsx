@@ -133,11 +133,11 @@ const Navbar = () => {
     <>
       <nav className={`${navPosition} top-0 left-0 w-full z-[100] transition-all duration-500 ${
         isBgTransparent
-          ? 'bg-transparent px-5 pt-[6px] lg:px-12 lg:pt-[3px]'
+          ? 'bg-transparent px-4 sm:px-6 pt-[6px] lg:px-12 2xl:px-16 3xl:px-24 lg:pt-[3px]'
           : 'bg-bg/95 backdrop-blur-md shadow-sm px-0 pt-0'
       }`}
       >
-        <div className={`max-w-[1440px] mx-auto pl-6 pr-10 flex items-center justify-between transition-all duration-500 ${
+        <div className={`max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto pl-4 sm:pl-6 pr-6 sm:pr-10 2xl:px-16 3xl:px-20 flex items-center justify-between transition-all duration-500 ${
           isBgTransparent ? 'pt-[6px] pb-[3px]' : 'py-[5px]'
         }`}>
 
@@ -246,7 +246,7 @@ const Navbar = () => {
       </AnimatePresence>
 
       {/* Mobile Sticky Bottom Tab Bar (D'LIFE inspired) */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full z-45 bg-bg/95 backdrop-blur-md border-t border-ink-border/30 h-20 flex items-center justify-around px-4 shadow-[0_-6px_20px_rgba(0,0,0,0.06)] pb-safe">
+      <div className="lg:hidden fixed bottom-0 left-0 w-full z-45 bg-bg/95 backdrop-blur-md border-t border-ink-border/30 h-20 flex items-center justify-around px-2 sm:px-4 shadow-[0_-6px_20px_rgba(0,0,0,0.06)] pb-safe">
         {/* Tab: Services */}
         <Link 
           to="/services" 

@@ -297,7 +297,7 @@ const Projects = () => {
       {/* ── ROUNDED CARD HERO (same as Home & Services) ── */}
       <section
         ref={heroRef}
-        className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12"
+        className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 max-h-[960px] 3xl:max-h-[1100px] px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12 2xl:px-16 3xl:px-24"
       >
         <div
           className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px]"
@@ -325,7 +325,7 @@ const Projects = () => {
             style={{ y: textY, opacity: textOp }}
             className="absolute inset-0 z-20 flex flex-col justify-end"
           >
-            <div className="w-full px-8 md:px-12 pb-10 md:pb-14">
+            <div className="w-full max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-4 sm:px-8 md:px-12 2xl:px-16 pb-10 md:pb-14">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -360,7 +360,7 @@ const Projects = () => {
 
       {/* ── PORTFOLIO GRID ── */}
       <div className="bg-bg pb-24">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-16">
+        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-4 sm:px-6 md:px-10 2xl:px-16 pt-16">
 
           {/* Header */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-ink-border pb-6 sm:pb-8 mb-8 sm:mb-12 gap-4">
@@ -372,8 +372,8 @@ const Projects = () => {
 
           {/* Project Grid */}
           {loading && projects.length === 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map(n => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
                 <div key={n} className="aspect-[4/3] bg-bg-card animate-pulse rounded-card" />
               ))}
             </div>
@@ -383,7 +383,7 @@ const Projects = () => {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-8">
                 {displayedProjects.map((project, idx) => {
                   return (
                     <Reveal key={idx} delay={(idx % 3) * 0.08}>

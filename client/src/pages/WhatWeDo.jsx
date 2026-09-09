@@ -2713,7 +2713,7 @@ const WhatWeDo = () => {
 
         {/* ── 3. INTRO BLOCK (Framing paragraph + Primary CTA) ────────────────── */}
         {activeCategory.details && (
-          <section id="space-details-section" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+          <section id="space-details-section" className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-6 md:px-12 2xl:px-16 py-16 sm:py-20 border-b border-ink-border/20">
             <div className="max-w-[880px] space-y-5">
               <Reveal>
                 <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
@@ -2740,7 +2740,7 @@ const WhatWeDo = () => {
         )}
 
         {/* ── 4. GALLERY SHOWCASE (Ordered by Type + Captions + Zoom Modal) ── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-6 md:px-12 2xl:px-16 py-16 sm:py-20 border-b border-ink-border/20">
           <div className="mb-10">
             <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-2">Design Showcase</p>
             <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
@@ -2753,7 +2753,7 @@ const WhatWeDo = () => {
 
           {visibleItems.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-7">
                 {visibleItems.map((item, i) => (
                   <Reveal key={i} delay={Math.min(i * 0.05, 0.2)}>
                     <div 
@@ -3286,7 +3286,7 @@ const WhatWeDo = () => {
       {spacesHeroState.visible !== false && (
         <section
           ref={heroRef}
-          className="relative h-[56vh] sm:h-[72vh] lg:h-[86vh] min-h-[360px] sm:min-h-[500px] lg:min-h-[600px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0 select-none"
+          className="relative h-[56vh] sm:h-[72vh] lg:h-[86vh] min-h-[360px] sm:min-h-[500px] lg:min-h-[600px] max-h-[960px] 3xl:max-h-[1100px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 2xl:px-16 3xl:px-24 z-0 select-none"
           onMouseDown={onStart}
           onMouseMove={onMouseMove}
           onTouchStart={() => { setIsPaused(true); onStart(); }}
@@ -3381,8 +3381,8 @@ const WhatWeDo = () => {
       )}
 
       {/* Category Grid */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-10 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-4 sm:px-6 md:px-10 2xl:px-16 py-16 sm:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-8">
           {displayCategories.filter(c => c.visible !== false).map((cat, idx) => (
             <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
               <Link 

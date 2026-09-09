@@ -251,7 +251,7 @@ const Footer = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-transparent to-bg-dark pointer-events-none z-0" />
 
           <motion.div 
-            className="relative z-10 max-w-[1440px] mx-auto flex flex-col items-center justify-center"
+            className="relative z-10 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto flex flex-col items-center justify-center"
             style={{ y: contentY, opacity: contentOpacity }}
           >
             <h2 className="font-display text-[clamp(24px,5.8vw,60px)] font-medium leading-[1.12] tracking-tight text-bg mb-4 sm:mb-6 whitespace-pre-line text-center">
@@ -275,7 +275,7 @@ const Footer = () => {
       )}
 
       {/* 2. Combined Footer Info Row */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col lg:flex-row lg:justify-between items-start gap-10 pb-10 pt-2">
+      <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] w-full mx-auto px-6 md:px-12 2xl:px-16 flex flex-col lg:flex-row lg:justify-between items-start gap-10 pb-10 pt-2">
         
         {/* Left Side Group (Location, Gmail, and Explore on desktop) */}
         <div className="flex flex-col items-start gap-8 w-full lg:max-w-[480px]">
@@ -432,7 +432,7 @@ const Footer = () => {
       </div>
 
       {/* 5. Copyright Strip */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col items-center justify-center gap-2 pt-6 pb-4 text-center">
+      <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] w-full mx-auto px-6 md:px-12 2xl:px-16 flex flex-col items-center justify-center gap-2 pt-6 pb-4 text-center">
         <p className="font-sans text-[12.5px] text-bg/80">
           {copyrightText}
         </p>
