@@ -83,11 +83,6 @@
   --font-sans:      'Montserrat', sans-serif;
   --font-display:   'Cormorant Garamond', serif;
 
-  /* Responsive Breakpoints */
-  --breakpoint-2xl: 1536px;
-  --breakpoint-3xl: 1920px;
-  --breakpoint-4xl: 2560px;
-
   /* Border Radius */
   --radius-card:   16px;
   --radius-button: 8px;
@@ -98,11 +93,6 @@
 
 /* ── Base Reset ──────────────────────────────────────────────────────────────── */
 @layer base {
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-
   html {
     scroll-behavior: smooth;
   }

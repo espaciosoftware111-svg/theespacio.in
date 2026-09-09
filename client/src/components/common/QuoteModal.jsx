@@ -290,7 +290,7 @@ const QuoteModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="relative bg-white text-ink rounded-[28px] max-w-[480px] w-full p-5 sm:p-9 shadow-2xl z-10 border border-ink-border overflow-y-auto max-h-[90vh] my-auto select-none"
+            className="relative bg-white text-ink rounded-[28px] max-w-[480px] w-full p-6 sm:p-9 shadow-2xl z-10 border border-ink-border overflow-hidden select-none"
           >
             {/* Close Button */}
             <button

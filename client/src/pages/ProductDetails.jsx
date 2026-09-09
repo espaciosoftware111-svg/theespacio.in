@@ -806,16 +806,16 @@ const ProductDetails = () => {
   const totalShades = p.totalShades || 12;
 
   return (
-    <div className="bg-cream min-h-screen pb-28 sm:pb-24">
+    <div className="bg-cream min-h-screen pb-24">
       <SEO title={`${p.title} — Material Details`} description={p.description ? p.description.substring(0, 150) : 'Material details...'} image={p.heroImage} url={`/materials/${p.slug}`} />
       {/* Hero */}
-      <section className="relative h-[65vh] max-h-[820px] 3xl:max-h-[960px] bg-black mb-0 pt-28">
+      <section className="relative h-[65vh] bg-black mb-0 pt-28">
         <img src={p.heroImage} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-65" />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-transparent to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent pointer-events-none" />
         
         {/* Back */}
-        <div className="relative z-10 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 pb-4">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pb-4">
           <Link to="/materials" className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors drop-shadow-sm">
             <ArrowLeft size={14} />
             <span>Back to Material Library</span>
@@ -823,7 +823,7 @@ const ProductDetails = () => {
         </div>
 
         <div className="absolute bottom-12 left-0 w-full z-10">
-          <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 space-y-2">
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12 space-y-2">
             <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Premium Material</span>
             <h1 className="text-white text-4xl md:text-5xl font-editorial font-bold">{p.title}</h1>
           </div>
@@ -833,7 +833,7 @@ const ProductDetails = () => {
         <ScrollDownIndicator />
       </section>
       {(p.showOverviewSection !== false || p.showFinishesSection !== false || p.showSpecificationsSection !== false || p.showApplicationsSection !== false) && (
-        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 pt-12 md:pt-16 pb-12 md:pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-12 md:pt-16 pb-12 md:pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column: Overview + Features + Applications */}
           <div className="space-y-6">
             {p.showOverviewSection !== false && (
@@ -911,7 +911,7 @@ const ProductDetails = () => {
 
       {/* ── CATALOGUE PREVIEW GATE ──────────────────────────────────────────── */}
       {p.showCataloguePreviewSection !== false && (
-        <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-6 md:px-12 2xl:px-16 3xl:px-20 pt-10 md:pt-12 pb-16 md:pb-20 border-t border-walnut/15">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 md:pt-12 pb-16 md:pb-20 border-t border-walnut/15">
           <div className="flex items-center justify-between mb-8">
             <div>
               <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">{p.catalogueEyebrow || 'Catalog & Shades'}</span>
@@ -924,7 +924,7 @@ const ProductDetails = () => {
 
           <div className="relative overflow-hidden rounded-card border border-walnut/10 bg-offwhite shadow-sm">
           {/* Grid of pages */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 2xl:grid-cols-6 gap-3.5 sm:gap-5 p-4 sm:p-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-5 p-6">
             {allPages.map((pageImg, idx) => {
               const pageUrl = typeof pageImg === 'string' ? pageImg : (pageImg.url || pageImg.src || pageImg);
               const isLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 

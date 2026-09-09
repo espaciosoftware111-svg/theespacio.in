@@ -246,7 +246,7 @@ const Services = () => {
       <SEO title="Services — ESPACIO Interiors" description="Full home interiors, modular kitchens, commercial spaces, and renovations. Engineering-first luxury design executed by ESPACIO." url="/services" />
 
       {heroContent.visible !== false && (
-        <section ref={heroRef} className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 max-h-[960px] 3xl:max-h-[1100px] px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 2xl:px-16 3xl:px-24 z-0">
+        <section ref={heroRef} className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
             <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
               <HeroSlideshow
@@ -264,7 +264,7 @@ const Services = () => {
             <div className="absolute inset-0 z-20 flex flex-col justify-end pointer-events-none">
               <motion.div 
                 style={{ y: textY, opacity: textOpacity }}
-                className="w-full max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-4 sm:px-8 md:px-12 2xl:px-16 pb-10 md:pb-14 pointer-events-auto"
+                className="w-full px-8 md:px-12 pb-10 md:pb-14 pointer-events-auto"
               >
                 <div className="flex flex-col items-start gap-3">
                   <div className="inline-flex items-center gap-2 bg-white text-[#101014] px-4 py-1.5 rounded-full text-[13px] font-sans font-medium shadow-lg border border-black/5 select-none tracking-normal mb-1">
@@ -288,7 +288,7 @@ const Services = () => {
       )}
 
       <section className="pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 overflow-hidden">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto divide-y divide-ink-border">
+        <div className="max-w-[1440px] mx-auto divide-y divide-ink-border">
           {servicesList.filter((s) => s.visible !== false).map((s, i) => {
             const isOdd = i % 2 === 1;
             return (
@@ -333,7 +333,7 @@ const Services = () => {
       </section>
 
       <section className="py-10 sm:py-16 md:py-24 px-4 sm:px-6 md:px-10 bg-bg-card border-t border-ink-border">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
+        <div className="max-w-[1440px] mx-auto">
           <Reveal>
             <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold mb-2.5 sm:mb-3">How We Work</p>
             <h2 className="font-display text-[clamp(26px,3vw,44px)] font-bold tracking-tight text-ink mb-6 sm:mb-10 md:mb-14">Our Process</h2>
@@ -373,7 +373,7 @@ const Services = () => {
 
       {/* ── INSTANT ESTIMATION & QUOTATION CALCULATOR ──────────────────────────── */}
       <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 bg-offwhite">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
+        <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-5 space-y-4 sm:space-y-6">
               <Reveal>
@@ -396,7 +396,7 @@ const Services = () => {
 
       {/* ── CLIENT REVIEWS & TESTIMONIALS ────────────────────────────────────────── */}
       <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 bg-cream">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
+        <div className="max-w-[1440px] mx-auto">
           <Reveal className="text-center max-w-[600px] mx-auto mb-14 space-y-3">
             <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">Client Feedback</span>
             <h2 className="font-display text-[clamp(28px,3.5vw,44px)] font-bold text-charcoal">What Our Clients Say</h2>

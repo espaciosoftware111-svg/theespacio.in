@@ -1064,7 +1064,7 @@ const Home = () => {
       />
 
       {/* ── 1. HERO (Rounded Card — matches Services) ── */}
-      <section ref={heroRef} className="relative h-[90vh] sm:h-[94vh] lg:h-[98vh] min-h-[540px] sm:min-h-[660px] lg:min-h-0 max-h-[960px] 3xl:max-h-[1100px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 2xl:px-16 3xl:px-24 z-0">
+      <section ref={heroRef} className="relative h-[90vh] sm:h-[94vh] lg:h-[98vh] min-h-[540px] sm:min-h-[660px] lg:min-h-0 px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
         {/* Rounded card — fills the section with smooth exit transition */}
         <motion.div
           style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
@@ -1083,7 +1083,7 @@ const Home = () => {
 
           {/* ─── Foreground Glass Cards (pinned to bottom) ─── */}
           <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none">
-              <div className="w-full max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-4 sm:px-6 md:px-12 2xl:px-16 3xl:px-20 pb-24 sm:pb-12 lg:pb-10 pointer-events-auto">
+              <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 pb-8 md:pb-14 lg:pb-10 pointer-events-auto">
               
               <motion.div 
                 className="flex flex-col lg:flex-row items-end gap-4 lg:gap-6"
@@ -1124,9 +1124,9 @@ const Home = () => {
                     {/* Top glass highlight */}
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                     
-                    <div className="p-3.5 sm:p-5 md:p-6">
+                    <div className="p-4 sm:p-5.5 md:p-6">
                       {/* Large interior thumbnail - perfectly synced with background, cinematic motion */}
-                      <div className="w-full aspect-[16/9] rounded-[14px] overflow-hidden mb-3.5 sm:mb-5 relative bg-black/20">
+                      <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-[14px] overflow-hidden mb-5 relative bg-black/20">
                         {activeHeroBgImages.map((imgUrl, imgIdx) => {
                           const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
                           const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
@@ -1156,7 +1156,7 @@ const Home = () => {
                       </div>
 
                       {/* Headline */}
-                      <h2 className="font-display text-[22px] sm:text-[30px] lg:text-[32px] font-semibold leading-tight tracking-tight text-white mb-4 sm:mb-6 text-center">
+                      <h2 className="font-display text-[28px] sm:text-[36px] lg:text-[32px] font-semibold leading-tight tracking-tight text-white mb-6 text-center">
                         {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                       </h2>
 
@@ -1208,7 +1208,7 @@ const Home = () => {
                   >
                   
                   {/* Stats Row */}
-                  <div className="flex flex-row flex-wrap gap-2.5 sm:gap-4 justify-center lg:justify-end items-center min-h-[64px] sm:h-26 translate-y-0 lg:-translate-y-10 mt-2 lg:mt-0">
+                  <div className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center lg:justify-end items-center min-h-[70px] sm:h-26 translate-y-0 lg:-translate-y-10 mt-2 lg:mt-0">
                     {activeHomeStats.map((s, index) => {
                       const isHovered = hoveredStatIdx === index;
                       return (
@@ -1238,8 +1238,8 @@ const Home = () => {
                           }}
                           className={`flex items-center rounded-[14px] md:rounded-[20px] border shadow-xl cursor-pointer transition-all duration-300 overflow-hidden isolate select-none relative ${
                             isHovered 
-                              ? "flex-row justify-between w-[195px] sm:w-[255px] md:w-[300px] h-13 sm:h-18 md:h-20 px-3 sm:px-4 md:px-5.5 border-white/35" 
-                              : "flex-col justify-center items-center w-[76px] sm:w-[90px] md:w-[100px] h-[64px] sm:h-[80px] md:h-[88px] border-white/15 text-center px-1.5 sm:px-2"
+                              ? "flex-row justify-between w-[215px] sm:w-[255px] md:w-[300px] h-14 sm:h-18 md:h-20 px-4 md:px-5.5 border-white/35" 
+                              : "flex-col justify-center items-center w-[80px] sm:w-[90px] md:w-[100px] h-[70px] sm:h-[80px] md:h-[88px] border-white/15 text-center px-2"
                           }`}
                           style={{
                             background: isHovered ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.08)',
@@ -1310,7 +1310,7 @@ const Home = () => {
 
       {/* ── 2. INTRO TEXT (Concept-to-Handover Luxury Showcase) ── */}
       <section className="relative z-10 bg-bg w-full">
-        <div className="py-12 px-6 md:px-12 2xl:px-16 3xl:px-24 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto overflow-hidden">
+        <div className="py-12 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           
           {/* Left Column: Text & Story (lg:col-span-6) */}
@@ -1351,7 +1351,7 @@ const Home = () => {
       </section>
 
       {/* ── 2.5 STATS GRID SECTION ── */}
-      <section className="pb-12 px-6 md:px-12 2xl:px-16 3xl:px-24 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
+      <section className="pb-12 px-6 md:px-12 max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
           {[
             { value: "25+", label: "Projects Completed", progressWidth: "60%" },
@@ -1383,7 +1383,7 @@ const Home = () => {
 
 
       {/* ── 4. PROJECTS GRID ────────────────────────────────────────────────── */}
-      <section className="pt-8 pb-2 sm:pt-12 sm:pb-8 lg:py-14 px-4 md:px-8 lg:px-12 2xl:px-16 3xl:px-24 max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto">
+      <section className="pt-8 pb-2 sm:pt-12 sm:pb-8 lg:py-14 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto">
         <div className="flex items-end justify-between mb-4 sm:mb-6">
           <Reveal>
             <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-gold mb-4">Selected Work</p>
@@ -1422,7 +1422,7 @@ const Home = () => {
       {/* ── FAQ SECTION (Sticky Header / Scrolling Questions on Mobile & Desktop) ── */}
       <section
         ref={faqSectionRef}
-        className="pt-6 pb-6 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-20 px-4 sm:px-6 md:px-12 2xl:px-16 3xl:px-24 max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto relative"
+        className="pt-6 pb-6 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start relative">
           

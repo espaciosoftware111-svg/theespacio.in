@@ -338,7 +338,7 @@ const About = () => {
 
       {/* ── 1. SIGNATURE HERO BANNER (Matches Services hero layout with bottom-anchored content) ────────────── */}
       {aboutData.heroVisible !== false && (
-        <section ref={heroRef} className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 max-h-[960px] 3xl:max-h-[1100px] px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 2xl:px-16 3xl:px-24 z-0">
+        <section ref={heroRef} className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
             <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
               <img
@@ -357,7 +357,7 @@ const About = () => {
             <div className="absolute inset-0 z-20 flex flex-col justify-end pointer-events-none">
               <motion.div 
                 style={{ y: textY, opacity: textOpacity }}
-                className="w-full max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2500px] mx-auto px-4 sm:px-8 md:px-12 2xl:px-16 pb-10 sm:pb-12 md:pb-14 pointer-events-auto"
+                className="w-full px-6 sm:px-8 md:px-12 pb-10 sm:pb-12 md:pb-14 pointer-events-auto"
               >
                 {/* Mist highlight panel behind text */}
                 <div className="absolute inset-x-0 bottom-0 h-[70%] pointer-events-none z-[-1]" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)' }} />
@@ -384,7 +384,7 @@ const About = () => {
 
       {/* ── 2. OUR STORY SECTION (Warm Cream Background) ─────────────────── */}
       <section className="pt-6 sm:pt-16 lg:pt-16 pb-12 sm:pb-20 lg:pb-24 px-4 sm:px-6 md:px-12 border-b border-ink-border bg-bg relative">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative">
           
           {/* Left Column — Sticky Showcase Card on Mobile & Desktop */}
           <div className="lg:col-span-5 sticky top-[72px] sm:top-20 lg:top-28 z-20 pb-3 lg:pb-0 bg-bg/95 backdrop-blur-md -mx-4 px-4 sm:mx-0 sm:px-0 pt-3 sm:pt-4 lg:pt-0">
@@ -437,7 +437,7 @@ const About = () => {
 
       {/* ── 3. 4-GENERATION TIMELINE (Standard Functional Cards) ──── */}
       <section className="py-20 sm:py-24 px-4 sm:px-6 md:px-12 border-b border-ink-border bg-bg-card">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto space-y-10 sm:space-y-12">
+        <div className="max-w-[1440px] mx-auto space-y-10 sm:space-y-12">
           <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-ink-border/60 pb-6">
             <div>
               <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-gold">{aboutData.genBadge}</span>
@@ -488,7 +488,7 @@ const About = () => {
 
       {/* ── 4. CORE PRINCIPLES GRID (🔒 LOCKED SECTION) ─────────────────── */}
       <section className="py-24 px-6 md:px-12 border-b border-ink-border bg-bg">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto space-y-12">
+        <div className="max-w-[1440px] mx-auto space-y-12">
           <Reveal className="text-center max-w-[700px] mx-auto">
             <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-gold">Our Philosophy</span>
             <h2 className="font-display text-[clamp(28px,3.8vw,52px)] font-bold text-ink mt-1">
@@ -538,7 +538,7 @@ const About = () => {
 
       {/* ── 6. CRAFTSMANSHIP GALLERY GRID ─────────────────────────────────── */}
       <section className="py-14 sm:py-20 lg:py-24 px-6 md:px-12 bg-bg">
-        <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto space-y-12">
+        <div className="max-w-[1440px] mx-auto space-y-12">
           <Reveal className="text-center max-w-[650px] mx-auto">
             <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-gold">{aboutData.galleryBadge}</span>
             <h2 className="font-display text-[clamp(28px,3.5vw,48px)] font-bold text-ink mt-1">

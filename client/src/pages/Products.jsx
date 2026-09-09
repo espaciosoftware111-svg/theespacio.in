@@ -110,7 +110,7 @@ const Products = () => {
       <SEO title="Premium Material Library — WPC, Fluted, Acrylic Panels" description="Explore ESPACIO's curated material library. WPC wall panels, fluted panels, polygranite, acrylic sheets, mosaic tiles and more. Request samples and catalogue." url="/materials" />
       
       {/* Hero with Dome Gallery — matches Home & Services rounded framed card */}
-      <section className="relative h-[64vh] sm:h-[80vh] lg:h-[98vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 max-h-[960px] 3xl:max-h-[1100px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 2xl:px-16 3xl:px-24 z-0">
+      <section className="relative h-[64vh] sm:h-[80vh] lg:h-[98vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
         {/* Rounded dark card */}
         <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] bg-[#120F17] shadow-2xl">
           {/* Dome Gallery Container */}
@@ -140,7 +140,7 @@ const Products = () => {
       </section>
 
       {/* Category Header */}
-      <div className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-4 sm:px-6 md:px-12 2xl:px-16 pt-10 sm:pt-14 pb-6 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 sm:pt-14 pb-6 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
         <div className="space-y-1.5 sm:space-y-2">
           <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Premium Collection</span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">Curated Material Library</h2>
@@ -148,13 +148,13 @@ const Products = () => {
       </div>
 
       {/* Material Cards Grid */}
-      <section className="max-w-[1440px] 2xl:max-w-[1720px] 3xl:max-w-[2100px] 4xl:max-w-[2400px] mx-auto px-4 sm:px-6 md:px-12 2xl:px-16 pb-16">
+      <section className="max-w-[1440px] mx-auto px-6 md:px-12 pb-16">
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8">
-            {[1,2,3,4,5,6,7,8,9,10].map((n) => <div key={n} className="aspect-[3/4] bg-bg-card animate-pulse rounded-[24px]" />)}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {[1,2,3,4,5,6,7,8].map((n) => <div key={n} className="aspect-[3/4] bg-bg-card animate-pulse rounded-[24px]" />)}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredProducts.map((product, idx) => (
               <Link key={product.slug || idx} to={`/materials/${product.slug}`}
                 className="group block rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 hover:border-gold/50 hover:-translate-y-2 transition-all duration-400 shadow-sm hover:shadow-xl">
