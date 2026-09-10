@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Volume2 } from 'lucide-react';
 
 export const IntroPreloader = () => {
   const [showIntro, setShowIntro] = useState(() => {
@@ -17,6 +18,7 @@ export const IntroPreloader = () => {
   });
 
   const [progress, setProgress] = useState(0);
+  const [isAudioActive, setIsAudioActive] = useState(false);
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -28,6 +30,16 @@ export const IntroPreloader = () => {
       cancelAnimationFrame(animFrameRef.current);
     }
     setShowIntro(false);
+  }, []);
+
+  const unmuteAndPlaySound = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1.0;
+      videoRef.current.play().then(() => {
+        setIsAudioActive(true);
+      }).catch(() => {});
+    }
   }, []);
 
   // Real-time smooth ambient backdrop render loop (eliminates horizontal streak lines)
@@ -122,32 +134,35 @@ export const IntroPreloader = () => {
     // Start render loop immediately
     animFrameRef.current = requestAnimationFrame(renderBackdrop);
 
-    // Auto-play video with sound ALWAYS ON
+    // Try playing unmuted audio immediately
     if (videoRef.current) {
       videoRef.current.muted = false;
-      videoRef.current.defaultMuted = false;
       videoRef.current.volume = 1.0;
-      videoRef.current.play().catch(() => {
-        // Fallback for strict browser autoplay policies: play muted until first user interaction
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play().catch(() => {});
-        }
-      });
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          setIsAudioActive(true);
+        }).catch(() => {
+          // Strict browser autoplay policy blocked unmuted sound on cold load:
+          // Play video muted so visuals start immediately, and wait for first gesture to unmute
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => {});
+          }
+          setIsAudioActive(false);
+        });
+      }
     }
 
-    // Auto-unmute on first user gesture anywhere on screen
-    const ensureSoundOn = () => {
-      if (videoRef.current && videoRef.current.muted) {
-        videoRef.current.muted = false;
-        videoRef.current.volume = 1.0;
-      }
+    // Auto-unmute on first user touch/click/scroll
+    const handleFirstGesture = () => {
+      unmuteAndPlaySound();
     };
-    window.addEventListener('pointerdown', ensureSoundOn, { once: true, passive: true });
-    window.addEventListener('touchstart', ensureSoundOn, { once: true, passive: true });
-    window.addEventListener('click', ensureSoundOn, { once: true, passive: true });
-    window.addEventListener('keydown', ensureSoundOn, { once: true, passive: true });
-    window.addEventListener('scroll', ensureSoundOn, { once: true, passive: true });
+    window.addEventListener('pointerdown', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('touchstart', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('click', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('keydown', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('scroll', handleFirstGesture, { once: true, passive: true });
 
     // Safety timeout: dismiss after 6.2s max if ended event fails
     const timer = setTimeout(() => {
@@ -156,23 +171,26 @@ export const IntroPreloader = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('pointerdown', ensureSoundOn);
-      window.removeEventListener('touchstart', ensureSoundOn);
-      window.removeEventListener('click', ensureSoundOn);
-      window.removeEventListener('keydown', ensureSoundOn);
-      window.removeEventListener('scroll', ensureSoundOn);
+      window.removeEventListener('pointerdown', handleFirstGesture);
+      window.removeEventListener('touchstart', handleFirstGesture);
+      window.removeEventListener('click', handleFirstGesture);
+      window.removeEventListener('keydown', handleFirstGesture);
+      window.removeEventListener('scroll', handleFirstGesture);
       clearTimeout(timer);
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
       }
     };
-  }, [showIntro, handleComplete, renderBackdrop]);
+  }, [showIntro, handleComplete, renderBackdrop, unmuteAndPlaySound]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current && videoRef.current.duration) {
       const cur = videoRef.current.currentTime;
       const pct = (cur / videoRef.current.duration) * 100;
       setProgress(pct);
+      if (!videoRef.current.muted && videoRef.current.volume > 0) {
+        setIsAudioActive(true);
+      }
     }
   };
 
@@ -187,8 +205,8 @@ export const IntroPreloader = () => {
             scale: 1.01,
             transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] }
           }}
-          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden cursor-pointer bg-black"
-          onClick={handleComplete}
+          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black"
+          onClick={unmuteAndPlaySound}
         >
           {/* Real-time ambient edge extension backdrop canvas */}
           <canvas
@@ -224,14 +242,31 @@ export const IntroPreloader = () => {
             />
           </div>
 
-          {/* Skip Button */}
+          {/* Luxury Sound Activation Notice (only visible if browser autoplay policy initially muted audio) */}
+          {!isAudioActive && (
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="absolute top-6 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-black/85 backdrop-blur-md shadow-2xl z-40 text-gold text-[11px] font-sans font-semibold tracking-widest uppercase cursor-pointer hover:bg-black transition-all animate-pulse"
+              onClick={(e) => {
+                e.stopPropagation();
+                unmuteAndPlaySound();
+              }}
+            >
+              <Volume2 size={14} className="text-gold" />
+              <span>Tap Anywhere for Sound</span>
+            </motion.div>
+          )}
+
+          {/* Dedicated Skip Button */}
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleComplete();
             }}
-            className="absolute bottom-6 right-6 flex items-center gap-1.5 text-white hover:text-gold font-sans text-[11px] font-semibold tracking-widest uppercase transition-all px-4 py-2 rounded-full border border-white/20 bg-black/75 hover:bg-black/90 backdrop-blur-md z-30 shadow-lg"
+            className="absolute bottom-6 right-6 flex items-center gap-1.5 text-white hover:text-gold font-sans text-[11px] font-semibold tracking-widest uppercase transition-all px-4 py-2 rounded-full border border-white/20 bg-black/75 hover:bg-black/90 backdrop-blur-md z-30 shadow-lg cursor-pointer"
           >
             <span>Skip</span>
             <span className="text-gold">↗</span>
