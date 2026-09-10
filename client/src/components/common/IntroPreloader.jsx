@@ -1,50 +1,24 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Mathematically exact color interpolation curve keyed to video timeline
-const getColors = (t) => {
-  // Phase 1: 0.0s - 0.78s (Black opening with lamp off)
-  if (t <= 0.78) {
-    return { top: 'rgb(0, 0, 0)', bot: 'rgb(0, 0, 0)' };
+// Clean uniform background color matching the video timeline seamlessly
+// Whole screen is the exact same uniform color: starts pure black, illuminates with the bulb,
+// and stays solid luxury ivory (#F5EAE1) without any split gradients, dark bands, or half-screen lines.
+const getBackgroundColor = (t) => {
+  // Phase 1: 0.0s - 0.75s (Bulb off, pure black screen)
+  if (t <= 0.75) {
+    return 'rgb(0, 0, 0)';
   }
-  // Phase 2: 0.78s - 0.95s (Electric switch - light turns on and illuminates wall & table)
-  if (t <= 0.95) {
-    const r = (t - 0.78) / 0.17;
-    const tr = Math.round(0 + r * 215);
-    const tg = Math.round(0 + r * 205);
-    const tb = Math.round(0 + r * 195);
-
-    const br = Math.round(0 + r * 72);
-    const bg = Math.round(0 + r * 66);
-    const bb = Math.round(0 + r * 62);
-    return { top: `rgb(${tr}, ${tg}, ${tb})`, bot: `rgb(${br}, ${bg}, ${bb})` };
+  // Phase 2: 0.75s - 1.0s (Electric switch - room illuminates seamlessly into warm ivory)
+  if (t <= 1.0) {
+    const r = (t - 0.75) / 0.25;
+    const cr = Math.round(0 + r * 245);
+    const cg = Math.round(0 + r * 234);
+    const cb = Math.round(0 + r * 225);
+    return `rgb(${cr}, ${cg}, ${cb})`;
   }
-  // Phase 3: 0.95s - 1.55s (Lamp zooms out with illuminated warm wall and dark table)
-  if (t <= 1.55) {
-    const r = (t - 0.95) / 0.6;
-    const tr = Math.round(215 + r * (222 - 215));
-    const tg = Math.round(205 + r * (212 - 205));
-    const tb = Math.round(195 + r * (202 - 195));
-
-    const br = Math.round(72 + r * (78 - 72));
-    const bg = Math.round(66 + r * (72 - 66));
-    const bb = Math.round(62 + r * (68 - 62));
-    return { top: `rgb(${tr}, ${tg}, ${tb})`, bot: `rgb(${br}, ${bg}, ${bb})` };
-  }
-  // Phase 4: 1.55s - 2.1s (Camera flare transition into solid ivory wall)
-  if (t <= 2.1) {
-    const r = (t - 1.55) / 0.55;
-    const tr = Math.round(222 + r * (245 - 222));
-    const tg = Math.round(212 + r * (234 - 212));
-    const tb = Math.round(202 + r * (225 - 202));
-
-    const br = Math.round(78 + r * (245 - 78));
-    const bg = Math.round(72 + r * (234 - 72));
-    const bb = Math.round(68 + r * (225 - 68));
-    return { top: `rgb(${tr}, ${tg}, ${tb})`, bot: `rgb(${br}, ${bg}, ${bb})` };
-  }
-  // Phase 5: 2.1s - 5.06s (Pure solid luxury ivory wall #F5EAE1 matching logo animation)
-  return { top: 'rgb(245, 234, 225)', bot: 'rgb(245, 234, 225)' };
+  // Phase 3: 1.0s - 5.06s (Pure solid luxury ivory wall matching the entire animation & logo)
+  return 'rgb(245, 234, 225)';
 };
 
 export const IntroPreloader = () => {
@@ -93,14 +67,14 @@ export const IntroPreloader = () => {
     if (!video) return;
 
     const t = video.currentTime || 0;
-    const { top, bot } = getColors(t);
+    const bg = getBackgroundColor(t);
 
-    // 1. Direct hardware-accelerated CSS background on container
+    // 1. Direct hardware-accelerated uniform background color on container (no split lines)
     if (containerRef.current) {
-      containerRef.current.style.background = `linear-gradient(to bottom, ${top} 0%, ${top} 58%, ${bot} 66%, ${bot} 100%)`;
+      containerRef.current.style.backgroundColor = bg;
     }
 
-    // 2. Mobile portrait / tall viewports (ry > 0): canvas draws lamp cord to ceiling & table to bottom
+    // 2. Mobile portrait / tall viewports (ry > 0): canvas draws lamp cord to ceiling during lamp phase
     const canvas = canvasRef.current;
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -119,9 +93,8 @@ export const IntroPreloader = () => {
           const rx = (cw - rw) / 2;
           const ry = (ch - rh) / 2;
 
-          if (ry > 0) {
+          if (ry > 0 && t > 0.75 && t < 2.1) {
             ctx.drawImage(video, 2, 2, vw - 4, 4, rx, 0, rw, ry + 1);
-            ctx.drawImage(video, 2, vh - 6, vw - 4, 4, rx, ry + rh - 1, rw, ch - (ry + rh) + 1);
           }
         }
       }
@@ -206,11 +179,11 @@ export const IntroPreloader = () => {
             scale: 1.01,
             transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] }
           }}
-          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden transition-[background] duration-75"
+          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden transition-colors duration-150"
           style={{ backgroundColor: '#000000' }}
           onClick={unmuteAndPlaySound}
         >
-          {/* Real-time ambient edge extension backdrop canvas (for vertical top/bottom extension on mobile) */}
+          {/* Canvas for vertical lamp cord ceiling extension on mobile portrait */}
           <canvas
             ref={canvasRef}
             width={typeof window !== 'undefined' ? window.innerWidth : 1920}
@@ -219,7 +192,7 @@ export const IntroPreloader = () => {
             aria-hidden="true"
           />
 
-          {/* Foreground video container with feathered side edges */}
+          {/* Foreground video container with soft feathered edges */}
           <div className="relative z-[2] w-full h-full flex items-center justify-center pointer-events-none">
             <video
               ref={videoRef}
@@ -239,8 +212,8 @@ export const IntroPreloader = () => {
               onError={handleComplete}
               className="w-full h-full object-contain pointer-events-none"
               style={{
-                maskImage: 'linear-gradient(to right, transparent, black 2.5%, black 97.5%, transparent), linear-gradient(to bottom, transparent, black 2.5%, black 97.5%, transparent)',
-                WebkitMaskImage: '-webkit-linear-gradient(left, transparent, black 2.5%, black 97.5%, transparent), -webkit-linear-gradient(top, transparent, black 2.5%, black 97.5%, transparent)',
+                maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent), linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)',
+                WebkitMaskImage: '-webkit-linear-gradient(left, transparent, black 5%, black 95%, transparent), -webkit-linear-gradient(top, transparent 0%, black 5%, black 95%, transparent 100%)',
                 maskComposite: 'intersect',
                 WebkitMaskComposite: 'source-in'
               }}
