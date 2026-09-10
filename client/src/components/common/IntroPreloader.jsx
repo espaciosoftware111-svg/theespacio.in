@@ -1,6 +1,51 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2 } from 'lucide-react';
+
+// Mathematically exact color interpolation curve keyed to video timeline
+const getColors = (t) => {
+  // Phase 1: 0.0s - 0.78s (Black opening with lamp off)
+  if (t <= 0.78) {
+    return { top: 'rgb(0, 0, 0)', bot: 'rgb(0, 0, 0)' };
+  }
+  // Phase 2: 0.78s - 0.95s (Electric switch - light turns on and illuminates wall & table)
+  if (t <= 0.95) {
+    const r = (t - 0.78) / 0.17;
+    const tr = Math.round(0 + r * 215);
+    const tg = Math.round(0 + r * 205);
+    const tb = Math.round(0 + r * 195);
+
+    const br = Math.round(0 + r * 72);
+    const bg = Math.round(0 + r * 66);
+    const bb = Math.round(0 + r * 62);
+    return { top: `rgb(${tr}, ${tg}, ${tb})`, bot: `rgb(${br}, ${bg}, ${bb})` };
+  }
+  // Phase 3: 0.95s - 1.55s (Lamp zooms out with illuminated warm wall and dark table)
+  if (t <= 1.55) {
+    const r = (t - 0.95) / 0.6;
+    const tr = Math.round(215 + r * (222 - 215));
+    const tg = Math.round(205 + r * (212 - 205));
+    const tb = Math.round(195 + r * (202 - 195));
+
+    const br = Math.round(72 + r * (78 - 72));
+    const bg = Math.round(66 + r * (72 - 66));
+    const bb = Math.round(62 + r * (68 - 62));
+    return { top: `rgb(${tr}, ${tg}, ${tb})`, bot: `rgb(${br}, ${bg}, ${bb})` };
+  }
+  // Phase 4: 1.55s - 2.1s (Camera flare transition into solid ivory wall)
+  if (t <= 2.1) {
+    const r = (t - 1.55) / 0.55;
+    const tr = Math.round(222 + r * (245 - 222));
+    const tg = Math.round(212 + r * (234 - 212));
+    const tb = Math.round(202 + r * (225 - 202));
+
+    const br = Math.round(78 + r * (245 - 78));
+    const bg = Math.round(72 + r * (234 - 72));
+    const bb = Math.round(68 + r * (225 - 68));
+    return { top: `rgb(${tr}, ${tg}, ${tb})`, bot: `rgb(${br}, ${bg}, ${bb})` };
+  }
+  // Phase 5: 2.1s - 5.06s (Pure solid luxury ivory wall #F5EAE1 matching logo animation)
+  return { top: 'rgb(245, 234, 225)', bot: 'rgb(245, 234, 225)' };
+};
 
 export const IntroPreloader = () => {
   const [showIntro, setShowIntro] = useState(() => {
@@ -18,11 +63,10 @@ export const IntroPreloader = () => {
   });
 
   const [progress, setProgress] = useState(0);
-  const [isAudioActive, setIsAudioActive] = useState(false);
 
+  const containerRef = useRef(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const sampleCanvasRef = useRef(null);
   const animFrameRef = useRef(null);
 
   const handleComplete = useCallback(() => {
@@ -36,82 +80,51 @@ export const IntroPreloader = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
       videoRef.current.volume = 1.0;
-      videoRef.current.play().then(() => {
-        setIsAudioActive(true);
-      }).catch(() => {});
+      const p = videoRef.current.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
     }
   }, []);
 
-  // Real-time smooth ambient backdrop render loop (eliminates horizontal streak lines)
+  // Real-time smooth ambient backdrop sync loop
   const renderBackdrop = useCallback(() => {
     const video = videoRef.current;
+    if (!video) return;
+
+    const t = video.currentTime || 0;
+    const { top, bot } = getColors(t);
+
+    // 1. Direct hardware-accelerated CSS background on container
+    if (containerRef.current) {
+      containerRef.current.style.background = `linear-gradient(to bottom, ${top} 0%, ${top} 58%, ${bot} 66%, ${bot} 100%)`;
+    }
+
+    // 2. Mobile portrait / tall viewports (ry > 0): canvas draws lamp cord to ceiling & table to bottom
     const canvas = canvasRef.current;
-    if (!video || !canvas) return;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        const cw = canvas.width || window.innerWidth;
+        const ch = canvas.height || window.innerHeight;
+        ctx.clearRect(0, 0, cw, ch);
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+        if (video.readyState >= 2) {
+          const vw = video.videoWidth || 960;
+          const vh = video.videoHeight || 960;
 
-    const cw = canvas.width || window.innerWidth;
-    const ch = canvas.height || window.innerHeight;
+          const scale = Math.min(cw / vw, ch / vh);
+          const rw = vw * scale;
+          const rh = vh * scale;
+          const rx = (cw - rw) / 2;
+          const ry = (ch - rh) / 2;
 
-    if (video.readyState >= 2) {
-      const vw = video.videoWidth || 960;
-      const vh = video.videoHeight || 960;
-
-      const scale = Math.min(cw / vw, ch / vh);
-      const rw = vw * scale;
-      const rh = vh * scale;
-      const rx = (cw - rw) / 2;
-      const ry = (ch - rh) / 2;
-
-      // Lazy-init tiny 16x16 sampling canvas for corner ambient colors
-      if (!sampleCanvasRef.current) {
-        const sc = document.createElement('canvas');
-        sc.width = 16;
-        sc.height = 16;
-        sampleCanvasRef.current = sc;
+          if (ry > 0) {
+            ctx.drawImage(video, 2, 2, vw - 4, 4, rx, 0, rw, ry + 1);
+            ctx.drawImage(video, 2, vh - 6, vw - 4, 4, rx, ry + rh - 1, rw, ch - (ry + rh) + 1);
+          }
+        }
       }
-      const sCtx = sampleCanvasRef.current.getContext('2d', { willReadFrequently: true });
-      sCtx.drawImage(video, 0, 0, 16, 16);
-
-      // Top corners (wall)
-      const tl = sCtx.getImageData(1, 1, 1, 1).data;
-      const tr = sCtx.getImageData(14, 1, 1, 1).data;
-      const topR = Math.round((tl[0] + tr[0]) / 2);
-      const topG = Math.round((tl[1] + tr[1]) / 2);
-      const topB = Math.round((tl[2] + tr[2]) / 2);
-      const topColor = `rgb(${topR}, ${topG}, ${topB})`;
-
-      // Bottom corners (table or wall)
-      const bl = sCtx.getImageData(1, 14, 1, 1).data;
-      const br = sCtx.getImageData(14, 14, 1, 1).data;
-      const botR = Math.round((bl[0] + br[0]) / 2);
-      const botG = Math.round((bl[1] + br[1]) / 2);
-      const botB = Math.round((bl[2] + br[2]) / 2);
-      const botColor = `rgb(${botR}, ${botG}, ${botB})`;
-
-      ctx.clearRect(0, 0, cw, ch);
-
-      // Smooth vertical ambient gradient matching the video lighting (zero side streaks)
-      const grad = ctx.createLinearGradient(0, ry, 0, ry + rh);
-      grad.addColorStop(0, topColor);
-      grad.addColorStop(0.5, topColor);
-      grad.addColorStop(0.85, botColor);
-      grad.addColorStop(1, botColor);
-
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, cw, ch);
-
-      // On mobile portrait / tall viewports (ry > 0):
-      // Extends top row upwards so the black lamp cord extends to the top ceiling,
-      // and bottom row downwards so the table/floor extends naturally
-      if (ry > 0) {
-        ctx.drawImage(video, 2, 2, vw - 4, 4, rx, 0, rw, ry + 1);
-        ctx.drawImage(video, 2, vh - 6, vw - 4, 4, rx, ry + rh - 1, rw, ch - (ry + rh) + 1);
-      }
-    } else {
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, cw, ch);
     }
 
     animFrameRef.current = requestAnimationFrame(renderBackdrop);
@@ -140,29 +153,23 @@ export const IntroPreloader = () => {
       videoRef.current.volume = 1.0;
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
-        playPromise.then(() => {
-          setIsAudioActive(true);
-        }).catch(() => {
+        playPromise.catch(() => {
           // Strict browser autoplay policy blocked unmuted sound on cold load:
-          // Play video muted so visuals start immediately, and wait for first gesture to unmute
+          // Keep video playing and wait for first micro-gesture to instantly unmute
           if (videoRef.current) {
             videoRef.current.muted = true;
             videoRef.current.play().catch(() => {});
           }
-          setIsAudioActive(false);
         });
       }
     }
 
-    // Auto-unmute on first user touch/click/scroll
-    const handleFirstGesture = () => {
+    // Auto-unmute on first user gesture anywhere on window
+    const handleGesture = () => {
       unmuteAndPlaySound();
     };
-    window.addEventListener('pointerdown', handleFirstGesture, { once: true, passive: true });
-    window.addEventListener('touchstart', handleFirstGesture, { once: true, passive: true });
-    window.addEventListener('click', handleFirstGesture, { once: true, passive: true });
-    window.addEventListener('keydown', handleFirstGesture, { once: true, passive: true });
-    window.addEventListener('scroll', handleFirstGesture, { once: true, passive: true });
+    const events = ['pointerdown', 'pointermove', 'touchstart', 'touchend', 'mousedown', 'keydown', 'wheel', 'scroll'];
+    events.forEach(evt => window.addEventListener(evt, handleGesture, { once: true, passive: true }));
 
     // Safety timeout: dismiss after 6.2s max if ended event fails
     const timer = setTimeout(() => {
@@ -171,11 +178,7 @@ export const IntroPreloader = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('pointerdown', handleFirstGesture);
-      window.removeEventListener('touchstart', handleFirstGesture);
-      window.removeEventListener('click', handleFirstGesture);
-      window.removeEventListener('keydown', handleFirstGesture);
-      window.removeEventListener('scroll', handleFirstGesture);
+      events.forEach(evt => window.removeEventListener(evt, handleGesture));
       clearTimeout(timer);
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
@@ -188,9 +191,6 @@ export const IntroPreloader = () => {
       const cur = videoRef.current.currentTime;
       const pct = (cur / videoRef.current.duration) * 100;
       setProgress(pct);
-      if (!videoRef.current.muted && videoRef.current.volume > 0) {
-        setIsAudioActive(true);
-      }
     }
   };
 
@@ -198,6 +198,7 @@ export const IntroPreloader = () => {
     <AnimatePresence>
       {showIntro && (
         <motion.div
+          ref={containerRef}
           key="espacio-intro-overlay"
           initial={{ opacity: 1 }}
           exit={{
@@ -205,10 +206,11 @@ export const IntroPreloader = () => {
             scale: 1.01,
             transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] }
           }}
-          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black"
+          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden transition-[background] duration-75"
+          style={{ backgroundColor: '#000000' }}
           onClick={unmuteAndPlaySound}
         >
-          {/* Real-time ambient edge extension backdrop canvas */}
+          {/* Real-time ambient edge extension backdrop canvas (for vertical top/bottom extension on mobile) */}
           <canvas
             ref={canvasRef}
             width={typeof window !== 'undefined' ? window.innerWidth : 1920}
@@ -226,6 +228,7 @@ export const IntroPreloader = () => {
               playsInline
               preload="auto"
               onPlay={() => {
+                if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
                 animFrameRef.current = requestAnimationFrame(renderBackdrop);
               }}
               onLoadedData={() => {
@@ -236,28 +239,13 @@ export const IntroPreloader = () => {
               onError={handleComplete}
               className="w-full h-full object-contain pointer-events-none"
               style={{
-                maskImage: 'linear-gradient(to right, transparent, black 2.5%, black 97.5%, transparent)',
-                WebkitMaskImage: '-webkit-linear-gradient(left, transparent, black 2.5%, black 97.5%, transparent)',
+                maskImage: 'linear-gradient(to right, transparent, black 2.5%, black 97.5%, transparent), linear-gradient(to bottom, transparent, black 2.5%, black 97.5%, transparent)',
+                WebkitMaskImage: '-webkit-linear-gradient(left, transparent, black 2.5%, black 97.5%, transparent), -webkit-linear-gradient(top, transparent, black 2.5%, black 97.5%, transparent)',
+                maskComposite: 'intersect',
+                WebkitMaskComposite: 'source-in'
               }}
             />
           </div>
-
-          {/* Luxury Sound Activation Notice (only visible if browser autoplay policy initially muted audio) */}
-          {!isAudioActive && (
-            <motion.div
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="absolute top-6 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-black/85 backdrop-blur-md shadow-2xl z-40 text-gold text-[11px] font-sans font-semibold tracking-widest uppercase cursor-pointer hover:bg-black transition-all animate-pulse"
-              onClick={(e) => {
-                e.stopPropagation();
-                unmuteAndPlaySound();
-              }}
-            >
-              <Volume2 size={14} className="text-gold" />
-              <span>Tap Anywhere for Sound</span>
-            </motion.div>
-          )}
 
           {/* Dedicated Skip Button */}
           <button
