@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX } from 'lucide-react';
 
 export const IntroPreloader = () => {
   const [showIntro, setShowIntro] = useState(() => {
@@ -17,11 +16,11 @@ export const IntroPreloader = () => {
     }
   });
 
-  const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const sampleCanvasRef = useRef(null);
   const animFrameRef = useRef(null);
 
   const handleComplete = useCallback(() => {
@@ -31,7 +30,7 @@ export const IntroPreloader = () => {
     setShowIntro(false);
   }, []);
 
-  // Real-time ambient edge extension backdrop render loop
+  // Real-time smooth ambient backdrop render loop (eliminates horizontal streak lines)
   const renderBackdrop = useCallback(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
@@ -53,39 +52,52 @@ export const IntroPreloader = () => {
       const rx = (cw - rw) / 2;
       const ry = (ch - rh) / 2;
 
+      // Lazy-init tiny 16x16 sampling canvas for corner ambient colors
+      if (!sampleCanvasRef.current) {
+        const sc = document.createElement('canvas');
+        sc.width = 16;
+        sc.height = 16;
+        sampleCanvasRef.current = sc;
+      }
+      const sCtx = sampleCanvasRef.current.getContext('2d', { willReadFrequently: true });
+      sCtx.drawImage(video, 0, 0, 16, 16);
+
+      // Top corners (wall)
+      const tl = sCtx.getImageData(1, 1, 1, 1).data;
+      const tr = sCtx.getImageData(14, 1, 1, 1).data;
+      const topR = Math.round((tl[0] + tr[0]) / 2);
+      const topG = Math.round((tl[1] + tr[1]) / 2);
+      const topB = Math.round((tl[2] + tr[2]) / 2);
+      const topColor = `rgb(${topR}, ${topG}, ${topB})`;
+
+      // Bottom corners (table or wall)
+      const bl = sCtx.getImageData(1, 14, 1, 1).data;
+      const br = sCtx.getImageData(14, 14, 1, 1).data;
+      const botR = Math.round((bl[0] + br[0]) / 2);
+      const botG = Math.round((bl[1] + br[1]) / 2);
+      const botB = Math.round((bl[2] + br[2]) / 2);
+      const botColor = `rgb(${botR}, ${botG}, ${botB})`;
+
       ctx.clearRect(0, 0, cw, ch);
 
-      // 1. TOP EXTENSION (Mobile portrait / tall screens)
-      // Seamlessly stretches the top edge upwards to y=0 (extends wall background and black lamp cord)
+      // Smooth vertical ambient gradient matching the video lighting (zero side streaks)
+      const grad = ctx.createLinearGradient(0, ry, 0, ry + rh);
+      grad.addColorStop(0, topColor);
+      grad.addColorStop(0.5, topColor);
+      grad.addColorStop(0.85, botColor);
+      grad.addColorStop(1, botColor);
+
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, cw, ch);
+
+      // On mobile portrait / tall viewports (ry > 0):
+      // Extends top row upwards so the black lamp cord extends to the top ceiling,
+      // and bottom row downwards so the table/floor extends naturally
       if (ry > 0) {
         ctx.drawImage(video, 2, 2, vw - 4, 4, rx, 0, rw, ry + 1);
-      }
-
-      // 2. BOTTOM EXTENSION (Mobile portrait / tall screens)
-      // Seamlessly stretches the bottom edge downwards to y=ch (extends floor/table surface)
-      if (ry > 0) {
         ctx.drawImage(video, 2, vh - 6, vw - 4, 4, rx, ry + rh - 1, rw, ch - (ry + rh) + 1);
       }
-
-      // 3. LEFT EXTENSION (Desktop widescreen displays)
-      if (rx > 0) {
-        ctx.drawImage(video, 2, 2, 4, vh - 4, 0, ry, rx + 1, rh);
-      }
-
-      // 4. RIGHT EXTENSION (Desktop widescreen displays)
-      if (rx > 0) {
-        ctx.drawImage(video, vw - 6, 2, 4, vh - 4, rx + rw - 1, ry, cw - (rx + rw) + 1, rh);
-      }
-
-      // 5. CORNERS EXTENSION (For arbitrary responsive window proportions)
-      if (rx > 0 && ry > 0) {
-        ctx.drawImage(video, 2, 2, 4, 4, 0, 0, rx + 1, ry + 1);
-        ctx.drawImage(video, vw - 6, 2, 4, 4, rx + rw - 1, 0, cw - (rx + rw) + 1, ry + 1);
-        ctx.drawImage(video, 2, vh - 6, 4, 4, 0, ry + rh - 1, rx + 1, ch - (ry + rh) + 1);
-        ctx.drawImage(video, vw - 6, vh - 6, 4, 4, rx + rw - 1, ry + rh - 1, cw - (rx + rw) + 1, ch - (ry + rh) + 1);
-      }
     } else {
-      // Solid black while initial video frame prepares
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, cw, ch);
     }
@@ -93,7 +105,7 @@ export const IntroPreloader = () => {
     animFrameRef.current = requestAnimationFrame(renderBackdrop);
   }, []);
 
-  // Sync canvas size to viewport & start animation loop
+  // Sync canvas size to viewport & initiate continuous playback with sound ALWAYS on
   useEffect(() => {
     if (!showIntro) return;
 
@@ -107,38 +119,35 @@ export const IntroPreloader = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Start continuous animation frame loop immediately
+    // Start render loop immediately
     animFrameRef.current = requestAnimationFrame(renderBackdrop);
 
-    // Auto-play video with sound enabled by default
+    // Auto-play video with sound ALWAYS ON
     if (videoRef.current) {
       videoRef.current.muted = false;
       videoRef.current.defaultMuted = false;
       videoRef.current.volume = 1.0;
-      videoRef.current.play().then(() => {
-        setIsMuted(false);
-      }).catch(() => {
-        // Browser autoplay policy restricted audio without user gesture:
-        // Play muted as immediate fallback, and automatically unmute on the first user interaction
+      videoRef.current.play().catch(() => {
+        // Fallback for strict browser autoplay policies: play muted until first user interaction
         if (videoRef.current) {
           videoRef.current.muted = true;
-          setIsMuted(true);
           videoRef.current.play().catch(() => {});
         }
       });
     }
 
-    // Auto-unmute on first touch/click if browser autoplay policy initially blocked unmuted playback
-    const handleFirstGesture = () => {
+    // Auto-unmute on first user gesture anywhere on screen
+    const ensureSoundOn = () => {
       if (videoRef.current && videoRef.current.muted) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1.0;
-        setIsMuted(false);
       }
     };
-    window.addEventListener('pointerdown', handleFirstGesture, { once: true, passive: true });
-    window.addEventListener('touchstart', handleFirstGesture, { once: true, passive: true });
-    window.addEventListener('keydown', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('pointerdown', ensureSoundOn, { once: true, passive: true });
+    window.addEventListener('touchstart', ensureSoundOn, { once: true, passive: true });
+    window.addEventListener('click', ensureSoundOn, { once: true, passive: true });
+    window.addEventListener('keydown', ensureSoundOn, { once: true, passive: true });
+    window.addEventListener('scroll', ensureSoundOn, { once: true, passive: true });
 
     // Safety timeout: dismiss after 6.2s max if ended event fails
     const timer = setTimeout(() => {
@@ -147,9 +156,11 @@ export const IntroPreloader = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('pointerdown', handleFirstGesture);
-      window.removeEventListener('touchstart', handleFirstGesture);
-      window.removeEventListener('keydown', handleFirstGesture);
+      window.removeEventListener('pointerdown', ensureSoundOn);
+      window.removeEventListener('touchstart', ensureSoundOn);
+      window.removeEventListener('click', ensureSoundOn);
+      window.removeEventListener('keydown', ensureSoundOn);
+      window.removeEventListener('scroll', ensureSoundOn);
       clearTimeout(timer);
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
@@ -162,15 +173,6 @@ export const IntroPreloader = () => {
       const cur = videoRef.current.currentTime;
       const pct = (cur / videoRef.current.duration) * 100;
       setProgress(pct);
-    }
-  };
-
-  const toggleSound = (e) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      const nextMuted = !isMuted;
-      videoRef.current.muted = nextMuted;
-      setIsMuted(nextMuted);
     }
   };
 
@@ -197,13 +199,12 @@ export const IntroPreloader = () => {
             aria-hidden="true"
           />
 
-          {/* Foreground video container */}
+          {/* Foreground video container with feathered side edges */}
           <div className="relative z-[2] w-full h-full flex items-center justify-center pointer-events-none">
             <video
               ref={videoRef}
               src="/videos/intro.mp4"
               autoPlay
-              muted={isMuted}
               playsInline
               preload="auto"
               onPlay={() => {
@@ -216,28 +217,12 @@ export const IntroPreloader = () => {
               onEnded={handleComplete}
               onError={handleComplete}
               className="w-full h-full object-contain pointer-events-none"
+              style={{
+                maskImage: 'linear-gradient(to right, transparent, black 2.5%, black 97.5%, transparent)',
+                WebkitMaskImage: '-webkit-linear-gradient(left, transparent, black 2.5%, black 97.5%, transparent)',
+              }}
             />
           </div>
-
-          {/* Sound Toggle Button */}
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-label={isMuted ? 'Unmute video sound' : 'Mute video sound'}
-            className="absolute top-6 right-6 flex items-center gap-2 text-white hover:text-gold font-sans text-[11px] font-medium tracking-wider uppercase transition-all px-3.5 py-1.5 rounded-full border border-white/20 bg-black/75 hover:bg-black/90 backdrop-blur-md z-30 shadow-lg"
-          >
-            {isMuted ? (
-              <>
-                <VolumeX size={14} className="text-white/80" />
-                <span className="hidden sm:inline">Sound Off</span>
-              </>
-            ) : (
-              <>
-                <Volume2 size={14} className="text-gold" />
-                <span className="hidden sm:inline text-gold">Sound On</span>
-              </>
-            )}
-          </button>
 
           {/* Skip Button */}
           <button
