@@ -17,7 +17,7 @@ export const IntroPreloader = () => {
     }
   });
 
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const videoRef = useRef(null);
@@ -110,12 +110,35 @@ export const IntroPreloader = () => {
     // Start continuous animation frame loop immediately
     animFrameRef.current = requestAnimationFrame(renderBackdrop);
 
-    // Auto-play video safely with explicit muted property for mobile browser compliance
+    // Auto-play video with sound enabled by default
     if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.defaultMuted = true;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.muted = false;
+      videoRef.current.defaultMuted = false;
+      videoRef.current.volume = 1.0;
+      videoRef.current.play().then(() => {
+        setIsMuted(false);
+      }).catch(() => {
+        // Browser autoplay policy restricted audio without user gesture:
+        // Play muted as immediate fallback, and automatically unmute on the first user interaction
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+          videoRef.current.play().catch(() => {});
+        }
+      });
     }
+
+    // Auto-unmute on first touch/click if browser autoplay policy initially blocked unmuted playback
+    const handleFirstGesture = () => {
+      if (videoRef.current && videoRef.current.muted) {
+        videoRef.current.muted = false;
+        videoRef.current.volume = 1.0;
+        setIsMuted(false);
+      }
+    };
+    window.addEventListener('pointerdown', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('touchstart', handleFirstGesture, { once: true, passive: true });
+    window.addEventListener('keydown', handleFirstGesture, { once: true, passive: true });
 
     // Safety timeout: dismiss after 6.2s max if ended event fails
     const timer = setTimeout(() => {
@@ -124,6 +147,9 @@ export const IntroPreloader = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('pointerdown', handleFirstGesture);
+      window.removeEventListener('touchstart', handleFirstGesture);
+      window.removeEventListener('keydown', handleFirstGesture);
       clearTimeout(timer);
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
@@ -178,7 +204,6 @@ export const IntroPreloader = () => {
               src="/videos/intro.mp4"
               autoPlay
               muted={isMuted}
-              defaultMuted
               playsInline
               preload="auto"
               onPlay={() => {
