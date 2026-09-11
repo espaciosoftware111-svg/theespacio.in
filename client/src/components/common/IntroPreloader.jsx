@@ -67,18 +67,18 @@ export const IntroPreloader = () => {
 
   const unmuteAndPlaySound = useCallback(() => {
     if (videoRef.current) {
-      videoRef.current.muted = false;
-      videoRef.current.volume = 1.0;
-      const p = videoRef.current.play();
-      if (p !== undefined) {
-        p.catch(() => {});
-      }
+      try {
+        videoRef.current.muted = false;
+        videoRef.current.volume = 1.0;
+        const p = videoRef.current.play();
+        if (p !== undefined) {
+          p.catch(() => {});
+        }
+      } catch {}
     }
   }, []);
 
-  // Dynamic background extension:
-  // DESKTOP: Samples rich 60px strip with 4px blur and 6% horizontal mask
-  // MOBILE: Seamless ceiling fixture extension + table extension from t = 0
+  // Smooth background color & subtle edge extension loop
   const renderBackdrop = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -98,65 +98,33 @@ export const IntroPreloader = () => {
         const ch = canvas.height || window.innerHeight;
         ctx.clearRect(0, 0, cw, ch);
 
-        // Sample exact video tone from corner pixel (4, 4) for 100% bit-accurate blending
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, cw, ch);
+
         if (video.readyState >= 2) {
           try {
-            ctx.drawImage(video, 4, 4, 1, 1, 0, 0, cw, ch);
-          } catch {
-            ctx.fillStyle = bg;
-            ctx.fillRect(0, 0, cw, ch);
-          }
-        } else {
-          ctx.fillStyle = bg;
-          ctx.fillRect(0, 0, cw, ch);
-        }
+            const vw = video.videoWidth || 960;
+            const vh = video.videoHeight || 960;
 
-        if (video.readyState >= 2 && t < 2.4) {
-          const vw = video.videoWidth || 960;
-          const vh = video.videoHeight || 960;
+            const scale = Math.min(cw / vw, ch / vh);
+            const rw = vw * scale;
+            const rh = vh * scale;
+            const rx = (cw - rw) / 2;
+            const ry = (ch - rh) / 2;
 
-          const scale = Math.min(cw / vw, ch / vh);
-          const rw = vw * scale;
-          const rh = vh * scale;
-          const rx = (cw - rw) / 2;
-          const ry = (ch - rh) / 2;
-
-          // 1. On widescreen (rx > 0): extend video sides and horizon to screen edges
-          if (rx > 0 && t < 1.85) {
-            const leftW = rx + 80;
-            const rightX = rx + rw - 60;
-            const rightW = (cw - (rx + rw)) + 80;
-
-            ctx.filter = 'blur(4px)';
-            ctx.drawImage(video, 2, 0, 60, vh, -20, ry, leftW, rh);
-            ctx.drawImage(video, vw - 62, 0, 60, vh, rightX, ry, rightW, rh);
-            ctx.filter = 'none';
-          }
-
-          // 2. On mobile portrait / tall viewports (ry > 0):
-          if (ry > 0) {
+            // On mobile portrait / tall viewports (ry > 0):
             // Ceiling lamp fixture / cord extension:
-            // Fades out completely before the lamp begins its swing at 1.80s,
-            // so no static vertical line is ever visible while the cord swings or morphs into logo!
-            const topAlpha = t < 1.70 ? 1 : Math.max(0, 1 - (t - 1.70) / 0.08);
-            if (topAlpha > 0) {
-              const topH = Math.ceil(ry) + 3;
-              ctx.globalAlpha = topAlpha;
-              ctx.drawImage(video, 0, 0, vw, 4, rx, 0, rw, topH);
-              ctx.globalAlpha = 1.0;
+            // Fades out completely before the lamp begins its swing at 1.70s
+            if (ry > 0) {
+              const topAlpha = t > 0.75 && t < 1.70 ? (t < 1.60 ? 1 : Math.max(0, 1 - (t - 1.60) / 0.10)) : 0;
+              if (topAlpha > 0) {
+                const topH = Math.ceil(ry) + 2;
+                ctx.globalAlpha = topAlpha;
+                ctx.drawImage(video, 0, 0, vw, 4, rx, 0, rw, topH);
+                ctx.globalAlpha = 1.0;
+              }
             }
-
-            // Bottom table / floor extension:
-            // Fades out into uniform ivory wall as room light turns off
-            const botAlpha = t < 1.60 ? 1 : Math.max(0, 1 - (t - 1.60) / 0.15);
-            if (botAlpha > 0) {
-              const botY = Math.floor(ry + rh) - 2;
-              const botH = Math.ceil(ch - botY) + 4;
-              ctx.globalAlpha = botAlpha;
-              ctx.drawImage(video, 0, vh - 4, vw, 4, rx, botY, rw, botH);
-              ctx.globalAlpha = 1.0;
-            }
-          }
+          } catch {}
         }
       }
     }
@@ -183,32 +151,40 @@ export const IntroPreloader = () => {
     let isRunning = true;
     const loop = () => {
       if (!isRunning) return;
-      renderBackdrop();
+      try {
+        renderBackdrop();
+      } catch {}
       animFrameRef.current = requestAnimationFrame(loop);
     };
     animFrameRef.current = requestAnimationFrame(loop);
 
-    // Immediate video playback & sound strategy
-    if (videoRef.current) {
-      if (videoRef.current.readyState >= 2) {
+    // Guaranteed cross-platform playback strategy:
+    // 1. Initial play is always MUTED to guarantee 100% browser autoplay approval on laptops and phones
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+
+      if (video.readyState >= 1) {
         setVideoReady(true);
       }
-      videoRef.current.play().then(() => setVideoReady(true)).catch(() => {});
 
-      videoRef.current.muted = false;
-      videoRef.current.volume = 1.0;
-      const playPromise = videoRef.current.play();
+      const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.then(() => setVideoReady(true)).catch(() => {
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            videoRef.current.play().then(() => setVideoReady(true)).catch(() => {});
-          }
-        });
+        playPromise
+          .then(() => setVideoReady(true))
+          .catch((err) => {
+            console.warn("Autoplay notice:", err);
+            if (video) {
+              video.muted = true;
+              video.play().then(() => setVideoReady(true)).catch(() => {});
+            }
+          });
       }
     }
 
-    // Auto-unmute on first micro-interaction
+    // 2. Auto-unmute on first user gesture anywhere on screen (mouse move, click, touch, scroll)
     const handleGesture = () => {
       unmuteAndPlaySound();
     };
@@ -260,7 +236,7 @@ export const IntroPreloader = () => {
           style={{ backgroundColor: '#000000' }}
           onClick={unmuteAndPlaySound}
         >
-          {/* Dynamic edge extension canvas matching video wall & table across entire screen */}
+          {/* Edge extension canvas matching video wall & ceiling across entire screen */}
           <canvas
             ref={canvasRef}
             width={typeof window !== 'undefined' ? window.innerWidth : 1920}
@@ -269,20 +245,20 @@ export const IntroPreloader = () => {
             aria-hidden="true"
           />
 
-          {/* Sized aspect-square video container with seamless edge blending */}
+          {/* Centered full-fit video container */}
           <div
-            className={`relative z-[2] max-w-full max-h-full aspect-square flex items-center justify-center pointer-events-none transition-opacity duration-300 ${
-              videoReady ? 'opacity-100' : 'opacity-0'
+            className={`relative z-[2] w-full h-full flex items-center justify-center pointer-events-none transition-opacity duration-300 ${
+              videoReady ? 'opacity-100' : 'opacity-90'
             }`}
             style={{
               transform: 'translateZ(0)',
               WebkitTransform: 'translateZ(0)',
               maskImage: isPortrait
-                ? 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 2.5%, rgba(0,0,0,1) 97.5%, rgba(0,0,0,0) 100%)'
-                : 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 6%, rgba(0,0,0,1) 94%, rgba(0,0,0,0) 100%)',
+                ? 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 2%, rgba(0,0,0,1) 98%, rgba(0,0,0,0) 100%)'
+                : 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 3%, rgba(0,0,0,1) 97%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage: isPortrait
-                ? '-webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 2.5%, rgba(0,0,0,1) 97.5%, rgba(0,0,0,0) 100%)'
-                : '-webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 6%, rgba(0,0,0,1) 94%, rgba(0,0,0,0) 100%)',
+                ? '-webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 2%, rgba(0,0,0,1) 98%, rgba(0,0,0,0) 100%)'
+                : '-webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 3%, rgba(0,0,0,1) 97%, rgba(0,0,0,0) 100%)',
             }}
           >
             <video
@@ -292,12 +268,12 @@ export const IntroPreloader = () => {
               muted
               playsInline
               preload="auto"
+              onLoadedData={() => setVideoReady(true)}
               onCanPlay={() => setVideoReady(true)}
               onPlaying={() => setVideoReady(true)}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleComplete}
-              onError={handleComplete}
-              className="w-full h-full object-cover pointer-events-none"
+              className="w-full h-full object-contain pointer-events-none"
             />
           </div>
 
