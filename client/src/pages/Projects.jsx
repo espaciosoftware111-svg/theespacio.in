@@ -103,7 +103,8 @@ const Projects = () => {
         const { getCMSData, STORAGE_KEYS } = await import('../utils/cmsStore');
         const stored = getCMSData(STORAGE_KEYS.PROJECTS);
         if (stored && stored.length > 0) {
-          setProjects(stored);
+          const sorted = [...stored].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+          setProjects(sorted);
         }
 
         const settings = getCMSData(STORAGE_KEYS.SETTINGS);
@@ -129,8 +130,9 @@ const Projects = () => {
         ]);
 
         if (projRes?.data?.success && Array.isArray(projRes.data?.data) && projRes.data.data.length > 0) {
-          setProjects(projRes.data.data);
-          setCMSData(STORAGE_KEYS.PROJECTS, projRes.data.data);
+          const sorted = [...projRes.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+          setProjects(sorted);
+          setCMSData(STORAGE_KEYS.PROJECTS, sorted);
         }
 
         if (setRes?.data?.success && setRes.data?.data) {

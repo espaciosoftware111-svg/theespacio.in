@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <meta name="theme-color" content="#0c0c0f" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CRITICAL INTRO VIDEO PRELOAD — Instant 0ms playback on page open
+         PERF IMPACT: Browser begins high-priority streaming of intro video
+                      in parallel with HTML parsing before JS execution.
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <link rel="preload" href="/videos/intro.mp4" as="video" type="video/mp4" fetchpriority="high" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          PAGE TITLE & META — SEO optimized for Hyderabad interior design queries
@@ -35,12 +42,10 @@
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          LCP HERO IMAGE PRELOAD — Critical for PageSpeed / Core Web Vitals
-         PERF IMPACT: Moves LCP element download to head of request queue
-                      Mobile (44KB) on phone screens, UHD on desktop
-         fetchpriority="high" → browser treats this above all other images
+         PERF IMPACT: Background preload so hero section is ready when intro finishes
     ═══════════════════════════════════════════════════════════════════════ -->
-    <link rel="preload" as="image" href="/images/hero/hero_bedroom_mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/hero/hero_bedroom_4k.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hero/hero_bedroom_mobile.webp" type="image/webp" media="(max-width: 768px)" />
+    <link rel="preload" as="image" href="/images/hero/hero_bedroom_4k.webp" type="image/webp" media="(min-width: 769px)" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          OPEN GRAPH META — Social media card rendering (Facebook, LinkedIn, WhatsApp)
@@ -60,9 +65,11 @@
     <meta name="twitter:image" content="/images/company/3bhk_lux/open_hall.png" />
   </head>
 
-  <body class="bg-bg text-ink font-sans antialiased overflow-x-hidden">
-    <!-- React SPA mount point — entire UI is rendered into this div by React -->
-    <div id="root"></div>
+  <body class="bg-black text-ink font-sans antialiased overflow-x-hidden" style="background-color: #000000; margin: 0; padding: 0;">
+    <!-- React SPA mount point — instant dark shell prevents any 0ms white or cream paint lag -->
+    <div id="root">
+      <div id="espacio-instant-preloader-shell" style="position:fixed;inset:0;z-index:999999;width:100vw;height:100vh;background-color:#000000;"></div>
+    </div>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          ENTRY SCRIPT — type="module" enables native ES module loading

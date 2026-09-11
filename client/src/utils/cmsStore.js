@@ -61,6 +61,7 @@ export const notifyCMSUpdate = () => {
 export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_1_rajapushpa_provincia',
+    order: 1,
     title: 'A 3BHK Residence, Narsingi',
     slug: 'rajapushpa-provincia-3bhk',
     category: 'apartment',
@@ -120,6 +121,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_2_my_home_sayuk',
+    order: 2,
     title: 'A 3BHK Residence, Tellapur',
     slug: 'my-home-sayuk-3bhk',
     category: 'apartment',
@@ -166,6 +168,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_3_kokapet_nagesh',
+    order: 3,
     title: 'A 2BHK Residence, Kokapet',
     slug: 'kokapet-2bhk',
     category: 'apartment',
@@ -211,6 +214,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_4_kokapet_rahul',
+    order: 4,
     title: 'A 2BHK Residence, Kokapet',
     slug: 'kokapet-urban-2bhk',
     category: 'apartment',
@@ -279,6 +283,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_5_gandipet_kiran',
+    order: 5,
     title: 'A 2BHK Residence, Gandipet',
     slug: 'gandipet-modern-retro-2bhk',
     category: 'apartment',
@@ -342,6 +347,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     _id: 'proj_6_kondapur_venkatesh',
+    order: 6,
     title: 'A 2BHK Residence, Kondapur',
     slug: 'kondapur-minimalist-2bhk',
     category: 'apartment',
@@ -403,6 +409,7 @@ export const DEFAULT_PROJECTS = [
 ,
   {
     _id: 'proj_7_gachibowli_koteswara',
+    order: 7,
     title: 'A 2BHK Residence, Gachibowli',
     slug: 'gachibowli-minimalist-beige-2bhk',
     category: 'apartment',
@@ -471,6 +478,7 @@ export const DEFAULT_PROJECTS = [
 ,
   {
     _id: 'proj_8_kachiguda_subbarao',
+    order: 8,
     title: 'A Duplex Residence, Kachiguda',
     slug: 'kachiguda-fusion-duplex-villa',
     category: 'duplex',
@@ -2365,6 +2373,13 @@ export const getCMSData = (key, fallback = null) => {
             const p2 = data.find(p => p.slug === 'my-home-sayuk-3bhk');
             if (p2) {
               let changed2 = false;
+              if (!p2.beforeImage || p2.beforeImage.includes('unsplash') || p2.beforeImage.includes('spaces_hero')) {
+                p2.beforeImage = '/images/projects/my_home_sayuk/sayuk_before_raw.webp';
+                p2.afterImage = '/images/projects/my_home_sayuk/sayuk_after_open_hall.webp';
+                p2.beforeImages = ['/images/projects/my_home_sayuk/sayuk_before_raw.webp'];
+                p2.afterImages = ['/images/projects/my_home_sayuk/sayuk_after_open_hall.webp'];
+                changed2 = true;
+              }
               if (p2.title !== 'A 3BHK Residence, Tellapur') {
                 p2.title = 'A 3BHK Residence, Tellapur';
                 changed2 = true;
@@ -2384,6 +2399,13 @@ export const getCMSData = (key, fallback = null) => {
             const p3 = data.find(p => p.slug === 'kokapet-2bhk');
             if (p3) {
               let changed3 = false;
+              if (!p3.beforeImage || p3.beforeImage.includes('unsplash') || p3.beforeImage.includes('spaces_hero')) {
+                p3.beforeImage = '/images/projects/kokapet_nagesh_2bhk/kokapet_before.webp';
+                p3.afterImage = '/images/projects/kokapet_nagesh_2bhk/kokapet_after.webp';
+                p3.beforeImages = ['/images/projects/kokapet_nagesh_2bhk/kokapet_before.webp'];
+                p3.afterImages = ['/images/projects/kokapet_nagesh_2bhk/kokapet_after.webp'];
+                changed3 = true;
+              }
               if (p3.title !== 'A 2BHK Residence, Kokapet') {
                 p3.title = 'A 2BHK Residence, Kokapet';
                 changed3 = true;
@@ -2403,6 +2425,13 @@ export const getCMSData = (key, fallback = null) => {
             const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk');
             if (p4) {
               let changed4 = false;
+              if (!p4.beforeImage || p4.beforeImage.includes('unsplash') || p4.beforeImage.includes('spaces_hero')) {
+                p4.beforeImage = '/images/projects/kokapet_rahul_2bhk/rahul_before.webp';
+                p4.afterImage = '/images/projects/kokapet_rahul_2bhk/rahul_after.webp';
+                p4.beforeImages = ['/images/projects/kokapet_rahul_2bhk/rahul_before.webp'];
+                p4.afterImages = ['/images/projects/kokapet_rahul_2bhk/rahul_after.webp'];
+                changed4 = true;
+              }
               if (p4.title !== 'A 2BHK Residence, Kokapet') {
                 p4.title = 'A 2BHK Residence, Kokapet';
                 changed4 = true;
@@ -2422,6 +2451,13 @@ export const getCMSData = (key, fallback = null) => {
             const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk');
             if (p5) {
               let changed5 = false;
+              if (!p5.beforeImage || p5.beforeImage.includes('unsplash') || p5.beforeImage.includes('spaces_hero')) {
+                p5.beforeImage = '/images/projects/gandipet_kiran_2bhk/kiran_before.webp';
+                p5.afterImage = '/images/projects/gandipet_kiran_2bhk/kiran_after.webp';
+                p5.beforeImages = ['/images/projects/gandipet_kiran_2bhk/kiran_before.webp'];
+                p5.afterImages = ['/images/projects/gandipet_kiran_2bhk/kiran_after.webp'];
+                changed5 = true;
+              }
               if (p5.title !== 'A 2BHK Residence, Gandipet') {
                 p5.title = 'A 2BHK Residence, Gandipet';
                 changed5 = true;
@@ -2441,6 +2477,13 @@ export const getCMSData = (key, fallback = null) => {
             const p6 = data.find(p => p.slug === 'kondapur-minimalist-2bhk');
             if (p6) {
               let changed6 = false;
+              if (!p6.beforeImage || p6.beforeImage.includes('unsplash') || p6.beforeImage.includes('spaces_hero')) {
+                p6.beforeImage = '/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp';
+                p6.afterImage = '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp';
+                p6.beforeImages = ['/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp'];
+                p6.afterImages = ['/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp'];
+                changed6 = true;
+              }
               if (p6.title !== 'A 2BHK Residence, Kondapur') {
                 p6.title = 'A 2BHK Residence, Kondapur';
                 changed6 = true;
@@ -2460,6 +2503,13 @@ export const getCMSData = (key, fallback = null) => {
             const p7 = data.find(p => p.slug === 'gachibowli-minimalist-beige-2bhk');
             if (p7) {
               let changed7 = false;
+              if (!p7.beforeImage || p7.beforeImage.includes('unsplash') || p7.beforeImage.includes('spaces_hero')) {
+                p7.beforeImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp';
+                p7.afterImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp';
+                p7.beforeImages = ['/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp'];
+                p7.afterImages = ['/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp'];
+                changed7 = true;
+              }
               if (p7.title !== 'A 2BHK Residence, Gachibowli') {
                 p7.title = 'A 2BHK Residence, Gachibowli';
                 changed7 = true;
@@ -2479,6 +2529,13 @@ export const getCMSData = (key, fallback = null) => {
             const p8 = data.find(p => p.slug === 'kachiguda-fusion-duplex-villa');
             if (p8) {
               let changed8 = false;
+              if (!p8.beforeImage || p8.beforeImage.includes('unsplash') || p8.beforeImage.includes('spaces_hero')) {
+                p8.beforeImage = '/images/projects/kachiguda_subbarao_duplex/subbarao_before.webp';
+                p8.afterImage = '/images/projects/kachiguda_subbarao_duplex/subbarao_after.webp';
+                p8.beforeImages = ['/images/projects/kachiguda_subbarao_duplex/subbarao_before.webp'];
+                p8.afterImages = ['/images/projects/kachiguda_subbarao_duplex/subbarao_after.webp'];
+                changed8 = true;
+              }
               if (p8.title !== 'A Duplex Residence, Kachiguda') {
                 p8.title = 'A Duplex Residence, Kachiguda';
                 changed8 = true;
@@ -2495,6 +2552,25 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
+            const canonicalOrder = {
+              'rajapushpa-provincia-3bhk': 1,
+              'my-home-sayuk-3bhk': 2,
+              'kokapet-2bhk': 3,
+              'kokapet-urban-2bhk': 4,
+              'gandipet-modern-retro-2bhk': 5,
+              'kondapur-minimalist-2bhk': 6,
+              'gachibowli-minimalist-beige-2bhk': 7,
+              'kachiguda-fusion-duplex-villa': 8
+            };
+            data.forEach((p, idx) => {
+              if (canonicalOrder[p.slug]) {
+                p.order = canonicalOrder[p.slug];
+              } else if (!p.order) {
+                p.order = idx + 1;
+              }
+            });
+            data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
         }
         if (key === STORAGE_KEYS.PRODUCTS) {
@@ -2562,6 +2638,24 @@ export const getCMSData = (key, fallback = null) => {
 // Set stored data and broadcast real-time update
 export const setCMSData = (key, data) => {
   try {
+    if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
+      const canonicalOrder = {
+        'rajapushpa-provincia-3bhk': 1,
+        'my-home-sayuk-3bhk': 2,
+        'kokapet-2bhk': 3,
+        'kokapet-urban-2bhk': 4,
+        'gandipet-modern-retro-2bhk': 5,
+        'kondapur-minimalist-2bhk': 6,
+        'gachibowli-minimalist-beige-2bhk': 7,
+        'kachiguda-fusion-duplex-villa': 8
+      };
+      data.forEach((p, idx) => {
+        if (!p.order && canonicalOrder[p.slug]) {
+          p.order = canonicalOrder[p.slug];
+        }
+      });
+      data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+    }
     localStorage.setItem(key, JSON.stringify(data));
     notifyCMSUpdate();
   } catch (err) {

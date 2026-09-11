@@ -11,7 +11,8 @@ import Footer from './components/layout/Footer';
 import Logo from './components/common/Logo';
 import IntroPreloader from './components/common/IntroPreloader';
 
-import Home from './pages/Home';
+// Lazy-loaded Home for instant app shell & preloader startup
+const Home = React.lazy(() => import('./pages/Home'));
 
 // Dynamic imports for modals to isolate initial bundle
 const QuoteModal = React.lazy(() => import('./components/common/QuoteModal'));
@@ -241,7 +242,9 @@ const MainLayout = () => {
       <IntroPreloader />
       <Navbar />
       <main className="flex-grow">
-        <Outlet />
+        <React.Suspense fallback={<PublicLoaderFallback />}>
+          <Outlet />
+        </React.Suspense>
       </main>
       {!isContactSuccess && <Footer />}
       <React.Suspense fallback={null}>
@@ -295,7 +298,7 @@ function App() {
           <ScrollToTop />
           <Routes>
             {/* ── Public Routes (Instant Dark Load & Preloader) ────────────────── */}
-            <Route element={<React.Suspense fallback={<PublicLoaderFallback />}><MainLayout /></React.Suspense>}>
+            <Route element={<MainLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />

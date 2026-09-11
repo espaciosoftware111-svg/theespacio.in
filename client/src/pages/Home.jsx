@@ -785,7 +785,8 @@ const Home = () => {
         const { getCMSData, STORAGE_KEYS } = await import('../utils/cmsStore');
         const storedProjects = getCMSData(STORAGE_KEYS.PROJECTS);
         if (storedProjects && Array.isArray(storedProjects) && storedProjects.length > 0) {
-          const featuredOnly = storedProjects.filter(p => p.featured === true || p.featured === 'true');
+          const sorted = [...storedProjects].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+          const featuredOnly = sorted.filter(p => p.featured === true || p.featured === 'true');
           if (featuredOnly.length > 0) {
             setProjects(featuredOnly.slice(0, 6));
           }
@@ -795,7 +796,8 @@ const Home = () => {
       try {
         const r = await axios.get('/projects?limit=6&featured=true');
         if (r.data?.success && Array.isArray(r.data?.data) && r.data.data.length > 0) {
-          setProjects(r.data.data);
+          const sorted = [...r.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+          setProjects(sorted);
         }
       } catch {}
     };
@@ -1064,7 +1066,7 @@ const Home = () => {
       />
 
       {/* ── 1. HERO (Rounded Card — matches Services) ── */}
-      <section ref={heroRef} className="relative h-[90vh] sm:h-[94vh] lg:h-[98vh] min-h-[540px] sm:min-h-[660px] lg:min-h-0 px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
+      <section ref={heroRef} className="relative h-[60vh] sm:h-[94vh] lg:h-[98vh] min-h-[440px] sm:min-h-[660px] lg:min-h-0 px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
         {/* Rounded card — fills the section with smooth exit transition */}
         <motion.div
           style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
@@ -1083,15 +1085,15 @@ const Home = () => {
 
           {/* ─── Foreground Glass Cards (pinned to bottom) ─── */}
           <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none">
-              <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 pb-8 md:pb-14 lg:pb-10 pointer-events-auto">
+              <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 pb-3 sm:pb-8 md:pb-14 lg:pb-10 pointer-events-auto">
               
               <motion.div 
-                className="flex flex-col lg:flex-row items-end gap-4 lg:gap-6"
+                className="flex flex-col lg:flex-row items-center lg:items-end gap-2 sm:gap-4 lg:gap-6"
                 initial="visible"
                 animate="visible"
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: {
+                  visible: { 
                     opacity: 1,
                     transition: {
                       staggerChildren: 0.22,
@@ -1103,10 +1105,10 @@ const Home = () => {
 
                 {/* ─── LEFT: Craft Card ─── */}
                 <motion.div
-                  className="w-full max-w-[290px] sm:max-w-[345px] mx-auto lg:mx-0 lg:max-w-[345px]"
+                  className="w-full max-w-[265px] sm:max-w-[345px] mx-auto lg:mx-0 lg:max-w-[345px]"
                 >
                   <motion.div 
-                    className="relative rounded-[20px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
+                    className="relative rounded-[16px] sm:rounded-[20px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
                     style={{ 
                       background: 'rgba(255, 255, 255, 0.08)',
                       backdropFilter: 'blur(20px)',
@@ -1124,9 +1126,9 @@ const Home = () => {
                     {/* Top glass highlight */}
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                     
-                    <div className="p-4 sm:p-5.5 md:p-6">
-                      {/* Large interior thumbnail - perfectly synced with background, cinematic motion */}
-                      <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-[14px] overflow-hidden mb-5 relative bg-black/20">
+                    <div className="p-3 sm:p-5.5 md:p-6">
+                      {/* Interior thumbnail */}
+                      <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-2 sm:mb-5 relative bg-black/20">
                         {activeHeroBgImages.map((imgUrl, imgIdx) => {
                           const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
                           const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
@@ -1156,7 +1158,7 @@ const Home = () => {
                       </div>
 
                       {/* Headline */}
-                      <h2 className="font-display text-[28px] sm:text-[36px] lg:text-[32px] font-semibold leading-tight tracking-tight text-white mb-6 text-center">
+                      <h2 className="font-display text-[16px] sm:text-[36px] lg:text-[32px] font-semibold leading-tight tracking-tight text-white mb-2.5 sm:mb-6 text-center">
                         {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                       </h2>
 
@@ -1165,24 +1167,24 @@ const Home = () => {
                         <div className="flex items-center justify-center">
                           <Link 
                             to={homeSettings.hero_card_cta_link || "/projects"}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/15 backdrop-blur-md px-5 py-2.5 text-[11px] md:text-[12px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
+                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/15 backdrop-blur-md px-3.5 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-[11px] md:text-[12px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
                           >
                             {/* Sizing span (invisible, sets exact container width for Discover Our Works ↗) */}
                             <span className="inline-flex items-center gap-1.5 opacity-0 pointer-events-none select-none whitespace-nowrap">
                               <span>Discover Our Works</span>
-                              <ArrowUpRight size={14} className="shrink-0" />
+                              <ArrowUpRight size={13} className="shrink-0" />
                             </span>
 
                             {/* Default State: CTA Text ↗ */}
                             <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 text-white whitespace-nowrap">
                               <span>{homeSettings.hero_card_cta_text || 'Our Projects'}</span>
-                              <ArrowUpRight size={14} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                              <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </span>
 
                             {/* Hover State: Discover Our Works ↗ */}
                             <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-[#101014] font-bold whitespace-nowrap">
                               <span style={{ color: '#101014' }}>Discover Our Works</span>
-                              <ArrowUpRight size={14} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#101014', stroke: '#101014', strokeWidth: 2.5 }} />
+                              <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#101014', stroke: '#101014', strokeWidth: 2.5 }} />
                             </span>
                           </Link>
                         </div>
@@ -1208,7 +1210,7 @@ const Home = () => {
                   >
                   
                   {/* Stats Row */}
-                  <div className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center lg:justify-end items-center min-h-[70px] sm:h-26 translate-y-0 lg:-translate-y-10 mt-2 lg:mt-0">
+                  <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center min-h-[52px] sm:h-26 translate-y-0 lg:-translate-y-10 mt-1 sm:mt-2 lg:mt-0">
                     {activeHomeStats.map((s, index) => {
                       const isHovered = hoveredStatIdx === index;
                       return (
@@ -1236,10 +1238,10 @@ const Home = () => {
                             scale: 1.02,
                             boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.35)'
                           }}
-                          className={`flex items-center rounded-[14px] md:rounded-[20px] border shadow-xl cursor-pointer transition-all duration-300 overflow-hidden isolate select-none relative ${
+                          className={`flex items-center rounded-[11px] sm:rounded-[14px] md:rounded-[20px] border shadow-xl cursor-pointer transition-all duration-300 overflow-hidden isolate select-none relative ${
                             isHovered 
-                              ? "flex-row justify-between w-[215px] sm:w-[255px] md:w-[300px] h-14 sm:h-18 md:h-20 px-4 md:px-5.5 border-white/35" 
-                              : "flex-col justify-center items-center w-[80px] sm:w-[90px] md:w-[100px] h-[70px] sm:h-[80px] md:h-[88px] border-white/15 text-center px-2"
+                              ? "flex-row justify-between w-[190px] sm:w-[255px] md:w-[300px] h-12 sm:h-18 md:h-20 px-3 sm:px-4 md:px-5.5 border-white/35" 
+                              : "flex-col justify-center items-center w-[76px] sm:w-[90px] md:w-[100px] h-[52px] sm:h-[80px] md:h-[88px] border-white/15 text-center px-1.5 sm:px-2"
                           }`}
                           style={{
                             background: isHovered ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.08)',
@@ -1263,10 +1265,10 @@ const Home = () => {
                                 transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                                 className="flex flex-col items-center justify-center text-center w-full"
                               >
-                                <span className="font-display font-semibold text-white leading-none tracking-tight text-[18px] sm:text-[22px] md:text-[26px] mb-1">
+                                <span className="font-display font-semibold text-white leading-none tracking-tight text-[15px] sm:text-[22px] md:text-[26px] mb-0.5 sm:mb-1">
                                   {s.val}
                                 </span>
-                                <span className="font-sans text-[8px] sm:text-[9px] text-white/70 font-semibold uppercase tracking-[0.1em] leading-tight text-center max-w-full">
+                                <span className="font-sans text-[7px] sm:text-[9px] text-white/70 font-semibold uppercase tracking-[0.06em] sm:tracking-[0.1em] leading-tight text-center max-w-full line-clamp-2">
                                   {s.desc}
                                 </span>
                               </motion.div>
@@ -1279,11 +1281,11 @@ const Home = () => {
                                 transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                                 className="flex flex-row items-center justify-between w-full"
                               >
-                                <span className="font-display font-semibold text-white text-[20px] sm:text-[24px] md:text-[30px] mr-1.5 leading-none">
+                                <span className="font-display font-semibold text-white text-[16px] sm:text-[24px] md:text-[30px] mr-1 leading-none">
                                   {s.val}
                                 </span>
                                 <div className="flex-1 flex justify-end">
-                                  <div className="bg-white text-bg-dark rounded-[14px] px-3 py-1 sm:px-4 sm:py-1.5 text-[9px] sm:text-[11px] md:text-[12px] font-semibold text-center leading-tight shadow-md flex items-center justify-center max-w-[120px] sm:max-w-[145px] md:max-w-[165px]">
+                                  <div className="bg-white text-bg-dark rounded-[8px] sm:rounded-[14px] px-2 py-0.5 sm:px-4 sm:py-1.5 text-[8.5px] sm:text-[11px] md:text-[12px] font-semibold text-center leading-tight shadow-md flex items-center justify-center max-w-[110px] sm:max-w-[145px] md:max-w-[165px]">
                                     {s.hoverLabel || s.desc}
                                   </div>
                                 </div>
@@ -1303,7 +1305,9 @@ const Home = () => {
           </div>
 
           {/* ── Center Scroll Down Indicator (Small, thin, transparent) ── */}
-          <ScrollDownIndicator />
+          <div className="hidden sm:block">
+            <ScrollDownIndicator />
+          </div>
         </div>
       </motion.div>
     </section>

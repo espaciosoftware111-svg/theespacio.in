@@ -50,7 +50,7 @@ export const getProjects = async (req, res, next) => {
       const sortBy = req.query.sort.split(',').join(' ');
       query = query.sort(sortBy);
     } else {
-      query = query.sort('-year -createdAt'); // default: newest projects first
+      query = query.sort('order createdAt'); // default: canonical sequence
     }
 
     // Pagination
