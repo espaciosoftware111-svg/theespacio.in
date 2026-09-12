@@ -1083,12 +1083,12 @@ const Home = () => {
             />
           </div>
 
-          {/* ─── Foreground Glass Cards (Centered vertically in middle of Hero) ─── */}
-          <div className="absolute inset-0 z-10 flex flex-col justify-center pointer-events-none pt-10 sm:pt-16 lg:pt-0">
+          {/* ─── Foreground Glass Cards (Anchored to bottom on Desktop, centered on Mobile) ─── */}
+          <div className="absolute inset-0 z-10 flex flex-col justify-center lg:justify-end pointer-events-none pt-10 sm:pt-16 lg:pt-0 pb-0 lg:pb-10 xl:pb-12">
               <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 pointer-events-auto">
               
               <motion.div 
-                className="flex flex-col lg:flex-row items-center lg:items-center gap-3 sm:gap-4 lg:gap-6"
+                className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-3 sm:gap-4 lg:gap-6"
                 initial="visible"
                 animate="visible"
                 variants={{
@@ -1210,7 +1210,7 @@ const Home = () => {
                   >
                   
                   {/* Stats Row */}
-                  <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center min-h-[52px] sm:h-26 mt-2 sm:mt-3 lg:mt-0">
+                  <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center lg:items-end min-h-[52px] sm:h-26 mt-2 sm:mt-3 lg:mt-0">
                     {activeHomeStats.map((s, index) => {
                       const isHovered = hoveredStatIdx === index;
                       return (
