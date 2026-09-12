@@ -233,7 +233,7 @@ const Footer = () => {
   const emailHref = `mailto:${emailText}`;
 
   return (
-    <footer className="bg-bg-dark text-bg min-h-[45vh] flex flex-col justify-between pt-0 pb-8">
+    <footer className="bg-bg-dark text-bg min-h-[45vh] flex flex-col justify-between pt-0 pb-28 sm:pb-32 lg:pb-8">
       {/* 1. Center CTA Banner with Dusk Architectural Background */}
       {ctaEnabled && (
         <motion.div 
@@ -434,7 +434,7 @@ const Footer = () => {
       </div>
 
       {/* 5. Copyright Strip */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col items-center justify-center gap-1.5 pt-6 pb-4 text-center">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-12 flex flex-col items-center justify-center gap-2 pt-6 pb-4 text-center relative z-10">
         <p className="font-sans text-[12.5px] text-bg/80">
           {copyrightText}
         </p>
@@ -458,7 +458,7 @@ const Footer = () => {
             {termsLabel}
           </button>
         </div>
-        <p className="font-sans text-[11px] text-bg/45 tracking-wide mt-1">
+        <p className="font-sans text-[11.5px] sm:text-[11px] text-white/60 sm:text-bg/50 tracking-wide mt-1.5 max-w-[92vw] sm:max-w-2xl mx-auto leading-relaxed">
           {disclaimerText}
         </p>
       </div>

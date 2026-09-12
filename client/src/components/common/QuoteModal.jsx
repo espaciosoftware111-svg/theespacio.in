@@ -312,7 +312,7 @@ const QuoteModal = () => {
                     {modalMode === 'catalogue'
                       ? 'Please fill out the details below to unlock more premium design pages instantly.'
                       : modalMode === 'projects'
-                      ? 'Please fill out your details below to unlock our exclusive architectural projects and receive our private lookbook portfolio.'
+                      ? 'Please fill out your details below to unlock our exclusive interior projects and receive our private lookbook portfolio.'
                       : 'Please fill out the enquiry below and we will get back to you as soon as possible.'
                     }
                   </p>

@@ -194,7 +194,7 @@ const About = () => {
       heroVisible: s?.about_hero_visible !== false,
 
       storyBadge: getNonEmpty(s?.about_story_badge, 'OUR ORIGIN STORY'),
-      storyMain: getNonEmpty(s?.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design — walls that were never built right in the first place."),
+      storyMain: getNonEmpty(s?.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design, walls that were never built right in the first place.").replace(/\s*[—–-]\s*walls/gi, ', walls'),
       storyHighlight: getNonEmpty(s?.about_story_highlight, "We've spent four generations making sure that never happens."),
       storyP1: getNonEmpty(s?.about_story_p1, 'Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.'),
       storyP2: getNonEmpty(s?.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),
@@ -237,7 +237,7 @@ const About = () => {
           heroVisible: s.about_hero_visible !== false,
 
           storyBadge: getNonEmpty(s.about_story_badge, 'OUR ORIGIN STORY'),
-          storyMain: getNonEmpty(s.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design — walls that were never built right in the first place."),
+          storyMain: getNonEmpty(s.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design, walls that were never built right in the first place.").replace(/\s*[—–-]\s*walls/gi, ', walls'),
           storyHighlight: getNonEmpty(s.about_story_highlight, "We've spent four generations making sure that never happens."),
           storyP1: getNonEmpty(s.about_story_p1, 'Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.'),
           storyP2: getNonEmpty(s.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),
@@ -499,27 +499,43 @@ const About = () => {
                   <motion.div 
                     whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.98 }}
-                    className="p-4 sm:p-7 md:p-9 rounded-[18px] sm:rounded-[22px] bg-bg-card border border-ink-border shadow-sm hover:border-gold/50 hover:shadow-lg transition-all duration-300 relative group overflow-hidden h-full flex flex-col justify-between"
+                    className="group relative p-[1.5px] sm:p-[2px] rounded-[20px] sm:rounded-[24px] overflow-hidden transition-all duration-300 shadow-sm hover:shadow-[0_12px_36px_-8px_rgba(201,169,110,0.35)] h-full"
                   >
-                    <div className="absolute top-3 right-4 sm:top-4 sm:right-6 font-display text-3xl sm:text-5xl font-bold text-ink-border/20 group-hover:text-gold/20 transition-colors select-none">
-                      {v.num}
-                    </div>
+                    {/* Continuous Rotating Gold Border Beam */}
+                    <div 
+                      className="absolute inset-[-150%] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 180deg, rgba(201,169,110,0.2) 230deg, rgba(201,169,110,0.85) 300deg, #FFFFFF 345deg, rgba(201,169,110,0.95) 360deg)',
+                        animation: `goldBorderSpin ${6 + i * 0.5}s linear infinite`,
+                        animationDelay: `-${i * 1.5}s`,
+                      }}
+                    />
 
-                    <div>
-                      <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-[11px] sm:rounded-[14px] bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-2.5 sm:mb-5 group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                        <Icon className="w-4.5 h-4.5 sm:w-6 sm:h-6 stroke-[1.75]" />
+                    {/* Static Hairline Gold Base Border */}
+                    <div className="absolute inset-0 rounded-[20px] sm:rounded-[24px] border border-gold/30 pointer-events-none" />
+
+                    {/* Inner Card Content */}
+                    <div className="relative z-10 w-full h-full p-4 sm:p-7 md:p-9 rounded-[18.5px] sm:rounded-[22px] bg-bg-card flex flex-col justify-between overflow-hidden">
+                      <div className="absolute top-3 right-4 sm:top-4 sm:right-6 font-display text-3xl sm:text-5xl font-bold text-ink-border/20 group-hover:text-gold/25 transition-colors select-none">
+                        {v.num}
                       </div>
-                      <h3 className="font-display text-[16px] sm:text-2xl font-bold text-ink mb-1 sm:mb-2.5 leading-snug">
-                        {v.title}
-                      </h3>
-                      <p className="font-sans text-[12.5px] sm:text-sm text-ink-soft leading-relaxed">
-                        {v.desc}
-                      </p>
-                    </div>
 
-                    <div className="pt-2.5 mt-2.5 sm:pt-5 sm:mt-5 border-t border-ink-border/40 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold text-gold uppercase tracking-wider">
-                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                      <span>ESPACIO Guarantee</span>
+                      <div>
+                        <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-[11px] sm:rounded-[14px] bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-2.5 sm:mb-5 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                          <Icon className="w-4.5 h-4.5 sm:w-6 sm:h-6 stroke-[1.75]" />
+                        </div>
+                        <h3 className="font-display text-[16px] sm:text-2xl font-bold text-ink mb-1 sm:mb-2.5 leading-snug">
+                          {v.title}
+                        </h3>
+                        <p className="font-sans text-[12.5px] sm:text-sm text-ink-soft leading-relaxed">
+                          {v.desc}
+                        </p>
+                      </div>
+
+                      <div className="pt-2.5 mt-2.5 sm:pt-5 sm:mt-5 border-t border-ink-border/40 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold text-gold uppercase tracking-wider">
+                        <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                        <span>ESPACIO Guarantee</span>
+                      </div>
                     </div>
                   </motion.div>
                 </Reveal>

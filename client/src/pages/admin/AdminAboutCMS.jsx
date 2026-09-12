@@ -96,7 +96,7 @@ const AdminAboutCMS = () => {
 
     // Origin Story
     about_story_badge: 'OUR ORIGIN STORY',
-    about_story_main: "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design — walls that were never built right in the first place.",
+    about_story_main: "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design, walls that were never built right in the first place.",
     about_story_highlight: "We've spent four generations making sure that never happens.",
     about_story_p1: "Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.",
     about_story_p2: "One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.",
@@ -146,7 +146,7 @@ const AdminAboutCMS = () => {
           about_hero_visible: storedSettings.about_hero_visible !== false,
 
           about_story_badge: getNonEmpty(storedSettings.about_story_badge, 'OUR ORIGIN STORY'),
-          about_story_main: getNonEmpty(storedSettings.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design — walls that were never built right in the first place."),
+          about_story_main: getNonEmpty(storedSettings.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design, walls that were never built right in the first place.").replace(/\s*[—–-]\s*walls/gi, ', walls'),
           about_story_highlight: getNonEmpty(storedSettings.about_story_highlight, "We've spent four generations making sure that never happens."),
           about_story_p1: getNonEmpty(storedSettings.about_story_p1, 'Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.'),
           about_story_p2: getNonEmpty(storedSettings.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),

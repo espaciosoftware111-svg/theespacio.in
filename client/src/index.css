@@ -753,3 +753,13 @@ html.lenis, html.lenis body {
   animation-play-state: paused;
 }
 
+/* ── Luxury Animated Gold Border Beam ────────────────────────────── */
+@keyframes goldBorderSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

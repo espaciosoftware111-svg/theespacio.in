@@ -2330,25 +2330,21 @@ const SPACE_PROCESS_STEPS = [
   {
     step: '01',
     title: 'Design Consultation & 3D',
-    timeline: 'Week 1 – 2',
     desc: 'Site laser measurements, spatial flow analysis, and photorealistic 3D visualization renders before touching a single wall.'
   },
   {
     step: '02',
     title: 'Material & Hardware Sign-Off',
-    timeline: 'Week 2 – 3',
     desc: 'In-person material curation in our physical library. Touch and approve your acrylics, veneers, stone slabs, and German fittings.'
   },
   {
     step: '03',
     title: 'Precision Factory Fabrication',
-    timeline: 'Week 4 – 6',
     desc: 'Modular sub-assemblies crafted in state-of-the-art facilities with computerized CNC routing and zero-gap edge banding.'
   },
   {
     step: '04',
     title: 'White-Glove Installation & Handover',
-    timeline: 'Week 6 – 8',
     desc: 'Flawless on-site joinery, electrical and appliance integration, exhaustive quality audits, full cleanup, and keys in hand.'
   }
 ];
@@ -3095,11 +3091,8 @@ const WhatWeDo = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {SPACE_PROCESS_STEPS.map((step, idx) => (
               <div key={idx} className="relative bg-bg-card rounded-[24px] p-6 sm:p-7 border border-ink-border/30 shadow-sm space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center">
                   <span className="font-display text-3xl font-bold text-gold/60">{step.step}</span>
-                  <span className="px-3 py-1 rounded-full bg-gold/10 text-gold text-[10px] font-sans font-bold uppercase tracking-wider border border-gold/20">
-                    {step.timeline}
-                  </span>
                 </div>
                 <div>
                   <h4 className="font-display text-lg font-bold text-ink mb-2">{step.title}</h4>
