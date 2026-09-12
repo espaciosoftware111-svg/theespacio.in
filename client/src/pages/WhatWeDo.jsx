@@ -2289,35 +2289,39 @@ const SPACE_FAQS = {
   ]
 };
 
-// ── SPACE MATERIALS MACRO CLOSE-UPS ─────────────────────────────────────────
+// ── SPACE MATERIALS & CRAFTSMANSHIP (Unified across all spaces) ─────────────
 const SPACE_MATERIAL_MACROS = [
   {
-    title: 'Concealed Soft-Close Hardware',
-    brand: 'Blum • Häfele German Fitments',
-    tag: 'Hardware Precision',
-    desc: 'Tested for 200,000 opening cycles with silent-dampening Blumotion channels and clip-top hinges.',
-    image: '/images/materials/luminous_grid_8313.jpg'
+    step: '01',
+    title: 'HARDWARE & MOVEMENT',
+    headline: 'Smooth. Silent. Precise.',
+    tag: '01 — HARDWARE & MOVEMENT',
+    desc: 'Premium hinges, runners, lift systems and functional hardware engineered for effortless everyday use.',
+    image: '/images/materials/craftsmanship_hardware_1.webp'
   },
   {
-    title: 'Anti-Fingerprint Acrylic & PU',
-    brand: 'E0-Certified Shutter Fronts',
-    tag: 'Surface Engineering',
-    desc: 'Ultra-gloss 95+ GU or velvety ultra-matte finishes resistant to scratches, heat, and moisture.',
-    image: '/images/materials/irish.png'
+    step: '02',
+    title: 'SURFACE & FINISH',
+    headline: 'The finish is the first impression.',
+    tag: '02 — SURFACE & FINISH',
+    desc: 'Carefully selected laminates, acrylics, PU, veneers and textured finishes for a refined, lasting look.',
+    image: '/images/materials/craftsmanship_surface_2.webp'
   },
   {
-    title: 'Mitred Sintered Stone & Quartz',
-    brand: 'Calacatta & Polygranite',
-    tag: 'Waterfall Edging',
-    desc: 'Seamless mitred edge waterfall returns engineered for zero stain absorption and lifetime durability.',
-    image: '/images/materials/florida.png'
+    step: '03',
+    title: 'JOINERY & DETAIL',
+    headline: 'Precision lives in the details.',
+    tag: '03 — JOINERY & DETAIL',
+    desc: 'Clean edges, seamless joints, aligned panels, consistent gaps and refined transitions across every element.',
+    image: '/images/materials/craftsmanship_joinery_3.webp'
   },
   {
-    title: 'Concealed 3000K Lighting Tracks',
-    brand: 'Warm Indirect Shadowline',
-    tag: 'Architectural Illumination',
-    desc: 'Concealed LED profiles integrated into cabinet bases and ceiling reveals with flicker-free dimming.',
-    image: '/images/materials/charcoal_luxe_4015.jpg'
+    step: '04',
+    title: 'LIGHTING & INTEGRATION',
+    headline: 'Designed as one complete experience.',
+    tag: '04 — LIGHTING & INTEGRATION',
+    desc: 'Architectural lighting, concealed illumination and functional integration planned as part of the furniture—not added later.',
+    image: '/images/materials/craftsmanship_lighting_4.webp'
   }
 ];
 
@@ -2351,7 +2355,7 @@ const SPACE_PROCESS_STEPS = [
 
 // Helper to retrieve unique title, layout type, material tag, and architectural description for each gallery image
 const getGalleryItemDetails = (categorySlug, imgUrl, index) => {
-  return getCatalogItem(categorySlug, index);
+  return getCatalogItem(categorySlug, index, imgUrl);
 };
 
 const WhatWeDo = () => {
@@ -2664,6 +2668,28 @@ const WhatWeDo = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [slug]);
 
+  const lockScroll = () => {
+    try {
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } catch {}
+  };
+
+  const unlockScroll = () => {
+    try {
+      if (window.lenis) {
+        window.lenis.start();
+      }
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.touchAction = '';
+    } catch {}
+  };
+
   const handleMove = (clientX) => {
     if (!heroRef.current) return;
     const rect = heroRef.current.getBoundingClientRect();
@@ -2672,33 +2698,64 @@ const WhatWeDo = () => {
     setSliderPos(pos);
   };
 
-  const onMouseMove = (e) => {
-    if (!isDragging.current) return;
-    handleMove(e.clientX);
-  };
-
-  const onTouchMove = (e) => {
-    if (!isDragging.current) return;
-    if (e.touches && e.touches[0]) {
-      handleMove(e.touches[0].clientX);
+  const onStart = (e) => {
+    isDragging.current = true;
+    setIsPaused(true);
+    lockScroll();
+    if (e) {
+      if (e.clientX !== undefined && e.clientX !== null) {
+        handleMove(e.clientX);
+      } else if (e.touches && e.touches[0]) {
+        handleMove(e.touches[0].clientX);
+      }
     }
   };
 
-  const onStart = () => {
-    isDragging.current = true;
-    setIsPaused(true);
-  };
-
   const onEnd = () => {
-    isDragging.current = false;
+    if (isDragging.current) {
+      isDragging.current = false;
+      setIsPaused(false);
+      unlockScroll();
+    }
   };
 
   useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      if (!isDragging.current) return;
+      handleMove(e.clientX);
+    };
+
+    const handleGlobalTouchMove = (e) => {
+      if (!isDragging.current) return;
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+      if (e.touches && e.touches[0]) {
+        handleMove(e.touches[0].clientX);
+      }
+    };
+
+    const handleWheel = (e) => {
+      if (isDragging.current && e.cancelable) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('mousemove', handleGlobalMouseMove);
     window.addEventListener('mouseup', onEnd);
+    window.addEventListener('touchmove', handleGlobalTouchMove, { passive: false });
     window.addEventListener('touchend', onEnd);
+    window.addEventListener('touchcancel', onEnd);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
     return () => {
+      unlockScroll();
+      window.removeEventListener('mousemove', handleGlobalMouseMove);
       window.removeEventListener('mouseup', onEnd);
+      window.removeEventListener('touchmove', handleGlobalTouchMove);
       window.removeEventListener('touchend', onEnd);
+      window.removeEventListener('touchcancel', onEnd);
+      window.removeEventListener('wheel', handleWheel);
     };
   }, []);
 
@@ -2933,14 +2990,13 @@ const WhatWeDo = () => {
                             Details ↗
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-sans font-semibold px-2 py-0.5 rounded bg-gold/10 text-gold uppercase tracking-wider shrink-0">
-                            {item.layoutType}
-                          </span>
-                          <p className="font-sans text-[11px] text-ink-muted truncate">
-                            {item.materialTag}
-                          </p>
-                        </div>
+                        {item.materialTag && (
+                          <div className="flex items-center gap-2">
+                            <p className="font-sans text-[11px] text-ink-muted truncate font-medium">
+                              {item.materialTag}
+                            </p>
+                          </div>
+                        )}
                         <p className="font-sans text-xs text-ink-soft line-clamp-2 leading-relaxed">
                           {item.description}
                         </p>
@@ -2980,21 +3036,20 @@ const WhatWeDo = () => {
           )}
         </section>
 
-        {/* ── 5. MATERIALS CLOSE-UP STRIP (Hardware, Edging, Textures) ──────── */}
+        {/* ── 5. MATERIALS & CRAFTSMANSHIP (Hardware, Surface, Joinery, Lighting) ──────── */}
         <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
           <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
-            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Material Integrity</p>
-            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
-              Materials & Hardware Close-Up
-            </h3>
-            <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
-              Macro engineering details: genuine German soft-close fittings, seamless edge banding, anti-fingerprint surfaces, and architectural warm lighting.
+            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
+              MATERIALS & CRAFTSMANSHIP
             </p>
+            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+              Where design meets precision.
+            </h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SPACE_MATERIAL_MACROS.map((macro, idx) => (
-              <div key={idx} className="bg-bg-card rounded-[22px] overflow-hidden border border-ink-border/30 shadow-sm hover:border-gold/30 transition-all duration-300 flex flex-col">
+              <div key={idx} className="bg-bg-card rounded-[22px] overflow-hidden border border-ink-border/30 shadow-sm hover:border-gold/30 transition-all duration-300 flex flex-col group">
                 <div className="aspect-[4/3] overflow-hidden bg-bg-dark relative">
                   <img 
                     src={getOptimizedImageUrl(macro.image, 1200, 92)} 
@@ -3009,9 +3064,15 @@ const WhatWeDo = () => {
                 </div>
                 <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-display text-base font-bold text-ink">{macro.title}</h4>
-                    <p className="font-sans text-[11px] font-semibold text-gold mt-0.5">{macro.brand}</p>
-                    <p className="font-sans text-xs text-ink-soft mt-2 leading-relaxed">{macro.desc}</p>
+                    <h4 className="font-display text-base font-bold text-ink tracking-wide">
+                      {macro.step} — {macro.title}
+                    </h4>
+                    <p className="font-sans text-[11px] font-semibold text-gold mt-0.5">
+                      {macro.headline}
+                    </p>
+                    <p className="font-sans text-xs text-ink-soft mt-2 leading-relaxed">
+                      {macro.desc}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -3269,11 +3330,6 @@ const WhatWeDo = () => {
                 <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-6">
                   <div className="space-y-4">
                     <div className="space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-full bg-gold/15 text-[10px] font-sans font-bold uppercase tracking-wider text-gold border border-gold/30">
-                          {zoomedImage.layoutType}
-                        </span>
-                      </div>
                       <h3 className="font-display text-2xl font-bold text-ink">
                         {zoomedImage.title}
                       </h3>
@@ -3495,19 +3551,20 @@ const WhatWeDo = () => {
       {spacesHeroState.visible !== false && (
         <section
           ref={heroRef}
-          className="relative h-[56vh] sm:h-[72vh] lg:h-[86vh] min-h-[360px] sm:min-h-[500px] lg:min-h-[600px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0 select-none"
+          data-lenis-prevent
+          className="relative h-[90dvh] sm:h-[72vh] lg:h-[86vh] min-h-[480px] sm:min-h-[500px] lg:min-h-[600px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0 select-none touch-none"
+          style={{ touchAction: 'none' }}
           onMouseDown={onStart}
-          onMouseMove={onMouseMove}
-          onTouchStart={() => { setIsPaused(true); onStart(); }}
-          onTouchMove={onTouchMove}
-          onTouchEnd={() => { setIsPaused(false); onEnd(); }}
+          onTouchStart={onStart}
           onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          onMouseLeave={() => {
+            if (!isDragging.current) setIsPaused(false);
+          }}
           onClick={(e) => handleMove(e.clientX)}
         >
           <motion.div
-            style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
-            className="relative w-full h-full overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[40px] origin-top cursor-ew-resize bg-bg-dark shadow-2xl"
+            style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY, touchAction: 'none' }}
+            className="relative w-full h-full overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[40px] origin-top cursor-ew-resize bg-bg-dark shadow-2xl touch-none select-none"
           >
             {/* AFTER Image Layer */}
             <motion.div
@@ -3572,16 +3629,26 @@ const WhatWeDo = () => {
               style={{ left: `${sliderPos}%` }}
             />
 
-            {/* Slider Drag Thumb */}
+            {/* Slider Drag Thumb Handle (with ergonomic touch hit area) */}
             <div
-              className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gold text-charcoal hover:scale-110 active:scale-95 transition-transform flex items-center justify-center cursor-ew-resize shadow-[0_0_20px_rgba(201,169,110,0.6)] border-2 border-white/80 z-30"
-              style={{ left: `${sliderPos}%` }}
+              className="absolute inset-y-0 -translate-x-1/2 w-14 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize touch-none select-none"
+              style={{ left: `${sliderPos}%`, touchAction: 'none' }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                onStart(e);
+              }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+                onStart(e);
+              }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="8 17 3 12 8 7" />
-                <polyline points="16 7 21 12 16 17" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-              </svg>
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gold text-charcoal hover:scale-110 active:scale-95 transition-transform flex items-center justify-center shadow-[0_0_20px_rgba(201,169,110,0.6)] border-2 border-white/80 pointer-events-auto">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="8 17 3 12 8 7" />
+                  <polyline points="16 7 21 12 16 17" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                </svg>
+              </div>
             </div>
 
             <ScrollDownIndicator />

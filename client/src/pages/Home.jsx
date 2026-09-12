@@ -1065,12 +1065,12 @@ const Home = () => {
         }}
       />
 
-      {/* ── 1. HERO (Rounded Card — matches Services) ── */}
-      <section ref={heroRef} className="relative h-[75vh] sm:h-[90vh] min-h-[460px] sm:min-h-[520px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
-        {/* Rounded card — fills the section with smooth exit transition */}
+      {/* ── 1. HERO (Exact padding, margin, and rounded edges matching Services) ── */}
+      <section ref={heroRef} className="relative h-[90dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+        {/* Rounded card — exact same padding, margin, and rounded edges as Services */}
         <motion.div
           style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
-          className="relative w-full h-full overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[40px] origin-top"
+          className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl"
         >
           {/* Background Image Layer */}
           <div className="absolute inset-0 overflow-hidden">
@@ -1083,9 +1083,9 @@ const Home = () => {
             />
           </div>
 
-          {/* ─── Foreground Glass Cards (Anchored to bottom on Desktop, centered on Mobile) ─── */}
-          <div className="absolute inset-0 z-10 flex flex-col justify-center lg:justify-end pointer-events-none pt-10 sm:pt-16 lg:pt-0 pb-0 lg:pb-10 xl:pb-12">
-              <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 pointer-events-auto">
+          {/* ─── Foreground Glass Cards (Anchored to bottom on both Mobile & Desktop) ─── */}
+          <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none pt-0 pb-4 sm:pb-6 lg:pb-10 xl:pb-12">
+              <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 md:px-12 pointer-events-auto">
               
               <motion.div 
                 className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-3 sm:gap-4 lg:gap-6"
@@ -1105,7 +1105,7 @@ const Home = () => {
 
                 {/* ─── LEFT: Craft Card ─── */}
                 <motion.div
-                  className="w-full max-w-[265px] sm:max-w-[345px] mx-auto lg:mx-0 lg:max-w-[345px]"
+                  className="w-full max-w-[285px] sm:max-w-[365px] mx-auto lg:mx-0 lg:max-w-[385px]"
                 >
                   <motion.div 
                     className="relative rounded-[16px] sm:rounded-[20px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
@@ -1158,7 +1158,7 @@ const Home = () => {
                       </div>
 
                       {/* Headline */}
-                      <h2 className="font-display text-[16px] sm:text-[36px] lg:text-[32px] font-semibold leading-tight tracking-tight text-white mb-2.5 sm:mb-6 text-center">
+                      <h2 className="font-display text-[12.5px] sm:text-[18px] md:text-[20px] lg:text-[21px] font-semibold leading-tight tracking-tight text-white mb-2.5 sm:mb-6 text-center whitespace-nowrap">
                         {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                       </h2>
 
@@ -1368,17 +1368,13 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-[130px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
+              className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-center min-h-[130px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
             >
               <div className="space-y-1">
                 <p className="font-sans text-[11px] font-semibold text-ink-muted uppercase tracking-[0.2em]">{stat.label}</p>
                 <div className="font-display text-4xl lg:text-5xl font-semibold text-ink tracking-tight">
                   <AnimatedCounter value={stat.value} duration={2} />
                 </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
-                <span className="font-sans text-[11px] font-medium text-ink-muted">Turnkey Execution</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
               </div>
             </motion.div>
           ))}

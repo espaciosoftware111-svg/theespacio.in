@@ -153,20 +153,21 @@ const Footer = () => {
 
   // Dynamic CMS fields with defaults (checking Footer, Contact, and Studio Card keys)
   const locationTitle = cmsSettings.footer_location_title || cmsSettings.contact_location_title || cmsSettings.exp_eyebrow || 'LOCATION';
-  const rawLocationAddress = cmsSettings.footer_address || cmsSettings.exp_card1_address || cmsSettings.contact_address || cmsSettings.office_info?.address || 'Moinabad Road, Aziznagar';
+  const DEFAULT_ADDRESS = 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075';
+  const rawLocationAddress = cmsSettings.footer_address || cmsSettings.exp_card1_address || cmsSettings.contact_address || cmsSettings.office_info?.address || DEFAULT_ADDRESS;
   
-  // Clean address per user requirement: remove '1st floor, H.No. 6-63/14B' and keep 'Moinabad Road, Aziznagar'
+  // Clean address per user requirement: keep 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075'
   const cleanLocationAddress = (addr) => {
-    if (!addr) return 'Moinabad Road, Aziznagar';
+    if (!addr) return DEFAULT_ADDRESS;
     let str = String(addr).trim();
+    if (/moinabad\s*road/i.test(str) && (/aziz\s*nagar/i.test(str) || /aziznagar/i.test(str))) {
+      return DEFAULT_ADDRESS;
+    }
     if (/1st\s*floor/i.test(str) || /6-63\/14b/i.test(str)) {
-      if (/moinabad\s*road/i.test(str) && /aziznagar/i.test(str)) {
-        return 'Moinabad Road, Aziznagar';
-      }
       str = str.replace(/1st\s*floor\s*,?\s*(h\.?\s*no\.?\s*6-63\/14b\s*,?\s*)?/i, '');
       str = str.replace(/h\.?\s*no\.?\s*6-63\/14b\s*,?\s*/i, '').trim();
     }
-    return str || 'Moinabad Road, Aziznagar';
+    return str || DEFAULT_ADDRESS;
   };
   const locationAddress = cleanLocationAddress(rawLocationAddress);
   const DEFAULT_MAP_URL = 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6';
@@ -222,6 +223,7 @@ const Footer = () => {
   const copyrightText = cmsSettings.footer_copyright || `© ${year} ESPACIO. All rights reserved.`;
   const privacyLabel = cmsSettings.footer_privacy_label || 'Privacy Policy';
   const termsLabel = cmsSettings.footer_terms_label || 'Terms of Service';
+  const disclaimerText = cmsSettings.footer_disclaimer || 'All interior visuals and photography displayed are for representational and illustrative purposes only.';
 
   // Compute clean hrefs
   const phoneHref = `tel:${phoneText.replace(/[^\d+]/g, '')}`;
@@ -290,7 +292,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               title="Open ESPACIO on Google Maps"
-              aria-label="ESPACIO Location on Google Maps - Moinabad Road, Aziznagar"
+              aria-label="ESPACIO Location on Google Maps - Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075"
               className="font-sans text-[15px] text-bg/80 hover:text-bg transition-colors block leading-relaxed hover:underline decoration-white/20 underline-offset-4 whitespace-pre-line cursor-pointer"
             >
               {locationAddress}
@@ -432,7 +434,7 @@ const Footer = () => {
       </div>
 
       {/* 5. Copyright Strip */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col items-center justify-center gap-2 pt-6 pb-4 text-center">
+      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col items-center justify-center gap-1.5 pt-6 pb-4 text-center">
         <p className="font-sans text-[12.5px] text-bg/80">
           {copyrightText}
         </p>
@@ -456,6 +458,9 @@ const Footer = () => {
             {termsLabel}
           </button>
         </div>
+        <p className="font-sans text-[11px] text-bg/45 tracking-wide mt-1">
+          {disclaimerText}
+        </p>
       </div>
     </footer>
   );

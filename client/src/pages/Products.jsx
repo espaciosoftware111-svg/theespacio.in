@@ -109,33 +109,34 @@ const Products = () => {
     <div className="bg-bg min-h-screen pb-24">
       <SEO title="Premium Material Library — WPC, Fluted, Acrylic Panels" description="Explore ESPACIO's curated material library. WPC wall panels, fluted panels, polygranite, acrylic sheets, mosaic tiles and more. Request samples and catalogue." url="/materials" />
       
-      {/* Hero with Dome Gallery — matches Home & Services rounded framed card */}
-      <section className="relative h-[64vh] sm:h-[80vh] lg:h-[98vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
-        {/* Rounded dark card */}
-        <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] bg-[#120F17] shadow-2xl">
+      {/* Hero with Dome Gallery — 90% screen height on mobile */}
+      <section className="relative h-[90dvh] sm:h-[80vh] lg:h-[98vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-10 z-0">
+        {/* Gallery frame: 100% full screen edge-to-edge on mobile, rounded framed on tablet/desktop */}
+        <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
           {/* Dome Gallery Container */}
           <div className="absolute inset-0 w-full h-full z-0">
             <DomeGallery 
               images={domeImages}
-              fit={0.65}
-              minRadius={700}
+              fit={0.8}
+              segments={typeof window !== 'undefined' && window.innerWidth < 640 ? 22 : 32}
+              minRadius={typeof window !== 'undefined' && window.innerWidth < 640 ? 460 : 700}
               fitBasis="auto"
-              overlayBlurColor="#120F17"
+              overlayBlurColor="#EAE4D8"
               grayscale={false}
               autoRotate={true}
               autoRotateSpeed={0.08}
-              openedImageWidth="240px"
-              openedImageHeight="320px"
-              imageBorderRadius="14px"
-              openedImageBorderRadius="20px"
+              openedImageWidth="260px"
+              openedImageHeight="340px"
+              imageBorderRadius="16px"
+              openedImageBorderRadius="22px"
             />
           </div>
 
           {/* Bottom vignette overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#120F17] via-transparent to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#EAE4D8] via-transparent to-transparent pointer-events-none z-10" />
 
           {/* Scroll Down Indicator */}
-          <ScrollDownIndicator />
+          <ScrollDownIndicator light={true} />
         </div>
       </section>
 

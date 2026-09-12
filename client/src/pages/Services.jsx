@@ -12,31 +12,23 @@ import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
 const Reveal = ({ children, delay = 0, className = '', direction = 'up' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: false, margin: '-10% 0px -10% 0px' });
+  const inView = useInView(ref, { once: true, margin: '-40px' });
   const getInitial = () => {
-    if (direction === 'left') return { opacity: 0, x: -100, scale: 0.96 };
-    if (direction === 'right') return { opacity: 0, x: 100, scale: 0.96 };
-    return { opacity: 0, y: 40 };
-  };
-  const getAnimate = () => {
-    if (direction === 'left' || direction === 'right') {
-      return inView 
-        ? { opacity: 1, x: 0, scale: 1 } 
-        : { opacity: 0, x: direction === 'left' ? -100 : 100, scale: 0.96 };
-    }
-    return inView 
-      ? { opacity: 1, y: 0 } 
-      : { opacity: 0, y: 40 };
+    if (direction === 'left') return { opacity: 0, x: -35 };
+    if (direction === 'right') return { opacity: 0, x: 35 };
+    return { opacity: 0, y: 24 };
   };
   return (
     <motion.div ref={ref} className={className}
-      initial={getInitial()} animate={getAnimate()}
+      initial={getInitial()} 
+      animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ 
-        type: 'tween',
-        duration: 1.6,
+        duration: 0.7,
         ease: [0.16, 1, 0.3, 1],
-        delay: inView ? Math.min(delay, 0.25) : 0
-      }}>
+        delay: Math.min(delay, 0.2)
+      }}
+      style={{ willChange: 'opacity, transform' }}
+    >
       {children}
     </motion.div>
   );
@@ -246,7 +238,7 @@ const Services = () => {
       <SEO title="Services — ESPACIO Interiors" description="Full home interiors, modular kitchens, commercial spaces, and renovations. Engineering-first luxury design executed by ESPACIO." url="/services" />
 
       {heroContent.visible !== false && (
-        <section ref={heroRef} className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+        <section ref={heroRef} className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
             <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
               <HeroSlideshow
@@ -402,28 +394,45 @@ const Services = () => {
             <h2 className="font-display text-[clamp(28px,3.5vw,44px)] font-bold text-charcoal">What Our Clients Say</h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonialsList.map((t, idx) => (
-              <Reveal key={t.id || idx} delay={idx * 0.08} className="bg-offwhite border border-walnut/10 rounded-card p-8 shadow-sm space-y-6 flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex text-gold text-sm gap-1">
-                    {'★'.repeat(t.rating || 5)}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+            {testimonialsList.map((t, idx) => {
+              const quoteText = (t.body || t.reviewText || '').replace(/^["'“\s]+|["'”\s]+$/g, '');
+
+              return (
+                <Reveal key={t.id || idx} delay={idx * 0.08} className="bg-[#FAF8F5] border border-[#E8E2D6] rounded-[20px] sm:rounded-[24px] p-5 sm:p-6 shadow-[0_4px_20px_rgba(20,15,10,0.05)] space-y-3.5 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <svg
+                          key={star}
+                          viewBox="0 0 24 24"
+                          width="15"
+                          height="15"
+                          className={star <= (t.rating || 5) ? 'text-[#FFB800] fill-[#FFB800]' : 'text-[#E2DCD2] fill-[#E2DCD2]'}
+                        >
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="font-sans text-[12.5px] sm:text-[13.5px] text-[#3E3933] leading-relaxed italic m-0 line-clamp-4">
+                      “{quoteText}”
+                    </p>
                   </div>
-                  <p className="font-sans text-xs text-charcoal/80 leading-relaxed italic">
-                    “{t.body || t.reviewText || ''}”
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-walnut/10 flex items-center space-x-3">
-                  {t.avatar && (
-                    <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover shrink-0 border border-gold/30" />
-                  )}
-                  <div>
-                    <h4 className="font-sans text-xs font-bold text-charcoal">{t.name}</h4>
-                    <p className="font-sans text-[10px] text-walnut">{t.designation || t.role || 'ESPACIO Client'}</p>
+                  <div className="pt-3 border-t border-[#E6E0D6] flex items-center space-x-3">
+                    {t.avatar && t.avatar.trim() !== '' ? (
+                      <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover shrink-0 shadow-xs" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                    ) : (
+                      <div className="w-9 h-9 rounded-full bg-[#E5DFD4] text-[#2C2720] font-bold flex items-center justify-center text-[12px] shrink-0 shadow-xs select-none uppercase font-sans">
+                        {(t.name || 'C').trim().charAt(0)}
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0 truncate">
+                      <h4 className="font-sans text-[13px] sm:text-[14px] font-bold text-[#1A1815] m-0 leading-tight truncate">{t.name}</h4>
+                    </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

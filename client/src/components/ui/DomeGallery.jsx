@@ -50,12 +50,11 @@ const getDataNumber = (el, name, fallback) => {
 };
 
 function buildItems(pool, seg) {
-  const xCols = Array.from({ length: seg }, (_, i) => -37 + i * 2);
-  const evenYs = [-4, -2, 0, 2, 4];
-  const oddYs = [-3, -1, 1, 3, 5];
+  const startX = -Math.floor(seg) - (seg % 2 === 0 ? 0 : 1);
+  const xCols = Array.from({ length: seg }, (_, i) => startX + i * 2);
+  const ys = [-4, -2, 0, 2, 4];
 
-  const coords = xCols.flatMap((x, c) => {
-    const ys = c % 2 === 0 ? evenYs : oddYs;
+  const coords = xCols.flatMap((x) => {
     return ys.map(y => ({ x, y, sizeX: 2, sizeY: 2 }));
   });
 
@@ -140,7 +139,6 @@ export default function DomeGallery({
   const startPosRef = useRef(null);
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
-  const inertiaRAF = useRef(null);
   const openingRef = useRef(false);
   const openStartedAtRef = useRef(0);
   const lastDragEndAt = useRef(0);
@@ -257,9 +255,11 @@ export default function DomeGallery({
     applyTransform(rotationRef.current.x, rotationRef.current.y);
   }, []);
 
-  // Continuous Auto-Rotation loop (runs smoothly when user is not manually interacting)
+  const inertiaVelRef = useRef({ x: 0, y: 0 });
+
+  // Continuous Auto-Rotation loop:
+  // The globe always keeps turning smoothly without ever stopping, seamlessly blending manual drag/fling
   useEffect(() => {
-    if (!autoRotate) return;
     let animId;
     let lastTime = performance.now();
 
@@ -267,64 +267,40 @@ export default function DomeGallery({
       const delta = Math.min((now - lastTime) / 16.67, 2);
       lastTime = now;
 
-      // Only auto-rotate if not manually dragging, not running flung inertia, and not focused on enlarged image
-      if (!draggingRef.current && !inertiaRAF.current && !focusedElRef.current && !openingRef.current) {
-        const nextY = wrapAngleSigned(rotationRef.current.y + autoRotateSpeed * delta);
-        rotationRef.current.y = nextY;
-        applyTransform(rotationRef.current.x, nextY);
+      // Only pause rotation when a modal detail viewer is opened
+      if (!focusedElRef.current && !openingRef.current) {
+        if (!draggingRef.current) {
+          // Smoothly decay manual fling velocity toward 0
+          inertiaVelRef.current.x *= 0.95;
+          inertiaVelRef.current.y *= 0.95;
+          if (Math.abs(inertiaVelRef.current.x) < 0.0005) inertiaVelRef.current.x = 0;
+          if (Math.abs(inertiaVelRef.current.y) < 0.0005) inertiaVelRef.current.y = 0;
+
+          // Continuous turning: autoRotateSpeed is ALWAYS maintained so it never stops!
+          const activeSpeedY = (autoRotate ? autoRotateSpeed : 0.08) + inertiaVelRef.current.y;
+          const nextY = wrapAngleSigned(rotationRef.current.y + activeSpeedY * delta);
+          const nextX = clamp(
+            rotationRef.current.x - inertiaVelRef.current.x * delta,
+            -maxVerticalRotationDeg,
+            maxVerticalRotationDeg
+          );
+
+          rotationRef.current = { x: nextX, y: nextY };
+          applyTransform(nextX, nextY);
+        }
       }
       animId = requestAnimationFrame(loop);
     };
 
     animId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animId);
-  }, [autoRotate, autoRotateSpeed]);
-
-  const stopInertia = useCallback(() => {
-    if (inertiaRAF.current) {
-      cancelAnimationFrame(inertiaRAF.current);
-      inertiaRAF.current = null;
-    }
-  }, []);
-
-  const startInertia = useCallback(
-    (vx, vy) => {
-      const MAX_V = 1.4;
-      let vX = clamp(vx, -MAX_V, MAX_V) * 80;
-      let vY = clamp(vy, -MAX_V, MAX_V) * 80;
-      let frames = 0;
-      const d = clamp(dragDampening ?? 0.6, 0, 1);
-      const frictionMul = 0.94 + 0.055 * d;
-      const stopThreshold = 0.015 - 0.01 * d;
-      const maxFrames = Math.round(90 + 270 * d);
-      const step = () => {
-        vX *= frictionMul;
-        vY *= frictionMul;
-        if (Math.abs(vX) < stopThreshold && Math.abs(vY) < stopThreshold) {
-          inertiaRAF.current = null;
-          return;
-        }
-        if (++frames > maxFrames) {
-          inertiaRAF.current = null;
-          return;
-        }
-        const nextX = clamp(rotationRef.current.x - vY / 200, -maxVerticalRotationDeg, maxVerticalRotationDeg);
-        const nextY = wrapAngleSigned(rotationRef.current.y + vX / 200);
-        rotationRef.current = { x: nextX, y: nextY };
-        applyTransform(nextX, nextY);
-        inertiaRAF.current = requestAnimationFrame(step);
-      };
-      stopInertia();
-      inertiaRAF.current = requestAnimationFrame(step);
-    },
-    [dragDampening, maxVerticalRotationDeg, stopInertia]
-  );
+  }, [autoRotate, autoRotateSpeed, maxVerticalRotationDeg]);
 
   useGesture(
     {
       onDragStart: ({ event }) => {
         if (focusedElRef.current) return;
-        stopInertia();
+        inertiaVelRef.current = { x: 0, y: 0 };
         const evt = event;
         draggingRef.current = true;
         movedRef.current = false;
@@ -361,7 +337,11 @@ export default function DomeGallery({
             vx = clamp((mx / dragSensitivity) * 0.02, -1.2, 1.2);
             vy = clamp((my / dragSensitivity) * 0.02, -1.2, 1.2);
           }
-          if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005) startInertia(vx, vy);
+          // Transfer fling velocity to inertiaVelRef so the continuous loop carries the motion effortlessly
+          inertiaVelRef.current = {
+            x: clamp(vy * 0.35, -0.6, 0.6),
+            y: clamp(vx * 0.35, -1.2, 1.2)
+          };
           if (movedRef.current) lastDragEndAt.current = performance.now();
           movedRef.current = false;
         }

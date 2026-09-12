@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Outlet, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { HelmetProvider } from 'react-helmet-async';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Lenis from 'lenis';
 
 // Layout Components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Logo from './components/common/Logo';
 import IntroPreloader from './components/common/IntroPreloader';
 
 // Lazy-loaded Home for instant app shell & preloader startup
@@ -113,10 +112,9 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Floating CTA Triggers: Desktop Floating Button + Mobile Right-Edge Vertical "GET FREE ESTIMATE" Tab
+// Floating CTA Triggers: Mobile Right-Edge Vertical "GET FREE ESTIMATE" Tab
 const FloatingLogo = () => {
   const location = useLocation();
-  const shouldReduceMotion = useReducedMotion();
   const [hiddenByEvent, setHiddenByEvent] = React.useState(false);
 
   React.useEffect(() => {
@@ -140,85 +138,27 @@ const FloatingLogo = () => {
   };
 
   return (
-    <>
-      {/* DESKTOP ONLY: Fixed Floating Button with Continuous Rotating Icon & Animated "CLICK HERE" Tag */}
-      <div className="hidden lg:flex fixed bottom-6 right-6 z-[9999] pointer-events-auto items-center gap-2.5">
-        {/* CLICK HERE Tag (Desktop Only) */}
-        {!shouldReduceMotion && (
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            animate={{
-              x: [25, 0, 0, 14, 25, 25],
-              opacity: [0, 1, 1, 0.7, 0, 0]
-            }}
-            transition={{
-              duration: 4.5,
-              times: [0, 0.267, 0.444, 0.667, 0.778, 1],
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="pointer-events-none select-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#101014]/90 backdrop-blur-md border border-gold/40 text-gold shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
-          >
-            <span className="font-sans text-[10px] font-bold tracking-[0.18em] uppercase whitespace-nowrap text-gold">
-              CLICK HERE
-            </span>
-            <span className="text-xs text-gold font-bold transition-transform duration-300">
-              →
-            </span>
-          </motion.div>
-        )}
-
-        <motion.button
-          onClick={handleOpenModal}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-14 h-14 rounded-full bg-bg-dark border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.6)] flex items-center justify-center cursor-pointer hover:border-gold/50 hover:shadow-[0_0_25px_rgba(201,169,110,0.35)] hover:bg-[#0c0c0f] select-none transition-all duration-300 group outline-none"
-          aria-label="Get Estimate"
+    /* Fixed Vertical "GET ESTIMATE" Tab on Right Edge for Mobile & Desktop */
+    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-[9999] pointer-events-auto">
+      <motion.button
+        onClick={handleOpenModal}
+        whileHover={{ x: -4 }}
+        whileTap={{ scale: 0.94 }}
+        initial={{ opacity: 0, x: 25 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="bg-black/50 hover:bg-black/75 active:bg-black/85 backdrop-blur-md border-l border-t border-b border-white/25 hover:border-gold/60 text-white rounded-l-lg md:rounded-l-xl py-2.5 px-1.5 md:py-3.5 md:px-2 flex flex-col items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_14px_rgba(201,169,110,0.3)] hover:shadow-[0_0_22px_rgba(201,169,110,0.65)] transition-all duration-300 select-none group outline-none"
+        aria-label="Get Estimate"
+      >
+        <span 
+          className="font-sans text-[8px] md:text-[10px] font-medium tracking-[0.2em] text-white/95 uppercase whitespace-nowrap drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] group-hover:text-gold transition-colors duration-300"
+          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          <div 
-            className="scale-90 flex items-center justify-center w-full h-full animate-[spin_6s_linear_infinite] will-change-transform"
-          >
-            <Logo showText={false} scrolled={false} size="small" />
-          </div>
-        </motion.button>
-      </div>
-
-      {/* MOBILE ONLY: Small Fixed Vertical "GET ESTIMATE" Tab on Right Edge with Glow */}
-      <div className="lg:hidden fixed right-0 top-1/2 -translate-y-1/2 z-[9999] pointer-events-auto">
-        <motion.button
-          onClick={handleOpenModal}
-          whileTap={{ scale: 0.94 }}
-          initial={{ opacity: 0, x: 25 }}
-          animate={{ 
-            opacity: 1, 
-            x: 0,
-            boxShadow: [
-              '0 0 8px rgba(201,169,110,0.35), -3px 0 12px rgba(201,169,110,0.25)',
-              '0 0 24px rgba(201,169,110,0.85), -6px 0 22px rgba(201,169,110,0.65)',
-              '0 0 8px rgba(201,169,110,0.35), -3px 0 12px rgba(201,169,110,0.25)'
-            ]
-          }}
-          transition={{ 
-            x: { delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-            opacity: { delay: 1, duration: 0.5 },
-            boxShadow: { repeat: Infinity, duration: 2.0, ease: 'easeInOut' }
-          }}
-          className="bg-black/30 backdrop-blur-md border-l border-t border-b border-white/25 text-white rounded-l-lg py-2.5 px-1.5 flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-black/45 active:bg-black/55 transition-all select-none group outline-none"
-          aria-label="Get Estimate"
-        >
-          <span 
-            className="font-sans text-[8px] font-normal tracking-[0.18em] text-white/95 uppercase whitespace-nowrap drop-shadow-[0_0_6px_rgba(255,255,255,0.5)]"
-            style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-          >
-            Get Estimate
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse shadow-[0_0_8px_rgba(201,169,110,1)] mt-0.5" />
-        </motion.button>
-      </div>
-    </>
+          Get Estimate
+        </span>
+        <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold animate-pulse shadow-[0_0_8px_rgba(201,169,110,1)] mt-0.5" />
+      </motion.button>
+    </div>
   );
 };
 
@@ -271,17 +211,17 @@ const MainLayout = () => {
 
 function App() {
   useEffect(() => {
-    // Mobile uses native hardware compositor scrolling; desktop gets Lenis smooth scroll
-    const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    if (isTouch) return;
+    // Use native compositor scrolling on pure touch mobile devices; desktop gets Lenis 60fps smooth scroll
+    const isMobileTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse) and (hover: none)').matches;
+    if (isMobileTouch) return;
 
     const lenis = new Lenis({
-      duration: 0.45,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // snappy easeOutExpo
+      duration: 0.75,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.0,
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.0,
       infinite: false,
     });

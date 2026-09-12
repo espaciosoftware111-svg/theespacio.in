@@ -799,9 +799,29 @@ const ProductDetails = () => {
   const sourcePages = cmsCustomPages.length > 0 ? cmsCustomPages : fallbackPages;
   const combinedPages = Array.from(new Set([...sourcePages]));
   const targetCount = p.totalShades || 12;
-  const allPages = combinedPages.length >= targetCount 
+  const rawPages = combinedPages.length >= targetCount 
     ? combinedPages.slice(0, targetCount) 
     : Array.from({ length: targetCount }, (_, i) => combinedPages[i % combinedPages.length]);
+  
+  // Separate into unlocked pages and locked pages
+  const unlockedPages = [];
+  const lockedPages = [];
+
+  rawPages.forEach((pageImg, idx) => {
+    const isLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
+      ? pageImg.isLocked 
+      : idx >= previewLimit;
+    
+    if (isLocked) {
+      lockedPages.push({ pageImg, originalIdx: idx, isLocked: true });
+    } else {
+      unlockedPages.push({ pageImg, originalIdx: idx, isLocked: false });
+    }
+  });
+
+  // Display all unlocked preview pages + at most 6 locked teaser pages
+  const cappedLockedPages = lockedPages.slice(0, 6);
+  const allPages = [...unlockedPages, ...cappedLockedPages];
   
   const totalShades = p.totalShades || 12;
 
@@ -809,7 +829,7 @@ const ProductDetails = () => {
     <div className="bg-cream min-h-screen pb-24">
       <SEO title={`${p.title} — Material Details`} description={p.description ? p.description.substring(0, 150) : 'Material details...'} image={p.heroImage} url={`/materials/${p.slug}`} />
       {/* Hero */}
-      <section className="relative h-[65vh] bg-black mb-0 pt-28">
+      <section className="relative h-[90dvh] sm:h-[65vh] min-h-[480px] sm:min-h-0 bg-black mb-0 pt-24 sm:pt-28">
         <img src={p.heroImage} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-65" />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-transparent to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent pointer-events-none" />
@@ -918,18 +938,20 @@ const ProductDetails = () => {
               <h2 className="font-editorial text-3xl font-bold text-charcoal">{p.catalogueTitle || 'Catalogue Preview'}</h2>
             </div>
             <span className="bg-charcoal text-cream font-sans text-[11px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full">
-              {allPages.filter((item, i) => (typeof item === 'object' && item.isLocked !== undefined ? !item.isLocked : i < previewLimit)).length} Unlocked / {totalShades} Total Shades
+              {unlockedPages.length} Unlocked / {totalShades} Total Shades
             </span>
           </div>
 
           <div className="relative overflow-hidden rounded-card border border-walnut/10 bg-offwhite shadow-sm">
           {/* Grid of pages */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-5 p-6">
-            {allPages.map((pageImg, idx) => {
+            {allPages.map((item, idx) => {
+              const pageImg = item.pageImg || item;
               const pageUrl = typeof pageImg === 'string' ? pageImg : (pageImg.url || pageImg.src || pageImg);
-              const isLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
-                ? pageImg.isLocked 
-                : idx >= previewLimit;
+              const isLocked = item.isLocked !== undefined 
+                ? item.isLocked 
+                : (typeof pageImg === 'object' && pageImg.isLocked !== undefined ? pageImg.isLocked : idx >= previewLimit);
+              const pageNum = (item.originalIdx !== undefined ? item.originalIdx : idx) + 1;
 
               return (
                 <div
@@ -949,8 +971,6 @@ const ProductDetails = () => {
                     }
                   }}
                   className={`relative rounded-card overflow-hidden aspect-[3/4] border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
-                    idx >= 10 ? 'hidden md:block' : ''
-                  } ${
                     isLocked 
                       ? 'border-walnut/10 select-none bg-stone-950/20' 
                       : 'border-walnut/10'
@@ -958,7 +978,7 @@ const ProductDetails = () => {
                 >
                   <img
                     src={pageUrl}
-                    alt={`Catalogue Page ${idx + 1}`}
+                    alt={`Catalogue Page ${pageNum}`}
                     className={`w-full h-full object-cover transition-all duration-500 ${
                       isLocked ? 'blur-lg scale-110 opacity-40' : ''
                     }`}
@@ -978,7 +998,7 @@ const ProductDetails = () => {
                   <div className={`absolute bottom-0 left-0 right-0 py-1.5 text-center font-sans text-[10px] uppercase tracking-widest font-bold ${
                     isLocked ? 'bg-black/70 text-gold/80' : 'bg-cream/90 text-charcoal'
                   }`}>
-                    Page {idx + 1} {isLocked ? '(Locked)' : ''}
+                    Page {pageNum} {isLocked ? '(Locked)' : ''}
                   </div>
                 </div>
               );

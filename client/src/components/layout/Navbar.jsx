@@ -10,26 +10,36 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  const isMaterials = location.pathname.startsWith('/materials') || location.pathname.startsWith('/products');
+
   // Pages that start with a dark cinematic hero
   // Note: /projects/:slug (project detail) has an inset hero within a light cream background, so navbar sits on light bg
-  const hasDarkHero = ['/', '/about', '/services', '/projects', '/spaces', '/what-we-do', '/materials', '/products'].some(path => {
+  // /materials has a beige hero matching the site background
+  const hasDarkHero = ['/', '/about', '/services', '/projects', '/spaces', '/what-we-do'].some(path => {
     if (path === '/') return location.pathname === '/';
     if (path === '/projects') return location.pathname === '/projects' || location.pathname === '/projects/';
     return location.pathname.startsWith(path);
   }) && !location.search.includes('success=true');
 
   useEffect(() => {
-    const handleScroll = () => {
-      // On dark-hero pages: stay transparent until user leaves the hero
-      // On other pages: become solid immediately after 20px.
-      const threshold = hasDarkHero ? Math.min(window.innerHeight * 0.35, 250) : 20;
+    let ticking = false;
+    const updateScroll = () => {
+      const threshold = (hasDarkHero || isMaterials) ? Math.min(window.innerHeight * 0.35, 250) : 20;
       setScrolled(window.scrollY > threshold);
+      ticking = false;
     };
-    // Run once on mount in case page loads mid-scroll
-    handleScroll();
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    };
+
+    updateScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasDarkHero]);
+  }, [hasDarkHero, isMaterials]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -108,7 +118,7 @@ const Navbar = () => {
 
   // isNavLight = true means white bg + dark text (post-hero or non-hero pages)
   const isNavLight = scrolled || !hasDarkHero || location.search.includes('success=true');
-  const isBgTransparent = !isNavLight || location.search.includes('success=true');
+  const isBgTransparent = (!scrolled && (hasDarkHero || isMaterials)) || location.search.includes('success=true');
   const isContact = location.pathname.startsWith('/contact');
   const navPosition = isContact ? 'absolute' : 'fixed';
 
@@ -194,18 +204,18 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-bg-dark z-[100] flex flex-col p-8"
+            className="fixed inset-0 bg-[#F8F5F0] text-ink z-[100] flex flex-col p-8"
           >
             <div className="flex items-center justify-between mb-16">
-              <Link to="/" className="hover:opacity-90">
-                <Logo scrolled={false} />
+              <Link to="/" className="hover:opacity-90" onClick={() => setMobileMenuOpen(false)}>
+                <Logo scrolled={true} />
               </Link>
               <button 
                 onClick={() => setMobileMenuOpen(false)} 
                 aria-label="Close navigation menu"
-                className="text-white/60 hover:text-white transition-colors p-2"
+                className="text-ink/60 hover:text-ink transition-colors p-2"
               >
-                <X size={22} />
+                <X size={24} />
               </button>
             </div>
             
@@ -223,7 +233,7 @@ const Navbar = () => {
                       setMobileMenuOpen(false);
                       resetScroll(true, link.path);
                     }}
-                    className="block font-display text-3xl font-semibold text-white hover:text-gold py-3 border-b border-white/10 transition-colors"
+                    className="block font-display text-3xl font-semibold text-ink hover:text-gold py-3 border-b border-ink/10 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -237,7 +247,7 @@ const Navbar = () => {
                 setMobileMenuOpen(false);
                 resetScroll(true, '/contact');
               }}
-              className="mt-8 inline-flex items-center justify-center gap-2 bg-white text-ink font-sans text-[12px] font-bold uppercase tracking-widest px-6 py-4.5 rounded-pill w-full hover:bg-white/90 transition-colors"
+              className="mt-8 inline-flex items-center justify-center gap-2 bg-ink text-bg font-sans text-[12px] font-bold uppercase tracking-widest px-6 py-4.5 rounded-pill w-full hover:bg-ink-soft transition-colors shadow-md"
             >
               Contact us <ArrowUpRight size={13} />
             </Link>

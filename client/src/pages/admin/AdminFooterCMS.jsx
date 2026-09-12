@@ -9,7 +9,7 @@ import { getCMSData, setCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
 const defaultFooterData = {
   // Location
   footer_location_title: 'LOCATION',
-  footer_address: 'Moinabad Road, Aziznagar',
+  footer_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
   footer_map_url: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
 
   // Contact
@@ -73,6 +73,7 @@ const defaultFooterData = {
 
   // Copyright & Legal Links & Modal Matter
   footer_copyright: '© 2026 ESPACIO. All rights reserved.',
+  footer_disclaimer: 'All interior visuals and photography displayed are for representational and illustrative purposes only.',
   footer_privacy_label: 'Privacy Policy',
   footer_privacy_link: '#',
   footer_privacy_title: 'Privacy Policy',
@@ -346,7 +347,7 @@ const AdminFooterCMS = () => {
                 value={footerState.footer_address || ''}
                 onChange={(e) => updateField('footer_address', e.target.value)}
                 className={`${inpClass} resize-none`}
-                placeholder="Moinabad Road, Aziznagar"
+                placeholder="Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075"
               />
             </div>
 
@@ -731,6 +732,17 @@ const AdminFooterCMS = () => {
                 onChange={(e) => updateField('footer_copyright', e.target.value)}
                 className={inpClass}
                 placeholder="© 2026 ESPACIO. All rights reserved."
+              />
+            </div>
+
+            <div>
+              <label className={labelClass}>Image Disclaimer Quote</label>
+              <input
+                type="text"
+                value={footerState.footer_disclaimer || ''}
+                onChange={(e) => updateField('footer_disclaimer', e.target.value)}
+                className={inpClass}
+                placeholder="All interior visuals and photography displayed are for representational and illustrative purposes only."
               />
             </div>
 

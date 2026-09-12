@@ -86,7 +86,7 @@ const MaintenanceMode = ({ settings = {} }) => {
             <span className="font-sans text-xs uppercase tracking-wider font-bold">Studio Visit Open</span>
           </div>
           <p className="font-sans text-xs text-white/80 leading-relaxed">
-            Moinabad Road, Aziznagar
+            Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075
           </p>
           <span className="font-sans text-[11px] text-white/40 block">Mon – Sat: 10:00 AM – 7:30 PM</span>
         </div>

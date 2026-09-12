@@ -920,7 +920,7 @@ const AdminHomeHeroCMS = () => {
                   alt="Thumbnail"
                   className="w-full aspect-[16/9] object-cover rounded-lg mb-2 border border-white/10"
                 />
-                <h3 className="font-display text-xs font-bold text-white leading-tight mb-2">
+                <h3 className="font-display text-[11px] font-bold text-white leading-tight mb-2 whitespace-nowrap truncate">
                   {heroState.hero_card_heading || 'We Craft the Future Dwelling'}
                 </h3>
                 {heroState.hero_card_cta_visible && (

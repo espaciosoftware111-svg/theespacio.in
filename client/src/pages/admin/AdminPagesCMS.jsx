@@ -59,7 +59,7 @@ const AdminPagesCMS = () => {
     ],
 
     footer_description: 'Turnkey interior design and luxury material supply across Hyderabad. Crafted with structural legacy.',
-    footer_address: 'Moinabad Road, Aziznagar',
+    footer_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
     footer_hours: '10:00 AM – 7:30 PM (Mon - Sat)',
     footer_email: 'Espacio.hyd@gmail.com',
     footer_instagram: 'https://www.instagram.com/theespacio.in',

@@ -94,7 +94,8 @@
 /* ── Base Reset ──────────────────────────────────────────────────────────────── */
 @layer base {
   html {
-    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
@@ -127,10 +128,7 @@
 
   img {
     image-rendering: auto;
-    image-rendering: smooth;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform: translateZ(0);
+    max-width: 100%;
   }
 }
 
@@ -718,6 +716,40 @@ html.lenis, html.lenis body {
 
 .animate-marquee-row1:hover,
 .animate-marquee-row2:hover {
+  animation-play-state: paused;
+}
+
+/* ── Hardware-Accelerated Infinite Marquee for Testimonials ── */
+@keyframes marquee-scroll-50-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-scroll-50-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-testimonials-left {
+  animation: marquee-scroll-50-left 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-testimonials-right {
+  animation: marquee-scroll-50-right 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-testimonials-left:hover,
+.animate-testimonials-right:hover {
   animation-play-state: paused;
 }
 

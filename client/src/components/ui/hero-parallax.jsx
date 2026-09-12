@@ -170,7 +170,7 @@ export const ProductCard = ({ product }) => {
   return (
     <div
       key={product.title}
-      className="group/product h-40 sm:h-52 md:h-64 w-[14rem] sm:w-[20rem] md:w-[28rem] lg:w-[30rem] relative flex-shrink-0 rounded-[14px] sm:rounded-[18px] md:rounded-[20px] overflow-hidden shadow-lg md:shadow-2xl transition-transform duration-300 hover:-translate-y-1.5 bg-stone-900 select-none cursor-grab active:cursor-grabbing"
+      className="group/product h-40 sm:h-52 md:h-64 w-[14rem] sm:w-[20rem] md:w-[28rem] lg:w-[30rem] relative flex-shrink-0 rounded-[14px] sm:rounded-[18px] md:rounded-[20px] overflow-hidden shadow-md md:shadow-lg transition-transform duration-300 hover:-translate-y-1.5 bg-stone-900 select-none cursor-grab active:cursor-grabbing"
     >
       <div className="block h-full w-full select-none pointer-events-none" draggable="false">
         <img
@@ -181,7 +181,7 @@ export const ProductCard = ({ product }) => {
             e.currentTarget.src =
               "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=65&fm=webp";
           }}
-          className="object-cover object-center absolute h-full w-full inset-0 transition-transform duration-700 group-hover/product:scale-105 select-none pointer-events-none transform-gpu"
+          className="object-cover object-center absolute h-full w-full inset-0 transition-transform duration-700 group-hover/product:scale-105 select-none pointer-events-none"
           style={{ imageRendering: "auto", backfaceVisibility: "hidden" }}
           draggable="false"
           alt={product.title}

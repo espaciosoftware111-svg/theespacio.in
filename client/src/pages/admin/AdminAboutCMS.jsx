@@ -69,7 +69,7 @@ const defaultGalleryImages = [
 ];
 
 const defaultAboutHeroImage = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617.jpg';
-const defaultAboutStoryImage = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_10-20260813-110615.jpg';
+const defaultAboutStoryImage = '/images/company/guntur_kaaram_lakeside_estate.webp';
 
 const getNonEmpty = (val, fallback) => (val && typeof val === 'string' && val.trim().length > 0 ? val : fallback);
 
@@ -151,7 +151,7 @@ const AdminAboutCMS = () => {
           about_story_p1: getNonEmpty(storedSettings.about_story_p1, 'Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.'),
           about_story_p2: getNonEmpty(storedSettings.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),
           about_story_p3: getNonEmpty(storedSettings.about_story_p3, "That's the world this brand comes from. Not showrooms. Job sites. Not mood boards. Load-bearing walls, material tolerances, what actually holds up over decades and what doesn't."),
-          about_story_image: (storedSettings.about_story_image && !storedSettings.about_story_image.includes('unsplash.com') && !storedSettings.about_story_image.includes('open_hall.png'))
+          about_story_image: (storedSettings.about_story_image && !storedSettings.about_story_image.includes('unsplash.com') && !storedSettings.about_story_image.includes('open_hall.png') && !storedSettings.about_story_image.includes('Guest_restaurant_10'))
             ? storedSettings.about_story_image
             : defaultAboutStoryImage,
           about_milestone_label: getNonEmpty(storedSettings.about_milestone_label, 'Engineering Milestone'),

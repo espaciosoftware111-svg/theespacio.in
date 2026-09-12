@@ -14,7 +14,7 @@ const defaultContactSettings = {
   exp_description: 'Walk into our flagship material experience studio. Touch, feel, and compare over 200+ live panel and finish samples in person.',
 
   exp_card1_title: 'Our Studio',
-  exp_card1_address: 'Moinabad Road, Aziznagar',
+  exp_card1_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
   exp_card1_bottomLabel: 'EXPERIENCE CENTER',
   exp_card1_visible: true,
 

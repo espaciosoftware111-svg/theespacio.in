@@ -18,7 +18,7 @@ const StarRating = ({ rating = 5 }) => (
         viewBox="0 0 24 24"
         width="15"
         height="15"
-        className={star <= rating ? 'text-amber-400 fill-amber-400' : 'text-stone-300 fill-stone-300'}
+        className={star <= rating ? 'text-[#FFB800] fill-[#FFB800]' : 'text-[#E2DCD2] fill-[#E2DCD2]'}
       >
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
       </svg>
@@ -81,15 +81,6 @@ const topTestimonials = [
     role: "Google Reviewer • 1 Review",
     avatar: "/reviews/nani_varma.png",
     date: "2 hours ago"
-  },
-  {
-    rating: 5,
-    title: "Transparent Budget Prioritisation for 2BHK",
-    body: "We had a clear budget for our 2BHK and told the team from the beginning. Instead of pushing everything as premium, they helped us prioritise what mattered most. That was something we appreciated. The house now looks fresh, and we were able to stay close to the plan we discussed.",
-    name: "ABDUL SATTAR",
-    role: "Homeowner • 2BHK Renovation",
-    avatar: "/reviews/abdul_sattar.png",
-    date: "a day ago"
   },
   {
     rating: 5,
@@ -312,191 +303,81 @@ const bottomTestimonials = [
   }
 ];
 
-const TestimonialCard = ({ t }) => (
-  <div className="relative group w-[240px] sm:w-[300px] md:w-[415px] shrink-0 bg-gradient-to-b from-[#FAF7F2] to-[#F5EFE6] rounded-[18px] sm:rounded-[22px] md:rounded-[26px] p-4 sm:p-5 md:p-6 mx-1.5 sm:mx-2 md:mx-3 flex flex-col justify-between h-[180px] sm:h-[215px] md:h-[265px] shadow-[0_8px_24px_rgba(20,15,10,0.09)] hover:shadow-[0_16px_36px_rgba(20,15,10,0.16)] border border-[#E7DFD0] hover:border-[#C9A96E]/70 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
-    {/* Elegant Quotation Mark Watermark */}
-    <div className="absolute -top-1 -right-1 text-[#C9A96E]/12 group-hover:text-[#C9A96E]/20 transition-colors duration-300 pointer-events-none pr-3 pt-2">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-      </svg>
-    </div>
+const TestimonialCard = ({ t }) => {
+  const quoteText = (t.body || '').replace(/^["'“\s]+|["'”\s]+$/g, '');
 
-    <div className="relative z-10 space-y-1.5 sm:space-y-2 md:space-y-2.5">
-      {/* Star Rating & Verified Badge */}
-      <div className="flex items-center justify-between">
-        <div className="scale-85 sm:scale-95 md:scale-100 origin-left">
+  return (
+    <div className="relative group w-[280px] sm:w-[350px] md:w-[410px] shrink-0 bg-[#FAF8F5] rounded-[18px] sm:rounded-[22px] p-4.5 sm:p-5 md:p-5.5 mx-1 sm:mx-1.5 md:mx-2 flex flex-col justify-between h-[165px] sm:h-[185px] md:h-[195px] shadow-[0_4px_20px_rgba(20,15,10,0.05)] hover:shadow-[0_12px_30px_rgba(20,15,10,0.12)] border border-[#E8E2D6] hover:border-[#C9A96E]/60 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
+      <div className="relative z-10 space-y-2 sm:space-y-2.5">
+        {/* Star Rating */}
+        <div>
           <StarRating rating={t.rating} />
         </div>
-        {t.source === 'MANUAL' ? (
-          <div className="inline-flex items-center gap-1.5 bg-[#F4EDE0] border border-[#DECBB0] px-2.5 py-0.5 sm:py-1 rounded-full text-[9.5px] sm:text-[11px] font-sans font-semibold text-[#825F23] shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
-            <span>Client Testimonial</span>
-          </div>
-        ) : (
-          <div className="inline-flex items-center gap-1.5 bg-[#F0EAE0] border border-[#DFD6C8] px-2.5 py-0.5 sm:py-1 rounded-full text-[9.5px] sm:text-[11px] font-sans font-medium text-[#50483E] shadow-xs">
-            <GoogleGLogo />
-            <span className="font-semibold">Verified Review</span>
-          </div>
-        )}
+
+        {/* Italic Quote Text in Smart Quotes */}
+        <p className="font-sans italic text-[12px] sm:text-[13px] md:text-[13.5px] font-normal text-[#3E3933] leading-relaxed m-0 line-clamp-3 sm:line-clamp-4">
+          “{quoteText}”
+        </p>
       </div>
 
-      <h3 className="font-editorial text-[14px] sm:text-[17px] md:text-[20px] font-semibold text-[#1A1713] leading-[1.25] md:leading-[1.3] m-0 line-clamp-1 tracking-tight">
-        "{t.title}"
-      </h3>
-      <p className="font-sans text-[11px] sm:text-[12px] md:text-[13.5px] font-normal text-[#554F46] leading-snug sm:leading-[1.65] m-0 line-clamp-2">
-        {t.body}
-      </p>
-    </div>
-
-    <div className="relative z-10 flex items-center justify-between pt-2.5 sm:pt-3 md:pt-3.5 border-t border-[#E8DFCFA0] mt-1.5 sm:mt-2.5 md:mt-3">
-      <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-        {t.avatar && t.avatar.trim() !== '' ? (
-          <img 
-            src={t.avatar}
-            alt={t.name}
-            loading="lazy"
-            decoding="async"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-            }}
-            className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full object-cover object-center shrink-0 ring-2 ring-[#C9A96E]/40 shadow-xs" 
-          />
-        ) : (
-          <div 
-            className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#D9BE90] to-[#B68F52] text-[#18140E] font-bold flex items-center justify-center text-[11px] sm:text-[12px] md:text-[14px] shrink-0 ring-2 ring-[#C9A96E]/40 shadow-xs select-none uppercase font-sans"
-          >
-            {(t.name || 'C').trim().charAt(0)}
+      {/* Divider & Author Meta */}
+      <div className="relative z-10 pt-2.5 sm:pt-3 border-t border-[#E6E0D6] mt-1.5 sm:mt-2">
+        <div className="flex items-center gap-2.5 min-w-0">
+          {t.avatar && t.avatar.trim() !== '' ? (
+            <img 
+              src={t.avatar}
+              alt={t.name}
+              loading="lazy"
+              decoding="async"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+              className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full object-cover object-center shrink-0 shadow-xs" 
+            />
+          ) : (
+            <div 
+              className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full bg-[#E5DFD4] text-[#2C2720] font-bold flex items-center justify-center text-[11px] sm:text-[12px] shrink-0 shadow-xs select-none uppercase font-sans"
+            >
+              {(t.name || 'C').trim().charAt(0)}
+            </div>
+          )}
+          <div className="flex-1 min-w-0 truncate">
+            <p className="font-sans text-[12.5px] sm:text-[13.5px] md:text-[14px] font-bold text-[#1A1815] m-0 leading-tight truncate">
+              {t.name}
+            </p>
           </div>
-        )}
-        <div className="flex-1 min-w-0 truncate">
-          <p className="font-sans text-[11.5px] sm:text-[12.5px] md:text-[13.5px] font-bold text-[#1A1713] m-0 leading-tight truncate">
-            {t.name}
-          </p>
-          <p className="font-sans text-[9.5px] sm:text-[10.5px] md:text-[11px] font-normal text-[#6B6358] m-0 leading-tight mt-0.5 truncate">
-            {t.role || t.designation}
-          </p>
         </div>
       </div>
-
-      {t.date && (
-        <span className="text-[9.5px] sm:text-[10.5px] md:text-[11px] font-sans text-[#8C8274] font-medium shrink-0 ml-2 hidden sm:inline-block">
-          {t.date}
-        </span>
-      )}
     </div>
-  </div>
-);
+  );
+};
 
-const MarqueeRow = ({ items, speed = 1.09, reverse = false }) => {
-  const containerRef = useRef(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
-  const animationFrameId = useRef(null);
-  const halfWidthRef = useRef(0);
+const MarqueeRow = ({ items, reverse = false }) => {
+  const [isPaused, setIsPaused] = React.useState(false);
 
-  React.useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+  if (!items || items.length === 0) return null;
 
-    // Cache measurement once instead of reading on every RAF frame
-    const measure = () => {
-      if (el) halfWidthRef.current = el.scrollWidth / 2;
-    };
-    measure();
-    window.addEventListener('resize', measure, { passive: true });
-
-    if (reverse && el.scrollLeft === 0) {
-      el.scrollLeft = halfWidthRef.current || 1000;
-    }
-
-    let isVisible = false;
-
-    const autoScroll = () => {
-      if (!isVisible) {
-        animationFrameId.current = null;
-        return;
-      }
-      if (!isDragging.current && el) {
-        const halfWidth = halfWidthRef.current || 1000;
-        if (reverse) {
-          if (el.scrollLeft <= 0) {
-            el.scrollLeft = halfWidth;
-          } else {
-            el.scrollLeft -= speed;
-          }
-        } else {
-          if (el.scrollLeft >= halfWidth) {
-            el.scrollLeft = 0;
-          } else {
-            el.scrollLeft += speed;
-          }
-        }
-      }
-      animationFrameId.current = requestAnimationFrame(autoScroll);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        isVisible = entry.isIntersecting;
-        if (isVisible) {
-          measure();
-          if (!animationFrameId.current) {
-            animationFrameId.current = requestAnimationFrame(autoScroll);
-          }
-        } else {
-          if (animationFrameId.current) {
-            cancelAnimationFrame(animationFrameId.current);
-            animationFrameId.current = null;
-          }
-        }
-      },
-      { rootMargin: "150px" }
-    );
-
-    observer.observe(el);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', measure);
-      if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
-    };
-  }, [speed, reverse]);
-
-  const onMouseDown = (e) => {
-    isDragging.current = true;
-    startX.current = e.pageX - containerRef.current.offsetLeft;
-    scrollLeftStart.current = containerRef.current.scrollLeft;
-  };
-
-  const onMouseLeaveOrUp = () => {
-    isDragging.current = false;
-  };
-
-  const onMouseMove = (e) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
-    containerRef.current.scrollLeft = scrollLeftStart.current - walk;
-  };
+  // Duplicate once for a seamless -50% GPU loop
+  const displayItems = [...items, ...items];
+  const durationSec = Math.max(items.length * 4.2, 28);
 
   return (
     <div
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onMouseLeave={onMouseLeaveOrUp}
-      onMouseUp={onMouseLeaveOrUp}
-      onMouseMove={onMouseMove}
-      onTouchStart={() => { isDragging.current = true; }}
-      onTouchEnd={() => { isDragging.current = false; }}
-      className="overflow-x-auto select-none flex w-full max-w-full relative py-1 cursor-grab active:cursor-grabbing touch-pan-x"
-      style={{ scrollbarWidth: "none", msOverflowStyle: "none", overscrollBehaviorX: "contain" }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+      className="overflow-hidden select-none flex w-full max-w-full relative py-1 cursor-grab"
     >
-      <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
-      <div className="flex w-max shrink-0">
-        {items.map((t, i) => (
+      <div
+        className={`flex w-max shrink-0 ${reverse ? 'animate-testimonials-right' : 'animate-testimonials-left'}`}
+        style={{
+          animationDuration: `${durationSec}s`,
+          animationPlayState: isPaused ? 'paused' : 'running',
+          willChange: 'transform',
+        }}
+      >
+        {displayItems.map((t, i) => (
           <TestimonialCard key={i} t={t} />
         ))}
       </div>
@@ -568,9 +449,8 @@ const Testimonials = () => {
     };
   }, []);
 
-  // Ensure seamless marquee infinite loop with at least 2 repeats
-  const rowA = topItems.length > 0 ? [...topItems, ...topItems, ...topItems] : [];
-  const rowB = bottomItems.length > 0 ? [...bottomItems, ...bottomItems, ...bottomItems] : [];
+  const rowA = topItems.length > 0 ? topItems : [];
+  const rowB = bottomItems.length > 0 ? bottomItems : [];
 
   return (
     <section className="relative py-8 sm:py-16 md:py-24 overflow-hidden w-full max-w-full">
@@ -613,12 +493,12 @@ const Testimonials = () => {
 
         {/* Row 1 — Auto-scrolls Right-to-Left */}
         <div className="relative mb-3 sm:mb-4 md:mb-5 w-full max-w-full overflow-hidden">
-          <MarqueeRow items={rowA} speed={1.09} reverse={false} />
+          <MarqueeRow items={rowA} reverse={false} />
         </div>
 
         {/* Row 2 — Auto-scrolls Left-to-Right */}
         <div className="relative w-full max-w-full overflow-hidden">
-          <MarqueeRow items={rowB} speed={1.00} reverse={true} />
+          <MarqueeRow items={rowB} reverse={true} />
         </div>
 
       </div>

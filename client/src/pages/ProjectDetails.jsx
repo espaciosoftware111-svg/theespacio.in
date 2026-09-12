@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, ChevronUp } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 
@@ -12,11 +12,58 @@ const ProjectDetails = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
+  // Responsive batch pagination: 4 photos on mobile (< 768px), 6 photos on desktop/tablet
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  const batchSize = isMobile ? 4 : 6;
+  const [visiblePhotosCount, setVisiblePhotosCount] = useState(batchSize);
+  const gallerySectionRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Synchronize visible photos count whenever project changes or layout switches between mobile & desktop
+  useEffect(() => {
+    setVisiblePhotosCount(isMobile ? 4 : 6);
+  }, [slug, isMobile]);
+
   // Before/After drag slider state
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const sliderContainerRef = useRef(null);
+
+  const lockScroll = () => {
+    try {
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } catch {}
+  };
+
+  const unlockScroll = () => {
+    try {
+      if (window.lenis) {
+        window.lenis.start();
+      }
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.touchAction = '';
+    } catch {}
+  };
 
   const updateSliderPos = (clientX) => {
     if (!sliderContainerRef.current) return;
@@ -29,11 +76,13 @@ const ProjectDetails = () => {
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
+    lockScroll();
     updateSliderPos(e.clientX);
   };
 
   const handleTouchStart = (e) => {
     setIsDragging(true);
+    lockScroll();
     if (e.touches && e.touches[0]) {
       updateSliderPos(e.touches[0].clientX);
     }
@@ -46,21 +95,44 @@ const ProjectDetails = () => {
       updateSliderPos(clientX);
     };
 
+    const handleGlobalTouchMove = (e) => {
+      if (!isDragging) return;
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+      if (e.touches && e.touches[0]) {
+        updateSliderPos(e.touches[0].clientX);
+      }
+    };
+
+    const handleGlobalWheel = (e) => {
+      if (isDragging && e.cancelable) {
+        e.preventDefault();
+      }
+    };
+
     const handleGlobalEnd = () => {
       setIsDragging(false);
+      unlockScroll();
     };
 
     if (isDragging) {
       window.addEventListener('mousemove', handleGlobalMove);
       window.addEventListener('mouseup', handleGlobalEnd);
-      window.addEventListener('touchmove', handleGlobalMove);
+      window.addEventListener('touchmove', handleGlobalTouchMove, { passive: false });
       window.addEventListener('touchend', handleGlobalEnd);
+      window.addEventListener('touchcancel', handleGlobalEnd);
+      window.addEventListener('wheel', handleGlobalWheel, { passive: false });
     }
+
     return () => {
+      unlockScroll();
       window.removeEventListener('mousemove', handleGlobalMove);
       window.removeEventListener('mouseup', handleGlobalEnd);
-      window.removeEventListener('touchmove', handleGlobalMove);
+      window.removeEventListener('touchmove', handleGlobalTouchMove);
       window.removeEventListener('touchend', handleGlobalEnd);
+      window.removeEventListener('touchcancel', handleGlobalEnd);
+      window.removeEventListener('wheel', handleGlobalWheel);
     };
   }, [isDragging]);
 
@@ -248,13 +320,33 @@ const ProjectDetails = () => {
     p.gallery = Array.from(new Set(p.gallery.filter(img => !img.includes('venkatesh_gallery_22.webp'))));
   }
 
+  const totalPhotos = p?.gallery?.length || 0;
+  const hasMore = visiblePhotosCount < totalPhotos;
+  const canShowLess = visiblePhotosCount > batchSize;
+  const remainingPhotos = Math.max(0, totalPhotos - visiblePhotosCount);
+  const nextBatchCount = Math.min(batchSize, remainingPhotos);
+
+  const handleLoadMorePhotos = () => {
+    setVisiblePhotosCount((prev) => Math.min(totalPhotos, prev + batchSize));
+  };
+
+  const handleShowLessPhotos = () => {
+    setVisiblePhotosCount((prev) => Math.max(batchSize, prev - batchSize));
+    if (gallerySectionRef.current) {
+      const rect = gallerySectionRef.current.getBoundingClientRect();
+      if (rect.top < -50) {
+        gallerySectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <div className="bg-cream min-h-screen pb-24">
       <SEO title={`${p.title} — Luxury Case Study`} description={p.description ? p.description.substring(0, 150) : 'Case study description...'} image={p.heroImage} url={`/projects/${p.slug}`} />
       
       {/* Hero section with curved borders and side margins */}
-      <section className="pt-24 md:pt-28 px-4 md:px-8 lg:px-12 max-w-[1440px] mx-auto">
-        <div className="relative h-[54vh] sm:h-[65vh] lg:h-[70vh] min-h-[360px] sm:min-h-[480px] lg:min-h-[500px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
+      <section className="pt-20 sm:pt-24 md:pt-28 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1440px] mx-auto">
+        <div className="relative h-[90dvh] sm:h-[65vh] lg:h-[70vh] min-h-[480px] sm:min-h-[480px] lg:min-h-[500px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
           <img
             src={p.heroImage}
             alt={p.title}
@@ -361,9 +453,11 @@ const ProjectDetails = () => {
 
             <div
               ref={sliderContainerRef}
+              data-lenis-prevent
               onMouseDown={handleMouseDown}
               onTouchStart={handleTouchStart}
-              className="relative w-full aspect-[16/9] rounded-card overflow-hidden select-none cursor-ew-resize border border-walnut/15 shadow-2xl bg-charcoal"
+              style={{ touchAction: 'none' }}
+              className="relative w-full aspect-[16/9] rounded-card overflow-hidden select-none cursor-ew-resize border border-walnut/15 shadow-2xl bg-charcoal touch-none"
             >
               {/* After Image */}
               <img
@@ -408,10 +502,24 @@ const ProjectDetails = () => {
 
               {/* Drag handle line */}
               <div
-                className="absolute top-0 bottom-0 w-[3px] bg-gold z-20 shadow-[0_0_15px_rgba(197,165,114,0.8)]"
+                className="absolute top-0 bottom-0 w-[3px] bg-gold z-20 shadow-[0_0_15px_rgba(197,165,114,0.8)] pointer-events-none"
                 style={{ left: `${sliderPos}%` }}
+              />
+
+              {/* Drag handle thumb touch strip */}
+              <div
+                className="absolute inset-y-0 -translate-x-1/2 w-14 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize touch-none select-none"
+                style={{ left: `${sliderPos}%`, touchAction: 'none' }}
+                onMouseDown={(e) => {
+                  e.stopPropagation();
+                  handleMouseDown(e);
+                }}
+                onTouchStart={(e) => {
+                  e.stopPropagation();
+                  handleTouchStart(e);
+                }}
               >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gold shadow-2xl flex items-center justify-center text-charcoal font-bold text-base border-2 border-cream">
+                <div className="w-10 h-10 rounded-full bg-gold shadow-2xl flex items-center justify-center text-charcoal font-bold text-base border-2 border-cream pointer-events-auto hover:scale-110 active:scale-95 transition-transform">
                   ↔
                 </div>
               </div>
@@ -422,20 +530,19 @@ const ProjectDetails = () => {
 
       {/* Editorial Masonry Gallery */}
       {p.gallery?.length > 0 && (
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-20">
-          <div className="flex items-center justify-between mb-12">
+        <section ref={gallerySectionRef} className="max-w-[1440px] mx-auto px-6 md:px-12 py-20 scroll-mt-24">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
             <div>
               <h2 className="font-editorial text-3xl md:text-4xl font-bold text-charcoal">Project Gallery & Room Photography</h2>
-              <p className="font-sans text-xs text-walnut mt-1">Showing all {p.gallery.length} captured photos for this project entry.</p>
+              <p className="font-sans text-xs text-walnut mt-1">
+                Showing {Math.min(visiblePhotosCount, p.gallery.length)} of {p.gallery.length} captured photos for this project entry.
+              </p>
             </div>
-            <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider">Click photo to expand</span>
+            <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider hidden sm:inline-block">Click photo to expand</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {p.gallery.map((imgUrl, index) => {
-              const roomTags = ['Living Lounge & Foyer', 'Entertainment Wall & TV Unit', 'Modular Culinary Suite', 'Master Bedroom Sanctuary', 'Guest Room & Study', 'Custom Wardrobe Joinery', 'Dining Nook & Crockery Unit', 'Balcony & Reading Retreat'];
-              const captionTag = roomTags[index % roomTags.length];
-
+            {p.gallery.slice(0, visiblePhotosCount).map((imgUrl, index) => {
               return (
                 <div
                   key={index}
@@ -445,7 +552,7 @@ const ProjectDetails = () => {
                   <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
                     <img
                       src={imgUrl}
-                      alt={`${p.title} - ${captionTag} (Photo ${index + 1})`}
+                      alt={`${p.title} - Photo ${index + 1}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
@@ -453,20 +560,42 @@ const ProjectDetails = () => {
                         <Maximize2 size={16} strokeWidth={2} />
                       </div>
                     </div>
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-sans font-semibold uppercase tracking-wider text-white border border-white/15">
-                        {captionTag}
-                      </span>
-                    </div>
                   </div>
                   <div className="p-3.5 bg-bg-card border-t border-ink-border/20 flex items-center justify-between text-xs font-sans">
-                    <span className="text-ink font-medium truncate">{captionTag} • Shot #{index + 1}</span>
+                    <span className="text-ink font-medium truncate">Photo #{index + 1}</span>
                     <span className="text-gold font-bold shrink-0 text-[10.5px] uppercase tracking-wider">Expand ↗</span>
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {/* Load More / Show Less Controls */}
+          {totalPhotos > batchSize && (
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+              {hasMore && (
+                <button
+                  type="button"
+                  onClick={handleLoadMorePhotos}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-charcoal text-cream hover:bg-gold hover:text-charcoal transition-all duration-300 shadow-md hover:shadow-xl font-sans text-xs uppercase tracking-wider font-bold group cursor-pointer border border-gold/30 hover:border-gold"
+                >
+                  <span>Load More Images</span>
+                  <ChevronDown size={15} className="group-hover:translate-y-0.5 transition-transform text-gold group-hover:text-charcoal" />
+                </button>
+              )}
+
+              {canShowLess && (
+                <button
+                  type="button"
+                  onClick={handleShowLessPhotos}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-cream/80 hover:bg-cream text-charcoal border border-walnut/20 hover:border-gold/60 transition-all duration-300 font-sans text-xs uppercase tracking-wider font-bold group cursor-pointer shadow-sm hover:shadow-md"
+                >
+                  <ChevronUp size={15} className="group-hover:-translate-y-0.5 transition-transform text-gold" />
+                  <span>Show Less</span>
+                </button>
+              )}
+            </div>
+          )}
         </section>
       )}
 
@@ -535,9 +664,17 @@ const ProjectDetails = () => {
           <span className="font-sans text-xs font-bold uppercase tracking-widest text-gold block mb-3">Client Endorsement & Feedback</span>
           <h2 className="font-editorial text-3xl font-bold text-charcoal mb-8">What the Client Says About Our Work</h2>
           
-          <div className="flex justify-center space-x-1 text-gold mb-6">
+          <div className="flex justify-center items-center gap-1.5 mb-6">
             {Array.from({ length: Number(p.testimonial?.rating || p.testimonialRating || 5) }).map((_, idx) => (
-              <span key={idx} className="text-xl">★</span>
+              <svg
+                key={idx}
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                className="text-[#FFB800] fill-[#FFB800]"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
             ))}
           </div>
 

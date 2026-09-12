@@ -299,7 +299,7 @@ const Projects = () => {
       {/* ── ROUNDED CARD HERO (same as Home & Services) ── */}
       <section
         ref={heroRef}
-        className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12"
+        className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12"
       >
         <div
           className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px]"

@@ -131,7 +131,7 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
 };
 
 const defaultAboutHeroImage = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617.jpg';
-const defaultAboutStoryImage = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_10-20260813-110615.jpg';
+const defaultAboutStoryImage = '/images/company/guntur_kaaram_lakeside_estate.webp';
 
 const getValidHeroImage = (val, fallback = defaultAboutHeroImage) => {
   if (!val || typeof val !== 'string' || !val.trim() || val.includes('unsplash.com') || val.includes('photo-1600585154340-be6161a56a0c')) {
@@ -141,7 +141,7 @@ const getValidHeroImage = (val, fallback = defaultAboutHeroImage) => {
 };
 
 const getValidStoryImage = (val, fallback = defaultAboutStoryImage) => {
-  if (!val || typeof val !== 'string' || !val.trim() || val.includes('unsplash.com') || val.includes('3bhk_lux/open_hall.png') || val.includes('photo-1600585154340-be6161a56a0c')) {
+  if (!val || typeof val !== 'string' || !val.trim() || val.includes('unsplash.com') || val.includes('3bhk_lux/open_hall.png') || val.includes('photo-1600585154340-be6161a56a0c') || val.includes('Guest_restaurant_10')) {
     return fallback;
   }
   return val;
@@ -338,7 +338,7 @@ const About = () => {
 
       {/* ── 1. SIGNATURE HERO BANNER (Matches Services hero layout with bottom-anchored content) ────────────── */}
       {aboutData.heroVisible !== false && (
-        <section ref={heroRef} className="relative h-[64vh] sm:h-[80vh] lg:h-[96vh] min-h-[400px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+        <section ref={heroRef} className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
             <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
               <img
@@ -366,10 +366,10 @@ const About = () => {
                     <Award size={14} className="text-[#101014] shrink-0" />
                     <span>{aboutData.heroBadge || 'About ESPACIO'}</span>
                   </div>
-                  <h1 className="font-display font-medium leading-[0.95] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]" style={{ fontSize: 'clamp(28px, 5.5vw, 76px)', lineHeight: 0.95, letterSpacing: '0.02em', fontWeight: 500, textShadow: '0 2px 32px rgba(0,0,0,0.8), 0 1px 0 rgba(0,0,0,0.5)' }}>
+                  <h1 className="font-display leading-[0.88] text-[#C2A478]" style={{ fontSize: 'clamp(28px, 5.5vw, 76px)', lineHeight: 0.88, letterSpacing: '0.015em', fontWeight: 535, textShadow: '0 2px 18px rgba(0,0,0,0.65)' }}>
                     {aboutData.heroTitle}
                   </h1>
-                  <p className="font-sans text-[13.5px] sm:text-[15px] md:text-[15.5px] text-white/95 max-w-[620px] leading-relaxed" style={{ textShadow: '0 1px 12px rgba(0,0,0,0.9)' }}>
+                  <p className="font-sans text-[13.5px] sm:text-[15px] md:text-[15.5px] text-white max-w-[620px] leading-relaxed" style={{ textShadow: '0 1px 12px rgba(0,0,0,0.9)' }}>
                     {aboutData.heroSubtitle}
                   </p>
                 </div>

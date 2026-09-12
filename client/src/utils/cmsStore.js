@@ -990,7 +990,6 @@ export const DEFAULT_TESTIMONIALS = [
   { id: 'g_rev_04', googleReviewId: 'g_rev_04', source: 'GOOGLE', name: 'Juttiga Vaishnavi', designation: 'Homeowner • 3BHK Minimalist Interior', title: 'Clean Minimal Look & Great Material Guidance', body: 'We wanted a modern, minimal look for our 3BHK and specifically wanted to avoid too many decorative elements. Espacio understood that direction well. The colour combination and storage solutions came together nicely. We also liked that the team was willing to explain why certain materials were better for particular areas.', rating: 5, avatar: '/reviews/juttiga_vaishnavi.png', date: 'an hour ago', visible: true, featured: true, order: 4 },
   { id: 'g_rev_05', googleReviewId: 'g_rev_05', source: 'GOOGLE', name: 'Sunkari santosh', designation: 'Google Reviewer • 2 Reviews', title: 'Professional & Great Interior and Exterior Elevation', body: 'Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.', rating: 5, avatar: '/reviews/sunkari_santosh.png', date: '3 days ago', visible: true, featured: true, order: 5 },
   { id: 'g_rev_06', googleReviewId: 'g_rev_06', source: 'GOOGLE', name: 'Nani Varma', designation: 'Google Reviewer • 1 Review', title: 'Professional Reception & Functional Workspaces', body: 'Our requirement was a professional reception area along with functional workspaces. Espacio suggested a layout that made better use of the available area. The reception now gives a much better first impression, while the work area remains comfortable for the staff. Good experience overall.', rating: 5, avatar: '/reviews/nani_varma.png', date: '2 hours ago', visible: true, featured: true, order: 6 },
-  { id: 'g_rev_07', googleReviewId: 'g_rev_07', source: 'GOOGLE', name: 'ABDUL SATTAR', designation: 'Homeowner • 2BHK Renovation', title: 'Transparent Budget Prioritisation for 2BHK', body: 'We had a clear budget for our 2BHK and told the team from the beginning. Instead of pushing everything as premium, they helped us prioritise what mattered most. That was something we appreciated. The house now looks fresh, and we were able to stay close to the plan we discussed.', rating: 5, avatar: '/reviews/abdul_sattar.png', date: 'a day ago', visible: true, featured: true, order: 7 },
   { id: 'g_rev_08', googleReviewId: 'g_rev_08', source: 'GOOGLE', name: 'Rafi Shaik', designation: 'Homeowner • 2BHK Turnkey', title: 'Clean Finish & Responsive Site Team', body: 'We got our 2BHK interiors done with Espacio Interiors & Modular. The team understood what we wanted and suggested practical options instead of simply adding more things. The modular kitchen storage came out really well and the overall finish looks clean. The site team was also responsive whenever we had a question.', rating: 5, avatar: '/reviews/rafi_shaik.png', date: '2 days ago', visible: true, featured: true, order: 8 },
   { id: 'g_rev_09', googleReviewId: 'g_rev_09', source: 'GOOGLE', name: 'Lovely boy Laxman', designation: 'Homeowner • 1 Review • 3 Photos', title: 'Luxurious House at Reasonable Prices', body: 'Good equipment and well staff my house is now completely become luxurious with reasonable prices and thanks to espacio', rating: 5, avatar: '/reviews/lovely_boy_laxman.png', date: '5 months ago', visible: true, featured: true, order: 9, response: 'Thank you for your feedback! We’re glad you had a good experience with Espacio Interiors & Modular.' },
   { id: 'g_rev_10', googleReviewId: 'g_rev_10', source: 'GOOGLE', name: 'Shaik BOB', designation: 'Google Reviewer • 3 Reviews • 3 Photos', title: 'Wide Range of Collections & Patient Service', body: 'Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding', rating: 5, avatar: '/reviews/shaik_bob.png', date: 'a year ago', visible: true, featured: true, order: 10, response: 'Thank you so much for visiting Espacio Interiors & Modular!' },
@@ -1076,7 +1075,7 @@ export const DEFAULT_SETTINGS = {
   exp_heading: 'Experience Centers & Studio',
   exp_description: 'Walk into our flagship material experience studio. Touch, feel, and compare over 200+ live panel and finish samples in person.',
   exp_card1_title: 'Our Studio',
-  exp_card1_address: 'Moinabad Road, Aziznagar',
+  exp_card1_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
   exp_card1_bottomLabel: 'EXPERIENCE CENTER',
   exp_card1_visible: true,
   exp_card2_title: 'Direct Line',
@@ -1092,7 +1091,7 @@ export const DEFAULT_SETTINGS = {
   exp_card3_bottomLabel: 'CONSULTATION HOURS',
   exp_card3_visible: true,
   footer_location_title: 'LOCATION',
-  footer_address: 'Moinabad Road, Aziznagar',
+  footer_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
   footer_map_url: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
   footer_contact_title: 'CONTACT',
   footer_phone: '+91 95051 51116',
@@ -2582,6 +2581,9 @@ export const getCMSData = (key, fallback = null) => {
         if (key === STORAGE_KEYS.TESTIMONIALS) {
           if (!Array.isArray(data) || data.length === 0) {
             data = DEFAULT_TESTIMONIALS;
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          } else if (data.some(t => t.id === 'g_rev_07' || /abdul\s*sattar/i.test(t.name))) {
+            data = data.filter(t => t.id !== 'g_rev_07' && !/abdul\s*sattar/i.test(t.name));
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
         }
