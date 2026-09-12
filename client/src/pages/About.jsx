@@ -366,7 +366,7 @@ const About = () => {
                     <Award size={14} className="text-[#101014] shrink-0" />
                     <span>{aboutData.heroBadge || 'About ESPACIO'}</span>
                   </div>
-                  <h1 className="font-display font-semibold leading-[1.08] sm:leading-none tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]" style={{ fontSize: 'clamp(28px, 5.5vw, 76px)', textShadow: '0 2px 32px rgba(0,0,0,0.8), 0 1px 0 rgba(0,0,0,0.5)' }}>
+                  <h1 className="font-display font-medium leading-[0.95] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]" style={{ fontSize: 'clamp(28px, 5.5vw, 76px)', lineHeight: 0.95, letterSpacing: '0.02em', fontWeight: 500, textShadow: '0 2px 32px rgba(0,0,0,0.8), 0 1px 0 rgba(0,0,0,0.5)' }}>
                     {aboutData.heroTitle}
                   </h1>
                   <p className="font-sans text-[13.5px] sm:text-[15px] md:text-[15.5px] text-white/95 max-w-[620px] leading-relaxed" style={{ textShadow: '0 1px 12px rgba(0,0,0,0.9)' }}>
@@ -415,7 +415,7 @@ const About = () => {
             <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em' }}>
               {aboutData.storyBadge}
             </h2>
-            <p className="font-sans text-ink leading-relaxed font-semibold text-[clamp(17px,2.2vw,24px)] tracking-tight">
+            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
               {aboutData.storyMain}
             </p>
             <p className="font-sans text-gold font-semibold text-[16px] sm:text-[18px] leading-relaxed">
@@ -474,11 +474,6 @@ const About = () => {
                   <p className="font-sans text-[13.5px] sm:text-sm text-ink-soft leading-relaxed">
                     {item.desc}
                   </p>
-                </div>
-
-                <div className="relative pt-5 mt-6 border-t border-ink-border/40 flex items-center justify-between text-xs font-semibold text-ink-muted uppercase tracking-wider">
-                  <span>Phase 0{idx + 1}</span>
-                  <span className="text-gold font-mono text-[11px]">40+ YRS</span>
                 </div>
               </div>
             ))}

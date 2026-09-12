@@ -377,9 +377,9 @@ const ProjectDetails = () => {
                 className="absolute inset-0 overflow-hidden pointer-events-none z-10"
                 style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, WebkitClipPath: `inset(0 0 0 ${sliderPos}%)` }}
               >
-                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 inline-flex items-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/65 backdrop-blur-md border border-white/15 shadow-lg pointer-events-none whitespace-nowrap">
-                  <span className="font-sans text-[10.5px] sm:text-[11.5px] font-medium tracking-widest uppercase text-white/95">
-                    After • Finished Space
+                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 inline-flex items-center px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 pointer-events-none whitespace-nowrap">
+                  <span className="font-sans text-[11px] sm:text-xs font-medium tracking-wider uppercase text-white/90">
+                    After
                   </span>
                 </div>
               </div>
@@ -399,9 +399,9 @@ const ProjectDetails = () => {
                 />
                 
                 {/* Before Badge */}
-                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 inline-flex items-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/65 backdrop-blur-md border border-white/15 shadow-lg pointer-events-none whitespace-nowrap">
-                  <span className="font-sans text-[10.5px] sm:text-[11.5px] font-medium tracking-widest uppercase text-white/95">
-                    Before • Raw Site
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 inline-flex items-center px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 pointer-events-none whitespace-nowrap">
+                  <span className="font-sans text-[11px] sm:text-xs font-medium tracking-wider uppercase text-white/90">
+                    Before
                   </span>
                 </div>
               </div>

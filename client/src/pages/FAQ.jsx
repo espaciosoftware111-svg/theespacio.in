@@ -17,7 +17,7 @@ const faqItems = [
   },
   {
     q: "What is your consultation process?",
-    a: "We start with a free consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.",
+    a: "We start with a consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.",
     img: "/images/faq/faq_3_process.jpg",
     tag: "Process"
   },

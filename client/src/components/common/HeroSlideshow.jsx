@@ -38,7 +38,14 @@ const HeroSlideshow = memo(({
   // Preload and pre-decode all hero slides immediately so transitions are instantaneous
   useEffect(() => {
     if (activeImages.length > 0) {
-      preloadImages(activeImages.map(url => getOptimizedImageUrl(url)));
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      const urlsToPreload = activeImages.map(url => {
+        if (isMobile && typeof url === 'string' && url.includes('/images/hero/hero_')) {
+          return url.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp');
+        }
+        return getOptimizedImageUrl(url);
+      });
+      preloadImages(urlsToPreload);
     }
   }, [imagesKey]);
 
@@ -113,28 +120,34 @@ const HeroSlideshow = memo(({
         const isActive = idx === (currentIndex % activeImages.length);
         const optimizedSrc = getOptimizedImageUrl(src);
 
+        const isHeroImg = typeof src === 'string' && src.includes('/images/hero/hero_');
+        const mobileSrc = isHeroImg ? src.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp') : optimizedSrc;
+
         return (
-          <motion.img
-            key={src}
-            src={optimizedSrc}
-            alt="ESPACIO Hero Showcase"
-            decoding="async"
-            loading="eager"
-            fetchPriority={idx === 0 ? "high" : "auto"}
-            initial={idx === 0 ? { opacity: 1 } : { opacity: 0 }}
-            animate={{
-              opacity: isActive ? 1 : 0,
-            }}
-            transition={{
-              duration: transitionDuration,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            style={{
-              zIndex: isActive ? 2 : 1,
-              pointerEvents: 'none',
-            }}
-            className={`${className} object-cover`}
-          />
+          <picture key={src} className="absolute inset-0 w-full h-full">
+            <source media="(max-width: 767px)" srcSet={mobileSrc} />
+            <source media="(min-width: 768px)" srcSet={optimizedSrc} />
+            <motion.img
+              src={optimizedSrc}
+              alt="ESPACIO Hero Showcase"
+              decoding="async"
+              loading="eager"
+              fetchPriority={idx === 0 ? "high" : "auto"}
+              initial={idx === 0 ? { opacity: 1 } : { opacity: 0 }}
+              animate={{
+                opacity: isActive ? 1 : 0,
+              }}
+              transition={{
+                duration: transitionDuration,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              style={{
+                zIndex: isActive ? 2 : 1,
+                pointerEvents: 'none',
+              }}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+          </picture>
         );
       })}
 

@@ -313,58 +313,76 @@ const bottomTestimonials = [
 ];
 
 const TestimonialCard = ({ t }) => (
-  <div className="w-[230px] sm:w-[280px] md:w-[410px] shrink-0 bg-white rounded-[16px] sm:rounded-2xl md:rounded-[24px] p-3.5 sm:p-5 md:p-7 mx-1.5 sm:mx-2 md:mx-3 flex flex-col justify-between h-[175px] sm:h-[205px] md:h-[260px] shadow-sm md:shadow-[0_4px_25px_0_rgba(0,0,0,0.06)] border border-stone-200/80 select-none">
-    <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
+  <div className="relative group w-[240px] sm:w-[300px] md:w-[415px] shrink-0 bg-gradient-to-b from-[#FAF7F2] to-[#F5EFE6] rounded-[18px] sm:rounded-[22px] md:rounded-[26px] p-4 sm:p-5 md:p-6 mx-1.5 sm:mx-2 md:mx-3 flex flex-col justify-between h-[180px] sm:h-[215px] md:h-[265px] shadow-[0_8px_24px_rgba(20,15,10,0.09)] hover:shadow-[0_16px_36px_rgba(20,15,10,0.16)] border border-[#E7DFD0] hover:border-[#C9A96E]/70 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
+    {/* Elegant Quotation Mark Watermark */}
+    <div className="absolute -top-1 -right-1 text-[#C9A96E]/12 group-hover:text-[#C9A96E]/20 transition-colors duration-300 pointer-events-none pr-3 pt-2">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+      </svg>
+    </div>
+
+    <div className="relative z-10 space-y-1.5 sm:space-y-2 md:space-y-2.5">
       {/* Star Rating & Verified Badge */}
       <div className="flex items-center justify-between">
         <div className="scale-85 sm:scale-95 md:scale-100 origin-left">
           <StarRating rating={t.rating} />
         </div>
         {t.source === 'MANUAL' ? (
-          <div className="inline-flex items-center gap-1 bg-amber-50 border border-amber-200/60 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9.5px] sm:text-[11px] font-sans font-semibold text-amber-800">
+          <div className="inline-flex items-center gap-1.5 bg-[#F4EDE0] border border-[#DECBB0] px-2.5 py-0.5 sm:py-1 rounded-full text-[9.5px] sm:text-[11px] font-sans font-semibold text-[#825F23] shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
             <span>Client Testimonial</span>
           </div>
         ) : (
-          <div className="inline-flex items-center gap-1 bg-stone-100/90 border border-stone-200/60 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9.5px] sm:text-[11px] font-sans font-semibold text-stone-700">
+          <div className="inline-flex items-center gap-1.5 bg-[#F0EAE0] border border-[#DFD6C8] px-2.5 py-0.5 sm:py-1 rounded-full text-[9.5px] sm:text-[11px] font-sans font-medium text-[#50483E] shadow-xs">
             <GoogleGLogo />
-            <span>Verified Review</span>
+            <span className="font-semibold">Verified Review</span>
           </div>
         )}
       </div>
 
-      <h3 className="font-editorial text-[13.5px] sm:text-[16px] md:text-[20px] font-medium text-[#101014] leading-[1.25] md:leading-[1.3] m-0 line-clamp-1">
+      <h3 className="font-editorial text-[14px] sm:text-[17px] md:text-[20px] font-semibold text-[#1A1713] leading-[1.25] md:leading-[1.3] m-0 line-clamp-1 tracking-tight">
         "{t.title}"
       </h3>
-      <p className="font-sans text-[11px] sm:text-[12px] md:text-[13.5px] font-normal text-[#4a4a55] leading-snug sm:leading-[1.65] m-0 line-clamp-2">
+      <p className="font-sans text-[11px] sm:text-[12px] md:text-[13.5px] font-normal text-[#554F46] leading-snug sm:leading-[1.65] m-0 line-clamp-2">
         {t.body}
       </p>
     </div>
 
-    <div className="flex items-center gap-2 sm:gap-3 pt-2 sm:pt-2.5 md:pt-3.5 border-t border-[#f0f0f2] mt-1.5 sm:mt-3 md:mt-4">
-      {t.avatar && t.avatar.trim() !== '' ? (
-        <img 
-          src={t.avatar}
-          alt={t.name}
-          loading="lazy"
-          decoding="async"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-          }}
-          className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full object-cover object-center shrink-0 border border-amber-400/40 shadow-xs" 
-        />
-      ) : (
-        <div 
-          className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-[#C9A96E] text-[#101014] font-bold flex items-center justify-center text-[11px] sm:text-[12px] md:text-[14px] shrink-0 border border-amber-400/40 shadow-xs select-none uppercase font-sans"
-        >
-          {(t.name || 'C').trim().charAt(0)}
+    <div className="relative z-10 flex items-center justify-between pt-2.5 sm:pt-3 md:pt-3.5 border-t border-[#E8DFCFA0] mt-1.5 sm:mt-2.5 md:mt-3">
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+        {t.avatar && t.avatar.trim() !== '' ? (
+          <img 
+            src={t.avatar}
+            alt={t.name}
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+            className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full object-cover object-center shrink-0 ring-2 ring-[#C9A96E]/40 shadow-xs" 
+          />
+        ) : (
+          <div 
+            className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#D9BE90] to-[#B68F52] text-[#18140E] font-bold flex items-center justify-center text-[11px] sm:text-[12px] md:text-[14px] shrink-0 ring-2 ring-[#C9A96E]/40 shadow-xs select-none uppercase font-sans"
+          >
+            {(t.name || 'C').trim().charAt(0)}
+          </div>
+        )}
+        <div className="flex-1 min-w-0 truncate">
+          <p className="font-sans text-[11.5px] sm:text-[12.5px] md:text-[13.5px] font-bold text-[#1A1713] m-0 leading-tight truncate">
+            {t.name}
+          </p>
+          <p className="font-sans text-[9.5px] sm:text-[10.5px] md:text-[11px] font-normal text-[#6B6358] m-0 leading-tight mt-0.5 truncate">
+            {t.role || t.designation}
+          </p>
         </div>
-      )}
-      <div className="flex-1 min-w-0 truncate">
-        <p className="font-sans text-[11px] sm:text-[12px] md:text-[13px] font-bold text-[#101014] m-0 leading-tight truncate">
-          {t.name}
-        </p>
-        <p className="font-sans text-[9.5px] sm:text-[10.5px] md:text-[11px] font-normal text-[#545460] m-0 leading-tight mt-0.5 truncate">{t.role || t.designation}</p>
       </div>
+
+      {t.date && (
+        <span className="text-[9.5px] sm:text-[10.5px] md:text-[11px] font-sans text-[#8C8274] font-medium shrink-0 ml-2 hidden sm:inline-block">
+          {t.date}
+        </span>
+      )}
     </div>
   </div>
 );

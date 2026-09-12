@@ -26,6 +26,9 @@ export default defineConfig({
   server: {
     port: 5174,
     strictPort: false,
+    watch: {
+      ignored: ['**/public/videos/**', '**/*.mp4', '**/*.webm', '**/uploads/**'],
+    },
     // PERF: Pre-warm heavy dependency transforms on server start to reduce first-request latency
     warmup: {
       clientFiles: [

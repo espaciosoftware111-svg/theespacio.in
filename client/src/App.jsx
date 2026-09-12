@@ -186,24 +186,36 @@ const FloatingLogo = () => {
         </motion.button>
       </div>
 
-      {/* MOBILE ONLY: Small Fixed Vertical "GET ESTIMATE" Tab on Right Edge */}
+      {/* MOBILE ONLY: Small Fixed Vertical "GET ESTIMATE" Tab on Right Edge with Glow */}
       <div className="lg:hidden fixed right-0 top-1/2 -translate-y-1/2 z-[9999] pointer-events-auto">
         <motion.button
           onClick={handleOpenModal}
           whileTap={{ scale: 0.94 }}
           initial={{ opacity: 0, x: 25 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-black/30 backdrop-blur-md border-l border-t border-b border-white/20 text-white shadow-[0_2px_12px_rgba(0,0,0,0.35)] rounded-l-lg py-2.5 px-1.5 flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-black/45 active:bg-black/55 transition-all select-none group outline-none"
+          animate={{ 
+            opacity: 1, 
+            x: 0,
+            boxShadow: [
+              '0 0 8px rgba(201,169,110,0.35), -3px 0 12px rgba(201,169,110,0.25)',
+              '0 0 24px rgba(201,169,110,0.85), -6px 0 22px rgba(201,169,110,0.65)',
+              '0 0 8px rgba(201,169,110,0.35), -3px 0 12px rgba(201,169,110,0.25)'
+            ]
+          }}
+          transition={{ 
+            x: { delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+            opacity: { delay: 1, duration: 0.5 },
+            boxShadow: { repeat: Infinity, duration: 2.0, ease: 'easeInOut' }
+          }}
+          className="bg-black/30 backdrop-blur-md border-l border-t border-b border-white/25 text-white rounded-l-lg py-2.5 px-1.5 flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-black/45 active:bg-black/55 transition-all select-none group outline-none"
           aria-label="Get Estimate"
         >
           <span 
-            className="font-sans text-[8px] font-normal tracking-[0.18em] text-white/90 uppercase whitespace-nowrap"
+            className="font-sans text-[8px] font-normal tracking-[0.18em] text-white/95 uppercase whitespace-nowrap drop-shadow-[0_0_6px_rgba(255,255,255,0.5)]"
             style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
           >
             Get Estimate
           </span>
-          <span className="w-1 h-1 rounded-full bg-white/70 animate-pulse mt-0.5" />
+          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse shadow-[0_0_8px_rgba(201,169,110,1)] mt-0.5" />
         </motion.button>
       </div>
     </>

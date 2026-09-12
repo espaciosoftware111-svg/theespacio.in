@@ -11,7 +11,8 @@
          PERF IMPACT: Browser begins high-priority streaming of intro video
                       in parallel with HTML parsing before JS execution.
     ═══════════════════════════════════════════════════════════════════════ -->
-    <link rel="preload" href="/videos/intro.mp4" as="video" type="video/mp4" fetchpriority="high" />
+    <link rel="preload" href="/videos/intro-desktop.mp4" as="video" type="video/mp4" media="(min-width: 768px)" fetchpriority="high" />
+    <link rel="preload" href="/videos/intro-mobile.mp4" as="video" type="video/mp4" media="(max-width: 767px)" fetchpriority="high" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          PAGE TITLE & META — SEO optimized for Hyderabad interior design queries
@@ -44,7 +45,7 @@
          LCP HERO IMAGE PRELOAD — Critical for PageSpeed / Core Web Vitals
          PERF IMPACT: Background preload so hero section is ready when intro finishes
     ═══════════════════════════════════════════════════════════════════════ -->
-    <link rel="preload" as="image" href="/images/hero/hero_bedroom_mobile.webp" type="image/webp" media="(max-width: 768px)" />
+    <link rel="preload" as="image" href="/images/hero/hero_bedroom_916.webp" type="image/webp" media="(max-width: 768px)" />
     <link rel="preload" as="image" href="/images/hero/hero_bedroom_4k.webp" type="image/webp" media="(min-width: 769px)" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════

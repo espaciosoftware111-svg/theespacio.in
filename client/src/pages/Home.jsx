@@ -632,7 +632,7 @@ const Home = () => {
     },
     {
       q: "What is your consultation process?",
-      a: "We start with a free consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.",
+      a: "We start with a consultation to understand your space, your needs, and how you actually want to live in it. From there, we move into detailed design and planning, so nothing gets built until the vision is fully worked out.",
       img: "/images/faq/faq_3_process.jpg",
       tag: "PROCESS"
     },
@@ -1066,7 +1066,7 @@ const Home = () => {
       />
 
       {/* ── 1. HERO (Rounded Card — matches Services) ── */}
-      <section ref={heroRef} className="relative h-[60vh] sm:h-[94vh] lg:h-[98vh] min-h-[440px] sm:min-h-[660px] lg:min-h-0 px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
+      <section ref={heroRef} className="relative h-[75vh] sm:h-[90vh] min-h-[460px] sm:min-h-[520px] px-3 sm:px-6 pt-2 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0">
         {/* Rounded card — fills the section with smooth exit transition */}
         <motion.div
           style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
@@ -1083,12 +1083,12 @@ const Home = () => {
             />
           </div>
 
-          {/* ─── Foreground Glass Cards (pinned to bottom) ─── */}
-          <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none">
-              <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 pb-3 sm:pb-8 md:pb-14 lg:pb-10 pointer-events-auto">
+          {/* ─── Foreground Glass Cards (Centered vertically in middle of Hero) ─── */}
+          <div className="absolute inset-0 z-10 flex flex-col justify-center pointer-events-none pt-10 sm:pt-16 lg:pt-0">
+              <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 pointer-events-auto">
               
               <motion.div 
-                className="flex flex-col lg:flex-row items-center lg:items-end gap-2 sm:gap-4 lg:gap-6"
+                className="flex flex-col lg:flex-row items-center lg:items-center gap-3 sm:gap-4 lg:gap-6"
                 initial="visible"
                 animate="visible"
                 variants={{
@@ -1210,7 +1210,7 @@ const Home = () => {
                   >
                   
                   {/* Stats Row */}
-                  <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center min-h-[52px] sm:h-26 translate-y-0 lg:-translate-y-10 mt-1 sm:mt-2 lg:mt-0">
+                  <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center min-h-[52px] sm:h-26 mt-2 sm:mt-3 lg:mt-0">
                     {activeHomeStats.map((s, index) => {
                       const isHovered = hoveredStatIdx === index;
                       return (

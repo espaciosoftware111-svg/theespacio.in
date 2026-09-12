@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { 
   ArrowUpRight, Sparkles, CheckCircle2, ChevronRight, Sliders, Layers, Eye, 
   X, Phone, Mail, User, MapPin, Send, Loader2, Lock, ShieldCheck, Download,
-  ChevronDown, Maximize2, Shield, Award, Clock, Compass, HelpCircle, Layers2
+  ChevronDown, Maximize2, Shield, Award, Clock, Compass, HelpCircle, Layers2,
+  Building2
 } from 'lucide-react';
 import axios from 'axios';
 import SEO from '../components/common/SEO';
@@ -12,6 +13,36 @@ import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 import { getCMSData, setCMSData, STORAGE_KEYS, notifyCMSUpdate } from '../utils/cmsStore';
 import { getCatalogItem } from '../data/spacesCatalog';
+
+/* ── Magnetic Item for FAQ (Identical to Home page) ────────────────────────── */
+const MagneticItem = ({ children, className, onClick, isOpen }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { stiffness: 200, damping: 25 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 200, damping: 25 });
+  const ref = useRef(null);
+
+  const handleMouse = (e) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1000 }}
+      className={className}
+      whileHover={{ scale: isOpen ? 1.02 : 1.015 }}
+      onClick={onClick}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const Reveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
@@ -25,6 +56,99 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
     </motion.div>
   );
 };
+
+// ── LUXURY ANIMATED STAT CARD WITH NUMBER COUNT-UP ───────────────────────────
+const AnimatedStatCard = ({ icon: Icon, value, suffix = '', label = '', sublabel = '', index = 0 }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let startTime = null;
+    const duration = 1600; // ms
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(ease * value));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(value);
+      }
+    };
+
+    const animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, [inView, value]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 22 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -4, transition: { duration: 0.25 } }}
+      className="group relative rounded-2xl p-5 sm:p-6 bg-white/80 dark:bg-bg-card/85 backdrop-blur-md border border-ink-border/50 hover:border-gold/50 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(201,169,110,0.15)] transition-all duration-300 flex flex-col justify-between overflow-hidden text-left"
+    >
+      {/* Subtle ambient gold shine on hover */}
+      <div className="absolute -inset-px bg-gradient-to-br from-gold/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+
+      {/* Top row: Icon Badge & ESPACIO tag */}
+      <div className="flex items-center justify-between gap-3 mb-4 relative z-10">
+        <div className="w-10 h-10 rounded-xl bg-gold/10 text-gold border border-gold/25 flex items-center justify-center group-hover:scale-110 group-hover:bg-gold group-hover:text-charcoal transition-all duration-300 shadow-sm">
+          <Icon size={19} strokeWidth={1.8} />
+        </div>
+        <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold bg-gold/10 px-2.5 py-0.5 rounded-full border border-gold/20">
+          ESPACIO
+        </span>
+      </div>
+
+      {/* Number & Primary Label */}
+      <div className="relative z-10 space-y-1">
+        <div className="flex items-baseline gap-1.5 flex-wrap">
+          <span className="font-display text-2xl sm:text-3xl lg:text-[32px] font-bold tracking-tight text-ink group-hover:text-gold transition-colors duration-300">
+            {count.toLocaleString()}{suffix}
+          </span>
+          {label && (
+            <span className="font-display text-xl sm:text-2xl font-bold text-gold">
+              {label}
+            </span>
+          )}
+        </div>
+        <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider font-medium leading-relaxed">
+          {sublabel}
+        </p>
+      </div>
+
+      {/* Bottom accent glow line on hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/60 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+    </motion.div>
+  );
+};
+
+/* ── Glowing number badge for FAQ ────────────────────────────────────────── */
+const FaqBadge = ({ num, isOpen }) => (
+  <motion.span
+    className="shrink-0 font-sans text-[10px] font-bold tracking-widest uppercase rounded-full px-2.5 py-1 mt-0.5"
+    animate={{
+      background: isOpen
+        ? 'linear-gradient(135deg, #c5a572 0%, #a07845 100%)'
+        : 'rgba(0,0,0,0.06)',
+      color: isOpen ? '#fff' : '#4b5563',
+      boxShadow: isOpen
+        ? '0 0 12px rgba(197,165,114,0.6), 0 0 24px rgba(197,165,114,0.3)'
+        : '0 0 0 transparent',
+    }}
+    transition={{ duration: 0.4 }}
+  >
+    {String(num + 1).padStart(2, '0')}
+  </motion.span>
+);
 
 // ── CURATED CORE ROOM DOMAINS ────────────────────────────────────────────────
 const mockCategories = [
@@ -2690,23 +2814,42 @@ const WhatWeDo = () => {
         </section>
 
         {/* ── 2. TRUST STRIP (Projects / Legacy / Sq.Ft / Warranty) ────────────── */}
-        <section className="border-y border-ink-border/30 bg-bg-card/70 py-6 sm:py-7">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/20">
-            <div className="pt-2 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">25+ Projects</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Completed Turnkey Residences</p>
-            </div>
-            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">40+ Years</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Combined Construction Legacy</p>
-            </div>
-            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">50,000+ Sq.Ft</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Designed & Executed</p>
-            </div>
-            <div className="pt-4 md:pt-0 md:px-4 space-y-1">
-              <p className="font-display text-2xl sm:text-3xl font-bold text-gold">10-Year</p>
-              <p className="font-sans text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider">Comprehensive Hardware Warranty</p>
+        <section className="border-y border-ink-border/30 bg-gradient-to-b from-bg-card/70 via-bg/90 to-bg-card/70 py-8 sm:py-12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(201,169,110,0.1),rgba(255,255,255,0))] pointer-events-none" />
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              <AnimatedStatCard
+                icon={Building2}
+                value={25}
+                suffix="+"
+                label="Projects"
+                sublabel="Completed Turnkey Residences"
+                index={0}
+              />
+              <AnimatedStatCard
+                icon={Award}
+                value={40}
+                suffix="+"
+                label="Years"
+                sublabel="Combined Construction Legacy"
+                index={1}
+              />
+              <AnimatedStatCard
+                icon={Maximize2}
+                value={50000}
+                suffix="+"
+                label="Sq.Ft"
+                sublabel="Designed & Executed"
+                index={2}
+              />
+              <AnimatedStatCard
+                icon={ShieldCheck}
+                value={10}
+                suffix="-Year"
+                label="Warranty"
+                sublabel="Comprehensive Hardware Warranty"
+                index={3}
+              />
             </div>
           </div>
         </section>
@@ -2906,54 +3049,123 @@ const WhatWeDo = () => {
           </div>
         </section>
 
-        {/* ── 7. FAQ BLOCK (Space-Specific Questions from content.md) ─────────── */}
+        {/* ── 7. FAQ BLOCK (Matching Home Page FAQ Structure, Colors, & Fonts) ─────────── */}
         <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
           <div className="max-w-[880px] mx-auto">
-            <div className="text-center mb-12 space-y-3">
-              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Got Questions?</p>
-              <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
-                {activeCategory.name} FAQs
-              </h3>
-              <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
-                Clear, straightforward answers about our materials, fittings, timelines, and execution process.
+            <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
+              <div className="inline-flex items-center gap-1.5 bg-ink text-bg px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-semibold tracking-wider uppercase mb-3 sm:mb-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                FAQ
+              </div>
+
+              <h2 className="font-display text-[clamp(26px,3.5vw,42px)] font-medium leading-[1.15] tracking-tight text-ink mb-2.5 sm:mb-4 text-center">
+                Got Questions?
+                <br />
+                We Have Answers.
+              </h2>
+
+              <p className="font-sans text-[13px] sm:text-[14px] text-ink-soft leading-relaxed max-w-[520px] mx-auto text-center">
+                From initial space planning to precision factory joinery and final handover, here's everything you need to know about {activeCategory.name} by ESPACIO.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="border-t border-ink-border/20">
               {spaceFaqs.map((faq, idx) => {
                 const isOpen = openFaqIndex === idx;
                 return (
-                  <div 
+                  <MagneticItem
                     key={idx}
-                    className="rounded-[20px] bg-bg-card border border-ink-border/30 overflow-hidden transition-all duration-300"
+                    isOpen={isOpen}
+                    className="border-b border-ink-border/20 px-3 sm:px-4 py-5 sm:py-6 cursor-pointer transition-all duration-300 relative"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                   >
-                    <button
-                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                      className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer hover:bg-bg-dark/20 transition-colors"
+                    <button 
+                      aria-label={faq.q} 
+                      className="w-full flex items-start gap-3 sm:gap-4 text-left group bg-transparent border-0 cursor-pointer py-1"
                     >
-                      <span className="font-display text-base sm:text-lg font-bold text-ink">
+                      {/* Animated badge (identical to Home) */}
+                      <FaqBadge num={idx} isOpen={isOpen} />
+
+                      {/* Question text (identical to Home) */}
+                      <motion.span
+                        className="font-sans text-[15px] md:text-[16px] font-medium leading-snug flex-1"
+                        animate={{ color: isOpen ? '#c5a572' : '#101014' }}
+                        transition={{ duration: 0.3 }}
+                      >
                         {faq.q}
-                      </span>
-                      <div className={`w-8 h-8 rounded-full bg-ink-border/20 flex items-center justify-center text-gold transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180 bg-gold text-charcoal' : ''}`}>
-                        <ChevronDown size={18} />
-                      </div>
+                      </motion.span>
+
+                      {/* Animated chevron (identical to Home) */}
+                      <motion.div
+                        className="shrink-0 mt-0.5 w-7 h-7 rounded-full flex items-center justify-center border"
+                        animate={{
+                          borderColor: isOpen ? '#c5a572' : 'rgba(0,0,0,0.12)',
+                          background: isOpen ? '#c5a572' : 'transparent',
+                          rotate: isOpen ? 180 : 0,
+                          boxShadow: isOpen ? '0 0 12px rgba(197,165,114,0.5)' : '0 0 0 transparent',
+                        }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                          <motion.path
+                            d="M2 4L5.5 7.5L9 4"
+                            stroke={isOpen ? 'white' : '#9ca3af'}
+                            strokeWidth="1.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </motion.div>
                     </button>
-                    <AnimatePresence>
+
+                    {/* Answer panel (identical to Home) */}
+                    <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
+                          initial={{ height: 0, opacity: 0, y: -10 }}
+                          animate={{ height: 'auto', opacity: 1, y: 0 }}
+                          exit={{ height: 0, opacity: 0, y: -10 }}
+                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 sm:px-6 pb-6 pt-1 font-sans text-xs sm:text-sm text-ink-soft leading-relaxed border-t border-ink-border/20">
-                            {faq.a}
-                          </div>
+                          <motion.div
+                            className="pl-9 sm:pl-10 pr-2 sm:pr-4 pb-2 pt-2"
+                            initial={{ x: -20, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ delay: 0.1, duration: 0.4 }}
+                          >
+                            {/* Gold accent bar */}
+                            <div className="flex gap-3 items-start">
+                              <motion.div
+                                className="w-0.5 rounded-full bg-gold shrink-0 mt-1"
+                                initial={{ height: 0 }}
+                                animate={{ height: 'auto' }}
+                                transition={{ duration: 0.4, delay: 0.15 }}
+                                style={{ minHeight: 36 }}
+                              />
+                              <p className="font-sans text-[14px] sm:text-[14.5px] text-walnut leading-relaxed">
+                                {faq.a}
+                              </p>
+                            </div>
+                          </motion.div>
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+
+                    {/* Ripple on open */}
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          className="absolute inset-0 rounded-[16px] pointer-events-none"
+                          initial={{ opacity: 0.4, scale: 0.95 }}
+                          animate={{ opacity: 0, scale: 1.04 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.6 }}
+                          style={{ border: '1.5px solid rgba(197,165,114,0.6)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </MagneticItem>
                 );
               })}
             </div>
@@ -3086,7 +3298,7 @@ const WhatWeDo = () => {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-ink-border/20 space-y-3">
+                  <div className="pt-4 border-t border-ink-border/20">
                     <Link
                       to="/contact"
                       onClick={() => setZoomedImage(null)}
@@ -3095,9 +3307,6 @@ const WhatWeDo = () => {
                       <span>Consult on this Layout</span>
                       <ArrowUpRight size={14} />
                     </Link>
-                    <p className="text-[10px] font-sans text-ink-muted text-center">
-                      Press <kbd className="px-1.5 py-0.5 rounded bg-ink-border/30 text-ink font-mono text-[9px]">Esc</kbd> or click outside to dismiss
-                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -3319,9 +3528,9 @@ const WhatWeDo = () => {
               style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, WebkitClipPath: `inset(0 0 0 ${sliderPos}%)` }}
             >
               <div className="absolute right-6 bottom-6 md:right-8 md:bottom-8">
-                <div className="inline-flex items-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/65 backdrop-blur-md border border-white/15 shadow-lg whitespace-nowrap">
-                  <span className="font-sans text-[10.5px] sm:text-[11.5px] font-medium tracking-widest uppercase text-white/95">
-                    After • Finished Handover
+                <div className="inline-flex items-center px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 whitespace-nowrap">
+                  <span className="font-sans text-[11px] sm:text-xs font-medium tracking-wider uppercase text-white/90">
+                    After
                   </span>
                 </div>
               </div>
@@ -3349,9 +3558,9 @@ const WhatWeDo = () => {
 
               {/* BEFORE Label (Bottom Left, inside clipped layer) */}
               <div className="absolute left-6 bottom-6 md:left-8 md:bottom-8 z-20 pointer-events-none">
-                <div className="inline-flex items-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/65 backdrop-blur-md border border-white/15 shadow-lg whitespace-nowrap">
-                  <span className="font-sans text-[10.5px] sm:text-[11.5px] font-medium tracking-widest uppercase text-white/95">
-                    Before • Raw Site
+                <div className="inline-flex items-center px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 whitespace-nowrap">
+                  <span className="font-sans text-[11px] sm:text-xs font-medium tracking-wider uppercase text-white/90">
+                    Before
                   </span>
                 </div>
               </div>
