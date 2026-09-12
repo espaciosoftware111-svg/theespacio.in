@@ -458,7 +458,7 @@ const Footer = () => {
             {termsLabel}
           </button>
         </div>
-        <p className="font-sans text-[11.5px] sm:text-[11px] text-white/60 sm:text-bg/50 tracking-wide mt-1.5 max-w-[92vw] sm:max-w-2xl mx-auto leading-relaxed">
+        <p className="font-sans text-[clamp(7px,2.1vw,11px)] text-white/60 sm:text-bg/50 tracking-tighter min-[375px]:tracking-tight sm:tracking-normal mt-1.5 whitespace-nowrap text-center max-w-full select-none">
           {disclaimerText}
         </p>
       </div>
