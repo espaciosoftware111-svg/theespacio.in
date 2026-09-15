@@ -13,3 +13,8 @@ server/uploads/
 *.zip
 server/google-credentials.json
 scratch/
+**/backup/
+**/_backups*/
+**/crops/
+*.tmp
+services_crop_*.png

@@ -130,11 +130,11 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
   );
 };
 
-const defaultAboutHeroImage = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617.jpg';
+const defaultAboutHeroImage = '/images/about/about_hero.jpg';
 const defaultAboutStoryImage = '/images/company/guntur_kaaram_lakeside_estate.webp';
 
 const getValidHeroImage = (val, fallback = defaultAboutHeroImage) => {
-  if (!val || typeof val !== 'string' || !val.trim() || val.includes('unsplash.com') || val.includes('photo-1600585154340-be6161a56a0c')) {
+  if (!val || typeof val !== 'string' || !val.trim() || val.includes('unsplash.com') || val.includes('photo-1600585154340-be6161a56a0c') || val.includes('Guest_restaurant_22')) {
     return fallback;
   }
   return val;
@@ -340,36 +340,61 @@ const About = () => {
       {aboutData.heroVisible !== false && (
         <section ref={heroRef} className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
-            <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
-              <img
-                src={aboutData.heroImage}
-                alt="ESPACIO Luxury Background"
-                className="w-full h-full object-cover object-center brightness-95"
-              />
-            </motion.div>
-            {/* Dark overlays for depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/65 z-10 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/10 z-10 pointer-events-none" />
-            {/* Mist / ambient glow behind text */}
-            <div className="absolute bottom-0 left-0 w-full h-[55%] z-[11] pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 100%, rgba(201,169,110,0.07) 0%, rgba(20,12,4,0.30) 55%, transparent 100%)' }} />
+            {/* Background image container — crisp 1:1 pixel rendering without scale blur */}
+            <div className="absolute inset-0 overflow-hidden">
+              <picture className="w-full h-full">
+                <source srcSet={aboutData.heroImage.replace(/\.jpg$/i, '.webp')} type="image/webp" />
+                <img
+                  src={aboutData.heroImage}
+                  alt="ESPACIO Luxury Background"
+                  decoding="async"
+                  loading="eager"
+                  className="w-full h-full object-cover object-center"
+                />
+              </picture>
+            </div>
+
+            {/* Atmospheric Background Shadow Mist — deep, soft mist strictly behind lower text area for high contrast while keeping room bright */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background: 'radial-gradient(ellipse 85% 65% at 20% 85%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.18) 72%, transparent 100%), linear-gradient(to top, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.40) 45%, transparent 80%)'
+              }}
+            />
 
             {/* Hero Text Content with Dynamic Scroll Parallax — Anchored at Bottom */}
             <div className="absolute inset-0 z-20 flex flex-col justify-end pointer-events-none">
               <motion.div 
                 style={{ y: textY, opacity: textOpacity }}
-                className="w-full px-6 sm:px-8 md:px-12 pb-10 sm:pb-12 md:pb-14 pointer-events-auto"
+                className="w-full px-6 sm:px-8 md:px-12 pb-10 sm:pb-12 md:pb-14 pointer-events-auto relative"
               >
-                {/* Mist highlight panel behind text */}
-                <div className="absolute inset-x-0 bottom-0 h-[70%] pointer-events-none z-[-1]" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)' }} />
+                {/* Secondary localized soft mist cloud directly behind headline */}
+                <div 
+                  className="absolute left-0 bottom-0 w-full md:w-[900px] h-[120%] pointer-events-none -z-10" 
+                  style={{ 
+                    background: 'radial-gradient(ellipse 80% 70% at 30% 60%, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.30) 60%, transparent 100%)',
+                    filter: 'blur(20px)'
+                  }} 
+                />
                 <div className="flex flex-col items-start gap-2.5 sm:gap-3 max-w-[850px]">
                   <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-white text-[#101014] px-4 py-1.5 rounded-full text-[12px] sm:text-[13px] font-sans font-medium shadow-lg border border-black/5 select-none tracking-normal mb-1">
                     <Award size={14} className="text-[#101014] shrink-0" />
                     <span>{aboutData.heroBadge || 'About ESPACIO'}</span>
                   </div>
-                  <h1 className="font-display leading-[0.88] text-[#C2A478]" style={{ fontSize: 'clamp(28px, 5.5vw, 76px)', lineHeight: 0.88, letterSpacing: '0.015em', fontWeight: 535, textShadow: '0 2px 18px rgba(0,0,0,0.65)' }}>
+                  <h1 
+                    className="font-display leading-[0.88]" 
+                    style={{ 
+                      fontSize: 'clamp(28px, 5.5vw, 76px)', 
+                      lineHeight: 0.88, 
+                      letterSpacing: '0.015em', 
+                      fontWeight: 600,
+                      color: '#ECC979',
+                      textShadow: '0 3px 16px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.9), 0 8px 32px rgba(0, 0, 0, 0.75)',
+                    }}
+                  >
                     {aboutData.heroTitle}
                   </h1>
-                  <p className="font-sans text-[13.5px] sm:text-[15px] md:text-[15.5px] text-white max-w-[620px] leading-relaxed" style={{ textShadow: '0 1px 12px rgba(0,0,0,0.9)' }}>
+                  <p className="font-sans text-[13.5px] sm:text-[15px] md:text-[15.5px] text-white/95 max-w-[620px] leading-relaxed" style={{ textShadow: '0 2px 14px rgba(0,0,0,0.95), 0 1px 4px rgba(0,0,0,0.8)' }}>
                     {aboutData.heroSubtitle}
                   </p>
                 </div>

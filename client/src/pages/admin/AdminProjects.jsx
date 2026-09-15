@@ -52,14 +52,10 @@ const AdminProjects = () => {
     projects_hero_title: 'Our Projects',
     projects_hero_subtitle: 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
     projects_hero_images: [
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_8-20260813-110617.jpg',
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_6-20260810-124909.jpg',
-      '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_19-20260810-120432.jpg',
-      '/images/company/2bhk_mordern_retro/hall_5.jpg',
-      '/images/company/3bhk_lux/bedroom_1.png',
-      '/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Living_room_31-20260810-122245.jpg',
-      '/images/company/2bhk_lux/bed_room_2.png',
-      '/images/company/3bhk_lux/open_hall2.png'
+      '/images/projects/project_hero_1.jpg',
+      '/images/projects/project_hero_2.jpg',
+      '/images/projects/project_hero_3.jpg',
+      '/images/projects/project_hero_4.jpg'
     ]
   });
 

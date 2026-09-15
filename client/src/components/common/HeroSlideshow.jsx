@@ -40,7 +40,7 @@ const HeroSlideshow = memo(({
     if (activeImages.length > 0) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
       const urlsToPreload = activeImages.map(url => {
-        if (isMobile && typeof url === 'string' && url.includes('/images/hero/hero_')) {
+        if (isMobile && typeof url === 'string' && (url.includes('/images/hero/hero_') || url.includes('/images/services/service_hero_'))) {
           return url.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp');
         }
         return getOptimizedImageUrl(url);
@@ -120,7 +120,7 @@ const HeroSlideshow = memo(({
         const isActive = idx === (currentIndex % activeImages.length);
         const optimizedSrc = getOptimizedImageUrl(src);
 
-        const isHeroImg = typeof src === 'string' && src.includes('/images/hero/hero_');
+        const isHeroImg = typeof src === 'string' && (src.includes('/images/hero/hero_') || src.includes('/images/services/service_hero_'));
         const mobileSrc = isHeroImg ? src.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp') : optimizedSrc;
 
         return (

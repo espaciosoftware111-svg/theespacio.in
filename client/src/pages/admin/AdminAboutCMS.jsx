@@ -68,7 +68,7 @@ const defaultGalleryImages = [
   }
 ];
 
-const defaultAboutHeroImage = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617.jpg';
+const defaultAboutHeroImage = '/images/about/about_hero.jpg';
 const defaultAboutStoryImage = '/images/company/guntur_kaaram_lakeside_estate.webp';
 
 const getNonEmpty = (val, fallback) => (val && typeof val === 'string' && val.trim().length > 0 ? val : fallback);

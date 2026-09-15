@@ -552,10 +552,13 @@ const Home = () => {
 
     grid_stat1_val: '25+',
     grid_stat1_label: 'Projects Completed',
+    grid_stat1_subtext: 'Turnkey Interiors',
     grid_stat2_val: '100+',
     grid_stat2_label: 'Happy Clients',
+    grid_stat2_subtext: 'Clients Including Materials',
     grid_stat3_val: '40+',
-    grid_stat3_label: 'Years Combined Legacy',
+    grid_stat3_label: 'Years Legacy',
+    grid_stat3_subtext: 'Years Combined Legacy',
 
     about_title: 'Four Decades of Structural Excellence',
     about_subtitle: 'HERITAGE & CRAFTSMANSHIP',
@@ -1358,9 +1361,24 @@ const Home = () => {
       <section className="pb-12 px-6 md:px-12 max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
           {[
-            { value: "25+", label: "Projects Completed", progressWidth: "60%" },
-            { value: "100+", label: "Happy Clients", progressWidth: "80%" },
-            { value: "40+", label: "Years Legacy", progressWidth: "90%" }
+            { 
+              value: homeSettings.grid_stat1_val || "25+", 
+              label: homeSettings.grid_stat1_label || "Projects Completed", 
+              subtext: homeSettings.grid_stat1_subtext || "Turnkey Interiors",
+              progressWidth: "60%" 
+            },
+            { 
+              value: homeSettings.grid_stat2_val || "100+", 
+              label: homeSettings.grid_stat2_label || "Happy Clients", 
+              subtext: homeSettings.grid_stat2_subtext || "Clients Including Materials",
+              progressWidth: "80%" 
+            },
+            { 
+              value: homeSettings.grid_stat3_val || "40+", 
+              label: homeSettings.grid_stat3_label || "Years Legacy", 
+              subtext: homeSettings.grid_stat3_subtext || "Years Combined Legacy",
+              progressWidth: "90%" 
+            }
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -1368,13 +1386,19 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-center min-h-[130px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
+              className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-[145px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
             >
               <div className="space-y-1">
                 <p className="font-sans text-[11px] font-semibold text-ink-muted uppercase tracking-[0.2em]">{stat.label}</p>
                 <div className="font-display text-4xl lg:text-5xl font-semibold text-ink tracking-tight">
                   <AnimatedCounter value={stat.value} duration={2} />
                 </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
+                <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
+                  {stat.subtext}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
               </div>
             </motion.div>
           ))}

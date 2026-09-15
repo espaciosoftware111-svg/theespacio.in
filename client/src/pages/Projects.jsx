@@ -24,22 +24,14 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
 };
 
 const heroImages = [
-  // 1. Duplex 4BHK: Grand Luxury 4K Dining Suite & Ambient Bar (Folder: duplex)
-  '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_8-20260813-110617.jpg',
-  // 2. Minimalist Beige 2BHK: Panoramic 4K Designer Living Room (Folder: minimalist_beige_2bhk)
-  '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_6-20260810-124909.jpg',
-  // 3. Indo-Classical Elegance 3BHK: Majestic 4K Dining Hall & Classical Arches (Folder: indo_classical_elegance_3bhk)
-  '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_19-20260810-120432.jpg',
-  // 4. 2BHK Modern Retro: 4K Panoramic Timber Louvered Living Room (Folder: 2bhk_mordern_retro)
-  '/images/company/2bhk_mordern_retro/hall_5.jpg',
-  // 5. 3BHK Luxury: Bespoke Master Suite with Fluted Backlit Paneling (Folder: 3bhk_lux)
-  '/images/company/3bhk_lux/bedroom_1.png',
-  // 6. 2BHK Aparna Zicon: Ultra-HD 8K Grand Living Lounge (Folder: 2bhk_aparna_zicon)
-  '/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Living_room_31-20260810-122245.jpg',
-  // 7. 2BHK Luxury: Luxury Master Suite with Floating Joinery (Folder: 2bhk_lux)
-  '/images/company/2bhk_lux/bed_room_2.png',
-  // 8. 3BHK Luxury: Grand Open Hall & Living Lounge (Folder: 3bhk_lux)
-  '/images/company/3bhk_lux/open_hall2.png'
+  // 1. Indo-Classical Elegance 3BHK: Majestic 4K Dining Hall & Classical Arches
+  '/images/projects/project_hero_1.jpg',
+  // 2. Modern Desi Duplex 4BHK: Grand Luxury 4K Living Lounge & Ambient Timber Paneling
+  '/images/projects/project_hero_2.jpg',
+  // 3. Minimalist Beige 2BHK: Panoramic 4K Designer Living Room
+  '/images/projects/project_hero_3.jpg',
+  // 4. 2BHK Modern Retro: 4K Panoramic Timber Louvered Living Room
+  '/images/projects/project_hero_4.jpg'
 ];
 
 const Projects = () => {
@@ -304,11 +296,8 @@ const Projects = () => {
         <div
           className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px]"
         >
-          {/* Parallax background + auto-cycling images */}
-          <motion.div
-            style={{ scale: bgScale, y: bgY }}
-            className="absolute inset-0 overflow-hidden"
-          >
+          {/* Background image slideshow — crisp 1:1 pixel rendering without scale blur */}
+          <div className="absolute inset-0 overflow-hidden">
             <HeroSlideshow
               images={heroContent.images && heroContent.images.length > 0 ? heroContent.images : heroImages}
               intervalMs={3800}
@@ -316,11 +305,10 @@ const Projects = () => {
               showGradient={false}
               onIndexChange={setCurrentImageIdx}
             />
-          </motion.div>
+          </div>
 
-          {/* Gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/75 z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/25 to-transparent z-10 pointer-events-none" />
+          {/* Subtle bottom-only text protection scrim — unmasked, bright, vivid 4K image */}
+          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 pointer-events-none" />
 
           {/* Text — pinned bottom-left */}
           <motion.div

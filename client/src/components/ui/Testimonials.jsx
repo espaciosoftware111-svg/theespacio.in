@@ -41,7 +41,7 @@ const topTestimonials = [
     rating: 5,
     title: "Practical Finishes & Organised Living",
     body: "For our family home, we wanted interiors that looked good but were easy to maintain. Espacio suggested practical finishes and storage options based on our daily use. The bedrooms feel comfortable and the kitchen is much more organised now. We are happy with the overall outcome.",
-    name: "Ganesh Nayak143",
+    name: "Ganesh Nayak",
     role: "Homeowner • Family Home Interiors",
     avatar: "/reviews/ganesh_nayak.png",
     date: "23 minutes ago"
@@ -68,7 +68,7 @@ const topTestimonials = [
     rating: 5,
     title: "Professional & Great Interior and Exterior Elevation",
     body: "Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.",
-    name: "Sunkari santosh",
+    name: "Sunkari Santosh",
     role: "Google Reviewer • 2 Reviews",
     avatar: "/reviews/sunkari_santosh.png",
     date: "3 days ago"
@@ -94,8 +94,8 @@ const topTestimonials = [
   {
     rating: 5,
     title: "Luxurious House at Reasonable Prices",
-    body: "Good equipment and well staff my house is now completely become luxurious with reasonable prices and thanks to espacio",
-    name: "Lovely boy Laxman",
+    body: "Good equipment and courteous staff. Our house has now become completely luxurious with reasonable pricing, thanks to ESPACIO.",
+    name: "Laxman Kumar",
     role: "Google Reviewer • 1 Review • 3 Photos",
     avatar: "/reviews/lovely_boy_laxman.png",
     date: "5 months ago"
@@ -104,7 +104,7 @@ const topTestimonials = [
     rating: 5,
     title: "Wide Range of Collections & Patient Service",
     body: "Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding",
-    name: "Shaik BOB",
+    name: "Shaik Babu",
     role: "Google Reviewer • 3 Reviews • 3 Photos",
     avatar: "/reviews/shaik_bob.png",
     date: "a year ago"
@@ -113,7 +113,7 @@ const topTestimonials = [
     rating: 5,
     title: "Excellent Materials for Home & Office",
     body: "Excellent materials for interior at home or office so pls visit this Espacio interiors and modular. Thank you...! ❤️",
-    name: "Shaik Hussian",
+    name: "Shaik Hussain",
     role: "Google Reviewer • 1 Review",
     avatar: "/reviews/shaik_hussain.png",
     date: "5 months ago"
@@ -179,15 +179,15 @@ const bottomTestimonials = [
     rating: 5,
     title: "Super 👍😊",
     body: "Super 👍😊 Great modular work and helpful team.",
-    name: "karagani pavankumar",
+    name: "Pavan Kumar",
     role: "Google Reviewer • 2 Reviews",
     avatar: "/reviews/karagani_pavankumar.png",
     date: "5 months ago"
   },
   {
     rating: 5,
-    title: "Greate Experience",
-    body: "Greate experience working with Espacio Interiors & Modular.",
+    title: "Great Experience",
+    body: "Great experience working with Espacio Interiors & Modular.",
     name: "Rajini Kumar",
     role: "Google Reviewer • 2 Reviews",
     avatar: "/reviews/rajini_kumar.png",
@@ -206,7 +206,7 @@ const bottomTestimonials = [
     rating: 5,
     title: "Good Service",
     body: "Good service and friendly support.",
-    name: "naidu poola",
+    name: "Naidu Poola",
     role: "Google Reviewer • 2 Reviews",
     avatar: "/reviews/naidu_poola.png",
     date: "5 months ago"
@@ -215,7 +215,7 @@ const bottomTestimonials = [
     rating: 5,
     title: "Great Experience ❣️",
     body: "great experience ❣️ Looking forward to working with Espacio Interiors & Modular again.",
-    name: "Venkatesh mudhiraj",
+    name: "Venkatesh Mudhiraj",
     role: "Google Reviewer • 1 Review",
     avatar: "/reviews/venkatesh_mudhiraj.png",
     date: "11 months ago"
@@ -233,7 +233,7 @@ const bottomTestimonials = [
     rating: 5,
     title: "Super All Are Experts",
     body: "Super... All' are experts... Tq SPACIO Interiors",
-    name: "K. SUBBARAO",
+    name: "K. Subba Rao",
     role: "Google Reviewer • 5 Reviews",
     avatar: "/reviews/k_subbarao.png",
     date: "5 months ago"
@@ -260,7 +260,7 @@ const bottomTestimonials = [
     rating: 5,
     title: "Good Service & Quality Materials",
     body: "Good service and excellent quality materials offered at competitive pricing by Espacio.",
-    name: "Ajayreddy Gowreddy123",
+    name: "Ajay Reddy",
     role: "Google Reviewer • 2 Reviews",
     avatar: "/reviews/ajayreddy_gowreddy.png",
     date: "5 months ago"
@@ -269,7 +269,7 @@ const bottomTestimonials = [
     rating: 5,
     title: "Superb Design & Flawless Execution",
     body: "Superb design variety and flawless material quality provided by Espacio Interiors & Modular.",
-    name: "imtiyaz shaik",
+    name: "Imtiyaz Shaik",
     role: "Google Reviewer • 9 Photos",
     avatar: "/reviews/imtiyaz_shaik.png",
     date: "5 months ago"
@@ -307,22 +307,45 @@ const TestimonialCard = ({ t }) => {
   const quoteText = (t.body || '').replace(/^["'“\s]+|["'”\s]+$/g, '');
 
   return (
-    <div className="relative group w-[280px] sm:w-[350px] md:w-[410px] shrink-0 bg-[#FAF8F5] rounded-[18px] sm:rounded-[22px] p-4.5 sm:p-5 md:p-5.5 mx-1 sm:mx-1.5 md:mx-2 flex flex-col justify-between h-[165px] sm:h-[185px] md:h-[195px] shadow-[0_4px_20px_rgba(20,15,10,0.05)] hover:shadow-[0_12px_30px_rgba(20,15,10,0.12)] border border-[#E8E2D6] hover:border-[#C9A96E]/60 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
-      <div className="relative z-10 space-y-2 sm:space-y-2.5">
-        {/* Star Rating */}
-        <div>
+    <div className="relative group w-[280px] sm:w-[350px] md:w-[420px] shrink-0 bg-gradient-to-b from-[#FAF7F2] to-[#F5EFE6] rounded-[20px] sm:rounded-[24px] p-4.5 sm:p-5 md:p-6 mx-1.5 sm:mx-2 md:mx-2.5 flex flex-col justify-between h-[205px] sm:h-[225px] md:h-[245px] shadow-[0_6px_24px_rgba(20,15,10,0.06)] hover:shadow-[0_16px_36px_rgba(20,15,10,0.13)] border border-[#E7DFD0] hover:border-[#C9A96E]/70 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
+      {/* Elegant Quotation Mark Watermark */}
+      <div className="absolute -top-1 -right-1 text-[#C9A96E]/12 group-hover:text-[#C9A96E]/22 transition-colors duration-300 pointer-events-none pr-3 pt-2">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+        </svg>
+      </div>
+
+      <div className="relative z-10 space-y-1.5 sm:space-y-2">
+        {/* Top Header: Star Rating & Google Verified Badge */}
+        <div className="flex items-center justify-between">
           <StarRating rating={t.rating} />
+          {t.source === 'MANUAL' ? (
+            <div className="inline-flex items-center gap-1.5 bg-[#F4EDE0] border border-[#DECBB0] px-2.5 py-0.5 sm:py-1 rounded-full text-[9.5px] sm:text-[10.5px] font-sans font-semibold text-[#825F23] shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
+              <span>Client Story</span>
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-1.5 bg-[#EFE8DC] border border-[#DDD3C2] px-2.5 py-0.5 sm:py-1 rounded-full text-[9.5px] sm:text-[10.5px] font-sans font-semibold text-[#4A4237] shadow-xs">
+              <GoogleGLogo />
+              <span>Verified Review</span>
+            </div>
+          )}
         </div>
 
-        {/* Italic Quote Text in Smart Quotes */}
-        <p className="font-sans italic text-[12px] sm:text-[13px] md:text-[13.5px] font-normal text-[#3E3933] leading-relaxed m-0 line-clamp-3 sm:line-clamp-4">
-          “{quoteText}”
+        {/* Editorial Headline */}
+        <h3 className="font-editorial text-[14.5px] sm:text-[16.5px] md:text-[18px] font-semibold text-[#181511] leading-snug m-0 line-clamp-1 tracking-tight">
+          “{t.title || 'Exceptional Quality & Craftsmanship'}”
+        </h3>
+
+        {/* Review Quote Body */}
+        <p className="font-sans text-[11px] sm:text-[12px] md:text-[12.5px] font-normal text-[#4E473D] leading-relaxed m-0 line-clamp-2 sm:line-clamp-3">
+          {quoteText}
         </p>
       </div>
 
-      {/* Divider & Author Meta */}
-      <div className="relative z-10 pt-2.5 sm:pt-3 border-t border-[#E6E0D6] mt-1.5 sm:mt-2">
-        <div className="flex items-center gap-2.5 min-w-0">
+      {/* Author Footer */}
+      <div className="relative z-10 flex items-center justify-between pt-2.5 sm:pt-3 border-t border-[#E8DFCFA0] mt-1.5 sm:mt-2">
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
           {t.avatar && t.avatar.trim() !== '' ? (
             <img 
               src={t.avatar}
@@ -332,21 +355,30 @@ const TestimonialCard = ({ t }) => {
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
               }}
-              className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full object-cover object-center shrink-0 shadow-xs" 
+              className="w-7.5 h-7.5 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full object-cover object-center shrink-0 ring-1.5 ring-[#C9A96E]/50 shadow-xs" 
             />
           ) : (
             <div 
-              className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full bg-[#E5DFD4] text-[#2C2720] font-bold flex items-center justify-center text-[11px] sm:text-[12px] shrink-0 shadow-xs select-none uppercase font-sans"
+              className="w-7.5 h-7.5 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-[#D9BE90] to-[#B68F52] text-[#18140E] font-bold flex items-center justify-center text-[11px] sm:text-[12px] shrink-0 ring-1.5 ring-[#C9A96E]/50 shadow-xs select-none uppercase font-sans"
             >
               {(t.name || 'C').trim().charAt(0)}
             </div>
           )}
           <div className="flex-1 min-w-0 truncate">
-            <p className="font-sans text-[12.5px] sm:text-[13.5px] md:text-[14px] font-bold text-[#1A1815] m-0 leading-tight truncate">
+            <p className="font-sans text-[12px] sm:text-[12.5px] md:text-[13px] font-bold text-[#181511] m-0 leading-tight truncate">
               {t.name}
+            </p>
+            <p className="font-sans text-[9.5px] sm:text-[10px] md:text-[10.5px] font-medium text-[#736B5E] m-0 leading-tight mt-0.5 truncate">
+              {t.role || 'Google Reviewer'}
             </p>
           </div>
         </div>
+
+        {t.date && (
+          <span className="text-[9.5px] sm:text-[10px] md:text-[10.5px] font-sans text-[#8C8274] font-medium shrink-0 ml-2">
+            {t.date}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -486,8 +518,8 @@ const Testimonials = () => {
           <h2 className="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal text-white leading-[1.12] mb-2.5 sm:mb-4 tracking-tight">
             Client Reviews & Ratings
           </h2>
-          <p className="font-sans text-[13.5px] sm:text-base md:text-lg font-medium text-white/90 max-w-[540px] mx-auto leading-relaxed">
-            40+ Years of Experience in the Service Industry
+          <p className="font-sans text-[13.5px] sm:text-base md:text-lg font-medium text-white/90 max-w-[580px] mx-auto leading-relaxed">
+            Backed by 40+ Years of Combined Construction & Interior Heritage in Hyderabad
           </p>
         </motion.div>
 

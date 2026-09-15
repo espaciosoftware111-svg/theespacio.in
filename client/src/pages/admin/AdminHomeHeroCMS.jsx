@@ -57,10 +57,13 @@ const AdminHomeHeroCMS = () => {
     // Main Stats Grid Section
     grid_stat1_val: '25+',
     grid_stat1_label: 'Projects Completed',
+    grid_stat1_subtext: 'Turnkey Interiors',
     grid_stat2_val: '100+',
     grid_stat2_label: 'Happy Clients',
+    grid_stat2_subtext: 'Clients Including Materials',
     grid_stat3_val: '40+',
-    grid_stat3_label: 'Years Combined Legacy',
+    grid_stat3_label: 'Years Legacy',
+    grid_stat3_subtext: 'Years Combined Legacy',
 
     // Showcase Carousel Slides
     showcase_slides: [
@@ -714,7 +717,7 @@ const AdminHomeHeroCMS = () => {
               {/* Stat 1 */}
               <div className="bg-[#0E0F11] border border-white/10 rounded-xl p-4 space-y-3">
                 <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider block">Grid Stat 01</span>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className={labelClass}>Value</label>
                     <input
@@ -735,13 +738,23 @@ const AdminHomeHeroCMS = () => {
                       placeholder="Projects Completed"
                     />
                   </div>
+                  <div>
+                    <label className={labelClass}>Bottom Subtext</label>
+                    <input
+                      type="text"
+                      value={heroState.grid_stat1_subtext || ''}
+                      onChange={(e) => handleFieldChange('grid_stat1_subtext', e.target.value)}
+                      className={inpClass}
+                      placeholder="Turnkey Interiors"
+                    />
+                  </div>
                 </div>
               </div>
 
               {/* Stat 2 */}
               <div className="bg-[#0E0F11] border border-white/10 rounded-xl p-4 space-y-3">
                 <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider block">Grid Stat 02</span>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className={labelClass}>Value</label>
                     <input
@@ -759,7 +772,17 @@ const AdminHomeHeroCMS = () => {
                       value={heroState.grid_stat2_label}
                       onChange={(e) => handleFieldChange('grid_stat2_label', e.target.value)}
                       className={inpClass}
-                      placeholder="Happy Clients (including materials clients)"
+                      placeholder="Happy Clients"
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Bottom Subtext</label>
+                    <input
+                      type="text"
+                      value={heroState.grid_stat2_subtext || ''}
+                      onChange={(e) => handleFieldChange('grid_stat2_subtext', e.target.value)}
+                      className={inpClass}
+                      placeholder="Clients Including Materials"
                     />
                   </div>
                 </div>
@@ -768,7 +791,7 @@ const AdminHomeHeroCMS = () => {
               {/* Stat 3 */}
               <div className="bg-[#0E0F11] border border-white/10 rounded-xl p-4 space-y-3">
                 <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider block">Grid Stat 03</span>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className={labelClass}>Value</label>
                     <input
@@ -785,6 +808,16 @@ const AdminHomeHeroCMS = () => {
                       type="text"
                       value={heroState.grid_stat3_label}
                       onChange={(e) => handleFieldChange('grid_stat3_label', e.target.value)}
+                      className={inpClass}
+                      placeholder="Years Legacy"
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Bottom Subtext</label>
+                    <input
+                      type="text"
+                      value={heroState.grid_stat3_subtext || ''}
+                      onChange={(e) => handleFieldChange('grid_stat3_subtext', e.target.value)}
                       className={inpClass}
                       placeholder="Years Combined Legacy"
                     />
