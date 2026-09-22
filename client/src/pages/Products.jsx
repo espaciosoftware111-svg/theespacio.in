@@ -99,7 +99,10 @@ const Products = () => {
       const src = p.heroImage || fallbacks[idx % fallbacks.length];
       if (src && !seen.has(src)) {
         seen.add(src);
-        uniqueImages.push({ src, alt: p.title });
+        uniqueImages.push({ 
+          src: getOptimizedImageUrl(src, 1600, 95), 
+          alt: p.title 
+        });
       }
     });
     return uniqueImages;
@@ -131,9 +134,6 @@ const Products = () => {
               openedImageBorderRadius="22px"
             />
           </div>
-
-          {/* Bottom vignette overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#EAE4D8] via-transparent to-transparent pointer-events-none z-10" />
 
           {/* Scroll Down Indicator */}
           <ScrollDownIndicator light={true} />

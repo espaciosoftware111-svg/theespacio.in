@@ -1,23 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Play } from 'lucide-react';
 
 export const IntroPreloader = () => {
-  const [showIntro, setShowIntro] = useState(() => {
-    try {
-      if (typeof window === 'undefined') return false;
-      if (typeof navigator !== 'undefined' && (
-        /Chrome-Lighthouse|Lighthouse|PageSpeed/i.test(navigator.userAgent)
-      )) {
-        return false;
-      }
-      return true;
-    } catch {
-      return true;
-    }
-  });
-
+  const [showIntro, setShowIntro] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [videoReady, setVideoReady] = useState(false);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.innerWidth < 768 || window.innerHeight > window.innerWidth;
@@ -26,6 +15,7 @@ export const IntroPreloader = () => {
   const videoRef = useRef(null);
 
   const handleComplete = useCallback(() => {
+    setIsEnded(true);
     try {
       if (typeof document !== 'undefined') {
         document.body.style.backgroundColor = '';
@@ -34,18 +24,27 @@ export const IntroPreloader = () => {
     setShowIntro(false);
   }, []);
 
-  const unmuteAndPlaySound = useCallback(() => {
-    if (videoRef.current) {
-      try {
-        videoRef.current.muted = false;
-        videoRef.current.volume = 1.0;
-        const p = videoRef.current.play();
-        if (p !== undefined) {
-          p.catch(() => {});
-        }
-      } catch {}
+  const handlePlayOrUnmute = useCallback(() => {
+    if (isEnded) return;
+    const video = videoRef.current;
+    if (video) {
+      video.muted = false;
+      video.volume = 1.0;
+      video.play()
+        .then(() => {
+          setHasStarted(true);
+        })
+        .catch(() => {
+          // If browser policy requires muted playback first
+          video.muted = true;
+          video.play()
+            .then(() => {
+              setHasStarted(true);
+            })
+            .catch((e) => console.warn('Play retry notice:', e));
+        });
     }
-  }, []);
+  }, [isEnded]);
 
   useEffect(() => {
     if (!showIntro) return;
@@ -61,53 +60,37 @@ export const IntroPreloader = () => {
       video.defaultMuted = true;
       video.playsInline = true;
 
-      if (video.readyState >= 1) {
-        setVideoReady(true);
-      }
-
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => setVideoReady(true))
-          .catch((err) => {
-            console.warn("Autoplay notice:", err);
-            if (video) {
-              video.muted = true;
-              video.play().then(() => setVideoReady(true)).catch(() => {});
-            }
-          });
-      }
+      // Attempt automatic playback
+      video.play()
+        .then(() => {
+          setHasStarted(true);
+        })
+        .catch((err) => {
+          console.warn('Browser requires tap to play:', err.message);
+        });
     }
-
-    // Auto-unmute on first user gesture
-    const handleGesture = () => {
-      unmuteAndPlaySound();
-    };
-    const events = ['pointerdown', 'pointermove', 'touchstart', 'touchend', 'mousedown', 'keydown', 'wheel', 'scroll'];
-    events.forEach(evt => window.addEventListener(evt, handleGesture, { once: true, passive: true }));
-
-    // Safety timeout: dismiss after 7.5s max if video fails or ends
-    const timer = setTimeout(() => {
-      handleComplete();
-    }, 7500);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      events.forEach(evt => window.removeEventListener(evt, handleGesture));
-      clearTimeout(timer);
       try {
         if (typeof document !== 'undefined') {
           document.body.style.backgroundColor = '';
         }
       } catch {}
     };
-  }, [showIntro, handleComplete, unmuteAndPlaySound]);
+  }, [showIntro]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current && videoRef.current.duration) {
       const cur = videoRef.current.currentTime;
-      const pct = (cur / videoRef.current.duration) * 100;
+      const dur = videoRef.current.duration;
+      const pct = (cur / dur) * 100;
       setProgress(pct);
+
+      // Transition smoothly right at the end of the video
+      if (dur > 0 && cur >= dur - 0.25) {
+        handleComplete();
+      }
     }
   };
 
@@ -124,15 +107,11 @@ export const IntroPreloader = () => {
             scale: 1.01,
             transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] }
           }}
-          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black"
-          onClick={unmuteAndPlaySound}
+          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black cursor-pointer"
+          onClick={handlePlayOrUnmute}
         >
           {/* Full-screen Edge-to-Edge Video */}
-          <div
-            className={`relative z-[2] w-full h-full flex items-center justify-center pointer-events-none transition-opacity duration-300 overflow-hidden ${
-              videoReady ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
+          <div className="relative z-[2] w-full h-full flex items-center justify-center overflow-hidden">
             <video
               ref={videoRef}
               key={videoSource}
@@ -141,32 +120,56 @@ export const IntroPreloader = () => {
               muted
               playsInline
               preload="auto"
+              onPlay={() => setHasStarted(true)}
               onError={(e) => {
-                // Graceful fallback to intro-desktop or intro.mp4 if intro-mobile is not yet available
                 if (e.currentTarget.src.includes('intro-mobile.mp4')) {
                   e.currentTarget.src = '/videos/intro-desktop.mp4';
                 }
               }}
-              onLoadedData={() => setVideoReady(true)}
-              onCanPlay={() => setVideoReady(true)}
-              onPlaying={() => setVideoReady(true)}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleComplete}
               className="w-full h-full object-cover pointer-events-none"
             />
           </div>
 
-          {/* Dedicated Skip Button */}
+          {/* Top Branding Hint */}
+          <div className="absolute top-6 left-6 z-30 pointer-events-none opacity-85">
+            <span className="text-white/90 font-sans text-[11px] tracking-[0.25em] uppercase font-semibold">
+              ESPACIO • Turnkey Interiors
+            </span>
+          </div>
+
+          {/* Center "Tap to Play" ONLY appears initially if autoplay was blocked - NEVER AT THE END */}
+          {!hasStarted && !isEnded && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.25 }}
+              className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
+            >
+              <div className="flex flex-col items-center gap-3 bg-black/60 backdrop-blur-md px-6 py-5 rounded-2xl border border-white/20 shadow-2xl">
+                <div className="w-14 h-14 rounded-full bg-gold/90 text-black flex items-center justify-center shadow-lg animate-pulse">
+                  <Play size={24} className="ml-1 fill-black" />
+                </div>
+                <span className="text-white font-sans text-sm font-semibold tracking-wider uppercase">
+                  Tap Anywhere to Start
+                </span>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Dedicated Enter / Skip Button */}
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleComplete();
             }}
-            className="absolute bottom-6 right-6 flex items-center gap-1.5 text-white hover:text-gold font-sans text-[11px] font-semibold tracking-widest uppercase transition-all px-4 py-2 rounded-full border border-white/20 bg-black/75 hover:bg-black/90 backdrop-blur-md z-30 shadow-lg cursor-pointer pointer-events-auto"
+            className="absolute bottom-6 right-6 flex items-center gap-2 text-white hover:text-gold font-sans text-[11px] sm:text-[12px] font-semibold tracking-widest uppercase transition-all px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/30 bg-black/80 hover:bg-black/95 backdrop-blur-md z-30 shadow-2xl cursor-pointer pointer-events-auto group"
           >
-            <span>Skip</span>
-            <span className="text-gold">↗</span>
+            <span>Enter Site</span>
+            <span className="text-gold transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
           </button>
 
           {/* Sleek Gold Progress Bar at the Bottom */}

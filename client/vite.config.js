@@ -53,6 +53,11 @@ export default defineConfig({
             }
           });
         }
+      },
+      '/images': {
+        target: 'https://theespacio-in.vercel.app',
+        changeOrigin: true,
+        secure: false,
       }
     }
   },

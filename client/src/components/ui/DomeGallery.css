@@ -67,21 +67,15 @@ main.sphere-main {
 
 .overlay,
 .overlay--blur {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  z-index: 3;
-  pointer-events: none;
+  display: none !important;
 }
 
 .overlay {
-  background-image: radial-gradient(rgba(235, 235, 235, 0) 78%, var(--overlay-blur-color, #120F17) 100%);
+  display: none !important;
 }
 
 .overlay--blur {
-  -webkit-mask-image: radial-gradient(rgba(235, 235, 235, 0) 80%, var(--overlay-blur-color, #120F17) 95%);
-  mask-image: radial-gradient(rgba(235, 235, 235, 0) 80%, var(--overlay-blur-color, #120F17) 95%);
-  backdrop-filter: blur(3px);
+  display: none !important;
 }
 
 .item {
@@ -144,7 +138,11 @@ main.sphere-main {
   object-fit: cover;
   pointer-events: none;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   filter: var(--image-filter, none);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  transform: translateZ(0);
 }
 
 .viewer {
@@ -213,21 +211,8 @@ main.sphere-main {
   filter: var(--image-filter, none);
 }
 
-.edge-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 120px;
-  z-index: 5;
-  pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #120F17));
-}
-
-.edge-fade--top {
-  top: 0;
-  transform: rotate(180deg);
-}
-
+.edge-fade,
+.edge-fade--top,
 .edge-fade--bottom {
-  bottom: 0;
+  display: none !important;
 }
