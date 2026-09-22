@@ -1108,10 +1108,10 @@ const Home = () => {
 
                 {/* ─── LEFT: Craft Card ─── */}
                 <motion.div
-                  className="w-full max-w-[285px] sm:max-w-[365px] mx-auto lg:mx-0 lg:max-w-[385px]"
+                  className="w-full max-w-[295px] sm:max-w-[365px] mx-auto lg:mx-0 lg:max-w-[385px]"
                 >
                   <motion.div 
-                    className="relative rounded-[16px] sm:rounded-[20px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
+                    className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
                     style={{ 
                       background: 'rgba(255, 255, 255, 0.08)',
                       backdropFilter: 'blur(20px)',
@@ -1129,9 +1129,9 @@ const Home = () => {
                     {/* Top glass highlight */}
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                     
-                    <div className="p-3 sm:p-5.5 md:p-6">
+                    <div className="p-3.5 sm:p-5.5 md:p-6">
                       {/* Interior thumbnail */}
-                      <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-2 sm:mb-5 relative bg-black/20">
+                      <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3 sm:mb-5 relative bg-black/20">
                         {activeHeroBgImages.map((imgUrl, imgIdx) => {
                           const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
                           const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
@@ -1161,7 +1161,7 @@ const Home = () => {
                       </div>
 
                       {/* Headline */}
-                      <h2 className="font-display text-[12.5px] sm:text-[18px] md:text-[20px] lg:text-[21px] font-semibold leading-tight tracking-tight text-white mb-2.5 sm:mb-6 text-center whitespace-nowrap">
+                      <h2 className="font-display text-[16px] sm:text-[18.5px] md:text-[20.5px] lg:text-[22px] font-semibold leading-snug tracking-tight text-white mb-3 sm:mb-5 text-center whitespace-nowrap">
                         {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                       </h2>
 
@@ -1170,7 +1170,7 @@ const Home = () => {
                         <div className="flex items-center justify-center">
                           <Link 
                             to={homeSettings.hero_card_cta_link || "/projects"}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/15 backdrop-blur-md px-3.5 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-[11px] md:text-[12px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
+                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/15 backdrop-blur-md px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-[11.5px] md:text-[12px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
                           >
                             {/* Sizing span (invisible, sets exact container width for Discover Our Works ↗) */}
                             <span className="inline-flex items-center gap-1.5 opacity-0 pointer-events-none select-none whitespace-nowrap">

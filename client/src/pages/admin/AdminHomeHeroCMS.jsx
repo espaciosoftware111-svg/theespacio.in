@@ -953,11 +953,11 @@ const AdminHomeHeroCMS = () => {
                   alt="Thumbnail"
                   className="w-full aspect-[16/9] object-cover rounded-lg mb-2 border border-white/10"
                 />
-                <h3 className="font-display text-[11px] font-bold text-white leading-tight mb-2 whitespace-nowrap truncate">
+                <h3 className="font-display text-[13px] sm:text-[14px] font-bold text-white leading-tight mb-2 whitespace-nowrap truncate">
                   {heroState.hero_card_heading || 'We Craft the Future Dwelling'}
                 </h3>
                 {heroState.hero_card_cta_visible && (
-                  <div className="inline-flex items-center space-x-1 bg-white/20 text-white font-sans text-[9px] font-bold px-2.5 py-1 rounded-full border border-white/30">
+                  <div className="inline-flex items-center space-x-1 bg-white/20 text-white font-sans text-[9.5px] font-bold px-2.5 py-1 rounded-full border border-white/30">
                     <span>{heroState.hero_card_cta_text || 'Our Projects'}</span>
                     <ArrowUpRight size={10} />
                   </div>
