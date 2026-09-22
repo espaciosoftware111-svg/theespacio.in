@@ -112,17 +112,17 @@ const Products = () => {
     <div className="bg-bg min-h-screen pb-24">
       <SEO title="Premium Material Library — WPC, Fluted, Acrylic Panels" description="Explore ESPACIO's curated material library. WPC wall panels, fluted panels, polygranite, acrylic sheets, mosaic tiles and more. Request samples and catalogue." url="/materials" />
       
-      {/* Hero with Dome Gallery — 90% screen height on mobile */}
-      <section className="relative h-[90dvh] sm:h-[80vh] lg:h-[98vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-10 z-0">
+      {/* Hero with Dome Gallery — responsive compact height on mobile */}
+      <section className="relative h-[50vh] xs:h-[54vh] sm:h-[72vh] lg:h-[92vh] min-h-[320px] sm:min-h-[480px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-10 z-0">
         {/* Gallery frame: 100% full screen edge-to-edge on mobile, rounded framed on tablet/desktop */}
         <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
           {/* Dome Gallery Container */}
           <div className="absolute inset-0 w-full h-full z-0">
             <DomeGallery 
               images={domeImages}
-              fit={0.8}
-              segments={typeof window !== 'undefined' && window.innerWidth < 640 ? 22 : 32}
-              minRadius={typeof window !== 'undefined' && window.innerWidth < 640 ? 460 : 700}
+              fit={typeof window !== 'undefined' && window.innerWidth < 640 ? 0.72 : 0.8}
+              segments={typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 32}
+              minRadius={typeof window !== 'undefined' && window.innerWidth < 640 ? 280 : 700}
               fitBasis="auto"
               overlayBlurColor="#EAE4D8"
               grayscale={false}
@@ -136,13 +136,13 @@ const Products = () => {
           </div>
 
           {/* Scroll Down Indicator */}
-          <ScrollDownIndicator light={true} />
+          <ScrollDownIndicator light={true} className="scale-90 sm:scale-100 bottom-2 sm:bottom-4" />
         </div>
       </section>
 
       {/* Category Header */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 sm:pt-14 pb-6 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
-        <div className="space-y-1.5 sm:space-y-2">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-6 sm:pt-14 pb-5 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
+        <div className="space-y-1 sm:space-y-2">
           <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Premium Collection</span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">Curated Material Library</h2>
         </div>

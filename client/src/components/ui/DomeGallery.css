@@ -52,7 +52,7 @@ main.sphere-main {
   .stage {
     contain: none !important;
     overflow: visible !important;
-    transform: scale(0.97);
+    transform: scale(0.92);
     transform-origin: 50% 50%;
   }
   .item__image {

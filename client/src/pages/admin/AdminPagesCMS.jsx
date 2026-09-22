@@ -18,7 +18,7 @@ const AdminPagesCMS = () => {
 
   // Settings State
   const [settings, setSettings] = useState({
-    hero_title: 'Engineering. Elegance. Experience.',
+    hero_title: 'Elegance. Experience. Espacio.',
     hero_subtitle: 'Bespoke Luxury Interiors & Turned-Key Executions in Hyderabad',
     hero_cta_text: 'Get Estimate',
     hero_cta_link: '/contact',
@@ -344,7 +344,7 @@ const AdminPagesCMS = () => {
                   value={settings.hero_title}
                   onChange={(e) => updateSetting('hero_title', e.target.value)}
                   className={inpClass}
-                  placeholder="Engineering. Elegance. Experience."
+                  placeholder="Elegance. Experience. Espacio."
                 />
               </div>
 

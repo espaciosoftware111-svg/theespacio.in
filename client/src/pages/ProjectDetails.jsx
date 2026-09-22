@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, ChevronUp } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
+import { getProjectRoomName } from '../utils/projectRooms';
 
 const ProjectDetails = () => {
   const { slug } = useParams();
@@ -51,7 +52,7 @@ const ProjectDetails = () => {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
       document.body.style.touchAction = 'none';
-    } catch {}
+    } catch { }
   };
 
   const unlockScroll = () => {
@@ -62,7 +63,7 @@ const ProjectDetails = () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       document.body.style.touchAction = '';
-    } catch {}
+    } catch { }
   };
 
   const updateSliderPos = (clientX) => {
@@ -146,7 +147,7 @@ const ProjectDetails = () => {
           const match = storedProjects.find(p => p.slug === slug || p._id === slug);
           if (match) setProject(match);
         }
-      } catch {}
+      } catch { }
 
       try {
         const response = await axios.get(`/projects/${slug}`);
@@ -343,7 +344,7 @@ const ProjectDetails = () => {
   return (
     <div className="bg-cream min-h-screen pb-24">
       <SEO title={`${p.title} — Luxury Case Study`} description={p.description ? p.description.substring(0, 150) : 'Case study description...'} image={p.heroImage} url={`/projects/${p.slug}`} />
-      
+
       {/* Hero section with curved borders and side margins */}
       <section className="pt-20 sm:pt-24 md:pt-28 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1440px] mx-auto">
         <div className="relative h-[90dvh] sm:h-[65vh] lg:h-[70vh] min-h-[480px] sm:min-h-[480px] lg:min-h-[500px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
@@ -354,7 +355,7 @@ const ProjectDetails = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-transparent to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent pointer-events-none" />
-          
+
           {/* Back button */}
           <div className="relative z-10 p-6 md:p-10">
             <Link to="/projects" className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 hover:border-gold/50 shadow-md">
@@ -467,7 +468,7 @@ const ProjectDetails = () => {
               />
 
               {/* After Badge: Clipped at the slider line */}
-              <div 
+              <div
                 className="absolute inset-0 overflow-hidden pointer-events-none z-10"
                 style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, WebkitClipPath: `inset(0 0 0 ${sliderPos}%)` }}
               >
@@ -491,7 +492,7 @@ const ProjectDetails = () => {
                   alt="Transformation Before"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                
+
                 {/* Before Badge */}
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 inline-flex items-center px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 pointer-events-none whitespace-nowrap">
                   <span className="font-sans text-[11px] sm:text-xs font-medium tracking-wider uppercase text-white/90">
@@ -543,6 +544,7 @@ const ProjectDetails = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {p.gallery.slice(0, visiblePhotosCount).map((imgUrl, index) => {
+              const roomName = getProjectRoomName(p, imgUrl, index);
               return (
                 <div
                   key={index}
@@ -552,7 +554,7 @@ const ProjectDetails = () => {
                   <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
                     <img
                       src={imgUrl}
-                      alt={`${p.title} - Photo ${index + 1}`}
+                      alt={`${p.title} - ${roomName}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
@@ -562,7 +564,7 @@ const ProjectDetails = () => {
                     </div>
                   </div>
                   <div className="p-3.5 bg-bg-card border-t border-ink-border/20 flex items-center justify-between text-xs font-sans">
-                    <span className="text-ink font-medium truncate">Photo #{index + 1}</span>
+                    <span className="text-ink font-semibold truncate tracking-wide">{roomName}</span>
                     <span className="text-gold font-bold shrink-0 text-[10.5px] uppercase tracking-wider">Expand ↗</span>
                   </div>
                 </div>
@@ -600,62 +602,70 @@ const ProjectDetails = () => {
       )}
 
       {/* Lightbox Modal */}
-      {lightboxOpen && p.gallery && (
-        <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 md:p-8">
-          <div className="w-full max-w-[1440px] flex items-center justify-between text-white border-b border-white/10 pb-4">
-            <div>
-              <h3 className="font-editorial text-lg font-bold">{p.title}</h3>
-              <p className="font-sans text-xs text-white/60">
-                Photo {activePhotoIdx + 1} of {p.gallery.length} • Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]">Esc</kbd> to close
-              </p>
+      {lightboxOpen && p.gallery && (() => {
+        const activeRoomName = getProjectRoomName(p, p.gallery[activePhotoIdx], activePhotoIdx);
+        return (
+          <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 md:p-8">
+            <div className="w-full max-w-[1440px] flex items-center justify-between text-white border-b border-white/10 pb-4">
+              <div>
+                <h3 className="font-editorial text-lg font-bold">
+                  {p.title} <span className="text-gold font-normal mx-1.5">•</span> <span className="text-white/90 font-sans font-medium text-base">{activeRoomName}</span>
+                </h3>
+                <p className="font-sans text-xs text-white/60">
+                  {activeRoomName} • Photo {activePhotoIdx + 1} of {p.gallery.length} • Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]">Esc</kbd> to close
+                </p>
+              </div>
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors font-bold text-xs uppercase px-4 py-2 cursor-pointer"
+              >
+                ✕ Close Viewer
+              </button>
             </div>
-            <button
-              onClick={() => setLightboxOpen(false)}
-              className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors font-bold text-xs uppercase px-4 py-2 cursor-pointer"
-            >
-              ✕ Close Viewer
-            </button>
-          </div>
 
-          <div className="relative w-full max-w-5xl h-[70vh] flex items-center justify-center my-auto">
-            <img
-              src={p.gallery[activePhotoIdx]}
-              alt={`Expanded view ${activePhotoIdx + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-            />
-            {p.gallery.length > 1 && (
-              <button
-                onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? p.gallery.length - 1 : prev - 1))}
-                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
-              >
-                ◀
-              </button>
-            )}
-            {p.gallery.length > 1 && (
-              <button
-                onClick={() => setActivePhotoIdx((prev) => (prev === p.gallery.length - 1 ? 0 : prev + 1))}
-                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
-              >
-                ▶
-              </button>
-            )}
-          </div>
+            <div className="relative w-full max-w-5xl h-[70vh] flex items-center justify-center my-auto">
+              <img
+                src={p.gallery[activePhotoIdx]}
+                alt={`${p.title} - ${activeRoomName}`}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              />
+              {p.gallery.length > 1 && (
+                <button
+                  onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? p.gallery.length - 1 : prev - 1))}
+                  className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
+                >
+                  ◀
+                </button>
+              )}
+              {p.gallery.length > 1 && (
+                <button
+                  onClick={() => setActivePhotoIdx((prev) => (prev === p.gallery.length - 1 ? 0 : prev + 1))}
+                  className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
+                >
+                  ▶
+                </button>
+              )}
+            </div>
 
-          <div className="flex items-center space-x-2 overflow-x-auto max-w-full pt-4 scrollbar-none">
-            {p.gallery.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setActivePhotoIdx(i)}
-                className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                  activePhotoIdx === i ? 'border-gold scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-80'
-                }`}
-              >
-                <img src={img} alt={`Thumb ${i + 1}`} className="w-full h-full object-cover" />
-              </button>
-            ))}
+            <div className="flex items-center space-x-2 overflow-x-auto max-w-full pt-4 scrollbar-none">
+              {p.gallery.map((img, i) => {
+                const thumbRoom = getProjectRoomName(p, img, i);
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActivePhotoIdx(i)}
+                    title={thumbRoom}
+                    className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${activePhotoIdx === i ? 'border-gold scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-80'
+                      }`}
+                  >
+                    <img src={img} alt={thumbRoom} className="w-full h-full object-cover" />
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* What the Client Says About Our Work Section */}
       {(p.testimonial?.text || p.testimonialText) && (
@@ -663,7 +673,7 @@ const ProjectDetails = () => {
           <div className="absolute -top-12 -right-12 w-32 h-32 bg-gold/10 rounded-full blur-2xl pointer-events-none" />
           <span className="font-sans text-xs font-bold uppercase tracking-widest text-gold block mb-3">Client Endorsement & Feedback</span>
           <h2 className="font-editorial text-3xl font-bold text-charcoal mb-8">What the Client Says About Our Work</h2>
-          
+
           <div className="flex justify-center items-center gap-1.5 mb-6">
             {Array.from({ length: Number(p.testimonial?.rating || p.testimonialRating || 5) }).map((_, idx) => (
               <svg
@@ -686,7 +696,7 @@ const ProjectDetails = () => {
             <h4 className="font-sans font-bold text-sm uppercase tracking-wider text-charcoal">
               {p.testimonial?.name || p.testimonialName || 'Valued Client'}
             </h4>
-            
+
             <div className="flex items-center space-x-3 text-xs text-walnut mt-1">
               <span className="font-medium text-gold">
                 {p.testimonial?.profession || p.testimonialProfession || p.testimonial?.role || 'Homeowner'}

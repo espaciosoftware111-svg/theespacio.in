@@ -102,7 +102,7 @@ const AdminAboutCMS = () => {
     about_story_p2: "One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.",
     about_story_p3: "That's the world this brand comes from. Not showrooms. Job sites. Not mood boards. Load-bearing walls, material tolerances, what actually holds up over decades and what doesn't.",
     about_story_image: defaultAboutStoryImage,
-    about_milestone_label: 'Engineering Milestone',
+    about_milestone_label: 'Milestone',
     about_milestone_text: 'Lakeside residence chosen as filming location for Guntur Kaaram',
     about_milestone_visible: true,
 
@@ -154,7 +154,7 @@ const AdminAboutCMS = () => {
           about_story_image: (storedSettings.about_story_image && !storedSettings.about_story_image.includes('unsplash.com') && !storedSettings.about_story_image.includes('open_hall.png') && !storedSettings.about_story_image.includes('Guest_restaurant_10'))
             ? storedSettings.about_story_image
             : defaultAboutStoryImage,
-          about_milestone_label: getNonEmpty(storedSettings.about_milestone_label, 'Engineering Milestone'),
+          about_milestone_label: (storedSettings.about_milestone_label && !storedSettings.about_milestone_label.toLowerCase().includes('engineering milestone')) ? storedSettings.about_milestone_label : 'Milestone',
           about_milestone_text: getNonEmpty(storedSettings.about_milestone_text, 'Lakeside residence chosen as filming location for Guntur Kaaram'),
           about_milestone_visible: storedSettings.about_milestone_visible !== false,
 

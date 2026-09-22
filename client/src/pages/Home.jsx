@@ -555,10 +555,10 @@ const Home = () => {
     grid_stat1_subtext: 'Turnkey Interiors',
     grid_stat2_val: '100+',
     grid_stat2_label: 'Happy Clients',
-    grid_stat2_subtext: 'Clients Including Materials',
+    grid_stat2_subtext: 'Including Materials',
     grid_stat3_val: '40+',
     grid_stat3_label: 'Years Legacy',
-    grid_stat3_subtext: 'Years Combined Legacy',
+    grid_stat3_subtext: 'Combined Legacy',
 
     about_title: 'Four Decades of Structural Excellence',
     about_subtitle: 'HERITAGE & CRAFTSMANSHIP',
@@ -857,42 +857,59 @@ const Home = () => {
 
   const displayProjects = projects.length > 0 ? projects : mockProjects;
 
-  const stickyContent = displayProjects.slice(0, 6).map((p) => ({
-    title: p.title,
-    description: (
-      <div className="space-y-4">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="font-sans text-[12px] lg:text-[13px] font-bold uppercase tracking-widest text-gold">{p.category}</span>
-          <span className="text-ink-soft/40">•</span>
-          <span className="font-sans text-[13px] lg:text-[14px] text-ink-soft font-medium">{p.location}</span>
+  const stickyContent = displayProjects.slice(0, 6).map((p) => {
+    let title = p.title;
+    if (p.slug === 'rajapushpa-provincia-3bhk' || p.title === 'A 3BHK Residence, Narsingi') {
+      title = 'The Arcstone Residence';
+    } else if (p.slug === 'my-home-sayuk-3bhk' || p.title === 'A 3BHK Residence, Tellapur') {
+      title = 'The Lattice Retreat';
+    } else if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh') {
+      title = 'The Boucle Residence';
+    } else if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul') {
+      title = 'The Ivory Retreat';
+    } else if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran') {
+      title = 'The Panelled Muse';
+    } else if (p.slug === 'kondapur-minimalist-2bhk' || p._id === 'proj_6_kondapur_venkatesh') {
+      title = 'The Dusk Lounge';
+    }
+
+    return {
+      title,
+      description: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="font-sans text-[12px] lg:text-[13px] font-bold uppercase tracking-widest text-gold">{p.category}</span>
+            <span className="text-ink-soft/40">•</span>
+            <span className="font-sans text-[13px] lg:text-[14px] text-ink-soft font-medium">{p.location}</span>
+          </div>
+          <p className="font-sans text-[15px] lg:text-[17px] text-ink-soft leading-relaxed font-normal">
+            {p.description || `A luxury ${p.category.toLowerCase()} interior design in ${p.location}, showcasing custom spatial architecture and premium materials.`}
+          </p>
+          <div className="pt-2 pb-0">
+            <Link 
+              to={`/projects/${p.slug}`}
+              aria-label={`View Case Study: ${title}`}
+              className="inline-flex items-center gap-2 font-sans text-[13px] lg:text-[14px] font-bold uppercase tracking-wider text-gold hover:text-gold/80 transition-colors pt-1"
+            >
+              <span>View Case Study</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
         </div>
-        <p className="font-sans text-[15px] lg:text-[17px] text-ink-soft leading-relaxed font-normal">
-          {p.description || `A luxury ${p.category.toLowerCase()} interior design in ${p.location}, showcasing custom spatial architecture and premium materials.`}
-        </p>
-        <div className="pt-2 pb-0">
-          <Link 
-            to={`/projects/${p.slug}`}
-            aria-label={`View Case Study: ${p.title}`}
-            className="inline-flex items-center gap-2 font-sans text-[13px] lg:text-[14px] font-bold uppercase tracking-wider text-gold hover:text-gold/80 transition-colors pt-1"
-          >
-            <span>View Case Study</span>
-            <ArrowUpRight size={15} />
-          </Link>
+      ),
+      content: (
+        <div className="h-full w-full relative overflow-hidden rounded-[24px]">
+          <img
+            src={getOptimizedImageUrl(p.heroImage, 1400, 92)}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out"
+            alt={title}
+          />
         </div>
-      </div>
-    ),
-    content: (
-      <div className="h-full w-full relative overflow-hidden rounded-[24px]">
-        <img
-          src={getOptimizedImageUrl(p.heroImage, 1400, 92)}
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full object-cover transition-transform duration-700 ease-out"
-          alt={p.title}
-        />
-      </div>
-    )
-  }));
+      )
+    };
+  });
 
   const rawParallaxProducts = [
     {
@@ -1108,7 +1125,7 @@ const Home = () => {
 
                 {/* ─── LEFT: Craft Card ─── */}
                 <motion.div
-                  className="w-full max-w-[295px] sm:max-w-[365px] mx-auto lg:mx-0 lg:max-w-[385px]"
+                  className="w-full max-w-[325px] sm:max-w-[375px] mx-auto lg:mx-0 lg:max-w-[395px]"
                 >
                   <motion.div 
                     className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
@@ -1129,9 +1146,9 @@ const Home = () => {
                     {/* Top glass highlight */}
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                     
-                    <div className="p-3.5 sm:p-5.5 md:p-6">
+                    <div className="p-4 sm:p-5.5 md:p-6">
                       {/* Interior thumbnail */}
-                      <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3 sm:mb-5 relative bg-black/20">
+                      <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3.5 sm:mb-5 relative bg-black/20">
                         {activeHeroBgImages.map((imgUrl, imgIdx) => {
                           const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
                           const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
@@ -1161,7 +1178,7 @@ const Home = () => {
                       </div>
 
                       {/* Headline */}
-                      <h2 className="font-display text-[16px] sm:text-[18.5px] md:text-[20.5px] lg:text-[22px] font-semibold leading-snug tracking-tight text-white mb-3 sm:mb-5 text-center whitespace-nowrap">
+                      <h2 className="font-display text-[19px] xs:text-[20.5px] sm:text-[22.5px] md:text-[24px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-3.5 sm:mb-5 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
                         {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                       </h2>
 
@@ -1170,7 +1187,7 @@ const Home = () => {
                         <div className="flex items-center justify-center">
                           <Link 
                             to={homeSettings.hero_card_cta_link || "/projects"}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/15 backdrop-blur-md px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-[11.5px] md:text-[12px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
+                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/20 backdrop-blur-md px-5 py-2 sm:px-5.5 sm:py-2.5 text-[11.5px] sm:text-[12px] md:text-[12.5px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
                           >
                             {/* Sizing span (invisible, sets exact container width for Discover Our Works ↗) */}
                             <span className="inline-flex items-center gap-1.5 opacity-0 pointer-events-none select-none whitespace-nowrap">
@@ -1370,13 +1387,13 @@ const Home = () => {
             { 
               value: homeSettings.grid_stat2_val || "100+", 
               label: homeSettings.grid_stat2_label || "Happy Clients", 
-              subtext: homeSettings.grid_stat2_subtext || "Clients Including Materials",
+              subtext: (homeSettings.grid_stat2_subtext || "Including Materials").replace(/^Clients\s*/i, ''),
               progressWidth: "80%" 
             },
             { 
               value: homeSettings.grid_stat3_val || "40+", 
               label: homeSettings.grid_stat3_label || "Years Legacy", 
-              subtext: homeSettings.grid_stat3_subtext || "Years Combined Legacy",
+              subtext: (homeSettings.grid_stat3_subtext || "Combined Legacy").replace(/^Years\s*/i, ''),
               progressWidth: "90%" 
             }
           ].map((stat, i) => (
@@ -1394,12 +1411,14 @@ const Home = () => {
                   <AnimatedCounter value={stat.value} duration={2} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
-                <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
-                  {stat.subtext}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
-              </div>
+              {stat.subtext ? (
+                <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
+                  <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
+                    {stat.subtext}
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
+                </div>
+              ) : null}
             </motion.div>
           ))}
         </div>

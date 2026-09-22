@@ -60,10 +60,10 @@ const AdminHomeHeroCMS = () => {
     grid_stat1_subtext: 'Turnkey Interiors',
     grid_stat2_val: '100+',
     grid_stat2_label: 'Happy Clients',
-    grid_stat2_subtext: 'Clients Including Materials',
+    grid_stat2_subtext: 'Including Materials',
     grid_stat3_val: '40+',
     grid_stat3_label: 'Years Legacy',
-    grid_stat3_subtext: 'Years Combined Legacy',
+    grid_stat3_subtext: 'Combined Legacy',
 
     // Showcase Carousel Slides
     showcase_slides: [
@@ -782,7 +782,7 @@ const AdminHomeHeroCMS = () => {
                       value={heroState.grid_stat2_subtext || ''}
                       onChange={(e) => handleFieldChange('grid_stat2_subtext', e.target.value)}
                       className={inpClass}
-                      placeholder="Clients Including Materials"
+                      placeholder="Including Materials"
                     />
                   </div>
                 </div>
@@ -819,7 +819,7 @@ const AdminHomeHeroCMS = () => {
                       value={heroState.grid_stat3_subtext || ''}
                       onChange={(e) => handleFieldChange('grid_stat3_subtext', e.target.value)}
                       className={inpClass}
-                      placeholder="Years Combined Legacy"
+                      placeholder="Combined Legacy"
                     />
                   </div>
                 </div>
@@ -953,11 +953,11 @@ const AdminHomeHeroCMS = () => {
                   alt="Thumbnail"
                   className="w-full aspect-[16/9] object-cover rounded-lg mb-2 border border-white/10"
                 />
-                <h3 className="font-display text-[13px] sm:text-[14px] font-bold text-white leading-tight mb-2 whitespace-nowrap truncate">
+                <h3 className="font-display text-[14.5px] sm:text-[16px] font-bold text-white leading-tight mb-2.5 whitespace-nowrap truncate drop-shadow-md">
                   {heroState.hero_card_heading || 'We Craft the Future Dwelling'}
                 </h3>
                 {heroState.hero_card_cta_visible && (
-                  <div className="inline-flex items-center space-x-1 bg-white/20 text-white font-sans text-[9.5px] font-bold px-2.5 py-1 rounded-full border border-white/30">
+                  <div className="inline-flex items-center space-x-1.5 bg-white/25 text-white font-sans text-[10px] font-bold px-3 py-1.5 rounded-full border border-white/30 shadow-sm">
                     <span>{heroState.hero_card_cta_text || 'Our Projects'}</span>
                     <ArrowUpRight size={10} />
                   </div>

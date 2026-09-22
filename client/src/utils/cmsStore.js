@@ -62,7 +62,7 @@ export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_1_rajapushpa_provincia',
     order: 1,
-    title: 'A 3BHK Residence, Narsingi',
+    title: 'The Arcstone Residence',
     slug: 'rajapushpa-provincia-3bhk',
     category: 'apartment',
     area: '2,850 sq.ft.',
@@ -122,7 +122,7 @@ export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_2_my_home_sayuk',
     order: 2,
-    title: 'A 3BHK Residence, Tellapur',
+    title: 'The Lattice Retreat',
     slug: 'my-home-sayuk-3bhk',
     category: 'apartment',
     area: '2,750 sq.ft.',
@@ -169,7 +169,7 @@ export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_3_kokapet_nagesh',
     order: 3,
-    title: 'A 2BHK Residence, Kokapet',
+    title: 'The Boucle Residence',
     slug: 'kokapet-2bhk',
     category: 'apartment',
     area: '1,650 sq.ft.',
@@ -215,7 +215,7 @@ export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_4_kokapet_rahul',
     order: 4,
-    title: 'A 2BHK Residence, Kokapet',
+    title: 'The Ivory Retreat',
     slug: 'kokapet-urban-2bhk',
     category: 'apartment',
     area: '1,450 sq.ft.',
@@ -284,7 +284,7 @@ export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_5_gandipet_kiran',
     order: 5,
-    title: 'A 2BHK Residence, Gandipet',
+    title: 'The Panelled Muse',
     slug: 'gandipet-modern-retro-2bhk',
     category: 'apartment',
     area: '1,750 sq.ft.',
@@ -348,7 +348,7 @@ export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_6_kondapur_venkatesh',
     order: 6,
-    title: 'A 2BHK Residence, Kondapur',
+    title: 'The Dusk Lounge',
     slug: 'kondapur-minimalist-2bhk',
     category: 'apartment',
     area: '1,520 sq.ft.',
@@ -1069,10 +1069,10 @@ export const DEFAULT_SETTINGS = {
   grid_stat1_subtext: 'Turnkey Interiors',
   grid_stat2_val: '100+',
   grid_stat2_label: 'Happy Clients',
-  grid_stat2_subtext: 'Clients Including Materials',
+  grid_stat2_subtext: 'Including Materials',
   grid_stat3_val: '40+',
   grid_stat3_label: 'Years Legacy',
-  grid_stat3_subtext: 'Years Combined Legacy',
+  grid_stat3_subtext: 'Combined Legacy',
   services_list: DEFAULT_SERVICES,
   exp_eyebrow: 'VISIT US',
   exp_heading: 'Experience Centers & Studio',
@@ -2360,8 +2360,8 @@ export const getCMSData = (key, fallback = null) => {
                 p1.story = DEFAULT_PROJECTS[0].story;
                 changed = true;
               }
-              if (p1.title !== 'A 3BHK Residence, Narsingi') {
-                p1.title = 'A 3BHK Residence, Narsingi';
+              if (p1.title !== 'The Arcstone Residence') {
+                p1.title = 'The Arcstone Residence';
                 changed = true;
               }
               if (p1.description !== DEFAULT_PROJECTS[0].description) {
@@ -2382,8 +2382,8 @@ export const getCMSData = (key, fallback = null) => {
                 p2.afterImages = ['/images/projects/my_home_sayuk/sayuk_after_open_hall.webp'];
                 changed2 = true;
               }
-              if (p2.title !== 'A 3BHK Residence, Tellapur') {
-                p2.title = 'A 3BHK Residence, Tellapur';
+              if (p2.title !== 'The Lattice Retreat') {
+                p2.title = 'The Lattice Retreat';
                 changed2 = true;
               }
               if (p2.description !== DEFAULT_PROJECTS[1].description) {
@@ -2408,8 +2408,8 @@ export const getCMSData = (key, fallback = null) => {
                 p3.afterImages = ['/images/projects/kokapet_nagesh_2bhk/kokapet_after.webp'];
                 changed3 = true;
               }
-              if (p3.title !== 'A 2BHK Residence, Kokapet') {
-                p3.title = 'A 2BHK Residence, Kokapet';
+              if (p3.title !== 'The Boucle Residence') {
+                p3.title = 'The Boucle Residence';
                 changed3 = true;
               }
               if (p3.description !== DEFAULT_PROJECTS[2].description) {
@@ -2434,8 +2434,8 @@ export const getCMSData = (key, fallback = null) => {
                 p4.afterImages = ['/images/projects/kokapet_rahul_2bhk/rahul_after.webp'];
                 changed4 = true;
               }
-              if (p4.title !== 'A 2BHK Residence, Kokapet') {
-                p4.title = 'A 2BHK Residence, Kokapet';
+              if (p4.title !== 'The Ivory Retreat') {
+                p4.title = 'The Ivory Retreat';
                 changed4 = true;
               }
               if (p4.description !== DEFAULT_PROJECTS[3].description) {
@@ -2460,8 +2460,8 @@ export const getCMSData = (key, fallback = null) => {
                 p5.afterImages = ['/images/projects/gandipet_kiran_2bhk/kiran_after.webp'];
                 changed5 = true;
               }
-              if (p5.title !== 'A 2BHK Residence, Gandipet') {
-                p5.title = 'A 2BHK Residence, Gandipet';
+              if (p5.title !== 'The Panelled Muse') {
+                p5.title = 'The Panelled Muse';
                 changed5 = true;
               }
               if (p5.description !== DEFAULT_PROJECTS[4].description) {
@@ -2486,8 +2486,8 @@ export const getCMSData = (key, fallback = null) => {
                 p6.afterImages = ['/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp'];
                 changed6 = true;
               }
-              if (p6.title !== 'A 2BHK Residence, Kondapur') {
-                p6.title = 'A 2BHK Residence, Kondapur';
+              if (p6.title !== 'The Dusk Lounge') {
+                p6.title = 'The Dusk Lounge';
                 changed6 = true;
               }
               if (p6.description !== DEFAULT_PROJECTS[5].description) {
@@ -2927,7 +2927,10 @@ export const getCtaDataForPage = (settings = {}, pageKey = 'home', defaultCta = 
   const pageBg    = settings[`${pk}_cta_bgImage`] || settings[`${pk}_cta_image`];
   const pageVis   = settings[`${pk}_cta_visible`];
 
-  const headline = ctaObj.heading || pageTitle || defaultCta.headline || defaultCta.heading || 'Ready to Transform Your Space?';
+  let headline = ctaObj.heading || pageTitle || defaultCta.headline || defaultCta.heading || 'Ready to Transform Your Space?';
+  if (typeof headline === 'string' && /Engineering\.\s*Elegance\.\s*Experience\./i.test(headline)) {
+    headline = "Elegance. Experience.\nEspacio.";
+  }
   const subtext  = ctaObj.description || pageDesc || defaultCta.subtext || defaultCta.description || "Every great space starts with a single conversation. Let's talk about your vision and bring it to life together.";
   const rawButtonText = ctaObj.buttonText || pageBtn || defaultCta.buttonText || "LET'S TALK ↗";
   const buttonText = typeof rawButtonText === 'string'

@@ -211,9 +211,18 @@ const MainLayout = () => {
 
 function App() {
   useEffect(() => {
-    // Use native compositor scrolling on pure touch mobile devices; desktop gets Lenis 60fps smooth scroll
-    const isMobileTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse) and (hover: none)').matches;
-    if (isMobileTouch) return;
+    // Ensure Lenis NEVER runs on touch devices, mobile screens, or tablets (< 1024px)
+    // Native mobile browsers have hardware-accelerated compositor momentum scrolling.
+    const isTouchOrMobile = typeof window !== 'undefined' && (
+      'ontouchstart' in window ||
+      (navigator && navigator.maxTouchPoints > 0) ||
+      window.innerWidth < 1024 ||
+      (window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
+    );
+    if (isTouchOrMobile) {
+      window.lenis = null;
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 0.75,
@@ -222,8 +231,10 @@ function App() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.0,
+      touchMultiplier: 0, // NEVER hijack touch events
+      syncTouch: false,
       infinite: false,
+      overscroll: false,
     });
 
     window.lenis = lenis;

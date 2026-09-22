@@ -256,7 +256,19 @@ const Navbar = () => {
       </AnimatePresence>
 
       {/* Mobile Sticky Bottom Tab Bar (D'LIFE inspired) */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full z-45 bg-bg/95 backdrop-blur-md border-t border-ink-border/30 h-20 flex items-center justify-around px-4 shadow-[0_-6px_20px_rgba(0,0,0,0.06)] pb-safe">
+      <div 
+        className="lg:hidden fixed bottom-0 left-0 w-full z-[100] bg-bg/95 backdrop-blur-md border-t border-ink-border/30 flex items-center justify-around px-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transform-gpu will-change-transform"
+        style={{
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
+          height: 'calc(62px + env(safe-area-inset-bottom, 0px))',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          boxSizing: 'content-box',
+          touchAction: 'manipulation'
+        }}
+      >
         {/* Tab: Services */}
         <Link 
           to="/services" 

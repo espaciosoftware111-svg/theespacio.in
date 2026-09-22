@@ -397,7 +397,19 @@ const Projects = () => {
                             </span>
                           </div>
                           <h3 className="font-display text-[22px] font-bold text-ink group-hover:text-ink-soft transition-colors mb-2 leading-snug select-none">
-                            {project.title}
+                            {(project.slug === 'rajapushpa-provincia-3bhk' || project.title === 'A 3BHK Residence, Narsingi')
+                              ? 'The Arcstone Residence'
+                              : (project.slug === 'my-home-sayuk-3bhk' || project.title === 'A 3BHK Residence, Tellapur')
+                              ? 'The Lattice Retreat'
+                              : (project.slug === 'kokapet-2bhk' || project._id === 'proj_3_kokapet_nagesh')
+                              ? 'The Boucle Residence'
+                              : (project.slug === 'kokapet-urban-2bhk' || project._id === 'proj_4_kokapet_rahul')
+                              ? 'The Ivory Retreat'
+                              : (project.slug === 'gandipet-modern-retro-2bhk' || project._id === 'proj_5_gandipet_kiran')
+                              ? 'The Panelled Muse'
+                              : (project.slug === 'kondapur-minimalist-2bhk' || project._id === 'proj_6_kondapur_venkatesh')
+                              ? 'The Dusk Lounge'
+                              : project.title}
                           </h3>
                           <p className="font-sans text-[13px] text-ink-soft select-none">{project.location}</p>
                           <div className="pt-4 flex items-center gap-1 text-[11px] text-ink font-semibold uppercase tracking-wider group-hover:translate-x-0.5 transition-transform select-none">

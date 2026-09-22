@@ -24,7 +24,7 @@ export const DEFAULT_CTA_BG = COMPANY_CTA_BG;
 
 export const PAGE_CTAS = {
   HOME: {
-    headline: "Engineering. Elegance.\nExperience.",
+    headline: "Elegance. Experience.\nEspacio.",
     subtext: "From concept to handover, we build luxury spaces with master craftsmanship and transparent pricing.",
     buttonText: "Book Consultation ↗",
     buttonHoverText: "Let's Connect ↗",

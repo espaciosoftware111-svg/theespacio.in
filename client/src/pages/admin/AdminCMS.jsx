@@ -275,7 +275,7 @@ export const AdminFAQs = () => {
 export const AdminSettings = () => {
   const [settings, setSettings] = useState({
     siteName: 'ESPACIO Interiors',
-    tagline: 'Engineering. Elegance. Experience.',
+    tagline: 'Elegance. Experience. Espacio.',
     adminEmail: 'tarunuttupulusu@gmail.com',
     instagram: 'https://www.instagram.com/theespacio.in',
     facebook: 'https://www.facebook.com/share/1YCa9RnM8a/',
@@ -343,7 +343,7 @@ export const AdminSettings = () => {
           <h2 className="font-editorial text-lg font-bold text-white">Brand Identity</h2>
           {[
             { label: 'Site Name', key: 'siteName', placeholder: 'ESPACIO Interiors' },
-            { label: 'Tagline', key: 'tagline', placeholder: 'Engineering. Elegance. Experience.' },
+            { label: 'Tagline', key: 'tagline', placeholder: 'Elegance. Experience. Espacio.' },
             { label: 'Admin Email', key: 'adminEmail', placeholder: 'tarunuttupulusu@gmail.com', type: 'email' },
           ].map(({ label, key, placeholder, type }) => (
             <div key={key} className="space-y-1.5">

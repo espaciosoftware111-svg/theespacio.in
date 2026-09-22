@@ -96,13 +96,21 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+    overflow-x: hidden;
+    max-width: 100%;
+    background-color: #F8F5F0;
   }
 
   body {
-    @apply bg-bg text-ink font-sans antialiased pb-20 lg:pb-0;
+    @apply bg-bg text-ink font-sans antialiased;
     font-family: 'Montserrat', sans-serif;
     font-feature-settings: "cv09" on, "cv03" on, "cv04" on, "cv11" on;
     font-size: 14.5px;
+    overscroll-behavior-y: none;
+    overflow-x: hidden;
+    max-width: 100%;
+    background-color: #F8F5F0;
   }
 
   h1, h2, h3, h4, h5, h6 {

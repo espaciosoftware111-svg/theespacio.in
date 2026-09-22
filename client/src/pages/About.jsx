@@ -183,6 +183,12 @@ const About = () => {
   const textY = useTransform(heroScroll, [0, 0.8], ['0px', '-45px']);
   const textOpacity = useTransform(heroScroll, [0, 0.7], [1, 0.25]);
 
+  const cleanMilestone = (val) => {
+    if (!val) return 'Milestone';
+    if (/engineering\s*milestone/i.test(val)) return 'Milestone';
+    return val;
+  };
+
   const [aboutData, setAboutData] = useState(() => {
     const s = getCMSData(STORAGE_KEYS.SETTINGS);
     return {
@@ -200,7 +206,7 @@ const About = () => {
       storyP2: getNonEmpty(s?.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),
       storyP3: getNonEmpty(s?.about_story_p3, "That's the world this brand comes from. Not showrooms. Job sites. Not mood boards. Load-bearing walls, material tolerances, what actually holds up over decades and what doesn't."),
       storyImage: getValidStoryImage(s?.about_story_image, defaultAboutStoryImage),
-      milestoneLabel: getNonEmpty(s?.about_milestone_label, 'Engineering Milestone'),
+      milestoneLabel: cleanMilestone(s?.about_milestone_label),
       milestoneText: getNonEmpty(s?.about_milestone_text, 'Lakeside residence chosen as filming location for Guntur Kaaram'),
       milestoneVisible: s?.about_milestone_visible !== false,
 
@@ -243,7 +249,7 @@ const About = () => {
           storyP2: getNonEmpty(s.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),
           storyP3: getNonEmpty(s.about_story_p3, "That's the world this brand comes from. Not showrooms. Job sites. Not mood boards. Load-bearing walls, material tolerances, what actually holds up over decades and what doesn't."),
           storyImage: getValidStoryImage(s.about_story_image, defaultAboutStoryImage),
-          milestoneLabel: getNonEmpty(s.about_milestone_label, 'Engineering Milestone'),
+          milestoneLabel: cleanMilestone(s.about_milestone_label),
           milestoneText: getNonEmpty(s.about_milestone_text, 'Lakeside residence chosen as filming location for Guntur Kaaram'),
           milestoneVisible: s.about_milestone_visible !== false,
 
