@@ -370,20 +370,30 @@ const ProjectDetails = () => {
       ? p.gallery
       : [p?.heroImage || '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg'];
     
-    // Curated architectural accents
+    // Curated architectural accents that swing the backdrop color
     const accents = ['#c5a572', '#8c7355', '#3d5a80', '#9c6644', '#588157', '#6c584c', '#7f5539'];
 
-    return rawImages.slice(0, 10).map((img, idx) => {
-      const roomName = getProjectRoomName ? getProjectRoomName(img, p?.title, idx) : `Space 0${idx + 1}`;
-      const parts = roomName.split(' ');
+    return rawImages.slice(0, 12).map((img, idx) => {
+      // 1. Pre-resolve fallback map immediately for Google Drive hosted images
+      const fname = (img || '').split('/').pop()?.split('?')[0] || '';
+      const resolvedSrc = IMAGE_FALLBACK_MAP[fname] || img;
+
+      // 2. Correct getProjectRoomName signature (project, img, idx)
+      const roomName = getProjectRoomName ? getProjectRoomName(p, img, idx) : `Space 0${idx + 1}`;
+      const parts = (roomName || `Space 0${idx + 1}`).split(' ');
       const title = parts.length > 2
         ? `${parts.slice(0, Math.ceil(parts.length / 2)).join(' ')}\n${parts.slice(Math.ceil(parts.length / 2)).join(' ')}`
-        : (roomName.includes('&') ? roomName.replace('&', '\n&') : `${roomName}\nDomain`);
+        : (roomName.includes('&') ? roomName.replace('&', '\n&') : `${roomName}\nSuite`);
+
+      // 3. Optimized image source
+      const finalImage = resolvedSrc.startsWith('http') 
+        ? resolvedSrc 
+        : getOptimizedImageUrl(resolvedSrc, 1920, 92);
 
       return {
         id: `${p?.slug || 'proj'}-${idx}`,
         title,
-        image: getOptimizedImageUrl(img, 1920, 92),
+        image: finalImage,
         credit: `${(p?.title || 'ESPACIO RESIDENCE').toUpperCase()} • ${(p?.style || 'BESPOKE ARCHITECTURE').toUpperCase()}`,
         meta: [
           (p?.location || 'HYDERABAD').toUpperCase(),

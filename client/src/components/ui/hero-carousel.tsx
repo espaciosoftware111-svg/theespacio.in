@@ -77,6 +77,33 @@ const RAIL = 0.2; // progress rail width ÷ stage width
 const WHEEL_THRESHOLD = 60;
 const WHEEL_COOLDOWN = 420;
 
+const FALLBACK_MAP: Record<string, string> = {
+  'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
+  'dimmu_01.webp': 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-',
+  'dimmu_06.webp': 'https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F',
+  'dimmu_03.webp': 'https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ',
+  'dimmu_10.webp': 'https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar',
+  'dimmu_09.webp': 'https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K',
+  'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
+  'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
+  'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
+  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-'
+};
+
+const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const target = e.currentTarget;
+  const src = target.src || '';
+  const fname = src.split('/').pop()?.split('?')[0] || '';
+  if (FALLBACK_MAP[fname] && !src.includes(FALLBACK_MAP[fname])) {
+    target.src = FALLBACK_MAP[fname];
+    return;
+  }
+  const defaultFallback = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80';
+  if (!src.includes('images.unsplash.com')) {
+    target.src = defaultFallback;
+  }
+};
+
 /* Film grain, as a self-contained SVG so the component carries no assets. */
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -246,6 +273,7 @@ export function HeroCarousel({
         >
           <motion.img
             src={active.image}
+            onError={handleImgError}
             alt=""
             aria-hidden
             draggable={false}
@@ -418,6 +446,7 @@ export function HeroCarousel({
             >
               <img
                 src={item.image}
+                onError={handleImgError}
                 alt=""
                 draggable={false}
                 className="h-full w-full object-cover"
