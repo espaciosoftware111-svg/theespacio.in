@@ -3762,6 +3762,17 @@ const WhatWeDo = () => {
       {spacesSettings.spaces_grid_visible !== false && (() => {
         const visibleCategories = displayCategories.filter(c => c.visible !== false);
         
+        // Helper to safely resolve category hero images with robust fallback
+        const getCategoryHero = (cat) => {
+          if (!cat) return '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+          const img = cat.heroImage || cat.galleryImages?.[0];
+          if (!img || img.includes('drive.google.com') || img.includes('undefined')) {
+            const fallback = mockCategories.find(m => m.slug === cat.slug);
+            if (fallback?.heroImage) return fallback.heroImage;
+          }
+          return img || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+        };
+
         // Arrange categories for 3-Column Sticky-Scroll:
         // Center sticky column pins 3 flagship spaces in place while left and right columns scroll
         const centerPinnedSlugs = ['master-bedroom', 'living-room', 'tv-units'];
@@ -3784,176 +3795,210 @@ const WhatWeDo = () => {
         const rightCategories = remainingCategories.filter((_, idx) => idx % 2 !== 0);
 
         return (
-          <section className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 py-16 sm:py-20 lg:py-24">
-            
-            {/* Section Header */}
-            <div className="mb-10 sm:mb-14 text-center max-w-2xl mx-auto">
-              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-gold block mb-2.5">
-                Architectural Spaces & Form
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
-                Curated Living Spaces
-              </h2>
-              <p className="font-sans text-xs sm:text-sm text-ink-soft mt-3 leading-relaxed">
-                Explore bespoke modular craftsmanship, structural wood alignments, and high-tolerance interior architecture across every room.
-              </p>
-            </div>
-
-            {/* 1. Mobile & Tablet Grid (< lg) - Natural Touch Scroll */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:hidden">
-              {visibleCategories.map((cat, idx) => (
-                <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
-                  <Link 
-                    to={`/spaces/${cat.slug}`}
-                    className="group relative rounded-[22px] overflow-hidden aspect-[4/3] bg-bg-dark block shadow-md hover:shadow-xl border border-ink-border/30 transition-all duration-500"
-                  >
-                    <img 
-                      src={cat.heroImage} 
-                      alt={cat.name} 
-                      loading="lazy" 
-                      decoding="async"
-                      style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                      className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/30 to-transparent" />
-                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                      <div>
-                        <h3 className="font-display text-xl sm:text-2xl font-bold text-bg mb-1.5 group-hover:text-gold transition-colors duration-300">
-                          {cat.name}
-                        </h3>
-                        <p className="font-sans text-xs text-bg/70 max-w-[280px] leading-relaxed line-clamp-2">
-                          {cat.description?.substring(0, 90)}...
-                        </p>
-                      </div>
-                      <div className="shrink-0 w-9 h-9 rounded-full border border-bg/30 flex items-center justify-center text-bg group-hover:bg-gold group-hover:border-gold group-hover:text-ink transition-all duration-300">
-                        <ArrowUpRight size={15} />
-                      </div>
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* 2. Desktop & Laptop 3-Column Sticky-Scroll Animation Layout (>= lg) */}
-            <div className="hidden lg:grid grid-cols-12 gap-6 items-start relative">
+          <section className="w-full bg-[#0a0a0c] py-10 sm:py-14 lg:py-16 px-2 sm:px-3 lg:px-4 border-y border-white/5">
+            <div className="max-w-[1720px] mx-auto">
               
-              {/* Left Column (Normal Scroll) */}
-              <div className="col-span-4 space-y-6">
-                {leftCategories.map((cat, idx) => (
-                  <Reveal key={cat.slug || `left-${idx}`} delay={Math.min((idx % 3) * 0.06, 0.15)}>
-                    <Link 
-                      to={`/spaces/${cat.slug}`}
-                      className="group relative rounded-[24px] overflow-hidden aspect-[4/3] bg-bg-dark block shadow-lg hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
-                    >
-                      <img 
-                        src={cat.heroImage} 
-                        alt={cat.name} 
-                        loading="lazy" 
-                        decoding="async"
-                        style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                        className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                        <div className="space-y-1.5 pr-3">
-                          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold/90 block">
-                            ESPACIO Space
-                          </span>
-                          <h3 className="font-display text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
-                            {cat.name}
-                          </h3>
-                          <p className="font-sans text-[12.5px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
-                            {cat.description?.substring(0, 95)}...
-                          </p>
-                        </div>
-                        <div className="shrink-0 w-10 h-10 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal transition-all duration-300 shadow-md">
-                          <ArrowUpRight size={16} />
-                        </div>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
+              {/* Section Header */}
+              <div className="mb-8 sm:mb-10 text-center max-w-2xl mx-auto px-4">
+                <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-gold block mb-2">
+                  Architectural Spaces & Form
+                </span>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                  Curated Living Spaces
+                </h2>
+                <p className="font-sans text-xs sm:text-sm text-neutral-400 mt-2.5 leading-relaxed">
+                  Explore bespoke modular craftsmanship, structural wood alignments, and high-tolerance interior architecture across every room.
+                </p>
               </div>
 
-              {/* Center STICKY Column - Pinned in Viewport (top-24 h-screen grid-rows-3) */}
-              <div className="col-span-4 sticky top-24 h-[calc(100vh-7.5rem)] min-h-[580px] max-h-[820px] grid grid-rows-3 gap-5">
-                {centerCategories.map((cat, idx) => (
-                  <Link 
-                    key={cat.slug || `center-${idx}`}
-                    to={`/spaces/${cat.slug}`}
-                    className="group relative rounded-[22px] overflow-hidden h-full w-full bg-bg-dark block shadow-xl hover:shadow-2xl border-2 border-gold/40 hover:border-gold transition-all duration-500"
-                  >
-                    <img 
-                      src={cat.heroImage} 
-                      alt={cat.name} 
-                      loading="lazy" 
-                      decoding="async"
-                      style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                      className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
-                    
-                    {/* Pinned Showcase Tag */}
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-gold/40">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                      <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-gold">Featured Space</span>
-                    </div>
-
-                    <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-                      <div className="space-y-1 pr-2">
-                        <h3 className="font-display text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-snug">
-                          {cat.name}
-                        </h3>
-                        <p className="font-sans text-[11.5px] text-white/75 max-w-[260px] leading-relaxed line-clamp-1">
-                          {cat.description?.substring(0, 75)}...
-                        </p>
-                      </div>
-                      <div className="shrink-0 w-9 h-9 rounded-full bg-gold text-charcoal flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                        <ArrowUpRight size={15} />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+              {/* 1. Mobile & Tablet Grid (< lg) - Tight Gap */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 lg:hidden">
+                {visibleCategories.map((cat, idx) => {
+                  const heroSrc = getCategoryHero(cat);
+                  return (
+                    <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
+                      <Link 
+                        to={`/spaces/${cat.slug}`}
+                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-md hover:shadow-xl border border-white/10 transition-all duration-500"
+                      >
+                        <img 
+                          src={heroSrc} 
+                          alt={cat.name} 
+                          loading="lazy" 
+                          decoding="async"
+                          onError={(e) => {
+                            const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                            if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
+                          }}
+                          style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between">
+                          <div>
+                            <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-gold/90 block mb-0.5">
+                              ESPACIO Space
+                            </span>
+                            <h3 className="font-display text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-gold transition-colors duration-300">
+                              {cat.name}
+                            </h3>
+                            <p className="font-sans text-xs text-neutral-300 max-w-[280px] leading-relaxed line-clamp-2">
+                              {cat.description?.substring(0, 90)}...
+                            </p>
+                          </div>
+                          <div className="shrink-0 w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300">
+                            <ArrowUpRight size={14} />
+                          </div>
+                        </div>
+                      </Link>
+                    </Reveal>
+                  );
+                })}
               </div>
 
-              {/* Right Column (Normal Scroll) */}
-              <div className="col-span-4 space-y-6">
-                {rightCategories.map((cat, idx) => (
-                  <Reveal key={cat.slug || `right-${idx}`} delay={Math.min((idx % 3) * 0.06, 0.15)}>
-                    <Link 
-                      to={`/spaces/${cat.slug}`}
-                      className="group relative rounded-[24px] overflow-hidden aspect-[4/3] bg-bg-dark block shadow-lg hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
-                    >
-                      <img 
-                        src={cat.heroImage} 
-                        alt={cat.name} 
-                        loading="lazy" 
-                        decoding="async"
-                        style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                        className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                        <div className="space-y-1.5 pr-3">
-                          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold/90 block">
-                            ESPACIO Space
-                          </span>
-                          <h3 className="font-display text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
-                            {cat.name}
-                          </h3>
-                          <p className="font-sans text-[12.5px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
-                            {cat.description?.substring(0, 95)}...
-                          </p>
-                        </div>
-                        <div className="shrink-0 w-10 h-10 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal transition-all duration-300 shadow-md">
-                          <ArrowUpRight size={16} />
-                        </div>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
+              {/* 2. Desktop & Laptop 3-Column Sticky-Scroll Animation Layout (>= lg) */}
+              {/* Tight gap-2 grid matching reference screenshot */}
+              <div className="hidden lg:grid grid-cols-12 gap-2 items-start relative">
+                
+                {/* Left Column (Normal Scroll) */}
+                <div className="col-span-4 grid gap-2">
+                  {leftCategories.map((cat, idx) => {
+                    const heroSrc = getCategoryHero(cat);
+                    return (
+                      <Reveal key={cat.slug || `left-${idx}`} delay={Math.min((idx % 3) * 0.05, 0.12)}>
+                        <Link 
+                          to={`/spaces/${cat.slug}`}
+                          className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-md hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
+                        >
+                          <img 
+                            src={heroSrc} 
+                            alt={cat.name} 
+                            loading="lazy" 
+                            decoding="async"
+                            onError={(e) => {
+                              const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                              if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
+                            }}
+                            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                          <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                            <div className="space-y-1 pr-3">
+                              <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold/90 block">
+                                ESPACIO Space
+                              </span>
+                              <h3 className="font-display text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
+                                {cat.name}
+                              </h3>
+                              <p className="font-sans text-[12px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
+                                {cat.description?.substring(0, 95)}...
+                              </p>
+                            </div>
+                            <div className="shrink-0 w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300 shadow-md">
+                              <ArrowUpRight size={15} />
+                            </div>
+                          </div>
+                        </Link>
+                      </Reveal>
+                    );
+                  })}
+                </div>
 
+                {/* Center STICKY Column - Pinned in Viewport (grid-rows-3, gap-2) */}
+                <div className="col-span-4 sticky top-20 h-[calc(100vh-5.5rem)] min-h-[580px] max-h-[860px] grid grid-rows-3 gap-2">
+                  {centerCategories.map((cat, idx) => {
+                    const heroSrc = getCategoryHero(cat);
+                    return (
+                      <Link 
+                        key={cat.slug || `center-${idx}`}
+                        to={`/spaces/${cat.slug}`}
+                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden h-full w-full bg-neutral-900 block shadow-lg hover:shadow-2xl border border-gold/30 hover:border-gold transition-all duration-500"
+                      >
+                        <img 
+                          src={heroSrc} 
+                          alt={cat.name} 
+                          loading="lazy" 
+                          decoding="async"
+                          onError={(e) => {
+                            const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                            if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
+                          }}
+                          style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                          className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                        
+                        {/* Pinned Showcase Tag */}
+                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-gold/40">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                          <span className="font-sans text-[8.5px] font-bold uppercase tracking-widest text-gold">Featured Space</span>
+                        </div>
+
+                        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                          <div className="space-y-0.5 pr-2">
+                            <h3 className="font-display text-lg xl:text-xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-snug">
+                              {cat.name}
+                            </h3>
+                            <p className="font-sans text-[11px] text-white/75 max-w-[260px] leading-relaxed line-clamp-1">
+                              {cat.description?.substring(0, 75)}...
+                            </p>
+                          </div>
+                          <div className="shrink-0 w-8 h-8 rounded-full bg-gold text-neutral-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <ArrowUpRight size={14} />
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Right Column (Normal Scroll) */}
+                <div className="col-span-4 grid gap-2">
+                  {rightCategories.map((cat, idx) => {
+                    const heroSrc = getCategoryHero(cat);
+                    return (
+                      <Reveal key={cat.slug || `right-${idx}`} delay={Math.min((idx % 3) * 0.05, 0.12)}>
+                        <Link 
+                          to={`/spaces/${cat.slug}`}
+                          className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-md hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
+                        >
+                          <img 
+                            src={heroSrc} 
+                            alt={cat.name} 
+                            loading="lazy" 
+                            decoding="async"
+                            onError={(e) => {
+                              const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                              if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
+                            }}
+                            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                          <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                            <div className="space-y-1 pr-3">
+                              <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold/90 block">
+                                ESPACIO Space
+                              </span>
+                              <h3 className="font-display text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
+                                {cat.name}
+                              </h3>
+                              <p className="font-sans text-[12px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
+                                {cat.description?.substring(0, 95)}...
+                              </p>
+                            </div>
+                            <div className="shrink-0 w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300 shadow-md">
+                              <ArrowUpRight size={15} />
+                            </div>
+                          </div>
+                        </Link>
+                      </Reveal>
+                    );
+                  })}
+                </div>
+
+              </div>
             </div>
           </section>
         );
