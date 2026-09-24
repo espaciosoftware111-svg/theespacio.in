@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, MapPin, Home, CheckCircle2, Layers } from 'lucide-react';
+import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getProjectRoomName } from '../utils/projectRooms';
@@ -34,11 +34,10 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(false);
-
-
-
-
-  // Before/After drag slider state
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [visiblePhotosCount, setVisiblePhotosCount] = useState(4);
+  const gallerySectionRef = useRef(null);  // Before/After drag slider state
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
@@ -139,6 +138,16 @@ const ProjectDetails = () => {
   }, [slug]);
 
   // Global Escape key listener to close lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Offline mock project metadata fallbacks matching display expectations
   const getMockFallback = () => {
     const unsplashPool = {
@@ -278,7 +287,24 @@ const ProjectDetails = () => {
     p.gallery = Array.from(new Set(p.gallery.filter(img => !img.includes('venkatesh_gallery_22.webp'))));
   }
 
+  const batchSize = 4;
+  const totalPhotos = p?.gallery?.length || 0;
+  const hasMore = visiblePhotosCount < totalPhotos;
+  const canShowLess = visiblePhotosCount > batchSize;
 
+  const handleLoadMorePhotos = () => {
+    setVisiblePhotosCount((prev) => Math.min(totalPhotos, prev + batchSize));
+  };
+
+  const handleShowLessPhotos = () => {
+    setVisiblePhotosCount((prev) => Math.max(batchSize, prev - batchSize));
+    if (gallerySectionRef.current) {
+      const rect = gallerySectionRef.current.getBoundingClientRect();
+      if (rect.top < -50) {
+        gallerySectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   const carouselItems = useMemo(() => {
     const rawImages = (Array.isArray(p?.gallery) && p.gallery.length > 0)
@@ -534,10 +560,152 @@ const ProjectDetails = () => {
           </section>
         );
       })()}
+      {/* ── MOBILE ONLY: Room Photos Gallery at Bottom of Section (< md) ── */}
+      {p.gallery?.length > 0 && (
+        <section ref={gallerySectionRef} className="md:hidden max-w-[1440px] mx-auto px-4 sm:px-6 py-12 scroll-mt-20">
+          <div className="flex flex-col gap-1.5 mb-6">
+            <span className="font-sans text-[11px] font-bold text-gold uppercase tracking-widest">
+              Captured Spaces & Details
+            </span>
+            <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+              Project Photos & Rooms
+            </h2>
+            <p className="font-sans text-xs text-walnut">
+              Showing {Math.min(visiblePhotosCount, p.gallery.length)} of {p.gallery.length} photos captured for this project. Tap photo to view full screen.
+            </p>
+          </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {p.gallery.slice(0, visiblePhotosCount).map((imgUrl, index) => {
+              const roomName = getProjectRoomName(p, imgUrl, index);
+              return (
+                <div
+                  key={index}
+                  onClick={() => { setActivePhotoIdx(index); setLightboxOpen(true); }}
+                  className="rounded-[18px] overflow-hidden border border-walnut/10 shadow-sm group active:scale-[0.99] cursor-pointer relative bg-charcoal flex flex-col hover:border-gold/40 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
+                    <img
+                      src={getOptimizedImageUrl(imgUrl, 900, 88)}
+                      onError={handleImgError}
+                      loading="lazy"
+                      alt={`${p.title} - ${roomName}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg">
+                        <Maximize2 size={15} strokeWidth={2} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3 bg-bg-card border-t border-ink-border/20 flex items-center justify-between text-xs font-sans">
+                    <span className="text-ink font-semibold truncate tracking-wide text-xs">{roomName}</span>
+                    <span className="text-gold font-bold shrink-0 text-[10.5px] uppercase tracking-wider">View ↗</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
+          {/* Load More / Show Less Controls */}
+          {totalPhotos > batchSize && (
+            <div className="mt-8 flex flex-col items-center justify-center gap-2.5">
+              {hasMore && (
+                <button
+                  type="button"
+                  onClick={handleLoadMorePhotos}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-charcoal text-cream hover:bg-gold hover:text-charcoal transition-all duration-300 shadow-md font-sans text-xs uppercase tracking-wider font-bold group cursor-pointer border border-gold/30"
+                >
+                  <span>Load More Photos ({totalPhotos - visiblePhotosCount} remaining)</span>
+                  <ChevronDown size={14} className="group-hover:translate-y-0.5 transition-transform text-gold group-hover:text-charcoal" />
+                </button>
+              )}
 
+              {canShowLess && (
+                <button
+                  type="button"
+                  onClick={handleShowLessPhotos}
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-cream/90 hover:bg-cream text-charcoal border border-walnut/20 font-sans text-xs uppercase tracking-wider font-bold group cursor-pointer shadow-xs"
+                >
+                  <ChevronUp size={14} className="group-hover:-translate-y-0.5 transition-transform text-gold" />
+                  <span>Show Less</span>
+                </button>
+              )}
+            </div>
+          )}
+        </section>
+      )}
 
+      {/* Lightbox Modal (For Mobile tap-to-expand) */}
+      {lightboxOpen && p.gallery && (() => {
+        const activeRoomName = getProjectRoomName(p, p.gallery[activePhotoIdx], activePhotoIdx);
+        return (
+          <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 md:p-8">
+            <div className="w-full max-w-[1440px] flex items-center justify-between text-white border-b border-white/10 pb-3">
+              <div>
+                <h3 className="font-editorial text-base sm:text-lg font-bold truncate max-w-[240px] sm:max-w-none">
+                  {p.title} <span className="text-gold font-normal mx-1">•</span> <span className="text-white/90 font-sans font-medium text-sm">{activeRoomName}</span>
+                </h3>
+                <p className="font-sans text-[11px] text-white/60">
+                  Photo {activePhotoIdx + 1} of {p.gallery.length}
+                </p>
+              </div>
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="bg-white/15 hover:bg-white/25 text-white p-2 rounded-full transition-colors font-bold text-xs uppercase px-3 py-1.5 cursor-pointer flex items-center gap-1"
+              >
+                <X size={14} />
+                <span>Close</span>
+              </button>
+            </div>
+
+            <div className="relative w-full max-w-4xl h-[65vh] flex items-center justify-center my-auto">
+              <img
+                src={getOptimizedImageUrl(p.gallery[activePhotoIdx], 1400, 92)}
+                onError={handleImgError}
+                alt={`${p.title} - ${activeRoomName}`}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              />
+              {p.gallery.length > 1 && (
+                <button
+                  onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? p.gallery.length - 1 : prev - 1))}
+                  className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-2.5 rounded-full transition-colors border border-white/20 cursor-pointer"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+              )}
+              {p.gallery.length > 1 && (
+                <button
+                  onClick={() => setActivePhotoIdx((prev) => (prev === p.gallery.length - 1 ? 0 : prev + 1))}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-2.5 rounded-full transition-colors border border-white/20 cursor-pointer"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center space-x-2 overflow-x-auto max-w-full pt-3 pb-1 scrollbar-none">
+              {p.gallery.map((img, i) => {
+                const thumbRoom = getProjectRoomName(p, img, i);
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActivePhotoIdx(i)}
+                    title={thumbRoom}
+                    className={`w-14 h-10 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
+                      activePhotoIdx === i ? 'border-gold scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-80'
+                    }`}
+                  >
+                    <img src={getOptimizedImageUrl(img, 150, 75)} onError={handleImgError} alt={thumbRoom} className="w-full h-full object-cover" />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* What the Client Says About Our Work Section */}
       {(p.testimonial?.text || p.testimonialText) && (
