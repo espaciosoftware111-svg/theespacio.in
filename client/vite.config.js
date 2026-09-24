@@ -87,6 +87,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, './src'),
       // PERF: Pin exact React paths to prevent duplicate React instances
       react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),

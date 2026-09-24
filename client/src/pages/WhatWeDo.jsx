@@ -13,6 +13,7 @@ import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 import { getCMSData, setCMSData, STORAGE_KEYS, notifyCMSUpdate } from '../utils/cmsStore';
 import { getCatalogItem } from '../data/spacesCatalog';
+import PageCTASection from '../components/common/PageCTASection';
 
 /* ── Magnetic Item for FAQ (Identical to Home page) ────────────────────────── */
 const MagneticItem = ({ children, className, onClick, isOpen }) => {
@@ -2557,12 +2558,50 @@ const WhatWeDo = () => {
 
   const [spacesHeroState, setSpacesHeroState] = useState(() => {
     const s = getCMSData(STORAGE_KEYS.SETTINGS);
-    const hasValidSlides = Array.isArray(s?.spaces_before_after_slides) && s.spaces_before_after_slides.length > 0 && s.spaces_before_after_slides[0]?.before?.includes('spaces_hero_before');
+    const hasValidSlides = Array.isArray(s?.spaces_before_after_slides) && s.spaces_before_after_slides.length > 0 && Boolean(s.spaces_before_after_slides[0]?.before);
     return {
       beforeLabel: getNonEmpty(s?.spaces_before_label, 'BEFORE'),
       afterLabel: getNonEmpty(s?.spaces_after_label, 'AFTER'),
       slides: hasValidSlides ? s.spaces_before_after_slides : transformationSlides,
       visible: s?.spaces_hero_visible !== false
+    };
+  });
+
+  const [spacesSettings, setSpacesSettings] = useState(() => {
+    const s = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+    return {
+      spaces_hero_visible: s.spaces_hero_visible !== false,
+      spaces_grid_visible: s.spaces_grid_visible !== false,
+      spaces_trust_visible: s.spaces_trust_visible !== false,
+      trust_stat1_val: s.trust_stat1_val || '25',
+      trust_stat1_suffix: s.trust_stat1_suffix || '+',
+      trust_stat1_label: s.trust_stat1_label || 'Projects',
+      trust_stat1_sublabel: s.trust_stat1_sublabel || 'Completed Turnkey Residences',
+      trust_stat2_val: s.trust_stat2_val || '40',
+      trust_stat2_suffix: s.trust_stat2_suffix || '+',
+      trust_stat2_label: s.trust_stat2_label || 'Years',
+      trust_stat2_sublabel: s.trust_stat2_sublabel || 'Combined Construction Legacy',
+      trust_stat3_val: s.trust_stat3_val || '50000',
+      trust_stat3_suffix: s.trust_stat3_suffix || '+',
+      trust_stat3_label: s.trust_stat3_label || 'Sq.Ft',
+      trust_stat3_sublabel: s.trust_stat3_sublabel || 'Designed & Executed',
+      trust_stat4_val: s.trust_stat4_val || '10',
+      trust_stat4_suffix: s.trust_stat4_suffix || '-Year',
+      trust_stat4_label: s.trust_stat4_label || 'Warranty',
+      trust_stat4_sublabel: s.trust_stat4_sublabel || 'Comprehensive Hardware Warranty',
+      space_detail_hero_visible: s.space_detail_hero_visible !== false,
+      space_intro_visible: s.space_intro_visible !== false,
+      space_gallery_visible: s.space_gallery_visible !== false,
+      space_materials_visible: s.space_materials_visible !== false,
+      space_materials_heading: s.space_materials_heading || 'Where design meets precision.',
+      space_materials_tag: s.space_materials_tag || 'MATERIALS & CRAFTSMANSHIP',
+      space_process_visible: s.space_process_visible !== false,
+      space_process_heading: s.space_process_heading || 'Our 4-Step Design & Build Process',
+      space_process_tag: s.space_process_tag || 'Turnkey Execution Flow',
+      space_process_desc: s.space_process_desc || 'Every detail is planned, confirmed in 3D, precision-cut in our factory, and delivered on schedule without vendor coordination stress.',
+      space_faq_visible: s.space_faq_visible !== false,
+      space_crosslinks_visible: s.space_crosslinks_visible !== false,
+      space_cta_visible: s.space_cta_visible !== false,
     };
   });
 
@@ -2574,18 +2613,53 @@ const WhatWeDo = () => {
 
   useEffect(() => {
     const syncCMS = async () => {
-      const settings = getCMSData(STORAGE_KEYS.SETTINGS);
-      if (settings) {
-        const hasValidSlides = Array.isArray(settings.spaces_before_after_slides) && settings.spaces_before_after_slides.length > 0 && settings.spaces_before_after_slides[0]?.before?.includes('spaces_hero_before');
-        setSpacesHeroState({
-          beforeLabel: getNonEmpty(settings.spaces_before_label, 'BEFORE'),
-          afterLabel: getNonEmpty(settings.spaces_after_label, 'AFTER'),
-          slides: hasValidSlides ? settings.spaces_before_after_slides : transformationSlides,
-          visible: settings.spaces_hero_visible !== false
-        });
-        if (Array.isArray(settings.spaces_list) && settings.spaces_list.length > 0) {
-          setSpacesList(settings.spaces_list.filter(c => c.slug !== 'apartments' && c.slug !== 'villas'));
-        }
+      const settings = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+      const hasValidSlides = Array.isArray(settings.spaces_before_after_slides) && settings.spaces_before_after_slides.length > 0 && Boolean(settings.spaces_before_after_slides[0]?.before);
+      setSpacesHeroState({
+        beforeLabel: getNonEmpty(settings.spaces_before_label, 'BEFORE'),
+        afterLabel: getNonEmpty(settings.spaces_after_label, 'AFTER'),
+        slides: hasValidSlides ? settings.spaces_before_after_slides : transformationSlides,
+        visible: settings.spaces_hero_visible !== false
+      });
+
+      setSpacesSettings((prev) => ({
+        ...prev,
+        spaces_hero_visible: settings.spaces_hero_visible !== false,
+        spaces_grid_visible: settings.spaces_grid_visible !== false,
+        spaces_trust_visible: settings.spaces_trust_visible !== false,
+        trust_stat1_val: settings.trust_stat1_val || prev.trust_stat1_val,
+        trust_stat1_suffix: settings.trust_stat1_suffix || prev.trust_stat1_suffix,
+        trust_stat1_label: settings.trust_stat1_label || prev.trust_stat1_label,
+        trust_stat1_sublabel: settings.trust_stat1_sublabel || prev.trust_stat1_sublabel,
+        trust_stat2_val: settings.trust_stat2_val || prev.trust_stat2_val,
+        trust_stat2_suffix: settings.trust_stat2_suffix || prev.trust_stat2_suffix,
+        trust_stat2_label: settings.trust_stat2_label || prev.trust_stat2_label,
+        trust_stat2_sublabel: settings.trust_stat2_sublabel || prev.trust_stat2_sublabel,
+        trust_stat3_val: settings.trust_stat3_val || prev.trust_stat3_val,
+        trust_stat3_suffix: settings.trust_stat3_suffix || prev.trust_stat3_suffix,
+        trust_stat3_label: settings.trust_stat3_label || prev.trust_stat3_label,
+        trust_stat3_sublabel: settings.trust_stat3_sublabel || prev.trust_stat3_sublabel,
+        trust_stat4_val: settings.trust_stat4_val || prev.trust_stat4_val,
+        trust_stat4_suffix: settings.trust_stat4_suffix || prev.trust_stat4_suffix,
+        trust_stat4_label: settings.trust_stat4_label || prev.trust_stat4_label,
+        trust_stat4_sublabel: settings.trust_stat4_sublabel || prev.trust_stat4_sublabel,
+        space_detail_hero_visible: settings.space_detail_hero_visible !== false,
+        space_intro_visible: settings.space_intro_visible !== false,
+        space_gallery_visible: settings.space_gallery_visible !== false,
+        space_materials_visible: settings.space_materials_visible !== false,
+        space_materials_heading: settings.space_materials_heading || prev.space_materials_heading,
+        space_materials_tag: settings.space_materials_tag || prev.space_materials_tag,
+        space_process_visible: settings.space_process_visible !== false,
+        space_process_heading: settings.space_process_heading || prev.space_process_heading,
+        space_process_tag: settings.space_process_tag || prev.space_process_tag,
+        space_process_desc: settings.space_process_desc || prev.space_process_desc,
+        space_faq_visible: settings.space_faq_visible !== false,
+        space_crosslinks_visible: settings.space_crosslinks_visible !== false,
+        space_cta_visible: settings.space_cta_visible !== false,
+      }));
+
+      if (Array.isArray(settings.spaces_list) && settings.spaces_list.length > 0) {
+        setSpacesList(settings.spaces_list.filter(c => c.slug !== 'apartments' && c.slug !== 'villas'));
       }
 
       try {
@@ -2768,7 +2842,19 @@ const WhatWeDo = () => {
   const bgY = useTransform(heroScroll, [0, 1], ['0%', '8%']);
 
   const displayCategories = spacesList.filter(c => c.slug !== 'luxury-homes');
-  const activeCategory = slug ? displayCategories.find(c => c.slug === slug) : null;
+  const rawActiveCategory = slug ? displayCategories.find(c => c.slug === slug) : null;
+  const fallbackCategory = rawActiveCategory ? mockCategories.find(c => c.slug === rawActiveCategory.slug) : null;
+  const activeCategory = rawActiveCategory ? {
+    ...fallbackCategory,
+    ...rawActiveCategory,
+    details: {
+      ...(fallbackCategory?.details || {}),
+      ...(rawActiveCategory?.details || {})
+    },
+    galleryImages: (Array.isArray(rawActiveCategory?.galleryImages) && rawActiveCategory.galleryImages.length > 0)
+      ? rawActiveCategory.galleryImages
+      : (fallbackCategory?.galleryImages || [])
+  } : null;
 
   // ── CATEGORY DETAIL PAGE ───────────────────────────────────────────────────
   if (activeCategory) {
@@ -2826,89 +2912,93 @@ const WhatWeDo = () => {
         />
 
         {/* ── 1. CINEMATIC DETAIL HERO ────────────────────────────────────────── */}
-        <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-2.5 sm:px-4 md:px-5 lg:px-6 w-full h-[58vh] sm:h-[75vh] lg:h-[90vh] min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
-          <div className="relative w-full h-full rounded-[18px] sm:rounded-[26px] lg:rounded-[32px] overflow-hidden bg-bg-dark shadow-[0_16px_40px_rgba(0,0,0,0.22)] border border-white/10 flex items-end">
-            <img 
-              src={getOptimizedImageUrl(
-                (activeCategory.slug === 'modular-kitchen' && (!activeCategory.heroImage || activeCategory.heroImage.includes('user_luxury_kitchen') || activeCategory.heroImage.includes('2bhk_urban') || activeCategory.heroImage.includes('3bhk_lux')))
-                  ? '/images/spaces/modular_kitchen/kitchen_drive_24.webp'
-                  : (activeCategory.slug === 'pooja-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('pooja_drive_1.webp')))
-                  ? '/images/spaces/pooja/pooja_drive_12.webp'
-                  : (activeCategory.slug === 'dining-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('dining_drive_1.webp')))
-                  ? '/images/spaces/dining/dining_drive_27.webp'
-                  : activeCategory.heroImage,
-                2560,
-                95
-              )} 
-              alt={activeCategory.name} 
-              className="absolute inset-0 w-full h-full object-cover opacity-80 scale-100 transition-transform duration-1000" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/45 to-black/25" />
-            
-            <div className="relative max-w-[1440px] w-full mx-auto px-6 sm:px-10 md:px-14 pb-10 sm:pb-14 z-10">
-              <nav className="flex items-center gap-2 font-sans text-[11.5px] uppercase tracking-[0.2em] text-bg/75 mb-4 font-semibold">
-                <Link to="/" className="hover:text-gold transition-colors">Home</Link>
-                <span>/</span>
-                <Link to="/spaces" className="hover:text-gold transition-colors">Spaces</Link>
-                <span>/</span>
-                <span className="text-gold font-bold">{activeCategory.name}</span>
-              </nav>
-              <h1 className="font-display text-[clamp(36px,5.5vw,72px)] font-bold text-bg leading-[1.08] tracking-tight mb-4">
-                {activeCategory.name}
-              </h1>
-              <p className="font-sans text-[15px] sm:text-[17px] text-bg/85 max-w-[680px] leading-relaxed font-normal">
-                {activeCategory.description}
-              </p>
-            </div>
+        {spacesSettings.space_detail_hero_visible !== false && (
+          <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-2.5 sm:px-4 md:px-5 lg:px-6 w-full h-[58vh] sm:h-[75vh] lg:h-[90vh] min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
+            <div className="relative w-full h-full rounded-[18px] sm:rounded-[26px] lg:rounded-[32px] overflow-hidden bg-bg-dark shadow-[0_16px_40px_rgba(0,0,0,0.22)] border border-white/10 flex items-end">
+              <img 
+                src={getOptimizedImageUrl(
+                  (activeCategory.slug === 'modular-kitchen' && (!activeCategory.heroImage || activeCategory.heroImage.includes('user_luxury_kitchen') || activeCategory.heroImage.includes('2bhk_urban') || activeCategory.heroImage.includes('3bhk_lux')))
+                    ? '/images/spaces/modular_kitchen/kitchen_drive_24.webp'
+                    : (activeCategory.slug === 'pooja-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('pooja_drive_1.webp')))
+                    ? '/images/spaces/pooja/pooja_drive_12.webp'
+                    : (activeCategory.slug === 'dining-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('dining_drive_1.webp')))
+                    ? '/images/spaces/dining/dining_drive_27.webp'
+                    : activeCategory.heroImage,
+                  2560,
+                  95
+                )} 
+                alt={activeCategory.name} 
+                className="absolute inset-0 w-full h-full object-cover opacity-80 scale-100 transition-transform duration-1000" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/45 to-black/25" />
+              
+              <div className="relative max-w-[1440px] w-full mx-auto px-6 sm:px-10 md:px-14 pb-10 sm:pb-14 z-10">
+                <nav className="flex items-center gap-2 font-sans text-[11.5px] uppercase tracking-[0.2em] text-bg/75 mb-4 font-semibold">
+                  <Link to="/" className="hover:text-gold transition-colors">Home</Link>
+                  <span>/</span>
+                  <Link to="/spaces" className="hover:text-gold transition-colors">Spaces</Link>
+                  <span>/</span>
+                  <span className="text-gold font-bold">{activeCategory.name}</span>
+                </nav>
+                <h1 className="font-display text-[clamp(36px,5.5vw,72px)] font-bold text-bg leading-[1.08] tracking-tight mb-4">
+                  {activeCategory.name}
+                </h1>
+                <p className="font-sans text-[15px] sm:text-[17px] text-bg/85 max-w-[680px] leading-relaxed font-normal">
+                  {activeCategory.description}
+                </p>
+              </div>
 
-            {/* Standard Luxury Scroll Down Indicator */}
-            <ScrollDownIndicator className="bottom-4 sm:bottom-6" />
-          </div>
-        </section>
+              {/* Standard Luxury Scroll Down Indicator */}
+              <ScrollDownIndicator className="bottom-4 sm:bottom-6" />
+            </div>
+          </section>
+        )}
 
         {/* ── 2. TRUST STRIP (Projects / Legacy / Sq.Ft / Warranty) ────────────── */}
-        <section className="border-y border-ink-border/30 bg-gradient-to-b from-bg-card/70 via-bg/90 to-bg-card/70 py-8 sm:py-12 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(201,169,110,0.1),rgba(255,255,255,0))] pointer-events-none" />
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              <AnimatedStatCard
-                icon={Building2}
-                value={25}
-                suffix="+"
-                label="Projects"
-                sublabel="Completed Turnkey Residences"
-                index={0}
-              />
-              <AnimatedStatCard
-                icon={Award}
-                value={40}
-                suffix="+"
-                label="Years"
-                sublabel="Combined Construction Legacy"
-                index={1}
-              />
-              <AnimatedStatCard
-                icon={Maximize2}
-                value={50000}
-                suffix="+"
-                label="Sq.Ft"
-                sublabel="Designed & Executed"
-                index={2}
-              />
-              <AnimatedStatCard
-                icon={ShieldCheck}
-                value={10}
-                suffix="-Year"
-                label="Warranty"
-                sublabel="Comprehensive Hardware Warranty"
-                index={3}
-              />
+        {spacesSettings.spaces_trust_visible !== false && (
+          <section className="border-y border-ink-border/30 bg-gradient-to-b from-bg-card/70 via-bg/90 to-bg-card/70 py-8 sm:py-12 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(201,169,110,0.1),rgba(255,255,255,0))] pointer-events-none" />
+            <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <AnimatedStatCard
+                  icon={Building2}
+                  value={Number(spacesSettings.trust_stat1_val) || 25}
+                  suffix={spacesSettings.trust_stat1_suffix || "+"}
+                  label={spacesSettings.trust_stat1_label || "Projects"}
+                  sublabel={spacesSettings.trust_stat1_sublabel || "Completed Turnkey Residences"}
+                  index={0}
+                />
+                <AnimatedStatCard
+                  icon={Award}
+                  value={Number(spacesSettings.trust_stat2_val) || 40}
+                  suffix={spacesSettings.trust_stat2_suffix || "+"}
+                  label={spacesSettings.trust_stat2_label || "Years"}
+                  sublabel={spacesSettings.trust_stat2_sublabel || "Combined Construction Legacy"}
+                  index={1}
+                />
+                <AnimatedStatCard
+                  icon={Maximize2}
+                  value={Number(spacesSettings.trust_stat3_val) || 50000}
+                  suffix={spacesSettings.trust_stat3_suffix || "+"}
+                  label={spacesSettings.trust_stat3_label || "Sq.Ft"}
+                  sublabel={spacesSettings.trust_stat3_sublabel || "Designed & Executed"}
+                  index={2}
+                />
+                <AnimatedStatCard
+                  icon={ShieldCheck}
+                  value={Number(spacesSettings.trust_stat4_val) || 10}
+                  suffix={spacesSettings.trust_stat4_suffix || "-Year"}
+                  label={spacesSettings.trust_stat4_label || "Warranty"}
+                  sublabel={spacesSettings.trust_stat4_sublabel || "Comprehensive Hardware Warranty"}
+                  index={3}
+                />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ── 3. INTRO BLOCK (Framing paragraph + Primary CTA) ────────────────── */}
-        {activeCategory.details && (
+        {spacesSettings.space_intro_visible !== false && activeCategory.details && (
           <section id="space-details-section" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
             <div className="max-w-[880px] space-y-5">
               <Reveal>
@@ -2926,7 +3016,7 @@ const WhatWeDo = () => {
                     to="/contact" 
                     className="inline-flex items-center gap-2 bg-ink text-bg font-sans text-[12px] uppercase font-bold tracking-widest px-8 py-4 rounded-full hover:bg-gold hover:text-ink transition-all duration-300 shadow-md cursor-pointer"
                   >
-                    <span>Enquire About {activeCategory.name}</span>
+                    <span>{activeCategory.details.cta_text || `Enquire About ${activeCategory.name}`}</span>
                     <ArrowUpRight size={15} />
                   </Link>
                 </div>
@@ -2936,16 +3026,19 @@ const WhatWeDo = () => {
         )}
 
         {/* ── 4. GALLERY SHOWCASE (Ordered by Type + Captions + Zoom Modal) ── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
-          <div className="mb-10">
-            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-2">Design Showcase</p>
-            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
-              {activeCategory.name} Gallery
-            </h3>
-            <p className="font-sans text-xs text-ink-soft mt-1">
-              Reference designs categorized and ordered by layout configuration. Click any design to zoom in.
-            </p>
-          </div>
+        {spacesSettings.space_gallery_visible !== false && (
+          <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+            <div className="mb-10">
+              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-2">
+                {activeCategory.details?.gallery_subtitle || "Design Showcase"}
+              </p>
+              <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+                {activeCategory.details?.gallery_title || `${activeCategory.name} Gallery`}
+              </h3>
+              <p className="font-sans text-xs text-ink-soft mt-1">
+                {activeCategory.details?.gallery_desc || "Reference designs categorized and ordered by layout configuration. Click any design to zoom in."}
+              </p>
+            </div>
 
           {visibleItems.length > 0 ? (
             <>
@@ -3031,250 +3124,266 @@ const WhatWeDo = () => {
             </div>
           )}
         </section>
+      )}
 
         {/* ── 5. MATERIALS & CRAFTSMANSHIP (Hardware, Surface, Joinery, Lighting) ──────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
-          <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
-            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
-              MATERIALS & CRAFTSMANSHIP
-            </p>
-            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
-              Where design meets precision.
-            </h3>
-          </div>
+        {spacesSettings.space_materials_visible !== false && (
+          <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+            <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
+              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
+                {spacesSettings.space_materials_tag || "MATERIALS & CRAFTSMANSHIP"}
+              </p>
+              <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+                {spacesSettings.space_materials_heading || "Where design meets precision."}
+              </h3>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SPACE_MATERIAL_MACROS.map((macro, idx) => (
-              <div key={idx} className="bg-bg-card rounded-[22px] overflow-hidden border border-ink-border/30 shadow-sm hover:border-gold/30 transition-all duration-300 flex flex-col group">
-                <div className="aspect-[4/3] overflow-hidden bg-bg-dark relative">
-                  <img 
-                    src={getOptimizedImageUrl(macro.image, 1200, 92)} 
-                    alt={macro.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-[9.5px] font-sans font-bold uppercase tracking-wider text-gold border border-gold/30">
-                      {macro.tag}
-                    </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {SPACE_MATERIAL_MACROS.map((macro, idx) => (
+                <div key={idx} className="bg-bg-card rounded-[22px] overflow-hidden border border-ink-border/30 shadow-sm hover:border-gold/30 transition-all duration-300 flex flex-col group">
+                  <div className="aspect-[4/3] overflow-hidden bg-bg-dark relative">
+                    <img 
+                      src={getOptimizedImageUrl(macro.image, 1200, 92)} 
+                      alt={macro.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-[9.5px] font-sans font-bold uppercase tracking-wider text-gold border border-gold/30">
+                        {macro.tag}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="font-display text-base font-bold text-ink tracking-wide">
+                        {macro.step} — {macro.title}
+                      </h4>
+                      <p className="font-sans text-[11px] font-semibold text-gold mt-0.5">
+                        {macro.headline}
+                      </p>
+                      <p className="font-sans text-xs text-ink-soft mt-2 leading-relaxed">
+                        {macro.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h4 className="font-display text-base font-bold text-ink tracking-wide">
-                      {macro.step} — {macro.title}
-                    </h4>
-                    <p className="font-sans text-[11px] font-semibold text-gold mt-0.5">
-                      {macro.headline}
-                    </p>
-                    <p className="font-sans text-xs text-ink-soft mt-2 leading-relaxed">
-                      {macro.desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── 6. PROCESS STRIP (Design → Material → Fabrication → Install) ────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
-          <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
-            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Turnkey Execution Flow</p>
-            <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
-              Our 4-Step Design & Build Process
-            </h3>
-            <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
-              Every detail is planned, confirmed in 3D, precision-cut in our factory, and delivered on schedule without vendor coordination stress.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SPACE_PROCESS_STEPS.map((step, idx) => (
-              <div key={idx} className="relative bg-bg-card rounded-[24px] p-6 sm:p-7 border border-ink-border/30 shadow-sm space-y-4">
-                <div className="flex items-center">
-                  <span className="font-display text-3xl font-bold text-gold/60">{step.step}</span>
-                </div>
-                <div>
-                  <h4 className="font-display text-lg font-bold text-ink mb-2">{step.title}</h4>
-                  <p className="font-sans text-xs text-ink-soft leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── 7. FAQ BLOCK (Matching Home Page FAQ Structure, Colors, & Fonts) ─────────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
-          <div className="max-w-[880px] mx-auto">
-            <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
-              <div className="inline-flex items-center gap-1.5 bg-ink text-bg px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-semibold tracking-wider uppercase mb-3 sm:mb-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                FAQ
-              </div>
-
-              <h2 className="font-display text-[clamp(26px,3.5vw,42px)] font-medium leading-[1.15] tracking-tight text-ink mb-2.5 sm:mb-4 text-center">
-                Got Questions?
-                <br />
-                We Have Answers.
-              </h2>
-
-              <p className="font-sans text-[13px] sm:text-[14px] text-ink-soft leading-relaxed max-w-[520px] mx-auto text-center">
-                From initial space planning to precision factory joinery and final handover, here's everything you need to know about {activeCategory.name} by ESPACIO.
+        {spacesSettings.space_process_visible !== false && (
+          <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+            <div className="text-center max-w-[700px] mx-auto mb-12 space-y-3">
+              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
+                {spacesSettings.space_process_tag || "Turnkey Execution Flow"}
+              </p>
+              <h3 className="font-display text-[28px] sm:text-[36px] font-bold text-ink tracking-tight">
+                {spacesSettings.space_process_heading || "Our 4-Step Design & Build Process"}
+              </h3>
+              <p className="font-sans text-xs sm:text-sm text-ink-soft leading-relaxed">
+                {spacesSettings.space_process_desc || "Every detail is planned, confirmed in 3D, precision-cut in our factory, and delivered on schedule without vendor coordination stress."}
               </p>
             </div>
 
-            <div className="border-t border-ink-border/20">
-              {spaceFaqs.map((faq, idx) => {
-                const isOpen = openFaqIndex === idx;
-                return (
-                  <MagneticItem
-                    key={idx}
-                    isOpen={isOpen}
-                    className="border-b border-ink-border/20 px-3 sm:px-4 py-5 sm:py-6 cursor-pointer transition-all duration-300 relative"
-                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                  >
-                    <button 
-                      aria-label={faq.q} 
-                      className="w-full flex items-start gap-3 sm:gap-4 text-left group bg-transparent border-0 cursor-pointer py-1"
-                    >
-                      {/* Animated badge (identical to Home) */}
-                      <FaqBadge num={idx} isOpen={isOpen} />
-
-                      {/* Question text (identical to Home) */}
-                      <motion.span
-                        className="font-sans text-[15px] md:text-[16px] font-medium leading-snug flex-1"
-                        animate={{ color: isOpen ? '#c5a572' : '#101014' }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {faq.q}
-                      </motion.span>
-
-                      {/* Animated chevron (identical to Home) */}
-                      <motion.div
-                        className="shrink-0 mt-0.5 w-7 h-7 rounded-full flex items-center justify-center border"
-                        animate={{
-                          borderColor: isOpen ? '#c5a572' : 'rgba(0,0,0,0.12)',
-                          background: isOpen ? '#c5a572' : 'transparent',
-                          rotate: isOpen ? 180 : 0,
-                          boxShadow: isOpen ? '0 0 12px rgba(197,165,114,0.5)' : '0 0 0 transparent',
-                        }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                          <motion.path
-                            d="M2 4L5.5 7.5L9 4"
-                            stroke={isOpen ? 'white' : '#9ca3af'}
-                            strokeWidth="1.6"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </motion.div>
-                    </button>
-
-                    {/* Answer panel (identical to Home) */}
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0, y: -10 }}
-                          animate={{ height: 'auto', opacity: 1, y: 0 }}
-                          exit={{ height: 0, opacity: 0, y: -10 }}
-                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <motion.div
-                            className="pl-9 sm:pl-10 pr-2 sm:pr-4 pb-2 pt-2"
-                            initial={{ x: -20, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.1, duration: 0.4 }}
-                          >
-                            {/* Gold accent bar */}
-                            <div className="flex gap-3 items-start">
-                              <motion.div
-                                className="w-0.5 rounded-full bg-gold shrink-0 mt-1"
-                                initial={{ height: 0 }}
-                                animate={{ height: 'auto' }}
-                                transition={{ duration: 0.4, delay: 0.15 }}
-                                style={{ minHeight: 36 }}
-                              />
-                              <p className="font-sans text-[14px] sm:text-[14.5px] text-walnut leading-relaxed">
-                                {faq.a}
-                              </p>
-                            </div>
-                          </motion.div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Ripple on open */}
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          className="absolute inset-0 rounded-[16px] pointer-events-none"
-                          initial={{ opacity: 0.4, scale: 0.95 }}
-                          animate={{ opacity: 0, scale: 1.04 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.6 }}
-                          style={{ border: '1.5px solid rgba(197,165,114,0.6)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                        />
-                      )}
-                    </AnimatePresence>
-                  </MagneticItem>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 8. CROSS-LINKS (Explore More Spaces) ────────────────────────────── */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-1">Continue The Tour</p>
-              <h3 className="font-display text-[26px] sm:text-[34px] font-bold text-ink tracking-tight">
-                Explore More Spaces
-              </h3>
-            </div>
-            <Link 
-              to="/spaces" 
-              className="inline-flex items-center gap-1.5 font-sans text-xs font-bold uppercase tracking-wider text-gold hover:text-ink transition-colors"
-            >
-              <span>View All Spaces</span>
-              <ChevronRight size={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {crossLinkCategories.map((cat) => (
-              <Link
-                key={cat.slug}
-                to={`/spaces/${cat.slug}`}
-                className="group rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 hover:border-gold/40 shadow-sm hover:shadow-xl transition-all duration-400 flex flex-col"
-              >
-                <div className="aspect-[16/10] overflow-hidden bg-bg-dark relative">
-                  <img
-                    src={getOptimizedImageUrl(cat.heroImage || cat.galleryImages?.[0], 1400, 92)}
-                    alt={cat.name}
-                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold drop-shadow">
-                      Interior Domain
-                    </span>
-                    <h4 className="font-display text-xl font-bold text-white group-hover:text-gold transition-colors">
-                      {cat.name}
-                    </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {SPACE_PROCESS_STEPS.map((step, idx) => (
+                <div key={idx} className="relative bg-bg-card rounded-[24px] p-6 sm:p-7 border border-ink-border/30 shadow-sm space-y-4">
+                  <div className="flex items-center">
+                    <span className="font-display text-3xl font-bold text-gold/60">{step.step}</span>
+                  </div>
+                  <div>
+                    <h4 className="font-display text-lg font-bold text-ink mb-2">{step.title}</h4>
+                    <p className="font-sans text-xs text-ink-soft leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
-                <div className="p-5 flex items-center justify-between text-xs font-sans text-ink-soft">
-                  <span className="line-clamp-1">{cat.description}</span>
-                  <ArrowUpRight size={16} className="text-gold shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── 7. FAQ BLOCK (Matching Home Page FAQ Structure, Colors, & Fonts) ─────────── */}
+        {spacesSettings.space_faq_visible !== false && (
+          <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+            <div className="max-w-[880px] mx-auto">
+              <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
+                <div className="inline-flex items-center gap-1.5 bg-ink text-bg px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-semibold tracking-wider uppercase mb-3 sm:mb-4 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                  FAQ
                 </div>
+
+                <h2 className="font-display text-[clamp(26px,3.5vw,42px)] font-medium leading-[1.15] tracking-tight text-ink mb-2.5 sm:mb-4 text-center">
+                  Got Questions?
+                  <br />
+                  We Have Answers.
+                </h2>
+
+                <p className="font-sans text-[13px] sm:text-[14px] text-ink-soft leading-relaxed max-w-[520px] mx-auto text-center">
+                  From initial space planning to precision factory joinery and final handover, here's everything you need to know about {activeCategory.name} by ESPACIO.
+                </p>
+              </div>
+
+              <div className="border-t border-ink-border/20">
+                {spaceFaqs.map((faq, idx) => {
+                  const isOpen = openFaqIndex === idx;
+                  return (
+                    <MagneticItem
+                      key={idx}
+                      isOpen={isOpen}
+                      className="border-b border-ink-border/20 px-3 sm:px-4 py-5 sm:py-6 cursor-pointer transition-all duration-300 relative"
+                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                    >
+                      <button 
+                        aria-label={faq.q} 
+                        className="w-full flex items-start gap-3 sm:gap-4 text-left group bg-transparent border-0 cursor-pointer py-1"
+                      >
+                        {/* Animated badge (identical to Home) */}
+                        <FaqBadge num={idx} isOpen={isOpen} />
+
+                        {/* Question text (identical to Home) */}
+                        <motion.span
+                          className="font-sans text-[15px] md:text-[16px] font-medium leading-snug flex-1"
+                          animate={{ color: isOpen ? '#c5a572' : '#101014' }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {faq.q}
+                        </motion.span>
+
+                        {/* Animated chevron (identical to Home) */}
+                        <motion.div
+                          className="shrink-0 mt-0.5 w-7 h-7 rounded-full flex items-center justify-center border"
+                          animate={{
+                            borderColor: isOpen ? '#c5a572' : 'rgba(0,0,0,0.12)',
+                            background: isOpen ? '#c5a572' : 'transparent',
+                            rotate: isOpen ? 180 : 0,
+                            boxShadow: isOpen ? '0 0 12px rgba(197,165,114,0.5)' : '0 0 0 transparent',
+                          }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                            <motion.path
+                              d="M2 4L5.5 7.5L9 4"
+                              stroke={isOpen ? 'white' : '#9ca3af'}
+                              strokeWidth="1.6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </motion.div>
+                      </button>
+
+                      {/* Answer panel (identical to Home) */}
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0, y: -10 }}
+                            animate={{ height: 'auto', opacity: 1, y: 0 }}
+                            exit={{ height: 0, opacity: 0, y: -10 }}
+                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <motion.div
+                              className="pl-9 sm:pl-10 pr-2 sm:pr-4 pb-2 pt-2"
+                              initial={{ x: -20, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{ delay: 0.1, duration: 0.4 }}
+                            >
+                              {/* Gold accent bar */}
+                              <div className="flex gap-3 items-start">
+                                <motion.div
+                                  className="w-0.5 rounded-full bg-gold shrink-0 mt-1"
+                                  initial={{ height: 0 }}
+                                  animate={{ height: 'auto' }}
+                                  transition={{ duration: 0.4, delay: 0.15 }}
+                                  style={{ minHeight: 36 }}
+                                />
+                                <p className="font-sans text-[14px] sm:text-[14.5px] text-walnut leading-relaxed">
+                                  {faq.a}
+                                </p>
+                              </div>
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Ripple on open */}
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            className="absolute inset-0 rounded-[16px] pointer-events-none"
+                            initial={{ opacity: 0.4, scale: 0.95 }}
+                            animate={{ opacity: 0, scale: 1.04 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.6 }}
+                            style={{ border: '1.5px solid rgba(197,165,114,0.6)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </MagneticItem>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── 8. CROSS-LINKS (Explore More Spaces) ────────────────────────────── */}
+        {spacesSettings.space_crosslinks_visible !== false && (
+          <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 sm:py-20 border-b border-ink-border/20">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+              <div>
+                <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-1">Continue The Tour</p>
+                <h3 className="font-display text-[26px] sm:text-[34px] font-bold text-ink tracking-tight">
+                  Explore More Spaces
+                </h3>
+              </div>
+              <Link 
+                to="/spaces" 
+                className="inline-flex items-center gap-1.5 font-sans text-xs font-bold uppercase tracking-wider text-gold hover:text-ink transition-colors"
+              >
+                <span>View All Spaces</span>
+                <ChevronRight size={14} />
               </Link>
-            ))}
-          </div>
-        </section>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {crossLinkCategories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  to={`/spaces/${cat.slug}`}
+                  className="group rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 hover:border-gold/40 shadow-sm hover:shadow-xl transition-all duration-400 flex flex-col"
+                >
+                  <div className="aspect-[16/10] overflow-hidden bg-bg-dark relative">
+                    <img
+                      src={getOptimizedImageUrl(cat.heroImage || cat.galleryImages?.[0], 1400, 92)}
+                      alt={cat.name}
+                      className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold drop-shadow">
+                        Interior Domain
+                      </span>
+                      <h4 className="font-display text-xl font-bold text-white group-hover:text-gold transition-colors">
+                        {cat.name}
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="p-5 flex items-center justify-between text-xs font-sans text-ink-soft">
+                    <span className="line-clamp-1">{cat.description}</span>
+                    <ArrowUpRight size={16} className="text-gold shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── 9. BOTTOM CTA (FOOTER CTA) ── */}
+        {spacesSettings.space_cta_visible !== false && (
+          <PageCTASection pageKey="spaces" className="border-t border-ink-border/20" />
+        )}
 
         {/* ── ZOOM LIGHTBOX MODAL (With Escape key dismiss & detailed specs) ───── */}
         <AnimatePresence>
@@ -3545,7 +3654,7 @@ const WhatWeDo = () => {
         <section
           ref={heroRef}
           data-lenis-prevent
-          className="relative h-[70dvh] sm:h-[70vh] min-h-[360px] sm:min-h-[480px] lg:min-h-[560px] max-h-[72vh] max-w-[1400px] mx-auto px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-10 z-0 select-none touch-none"
+          className="relative h-[85dvh] sm:h-[77vh] lg:h-[96vh] min-h-[360px] sm:min-h-[480px] lg:min-h-0 px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none touch-none"
           style={{ touchAction: 'none' }}
           onMouseDown={onStart}
           onTouchStart={onStart}
@@ -3649,42 +3758,211 @@ const WhatWeDo = () => {
         </section>
       )}
 
-      {/* Category Grid */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-10 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {displayCategories.filter(c => c.visible !== false).map((cat, idx) => (
-            <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
-              <Link 
-                to={`/spaces/${cat.slug}`}
-                className="group relative rounded-card overflow-hidden aspect-[4/3] bg-bg-dark block"
-              >
-                <img 
-                  src={cat.heroImage} 
-                  alt={cat.name} 
-                  loading="lazy" 
-                  decoding="async"
-                  style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                  className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/90 via-bg-dark/20 to-transparent" />
-                <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between">
-                  <div>
-                    <h2 className="font-display text-[clamp(20px,2.5vw,28px)] font-bold text-bg mb-2 group-hover:text-gold transition-colors duration-300">
-                      {cat.name}
-                    </h2>
-                    <p className="font-sans text-[13px] text-bg/60 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400">
-                      {cat.description?.substring(0, 85)}...
-                    </p>
-                  </div>
-                  <div className="shrink-0 w-10 h-10 rounded-pill border border-bg/20 flex items-center justify-center text-bg group-hover:bg-gold group-hover:border-gold group-hover:text-ink transition-all duration-300">
-                    <ArrowUpRight size={16} />
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {/* Category Showcase Section (Sticky-Scroll Animation for Desktop / Laptop, Clean Grid for Mobile) */}
+      {spacesSettings.spaces_grid_visible !== false && (() => {
+        const visibleCategories = displayCategories.filter(c => c.visible !== false);
+        
+        // Arrange categories for 3-Column Sticky-Scroll:
+        // Center sticky column pins 3 flagship spaces in place while left and right columns scroll
+        const centerPinnedSlugs = ['master-bedroom', 'living-room', 'tv-units'];
+        const centerCategories = [];
+        const remainingCategories = [];
+
+        visibleCategories.forEach(cat => {
+          if (centerPinnedSlugs.includes(cat.slug) && centerCategories.length < 3) {
+            centerCategories.push(cat);
+          } else {
+            remainingCategories.push(cat);
+          }
+        });
+
+        while (centerCategories.length < 3 && remainingCategories.length > 0) {
+          centerCategories.push(remainingCategories.shift());
+        }
+
+        const leftCategories = remainingCategories.filter((_, idx) => idx % 2 === 0);
+        const rightCategories = remainingCategories.filter((_, idx) => idx % 2 !== 0);
+
+        return (
+          <section className="max-w-[1520px] mx-auto px-4 sm:px-6 md:px-10 py-16 sm:py-20 lg:py-24">
+            
+            {/* Section Header */}
+            <div className="mb-10 sm:mb-14 text-center max-w-2xl mx-auto">
+              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-gold block mb-2.5">
+                Architectural Spaces & Form
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
+                Curated Living Spaces
+              </h2>
+              <p className="font-sans text-xs sm:text-sm text-ink-soft mt-3 leading-relaxed">
+                Explore bespoke modular craftsmanship, structural wood alignments, and high-tolerance interior architecture across every room.
+              </p>
+            </div>
+
+            {/* 1. Mobile & Tablet Grid (< lg) - Natural Touch Scroll */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:hidden">
+              {visibleCategories.map((cat, idx) => (
+                <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
+                  <Link 
+                    to={`/spaces/${cat.slug}`}
+                    className="group relative rounded-[22px] overflow-hidden aspect-[4/3] bg-bg-dark block shadow-md hover:shadow-xl border border-ink-border/30 transition-all duration-500"
+                  >
+                    <img 
+                      src={cat.heroImage} 
+                      alt={cat.name} 
+                      loading="lazy" 
+                      decoding="async"
+                      style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                      className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/30 to-transparent" />
+                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                      <div>
+                        <h3 className="font-display text-xl sm:text-2xl font-bold text-bg mb-1.5 group-hover:text-gold transition-colors duration-300">
+                          {cat.name}
+                        </h3>
+                        <p className="font-sans text-xs text-bg/70 max-w-[280px] leading-relaxed line-clamp-2">
+                          {cat.description?.substring(0, 90)}...
+                        </p>
+                      </div>
+                      <div className="shrink-0 w-9 h-9 rounded-full border border-bg/30 flex items-center justify-center text-bg group-hover:bg-gold group-hover:border-gold group-hover:text-ink transition-all duration-300">
+                        <ArrowUpRight size={15} />
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* 2. Desktop & Laptop 3-Column Sticky-Scroll Animation Layout (>= lg) */}
+            <div className="hidden lg:grid grid-cols-12 gap-6 items-start relative">
+              
+              {/* Left Column (Normal Scroll) */}
+              <div className="col-span-4 space-y-6">
+                {leftCategories.map((cat, idx) => (
+                  <Reveal key={cat.slug || `left-${idx}`} delay={Math.min((idx % 3) * 0.06, 0.15)}>
+                    <Link 
+                      to={`/spaces/${cat.slug}`}
+                      className="group relative rounded-[24px] overflow-hidden aspect-[4/3] bg-bg-dark block shadow-lg hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
+                    >
+                      <img 
+                        src={cat.heroImage} 
+                        alt={cat.name} 
+                        loading="lazy" 
+                        decoding="async"
+                        style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                        className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div className="space-y-1.5 pr-3">
+                          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold/90 block">
+                            ESPACIO Space
+                          </span>
+                          <h3 className="font-display text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
+                            {cat.name}
+                          </h3>
+                          <p className="font-sans text-[12.5px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
+                            {cat.description?.substring(0, 95)}...
+                          </p>
+                        </div>
+                        <div className="shrink-0 w-10 h-10 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal transition-all duration-300 shadow-md">
+                          <ArrowUpRight size={16} />
+                        </div>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+
+              {/* Center STICKY Column - Pinned in Viewport (top-24 h-screen grid-rows-3) */}
+              <div className="col-span-4 sticky top-24 h-[calc(100vh-7.5rem)] min-h-[580px] max-h-[820px] grid grid-rows-3 gap-5">
+                {centerCategories.map((cat, idx) => (
+                  <Link 
+                    key={cat.slug || `center-${idx}`}
+                    to={`/spaces/${cat.slug}`}
+                    className="group relative rounded-[22px] overflow-hidden h-full w-full bg-bg-dark block shadow-xl hover:shadow-2xl border-2 border-gold/40 hover:border-gold transition-all duration-500"
+                  >
+                    <img 
+                      src={cat.heroImage} 
+                      alt={cat.name} 
+                      loading="lazy" 
+                      decoding="async"
+                      style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                      className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                    
+                    {/* Pinned Showcase Tag */}
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-gold/40">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                      <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-gold">Featured Space</span>
+                    </div>
+
+                    <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                      <div className="space-y-1 pr-2">
+                        <h3 className="font-display text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-snug">
+                          {cat.name}
+                        </h3>
+                        <p className="font-sans text-[11.5px] text-white/75 max-w-[260px] leading-relaxed line-clamp-1">
+                          {cat.description?.substring(0, 75)}...
+                        </p>
+                      </div>
+                      <div className="shrink-0 w-9 h-9 rounded-full bg-gold text-charcoal flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        <ArrowUpRight size={15} />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Right Column (Normal Scroll) */}
+              <div className="col-span-4 space-y-6">
+                {rightCategories.map((cat, idx) => (
+                  <Reveal key={cat.slug || `right-${idx}`} delay={Math.min((idx % 3) * 0.06, 0.15)}>
+                    <Link 
+                      to={`/spaces/${cat.slug}`}
+                      className="group relative rounded-[24px] overflow-hidden aspect-[4/3] bg-bg-dark block shadow-lg hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
+                    >
+                      <img 
+                        src={cat.heroImage} 
+                        alt={cat.name} 
+                        loading="lazy" 
+                        decoding="async"
+                        style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                        className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div className="space-y-1.5 pr-3">
+                          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gold/90 block">
+                            ESPACIO Space
+                          </span>
+                          <h3 className="font-display text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
+                            {cat.name}
+                          </h3>
+                          <p className="font-sans text-[12.5px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
+                            {cat.description?.substring(0, 95)}...
+                          </p>
+                        </div>
+                        <div className="shrink-0 w-10 h-10 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal transition-all duration-300 shadow-md">
+                          <ArrowUpRight size={16} />
+                        </div>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* ── 3. BOTTOM CTA SECTION ── */}
+      {spacesSettings.space_cta_visible !== false && (
+        <PageCTASection pageKey="spaces" className="border-t border-ink-border/20" />
+      )}
     </div>
   );
 };
