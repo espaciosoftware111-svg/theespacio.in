@@ -90,6 +90,16 @@ const FALLBACK_MAP: Record<string, string> = {
   'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-'
 };
 
+const ARCHITECTURAL_FALLBACKS = [
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80'
+];
+
+let fallbackCounter = 0;
 const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
   const target = e.currentTarget;
   const src = target.src || '';
@@ -98,9 +108,8 @@ const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     target.src = FALLBACK_MAP[fname];
     return;
   }
-  const defaultFallback = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80';
   if (!src.includes('images.unsplash.com')) {
-    target.src = defaultFallback;
+    target.src = ARCHITECTURAL_FALLBACKS[fallbackCounter++ % ARCHITECTURAL_FALLBACKS.length];
   }
 };
 

@@ -373,30 +373,42 @@ const ProjectDetails = () => {
     // Curated architectural accents that swing the backdrop color
     const accents = ['#c5a572', '#8c7355', '#3d5a80', '#9c6644', '#588157', '#6c584c', '#7f5539'];
 
-    return rawImages.slice(0, 12).map((img, idx) => {
-      // 1. Pre-resolve fallback map immediately for Google Drive hosted images
+    // Strictly deduplicate by resolved source and image file name
+    const seenSrcs = new Set();
+    const uniqueItems = [];
+
+    for (let idx = 0; idx < rawImages.length; idx++) {
+      const img = rawImages[idx];
+      if (!img) continue;
       const fname = (img || '').split('/').pop()?.split('?')[0] || '';
       const resolvedSrc = IMAGE_FALLBACK_MAP[fname] || img;
+      
+      // Prevent duplicate URLs
+      if (seenSrcs.has(resolvedSrc) || seenSrcs.has(fname)) continue;
+      seenSrcs.add(resolvedSrc);
+      if (fname) seenSrcs.add(fname);
 
-      // 2. Correct getProjectRoomName signature (project, img, idx)
       const roomName = getProjectRoomName ? getProjectRoomName(p, img, idx) : `Space 0${idx + 1}`;
       const parts = (roomName || `Space 0${idx + 1}`).split(' ');
       const title = parts.length > 2
         ? `${parts.slice(0, Math.ceil(parts.length / 2)).join(' ')}\n${parts.slice(Math.ceil(parts.length / 2)).join(' ')}`
         : (roomName.includes('&') ? roomName.replace('&', '\n&') : `${roomName}\nSuite`);
 
-      // 3. Optimized image source
       const finalImage = resolvedSrc.startsWith('http') 
         ? resolvedSrc 
         : getOptimizedImageUrl(resolvedSrc, 1920, 92);
 
-      return {
-        id: `${p?.slug || 'proj'}-${idx}`,
+      uniqueItems.push({
+        id: `${p?.slug || 'proj'}-${uniqueItems.length}`,
         title,
         image: finalImage,
-        accent: accents[idx % accents.length]
-      };
-    });
+        accent: accents[uniqueItems.length % accents.length]
+      });
+
+      if (uniqueItems.length >= 14) break;
+    }
+
+    return uniqueItems;
   }, [p]);
 
   return (
