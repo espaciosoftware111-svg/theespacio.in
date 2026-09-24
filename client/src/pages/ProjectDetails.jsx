@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, ChevronUp } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getProjectRoomName } from '../utils/projectRooms';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
+import { HeroCarousel } from '../components/ui/hero-carousel';
 
 const IMAGE_FALLBACK_MAP = {
   'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
@@ -30,6 +31,7 @@ const handleImgError = (e) => {
 
 const ProjectDetails = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -363,48 +365,96 @@ const ProjectDetails = () => {
     }
   };
 
+  const carouselItems = useMemo(() => {
+    const rawImages = (Array.isArray(p?.gallery) && p.gallery.length > 0)
+      ? p.gallery
+      : [p?.heroImage || '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg'];
+    
+    // Curated architectural accents
+    const accents = ['#c5a572', '#8c7355', '#3d5a80', '#9c6644', '#588157', '#6c584c', '#7f5539'];
+
+    return rawImages.slice(0, 10).map((img, idx) => {
+      const roomName = getProjectRoomName ? getProjectRoomName(img, p?.title, idx) : `Space 0${idx + 1}`;
+      const parts = roomName.split(' ');
+      const title = parts.length > 2
+        ? `${parts.slice(0, Math.ceil(parts.length / 2)).join(' ')}\n${parts.slice(Math.ceil(parts.length / 2)).join(' ')}`
+        : (roomName.includes('&') ? roomName.replace('&', '\n&') : `${roomName}\nDomain`);
+
+      return {
+        id: `${p?.slug || 'proj'}-${idx}`,
+        title,
+        image: getOptimizedImageUrl(img, 1920, 92),
+        credit: `${(p?.title || 'ESPACIO RESIDENCE').toUpperCase()} • ${(p?.style || 'BESPOKE ARCHITECTURE').toUpperCase()}`,
+        meta: [
+          (p?.location || 'HYDERABAD').toUpperCase(),
+          (p?.area || '3,200 SQ.FT').toUpperCase(),
+          (p?.configuration || p?.category?.replace('_', ' ') || 'TURNKEY').toUpperCase()
+        ],
+        accent: accents[idx % accents.length]
+      };
+    });
+  }, [p]);
+
   return (
     <div className="bg-cream min-h-screen pb-24">
       <SEO title={`${p.title} — Luxury Case Study`} description={p.description ? p.description.substring(0, 150) : 'Case study description...'} image={p.heroImage} url={`/projects/${p.slug}`} />
 
-      {/* Hero section with curved borders and side margins */}
-      <section className="pt-20 sm:pt-24 md:pt-28 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1440px] mx-auto">
-        <div className="relative h-[90dvh] sm:h-[65vh] lg:h-[70vh] min-h-[480px] sm:min-h-[480px] lg:min-h-[500px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
+      {/* ── 1. DESKTOP HERO: Filmstrip Editorial Hero Carousel (>= md) ── */}
+      <section className="hidden md:block pt-20 sm:pt-24 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1560px] mx-auto">
+        <div className="relative h-[82vh] min-h-[560px] max-h-[820px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/20">
+          <HeroCarousel
+            items={carouselItems}
+            defaultIndex={0}
+            brand="ESPACIO"
+            onBack={() => navigate('/projects')}
+            onMenu={() => {
+              const el = document.getElementById('project-overview-stats');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            autoplay
+            autoplayDelay={4500}
+            className="h-full w-full"
+          />
+          <ScrollDownIndicator />
+        </div>
+      </section>
+
+      {/* ── 2. MOBILE HERO: Touch-friendly Card Hero (< md) ── */}
+      <section className="md:hidden pt-20 px-3 max-w-[1440px] mx-auto">
+        <div className="relative h-[85dvh] min-h-[460px] w-full rounded-2xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
           <img
-            src={getOptimizedImageUrl(p.heroImage, 1600, 92)}
+            src={getOptimizedImageUrl(p.heroImage, 1200, 90)}
             onError={handleImgError}
             alt={p.title}
-            className="absolute inset-0 w-full h-full object-cover opacity-75 transform scale-100 hover:scale-105 transition-transform duration-1000"
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-black/60 pointer-events-none" />
 
           {/* Back button */}
-          <div className="relative z-10 p-6 md:p-10">
-            <Link to="/projects" className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 hover:border-gold/50 shadow-md">
+          <div className="relative z-10 p-5">
+            <Link to="/projects" className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-md">
               <ArrowLeft size={14} />
-              <span>Back to Case Studies</span>
+              <span>Back</span>
             </Link>
           </div>
 
-          <div className="absolute bottom-10 left-0 w-full z-10 px-6 md:px-10">
-            <div className="flex flex-col space-y-2">
-              <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold drop-shadow-md">
+          <div className="absolute bottom-8 left-0 w-full z-10 px-5">
+            <div className="flex flex-col space-y-1.5">
+              <span className="font-sans text-[11px] uppercase tracking-widest text-gold font-bold drop-shadow">
                 {p.style || 'Bespoke execution'}
               </span>
-              <h1 className="text-white text-3xl md:text-5xl font-editorial font-bold leading-tight drop-shadow-lg">
+              <h1 className="text-white text-2xl font-editorial font-bold leading-tight drop-shadow-md">
                 {p.title}
               </h1>
             </div>
           </div>
 
-          {/* Scroll Down Indicator */}
           <ScrollDownIndicator />
         </div>
       </section>
 
       {/* Overview Block */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-walnut/10">
+      <section id="project-overview-stats" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-walnut/10">
         <div className="flex items-center space-x-3">
           <MapPin className="text-gold shrink-0" size={20} />
           <div>
