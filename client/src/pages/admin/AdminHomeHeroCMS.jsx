@@ -220,12 +220,12 @@ const AdminHomeHeroCMS = () => {
     { key: 3, val: heroState.hero_stat3_value, label: heroState.hero_stat3_label, visible: heroState.hero_stat3_visible, order: Number(heroState.hero_stat3_order) || 3 },
   ].filter(s => s.visible).sort((a, b) => a.order - b.order);
 
-  const heroBgPreview = (heroState.hero_bg_images?.[0] === '/api/user-uploaded-bedroom.jpg')
-    ? '/images/user_uploaded_bedroom.jpg'
-    : (heroState.hero_bg_images?.[0] || '/images/user_uploaded_bedroom.jpg');
-  const cardImgPreview = (heroState.hero_card_image === '/api/user-uploaded-bedroom.jpg' || !heroState.hero_card_image)
-    ? heroBgPreview
-    : heroState.hero_card_image;
+  const heroBgPreview = (heroState.hero_bg_images?.[0] && heroState.hero_bg_images[0] !== '/api/user-uploaded-bedroom.jpg')
+    ? heroState.hero_bg_images[0]
+    : '/images/hero/hero_bedroom_4k.webp';
+  const cardImgPreview = (heroState.hero_card_image && heroState.hero_card_image !== '/api/user-uploaded-bedroom.jpg')
+    ? heroState.hero_card_image
+    : heroBgPreview;
 
   // Master List of Sections on the Homepage for quick switchboard overview
   const sectionsList = [
@@ -554,7 +554,15 @@ const AdminHomeHeroCMS = () => {
               {(heroState.hero_bg_images || []).map((imgUrl, i) => (
                 <div key={i} className="flex items-center space-x-2.5 bg-white border border-stone-200 p-2 rounded-xl shadow-2xs">
                   {imgUrl && (
-                    <img src={imgUrl} alt={`Bg ${i+1}`} className="w-12 h-10 object-cover rounded-lg shrink-0 border border-stone-200" />
+                    <img
+                      src={imgUrl}
+                      alt={`Bg ${i+1}`}
+                      className="w-12 h-10 object-cover rounded-lg shrink-0 border border-stone-200"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/images/hero/hero_bedroom_thumb.webp';
+                      }}
+                    />
                   )}
                   <input
                     type="text"
@@ -621,7 +629,15 @@ const AdminHomeHeroCMS = () => {
                 <label className={labelClass}>Card Image Thumbnail (Optional Custom Photo)</label>
                 <div className="flex items-center space-x-2.5">
                   {cardImgPreview && (
-                    <img src={cardImgPreview} alt="Card preview" className="w-16 h-12 object-cover rounded-lg border border-stone-200" />
+                    <img
+                      src={cardImgPreview}
+                      alt="Card preview"
+                      className="w-16 h-12 object-cover rounded-lg border border-stone-200"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/images/hero/hero_bedroom_thumb.webp';
+                      }}
+                    />
                   )}
                   <input
                     type="text"
@@ -1168,7 +1184,15 @@ const AdminHomeHeroCMS = () => {
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
                     <div className="md:col-span-3">
                       {slide.projectImg && (
-                        <img src={slide.projectImg} alt={`Slide ${idx+1}`} className="w-full aspect-[16/10] object-cover rounded-lg border border-stone-200" />
+                        <img
+                          src={slide.projectImg}
+                          alt={`Slide ${idx+1}`}
+                          className="w-full aspect-[16/10] object-cover rounded-lg border border-stone-200"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/images/company/3bhk_lux/open_hall.png';
+                          }}
+                        />
                       )}
                     </div>
 
@@ -1596,6 +1620,10 @@ const AdminHomeHeroCMS = () => {
                   src={heroBgPreview}
                   alt="Background Preview"
                   className="absolute inset-0 w-full h-full object-cover opacity-85"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/images/hero/hero_bedroom_4k.webp';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
@@ -1605,6 +1633,10 @@ const AdminHomeHeroCMS = () => {
                     src={cardImgPreview}
                     alt="Thumbnail"
                     className="w-full aspect-[16/9] object-cover rounded-lg mb-2 border border-white/20"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/images/hero/hero_bedroom_4k.webp';
+                    }}
                   />
                   <h3 className="font-display text-[13.5px] sm:text-[15px] font-bold text-white leading-tight mb-2 whitespace-nowrap truncate drop-shadow-md">
                     {heroState.hero_card_heading || 'We Craft the Future Dwelling'}

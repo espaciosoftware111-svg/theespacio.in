@@ -2738,27 +2738,6 @@ const WhatWeDo = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [slug]);
 
-  const lockScroll = () => {
-    try {
-      if (window.lenis) {
-        window.lenis.stop();
-      }
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none';
-    } catch {}
-  };
-
-  const unlockScroll = () => {
-    try {
-      if (window.lenis) {
-        window.lenis.start();
-      }
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      document.body.style.touchAction = '';
-    } catch {}
-  };
 
   const handleMove = (clientX) => {
     if (!heroRef.current) return;
@@ -2771,7 +2750,6 @@ const WhatWeDo = () => {
   const onStart = (e) => {
     isDragging.current = true;
     setIsPaused(true);
-    lockScroll();
     if (e) {
       if (e.clientX !== undefined && e.clientX !== null) {
         handleMove(e.clientX);
@@ -2785,7 +2763,6 @@ const WhatWeDo = () => {
     if (isDragging.current) {
       isDragging.current = false;
       setIsPaused(false);
-      unlockScroll();
     }
   };
 
@@ -2797,6 +2774,7 @@ const WhatWeDo = () => {
 
     const handleGlobalTouchMove = (e) => {
       if (!isDragging.current) return;
+      // Only prevent horizontal pan, allow vertical scroll
       if (e.cancelable) {
         e.preventDefault();
       }
@@ -2805,27 +2783,18 @@ const WhatWeDo = () => {
       }
     };
 
-    const handleWheel = (e) => {
-      if (isDragging.current && e.cancelable) {
-        e.preventDefault();
-      }
-    };
-
     window.addEventListener('mousemove', handleGlobalMouseMove);
     window.addEventListener('mouseup', onEnd);
     window.addEventListener('touchmove', handleGlobalTouchMove, { passive: false });
     window.addEventListener('touchend', onEnd);
     window.addEventListener('touchcancel', onEnd);
-    window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      unlockScroll();
       window.removeEventListener('mousemove', handleGlobalMouseMove);
       window.removeEventListener('mouseup', onEnd);
       window.removeEventListener('touchmove', handleGlobalTouchMove);
       window.removeEventListener('touchend', onEnd);
       window.removeEventListener('touchcancel', onEnd);
-      window.removeEventListener('wheel', handleWheel);
     };
   }, []);
 
@@ -3733,8 +3702,8 @@ const WhatWeDo = () => {
 
             {/* Slider Drag Thumb Handle (with ergonomic touch hit area) */}
             <div
-              className="absolute inset-y-0 -translate-x-1/2 w-12 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize touch-none select-none"
-              style={{ left: `${sliderPos}%`, touchAction: 'none' }}
+              className="absolute inset-y-0 -translate-x-1/2 w-12 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize select-none"
+              style={{ left: `${sliderPos}%`, touchAction: 'pan-y' }}
               onMouseDown={(e) => {
                 e.stopPropagation();
                 onStart(e);
@@ -3766,7 +3735,7 @@ const WhatWeDo = () => {
         const getCategoryHero = (cat) => {
           if (!cat) return '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
           if (cat.slug === 'commercial-office') {
-            return cat.heroImage || '/images/spaces/office/office_drive_4.webp';
+            return cat.heroImage || '/images/spaces/commercial/commercial_drive_41.webp';
           }
           const img = cat.heroImage || cat.galleryImages?.[0];
           if (!img || img.includes('drive.google.com') || img.includes('undefined')) {
@@ -3836,9 +3805,9 @@ const WhatWeDo = () => {
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                          className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
+                          className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between">
                           <div>
                             <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-gold/90 block mb-0.5">
@@ -3882,14 +3851,14 @@ const WhatWeDo = () => {
                             decoding="async"
                             onError={(e) => {
                               const fb = cat.slug === 'commercial-office' 
-                                ? '/images/spaces/office/office_drive_4.webp' 
+                                ? '/images/spaces/commercial/commercial_drive_41.webp' 
                                 : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
                             style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                            className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
+                            className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                           <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                             <div className="space-y-1 pr-3">
                               <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold/90 block">
@@ -3934,9 +3903,9 @@ const WhatWeDo = () => {
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                          className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" 
+                          className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         
                         {/* Pinned Showcase Tag */}
                         <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-gold/40">
@@ -3979,14 +3948,14 @@ const WhatWeDo = () => {
                             decoding="async"
                             onError={(e) => {
                               const fb = cat.slug === 'commercial-office' 
-                                ? '/images/spaces/office/office_drive_4.webp' 
+                                ? '/images/spaces/commercial/commercial_drive_41.webp' 
                                 : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
                             style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                            className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
+                            className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                           <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                             <div className="space-y-1 pr-3">
                               <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold/90 block">

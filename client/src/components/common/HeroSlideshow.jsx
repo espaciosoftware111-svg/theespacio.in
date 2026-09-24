@@ -124,30 +124,34 @@ const HeroSlideshow = memo(({
         const mobileSrc = isHeroImg ? src.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp') : optimizedSrc;
 
         return (
-          <picture key={src} className="absolute inset-0 w-full h-full">
-            <source media="(max-width: 767px)" srcSet={mobileSrc} />
-            <source media="(min-width: 768px)" srcSet={optimizedSrc} />
-            <motion.img
-              src={optimizedSrc}
-              alt="ESPACIO Hero Showcase"
-              decoding="async"
-              loading="eager"
-              fetchPriority={idx === 0 ? "high" : "auto"}
-              initial={idx === 0 ? { opacity: 1 } : { opacity: 0 }}
-              animate={{
-                opacity: isActive ? 1 : 0,
-              }}
-              transition={{
-                duration: transitionDuration,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              style={{
-                zIndex: isActive ? 2 : 1,
-                pointerEvents: 'none',
-              }}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-          </picture>
+          <motion.img
+            key={src}
+            src={typeof window !== 'undefined' && window.innerWidth < 768 ? mobileSrc : optimizedSrc}
+            alt="ESPACIO Hero Showcase"
+            decoding={idx === 0 ? 'sync' : 'async'}
+            loading="eager"
+            fetchPriority={idx === 0 ? "high" : "auto"}
+            initial={idx === 0 ? { opacity: 1 } : { opacity: 0 }}
+            animate={{
+              opacity: isActive ? 1 : 0,
+            }}
+            transition={{
+              duration: transitionDuration,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              zIndex: isActive ? 2 : 1,
+              pointerEvents: 'none',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+            }}
+          />
         );
       })}
 

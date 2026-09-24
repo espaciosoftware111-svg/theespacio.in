@@ -44,27 +44,6 @@ const ProjectDetails = () => {
   const [hasMoved, setHasMoved] = useState(false);
   const sliderContainerRef = useRef(null);
 
-  const lockScroll = () => {
-    try {
-      if (window.lenis) {
-        window.lenis.stop();
-      }
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none';
-    } catch { }
-  };
-
-  const unlockScroll = () => {
-    try {
-      if (window.lenis) {
-        window.lenis.start();
-      }
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      document.body.style.touchAction = '';
-    } catch { }
-  };
 
   const updateSliderPos = (clientX) => {
     if (!sliderContainerRef.current) return;
@@ -77,13 +56,11 @@ const ProjectDetails = () => {
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
-    lockScroll();
     updateSliderPos(e.clientX);
   };
 
   const handleTouchStart = (e) => {
     setIsDragging(true);
-    lockScroll();
     if (e.touches && e.touches[0]) {
       updateSliderPos(e.touches[0].clientX);
     }
@@ -106,15 +83,8 @@ const ProjectDetails = () => {
       }
     };
 
-    const handleGlobalWheel = (e) => {
-      if (isDragging && e.cancelable) {
-        e.preventDefault();
-      }
-    };
-
     const handleGlobalEnd = () => {
       setIsDragging(false);
-      unlockScroll();
     };
 
     if (isDragging) {
@@ -123,17 +93,14 @@ const ProjectDetails = () => {
       window.addEventListener('touchmove', handleGlobalTouchMove, { passive: false });
       window.addEventListener('touchend', handleGlobalEnd);
       window.addEventListener('touchcancel', handleGlobalEnd);
-      window.addEventListener('wheel', handleGlobalWheel, { passive: false });
     }
 
     return () => {
-      unlockScroll();
       window.removeEventListener('mousemove', handleGlobalMove);
       window.removeEventListener('mouseup', handleGlobalEnd);
       window.removeEventListener('touchmove', handleGlobalTouchMove);
       window.removeEventListener('touchend', handleGlobalEnd);
       window.removeEventListener('touchcancel', handleGlobalEnd);
-      window.removeEventListener('wheel', handleGlobalWheel);
     };
   }, [isDragging]);
 
@@ -494,8 +461,8 @@ const ProjectDetails = () => {
               data-lenis-prevent
               onMouseDown={handleMouseDown}
               onTouchStart={handleTouchStart}
-              style={{ touchAction: 'none' }}
-              className="relative w-full aspect-[16/9] rounded-card overflow-hidden select-none cursor-ew-resize border border-walnut/15 shadow-2xl bg-charcoal touch-none"
+              style={{ touchAction: 'pan-y' }}
+              className="relative w-full aspect-[16/9] rounded-card overflow-hidden select-none cursor-ew-resize border border-walnut/15 shadow-2xl bg-charcoal"
             >
               {/* After Image */}
               <img
@@ -548,8 +515,8 @@ const ProjectDetails = () => {
 
               {/* Drag handle thumb touch strip */}
               <div
-                className="absolute inset-y-0 -translate-x-1/2 w-14 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize touch-none select-none"
-                style={{ left: `${sliderPos}%`, touchAction: 'none' }}
+                className="absolute inset-y-0 -translate-x-1/2 w-14 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize select-none"
+                style={{ left: `${sliderPos}%`, touchAction: 'pan-y' }}
                 onMouseDown={(e) => {
                   e.stopPropagation();
                   handleMouseDown(e);

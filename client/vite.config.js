@@ -63,22 +63,7 @@ export default defineConfig({
           const cleanPath = (req.url || '').split('?')[0].replace(/^\/+/, '');
           const localPath = path.resolve(__dirname, 'public', cleanPath);
           if (fs.existsSync(localPath) && fs.statSync(localPath).isFile()) {
-            const stat = fs.statSync(localPath);
-            const ext = path.extname(localPath).toLowerCase();
-            const mimeTypes = {
-              '.webp': 'image/webp',
-              '.png': 'image/png',
-              '.jpg': 'image/jpeg',
-              '.jpeg': 'image/jpeg',
-              '.svg': 'image/svg+xml'
-            };
-            res.writeHead(200, {
-              'Content-Type': mimeTypes[ext] || 'application/octet-stream',
-              'Content-Length': stat.size,
-              'Cache-Control': 'public, max-age=3600'
-            });
-            fs.createReadStream(localPath).pipe(res);
-            return false;
+            return req.url;
           }
         }
       }

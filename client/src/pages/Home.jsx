@@ -629,7 +629,9 @@ const Home = () => {
   // Preload craft card thumbnails for instant transition syncing
   useEffect(() => {
     HERO_IMAGES.forEach((imgUrl) => {
-      const thumbSrc = imgUrl.replace(/\.(webp|jpg|png)$/i, '_thumb.webp');
+      const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_'))
+        ? imgUrl.replace(/(_4k|_mobile)?\.(webp|jpg|png)$/i, '_thumb.webp')
+        : imgUrl;
       const img = new Image();
       img.src = thumbSrc;
       if (img.decode) img.decode().catch(() => {});
@@ -795,7 +797,7 @@ const Home = () => {
     offset: ["start start", "end start"]
   });
   const heroExitScale = useTransform(heroScroll, [0, 1], [1, 0.85]);
-  const heroExitOpacity = useTransform(heroScroll, [0, 1], [1, 0]);
+  const heroExitOpacity = useTransform(heroScroll, [0, 0.15, 1], [1, 1, 0]);
   const heroExitY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
 
   useEffect(() => {
@@ -1093,7 +1095,7 @@ const Home = () => {
         <section ref={heroRef} className="relative h-[85dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <motion.div
             style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
-            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl"
+            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl bg-neutral-900"
           >
             {/* Background Image Layer */}
             <div className="absolute inset-0 overflow-hidden">
@@ -1149,7 +1151,7 @@ const Home = () => {
                           {activeHeroBgImages.map((imgUrl, imgIdx) => {
                             const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
                             const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
-                              ? imgUrl.replace(/\.(webp|jpg|png)$/i, '_thumb.webp')
+                              ? imgUrl.replace(/(_4k|_mobile)?\.(webp|jpg|png)$/i, '_thumb.webp')
                               : imgUrl;
                             return (
                               <motion.img
