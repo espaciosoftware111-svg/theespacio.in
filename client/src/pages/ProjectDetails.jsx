@@ -394,12 +394,6 @@ const ProjectDetails = () => {
         id: `${p?.slug || 'proj'}-${idx}`,
         title,
         image: finalImage,
-        credit: `${(p?.title || 'ESPACIO RESIDENCE').toUpperCase()} • ${(p?.style || 'BESPOKE ARCHITECTURE').toUpperCase()}`,
-        meta: [
-          (p?.location || 'HYDERABAD').toUpperCase(),
-          (p?.area || '3,200 SQ.FT').toUpperCase(),
-          (p?.configuration || p?.category?.replace('_', ' ') || 'TURNKEY').toUpperCase()
-        ],
         accent: accents[idx % accents.length]
       };
     });
