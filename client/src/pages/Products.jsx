@@ -116,8 +116,8 @@ const Products = () => {
     <div className="bg-bg min-h-screen pb-24">
       <SEO title="Premium Material Library — WPC, Fluted, Acrylic Panels" description="Explore ESPACIO's curated material library. WPC wall panels, fluted panels, polygranite, acrylic sheets, mosaic tiles and more. Request samples and catalogue." url="/materials" />
       
-      {/* Hero with Dome Gallery — full height hero matching site hero ratios */}
-      <section className="relative h-[85dvh] sm:h-[77vh] lg:h-[96vh] min-h-[320px] sm:min-h-[480px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
+      {/* Hero with Dome Gallery — 80% viewport height on mobile */}
+      <section className="relative h-[80dvh] sm:h-[77vh] lg:h-[96vh] min-h-[300px] sm:min-h-[480px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
         {/* Gallery frame: 100% full screen edge-to-edge on mobile, rounded framed on tablet/desktop */}
         <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
           {/* Dome Gallery Container */}
@@ -126,7 +126,7 @@ const Products = () => {
               images={domeImages}
               fit={
                 typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 0.88        // mobile: globe fills 88% of min dimension
+                  ? 0.78        // mobile: decreased to 78-80% for compact proportion
                   : window.innerWidth < 1024
                   ? 0.90        // tablet: 90%
                   : 0.92        // desktop: 92% — large immersive sphere
@@ -134,7 +134,7 @@ const Products = () => {
               fitBasis="height"
               minRadius={
                 typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 320
+                  ? 260
                   : window.innerWidth < 1024
                   ? 520
                   : 820
@@ -151,18 +151,18 @@ const Products = () => {
               autoRotate={true}
               autoRotateSpeed={0.08}
               openedImageWidth={
-                typeof window !== 'undefined' && window.innerWidth < 640 ? '240px' : '320px'
+                typeof window !== 'undefined' && window.innerWidth < 640 ? '200px' : '320px'
               }
               openedImageHeight={
-                typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px'
+                typeof window !== 'undefined' && window.innerWidth < 640 ? '260px' : '400px'
               }
-              imageBorderRadius="14px"
-              openedImageBorderRadius="22px"
+              imageBorderRadius="12px"
+              openedImageBorderRadius="20px"
             />
           </div>
 
           {/* Scroll Down Indicator */}
-          <ScrollDownIndicator light={true} className="scale-90 sm:scale-100 bottom-2 sm:bottom-4" />
+          <ScrollDownIndicator light={true} className="scale-80 sm:scale-100 bottom-2 sm:bottom-4" />
         </div>
       </section>
 

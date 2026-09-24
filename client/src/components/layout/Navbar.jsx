@@ -206,7 +206,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-[#F8F5F0] text-ink z-[100] flex flex-col p-8"
           >
-            <div className="flex items-center justify-between mb-16">
+            <div className="flex items-center justify-between mb-8 sm:mb-12 shrink-0">
               <Link to="/" className="hover:opacity-90" onClick={() => setMobileMenuOpen(false)}>
                 <Logo scrolled={true} />
               </Link>
@@ -219,38 +219,48 @@ const Navbar = () => {
               </button>
             </div>
             
-            <nav className="flex flex-col gap-2 flex-1">
-              {navLinks.map((link, i) => (
-                <motion.div 
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link 
-                    to={link.path}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      resetScroll(true, link.path);
-                    }}
-                    className="block font-display text-3xl font-semibold text-ink hover:text-gold py-3 border-b border-ink/10 transition-colors"
+            <div className="flex flex-col overflow-y-auto pb-28">
+              <nav className="flex flex-col">
+                {navLinks.map((link, i) => (
+                  <motion.div 
+                    key={link.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-            
-            <Link 
-              to="/contact" 
-              onClick={() => {
-                setMobileMenuOpen(false);
-                resetScroll(true, '/contact');
-              }}
-              className="mt-8 inline-flex items-center justify-center gap-2 bg-ink text-bg font-sans text-[12px] font-bold uppercase tracking-widest px-6 py-4.5 rounded-pill w-full hover:bg-ink-soft transition-colors shadow-md"
-            >
-              Contact us <ArrowUpRight size={13} />
-            </Link>
+                    <Link 
+                      to={link.path}
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        resetScroll(true, link.path);
+                      }}
+                      className="block font-display text-3xl sm:text-4xl font-semibold text-ink hover:text-gold py-3.5 border-b border-ink/10 transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.05 + 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8"
+              >
+                <Link 
+                  to="/contact" 
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    resetScroll(true, '/contact');
+                  }}
+                  className="inline-flex items-center justify-center gap-2 bg-ink text-bg font-sans text-[13px] font-bold uppercase tracking-widest px-7 py-4.5 rounded-full w-full hover:bg-ink-soft transition-colors shadow-xl"
+                >
+                  <span>Contact us</span>
+                  <ArrowUpRight size={14} />
+                </Link>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -52,11 +52,11 @@ main.sphere-main {
   .stage {
     contain: none !important;
     overflow: visible !important;
-    transform: scale(0.92);
+    transform: scale(0.80);
     transform-origin: 50% 50%;
   }
   .item__image {
-    inset: 10px;
+    inset: 15px;
   }
 }
 
