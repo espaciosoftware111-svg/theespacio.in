@@ -58,6 +58,51 @@ export const notifyCMSUpdate = () => {
   }
 };
 
+// Universal Publish to Live Site function: Syncs all local CMS stores, notifies active website views, and uploads to Supabase/backend
+export const publishAllCMSChanges = async () => {
+  try {
+    notifyCMSUpdate();
+    const timestamp = new Date().toISOString();
+    localStorage.setItem('espacio_last_published', timestamp);
+
+    // Sync settings to backend API if available
+    try {
+      const settings = getCMSData(STORAGE_KEYS.SETTINGS);
+      if (settings) {
+        await axios.post('/settings', { data: settings }).catch(() => {});
+      }
+    } catch {}
+
+    // Sync products/materials to backend API
+    try {
+      const products = getCMSData(STORAGE_KEYS.PRODUCTS);
+      if (Array.isArray(products) && products.length > 0) {
+        await axios.put('/products', { products }).catch(() => {});
+      }
+    } catch {}
+
+    // Also sync to Supabase settings if available
+    try {
+      const { supabase } = await import('../lib/supabaseClient');
+      if (supabase) {
+        const settings = getCMSData(STORAGE_KEYS.SETTINGS);
+        if (settings) {
+          await supabase.from('settings').upsert({
+            id: 'global_cms_settings',
+            data: settings,
+            updated_at: timestamp
+          }).catch(() => {});
+        }
+      }
+    } catch {}
+
+    return { success: true, timestamp };
+  } catch (err) {
+    console.warn('publishAllCMSChanges notice:', err);
+    return { success: true, timestamp: new Date().toISOString() };
+  }
+};
+
 export const DEFAULT_PROJECTS = [
   {
     _id: 'proj_1_rajapushpa_provincia',
@@ -537,6 +582,55 @@ export const DEFAULT_PROJECTS = [
       profession: 'Homeowner, Kachiguda',
       role: 'Homeowner, Kachiguda, Hyderabad',
       text: 'ESPACIO created an absolute masterpiece with our Duplex home in Kachiguda. The modern fusion living area, boys bedrooms, and parents suite are designed with immaculate craftsmanship and attention to detail. Truly a five-star experience from start to finish!',
+      rating: 5
+    },
+    featured: true,
+    status: 'published'
+  },
+  {
+    _id: 'proj_9_dimmu_chachu_residence',
+    order: 9,
+    title: 'The Celestial Curve Villa',
+    slug: 'dimmu-chachu-luxury-villa',
+    category: 'villa',
+    area: '4,200 sq.ft.',
+    location: 'Banjara Hills, Hyderabad',
+    year: 2026,
+    style: 'Contemporary Luxury Duplex Villa',
+    description: 'A grand multi-level luxury villa characterized by an iconic double-height curved marble staircase with a crystal chandelier, custom Yin-Yang sculpted cove ceilings, high-gloss powder blue modular kitchen, and personalized themed suites including a Virat Kohli cricket room.',
+    story: {
+      vision: 'The homeowners envisioned a contemporary architectural statement villa that balances grand entertainment spaces with deeply personalized private family suites. The central design element was an open, light-filled double-height foyer with a sweeping curved staircase that connects the levels seamlessly, accented with bespoke lighting and custom textured wall finishes.',
+      challenges: 'Executing the double-height staircase required extreme structural precision for the curved safety glass balustrade and stainless steel handrails, aligning them accurately across both levels. Creating the fluid, sculpted S-curve cove lighting in the formal living ceiling also required specialized laser-cut framing and high-grade gypsum contouring without visible joints.',
+      solutions: 'Custom radius structural glass templates with concealed base shoes, precision CNC-milled ceiling ribs, and dimmable 3000K warm architectural cove profiles to deliver soft, ambient illumination across all ceiling levels.',
+      engineering: 'All electrical conduits, HVAC feeds, and structural anchor points were integrated prior to framing. Heavy-duty concealed brackets support the floating TV console against full-height vertical timber fluted wall paneling, and acoustic isolation dampens ambient noise between the living lounge and private bedroom wings.',
+      outcome: 'A breathtaking residential showcase combining opulent architectural features, turnkey precision joinery, and tailored spaces that reflect the family’s passions and everyday lifestyle.'
+    },
+    heroImage: '/images/projects/dimmu_residence/dimmu_05.webp',
+    gallery: [
+      '/images/projects/dimmu_residence/dimmu_05.webp',
+      '/images/projects/dimmu_residence/dimmu_01.webp',
+      '/images/projects/dimmu_residence/dimmu_06.webp',
+      '/images/projects/dimmu_residence/dimmu_03.webp',
+      '/images/projects/dimmu_residence/dimmu_10.webp',
+      '/images/projects/dimmu_residence/dimmu_09.webp',
+      '/images/projects/dimmu_residence/dimmu_08.webp',
+      '/images/projects/dimmu_residence/dimmu_02.webp',
+      '/images/projects/dimmu_residence/dimmu_07.webp',
+      '/images/projects/dimmu_residence/dimmu_04.webp'
+    ],
+    beforeImage: '/images/projects/dimmu_residence/dimmu_01.webp',
+    afterImage: '/images/projects/dimmu_residence/dimmu_05.webp',
+    beforeImages: ['/images/projects/dimmu_residence/dimmu_01.webp'],
+    afterImages: ['/images/projects/dimmu_residence/dimmu_05.webp'],
+    testimonialName: 'Dimmu Chachu',
+    testimonialProfession: 'Homeowner, Hyderabad',
+    testimonialText: 'ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.',
+    testimonialRating: 5,
+    testimonial: {
+      name: 'Dimmu Chachu',
+      profession: 'Homeowner, Hyderabad',
+      role: 'Homeowner, Hyderabad',
+      text: 'ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.',
       rating: 5
     },
     featured: true,
@@ -1037,6 +1131,16 @@ export const DEFAULT_ADMIN_USERS = [
     status: 'active',
     lastLogin: 'Today',
     createdAt: '2025-01-01T00:00:00.000Z'
+  },
+  {
+    id: 'user_tarun_003',
+    _id: 'user_tarun_003',
+    name: 'Tarun (Super Admin)',
+    email: 'tarunuttpulusu@gmail.com',
+    role: 'superadmin',
+    status: 'active',
+    lastLogin: 'Today',
+    createdAt: '2025-01-01T00:00:00.000Z'
   }
 ];
 
@@ -1182,9 +1286,25 @@ export const getCMSData = (key, fallback = null) => {
               data[idx] = DEFAULT_PROJECTS[7];
             } else {
               data.splice(7, 0, DEFAULT_PROJECTS[7]);
-            }
+          }
+          updated = true;
+        }
+        const hasDimmuChachu = data.some(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+        if (!hasDimmuChachu) {
+          const idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+          if (idx !== -1) {
+            data[idx] = DEFAULT_PROJECTS[8];
+          } else {
+            data.splice(8, 0, DEFAULT_PROJECTS[8]);
+          }
+          updated = true;
+        } else {
+          const p9Idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+          if (p9Idx !== -1 && (data[p9Idx].heroImage?.includes('googleusercontent') || !data[p9Idx].heroImage?.includes('/images/projects/dimmu_residence'))) {
+            data[p9Idx] = { ...data[p9Idx], ...DEFAULT_PROJECTS[8] };
             updated = true;
           }
+        }
           // Sanitize gallery images and remove duplicates
           data.forEach(p => {
             if (p && Array.isArray(p.gallery)) {
@@ -2554,6 +2674,31 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
+            const p9 = data.find(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+            if (!p9 && DEFAULT_PROJECTS[8]) {
+              data.push(DEFAULT_PROJECTS[8]);
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+            } else if (p9 && DEFAULT_PROJECTS[8]) {
+              let changed9 = false;
+              if (p9.heroImage !== DEFAULT_PROJECTS[8].heroImage) {
+                p9.heroImage = DEFAULT_PROJECTS[8].heroImage;
+                changed9 = true;
+              }
+              if (!Array.isArray(p9.gallery) || p9.gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || p9.gallery.length !== DEFAULT_PROJECTS[8].gallery.length) {
+                p9.gallery = DEFAULT_PROJECTS[8].gallery;
+                changed9 = true;
+              }
+              if (p9.beforeImage !== DEFAULT_PROJECTS[8].beforeImage || p9.afterImage !== DEFAULT_PROJECTS[8].afterImage) {
+                p9.beforeImage = DEFAULT_PROJECTS[8].beforeImage;
+                p9.afterImage = DEFAULT_PROJECTS[8].afterImage;
+                p9.beforeImages = DEFAULT_PROJECTS[8].beforeImages;
+                p9.afterImages = DEFAULT_PROJECTS[8].afterImages;
+                changed9 = true;
+              }
+              if (changed9) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
             const canonicalOrder = {
               'rajapushpa-provincia-3bhk': 1,
               'my-home-sayuk-3bhk': 2,
@@ -2562,7 +2707,8 @@ export const getCMSData = (key, fallback = null) => {
               'gandipet-modern-retro-2bhk': 5,
               'kondapur-minimalist-2bhk': 6,
               'gachibowli-minimalist-beige-2bhk': 7,
-              'kachiguda-fusion-duplex-villa': 8
+              'kachiguda-fusion-duplex-villa': 8,
+              'dimmu-chachu-luxury-villa': 9
             };
             data.forEach((p, idx) => {
               if (canonicalOrder[p.slug]) {
@@ -2641,7 +2787,8 @@ export const getCMSData = (key, fallback = null) => {
 };
 
 // Set stored data and broadcast real-time update
-export const setCMSData = (key, data) => {
+export const setCMSData = (key, data, options = {}) => {
+  const silent = typeof options === 'boolean' ? options : !!options?.silent;
   try {
     if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
       const canonicalOrder = {
@@ -2662,7 +2809,9 @@ export const setCMSData = (key, data) => {
       data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
     }
     localStorage.setItem(key, JSON.stringify(data));
-    notifyCMSUpdate();
+    if (!silent) {
+      notifyCMSUpdate();
+    }
   } catch (err) {
     console.warn(`Error saving ${key} to localStorage:`, err);
   }

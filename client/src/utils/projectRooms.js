@@ -201,6 +201,30 @@ const EXACT_PROJECT_ROOMS = {
     'subbarao_gallery_24.webp': 'Walk-In Dressing Room',
     'subbarao_gallery_25.webp': 'Dining Chandelier View',
     'subbarao_gallery_26.webp': 'Grand Living Hall Overview'
+  },
+
+  // 9. The Celestial Curve Villa (Dimmu Chachu Luxury Villa)
+  'dimmu-chachu-luxury-villa': {
+    'dimmu_05.webp': 'Double-Height Foyer & Grand Staircase',
+    'dimmu_01.webp': 'Living Lounge & TV Media Wall',
+    'dimmu_06.webp': 'Formal Lounge & Sculpted Wave Ceiling',
+    'dimmu_03.webp': 'Upper Level Mezzanine & Chandelier',
+    'dimmu_10.webp': 'High-Gloss Modular Kitchen',
+    'dimmu_09.webp': 'Cricket Tribute Suite (Wide View)',
+    'dimmu_08.webp': 'Cricket Tribute Suite & Custom Wardrobes',
+    'dimmu_02.webp': 'Teal Master Suite & Bay Window Seating',
+    'dimmu_07.webp': 'Teal Master Bedroom Daybed Nook',
+    'dimmu_04.webp': 'Terracotta Guest Suite & Study Desk',
+    '11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90': 'Double-Height Foyer & Grand Staircase',
+    '1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-': 'Living Lounge & TV Media Wall',
+    '1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F': 'Formal Lounge & Sculpted Wave Ceiling',
+    '1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ': 'Upper Level Mezzanine & Chandelier',
+    '1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar': 'High-Gloss Modular Kitchen',
+    '1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K': 'Cricket Tribute Suite (Wide View)',
+    '1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc': 'Cricket Tribute Suite & Custom Wardrobes',
+    '12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA': 'Teal Master Suite & Bay Window Seating',
+    '1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF': 'Teal Master Bedroom Daybed Nook',
+    '1smFAVnKujLD_imWl--XMcNFas-faQXc-': 'Terracotta Guest Suite & Study Desk'
   }
 };
 
@@ -213,6 +237,7 @@ EXACT_PROJECT_ROOMS['proj_5_gandipet_kiran'] = EXACT_PROJECT_ROOMS['gandipet-mod
 EXACT_PROJECT_ROOMS['proj_6_kondapur_venkatesh'] = EXACT_PROJECT_ROOMS['kondapur-minimalist-2bhk'];
 EXACT_PROJECT_ROOMS['proj_7_gachibowli_koteswara'] = EXACT_PROJECT_ROOMS['gachibowli-minimalist-beige-2bhk'];
 EXACT_PROJECT_ROOMS['proj_8_kachiguda_subbarao'] = EXACT_PROJECT_ROOMS['kachiguda-fusion-duplex-villa'];
+EXACT_PROJECT_ROOMS['proj_9_dimmu_chachu_residence'] = EXACT_PROJECT_ROOMS['dimmu-chachu-luxury-villa'];
 
 // Smart filename keyword matcher
 function detectRoomFromFilename(filename) {

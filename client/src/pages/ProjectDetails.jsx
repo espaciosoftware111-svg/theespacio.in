@@ -5,6 +5,28 @@ import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, 
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getProjectRoomName } from '../utils/projectRooms';
+import { getOptimizedImageUrl } from '../utils/imageOptimizer';
+
+const IMAGE_FALLBACK_MAP = {
+  'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
+  'dimmu_01.webp': 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-',
+  'dimmu_06.webp': 'https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F',
+  'dimmu_03.webp': 'https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ',
+  'dimmu_10.webp': 'https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar',
+  'dimmu_09.webp': 'https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K',
+  'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
+  'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
+  'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
+  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-'
+};
+
+const handleImgError = (e) => {
+  const src = e.currentTarget?.src || '';
+  const fname = src.split('/').pop().split('?')[0];
+  if (IMAGE_FALLBACK_MAP[fname] && !src.includes(IMAGE_FALLBACK_MAP[fname])) {
+    e.currentTarget.src = IMAGE_FALLBACK_MAP[fname];
+  }
+};
 
 const ProjectDetails = () => {
   const { slug } = useParams();
@@ -349,7 +371,8 @@ const ProjectDetails = () => {
       <section className="pt-20 sm:pt-24 md:pt-28 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1440px] mx-auto">
         <div className="relative h-[90dvh] sm:h-[65vh] lg:h-[70vh] min-h-[480px] sm:min-h-[480px] lg:min-h-[500px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
           <img
-            src={p.heroImage}
+            src={getOptimizedImageUrl(p.heroImage, 1600, 92)}
+            onError={handleImgError}
             alt={p.title}
             className="absolute inset-0 w-full h-full object-cover opacity-75 transform scale-100 hover:scale-105 transition-transform duration-1000"
           />
@@ -462,7 +485,8 @@ const ProjectDetails = () => {
             >
               {/* After Image */}
               <img
-                src={afterImg}
+                src={getOptimizedImageUrl(afterImg, 1400, 92)}
+                onError={handleImgError}
                 alt="Transformation After"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               />
@@ -488,7 +512,8 @@ const ProjectDetails = () => {
                 }}
               >
                 <img
-                  src={beforeImg}
+                  src={getOptimizedImageUrl(beforeImg, 1400, 92)}
+                  onError={handleImgError}
                   alt="Transformation Before"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -553,7 +578,8 @@ const ProjectDetails = () => {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
                     <img
-                      src={imgUrl}
+                      src={getOptimizedImageUrl(imgUrl, 1200, 90)}
+                      onError={handleImgError}
                       alt={`${p.title} - ${roomName}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
@@ -625,7 +651,8 @@ const ProjectDetails = () => {
 
             <div className="relative w-full max-w-5xl h-[70vh] flex items-center justify-center my-auto">
               <img
-                src={p.gallery[activePhotoIdx]}
+                src={getOptimizedImageUrl(p.gallery[activePhotoIdx], 1600, 95)}
+                onError={handleImgError}
                 alt={`${p.title} - ${activeRoomName}`}
                 className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
               />
@@ -658,7 +685,7 @@ const ProjectDetails = () => {
                     className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${activePhotoIdx === i ? 'border-gold scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-80'
                       }`}
                   >
-                    <img src={img} alt={thumbRoom} className="w-full h-full object-cover" />
+                    <img src={getOptimizedImageUrl(img, 200, 80)} onError={handleImgError} alt={thumbRoom} className="w-full h-full object-cover" />
                   </button>
                 );
               })}

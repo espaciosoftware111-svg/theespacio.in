@@ -23,6 +23,27 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
   );
 };
 
+const IMAGE_FALLBACK_MAP = {
+  'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
+  'dimmu_01.webp': 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-',
+  'dimmu_06.webp': 'https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F',
+  'dimmu_03.webp': 'https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ',
+  'dimmu_10.webp': 'https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar',
+  'dimmu_09.webp': 'https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K',
+  'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
+  'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
+  'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
+  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-'
+};
+
+const handleImgError = (e) => {
+  const src = e.currentTarget?.src || '';
+  const fname = src.split('/').pop().split('?')[0];
+  if (IMAGE_FALLBACK_MAP[fname] && !src.includes(IMAGE_FALLBACK_MAP[fname])) {
+    e.currentTarget.src = IMAGE_FALLBACK_MAP[fname];
+  }
+};
+
 const heroImages = [
   // 1. Indo-Classical Elegance 3BHK: Majestic 4K Dining Hall & Classical Arches
   '/images/projects/project_hero_1.jpg',
@@ -384,6 +405,7 @@ const Projects = () => {
                         <div className="relative overflow-hidden aspect-[4/3]">
                           <img
                             src={getOptimizedImageUrl(project.heroImage, 1200, 92)}
+                            onError={handleImgError}
                             loading="lazy"
                             decoding="async"
                             alt={project.title}

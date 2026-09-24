@@ -61,7 +61,13 @@ export const getOptimizedImageUrl = (url, width = 1600, quality = 92) => {
     return url.replace(/\.(jpe?g|png)$/i, '.webp');
   }
 
-  // ── 4. All other URLs (external CDNs, absolute paths) ─────────────────────
+  // ── 4. Google Drive CDN Sizing ────────────────────────────────────────────
+  if (url.includes('googleusercontent.com/d/')) {
+    const base = url.split('=')[0];
+    return `${base}=w${targetWidth}`;
+  }
+
+  // ── 5. All other URLs (external CDNs, absolute paths) ─────────────────────
   return url;
 };
 
