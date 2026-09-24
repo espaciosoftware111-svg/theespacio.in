@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, MapPin, Home, CheckCircle2, Layers } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getProjectRoomName } from '../utils/projectRooms';
@@ -34,33 +34,9 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
-  // Responsive batch pagination: 4 photos on mobile (< 768px), 6 photos on desktop/tablet
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth < 768;
-    }
-    return false;
-  });
 
-  const batchSize = isMobile ? 4 : 6;
-  const [visiblePhotosCount, setVisiblePhotosCount] = useState(batchSize);
-  const gallerySectionRef = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Synchronize visible photos count whenever project changes or layout switches between mobile & desktop
-  useEffect(() => {
-    setVisiblePhotosCount(isMobile ? 4 : 6);
-  }, [slug, isMobile]);
 
   // Before/After drag slider state
   const [sliderPos, setSliderPos] = useState(50);
@@ -196,16 +172,6 @@ const ProjectDetails = () => {
   }, [slug]);
 
   // Global Escape key listener to close lightbox
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setLightboxOpen(false);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   // Offline mock project metadata fallbacks matching display expectations
   const getMockFallback = () => {
     const unsplashPool = {
@@ -345,25 +311,7 @@ const ProjectDetails = () => {
     p.gallery = Array.from(new Set(p.gallery.filter(img => !img.includes('venkatesh_gallery_22.webp'))));
   }
 
-  const totalPhotos = p?.gallery?.length || 0;
-  const hasMore = visiblePhotosCount < totalPhotos;
-  const canShowLess = visiblePhotosCount > batchSize;
-  const remainingPhotos = Math.max(0, totalPhotos - visiblePhotosCount);
-  const nextBatchCount = Math.min(batchSize, remainingPhotos);
 
-  const handleLoadMorePhotos = () => {
-    setVisiblePhotosCount((prev) => Math.min(totalPhotos, prev + batchSize));
-  };
-
-  const handleShowLessPhotos = () => {
-    setVisiblePhotosCount((prev) => Math.max(batchSize, prev - batchSize));
-    if (gallerySectionRef.current) {
-      const rect = gallerySectionRef.current.getBoundingClientRect();
-      if (rect.top < -50) {
-        gallerySectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  };
 
   const carouselItems = useMemo(() => {
     const rawImages = (Array.isArray(p?.gallery) && p.gallery.length > 0)
@@ -620,145 +568,9 @@ const ProjectDetails = () => {
         );
       })()}
 
-      {/* Editorial Masonry Gallery */}
-      {p.gallery?.length > 0 && (
-        <section ref={gallerySectionRef} className="max-w-[1440px] mx-auto px-6 md:px-12 py-20 scroll-mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
-            <div>
-              <h2 className="font-editorial text-3xl md:text-4xl font-bold text-charcoal">Project Gallery & Room Photography</h2>
-              <p className="font-sans text-xs text-walnut mt-1">
-                Showing {Math.min(visiblePhotosCount, p.gallery.length)} of {p.gallery.length} captured photos for this project entry.
-              </p>
-            </div>
-            <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider hidden sm:inline-block">Click photo to expand</span>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {p.gallery.slice(0, visiblePhotosCount).map((imgUrl, index) => {
-              const roomName = getProjectRoomName(p, imgUrl, index);
-              return (
-                <div
-                  key={index}
-                  onClick={() => { setActivePhotoIdx(index); setLightboxOpen(true); }}
-                  className="rounded-[22px] overflow-hidden border border-walnut/10 shadow-sm group cursor-pointer relative bg-charcoal flex flex-col hover:border-gold/40 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
-                    <img
-                      src={getOptimizedImageUrl(imgUrl, 1200, 90)}
-                      onError={handleImgError}
-                      alt={`${p.title} - ${roomName}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                    />
-                    <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
-                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                        <Maximize2 size={16} strokeWidth={2} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3.5 bg-bg-card border-t border-ink-border/20 flex items-center justify-between text-xs font-sans">
-                    <span className="text-ink font-semibold truncate tracking-wide">{roomName}</span>
-                    <span className="text-gold font-bold shrink-0 text-[10.5px] uppercase tracking-wider">Expand ↗</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
 
-          {/* Load More / Show Less Controls */}
-          {totalPhotos > batchSize && (
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-              {hasMore && (
-                <button
-                  type="button"
-                  onClick={handleLoadMorePhotos}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-charcoal text-cream hover:bg-gold hover:text-charcoal transition-all duration-300 shadow-md hover:shadow-xl font-sans text-xs uppercase tracking-wider font-bold group cursor-pointer border border-gold/30 hover:border-gold"
-                >
-                  <span>Load More Images</span>
-                  <ChevronDown size={15} className="group-hover:translate-y-0.5 transition-transform text-gold group-hover:text-charcoal" />
-                </button>
-              )}
 
-              {canShowLess && (
-                <button
-                  type="button"
-                  onClick={handleShowLessPhotos}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-cream/80 hover:bg-cream text-charcoal border border-walnut/20 hover:border-gold/60 transition-all duration-300 font-sans text-xs uppercase tracking-wider font-bold group cursor-pointer shadow-sm hover:shadow-md"
-                >
-                  <ChevronUp size={15} className="group-hover:-translate-y-0.5 transition-transform text-gold" />
-                  <span>Show Less</span>
-                </button>
-              )}
-            </div>
-          )}
-        </section>
-      )}
-
-      {/* Lightbox Modal */}
-      {lightboxOpen && p.gallery && (() => {
-        const activeRoomName = getProjectRoomName(p, p.gallery[activePhotoIdx], activePhotoIdx);
-        return (
-          <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 md:p-8">
-            <div className="w-full max-w-[1440px] flex items-center justify-between text-white border-b border-white/10 pb-4">
-              <div>
-                <h3 className="font-editorial text-lg font-bold">
-                  {p.title} <span className="text-gold font-normal mx-1.5">•</span> <span className="text-white/90 font-sans font-medium text-base">{activeRoomName}</span>
-                </h3>
-                <p className="font-sans text-xs text-white/60">
-                  {activeRoomName} • Photo {activePhotoIdx + 1} of {p.gallery.length} • Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]">Esc</kbd> to close
-                </p>
-              </div>
-              <button
-                onClick={() => setLightboxOpen(false)}
-                className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors font-bold text-xs uppercase px-4 py-2 cursor-pointer"
-              >
-                ✕ Close Viewer
-              </button>
-            </div>
-
-            <div className="relative w-full max-w-5xl h-[70vh] flex items-center justify-center my-auto">
-              <img
-                src={getOptimizedImageUrl(p.gallery[activePhotoIdx], 1600, 95)}
-                onError={handleImgError}
-                alt={`${p.title} - ${activeRoomName}`}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              />
-              {p.gallery.length > 1 && (
-                <button
-                  onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? p.gallery.length - 1 : prev - 1))}
-                  className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
-                >
-                  ◀
-                </button>
-              )}
-              {p.gallery.length > 1 && (
-                <button
-                  onClick={() => setActivePhotoIdx((prev) => (prev === p.gallery.length - 1 ? 0 : prev + 1))}
-                  className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-gold text-white hover:text-charcoal p-3.5 rounded-full transition-colors border border-white/20 cursor-pointer"
-                >
-                  ▶
-                </button>
-              )}
-            </div>
-
-            <div className="flex items-center space-x-2 overflow-x-auto max-w-full pt-4 scrollbar-none">
-              {p.gallery.map((img, i) => {
-                const thumbRoom = getProjectRoomName(p, img, i);
-                return (
-                  <button
-                    key={i}
-                    onClick={() => setActivePhotoIdx(i)}
-                    title={thumbRoom}
-                    className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${activePhotoIdx === i ? 'border-gold scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-80'
-                      }`}
-                  >
-                    <img src={getOptimizedImageUrl(img, 200, 80)} onError={handleImgError} alt={thumbRoom} className="w-full h-full object-cover" />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })()}
 
       {/* What the Client Says About Our Work Section */}
       {(p.testimonial?.text || p.testimonialText) && (

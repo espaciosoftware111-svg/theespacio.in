@@ -3,1109 +3,13 @@ import axios from 'axios';
 import {
   Layers, Save, CheckCircle, Loader2, Plus, Trash2,
   Eye, Sliders, ArrowUpRight, Check, ImageIcon, ArrowUp, ArrowDown,
-  CheckCircle2, SlidersHorizontal, HelpCircle
+  CheckCircle2, SlidersHorizontal, HelpCircle, Search, ExternalLink,
+  ImagePlus, RefreshCw, X, Award, ShieldCheck, Maximize2, Building2,
+  Sparkles, LayoutGrid, FileText
 } from 'lucide-react';
-import { getCMSData, setCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
+import { getCMSData, setCMSData, STORAGE_KEYS, uploadImageFile, notifyCMSUpdate } from '../../utils/cmsStore';
+import { defaultSlides, defaultSpacesCategories } from '../../data/defaultSpacesData';
 import CTASectionEditor from '../../components/admin/CTASectionEditor';
-
-const defaultSlides = [
-  {
-    before: '/images/spaces/spaces_hero_before.webp',
-    after: '/images/spaces/spaces_hero_after.webp',
-    title: 'Living Rooms'
-  },
-  {
-    before: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_0-20260810-173514.jpg',
-    after: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg',
-    title: 'Modular Kitchens'
-  },
-  {
-    before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-164320.jpg',
-    title: 'Master Bedrooms'
-  }
-];
-
-const defaultSpacesCategories = [
-  {
-    "name": "Modular Kitchen",
-    "slug": "modular-kitchen",
-    "description": "Precision-engineered kitchens with high-gloss acrylic, polygranite surfaces, and concealed lighting tracks.",
-    "heroImage": "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
-    "visible": true,
-    "details": {
-      "tag": "Precision-Engineered",
-      "headline": "Kitchens Built Around the Way You Cook",
-      "body": "Every ESPACIO modular kitchen is designed around your personal cooking ergonomics and workflow. We integrate premium Hettich and Häfele soft-close hardware, direct-sourced moisture-resistant marine ply, and seamless quartz waterfall islands. From compact parallel layouts to expansive island kitchens with integrated breakfast counters, every millimetre is accounted for.",
-      "includes": [
-        "Ergonomic Layout & Workflow Optimization",
-        "Island / Parallel / L-Shape / U-Shape Configurations",
-        "Premium German Hardware (Häfele / Hettich)",
-        "Quartz, Granite & Sintered Stone Waterfall Countertops",
-        "Concealed Chimney, Hob & Appliance Integration",
-        "Polygranite & Subway Backsplash Tiling",
-        "Soft-Close Acrylic & PU Shutter Systems",
-        "Under-Cabinet Warm LED Shadowline Profiles",
-        "Custom Tall Pantry Units & Corner Carousels",
-        "10-Year Comprehensive Workmanship Warranty"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_2.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_3.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_6.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_10.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_11.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_12.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_15.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_16.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_17.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_20.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_21.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_22.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_25.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_27.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_30.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_31.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_32.webp"
-    ],
-    "filters": [
-      "Island Kitchen",
-      "Parallel Kitchen",
-      "L-Shaped Kitchen",
-      "U-Shaped Kitchen",
-      "Open Concept Pantry"
-    ]
-  },
-  {
-    "name": "Master Bedroom",
-    "slug": "master-bedroom",
-    "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "/images/spaces/bedroom/bedroom_drive_24.webp",
-    "visible": true,
-    "details": {
-      "tag": "Restful Sanctuary",
-      "headline": "Bedrooms Crafted for Deep Rest and Serenity",
-      "body": "We craft bedrooms where visual tranquility meets tactile warmth. The bed becomes an architectural anchor framed by custom upholstered headboards, acoustic wall paneling, and intelligent multi-scene lighting that shifts effortlessly from daytime clarity to evening calm.",
-      "includes": [
-        "Custom Floating Bed with Integrated Upholstered Headboard",
-        "Floor-to-Ceiling Built-In & Walk-In Wardrobe Integration",
-        "Bedside Floating Niches & Concealed Charging Hubs",
-        "Layered Multi-Circuit Ambient & Task Lighting",
-        "Architectural False Ceiling with Hidden Warm Coves",
-        "Integrated Study Nook / Vanity Dressing Counter",
-        "Acoustic Fluted Wall Cladding & Natural Veneers",
-        "Specialized Master, Guest & Thematic Kids Suite Layouts"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/bedroom/bedroom_drive_1.webp",
-      "/images/spaces/bedroom/bedroom_drive_2.webp",
-      "/images/spaces/bedroom/bedroom_drive_3.webp",
-      "/images/spaces/bedroom/bedroom_drive_4.webp",
-      "/images/spaces/bedroom/bedroom_drive_5.webp",
-      "/images/spaces/bedroom/bedroom_drive_6.webp",
-      "/images/spaces/bedroom/bedroom_drive_7.webp",
-      "/images/spaces/bedroom/bedroom_drive_8.webp",
-      "/images/spaces/bedroom/bedroom_drive_9.webp",
-      "/images/spaces/bedroom/bedroom_drive_10.webp",
-      "/images/spaces/bedroom/bedroom_drive_11.webp",
-      "/images/spaces/bedroom/bedroom_drive_12.webp",
-      "/images/spaces/bedroom/bedroom_drive_13.webp",
-      "/images/spaces/bedroom/bedroom_drive_14.webp",
-      "/images/spaces/bedroom/bedroom_drive_15.webp",
-      "/images/spaces/bedroom/bedroom_drive_16.webp",
-      "/images/spaces/bedroom/bedroom_drive_17.webp",
-      "/images/spaces/bedroom/bedroom_drive_18.webp",
-      "/images/spaces/bedroom/bedroom_drive_19.webp",
-      "/images/spaces/bedroom/bedroom_drive_20.webp",
-      "/images/spaces/bedroom/bedroom_drive_21.webp",
-      "/images/spaces/bedroom/bedroom_drive_22.webp",
-      "/images/spaces/bedroom/bedroom_drive_23.webp",
-      "/images/spaces/bedroom/bedroom_drive_24.webp",
-      "/images/spaces/bedroom/bedroom_drive_25.webp",
-      "/images/spaces/bedroom/bedroom_drive_26.webp",
-      "/images/spaces/bedroom/bedroom_drive_27.webp",
-      "/images/spaces/bedroom/bedroom_drive_28.webp",
-      "/images/spaces/bedroom/bedroom_drive_29.webp"
-    ],
-    "filters": [
-      "Luxury Master Suite",
-      "Warm Minimalist",
-      "Classical Boiserie",
-      "Modern Contemporary",
-      "Integrated Study Suite"
-    ]
-  },
-  {
-    "name": "Living Room",
-    "slug": "living-room",
-    "description": "Editorial living zones crafted around natural light, marble accents, and low-profile custom furniture.",
-    "heroImage": "/images/spaces/living/living_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Grand First Impressions",
-      "headline": "Living Spaces That Command Attention and Welcome Gatherings",
-      "body": "Your living room sets the emotional tone of the entire home. We design expansive, fluid living spaces with bespoke media accent walls, back-lit translucent stone, low-profile custom seating configurations, and architectural lighting tracks.",
-      "includes": [
-        "Full-Height TV Media Wall & Floating Console Joinery",
-        "Bookmatched Italian Marble & Polygranite Feature Walls",
-        "Custom Sofa Sizing & Open Flow Layout Coordination",
-        "Magnetic Track & Warm Cove Lighting Design",
-        "Foyer Entryway & Architectural Partition Integration",
-        "Concealed Wire Runs & Subwoofer Niche Preparation",
-        "Acoustic Fluted Charcoal & Timber Slat Panelling",
-        "Double-Height & Balcony Connecting Transitions"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/living/living_drive_1.webp",
-      "/images/spaces/living/living_drive_2.webp",
-      "/images/spaces/living/living_drive_3.webp",
-      "/images/spaces/living/living_drive_4.webp",
-      "/images/spaces/living/living_drive_6.webp",
-      "/images/spaces/living/living_drive_7.webp",
-      "/images/spaces/living/living_drive_8.webp",
-      "/images/spaces/living/living_drive_9.webp",
-      "/images/spaces/living/living_drive_10.webp",
-      "/images/spaces/living/living_drive_11.webp",
-      "/images/spaces/living/living_drive_12.webp",
-      "/images/spaces/living/living_drive_13.webp",
-      "/images/spaces/living/living_drive_14.webp",
-      "/images/spaces/living/living_drive_15.webp",
-      "/images/spaces/living/living_drive_16.webp",
-      "/images/spaces/living/living_drive_17.webp",
-      "/images/spaces/living/living_drive_18.webp",
-      "/images/spaces/living/living_drive_19.webp",
-      "/images/spaces/living/living_drive_20.webp",
-      "/images/spaces/living/living_drive_21.webp",
-      "/images/spaces/living/living_drive_22.webp",
-      "/images/spaces/living/living_drive_23.webp",
-      "/images/spaces/living/living_drive_24.webp",
-      "/images/spaces/living/living_drive_25.webp",
-      "/images/spaces/living/living_drive_26.webp",
-      "/images/spaces/living/living_drive_27.webp",
-      "/images/spaces/living/living_drive_28.webp",
-      "/images/spaces/living/living_drive_29.webp",
-      "/images/spaces/living/living_drive_30.webp",
-      "/images/spaces/living/living_drive_31.webp",
-      "/images/spaces/living/living_drive_32.webp",
-      "/images/spaces/living/living_drive_33.webp",
-      "/images/spaces/living/living_drive_34.webp",
-      "/images/spaces/living/living_drive_36.webp",
-      "/images/spaces/living/living_drive_37.webp",
-      "/images/spaces/living/living_drive_38.webp",
-      "/images/spaces/living/living_drive_39.webp",
-      "/images/spaces/living/living_drive_40.webp"
-    ],
-    "filters": [
-      "Minimalist Lounge",
-      "Double-Height Living",
-      "Luxury Marble Accent",
-      "Open Concept Living",
-      "Contemporary Formal"
-    ]
-  },
-  {
-    "name": "Wardrobe Systems",
-    "slug": "wardrobes",
-    "description": "Bespoke floor-to-ceiling storage with velvet drawer linings, mirror panels, and hidden pull-out trays.",
-    "heroImage": "/images/spaces/wardrobes/wardrobe_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Bespoke Storage",
-      "headline": "Storage Systems Engineered to Disappear Seamlessly",
-      "body": "Our custom wardrobe systems deliver maximum volume with zero visual clutter. Featuring floor-to-ceiling glass shutters, velvet-lined jewelry pullouts, specialized shoe galleries, and central island dressing consoles with integrated mirrors.",
-      "includes": [
-        "Floor-to-Ceiling Sliding & Fluted Aluminium Profiles",
-        "Dedicated Walk-in Dressing Suite Planning",
-        "Internal LED Sensor Light Bars & Wardrobe Rail Glow",
-        "Velvet-Lined Jewelry, Watch & Sunglass Drawers",
-        "Pull-Out Trouser Racks & Tiered Shoe Pullouts",
-        "Tinted Bronze / Fluted Glass Shutter Options",
-        "Integrated Full-Height Vanity Mirror with Touch Control",
-        "Overhead Loft Cabinets for Seasonal Storage"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/wardrobes/wardrobe_drive_1.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_2.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_3.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_4.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_5.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_6.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_7.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_8.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_9.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_10.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_11.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_12.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_13.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_14.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_15.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_16.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_17.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_18.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_19.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_21.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_22.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_23.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_24.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_25.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_26.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_27.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_29.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_30.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_31.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_32.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_33.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_34.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_37.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_38.webp"
-    ],
-    "filters": [
-      "Floor-to-Ceiling Sliding",
-      "Tinted Glass Shutters",
-      "Built-In Veneer & Wood",
-      "Open Shelving Systems",
-      "Integrated Vanity Dressing"
-    ]
-  },
-  {
-    "name": "Home Office",
-    "slug": "home-office",
-    "description": "Focus zones with sound-dampening fluted panels, ergonomic wall shelving and concealed cable management.",
-    "heroImage": "/images/spaces/home_office/home_office_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Focus First",
-      "headline": "A Home Office Built for Deep Work",
-      "body": "Your home office should reduce friction, not create it. We design distraction-free work environments with ergonomic desk setups, concealed cable runs, built-in shelving, and acoustic treatments that let you focus — while still looking like a space you are proud to be on camera in.",
-      "includes": [
-        "Ergonomic Desk & Chair Zone",
-        "Built-in Shelving & Storage",
-        "Concealed Cable Management",
-        "Fluted Acoustic Panels",
-        "Task & Ambient Lighting",
-        "Monitor Arm & Hardware Integration",
-        "Bookshelf & Display Niches",
-        "Folding / Murphy Bed Option"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/home_office/home_office_drive_1.webp",
-      "/images/spaces/home_office/home_office_drive_2.webp",
-      "/images/spaces/home_office/home_office_drive_3.webp",
-      "/images/spaces/home_office/home_office_drive_4.webp",
-      "/images/spaces/home_office/home_office_drive_5.webp",
-      "/images/spaces/home_office/home_office_drive_6.webp",
-      "/images/spaces/home_office/home_office_drive_7.webp",
-      "/images/spaces/home_office/home_office_drive_8.webp",
-      "/images/spaces/home_office/home_office_drive_9.webp",
-      "/images/spaces/home_office/home_office_drive_10.webp",
-      "/images/spaces/home_office/home_office_drive_11.webp",
-      "/images/spaces/home_office/home_office_drive_12.webp",
-      "/images/spaces/home_office/home_office_drive_13.webp",
-      "/images/spaces/home_office/home_office_drive_14.webp",
-      "/images/spaces/home_office/home_office_drive_15.webp",
-      "/images/spaces/home_office/home_office_drive_16.webp",
-      "/images/spaces/home_office/home_office_drive_17.webp",
-      "/images/spaces/home_office/home_office_drive_18.webp",
-      "/images/spaces/home_office/home_office_drive_19.webp",
-      "/images/spaces/home_office/home_office_drive_20.webp",
-      "/images/spaces/home_office/home_office_drive_21.webp",
-      "/images/spaces/home_office/home_office_drive_22.webp",
-      "/images/spaces/home_office/home_office_drive_23.webp",
-      "/images/spaces/home_office/home_office_drive_24.webp",
-      "/images/spaces/home_office/home_office_drive_25.webp",
-      "/images/spaces/home_office/home_office_drive_26.webp",
-      "/images/spaces/home_office/home_office_drive_27.webp",
-      "/images/spaces/home_office/home_office_drive_28.webp",
-      "/images/spaces/home_office/home_office_drive_30.webp",
-      "/images/spaces/home_office/home_office_drive_31.webp",
-      "/images/spaces/home_office/home_office_drive_32.webp",
-      "/images/spaces/home_office/home_office_drive_33.webp",
-      "/images/spaces/home_office/home_office_drive_34.webp",
-      "/images/spaces/home_office/home_office_drive_35.webp",
-      "/images/spaces/home_office/home_office_drive_36.webp",
-      "/images/spaces/home_office/home_office_drive_37.webp",
-      "/images/spaces/home_office/home_office_drive_38.webp",
-      "/images/spaces/home_office/home_office_drive_39.webp",
-      "/images/spaces/home_office/home_office_drive_40.webp",
-      "/images/spaces/home_office/home_office_drive_41.webp",
-      "/images/spaces/home_office/home_office_drive_42.webp",
-      "/images/spaces/home_office/home_office_drive_43.webp",
-      "/images/spaces/home_office/home_office_drive_44.webp"
-    ],
-    "filters": [
-      "Executive Study",
-      "Minimal Studio Desk",
-      "Dual Workstation",
-      "Acoustic Panelled Office",
-      "Library & Bookshelf Suite"
-    ]
-  },
-  {
-    "name": "Commercial Office",
-    "slug": "commercial-office",
-    "description": "Turnkey executive workspaces designed for efficient traffic flows, acoustic panels, and brand-aligned finishes.",
-    "heroImage": "/images/spaces/office/office_drive_4.webp",
-    "visible": true,
-    "details": {
-      "tag": "Productivity-First",
-      "headline": "Offices That Reflect Your Brand Standard",
-      "body": "A well-designed commercial office increases output, attracts talent, and communicates who you are the moment someone walks in. We plan open floors, cabin clusters, meeting rooms, and collaboration zones with precision — integrating your brand identity into every surface, from reception to the boardroom.",
-      "includes": [
-        "Open Plan & Cabin Zone Design",
-        "Ergonomic Workstation Systems",
-        "Meeting & Conference Room Build",
-        "Manager Cabin & Director Suite",
-        "Reception & Lobby Design",
-        "Pantry & Lounge Area",
-        "Acoustic Treatment",
-        "AV & Tech Integration"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/office/office_drive_1.webp",
-      "/images/spaces/office/office_drive_2.webp",
-      "/images/spaces/office/office_drive_3.webp",
-      "/images/spaces/office/office_drive_4.webp",
-      "/images/spaces/office/office_drive_5.webp",
-      "/images/spaces/office/office_drive_6.webp",
-      "/images/spaces/office/office_drive_7.webp",
-      "/images/spaces/office/office_drive_8.webp",
-      "/images/spaces/office/office_drive_9.webp",
-      "/images/spaces/office/office_drive_10.webp",
-      "/images/spaces/office/office_drive_11.webp",
-      "/images/spaces/office/office_drive_12.webp",
-      "/images/spaces/office/office_drive_13.webp",
-      "/images/spaces/office/office_drive_14.webp",
-      "/images/spaces/office/office_drive_15.webp",
-      "/images/spaces/office/office_drive_16.webp",
-      "/images/spaces/office/office_drive_17.webp",
-      "/images/spaces/office/office_drive_18.webp",
-      "/images/spaces/office/office_drive_19.webp",
-      "/images/spaces/office/office_drive_20.webp",
-      "/images/spaces/office/office_drive_21.webp",
-      "/images/spaces/office/office_drive_22.webp",
-      "/images/spaces/office/office_drive_23.webp",
-      "/images/spaces/office/office_drive_24.webp",
-      "/images/spaces/office/office_drive_25.webp",
-      "/images/spaces/office/office_drive_26.webp",
-      "/images/spaces/office/office_drive_27.webp",
-      "/images/spaces/office/office_drive_28.webp",
-      "/images/spaces/office/office_drive_29.webp",
-      "/images/spaces/office/office_drive_30.webp",
-      "/images/spaces/office/office_drive_31.webp",
-      "/images/spaces/office/office_drive_32.webp",
-      "/images/spaces/office/office_drive_33.webp",
-      "/images/spaces/office/office_drive_34.webp",
-      "/images/spaces/office/office_drive_35.webp",
-      "/images/spaces/office/office_drive_36.webp",
-      "/images/spaces/office/office_drive_37.webp"
-    ],
-    "filters": [
-      "Executive Boardroom",
-      "Open Workstation Floor",
-      "Private Director Cabin",
-      "Acoustic Conference Room",
-      "Collaboration Lounge"
-    ]
-  },
-  {
-    "name": "Pooja Room",
-    "slug": "pooja-room",
-    "description": "Sacred sanctuaries merging ancestral stone textures with sleek back-lit marble panels and warm lighting.",
-    "heroImage": "/images/spaces/pooja/pooja_drive_12.webp",
-    "visible": true,
-    "details": {
-      "tag": "Sacred Spaces",
-      "headline": "Pooja Rooms That Honour Tradition",
-      "body": "We craft pooja units and dedicated prayer rooms that hold both spiritual significance and design integrity. From carved wood mandirs to sleek marble platforms with backlit panels — each piece is built to become the most meaningful corner of your home.",
-      "includes": [
-        "Marble & Granite Platforms",
-        "Carved Wood Temple Units",
-        "Backlit Jali Panels",
-        "Integrated Diya & Lamp Holders",
-        "Brass & Metal Accent Details",
-        "Storage for Puja Items",
-        "Dedicated Prayer Room Design",
-        "Custom Temple in Teak / Rosewood"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/pooja/pooja_drive_1.webp",
-      "/images/spaces/pooja/pooja_drive_2.webp",
-      "/images/spaces/pooja/pooja_drive_3.webp",
-      "/images/spaces/pooja/pooja_drive_4.webp",
-      "/images/spaces/pooja/pooja_drive_5.webp",
-      "/images/spaces/pooja/pooja_drive_6.webp",
-      "/images/spaces/pooja/pooja_drive_7.webp",
-      "/images/spaces/pooja/pooja_drive_8.webp",
-      "/images/spaces/pooja/pooja_drive_9.webp",
-      "/images/spaces/pooja/pooja_drive_10.webp",
-      "/images/spaces/pooja/pooja_drive_11.webp",
-      "/images/spaces/pooja/pooja_drive_12.webp",
-      "/images/spaces/pooja/pooja_drive_13.webp",
-      "/images/spaces/pooja/pooja_drive_14.webp",
-      "/images/spaces/pooja/pooja_drive_15.webp",
-      "/images/spaces/pooja/pooja_drive_16.webp",
-      "/images/spaces/pooja/pooja_drive_17.webp",
-      "/images/spaces/pooja/pooja_drive_18.webp",
-      "/images/spaces/pooja/pooja_drive_19.webp",
-      "/images/spaces/pooja/pooja_drive_20.webp",
-      "/images/spaces/pooja/pooja_drive_21.webp",
-      "/images/spaces/pooja/pooja_drive_22.webp",
-      "/images/spaces/pooja/pooja_drive_23.webp",
-      "/images/spaces/pooja/pooja_drive_25.webp",
-      "/images/spaces/pooja/pooja_drive_26.webp",
-      "/images/spaces/pooja/pooja_drive_27.webp",
-      "/images/spaces/pooja/pooja_drive_28.webp",
-      "/images/spaces/pooja/pooja_drive_29.webp"
-    ],
-    "filters": [
-      "Dedicated Mandir Room",
-      "CNC Backlit Jali",
-      "Marble & Corian Sanctum",
-      "Compact Wood Mandir",
-      "Traditional Brass & Teak"
-    ]
-  },
-  {
-    "name": "Dining Room",
-    "slug": "dining-room",
-    "description": "Refined gathering spaces with custom hardwood dining tables, feature pendant lighting, and plaster wall finishes.",
-    "heroImage": "/images/spaces/dining/dining_drive_27.webp",
-    "visible": true,
-    "details": {
-      "tag": "Gather & Dine",
-      "headline": "Dining Rooms Designed for Every Occasion",
-      "body": "From intimate family dinners to grand entertaining, our dining rooms are designed to be the heart of your home. We combine statement lighting, custom joinery, and carefully chosen materials to create spaces that feel warm for everyday use and spectacular when you need them to be.",
-      "includes": [
-        "Dining Table & Chair Selection",
-        "Crockery Unit & Buffet Design",
-        "Feature Pendant & Chandelier",
-        "Wallpaper & Textured Accent Wall",
-        "Flooring Pattern & Material",
-        "Window Treatment & Drapes",
-        "Bar & Drinks Cabinet Integration",
-        "Open Plan Dining-Living Design"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/dining/dining_drive_1.webp",
-      "/images/spaces/dining/dining_drive_2.webp",
-      "/images/spaces/dining/dining_drive_3.webp",
-      "/images/spaces/dining/dining_drive_4.webp",
-      "/images/spaces/dining/dining_drive_5.webp",
-      "/images/spaces/dining/dining_drive_6.webp",
-      "/images/spaces/dining/dining_drive_7.webp",
-      "/images/spaces/dining/dining_drive_8.webp",
-      "/images/spaces/dining/dining_drive_9.webp",
-      "/images/spaces/dining/dining_drive_10.webp",
-      "/images/spaces/dining/dining_drive_11.webp",
-      "/images/spaces/dining/dining_drive_12.webp",
-      "/images/spaces/dining/dining_drive_13.webp",
-      "/images/spaces/dining/dining_drive_14.webp",
-      "/images/spaces/dining/dining_drive_15.webp",
-      "/images/spaces/dining/dining_drive_16.webp",
-      "/images/spaces/dining/dining_drive_17.webp",
-      "/images/spaces/dining/dining_drive_18.webp",
-      "/images/spaces/dining/dining_drive_19.webp",
-      "/images/spaces/dining/dining_drive_20.webp",
-      "/images/spaces/dining/dining_drive_21.webp",
-      "/images/spaces/dining/dining_drive_22.webp",
-      "/images/spaces/dining/dining_drive_23.webp",
-      "/images/spaces/dining/dining_drive_24.webp",
-      "/images/spaces/dining/dining_drive_25.webp",
-      "/images/spaces/dining/dining_drive_26.webp",
-      "/images/spaces/dining/dining_drive_27.webp",
-      "/images/spaces/dining/dining_drive_28.webp",
-      "/images/spaces/dining/dining_drive_29.webp",
-      "/images/spaces/dining/dining_drive_30.webp",
-      "/images/spaces/dining/dining_drive_31.webp",
-      "/images/spaces/dining/dining_drive_32.webp",
-      "/images/spaces/dining/dining_drive_33.webp",
-      "/images/spaces/dining/dining_drive_35.webp",
-      "/images/spaces/dining/dining_drive_36.webp",
-      "/images/spaces/dining/dining_drive_37.webp",
-      "/images/spaces/dining/dining_drive_38.webp",
-      "/images/spaces/dining/dining_drive_39.webp",
-      "/images/spaces/dining/dining_drive_40.webp",
-      "/images/spaces/dining/dining_drive_41.webp",
-      "/images/spaces/dining/dining_drive_42.webp",
-      "/images/spaces/dining/dining_drive_43.webp",
-      "/images/spaces/dining/dining_drive_44.webp",
-      "/images/spaces/dining/dining_drive_45.webp",
-      "/images/spaces/dining/dining_drive_46.webp",
-      "/images/spaces/dining/dining_drive_47.webp",
-      "/images/spaces/dining/dining_drive_48.webp",
-      "/images/spaces/dining/dining_drive_49.webp",
-      "/images/spaces/dining/dining_drive_50.webp"
-    ],
-    "filters": [
-      "8-Seater Formal Dining",
-      "Marble Top & Bar Console",
-      "Fluted Glass Partition",
-      "Breakfast Nook & Bistro",
-      "Duplex Dining Lounge"
-    ]
-  },
-  {
-    "name": "TV Units",
-    "slug": "tv-units",
-    "description": "Custom TV walls and entertainment units that serve as the centrepiece of your living space — built-in storage, LED niches, and seamless cable management.",
-    "heroImage": "/images/spaces/tv_units/tv_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Focal Point",
-      "headline": "TV Units That Define the Room",
-      "body": "The TV unit is the living room centrepiece — and it should look like one. We design custom entertainment walls with LED backlit niches, closed storage, open display shelves, and seamless cable management systems that make every inch purposeful and every viewing angle cinematic.",
-      "includes": [
-        "Custom TV Panel & Wall Design",
-        "LED Backlit Display Niches",
-        "Integrated Cable Management",
-        "Open & Closed Storage Mix",
-        "Floating Console Options",
-        "Material & Finish Coordination",
-        "Side Column & Tower Units",
-        "Soundbar & AV Equipment Integration"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/tv_units/tv_drive_1.webp",
-      "/images/spaces/tv_units/tv_drive_2.webp",
-      "/images/spaces/tv_units/tv_drive_3.webp",
-      "/images/spaces/tv_units/tv_drive_4.webp",
-      "/images/spaces/tv_units/tv_drive_5.webp",
-      "/images/spaces/tv_units/tv_drive_6.webp",
-      "/images/spaces/tv_units/tv_drive_7.webp",
-      "/images/spaces/tv_units/tv_drive_8.webp",
-      "/images/spaces/tv_units/tv_drive_9.webp",
-      "/images/spaces/tv_units/tv_drive_10.webp",
-      "/images/spaces/tv_units/tv_drive_11.webp",
-      "/images/spaces/tv_units/tv_drive_12.webp",
-      "/images/spaces/tv_units/tv_drive_13.webp",
-      "/images/spaces/tv_units/tv_drive_14.webp",
-      "/images/spaces/tv_units/tv_drive_15.webp",
-      "/images/spaces/tv_units/tv_drive_16.webp",
-      "/images/spaces/tv_units/tv_drive_17.webp",
-      "/images/spaces/tv_units/tv_drive_18.webp",
-      "/images/spaces/tv_units/tv_drive_19.webp",
-      "/images/spaces/tv_units/tv_drive_20.webp",
-      "/images/spaces/tv_units/tv_drive_21.webp",
-      "/images/spaces/tv_units/tv_drive_22.webp",
-      "/images/spaces/tv_units/tv_drive_23.webp",
-      "/images/spaces/tv_units/tv_drive_24.webp",
-      "/images/spaces/tv_units/tv_drive_25.webp",
-      "/images/spaces/tv_units/tv_drive_26.webp",
-      "/images/spaces/tv_units/tv_drive_27.webp",
-      "/images/spaces/tv_units/tv_drive_28.webp",
-      "/images/spaces/tv_units/tv_drive_29.webp",
-      "/images/spaces/tv_units/tv_drive_30.webp",
-      "/images/spaces/tv_units/tv_drive_31.webp",
-      "/images/spaces/tv_units/tv_drive_32.webp",
-      "/images/spaces/tv_units/tv_drive_33.webp",
-      "/images/spaces/tv_units/tv_drive_34.webp",
-      "/images/spaces/tv_units/tv_drive_35.webp",
-      "/images/spaces/tv_units/tv_drive_36.webp",
-      "/images/spaces/tv_units/tv_drive_37.webp"
-    ],
-    "filters": [
-      "Full-Wall Marble Console",
-      "Floating Acoustic Fluted",
-      "Backlit Onyx Feature Wall",
-      "Minimalist Low-Profile",
-      "Rotatable Partition Unit"
-    ]
-  },
-  {
-    "name": "False Ceilings",
-    "slug": "false-ceilings",
-    "description": "Architectural false ceilings that transform the fifth wall — gypsum coffers, cove lighting strips, and acoustic panels for every interior.",
-    "heroImage": "/images/spaces/ceiling/ceiling_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Overhead Drama",
-      "headline": "Ceilings That Complete the Room",
-      "body": "A false ceiling transforms the entire character of a space — adding height illusion, depth, and the perfect canvas for lighting. We design gypsum and POP false ceilings with cove lighting, tray details, coffered panels, and acoustic variants for every room from bedrooms to commercial lobbies.",
-      "includes": [
-        "Gypsum & POP Ceiling Systems",
-        "Cove Lighting & LED Strip Integration",
-        "Coffered & Tray Ceiling Designs",
-        "Fan & Fixture Positioning",
-        "Acoustic Panel Options",
-        "Moisture-Resistant Bathroom Variants",
-        "Multi-Level Dropped Ceiling Design",
-        "Coordination with Electrical & AC Points"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/ceiling/ceiling_drive_1.webp",
-      "/images/spaces/ceiling/ceiling_drive_2.webp",
-      "/images/spaces/ceiling/ceiling_drive_3.webp",
-      "/images/spaces/ceiling/ceiling_drive_4.webp",
-      "/images/spaces/ceiling/ceiling_drive_5.webp",
-      "/images/spaces/ceiling/ceiling_drive_6.webp",
-      "/images/spaces/ceiling/ceiling_drive_7.webp",
-      "/images/spaces/ceiling/ceiling_drive_8.webp",
-      "/images/spaces/ceiling/ceiling_drive_9.webp",
-      "/images/spaces/ceiling/ceiling_drive_10.webp",
-      "/images/spaces/ceiling/ceiling_drive_11.webp",
-      "/images/spaces/ceiling/ceiling_drive_12.webp",
-      "/images/spaces/ceiling/ceiling_drive_13.webp",
-      "/images/spaces/ceiling/ceiling_drive_14.webp",
-      "/images/spaces/ceiling/ceiling_drive_15.webp",
-      "/images/spaces/ceiling/ceiling_drive_16.webp",
-      "/images/spaces/ceiling/ceiling_drive_17.webp",
-      "/images/spaces/ceiling/ceiling_drive_18.webp",
-      "/images/spaces/ceiling/ceiling_drive_19.webp",
-      "/images/spaces/ceiling/ceiling_drive_20.webp",
-      "/images/spaces/ceiling/ceiling_drive_21.webp",
-      "/images/spaces/ceiling/ceiling_drive_22.webp",
-      "/images/spaces/ceiling/ceiling_drive_23.webp",
-      "/images/spaces/ceiling/ceiling_drive_24.webp",
-      "/images/spaces/ceiling/ceiling_drive_25.webp",
-      "/images/spaces/ceiling/ceiling_drive_26.webp",
-      "/images/spaces/ceiling/ceiling_drive_27.webp",
-      "/images/spaces/ceiling/ceiling_drive_28.webp",
-      "/images/spaces/ceiling/ceiling_drive_29.webp",
-      "/images/spaces/ceiling/ceiling_drive_30.webp",
-      "/images/spaces/ceiling/ceiling_drive_31.webp",
-      "/images/spaces/ceiling/ceiling_drive_32.webp",
-      "/images/spaces/ceiling/ceiling_drive_33.webp",
-      "/images/spaces/ceiling/ceiling_drive_34.webp",
-      "/images/spaces/ceiling/ceiling_drive_35.webp",
-      "/images/spaces/ceiling/ceiling_drive_36.webp",
-      "/images/spaces/ceiling/ceiling_drive_37.webp",
-      "/images/spaces/ceiling/ceiling_drive_38.webp",
-      "/images/spaces/ceiling/ceiling_drive_39.webp",
-      "/images/spaces/ceiling/ceiling_drive_40.webp",
-      "/images/spaces/ceiling/ceiling_drive_41.webp",
-      "/images/spaces/ceiling/ceiling_drive_42.webp",
-      "/images/spaces/ceiling/ceiling_drive_43.webp",
-      "/images/spaces/ceiling/ceiling_drive_44.webp",
-      "/images/spaces/ceiling/ceiling_drive_45.webp",
-      "/images/spaces/ceiling/ceiling_drive_46.webp"
-    ],
-    "filters": [
-      "Magnetic Track & Warm Coves",
-      "Wooden Rafter & Slat Ceiling",
-      "Minimalist Peripheral Drop",
-      "Coffered & Geometric Ceiling",
-      "Stretch Fabric & Backlit Ceiling"
-    ]
-  },
-  {
-    "name": "Commercial Interiors",
-    "slug": "commercial-interiors",
-    "description": "Retail showrooms, clinics, salons, and brand spaces designed to communicate identity while maximising customer experience.",
-    "heroImage": "/images/spaces/commercial/commercial_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Brand Experience",
-      "headline": "Commercial Spaces That Work as Hard as You Do",
-      "body": "Retail showrooms, clinics, salons, and specialty stores — each built to communicate your brand identity the moment a customer walks in. We combine flow planning, feature lighting, bespoke joinery, and compliance-ready construction into commercial interiors that convert visitors into loyal clients.",
-      "includes": [
-        "Retail Display & Merchandising Layout",
-        "Brand Integration Design",
-        "Customer Flow Zone Planning",
-        "Feature Lighting & Spotlighting",
-        "Signage & Identity Elements",
-        "Clinic & Salon Specific Fit-outs",
-        "Compliance-Ready Build",
-        "Custom Joinery & Counter Units"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/commercial/commercial_drive_1.webp",
-      "/images/spaces/commercial/commercial_drive_2.webp",
-      "/images/spaces/commercial/commercial_drive_3.webp",
-      "/images/spaces/commercial/commercial_drive_4.webp",
-      "/images/spaces/commercial/commercial_drive_5.webp",
-      "/images/spaces/commercial/commercial_drive_6.webp",
-      "/images/spaces/commercial/commercial_drive_7.webp",
-      "/images/spaces/commercial/commercial_drive_8.webp",
-      "/images/spaces/commercial/commercial_drive_9.webp",
-      "/images/spaces/commercial/commercial_drive_10.webp",
-      "/images/spaces/commercial/commercial_drive_11.webp",
-      "/images/spaces/commercial/commercial_drive_12.webp",
-      "/images/spaces/commercial/commercial_drive_13.webp",
-      "/images/spaces/commercial/commercial_drive_14.webp",
-      "/images/spaces/commercial/commercial_drive_15.webp",
-      "/images/spaces/commercial/commercial_drive_16.webp",
-      "/images/spaces/commercial/commercial_drive_17.webp",
-      "/images/spaces/commercial/commercial_drive_18.webp",
-      "/images/spaces/commercial/commercial_drive_19.webp",
-      "/images/spaces/commercial/commercial_drive_20.webp",
-      "/images/spaces/commercial/commercial_drive_21.webp",
-      "/images/spaces/commercial/commercial_drive_22.webp",
-      "/images/spaces/commercial/commercial_drive_23.webp",
-      "/images/spaces/commercial/commercial_drive_24.webp",
-      "/images/spaces/commercial/commercial_drive_25.webp",
-      "/images/spaces/commercial/commercial_drive_26.webp",
-      "/images/spaces/commercial/commercial_drive_27.webp",
-      "/images/spaces/commercial/commercial_drive_28.webp",
-      "/images/spaces/commercial/commercial_drive_29.webp",
-      "/images/spaces/commercial/commercial_drive_30.webp",
-      "/images/spaces/commercial/commercial_drive_31.webp",
-      "/images/spaces/commercial/commercial_drive_32.webp",
-      "/images/spaces/commercial/commercial_drive_33.webp",
-      "/images/spaces/commercial/commercial_drive_34.webp",
-      "/images/spaces/commercial/commercial_drive_35.webp",
-      "/images/spaces/commercial/commercial_drive_36.webp",
-      "/images/spaces/commercial/commercial_drive_37.webp",
-      "/images/spaces/commercial/commercial_drive_38.webp",
-      "/images/spaces/commercial/commercial_drive_39.webp",
-      "/images/spaces/commercial/commercial_drive_40.webp",
-      "/images/spaces/commercial/commercial_drive_41.webp"
-    ],
-    "filters": [
-      "Corporate Headquarters",
-      "Retail & Showroom Store",
-      "Clinic & Wellness Center",
-      "Law & Financial Atelier",
-      "Tech Innovation Hub"
-    ]
-  },
-  {
-    "name": "Reception Areas",
-    "slug": "reception-areas",
-    "description": "Striking lobby and reception spaces that communicate professionalism and set the tone for the entire building experience.",
-    "heroImage": "/images/spaces/reception/reception_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "First Impressions",
-      "headline": "Receptions That Say Everything Before You Do",
-      "body": "The reception is the first physical impression of your organisation. We design statement reception desks, feature walls, curated lounge seating, and dramatic lighting that communicates authority, trust, and quality — whether for a corporate office, luxury residential tower, or healthcare facility.",
-      "includes": [
-        "Statement Reception Desk Design",
-        "Feature Wall & Logo Branding",
-        "Seating Lounge & Wait Area",
-        "Dramatic Lighting Design",
-        "Signage & Wayfinding System",
-        "Flooring & Ceiling Coordination",
-        "Security & Access Integration",
-        "Plant & Biophilic Design"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/reception/reception_drive_1.webp",
-      "/images/spaces/reception/reception_drive_2.webp",
-      "/images/spaces/reception/reception_drive_3.webp",
-      "/images/spaces/reception/reception_drive_4.webp",
-      "/images/spaces/reception/reception_drive_5.webp",
-      "/images/spaces/reception/reception_drive_6.webp",
-      "/images/spaces/reception/reception_drive_7.webp",
-      "/images/spaces/reception/reception_drive_8.webp",
-      "/images/spaces/reception/reception_drive_9.webp",
-      "/images/spaces/reception/reception_drive_10.webp",
-      "/images/spaces/reception/reception_drive_11.webp",
-      "/images/spaces/reception/reception_drive_12.webp",
-      "/images/spaces/reception/reception_drive_13.webp",
-      "/images/spaces/reception/reception_drive_14.webp",
-      "/images/spaces/reception/reception_drive_15.webp",
-      "/images/spaces/reception/reception_drive_16.webp",
-      "/images/spaces/reception/reception_drive_17.webp",
-      "/images/spaces/reception/reception_drive_18.webp",
-      "/images/spaces/reception/reception_drive_19.webp",
-      "/images/spaces/reception/reception_drive_20.webp",
-      "/images/spaces/reception/reception_drive_21.webp",
-      "/images/spaces/reception/reception_drive_22.webp",
-      "/images/spaces/reception/reception_drive_23.webp",
-      "/images/spaces/reception/reception_drive_24.webp",
-      "/images/spaces/reception/reception_drive_25.webp",
-      "/images/spaces/reception/reception_drive_26.webp",
-      "/images/spaces/reception/reception_drive_27.webp",
-      "/images/spaces/reception/reception_drive_28.webp",
-      "/images/spaces/reception/reception_drive_30.webp",
-      "/images/spaces/reception/reception_drive_31.webp",
-      "/images/spaces/reception/reception_drive_32.webp",
-      "/images/spaces/reception/reception_drive_33.webp",
-      "/images/spaces/reception/reception_drive_34.webp",
-      "/images/spaces/reception/reception_drive_35.webp"
-    ],
-    "filters": [
-      "Monolithic Stone Reception Desk",
-      "Corporate Brand Identity Wall",
-      "Luxury Client Lounge",
-      "Fluted Wood & Green Wall",
-      "Double-Height Entry Lobby"
-    ]
-  },
-  {
-    "name": "Cafes & Restaurants",
-    "slug": "cafes-restaurants",
-    "description": "Atmospheric F&B spaces built for dwell time — bespoke seating zones, bar counters, acoustic treatment, and curated ambient lighting.",
-    "heroImage": "/images/spaces/cafes/cafe_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Hospitality Design",
-      "headline": "F&B Spaces Built for Atmosphere and Dwell Time",
-      "body": "Great cafes and restaurants are designed before they are staffed. We create atmospheric F&B interiors that balance seating density with comfort, acoustics with energy, and brand identity with guest experience — from intimate specialty coffee bars to large-format restaurant builds.",
-      "includes": [
-        "Seating Zone & Table Planning",
-        "Bar Counter & Barista Station",
-        "Ambient & Task Lighting Design",
-        "Acoustic Treatment & Sound Zoning",
-        "Menu Display & Signage",
-        "Custom Furniture & Upholstery",
-        "Kitchen Pass & Service Design",
-        "Outdoor & Alfresco Seating"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/cafes/cafe_drive_1.webp",
-      "/images/spaces/cafes/cafe_drive_2.webp",
-      "/images/spaces/cafes/cafe_drive_3.webp",
-      "/images/spaces/cafes/cafe_drive_4.webp",
-      "/images/spaces/cafes/cafe_drive_5.webp",
-      "/images/spaces/cafes/cafe_drive_6.webp",
-      "/images/spaces/cafes/cafe_drive_7.webp",
-      "/images/spaces/cafes/cafe_drive_8.webp",
-      "/images/spaces/cafes/cafe_drive_9.webp",
-      "/images/spaces/cafes/cafe_drive_10.webp",
-      "/images/spaces/cafes/cafe_drive_11.webp",
-      "/images/spaces/cafes/cafe_drive_12.webp",
-      "/images/spaces/cafes/cafe_drive_13.webp",
-      "/images/spaces/cafes/cafe_drive_14.webp",
-      "/images/spaces/cafes/cafe_drive_15.webp",
-      "/images/spaces/cafes/cafe_drive_16.webp",
-      "/images/spaces/cafes/cafe_drive_17.webp",
-      "/images/spaces/cafes/cafe_drive_18.webp",
-      "/images/spaces/cafes/cafe_drive_19.webp",
-      "/images/spaces/cafes/cafe_drive_20.webp",
-      "/images/spaces/cafes/cafe_drive_21.webp",
-      "/images/spaces/cafes/cafe_drive_22.webp",
-      "/images/spaces/cafes/cafe_drive_23.webp",
-      "/images/spaces/cafes/cafe_drive_24.webp",
-      "/images/spaces/cafes/cafe_drive_25.webp",
-      "/images/spaces/cafes/cafe_drive_26.webp",
-      "/images/spaces/cafes/cafe_drive_27.webp",
-      "/images/spaces/cafes/cafe_drive_28.webp",
-      "/images/spaces/cafes/cafe_drive_29.webp",
-      "/images/spaces/cafes/cafe_drive_30.webp",
-      "/images/spaces/cafes/cafe_drive_31.webp",
-      "/images/spaces/cafes/cafe_drive_32.webp",
-      "/images/spaces/cafes/cafe_drive_33.webp",
-      "/images/spaces/cafes/cafe_drive_34.webp",
-      "/images/spaces/cafes/cafe_drive_35.webp",
-      "/images/spaces/cafes/cafe_drive_36.webp",
-      "/images/spaces/cafes/cafe_drive_37.webp",
-      "/images/spaces/cafes/cafe_drive_38.webp",
-      "/images/spaces/cafes/cafe_drive_39.webp",
-      "/images/spaces/cafes/cafe_drive_40.webp",
-      "/images/spaces/cafes/cafe_drive_41.webp",
-      "/images/spaces/cafes/cafe_drive_42.webp"
-    ],
-    "filters": [
-      "Specialty Coffee Bistro",
-      "Fine Dining Hall",
-      "Industrial Rooftop Bar",
-      "Bohemian Lounge",
-      "Quick-Service Gourmet Counter"
-    ]
-  },
-  {
-    "name": "Foyer",
-    "slug": "foyer",
-    "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
-    "heroImage": "/images/spaces/foyer/foyer_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Grand First Impressions",
-      "headline": "Entrance Foyers Crafted to Welcome and Impress",
-      "body": "The foyer sets the emotional tone of the entire home. We design architectural transition zones featuring bespoke shoe storage credenzas, floating consoles, decorative stone accents, acoustic fluted wall cladding, and motion-sensor warm cove illumination.",
-      "includes": [
-        "Custom Floating Console & Concealed Shoe Storage",
-        "Acoustic Fluted Timber & Metal Inlay Panelling",
-        "Backlit Onyx & Polygranite Statement Wall",
-        "Full-Height Dressing Mirror with Ambient Backlight",
-        "Motion-Sensor Warm Glow & Recessed Spotlights",
-        "Architectural Partition Screens & CNC Jali Elements",
-        "Integrated Key, Bag & Drop-Zone Niches",
-        "Upholstered Seating & Entryway Benches"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/foyer/foyer_drive_1.webp",
-      "/images/spaces/foyer/foyer_drive_2.webp",
-      "/images/spaces/foyer/foyer_drive_3.webp",
-      "/images/spaces/foyer/foyer_drive_4.webp",
-      "/images/spaces/foyer/foyer_drive_5.webp",
-      "/images/spaces/foyer/foyer_drive_6.webp",
-      "/images/spaces/foyer/foyer_drive_7.webp",
-      "/images/spaces/foyer/foyer_drive_8.webp",
-      "/images/spaces/foyer/foyer_drive_9.webp",
-      "/images/spaces/foyer/foyer_drive_10.webp",
-      "/images/spaces/foyer/foyer_drive_11.webp",
-      "/images/spaces/foyer/foyer_drive_12.webp",
-      "/images/spaces/foyer/foyer_drive_13.webp",
-      "/images/spaces/foyer/foyer_drive_14.webp",
-      "/images/spaces/foyer/foyer_drive_15.webp",
-      "/images/spaces/foyer/foyer_drive_16.webp",
-      "/images/spaces/foyer/foyer_drive_17.webp",
-      "/images/spaces/foyer/foyer_drive_18.webp",
-      "/images/spaces/foyer/foyer_drive_19.webp",
-      "/images/spaces/foyer/foyer_drive_20.webp",
-      "/images/spaces/foyer/foyer_drive_21.webp",
-      "/images/spaces/foyer/foyer_drive_22.webp",
-      "/images/spaces/foyer/foyer_drive_23.webp",
-      "/images/spaces/foyer/foyer_drive_24.webp",
-      "/images/spaces/foyer/foyer_drive_25.webp",
-      "/images/spaces/foyer/foyer_drive_26.webp",
-      "/images/spaces/foyer/foyer_drive_27.webp",
-      "/images/spaces/foyer/foyer_drive_28.webp",
-      "/images/spaces/foyer/foyer_drive_29.webp",
-      "/images/spaces/foyer/foyer_drive_30.webp"
-    ],
-    "filters": [
-      "Modern Floating Console",
-      "Luxury Backlit Onyx",
-      "Minimalist Drop-Zone",
-      "Traditional Jali Screen",
-      "Statement Mirror Wall"
-    ]
-  },
-  {
-    "name": "Bar",
-    "slug": "bar",
-    "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
-    "heroImage": "/images/spaces/bar/bar_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Hospitality & Entertaining",
-      "headline": "Sophisticated Home Bars for Connoisseurs and Hosts",
-      "body": "Transform entertaining at home with bespoke bar counters featuring temperature-controlled wine displays, illuminated fluted glass cabinets, integrated ice and cocktail prep sinks, and dramatic backlit translucent stone surfaces.",
-      "includes": [
-        "Custom Backlit Onyx & Sintered Stone Bar Counters",
-        "Integrated Temperature-Controlled Wine Chillers",
-        "Fluted Bronze Glass Stemware & Bottle Shelving",
-        "Concealed Prep Sink & Speed Rail Integration",
-        "Multi-Circuit Mood & Shelf Backlighting",
-        "Acoustic Wall Panelling & High Bar Seating",
-        "Lockable Spirits & Decanter Cabinetry",
-        "Under-Counter Refrigeration & Ice Maker Provisions"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/bar/bar_drive_1.webp",
-      "/images/spaces/bar/bar_drive_2.webp",
-      "/images/spaces/bar/bar_drive_3.webp",
-      "/images/spaces/bar/bar_drive_4.webp",
-      "/images/spaces/bar/bar_drive_5.webp",
-      "/images/spaces/bar/bar_drive_6.webp",
-      "/images/spaces/bar/bar_drive_7.webp",
-      "/images/spaces/bar/bar_drive_8.webp",
-      "/images/spaces/bar/bar_drive_9.webp",
-      "/images/spaces/bar/bar_drive_10.webp",
-      "/images/spaces/bar/bar_drive_11.webp",
-      "/images/spaces/bar/bar_drive_12.webp",
-      "/images/spaces/bar/bar_drive_13.webp",
-      "/images/spaces/bar/bar_drive_14.webp",
-      "/images/spaces/bar/bar_drive_15.webp",
-      "/images/spaces/bar/bar_drive_16.webp",
-      "/images/spaces/bar/bar_drive_17.webp",
-      "/images/spaces/bar/bar_drive_18.webp",
-      "/images/spaces/bar/bar_drive_19.webp",
-      "/images/spaces/bar/bar_drive_20.webp",
-      "/images/spaces/bar/bar_drive_21.webp",
-      "/images/spaces/bar/bar_drive_22.webp",
-      "/images/spaces/bar/bar_drive_23.webp",
-      "/images/spaces/bar/bar_drive_24.webp",
-      "/images/spaces/bar/bar_drive_25.webp",
-      "/images/spaces/bar/bar_drive_26.webp",
-      "/images/spaces/bar/bar_drive_27.webp",
-      "/images/spaces/bar/bar_drive_28.webp",
-      "/images/spaces/bar/bar_drive_29.webp",
-      "/images/spaces/bar/bar_drive_30.webp",
-      "/images/spaces/bar/bar_drive_31.webp",
-      "/images/spaces/bar/bar_drive_32.webp",
-      "/images/spaces/bar/bar_drive_33.webp",
-      "/images/spaces/bar/bar_drive_34.webp",
-      "/images/spaces/bar/bar_drive_35.webp",
-      "/images/spaces/bar/bar_drive_36.webp",
-      "/images/spaces/bar/bar_drive_37.webp",
-      "/images/spaces/bar/bar_drive_38.webp"
-    ],
-    "filters": [
-      "Backlit Onyx Counter",
-      "Temperature-Controlled Wine Cellar",
-      "Compact Dry Bar",
-      "Fluted Glass Cocktail Station",
-      "Classic Walnut Lounge"
-    ]
-  },
-  {
-    "name": "Walk-in Wardrobe",
-    "slug": "walk-in-wardrobe",
-    "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
-    "heroImage": "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
-    "visible": true,
-    "details": {
-      "tag": "Boutique Dressing Suites",
-      "headline": "Walk-In Closets Designed Like Haute Couture Salons",
-      "body": "Experience the luxury of a personalized dressing boutique. Our walk-in wardrobe suites feature central accessory islands with glass display tops, custom velvet-lined watch and jewelry drawers, floor-to-ceiling tinted glass partitions, and 360-degree vanity lighting.",
-      "includes": [
-        "Central Accessory & Jewelry Island with Glass Top",
-        "Floor-to-Ceiling Tinted Bronze Glass Shutters",
-        "Velvet-Lined Watch, Belt & Sunglass Organizers",
-        "Integrated LED Sensor Rail & Shelf Lighting",
-        "Full-Height Backlit Vanity Dressing Mirror",
-        "Tiered Pull-Out Shoe & Handbag Galleries",
-        "Hidden Safe & Lockable Valuables Vault",
-        "Dedicated Seasonal Loft Storage Sections"
-      ]
-    },
-    "galleryImages": [
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_5.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_9.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_10.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_12.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_18.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_19.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_22.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_23.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_25.webp"
-    ],
-    "filters": [
-      "Central Island Suite",
-      "Tinted Bronze Glass Wardrobe",
-      "Velvet Boutique Salon",
-      "Minimalist Open Dressing",
-      "360-Degree Illuminated Vanity"
-    ]
-  }
-];
 
 const getNonEmpty = (val, fallback) => (val && typeof val === 'string' && val.trim().length > 0 ? val : fallback);
 
@@ -1116,12 +20,15 @@ const AdminSpacesCMS = () => {
   const [loading, setLoading] = useState(true);
   const [toastMessage, setToastMessage] = useState('');
   const [selectedSpaceIdx, setSelectedSpaceIdx] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [newGalleryUrl, setNewGalleryUrl] = useState('');
 
   const fileInputBeforeRef = useRef(null);
   const fileInputAfterRef = useRef(null);
   const fileInputSpaceCoverRef = useRef(null);
+  const fileInputGalleryRef = useRef(null);
 
-  // Spaces CMS State
+  // 1. Spaces Hero & Before/After Slider State
   const [spacesHeroState, setSpacesHeroState] = useState({
     spaces_badge: 'Spaces',
     spaces_title: 'Bespoke Interior Spaces',
@@ -1132,6 +39,42 @@ const AdminSpacesCMS = () => {
     spaces_hero_visible: true
   });
 
+  // 2. Spaces Settings (All Sections Visibility & Content)
+  const [spacesSettingsState, setSpacesSettingsState] = useState({
+    spaces_grid_visible: true,
+    space_detail_hero_visible: true,
+    spaces_trust_visible: true,
+    trust_stat1_val: '25',
+    trust_stat1_suffix: '+',
+    trust_stat1_label: 'Projects',
+    trust_stat1_sublabel: 'Completed Turnkey Residences',
+    trust_stat2_val: '40',
+    trust_stat2_suffix: '+',
+    trust_stat2_label: 'Years',
+    trust_stat2_sublabel: 'Combined Construction Legacy',
+    trust_stat3_val: '50000',
+    trust_stat3_suffix: '+',
+    trust_stat3_label: 'Sq.Ft',
+    trust_stat3_sublabel: 'Designed & Executed',
+    trust_stat4_val: '10',
+    trust_stat4_suffix: '-Year',
+    trust_stat4_label: 'Warranty',
+    trust_stat4_sublabel: 'Comprehensive Hardware Warranty',
+    space_intro_visible: true,
+    space_gallery_visible: true,
+    space_materials_visible: true,
+    space_materials_tag: 'MATERIALS & CRAFTSMANSHIP',
+    space_materials_heading: 'Where design meets precision.',
+    space_process_visible: true,
+    space_process_tag: 'Turnkey Execution Flow',
+    space_process_heading: 'Our 4-Step Design & Build Process',
+    space_process_desc: 'Every detail is planned, confirmed in 3D, precision-cut in our factory, and delivered on schedule without vendor coordination stress.',
+    space_faq_visible: true,
+    space_crosslinks_visible: true,
+    space_cta_visible: true
+  });
+
+  // 3. Space Domains List
   const [spacesList, setSpacesList] = useState(defaultSpacesCategories);
 
   useEffect(() => {
@@ -1150,10 +93,46 @@ const AdminSpacesCMS = () => {
           spaces_hero_visible: storedSettings.spaces_hero_visible !== false
         });
 
+        setSpacesSettingsState((prev) => ({
+          ...prev,
+          spaces_grid_visible: storedSettings.spaces_grid_visible !== false,
+          space_detail_hero_visible: storedSettings.space_detail_hero_visible !== false,
+          spaces_trust_visible: storedSettings.spaces_trust_visible !== false,
+          trust_stat1_val: storedSettings.trust_stat1_val || prev.trust_stat1_val,
+          trust_stat1_suffix: storedSettings.trust_stat1_suffix || prev.trust_stat1_suffix,
+          trust_stat1_label: storedSettings.trust_stat1_label || prev.trust_stat1_label,
+          trust_stat1_sublabel: storedSettings.trust_stat1_sublabel || prev.trust_stat1_sublabel,
+          trust_stat2_val: storedSettings.trust_stat2_val || prev.trust_stat2_val,
+          trust_stat2_suffix: storedSettings.trust_stat2_suffix || prev.trust_stat2_suffix,
+          trust_stat2_label: storedSettings.trust_stat2_label || prev.trust_stat2_label,
+          trust_stat2_sublabel: storedSettings.trust_stat2_sublabel || prev.trust_stat2_sublabel,
+          trust_stat3_val: storedSettings.trust_stat3_val || prev.trust_stat3_val,
+          trust_stat3_suffix: storedSettings.trust_stat3_suffix || prev.trust_stat3_suffix,
+          trust_stat3_label: storedSettings.trust_stat3_label || prev.trust_stat3_label,
+          trust_stat3_sublabel: storedSettings.trust_stat3_sublabel || prev.trust_stat3_sublabel,
+          trust_stat4_val: storedSettings.trust_stat4_val || prev.trust_stat4_val,
+          trust_stat4_suffix: storedSettings.trust_stat4_suffix || prev.trust_stat4_suffix,
+          trust_stat4_label: storedSettings.trust_stat4_label || prev.trust_stat4_label,
+          trust_stat4_sublabel: storedSettings.trust_stat4_sublabel || prev.trust_stat4_sublabel,
+          space_intro_visible: storedSettings.space_intro_visible !== false,
+          space_gallery_visible: storedSettings.space_gallery_visible !== false,
+          space_materials_visible: storedSettings.space_materials_visible !== false,
+          space_materials_tag: storedSettings.space_materials_tag || prev.space_materials_tag,
+          space_materials_heading: storedSettings.space_materials_heading || prev.space_materials_heading,
+          space_process_visible: storedSettings.space_process_visible !== false,
+          space_process_tag: storedSettings.space_process_tag || prev.space_process_tag,
+          space_process_heading: storedSettings.space_process_heading || prev.space_process_heading,
+          space_process_desc: storedSettings.space_process_desc || prev.space_process_desc,
+          space_faq_visible: storedSettings.space_faq_visible !== false,
+          space_crosslinks_visible: storedSettings.space_crosslinks_visible !== false,
+          space_cta_visible: storedSettings.space_cta_visible !== false
+        }));
+
         if (Array.isArray(storedSettings.spaces_list) && storedSettings.spaces_list.length > 0) {
           setSpacesList(storedSettings.spaces_list.filter(s => s.slug !== 'apartments' && s.slug !== 'villas'));
         }
       }
+
       try {
         const res = await axios.get('/settings');
         if (res.data.success && res.data.data) {
@@ -1167,8 +146,45 @@ const AdminSpacesCMS = () => {
             spaces_after_label: getNonEmpty(d.spaces_after_label, prev.spaces_after_label),
             spaces_before_after_slides: (Array.isArray(d.spaces_before_after_slides) && d.spaces_before_after_slides.length > 0)
               ? d.spaces_before_after_slides
-              : prev.spaces_before_after_slides
+              : prev.spaces_before_after_slides,
+            spaces_hero_visible: d.spaces_hero_visible !== false
           }));
+
+          setSpacesSettingsState((prev) => ({
+            ...prev,
+            spaces_grid_visible: d.spaces_grid_visible !== false,
+            space_detail_hero_visible: d.space_detail_hero_visible !== false,
+            spaces_trust_visible: d.spaces_trust_visible !== false,
+            trust_stat1_val: d.trust_stat1_val || prev.trust_stat1_val,
+            trust_stat1_suffix: d.trust_stat1_suffix || prev.trust_stat1_suffix,
+            trust_stat1_label: d.trust_stat1_label || prev.trust_stat1_label,
+            trust_stat1_sublabel: d.trust_stat1_sublabel || prev.trust_stat1_sublabel,
+            trust_stat2_val: d.trust_stat2_val || prev.trust_stat2_val,
+            trust_stat2_suffix: d.trust_stat2_suffix || prev.trust_stat2_suffix,
+            trust_stat2_label: d.trust_stat2_label || prev.trust_stat2_label,
+            trust_stat2_sublabel: d.trust_stat2_sublabel || prev.trust_stat2_sublabel,
+            trust_stat3_val: d.trust_stat3_val || prev.trust_stat3_val,
+            trust_stat3_suffix: d.trust_stat3_suffix || prev.trust_stat3_suffix,
+            trust_stat3_label: d.trust_stat3_label || prev.trust_stat3_label,
+            trust_stat3_sublabel: d.trust_stat3_sublabel || prev.trust_stat3_sublabel,
+            trust_stat4_val: d.trust_stat4_val || prev.trust_stat4_val,
+            trust_stat4_suffix: d.trust_stat4_suffix || prev.trust_stat4_suffix,
+            trust_stat4_label: d.trust_stat4_label || prev.trust_stat4_label,
+            trust_stat4_sublabel: d.trust_stat4_sublabel || prev.trust_stat4_sublabel,
+            space_intro_visible: d.space_intro_visible !== false,
+            space_gallery_visible: d.space_gallery_visible !== false,
+            space_materials_visible: d.space_materials_visible !== false,
+            space_materials_tag: d.space_materials_tag || prev.space_materials_tag,
+            space_materials_heading: d.space_materials_heading || prev.space_materials_heading,
+            space_process_visible: d.space_process_visible !== false,
+            space_process_tag: d.space_process_tag || prev.space_process_tag,
+            space_process_heading: d.space_process_heading || prev.space_process_heading,
+            space_process_desc: d.space_process_desc || prev.space_process_desc,
+            space_faq_visible: d.space_faq_visible !== false,
+            space_crosslinks_visible: d.space_crosslinks_visible !== false,
+            space_cta_visible: d.space_cta_visible !== false
+          }));
+
           if (Array.isArray(d.spaces_list) && d.spaces_list.length > 0) {
             setSpacesList(d.spaces_list.filter(s => s.slug !== 'apartments' && s.slug !== 'villas'));
           }
@@ -1190,7 +206,18 @@ const AdminSpacesCMS = () => {
     setSpacesHeroState((prev) => {
       const updated = { ...prev, [key]: val };
       const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
-      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...updated, spaces_list: spacesList });
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...updated, ...spacesSettingsState, spaces_list: spacesList });
+      notifyCMSUpdate();
+      return updated;
+    });
+  };
+
+  const handleSettingChange = (key, val) => {
+    setSpacesSettingsState((prev) => {
+      const updated = { ...prev, [key]: val };
+      const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...updated, spaces_list: spacesList });
+      notifyCMSUpdate();
       return updated;
     });
   };
@@ -1200,7 +227,8 @@ const AdminSpacesCMS = () => {
       const updated = [...prev];
       updated[idx] = { ...updated[idx], [key]: val };
       const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
-      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, spaces_list: updated });
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+      notifyCMSUpdate();
       return updated;
     });
   };
@@ -1214,25 +242,66 @@ const AdminSpacesCMS = () => {
         details: { ...currentDetails, [subKey]: val }
       };
       const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
-      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, spaces_list: updated });
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+      notifyCMSUpdate();
       return updated;
     });
   };
 
-  const handleFileUpload = (e, callback) => {
+  // Gallery Images Management for active space
+  const handleAddGalleryImage = (url) => {
+    if (!url || typeof url !== 'string' || !url.trim()) return;
+    const cleanUrl = url.trim();
+    setSpacesList((prev) => {
+      const updated = [...prev];
+      const currentImages = Array.isArray(updated[selectedSpaceIdx]?.galleryImages)
+        ? [...updated[selectedSpaceIdx].galleryImages]
+        : [];
+      if (!currentImages.includes(cleanUrl)) {
+        currentImages.unshift(cleanUrl);
+      }
+      updated[selectedSpaceIdx] = { ...updated[selectedSpaceIdx], galleryImages: currentImages };
+      const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+      notifyCMSUpdate();
+      return updated;
+    });
+    setNewGalleryUrl('');
+    showNotification('Image added to gallery!');
+  };
+
+  const handleDeleteGalleryImage = (imgIdx) => {
+    setSpacesList((prev) => {
+      const updated = [...prev];
+      const currentImages = Array.isArray(updated[selectedSpaceIdx]?.galleryImages)
+        ? [...updated[selectedSpaceIdx].galleryImages]
+        : [];
+      const filtered = currentImages.filter((_, i) => i !== imgIdx);
+      updated[selectedSpaceIdx] = { ...updated[selectedSpaceIdx], galleryImages: filtered };
+      const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+      notifyCMSUpdate();
+      return updated;
+    });
+    showNotification('Image removed from gallery.');
+  };
+
+  const handleSetCoverImage = (imgUrl) => {
+    handleSpaceChange(selectedSpaceIdx, 'heroImage', imgUrl);
+    showNotification('Set as space cover image!');
+  };
+
+  const handleFileUpload = async (e, callback) => {
     const file = e.target.files?.[0];
     if (!file) return;
     if (!file.type.startsWith('image/')) {
       alert('Please upload a valid image file (JPG, PNG, WebP).');
       return;
     }
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      if (evt.target?.result) {
-        callback(evt.target.result);
-      }
-    };
-    reader.readAsDataURL(file);
+    const uploadedUrl = await uploadImageFile(file);
+    if (uploadedUrl) {
+      callback(uploadedUrl);
+    }
   };
 
   const handleSave = async (e) => {
@@ -1243,11 +312,13 @@ const AdminSpacesCMS = () => {
     const updatedSettings = {
       ...existing,
       ...spacesHeroState,
+      ...spacesSettingsState,
       spaces_list: spacesList
     };
 
     // Immediately persist to local storage and broadcast live update
     setCMSData(STORAGE_KEYS.SETTINGS, updatedSettings);
+    notifyCMSUpdate();
 
     try {
       await axios.put('/settings', updatedSettings);
@@ -1257,8 +328,8 @@ const AdminSpacesCMS = () => {
 
     setSaving(false);
     setSaved(true);
-    showNotification('Spaces page updated successfully.');
-    setTimeout(() => setSaved(false), 2000);
+    showNotification('Spaces Page & All Sections Published Live!');
+    setTimeout(() => setSaved(false), 2500);
   };
 
   const handleAddSpace = () => {
@@ -1273,20 +344,29 @@ const AdminSpacesCMS = () => {
         tag: 'Bespoke Domain',
         headline: 'Custom Tailored Interior Space',
         body: 'Detailed craftsmanship narrative for this custom interior space domain.',
-        includes: ['Custom Layout Planning', 'Material Selection', 'Turnkey Execution']
-      }
+        cta_text: 'Enquire About New Space',
+        gallery_title: 'New Space Gallery',
+        gallery_subtitle: 'Design Showcase',
+        gallery_desc: 'Reference designs categorized and ordered by layout configuration.',
+        includes: ['Custom Layout Planning', 'Material Sourcing', 'Turnkey White-Glove Execution']
+      },
+      galleryImages: [
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+      ],
+      filters: ['Contemporary', 'Minimalist', 'Luxury']
     };
     const updated = [...spacesList, newSpace];
     setSpacesList(updated);
     setSelectedSpaceIdx(spacesList.length);
     const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
-    setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, spaces_list: updated });
-    showNotification('New Space card added.');
+    setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+    notifyCMSUpdate();
+    showNotification('New Space domain added.');
   };
 
   const handleDeleteSpace = (idx) => {
     if (spacesList.length <= 1) {
-      alert('You must keep at least one Space card record.');
+      alert('You must keep at least one Space domain.');
       return;
     }
     if (window.confirm(`Are you sure you want to delete "${spacesList[idx].name}"?`)) {
@@ -1294,8 +374,9 @@ const AdminSpacesCMS = () => {
       setSpacesList(updated);
       setSelectedSpaceIdx(0);
       const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
-      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, spaces_list: updated });
-      showNotification('Space card removed.');
+      setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+      notifyCMSUpdate();
+      showNotification('Space domain removed.');
     }
   };
 
@@ -1310,325 +391,462 @@ const AdminSpacesCMS = () => {
     setSpacesList(updated);
     setSelectedSpaceIdx(targetIdx);
     const existing = getCMSData(STORAGE_KEYS.SETTINGS) || {};
-    setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, spaces_list: updated });
+    setCMSData(STORAGE_KEYS.SETTINGS, { ...existing, ...spacesHeroState, ...spacesSettingsState, spaces_list: updated });
+    notifyCMSUpdate();
   };
 
-  const inpClass = "w-full bg-[#0E0F11] border border-white/10 focus:border-gold focus:outline-none rounded-lg font-sans text-xs px-4 py-3 text-white placeholder:text-white/25 transition-all";
-  const labelClass = "font-sans text-[10px] uppercase tracking-widest text-white/50 font-bold block mb-1.5";
+  // Master List of Sections across the entire Spaces feature (Hub & Inner Detail)
+  const sectionsList = [
+    {
+      id: 'spaces_hero',
+      num: '01',
+      badge: 'Hub Page',
+      name: 'Before / After Hero Slider',
+      desc: 'Interactive dual-slider comparing pre-construction vs completed spaces on /spaces.',
+      isVisible: spacesHeroState.spaces_hero_visible !== false,
+      visibleKey: 'spaces_hero_visible',
+      targetTab: 'hero',
+      isHero: true,
+    },
+    {
+      id: 'spaces_grid',
+      num: '02',
+      badge: 'Hub Page',
+      name: 'Spaces Directory Grid',
+      desc: 'Full responsive 2-column visual grid showing all 16 space domain cards.',
+      isVisible: spacesSettingsState.spaces_grid_visible !== false,
+      visibleKey: 'spaces_grid_visible',
+      targetTab: 'list',
+    },
+    {
+      id: 'space_detail_hero',
+      num: '03',
+      badge: 'Inner Detail',
+      name: 'Cinematic Detail Hero',
+      desc: 'Immersive full-bleed banner with dynamic breadcrumb, title & description.',
+      isVisible: spacesSettingsState.space_detail_hero_visible !== false,
+      visibleKey: 'space_detail_hero_visible',
+      targetTab: 'list',
+    },
+    {
+      id: 'spaces_trust',
+      num: '04',
+      badge: 'Inner Detail',
+      name: 'Trust & Engineering Stats Strip',
+      desc: '4 metric counters: 25+ Projects, 40+ Years, 50,000+ Sq.Ft, 10-Year Warranty.',
+      isVisible: spacesSettingsState.spaces_trust_visible !== false,
+      visibleKey: 'spaces_trust_visible',
+      targetTab: 'trust',
+    },
+    {
+      id: 'space_intro',
+      num: '05',
+      badge: 'Inner Detail',
+      name: 'Architectural Intro & Tag Block',
+      desc: 'Category tag, headline, narrative body paragraph, and Enquire CTA button.',
+      isVisible: spacesSettingsState.space_intro_visible !== false,
+      visibleKey: 'space_intro_visible',
+      targetTab: 'list',
+    },
+    {
+      id: 'space_gallery',
+      num: '06',
+      badge: 'Inner Detail',
+      name: 'Design Showcase / Gallery Grid',
+      desc: 'Rich reference gallery ordered by layout type with full-screen zoom lightbox.',
+      isVisible: spacesSettingsState.space_gallery_visible !== false,
+      visibleKey: 'space_gallery_visible',
+      targetTab: 'list',
+    },
+    {
+      id: 'space_materials',
+      num: '07',
+      badge: 'Inner Detail',
+      name: 'Materials & Craftsmanship Strip',
+      desc: 'Tactile material specifications (HDHMR, German Joinery, Sintered Stone).',
+      isVisible: spacesSettingsState.space_materials_visible !== false,
+      visibleKey: 'space_materials_visible',
+      targetTab: 'materials',
+    },
+    {
+      id: 'space_process',
+      num: '08',
+      badge: 'Inner Detail',
+      name: '4-Step Turnkey Execution Process',
+      desc: 'Step-by-step workflow: Consultation → 3D CAD → Factory Build → Handover.',
+      isVisible: spacesSettingsState.space_process_visible !== false,
+      visibleKey: 'space_process_visible',
+      targetTab: 'materials',
+    },
+    {
+      id: 'space_faq',
+      num: '09',
+      badge: 'Inner Detail',
+      name: 'Spaces FAQ Block',
+      desc: 'Domain-specific FAQ accordion addressing timelines, customization & warranties.',
+      isVisible: spacesSettingsState.space_faq_visible !== false,
+      visibleKey: 'space_faq_visible',
+      targetTab: 'materials',
+    },
+    {
+      id: 'space_crosslinks',
+      num: '10',
+      badge: 'Inner Detail',
+      name: 'Related Spaces Cross-Links',
+      desc: 'Intelligent card recommendations guiding visitors to explore companion rooms.',
+      isVisible: spacesSettingsState.space_crosslinks_visible !== false,
+      visibleKey: 'space_crosslinks_visible',
+      targetTab: 'list',
+    },
+    {
+      id: 'space_cta',
+      num: '11',
+      badge: 'Global Footer',
+      name: 'Bottom Consultation CTA Section',
+      desc: 'High-converting consultation booking banner at the footer of Hub & Detail pages.',
+      isVisible: spacesSettingsState.space_cta_visible !== false,
+      visibleKey: 'space_cta_visible',
+      targetTab: 'cta',
+    }
+  ];
+
+  const activeCount = sectionsList.filter(s => s.isVisible).length;
+  const totalCount = sectionsList.length;
+
+  const inpClass = "w-full bg-stone-50 border border-stone-200 focus:border-gold focus:bg-white focus:outline-none rounded-xl font-sans text-xs px-4 py-3 text-stone-900 placeholder:text-stone-400 transition-all";
+  const labelClass = "font-sans text-[11px] uppercase tracking-wider text-stone-500 font-bold block mb-1.5";
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px] text-white/50">
+      <div className="flex items-center justify-center min-h-[400px] text-stone-400">
         <Loader2 size={24} className="animate-spin text-gold mr-3" />
         <span className="font-sans text-xs font-bold uppercase tracking-widest">Loading Spaces CMS...</span>
       </div>
     );
   }
 
+  // Filtered spaces by search query
+  const filteredSpaces = spacesList.map((space, originalIdx) => ({ space, originalIdx })).filter(({ space }) => {
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      (space.name && space.name.toLowerCase().includes(q)) ||
+      (space.slug && space.slug.toLowerCase().includes(q)) ||
+      (space.details?.tag && space.details.tag.toLowerCase().includes(q))
+    );
+  });
+
   const currentSpace = spacesList[selectedSpaceIdx] || spacesList[0];
 
   return (
-    <div className="space-y-8 pb-16">
+    <div className="space-y-8 pb-20">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-6 right-6 z-50 bg-emerald-500/90 text-white px-5 py-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center space-x-2 font-sans text-xs font-bold animate-bounce">
-          <CheckCircle size={16} />
+        <div className="fixed top-6 right-6 z-50 bg-stone-900 text-white px-5 py-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center space-x-2 font-sans text-xs font-bold border border-gold/30">
+          <CheckCircle size={16} className="text-gold" />
           <span>{toastMessage}</span>
         </div>
       )}
 
-      {/* Header & Save Action */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-6">
+      {/* Header & Master Actions */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-6">
         <div>
-          <h1 className="font-editorial text-3xl font-bold text-white">Spaces Page CMS</h1>
-          <p className="font-sans text-xs text-white/40 mt-1">
-            Manage live Before/After slider cards, hero headings, and full list of Space domain cards.
+          <div className="flex items-center space-x-2 text-[11px] font-sans font-bold uppercase tracking-wider text-stone-400 mb-1">
+            <span>Admin</span>
+            <span>/</span>
+            <span className="text-gold">Spaces CMS</span>
+          </div>
+          <h1 className="font-editorial text-3xl font-bold text-stone-900">Spaces Page & Domains CMS</h1>
+          <p className="font-sans text-xs text-stone-500 mt-1 max-w-2xl">
+            Control all 11 sections of the Spaces site: Before/After hero comparison, 16 individual space domains, gallery photo collections, trust metrics, materials, and bottom footer CTA.
           </p>
         </div>
-        <button
-          onClick={handleSave}
-          disabled={saving || saved}
-          className="flex items-center space-x-2 bg-gold hover:bg-gold-hover text-charcoal font-sans text-xs uppercase tracking-widest font-bold py-3.5 px-7 rounded-lg transition-all duration-300 disabled:opacity-60 shrink-0"
-        >
-          {saved ? (
-            <>
-              <CheckCircle size={15} />
-              <span>Spaces Published Live!</span>
-            </>
-          ) : saving ? (
-            <Loader2 size={15} className="animate-spin" />
-          ) : (
-            <>
-              <Save size={15} />
-              <span>Save & Publish Changes</span>
-            </>
-          )}
-        </button>
-      </div>
 
-      {/* Tab Switcher */}
-      <div className="flex flex-wrap items-center gap-3 border-b border-white/5 pb-4">
-        <button
-          onClick={() => setActiveTab('list')}
-          className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md ${
-            activeTab === 'list'
-              ? 'bg-gold text-charcoal border border-gold shadow-[0_0_20px_rgba(201,169,110,0.3)]'
-              : 'bg-[#141518] text-white/70 hover:text-white hover:bg-white/5 border border-white/10'
-          }`}
-        >
-          <Layers size={16} />
-          <span>Edit Space Cards ({spacesList.length} Domains)</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('hero')}
-          className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md ${
-            activeTab === 'hero'
-              ? 'bg-gold text-charcoal border border-gold shadow-[0_0_20px_rgba(201,169,110,0.3)]'
-              : 'bg-[#141518] text-white/70 hover:text-white hover:bg-white/5 border border-white/10'
-          }`}
-        >
-          <SlidersHorizontal size={16} />
-          <span>Before / After Hero Slider</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('cta')}
-          className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md ${
-            activeTab === 'cta'
-              ? 'bg-gold text-charcoal border border-gold shadow-[0_0_20px_rgba(201,169,110,0.3)]'
-              : 'bg-[#141518] text-white/70 hover:text-white hover:bg-white/5 border border-white/10'
-          }`}
-        >
-          <HelpCircle size={16} />
-          <span>CTA Section</span>
-        </button>
-      </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-sans font-bold">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Live Synced</span>
+          </div>
 
-      {/* TAB: CTA SECTION EDITOR */}
-      {activeTab === 'cta' && (
-        <div className="bg-[#141518] border border-white/5 rounded-2xl p-6 md:p-8 max-w-4xl">
-          <CTASectionEditor pageKey="spaces" pageTitle="Spaces" />
+          <a
+            href="/spaces"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-xl border border-stone-200 text-stone-700 bg-white hover:bg-stone-50 font-sans text-xs font-bold uppercase tracking-wider transition-all"
+          >
+            <span>View Live Spaces</span>
+            <ExternalLink size={13} />
+          </a>
+
+          <button
+            onClick={handleSave}
+            disabled={saving || saved}
+            className="flex items-center space-x-2 bg-gold hover:bg-[#b89355] text-stone-950 font-sans text-xs uppercase tracking-widest font-bold py-3 px-6 rounded-xl transition-all shadow-md disabled:opacity-60"
+          >
+            {saved ? (
+              <>
+                <CheckCircle size={15} />
+                <span>Published Live!</span>
+              </>
+            ) : saving ? (
+              <Loader2 size={15} className="animate-spin" />
+            ) : (
+              <>
+                <Save size={15} />
+                <span>Save & Publish Changes</span>
+              </>
+            )}
+          </button>
         </div>
-      )}
+      </div>
 
-      {/* TAB 1: BEFORE/AFTER HERO SLIDER */}
-      {activeTab === 'hero' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-7 bg-[#141518] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6">
-            <div className="border-b border-white/5 pb-4">
-              <h2 className="font-editorial text-xl font-bold text-white flex items-center space-x-2">
-                <Sliders size={18} className="text-gold" />
-                <span>Spaces Hero & Before/After Slider Content</span>
+      {/* MASTER SECTIONS ARCHITECTURE & VISIBILITY SWITCHBOARD */}
+      <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-7 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-stone-200 gap-3">
+          <div>
+            <div className="flex items-center space-x-2">
+              <Layers size={18} className="text-gold" />
+              <h2 className="font-editorial text-lg font-bold text-stone-900">
+                Spaces Architecture & Master Visibility Switchboard
               </h2>
-              <p className="font-sans text-xs text-white/40 mt-0.5">Edit hero pill label, Before/After photos, and comparison labels.</p>
             </div>
+            <p className="font-sans text-xs text-stone-500 mt-1">
+              Toggle any section switch below to instantly show or hide that section from the live website. Click "Configure Section" to jump straight into its editor.
+            </p>
+          </div>
+          <div className="flex items-center space-x-2 shrink-0">
+            <span className="font-sans text-xs font-bold text-stone-600">Active Status:</span>
+            <span className="font-sans text-xs font-bold px-2.5 py-1 rounded-full bg-stone-100 text-stone-800 border border-stone-200">
+              {activeCount} of {totalCount} Sections Visible ({Math.round((activeCount / totalCount) * 100)}%)
+            </span>
+          </div>
+        </div>
 
-            <div className="space-y-5">
-              {/* Hidden File Inputs for Before & After */}
-              <input
-                type="file"
-                ref={fileInputBeforeRef}
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => handleFileUpload(e, (dataUrl) => handleHeroChange('spaces_before_image', dataUrl))}
-              />
-              <input
-                type="file"
-                ref={fileInputAfterRef}
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => handleFileUpload(e, (dataUrl) => handleHeroChange('spaces_after_image', dataUrl))}
-              />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-5">
+          {sectionsList.map((sec) => (
+            <div
+              key={sec.id}
+              className={`rounded-xl border p-4 transition-all duration-200 flex flex-col justify-between ${
+                sec.isVisible
+                  ? 'bg-stone-50/80 border-stone-200 hover:border-gold/50 shadow-2xs'
+                  : 'bg-stone-100/50 border-stone-200/60 opacity-60'
+              }`}
+            >
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-stone-200 text-stone-700">
+                      {sec.num}
+                    </span>
+                    <span className="font-sans text-[10px] uppercase font-bold tracking-wider text-gold">
+                      {sec.badge}
+                    </span>
+                  </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className={labelClass}>Before Badge Label</label>
-                  <input
-                    type="text"
-                    value={spacesHeroState.spaces_before_label || 'BEFORE'}
-                    onChange={(e) => handleHeroChange('spaces_before_label', e.target.value)}
-                    className={inpClass}
-                    placeholder="BEFORE"
-                  />
-                </div>
-                <div>
-                  <label className={labelClass}>After Badge Label</label>
-                  <input
-                    type="text"
-                    value={spacesHeroState.spaces_after_label || 'AFTER'}
-                    onChange={(e) => handleHeroChange('spaces_after_label', e.target.value)}
-                    className={inpClass}
-                    placeholder="AFTER"
-                  />
-                </div>
-              </div>
-
-              {/* Before Photo */}
-              <div className="space-y-2 pt-2 border-t border-white/5">
-                <label className={labelClass}>Before Transformation Image</label>
-                <div className="flex items-center space-x-3">
-                  <img
-                    src={spacesHeroState.spaces_before_image || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=90'}
-                    alt="Before"
-                    className="w-20 h-14 object-cover rounded-lg border border-white/10 shrink-0"
-                  />
-                  <input
-                    type="text"
-                    value={spacesHeroState.spaces_before_image || ''}
-                    onChange={(e) => handleHeroChange('spaces_before_image', e.target.value)}
-                    className={inpClass}
-                    placeholder="https://images.unsplash.com/..."
-                  />
+                  {/* Toggle Button */}
                   <button
                     type="button"
-                    onClick={() => fileInputBeforeRef.current?.click()}
-                    className="flex items-center space-x-1 bg-white/10 hover:bg-white/20 text-white px-3 py-3 rounded-lg font-sans text-[11px] font-bold uppercase shrink-0"
+                    onClick={() => {
+                      if (sec.isHero) {
+                        handleHeroChange('spaces_hero_visible', !sec.isVisible);
+                      } else {
+                        handleSettingChange(sec.visibleKey, !sec.isVisible);
+                      }
+                    }}
+                    className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${
+                      sec.isVisible ? 'bg-gold' : 'bg-stone-300'
+                    }`}
+                    title={sec.isVisible ? 'Turn Section OFF' : 'Turn Section ON'}
                   >
-                    <Plus size={12} />
-                    <span>Upload Before</span>
+                    <div
+                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-xs transition-transform duration-200 ${
+                        sec.isVisible ? 'translate-x-5.5' : 'translate-x-0.5'
+                      }`}
+                    />
                   </button>
                 </div>
+
+                <h4 className="font-sans text-xs font-bold text-stone-900 mt-1">{sec.name}</h4>
+                <p className="font-sans text-[11px] text-stone-500 leading-snug">{sec.desc}</p>
               </div>
 
-              {/* After Photo */}
-              <div className="space-y-2 pt-2 border-t border-white/5">
-                <label className={labelClass}>After Transformation Image</label>
-                <div className="flex items-center space-x-3">
-                  <img
-                    src={spacesHeroState.spaces_after_image || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=90'}
-                    alt="After"
-                    className="w-20 h-14 object-cover rounded-lg border border-white/10 shrink-0"
-                  />
-                  <input
-                    type="text"
-                    value={spacesHeroState.spaces_after_image || ''}
-                    onChange={(e) => handleHeroChange('spaces_after_image', e.target.value)}
-                    className={inpClass}
-                    placeholder="https://images.unsplash.com/..."
-                  />
-                  <button
-                    type="button"
-                    onClick={() => fileInputAfterRef.current?.click()}
-                    className="flex items-center space-x-1 bg-white/10 hover:bg-white/20 text-white px-3 py-3 rounded-lg font-sans text-[11px] font-bold uppercase shrink-0"
-                  >
-                    <Plus size={12} />
-                    <span>Upload After</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Hero Banner Visibility */}
-              <div className="pt-2 flex items-center justify-between bg-[#0E0F11] border border-white/5 p-4 rounded-xl">
-                <div>
-                  <span className="font-sans text-xs font-bold text-white block">Hero Banner Visibility</span>
-                  <span className="font-sans text-[11px] text-white/40">Toggle ON/OFF to show or hide the Before/After hero section on /what-we-do.</span>
-                </div>
+              <div className="pt-3 border-t border-stone-200/60 flex items-center justify-between mt-3">
+                <span className={`font-sans text-[10px] font-bold uppercase tracking-wider ${sec.isVisible ? 'text-emerald-700' : 'text-stone-400'}`}>
+                  {sec.isVisible ? '● Active Live' : '○ Hidden from Site'}
+                </span>
                 <button
                   type="button"
-                  onClick={() => handleHeroChange('spaces_hero_visible', !spacesHeroState.spaces_hero_visible)}
-                  className={`w-12 h-6 rounded-full relative transition-colors duration-200 ${
-                    spacesHeroState.spaces_hero_visible ? 'bg-gold' : 'bg-white/10'
-                  }`}
+                  onClick={() => {
+                    setActiveTab(sec.targetTab);
+                  }}
+                  className="font-sans text-[10px] font-bold uppercase tracking-wider text-stone-600 hover:text-gold flex items-center space-x-1"
                 >
-                  <div
-                    className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${
-                      spacesHeroState.spaces_hero_visible ? 'translate-x-7' : 'translate-x-1'
-                    }`}
-                  />
+                  <span>Configure</span>
+                  <ArrowUpRight size={11} />
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* Hero Live Preview */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="sticky top-20 bg-[#141518] border border-white/5 rounded-2xl p-6 space-y-5">
-              <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                <span className="font-sans text-[10px] uppercase tracking-widest text-gold font-bold flex items-center space-x-1.5">
-                  <Eye size={12} />
-                  <span>Spaces Hero Preview</span>
-                </span>
-                <span className="text-[10px] font-sans text-white/30">Real-time binding</span>
-              </div>
-
-              <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black">
-                <img
-                  src={spacesHeroState.spaces_after_image || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=90'}
-                  alt="Hero Preview"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute left-4 bottom-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                  <span className="font-sans text-[10px] uppercase font-bold tracking-widest text-white">{spacesHeroState.spaces_before_label || 'BEFORE'}</span>
-                </div>
-                <div className="absolute right-4 bottom-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                  <span className="font-sans text-[10px] uppercase font-bold tracking-widest text-white">{spacesHeroState.spaces_after_label || 'AFTER'}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      )}
+      </div>
 
-      {/* TAB 2: SPACES CARDS MANAGER */}
+      {/* Tab Switcher */}
+      <div className="flex flex-wrap items-center gap-2 border-b border-stone-200 pb-4">
+        <button
+          onClick={() => setActiveTab('list')}
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-xs ${
+            activeTab === 'list'
+              ? 'bg-gold text-stone-950 border border-gold font-black'
+              : 'bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 border border-stone-200'
+          }`}
+        >
+          <Layers size={15} />
+          <span>Space Domains ({spacesList.length} Domains)</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('hero')}
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-xs ${
+            activeTab === 'hero'
+              ? 'bg-gold text-stone-950 border border-gold font-black'
+              : 'bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 border border-stone-200'
+          }`}
+        >
+          <SlidersHorizontal size={15} />
+          <span>Before / After Hero Slider</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('trust')}
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-xs ${
+            activeTab === 'trust'
+              ? 'bg-gold text-stone-950 border border-gold font-black'
+              : 'bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 border border-stone-200'
+          }`}
+        >
+          <Award size={15} />
+          <span>Trust & Engineering Strip</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('materials')}
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-xs ${
+            activeTab === 'materials'
+              ? 'bg-gold text-stone-950 border border-gold font-black'
+              : 'bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 border border-stone-200'
+          }`}
+        >
+          <Sparkles size={15} />
+          <span>Materials & Process</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('cta')}
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-xs ${
+            activeTab === 'cta'
+              ? 'bg-gold text-stone-950 border border-gold font-black'
+              : 'bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 border border-stone-200'
+          }`}
+        >
+          <HelpCircle size={15} />
+          <span>Bottom Consultation CTA</span>
+        </button>
+      </div>
+
+      {/* ───────────────────────────────────────────────────────────── */}
+      {/* TAB 1: SPACE DOMAINS MANAGER & DEEP INNER EDITOR            */}
+      {/* ───────────────────────────────────────────────────────────── */}
       {activeTab === 'list' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Column: Space Selector List */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Domains Directory & Selector */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/60">Space Domains List</span>
-              <button
-                type="button"
-                onClick={handleAddSpace}
-                className="flex items-center space-x-1 bg-gold/15 text-gold border border-gold/30 hover:bg-gold hover:text-charcoal px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all"
-              >
-                <Plus size={13} />
-                <span>Add Space</span>
-              </button>
+            <div className="bg-white border border-stone-200 rounded-2xl p-4 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-stone-600">
+                  Domains ({spacesList.length})
+                </span>
+                <button
+                  type="button"
+                  onClick={handleAddSpace}
+                  className="flex items-center space-x-1 bg-gold/15 text-gold-dark hover:bg-gold hover:text-stone-950 px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all"
+                >
+                  <Plus size={13} />
+                  <span>Add Space</span>
+                </button>
+              </div>
+
+              {/* Search Domain Input */}
+              <div className="relative">
+                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+                <input
+                  type="text"
+                  placeholder="Search space (e.g. Foyer, Kitchen)..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-stone-50 border border-stone-200 focus:border-gold focus:bg-white focus:outline-none rounded-xl font-sans text-xs pl-9 pr-3 py-2 text-stone-900 placeholder:text-stone-400 transition-all"
+                />
+              </div>
             </div>
 
-            <div data-lenis-prevent className="space-y-2 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gold/50 scrollbar-track-white/5 hover:scrollbar-thumb-gold transition-all">
-              {spacesList.map((space, idx) => {
-                const isSelected = idx === selectedSpaceIdx;
+            {/* Scrollable Domains List */}
+            <div className="space-y-2 max-h-[750px] overflow-y-auto pr-1">
+              {filteredSpaces.map(({ space, originalIdx }) => {
+                const isSelected = originalIdx === selectedSpaceIdx;
+                const galleryCount = Array.isArray(space.galleryImages) ? space.galleryImages.length : 0;
                 return (
                   <div
-                    key={idx}
-                    onClick={() => setSelectedSpaceIdx(idx)}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
+                    key={originalIdx}
+                    onClick={() => setSelectedSpaceIdx(originalIdx)}
+                    className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
                       isSelected
-                        ? 'bg-gold/15 border-gold/40 shadow-lg'
-                        : 'bg-[#141518] border-white/5 hover:border-white/20 hover:bg-white/2'
+                        ? 'bg-amber-50/70 border-gold shadow-xs ring-1 ring-gold/40'
+                        : 'bg-white border-stone-200 hover:border-stone-300 hover:bg-stone-50/80'
                     }`}
                   >
                     <div className="flex items-center space-x-3 truncate">
-                      <span className="font-sans text-xs font-bold text-gold">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className={`font-mono text-xs font-bold ${isSelected ? 'text-gold-dark font-black' : 'text-stone-400'}`}>
+                        {String(originalIdx + 1).padStart(2, '0')}
+                      </span>
                       <div className="truncate">
-                        <h4 className="font-sans text-xs font-bold text-white truncate">{space.name}</h4>
-                        <span className="font-sans text-[10px] text-white/40 uppercase tracking-widest block truncate">{space.details?.tag || 'Space Domain'}</span>
+                        <div className="flex items-center space-x-2">
+                          <h4 className={`font-sans text-xs font-bold truncate ${isSelected ? 'text-stone-950' : 'text-stone-800'}`}>
+                            {space.name}
+                          </h4>
+                          {space.visible === false && (
+                            <span className="font-sans text-[9px] uppercase px-1.5 py-0.5 rounded bg-stone-200 text-stone-600 font-bold">
+                              Hidden
+                            </span>
+                          )}
+                        </div>
+                        <span className="font-sans text-[10px] text-stone-500 uppercase tracking-widest block truncate">
+                          {space.details?.tag || 'Space Domain'} • {galleryCount} Photos
+                        </span>
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-1 shrink-0 ml-2" onClick={(e) => e.stopPropagation()}>
                       <button
                         type="button"
-                        onClick={() => handleMoveSpace(idx, 'up')}
-                        disabled={idx === 0}
-                        className="p-1 text-white/30 hover:text-white disabled:opacity-20"
+                        onClick={() => handleMoveSpace(originalIdx, 'up')}
+                        disabled={originalIdx === 0}
+                        className="p-1 text-stone-400 hover:text-stone-800 disabled:opacity-20"
                         title="Move Up"
                       >
                         <ArrowUp size={13} />
                       </button>
                       <button
                         type="button"
-                        onClick={() => handleMoveSpace(idx, 'down')}
-                        disabled={idx === spacesList.length - 1}
-                        className="p-1 text-white/30 hover:text-white disabled:opacity-20"
+                        onClick={() => handleMoveSpace(originalIdx, 'down')}
+                        disabled={originalIdx === spacesList.length - 1}
+                        className="p-1 text-stone-400 hover:text-stone-800 disabled:opacity-20"
                         title="Move Down"
                       >
                         <ArrowDown size={13} />
                       </button>
                       <button
                         type="button"
-                        onClick={() => handleDeleteSpace(idx)}
-                        className="p-1 text-red-400/40 hover:text-red-400"
+                        onClick={() => handleDeleteSpace(originalIdx)}
+                        className="p-1 text-red-400 hover:text-red-600"
                         title="Delete Space"
                       >
                         <Trash2 size={13} />
@@ -1640,27 +858,40 @@ const AdminSpacesCMS = () => {
             </div>
           </div>
 
-          {/* Right Column: Selected Space Editor */}
+          {/* Right Column: Selected Space Deep Editor */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-[#141518] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6">
-              <div className="flex items-center justify-between border-b border-white/5 pb-4">
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 space-y-6 shadow-xs">
+              {/* Space Header & Visibility Switch */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-stone-200 gap-3">
                 <div>
-                  <span className="font-sans text-[10px] font-bold text-gold uppercase tracking-widest">
-                    Editing Space {String(selectedSpaceIdx + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="font-editorial text-2xl font-bold text-white">{currentSpace.name}</h3>
+                  <div className="flex items-center space-x-2">
+                    <span className="font-sans text-[10px] font-bold text-gold uppercase tracking-widest px-2 py-0.5 rounded bg-gold/10">
+                      Editing Space {String(selectedSpaceIdx + 1).padStart(2, '0')}
+                    </span>
+                    <a
+                      href={`/spaces/${currentSpace.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-sans text-[11px] text-stone-500 hover:text-gold flex items-center space-x-1 font-semibold"
+                    >
+                      <span>/spaces/{currentSpace.slug}</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+                  <h3 className="font-editorial text-2xl font-bold text-stone-900 mt-1">{currentSpace.name}</h3>
                 </div>
+
                 <div className="flex items-center space-x-3">
-                  <span className="font-sans text-xs text-white/40">Visible:</span>
+                  <span className="font-sans text-xs text-stone-500 font-bold">Space Visible:</span>
                   <button
                     type="button"
                     onClick={() => handleSpaceChange(selectedSpaceIdx, 'visible', !(currentSpace.visible !== false))}
-                    className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${
-                      currentSpace.visible !== false ? 'bg-gold' : 'bg-white/10'
+                    className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${
+                      currentSpace.visible !== false ? 'bg-gold' : 'bg-stone-300'
                     }`}
                   >
                     <div
-                      className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${
+                      className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-xs transition-transform duration-200 ${
                         currentSpace.visible !== false ? 'translate-x-5.5' : 'translate-x-0.5'
                       }`}
                     />
@@ -1668,7 +899,7 @@ const AdminSpacesCMS = () => {
                 </div>
               </div>
 
-              {/* Hidden File Input */}
+              {/* Hidden File Input for Space Cover */}
               <input
                 type="file"
                 ref={fileInputSpaceCoverRef}
@@ -1676,22 +907,50 @@ const AdminSpacesCMS = () => {
                 className="hidden"
                 onChange={(e) => handleFileUpload(e, (dataUrl) => {
                   handleSpaceChange(selectedSpaceIdx, 'heroImage', dataUrl);
+                  showNotification('Cover image uploaded!');
                 })}
               />
 
-              <div className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Hidden File Input for Gallery Photos */}
+              <input
+                type="file"
+                ref={fileInputGalleryRef}
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleFileUpload(e, (dataUrl) => {
+                  handleAddGalleryImage(dataUrl);
+                })}
+              />
+
+              {/* Basic Domain Metadata */}
+              <div className="space-y-4">
+                <span className="font-sans text-xs font-bold text-stone-900 uppercase tracking-wider block">
+                  1. Basic Domain Information
+                </span>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className={labelClass}>Space Name / Title</label>
                     <input
                       type="text"
                       value={currentSpace.name || ''}
-                      onChange={(e) => handleSpaceChange(selectedServiceIdx, 'name', e.target.value)}
+                      onChange={(e) => handleSpaceChange(selectedSpaceIdx, 'name', e.target.value)}
                       className={inpClass}
                     />
                   </div>
+
                   <div>
-                    <label className={labelClass}>Category Tag (e.g. Precision-Engineered)</label>
+                    <label className={labelClass}>URL Slug (e.g. foyer)</label>
+                    <input
+                      type="text"
+                      value={currentSpace.slug || ''}
+                      onChange={(e) => handleSpaceChange(selectedSpaceIdx, 'slug', e.target.value.toLowerCase().replace(/\s+/g, '-'))}
+                      className={inpClass}
+                    />
+                  </div>
+
+                  <div>
+                    <label className={labelClass}>Category Tag (e.g. Grand First Impressions)</label>
                     <input
                       type="text"
                       value={currentSpace.details?.tag || ''}
@@ -1702,7 +961,7 @@ const AdminSpacesCMS = () => {
                 </div>
 
                 <div>
-                  <label className={labelClass}>Short Description (Shown on Grid Card)</label>
+                  <label className={labelClass}>Short Description (Shown on Grid Card & SEO)</label>
                   <textarea
                     rows={2}
                     value={currentSpace.description || ''}
@@ -1713,101 +972,838 @@ const AdminSpacesCMS = () => {
 
                 {/* Cover Image */}
                 <div>
-                  <label className={labelClass}>Space Cover Image</label>
+                  <label className={labelClass}>Space Cover Image (Shown on Hub Card & Detail Banner)</label>
                   <div className="flex items-center space-x-3">
                     {currentSpace.heroImage && (
-                      <img src={currentSpace.heroImage} alt="Cover" className="w-20 h-14 object-cover rounded-lg border border-white/10 shrink-0" />
+                      <img
+                        src={currentSpace.heroImage}
+                        alt="Cover"
+                        className="w-20 h-14 object-cover rounded-lg border border-stone-200 shrink-0"
+                      />
                     )}
                     <input
                       type="text"
                       value={currentSpace.heroImage || ''}
                       onChange={(e) => handleSpaceChange(selectedSpaceIdx, 'heroImage', e.target.value)}
                       className={inpClass}
-                      placeholder="https://images.unsplash.com/..."
+                      placeholder="/images/spaces/... or https://..."
                     />
                     <button
                       type="button"
                       onClick={() => fileInputSpaceCoverRef.current?.click()}
-                      className="flex items-center space-x-1 bg-white/10 hover:bg-white/20 text-white px-3 py-3 rounded-lg font-sans text-[11px] font-bold uppercase shrink-0"
+                      className="flex items-center space-x-1 bg-stone-100 hover:bg-stone-200 text-stone-800 px-3.5 py-3 rounded-xl font-sans text-xs font-bold uppercase shrink-0 transition-all"
                     >
-                      <Plus size={12} />
+                      <Plus size={13} />
                       <span>Upload</span>
                     </button>
                   </div>
                 </div>
+              </div>
 
-                {/* Detailed Page Headline & Narrative */}
-                <div className="space-y-4 pt-2 border-t border-white/5">
-                  <span className="font-sans text-xs font-bold text-gold uppercase tracking-wider block">Detailed Inner Domain Page Content</span>
-                  
+              {/* Inner Space Detailed Page Content */}
+              <div className="space-y-4 pt-5 border-t border-stone-200">
+                <span className="font-sans text-xs font-bold text-stone-900 uppercase tracking-wider block">
+                  2. Inner Space Page Headline, Narrative & Primary CTA
+                </span>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className={labelClass}>Detail Headline (e.g. Kitchens Built Around the Way You Cook)</label>
+                    <label className={labelClass}>Detail Headline</label>
                     <input
                       type="text"
                       value={currentSpace.details?.headline || ''}
                       onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'headline', e.target.value)}
                       className={inpClass}
+                      placeholder="e.g. Entrance Foyers Crafted to Welcome and Impress"
                     />
                   </div>
 
                   <div>
-                    <label className={labelClass}>Detail Body Narrative</label>
-                    <textarea
-                      rows={3}
-                      value={currentSpace.details?.body || ''}
-                      onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'body', e.target.value)}
-                      className={`${inpClass} resize-none`}
+                    <label className={labelClass}>Enquire Button Label</label>
+                    <input
+                      type="text"
+                      value={currentSpace.details?.cta_text || `Enquire About ${currentSpace.name}`}
+                      onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'cta_text', e.target.value)}
+                      className={inpClass}
+                      placeholder={`Enquire About ${currentSpace.name}`}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className={labelClass}>Detailed Body Narrative</label>
+                  <textarea
+                    rows={3}
+                    value={currentSpace.details?.body || ''}
+                    onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'body', e.target.value)}
+                    className={`${inpClass} resize-none`}
+                    placeholder="The narrative explaining ergonomics, materiality, and emotional tone..."
+                  />
+                </div>
+              </div>
+
+              {/* Gallery Header & Photos Manager */}
+              <div className="space-y-4 pt-5 border-t border-stone-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <span className="font-sans text-xs font-bold text-stone-900 uppercase tracking-wider block">
+                      3. Design Showcase / Gallery Header & Photo Collection
+                    </span>
+                    <span className="font-sans text-[11px] text-stone-500">
+                      Manage all gallery reference images for {currentSpace.name}. These photos populate the interactive grid on the inner page.
+                    </span>
+                  </div>
+                  <span className="font-sans text-xs font-bold px-2.5 py-1 rounded-full bg-stone-100 text-stone-700">
+                    {(currentSpace.galleryImages || []).length} Photos in Gallery
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass}>Gallery Subtitle Tag</label>
+                    <input
+                      type="text"
+                      value={currentSpace.details?.gallery_subtitle || 'Design Showcase'}
+                      onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'gallery_subtitle', e.target.value)}
+                      className={inpClass}
+                      placeholder="Design Showcase"
                     />
                   </div>
 
-                  {/* Included Items */}
-                  <div className="space-y-3 pt-2">
-                    <div className="flex items-center justify-between">
-                      <label className={labelClass}>What's Included Bullet Points</label>
+                  <div>
+                    <label className={labelClass}>Gallery Main Heading</label>
+                    <input
+                      type="text"
+                      value={currentSpace.details?.gallery_title || `${currentSpace.name} Gallery`}
+                      onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'gallery_title', e.target.value)}
+                      className={inpClass}
+                      placeholder={`${currentSpace.name} Gallery`}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className={labelClass}>Gallery Description</label>
+                  <input
+                    type="text"
+                    value={currentSpace.details?.gallery_desc || 'Reference designs categorized and ordered by layout configuration. Click any design to zoom in.'}
+                    onChange={(e) => handleSpaceDetailChange(selectedSpaceIdx, 'gallery_desc', e.target.value)}
+                    className={inpClass}
+                  />
+                </div>
+
+                {/* Add Photo Actions */}
+                <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl space-y-3">
+                  <span className="font-sans text-xs font-bold text-stone-700 block">Add Photo to Gallery</span>
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                    <input
+                      type="text"
+                      placeholder="Paste image URL (e.g. /images/spaces/... or https://...)"
+                      value={newGalleryUrl}
+                      onChange={(e) => setNewGalleryUrl(e.target.value)}
+                      className={inpClass}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleAddGalleryImage(newGalleryUrl)}
+                      className="px-4 py-3 bg-stone-900 hover:bg-black text-white font-sans text-xs font-bold uppercase rounded-xl transition-all shrink-0"
+                    >
+                      Add URL
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => fileInputGalleryRef.current?.click()}
+                      className="flex items-center justify-center space-x-1.5 px-4 py-3 bg-gold hover:bg-[#b89355] text-stone-950 font-sans text-xs font-bold uppercase rounded-xl transition-all shrink-0 shadow-xs"
+                    >
+                      <ImagePlus size={14} />
+                      <span>Upload File</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Thumbnails Grid */}
+                <div className="space-y-2">
+                  <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-stone-500 block">
+                    Current Gallery Images (Click to preview or set as cover)
+                  </span>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[380px] overflow-y-auto pr-1">
+                    {(currentSpace.galleryImages || []).map((imgUrl, imgIdx) => {
+                      const isCover = currentSpace.heroImage === imgUrl;
+                      return (
+                        <div
+                          key={imgIdx}
+                          className="group relative rounded-xl overflow-hidden border border-stone-200 bg-stone-100 aspect-video shadow-2xs"
+                        >
+                          <img
+                            src={imgUrl}
+                            alt={`Gallery ${imgIdx + 1}`}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+
+                          {/* Cover badge */}
+                          {isCover && (
+                            <div className="absolute top-1.5 left-1.5 bg-gold text-stone-950 font-sans text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded shadow">
+                              Cover
+                            </div>
+                          )}
+
+                          {/* Hover action overlay */}
+                          <div className="absolute inset-0 bg-stone-900/75 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5 p-2 text-center">
+                            {!isCover && (
+                              <button
+                                type="button"
+                                onClick={() => handleSetCoverImage(imgUrl)}
+                                className="px-2 py-1 bg-white/90 text-stone-900 hover:bg-gold hover:text-stone-950 text-[10px] font-sans font-bold uppercase rounded transition-colors"
+                              >
+                                Set As Cover
+                              </button>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteGalleryImage(imgIdx)}
+                              className="px-2 py-1 bg-red-500/90 text-white hover:bg-red-600 text-[10px] font-sans font-bold uppercase rounded flex items-center space-x-1 transition-colors"
+                            >
+                              <Trash2 size={11} />
+                              <span>Delete</span>
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* What's Included Bullet Points */}
+              <div className="space-y-3 pt-5 border-t border-stone-200">
+                <div className="flex items-center justify-between">
+                  <span className="font-sans text-xs font-bold text-stone-900 uppercase tracking-wider block">
+                    4. What's Included Specifications
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const updated = [...(currentSpace.details?.includes || []), 'New Included Specification'];
+                      handleSpaceDetailChange(selectedSpaceIdx, 'includes', updated);
+                    }}
+                    className="flex items-center space-x-1 bg-stone-100 hover:bg-stone-200 text-stone-800 px-3 py-1 rounded-lg font-sans text-[11px] font-bold uppercase"
+                  >
+                    <Plus size={12} />
+                    <span>Add Item</span>
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {(currentSpace.details?.includes || []).map((item, fIdx) => (
+                    <div key={fIdx} className="flex items-center space-x-2 bg-stone-50 border border-stone-200 p-2 rounded-xl">
+                      <CheckCircle2 size={15} className="text-gold shrink-0 ml-1" />
+                      <input
+                        type="text"
+                        value={item}
+                        onChange={(e) => {
+                          const updated = [...(currentSpace.details?.includes || [])];
+                          updated[fIdx] = e.target.value;
+                          handleSpaceDetailChange(selectedSpaceIdx, 'includes', updated);
+                        }}
+                        className={inpClass}
+                      />
                       <button
                         type="button"
                         onClick={() => {
-                          const updated = [...(currentSpace.details?.includes || []), 'New Included Feature'];
+                          const updated = (currentSpace.details?.includes || []).filter((_, i) => i !== fIdx);
                           handleSpaceDetailChange(selectedSpaceIdx, 'includes', updated);
                         }}
-                        className="flex items-center space-x-1 bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded-lg font-sans text-[10px] font-bold uppercase"
+                        className="p-2.5 text-stone-400 hover:text-red-500 rounded-lg shrink-0 transition-colors"
+                        title="Remove Item"
                       >
-                        <Plus size={12} />
-                        <span>Add Bullet Point</span>
+                        <Trash2 size={14} />
                       </button>
                     </div>
-
-                    {(currentSpace.details?.includes || []).map((item, fIdx) => (
-                      <div key={fIdx} className="flex items-center space-x-2 bg-[#0E0F11] border border-white/10 p-2 rounded-xl">
-                        <CheckCircle2 size={15} className="text-gold shrink-0 ml-1" />
-                        <input
-                          type="text"
-                          value={item}
-                          onChange={(e) => {
-                            const updated = [...(currentSpace.details?.includes || [])];
-                            updated[fIdx] = e.target.value;
-                            handleSpaceDetailChange(selectedSpaceIdx, 'includes', updated);
-                          }}
-                          className={inpClass}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const updated = (currentSpace.details?.includes || []).filter((_, i) => i !== fIdx);
-                            handleSpaceDetailChange(selectedSpaceIdx, 'includes', updated);
-                          }}
-                          className="p-2.5 text-red-400 hover:bg-red-500/10 rounded-lg shrink-0"
-                          title="Remove Bullet Point"
-                        >
-                          <Trash2 size={13} />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ───────────────────────────────────────────────────────────── */}
+      {/* TAB 2: BEFORE / AFTER HERO SLIDER                            */}
+      {/* ───────────────────────────────────────────────────────────── */}
+      {activeTab === 'hero' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7 bg-white border border-stone-200 rounded-2xl p-6 md:p-8 space-y-6 shadow-xs">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+              <div>
+                <h2 className="font-editorial text-xl font-bold text-stone-900 flex items-center space-x-2">
+                  <SlidersHorizontal size={18} className="text-gold" />
+                  <span>Before / After Hero Interactive Slider</span>
+                </h2>
+                <p className="font-sans text-xs text-stone-500 mt-0.5">
+                  Configure the primary hero section on the main /spaces hub page.
+                </p>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <span className="font-sans text-xs text-stone-500 font-bold">Hero Visible:</span>
+                <button
+                  type="button"
+                  onClick={() => handleHeroChange('spaces_hero_visible', !spacesHeroState.spaces_hero_visible)}
+                  className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${
+                    spacesHeroState.spaces_hero_visible ? 'bg-gold' : 'bg-stone-300'
+                  }`}
+                >
+                  <div
+                    className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-xs transition-transform duration-200 ${
+                      spacesHeroState.spaces_hero_visible ? 'translate-x-5.5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+
+            {/* Hidden File Inputs */}
+            <input
+              type="file"
+              ref={fileInputBeforeRef}
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => handleFileUpload(e, (dataUrl) => {
+                const slides = [...spacesHeroState.spaces_before_after_slides];
+                if (slides[0]) slides[0].before = dataUrl;
+                handleHeroChange('spaces_before_after_slides', slides);
+                showNotification('Before image updated!');
+              })}
+            />
+            <input
+              type="file"
+              ref={fileInputAfterRef}
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => handleFileUpload(e, (dataUrl) => {
+                const slides = [...spacesHeroState.spaces_before_after_slides];
+                if (slides[0]) slides[0].after = dataUrl;
+                handleHeroChange('spaces_before_after_slides', slides);
+                showNotification('After image updated!');
+              })}
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass}>Before Badge Label</label>
+                <input
+                  type="text"
+                  value={spacesHeroState.spaces_before_label || 'BEFORE'}
+                  onChange={(e) => handleHeroChange('spaces_before_label', e.target.value)}
+                  className={inpClass}
+                  placeholder="BEFORE"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>After Badge Label</label>
+                <input
+                  type="text"
+                  value={spacesHeroState.spaces_after_label || 'AFTER'}
+                  onChange={(e) => handleHeroChange('spaces_after_label', e.target.value)}
+                  className={inpClass}
+                  placeholder="AFTER"
+                />
+              </div>
+            </div>
+
+            {/* Slide 1 Configuration */}
+            <div className="space-y-4 pt-4 border-t border-stone-200">
+              <span className="font-sans text-xs font-bold text-stone-900 uppercase tracking-wider block">
+                Primary Comparison Images
+              </span>
+
+              {/* Before Photo */}
+              <div className="space-y-2">
+                <label className={labelClass}>Before Image</label>
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={spacesHeroState.spaces_before_after_slides?.[0]?.before || '/images/spaces/spaces_hero_before.webp'}
+                    alt="Before"
+                    className="w-20 h-14 object-cover rounded-lg border border-stone-200 shrink-0"
+                  />
+                  <input
+                    type="text"
+                    value={spacesHeroState.spaces_before_after_slides?.[0]?.before || ''}
+                    onChange={(e) => {
+                      const slides = [...spacesHeroState.spaces_before_after_slides];
+                      if (slides[0]) slides[0].before = e.target.value;
+                      handleHeroChange('spaces_before_after_slides', slides);
+                    }}
+                    className={inpClass}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileInputBeforeRef.current?.click()}
+                    className="px-3.5 py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-sans text-xs font-bold uppercase shrink-0 transition-all"
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+
+              {/* After Photo */}
+              <div className="space-y-2">
+                <label className={labelClass}>After Image</label>
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={spacesHeroState.spaces_before_after_slides?.[0]?.after || '/images/spaces/spaces_hero_after.webp'}
+                    alt="After"
+                    className="w-20 h-14 object-cover rounded-lg border border-stone-200 shrink-0"
+                  />
+                  <input
+                    type="text"
+                    value={spacesHeroState.spaces_before_after_slides?.[0]?.after || ''}
+                    onChange={(e) => {
+                      const slides = [...spacesHeroState.spaces_before_after_slides];
+                      if (slides[0]) slides[0].after = e.target.value;
+                      handleHeroChange('spaces_before_after_slides', slides);
+                    }}
+                    className={inpClass}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileInputAfterRef.current?.click()}
+                    className="px-3.5 py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-sans text-xs font-bold uppercase shrink-0 transition-all"
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hero Live Preview Card */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 space-y-4 shadow-xs">
+              <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+                <span className="font-sans text-[10px] uppercase tracking-widest text-gold font-bold flex items-center space-x-1.5">
+                  <Eye size={13} />
+                  <span>Interactive Slider Preview</span>
+                </span>
+                <span className="text-[10px] font-sans text-stone-400 font-semibold">Real-time binding</span>
+              </div>
+
+              <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-stone-900">
+                <img
+                  src={spacesHeroState.spaces_before_after_slides?.[0]?.after || '/images/spaces/spaces_hero_after.webp'}
+                  alt="Hero Preview"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute left-3 bottom-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                  <span className="font-sans text-[10px] uppercase font-bold tracking-widest text-white">
+                    {spacesHeroState.spaces_before_label || 'BEFORE'}
+                  </span>
+                </div>
+                <div className="absolute right-3 bottom-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                  <span className="font-sans text-[10px] uppercase font-bold tracking-widest text-white">
+                    {spacesHeroState.spaces_after_label || 'AFTER'}
+                  </span>
+                </div>
+              </div>
+              <p className="font-sans text-[11px] text-stone-500 text-center">
+                This hero card displays prominently with interactive dragging on <span className="font-semibold text-stone-800">/spaces</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ───────────────────────────────────────────────────────────── */}
+      {/* TAB 3: TRUST & ENGINEERING STRIP (4 METRIC COUNTERS)         */}
+      {/* ───────────────────────────────────────────────────────────── */}
+      {activeTab === 'trust' && (
+        <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 space-y-6 shadow-xs max-w-5xl">
+          <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+            <div>
+              <h2 className="font-editorial text-xl font-bold text-stone-900 flex items-center space-x-2">
+                <Award size={18} className="text-gold" />
+                <span>Trust & Engineering Metrics Strip</span>
+              </h2>
+              <p className="font-sans text-xs text-stone-500 mt-0.5">
+                These 4 animated stat counters appear right beneath the hero banner on all 16 space detail pages.
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <span className="font-sans text-xs text-stone-500 font-bold">Strip Visible:</span>
+              <button
+                type="button"
+                onClick={() => handleSettingChange('spaces_trust_visible', !spacesSettingsState.spaces_trust_visible)}
+                className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${
+                  spacesSettingsState.spaces_trust_visible ? 'bg-gold' : 'bg-stone-300'
+                }`}
+              >
+                <div
+                  className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-xs transition-transform duration-200 ${
+                    spacesSettingsState.spaces_trust_visible ? 'translate-x-5.5' : 'translate-x-0.5'
+                  }`}
+                />
+              </button>
+            </div>
+          </div>
+
+          {/* 4 Stat Cards Editor */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Stat 1 */}
+            <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl space-y-3">
+              <div className="flex items-center space-x-2 text-stone-700">
+                <Building2 size={16} className="text-gold" />
+                <span className="font-sans text-xs font-bold uppercase">Counter 1</span>
+              </div>
+              <div>
+                <label className={labelClass}>Value & Suffix</label>
+                <div className="flex space-x-2">
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat1_val}
+                    onChange={(e) => handleSettingChange('trust_stat1_val', e.target.value)}
+                    className={inpClass}
+                    placeholder="25"
+                  />
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat1_suffix}
+                    onChange={(e) => handleSettingChange('trust_stat1_suffix', e.target.value)}
+                    className="w-16 bg-stone-50 border border-stone-200 rounded-xl px-2 py-3 text-center text-xs font-bold"
+                    placeholder="+"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Label</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat1_label}
+                  onChange={(e) => handleSettingChange('trust_stat1_label', e.target.value)}
+                  className={inpClass}
+                  placeholder="Projects"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Sublabel</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat1_sublabel}
+                  onChange={(e) => handleSettingChange('trust_stat1_sublabel', e.target.value)}
+                  className={inpClass}
+                  placeholder="Completed Turnkey Residences"
+                />
+              </div>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl space-y-3">
+              <div className="flex items-center space-x-2 text-stone-700">
+                <Award size={16} className="text-gold" />
+                <span className="font-sans text-xs font-bold uppercase">Counter 2</span>
+              </div>
+              <div>
+                <label className={labelClass}>Value & Suffix</label>
+                <div className="flex space-x-2">
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat2_val}
+                    onChange={(e) => handleSettingChange('trust_stat2_val', e.target.value)}
+                    className={inpClass}
+                    placeholder="40"
+                  />
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat2_suffix}
+                    onChange={(e) => handleSettingChange('trust_stat2_suffix', e.target.value)}
+                    className="w-16 bg-stone-50 border border-stone-200 rounded-xl px-2 py-3 text-center text-xs font-bold"
+                    placeholder="+"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Label</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat2_label}
+                  onChange={(e) => handleSettingChange('trust_stat2_label', e.target.value)}
+                  className={inpClass}
+                  placeholder="Years"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Sublabel</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat2_sublabel}
+                  onChange={(e) => handleSettingChange('trust_stat2_sublabel', e.target.value)}
+                  className={inpClass}
+                  placeholder="Combined Construction Legacy"
+                />
+              </div>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl space-y-3">
+              <div className="flex items-center space-x-2 text-stone-700">
+                <Maximize2 size={16} className="text-gold" />
+                <span className="font-sans text-xs font-bold uppercase">Counter 3</span>
+              </div>
+              <div>
+                <label className={labelClass}>Value & Suffix</label>
+                <div className="flex space-x-2">
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat3_val}
+                    onChange={(e) => handleSettingChange('trust_stat3_val', e.target.value)}
+                    className={inpClass}
+                    placeholder="50000"
+                  />
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat3_suffix}
+                    onChange={(e) => handleSettingChange('trust_stat3_suffix', e.target.value)}
+                    className="w-16 bg-stone-50 border border-stone-200 rounded-xl px-2 py-3 text-center text-xs font-bold"
+                    placeholder="+"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Label</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat3_label}
+                  onChange={(e) => handleSettingChange('trust_stat3_label', e.target.value)}
+                  className={inpClass}
+                  placeholder="Sq.Ft"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Sublabel</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat3_sublabel}
+                  onChange={(e) => handleSettingChange('trust_stat3_sublabel', e.target.value)}
+                  className={inpClass}
+                  placeholder="Designed & Executed"
+                />
+              </div>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="bg-stone-50 border border-stone-200 p-4 rounded-xl space-y-3">
+              <div className="flex items-center space-x-2 text-stone-700">
+                <ShieldCheck size={16} className="text-gold" />
+                <span className="font-sans text-xs font-bold uppercase">Counter 4</span>
+              </div>
+              <div>
+                <label className={labelClass}>Value & Suffix</label>
+                <div className="flex space-x-2">
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat4_val}
+                    onChange={(e) => handleSettingChange('trust_stat4_val', e.target.value)}
+                    className={inpClass}
+                    placeholder="10"
+                  />
+                  <input
+                    type="text"
+                    value={spacesSettingsState.trust_stat4_suffix}
+                    onChange={(e) => handleSettingChange('trust_stat4_suffix', e.target.value)}
+                    className="w-16 bg-stone-50 border border-stone-200 rounded-xl px-2 py-3 text-center text-xs font-bold"
+                    placeholder="-Year"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Label</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat4_label}
+                  onChange={(e) => handleSettingChange('trust_stat4_label', e.target.value)}
+                  className={inpClass}
+                  placeholder="Warranty"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Sublabel</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.trust_stat4_sublabel}
+                  onChange={(e) => handleSettingChange('trust_stat4_sublabel', e.target.value)}
+                  className={inpClass}
+                  placeholder="Comprehensive Hardware Warranty"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ───────────────────────────────────────────────────────────── */}
+      {/* TAB 4: MATERIALS & PROCESS CRAFTSMANSHIP                     */}
+      {/* ───────────────────────────────────────────────────────────── */}
+      {activeTab === 'materials' && (
+        <div className="space-y-6 max-w-5xl">
+          {/* Materials Section */}
+          <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 space-y-5 shadow-xs">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+              <div>
+                <h3 className="font-editorial text-lg font-bold text-stone-900 flex items-center space-x-2">
+                  <Sparkles size={16} className="text-gold" />
+                  <span>Materials & Craftsmanship Section</span>
+                </h3>
+                <p className="font-sans text-xs text-stone-500 mt-0.5">
+                  Displays tactile material specifications (HDHMR marine ply, Blum soft-close joinery, quartz stone).
+                </p>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <span className="font-sans text-xs text-stone-500 font-bold">Visible:</span>
+                <button
+                  type="button"
+                  onClick={() => handleSettingChange('space_materials_visible', !spacesSettingsState.space_materials_visible)}
+                  className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${
+                    spacesSettingsState.space_materials_visible ? 'bg-gold' : 'bg-stone-300'
+                  }`}
+                >
+                  <div
+                    className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-xs transition-transform duration-200 ${
+                      spacesSettingsState.space_materials_visible ? 'translate-x-5.5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass}>Section Tag</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.space_materials_tag}
+                  onChange={(e) => handleSettingChange('space_materials_tag', e.target.value)}
+                  className={inpClass}
+                  placeholder="MATERIALS & CRAFTSMANSHIP"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Section Headline</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.space_materials_heading}
+                  onChange={(e) => handleSettingChange('space_materials_heading', e.target.value)}
+                  className={inpClass}
+                  placeholder="Where design meets precision."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 4-Step Process Section */}
+          <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 space-y-5 shadow-xs">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+              <div>
+                <h3 className="font-editorial text-lg font-bold text-stone-900 flex items-center space-x-2">
+                  <Layers size={16} className="text-gold" />
+                  <span>4-Step Design & Build Process Section</span>
+                </h3>
+                <p className="font-sans text-xs text-stone-500 mt-0.5">
+                  Guides prospective clients through Consultation, 3D Design, Factory Build, and Turnkey Handover.
+                </p>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <span className="font-sans text-xs text-stone-500 font-bold">Visible:</span>
+                <button
+                  type="button"
+                  onClick={() => handleSettingChange('space_process_visible', !spacesSettingsState.space_process_visible)}
+                  className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${
+                    spacesSettingsState.space_process_visible ? 'bg-gold' : 'bg-stone-300'
+                  }`}
+                >
+                  <div
+                    className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-xs transition-transform duration-200 ${
+                      spacesSettingsState.space_process_visible ? 'translate-x-5.5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass}>Process Tag</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.space_process_tag}
+                  onChange={(e) => handleSettingChange('space_process_tag', e.target.value)}
+                  className={inpClass}
+                  placeholder="Turnkey Execution Flow"
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Process Heading</label>
+                <input
+                  type="text"
+                  value={spacesSettingsState.space_process_heading}
+                  onChange={(e) => handleSettingChange('space_process_heading', e.target.value)}
+                  className={inpClass}
+                  placeholder="Our 4-Step Design & Build Process"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className={labelClass}>Process Description</label>
+              <textarea
+                rows={2}
+                value={spacesSettingsState.space_process_desc}
+                onChange={(e) => handleSettingChange('space_process_desc', e.target.value)}
+                className={`${inpClass} resize-none`}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ───────────────────────────────────────────────────────────── */}
+      {/* TAB 5: BOTTOM CONSULTATION CTA SECTION                       */}
+      {/* ───────────────────────────────────────────────────────────── */}
+      {activeTab === 'cta' && (
+        <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 space-y-6 shadow-xs max-w-4xl">
+          <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+            <div>
+              <h2 className="font-editorial text-xl font-bold text-stone-900 flex items-center space-x-2">
+                <HelpCircle size={18} className="text-gold" />
+                <span>Spaces Bottom Consultation CTA Section</span>
+              </h2>
+              <p className="font-sans text-xs text-stone-500 mt-0.5">
+                This high-converting footer banner renders at the base of the <strong className="text-stone-700">/spaces</strong> hub page and across all <strong className="text-stone-700">16 room domain pages</strong>.
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <span className="font-sans text-xs text-stone-500 font-bold">CTA Banner Visible:</span>
+              <button
+                type="button"
+                onClick={() => handleSettingChange('space_cta_visible', !spacesSettingsState.space_cta_visible)}
+                className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${
+                  spacesSettingsState.space_cta_visible ? 'bg-gold' : 'bg-stone-300'
+                }`}
+              >
+                <div
+                  className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-xs transition-transform duration-200 ${
+                    spacesSettingsState.space_cta_visible ? 'translate-x-5.5' : 'translate-x-0.5'
+                  }`}
+                />
+              </button>
+            </div>
+          </div>
+
+          <CTASectionEditor pageKey="spaces" pageTitle="Spaces" />
         </div>
       )}
     </div>

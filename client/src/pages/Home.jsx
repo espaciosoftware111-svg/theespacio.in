@@ -544,12 +544,14 @@ const Home = () => {
     hero_stat3_visible: true,
     hero_stat3_order: 3,
 
+    intro_visible: true,
     intro_heading: 'Turnkey interiors, done properly.',
     intro_description: "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.",
     intro_cta_text1: 'Our Story ↗',
     intro_cta_text2: 'Read More ↗',
     intro_cta_link: '/about',
 
+    grid_stats_visible: true,
     grid_stat1_val: '25+',
     grid_stat1_label: 'Projects Completed',
     grid_stat1_subtext: 'Turnkey Interiors',
@@ -559,6 +561,20 @@ const Home = () => {
     grid_stat3_val: '40+',
     grid_stat3_label: 'Years Legacy',
     grid_stat3_subtext: 'Combined Legacy',
+
+    projects_visible: true,
+    projects_heading: 'Our Projects',
+    projects_subtitle: 'Selected Work',
+    projects_cta_text: 'All Projects ↗',
+    projects_cta_link: '/projects',
+
+    parallax_visible: true,
+
+    faq_visible: true,
+    faq_heading: 'Got Questions?\nWe Have Answers.',
+    faq_subtitle: "From first consultation to final installation, we know you want to understand exactly what to expect. Here's everything you need to know about working with ESPACIO.",
+
+    testimonials_visible: true,
 
     about_title: 'Four Decades of Structural Excellence',
     about_subtitle: 'HERITAGE & CRAFTSMANSHIP',
@@ -858,20 +874,7 @@ const Home = () => {
   const displayProjects = projects.length > 0 ? projects : mockProjects;
 
   const stickyContent = displayProjects.slice(0, 6).map((p) => {
-    let title = p.title;
-    if (p.slug === 'rajapushpa-provincia-3bhk' || p.title === 'A 3BHK Residence, Narsingi') {
-      title = 'The Arcstone Residence';
-    } else if (p.slug === 'my-home-sayuk-3bhk' || p.title === 'A 3BHK Residence, Tellapur') {
-      title = 'The Lattice Retreat';
-    } else if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh') {
-      title = 'The Boucle Residence';
-    } else if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul') {
-      title = 'The Ivory Retreat';
-    } else if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran') {
-      title = 'The Panelled Muse';
-    } else if (p.slug === 'kondapur-minimalist-2bhk' || p._id === 'proj_6_kondapur_venkatesh') {
-      title = 'The Dusk Lounge';
-    }
+    const title = p.title || 'ESPACIO Project';
 
     return {
       title,
@@ -901,7 +904,7 @@ const Home = () => {
         <div className="h-full w-full relative overflow-hidden rounded-[24px]">
           <img
             src={getOptimizedImageUrl(p.heroImage, 1400, 92)}
-            loading="lazy"
+            loading="eager"
             decoding="async"
             className="h-full w-full object-cover transition-transform duration-700 ease-out"
             alt={title}
@@ -1085,523 +1088,500 @@ const Home = () => {
         }}
       />
 
-      {/* ── 1. HERO (Exact padding, margin, and rounded edges matching Services) ── */}
-      <section ref={heroRef} className="relative h-[90dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
-        {/* Rounded card — exact same padding, margin, and rounded edges as Services */}
-        <motion.div
-          style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
-          className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl"
-        >
-          {/* Background Image Layer */}
-          <div className="absolute inset-0 overflow-hidden">
-            <HeroSlideshow 
-              images={activeHeroBgImages}
-              intervalMs={3200}
-              initialIntervalMs={2400}
-              transitionDuration={0.9}
-              onIndexChange={setCurrentImageIdx}
-            />
-          </div>
+      {/* ── 1. HERO ── */}
+      {homeSettings.hero_visible !== false && (
+        <section ref={heroRef} className="relative h-[85dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+          <motion.div
+            style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
+            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl"
+          >
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 overflow-hidden">
+              <HeroSlideshow 
+                images={activeHeroBgImages}
+                intervalMs={3200}
+                initialIntervalMs={2400}
+                transitionDuration={0.9}
+                onIndexChange={setCurrentImageIdx}
+              />
+            </div>
 
-          {/* ─── Foreground Glass Cards (Anchored to bottom on both Mobile & Desktop) ─── */}
-          <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none pt-0 pb-4 sm:pb-6 lg:pb-10 xl:pb-12">
+            {/* Foreground Glass Cards */}
+            <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none pt-0 pb-20 sm:pb-8 lg:pb-10 xl:pb-12">
               <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 md:px-12 pointer-events-auto">
-              
-              <motion.div 
-                className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-3 sm:gap-4 lg:gap-6"
-                initial="visible"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { 
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.22,
-                      delayChildren: 0.15
-                    }
-                  }
-                }}
-              >
-
-                {/* ─── LEFT: Craft Card ─── */}
-                <motion.div
-                  className="w-full max-w-[325px] sm:max-w-[375px] mx-auto lg:mx-0 lg:max-w-[395px]"
-                >
-                  <motion.div 
-                    className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
-                    style={{ 
-                      background: 'rgba(255, 255, 255, 0.08)',
-                      backdropFilter: 'blur(20px)',
-                      WebkitBackdropFilter: 'blur(20px)',
-                    }}
-                    variants={{
-                      hidden: { opacity: 0, y: 35 },
-                      visible: { 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] }
+                <motion.div 
+                  className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-3 sm:gap-4 lg:gap-6"
+                  initial="visible"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { 
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.22,
+                        delayChildren: 0.15
                       }
-                    }}
-                  >
-                    {/* Top glass highlight */}
-                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-                    
-                    <div className="p-4 sm:p-5.5 md:p-6">
-                      {/* Interior thumbnail */}
-                      <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3.5 sm:mb-5 relative bg-black/20">
-                        {activeHeroBgImages.map((imgUrl, imgIdx) => {
-                          const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
-                          const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
-                            ? imgUrl.replace(/\.(webp|jpg|png)$/i, '_thumb.webp')
-                            : imgUrl;
+                    }
+                  }}
+                >
+                  {/* LEFT: Craft Card */}
+                  <motion.div className="w-full max-w-[325px] sm:max-w-[375px] mx-auto lg:mx-0 lg:max-w-[395px]">
+                    <motion.div 
+                      className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
+                      style={{ 
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        backdropFilter: 'blur(20px)',
+                        WebkitBackdropFilter: 'blur(20px)',
+                      }}
+                      variants={{
+                        hidden: { opacity: 0, y: 35 },
+                        visible: { 
+                          opacity: 1, 
+                          y: 0,
+                          transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] }
+                        }
+                      }}
+                    >
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                      
+                      <div className="p-4 sm:p-5.5 md:p-6">
+                        <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3.5 sm:mb-5 relative bg-black/20">
+                          {activeHeroBgImages.map((imgUrl, imgIdx) => {
+                            const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
+                            const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
+                              ? imgUrl.replace(/\.(webp|jpg|png)$/i, '_thumb.webp')
+                              : imgUrl;
+                            return (
+                              <motion.img
+                                key={imgUrl}
+                                src={thumbSrc}
+                                alt="Luxury interior showcase"
+                                decoding="async"
+                                initial={imgIdx === 0 ? { opacity: 1, scale: 1.05 } : { opacity: 0, scale: 1.04 }}
+                                animate={isActive ? { opacity: 1, scale: 1.0 } : { opacity: 0, scale: 1.04 }}
+                                transition={{
+                                  duration: 0.65,
+                                  ease: [0.22, 1, 0.36, 1],
+                                }}
+                                style={{
+                                  zIndex: isActive ? 2 : 1,
+                                  WebkitBackfaceVisibility: 'hidden',
+                                  backfaceVisibility: 'hidden',
+                                }}
+                                className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+                              />
+                            );
+                          })}
+                        </div>
+
+                        <h2 className="font-display text-[19px] xs:text-[20.5px] sm:text-[22.5px] md:text-[24px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-3.5 sm:mb-5 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+                          {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
+                        </h2>
+
+                        {homeSettings.hero_card_cta_visible !== false && (
+                          <div className="flex items-center justify-center gap-2">
+                            <Link 
+                              to={homeSettings.hero_card_cta_link || "/projects"}
+                              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/20 backdrop-blur-md px-5 py-2 sm:px-5.5 sm:py-2.5 text-[11.5px] sm:text-[12px] md:text-[12.5px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
+                            >
+                              <span className="inline-flex items-center gap-1.5 opacity-0 pointer-events-none select-none whitespace-nowrap">
+                                <span>Discover Our Works</span>
+                                <ArrowUpRight size={13} className="shrink-0" />
+                              </span>
+                              <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 text-white whitespace-nowrap">
+                                <span>{homeSettings.hero_card_cta_text || 'Our Projects'}</span>
+                                <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                              </span>
+                              <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-[#101014] font-bold whitespace-nowrap">
+                                <span style={{ color: '#101014' }}>Discover Our Works</span>
+                                <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#101014', stroke: '#101014', strokeWidth: 2.5 }} />
+                              </span>
+                            </Link>
+                            {/* Mobile: Contact Us button visible inside the card */}
+                            <Link
+                              to="/contact"
+                              className="lg:hidden inline-flex items-center justify-center gap-1.5 rounded-full bg-[#101014] text-white px-4 py-2 text-[11.5px] font-bold uppercase tracking-wider shadow-md hover:bg-ink-soft transition-all duration-300 shrink-0"
+                            >
+                              <span>Contact Us</span>
+                              <ArrowUpRight size={12} className="shrink-0" />
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* RIGHT: Stats */}
+                  <motion.div className="w-full lg:flex-1">
+                    <motion.div
+                      className="flex flex-col gap-6 md:gap-8 w-full"
+                      variants={{
+                        hidden: { opacity: 0, y: 25 },
+                        visible: { 
+                          opacity: 1, 
+                          y: 0,
+                          transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] }
+                        }
+                      }}
+                    >
+                      <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center lg:items-end min-h-[52px] sm:h-26 mt-2 sm:mt-3 lg:mt-0">
+                        {activeHomeStats.map((s, index) => {
+                          const isHovered = hoveredStatIdx === index;
                           return (
-                            <motion.img
-                              key={imgUrl}
-                              src={thumbSrc}
-                              alt="Luxury interior showcase"
-                              decoding="async"
-                              initial={imgIdx === 0 ? { opacity: 1, scale: 1.05 } : { opacity: 0, scale: 1.04 }}
-                              animate={isActive ? { opacity: 1, scale: 1.0 } : { opacity: 0, scale: 1.04 }}
-                              transition={{
-                                duration: 0.65,
-                                ease: [0.22, 1, 0.36, 1],
+                            <motion.div 
+                              key={index} 
+                              layout
+                              onMouseEnter={() => setHoveredStatIdx(index)}
+                              onMouseLeave={() => setHoveredStatIdx(null)}
+                              onClick={() => setHoveredStatIdx(isHovered ? null : index)}
+                              variants={{
+                                hidden: { opacity: 0, y: 30, scale: 0.92 },
+                                visible: {
+                                  opacity: 1,
+                                  y: 0,
+                                  scale: 1,
+                                  transition: {
+                                    type: 'spring',
+                                    stiffness: 100,
+                                    damping: 15,
+                                    delay: index * 0.12
+                                  }
+                                }
                               }}
+                              whileHover={{
+                                scale: 1.02,
+                                boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.35)'
+                              }}
+                              className={`flex items-center rounded-[11px] sm:rounded-[14px] md:rounded-[20px] border shadow-xl cursor-pointer transition-all duration-300 overflow-hidden isolate select-none relative ${
+                                isHovered 
+                                  ? "flex-row justify-between w-[190px] sm:w-[255px] md:w-[300px] h-12 sm:h-18 md:h-20 px-3 sm:px-4 md:px-5.5 border-white/35" 
+                                  : "flex-col justify-center items-center w-[76px] sm:w-[90px] md:w-[100px] h-[52px] sm:h-[80px] md:h-[88px] border-white/15 text-center px-1.5 sm:px-2"
+                              }`}
                               style={{
-                                zIndex: isActive ? 2 : 1,
+                                background: isHovered ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.08)',
+                                backdropFilter: 'blur(16px)',
+                                WebkitBackdropFilter: 'blur(16px)',
+                                transform: 'translate3d(0,0,0)',
                                 WebkitBackfaceVisibility: 'hidden',
                                 backfaceVisibility: 'hidden',
                               }}
-                              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-                            />
+                            >
+                              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+
+                              <AnimatePresence mode="wait">
+                                {!isHovered ? (
+                                  <motion.div
+                                    key="normal"
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 15 }}
+                                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    className="flex flex-col items-center justify-center text-center w-full"
+                                  >
+                                    <span className="font-display font-semibold text-white leading-none tracking-tight text-[15px] sm:text-[22px] md:text-[26px] mb-0.5 sm:mb-1">
+                                      {s.val}
+                                    </span>
+                                    <span className="font-sans text-[7px] sm:text-[9px] text-white/70 font-semibold uppercase tracking-[0.06em] sm:tracking-[0.1em] leading-tight text-center max-w-full line-clamp-2">
+                                      {s.desc}
+                                    </span>
+                                  </motion.div>
+                                ) : (
+                                  <motion.div
+                                    key="hover"
+                                    initial={{ opacity: 0, y: -15 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 15 }}
+                                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    className="flex flex-row items-center justify-between w-full"
+                                  >
+                                    <span className="font-display font-semibold text-white text-[16px] sm:text-[24px] md:text-[30px] mr-1 leading-none">
+                                      {s.val}
+                                    </span>
+                                    <div className="flex-1 flex justify-end">
+                                      <div className="bg-white text-bg-dark rounded-[8px] sm:rounded-[14px] px-2 py-0.5 sm:px-4 sm:py-1.5 text-[8.5px] sm:text-[11px] md:text-[12px] font-semibold text-center leading-tight shadow-md flex items-center justify-center max-w-[110px] sm:max-w-[145px] md:max-w-[165px]">
+                                        {s.hoverLabel || s.desc}
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </motion.div>
                           );
                         })}
                       </div>
-
-                      {/* Headline */}
-                      <h2 className="font-display text-[19px] xs:text-[20.5px] sm:text-[22.5px] md:text-[24px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-3.5 sm:mb-5 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
-                        {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
-                      </h2>
-
-                      {/* Bottom Row */}
-                      {homeSettings.hero_card_cta_visible !== false && (
-                        <div className="flex items-center justify-center">
-                          <Link 
-                            to={homeSettings.hero_card_cta_link || "/projects"}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/20 backdrop-blur-md px-5 py-2 sm:px-5.5 sm:py-2.5 text-[11.5px] sm:text-[12px] md:text-[12.5px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
-                          >
-                            {/* Sizing span (invisible, sets exact container width for Discover Our Works ↗) */}
-                            <span className="inline-flex items-center gap-1.5 opacity-0 pointer-events-none select-none whitespace-nowrap">
-                              <span>Discover Our Works</span>
-                              <ArrowUpRight size={13} className="shrink-0" />
-                            </span>
-
-                            {/* Default State: CTA Text ↗ */}
-                            <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 text-white whitespace-nowrap">
-                              <span>{homeSettings.hero_card_cta_text || 'Our Projects'}</span>
-                              <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </span>
-
-                            {/* Hover State: Discover Our Works ↗ */}
-                            <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-[#101014] font-bold whitespace-nowrap">
-                              <span style={{ color: '#101014' }}>Discover Our Works</span>
-                              <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#101014', stroke: '#101014', strokeWidth: 2.5 }} />
-                            </span>
-                          </Link>
-                        </div>
-                      )}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 </motion.div>
+              </div>
+            </div>
 
-                {/* ─── RIGHT: Stats + Description ─── */}
-                <motion.div
-                  className="w-full lg:flex-1"
-                >
-                  <motion.div
-                    className="flex flex-col gap-6 md:gap-8 w-full"
-                    variants={{
-                      hidden: { opacity: 0, y: 25 },
-                      visible: { 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] }
-                      }
-                    }}
-                  >
-                  
-                  {/* Stats Row */}
-                  <div className="flex flex-row flex-nowrap gap-2 sm:gap-3 md:gap-4 justify-center lg:justify-end items-center lg:items-end min-h-[52px] sm:h-26 mt-2 sm:mt-3 lg:mt-0">
-                    {activeHomeStats.map((s, index) => {
-                      const isHovered = hoveredStatIdx === index;
-                      return (
-                        <motion.div 
-                          key={index} 
-                          layout
-                          onMouseEnter={() => setHoveredStatIdx(index)}
-                          onMouseLeave={() => setHoveredStatIdx(null)}
-                          onClick={() => setHoveredStatIdx(isHovered ? null : index)}
-                          variants={{
-                            hidden: { opacity: 0, y: 30, scale: 0.92 },
-                            visible: {
-                              opacity: 1,
-                              y: 0,
-                              scale: 1,
-                              transition: {
-                                type: 'spring',
-                                stiffness: 100,
-                                damping: 15,
-                                delay: index * 0.12
-                              }
-                            }
-                          }}
-                          whileHover={{
-                            scale: 1.02,
-                            boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.35)'
-                          }}
-                          className={`flex items-center rounded-[11px] sm:rounded-[14px] md:rounded-[20px] border shadow-xl cursor-pointer transition-all duration-300 overflow-hidden isolate select-none relative ${
-                            isHovered 
-                              ? "flex-row justify-between w-[190px] sm:w-[255px] md:w-[300px] h-12 sm:h-18 md:h-20 px-3 sm:px-4 md:px-5.5 border-white/35" 
-                              : "flex-col justify-center items-center w-[76px] sm:w-[90px] md:w-[100px] h-[52px] sm:h-[80px] md:h-[88px] border-white/15 text-center px-1.5 sm:px-2"
-                          }`}
-                          style={{
-                            background: isHovered ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.08)',
-                            backdropFilter: 'blur(16px)',
-                            WebkitBackdropFilter: 'blur(16px)',
-                            transform: 'translate3d(0,0,0)',
-                            WebkitBackfaceVisibility: 'hidden',
-                            backfaceVisibility: 'hidden',
-                          }}
-                        >
-                          {/* Top glass highlight to match craft card */}
-                          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+            {/* Scroll Down Indicator */}
+            <div className="hidden sm:block">
+              <ScrollDownIndicator />
+            </div>
+          </motion.div>
+        </section>
+      )}
 
-                          <AnimatePresence mode="wait">
-                            {!isHovered ? (
-                              <motion.div
-                                key="normal"
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 15 }}
-                                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                                className="flex flex-col items-center justify-center text-center w-full"
-                              >
-                                <span className="font-display font-semibold text-white leading-none tracking-tight text-[15px] sm:text-[22px] md:text-[26px] mb-0.5 sm:mb-1">
-                                  {s.val}
-                                </span>
-                                <span className="font-sans text-[7px] sm:text-[9px] text-white/70 font-semibold uppercase tracking-[0.06em] sm:tracking-[0.1em] leading-tight text-center max-w-full line-clamp-2">
-                                  {s.desc}
-                                </span>
-                              </motion.div>
-                            ) : (
-                              <motion.div
-                                key="hover"
-                                initial={{ opacity: 0, y: -15 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 15 }}
-                                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                                className="flex flex-row items-center justify-between w-full"
-                              >
-                                <span className="font-display font-semibold text-white text-[16px] sm:text-[24px] md:text-[30px] mr-1 leading-none">
-                                  {s.val}
-                                </span>
-                                <div className="flex-1 flex justify-end">
-                                  <div className="bg-white text-bg-dark rounded-[8px] sm:rounded-[14px] px-2 py-0.5 sm:px-4 sm:py-1.5 text-[8.5px] sm:text-[11px] md:text-[12px] font-semibold text-center leading-tight shadow-md flex items-center justify-center max-w-[110px] sm:max-w-[145px] md:max-w-[165px]">
-                                    {s.hoverLabel || s.desc}
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </motion.div>
-                      );
-                    })}
+      {/* ── 2. INTRO TEXT ── */}
+      {homeSettings.intro_visible !== false && (
+        <section className="relative z-10 bg-bg w-full">
+          <div className="py-12 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+              <div className="lg:col-span-6 space-y-8 text-left">
+                <Reveal delay={0.1}>
+                  <h2 className="font-display text-[clamp(34px,4.2vw,56px)] font-medium leading-[1.1] tracking-tight text-ink">
+                    {homeSettings.intro_heading || 'Turnkey interiors, done properly.'}
+                  </h2>
+                </Reveal>
+                
+                <Reveal delay={0.2}>
+                  <p className="font-sans text-[15.5px] text-ink-soft leading-relaxed max-w-[520px]">
+                    {homeSettings.intro_description || "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site."}
+                  </p>
+                </Reveal>
+                
+                <Reveal delay={0.3}>
+                  <Link to={homeSettings.intro_cta_link || "/about"} className="btn-sliding-cta-dark">
+                    <span className="invisible select-none pointer-events-none whitespace-nowrap opacity-0">
+                      {(homeSettings.intro_cta_text1 || 'Our Story ↗').length >= (homeSettings.intro_cta_text2 || 'Read More ↗').length 
+                        ? (homeSettings.intro_cta_text1 || 'Our Story ↗') 
+                        : (homeSettings.intro_cta_text2 || 'Read More ↗')}
+                    </span>
+                    <span className="btn-sliding-cta-dark-text-one">{homeSettings.intro_cta_text1 || 'Our Story ↗'}</span>
+                    <span className="btn-sliding-cta-dark-text-two">{homeSettings.intro_cta_text2 || 'Read More ↗'}</span>
+                  </Link>
+                </Reveal>
+              </div>
+              
+              <div className="lg:col-span-6">
+                <TeamProjectsShowcase customSlides={homeSettings.showcase_slides} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 3. STATS GRID SECTION ── */}
+      {homeSettings.grid_stats_visible !== false && (
+        <section className="pb-12 px-6 md:px-12 max-w-[1440px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
+            {[
+              { 
+                value: homeSettings.grid_stat1_val || "25+", 
+                label: homeSettings.grid_stat1_label || "Projects Completed", 
+                subtext: homeSettings.grid_stat1_subtext || "Turnkey Interiors",
+                progressWidth: "60%" 
+              },
+              { 
+                value: homeSettings.grid_stat2_val || "100+", 
+                label: homeSettings.grid_stat2_label || "Happy Clients", 
+                subtext: (homeSettings.grid_stat2_subtext || "Including Materials").replace(/^Clients\s*/i, ''),
+                progressWidth: "80%" 
+              },
+              { 
+                value: homeSettings.grid_stat3_val || "40+", 
+                label: homeSettings.grid_stat3_label || "Years Legacy", 
+                subtext: (homeSettings.grid_stat3_subtext || "Combined Legacy").replace(/^Years\s*/i, ''),
+                progressWidth: "90%" 
+              }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-[145px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
+              >
+                <div className="space-y-1">
+                  <p className="font-sans text-[11px] font-semibold text-ink-muted uppercase tracking-[0.2em]">{stat.label}</p>
+                  <div className="font-display text-4xl lg:text-5xl font-semibold text-ink tracking-tight">
+                    <AnimatedCounter value={stat.value} duration={2} />
                   </div>
-
-
-
-                </motion.div>
+                </div>
+                {stat.subtext ? (
+                  <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
+                    <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
+                      {stat.subtext}
+                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
+                  </div>
+                ) : null}
               </motion.div>
-            </motion.div>
+            ))}
           </div>
+        </section>
+      )}
 
-          {/* ── Center Scroll Down Indicator (Small, thin, transparent) ── */}
-          <div className="hidden sm:block">
-            <ScrollDownIndicator />
-          </div>
-        </div>
-      </motion.div>
-    </section>
-
-      {/* ── 2. INTRO TEXT (Concept-to-Handover Luxury Showcase) ── */}
-      <section className="relative z-10 bg-bg w-full">
-        <div className="py-12 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          
-          {/* Left Column: Text & Story (lg:col-span-6) */}
-          <div className="lg:col-span-6 space-y-8 text-left">
-            
-            <Reveal delay={0.1}>
-              <h2 className="font-display text-[clamp(34px,4.2vw,56px)] font-medium leading-[1.1] tracking-tight text-ink">
-                {homeSettings.intro_heading || 'Turnkey interiors, done properly.'}
+      {/* ── 4. PROJECTS GRID ── */}
+      {homeSettings.projects_visible !== false && (
+        <section className="pt-8 pb-2 sm:pt-12 sm:pb-8 lg:py-14 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto">
+          <div className="flex items-end justify-between mb-4 sm:mb-6">
+            <Reveal>
+              <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-gold mb-4">
+                {homeSettings.projects_subtitle || 'Selected Work'}
+              </p>
+              <h2 className="font-display text-[clamp(26px,2.8vw,44px)] font-medium tracking-tight text-ink">
+                {homeSettings.projects_heading || 'Our Projects'}
               </h2>
             </Reveal>
-            
-            <Reveal delay={0.2}>
-              <p className="font-sans text-[15.5px] text-ink-soft leading-relaxed max-w-[520px]">
-                {homeSettings.intro_description || "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site."}
-              </p>
-            </Reveal>
-            
-            <Reveal delay={0.3}>
-              <Link to={homeSettings.intro_cta_link || "/about"} className="btn-sliding-cta-dark">
+            <Reveal delay={0.1}>
+              <Link to={homeSettings.projects_cta_link || "/projects"} className="btn-sliding-cta-dark">
                 <span className="invisible select-none pointer-events-none whitespace-nowrap opacity-0">
-                  {(homeSettings.intro_cta_text1 || 'Our Story ↗').length >= (homeSettings.intro_cta_text2 || 'Read More ↗').length 
-                    ? (homeSettings.intro_cta_text1 || 'Our Story ↗') 
-                    : (homeSettings.intro_cta_text2 || 'Read More ↗')}
+                  {homeSettings.projects_cta_text || 'All Projects ↗'}
                 </span>
-                <span className="btn-sliding-cta-dark-text-one">{homeSettings.intro_cta_text1 || 'Our Story ↗'}</span>
-                <span className="btn-sliding-cta-dark-text-two">{homeSettings.intro_cta_text2 || 'Read More ↗'}</span>
+                <span className="btn-sliding-cta-dark-text-one">{homeSettings.projects_cta_text || 'All Projects ↗'}</span>
+                <span className="btn-sliding-cta-dark-text-two">View All ↗</span>
               </Link>
             </Reveal>
           </div>
-          
-          {/* Right Column: Visual Team & Projects Showcase (lg:col-span-6) */}
-          <div className="lg:col-span-6">
-            <TeamProjectsShowcase customSlides={homeSettings.showcase_slides} />
-          </div>
-          
-        </div>
-        </div>
-      </section>
 
-      {/* ── 2.5 STATS GRID SECTION ── */}
-      <section className="pb-12 px-6 md:px-12 max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
-          {[
-            { 
-              value: homeSettings.grid_stat1_val || "25+", 
-              label: homeSettings.grid_stat1_label || "Projects Completed", 
-              subtext: homeSettings.grid_stat1_subtext || "Turnkey Interiors",
-              progressWidth: "60%" 
-            },
-            { 
-              value: homeSettings.grid_stat2_val || "100+", 
-              label: homeSettings.grid_stat2_label || "Happy Clients", 
-              subtext: (homeSettings.grid_stat2_subtext || "Including Materials").replace(/^Clients\s*/i, ''),
-              progressWidth: "80%" 
-            },
-            { 
-              value: homeSettings.grid_stat3_val || "40+", 
-              label: homeSettings.grid_stat3_label || "Years Legacy", 
-              subtext: (homeSettings.grid_stat3_subtext || "Combined Legacy").replace(/^Years\s*/i, ''),
-              progressWidth: "90%" 
-            }
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-[145px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
-            >
-              <div className="space-y-1">
-                <p className="font-sans text-[11px] font-semibold text-ink-muted uppercase tracking-[0.2em]">{stat.label}</p>
-                <div className="font-display text-4xl lg:text-5xl font-semibold text-ink tracking-tight">
-                  <AnimatedCounter value={stat.value} duration={2} />
-                </div>
-              </div>
-              {stat.subtext ? (
-                <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
-                  <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
-                    {stat.subtext}
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
-                </div>
-              ) : null}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-
-      {/* ── 4. PROJECTS GRID ────────────────────────────────────────────────── */}
-      <section className="pt-8 pb-2 sm:pt-12 sm:pb-8 lg:py-14 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto">
-        <div className="flex items-end justify-between mb-4 sm:mb-6">
-          <Reveal>
-            <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-gold mb-4">Selected Work</p>
-            <h2 className="font-display text-[clamp(26px,2.8vw,44px)] font-medium tracking-tight text-ink">Our Projects</h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Link to="/projects" className="btn-sliding-cta-dark">
-              <span className="invisible select-none pointer-events-none whitespace-nowrap opacity-0">
-                All Projects ↗
-              </span>
-              <span className="btn-sliding-cta-dark-text-one">All Projects ↗</span>
-              <span className="btn-sliding-cta-dark-text-two">View All ↗</span>
-            </Link>
-          </Reveal>
-        </div>
-
-        <Reveal>
-          <React.Suspense fallback={<div className="min-h-[300px]" />}>
+          <React.Suspense fallback={<div className="min-h-[400px]" />}>
             <StickyScroll content={stickyContent} />
           </React.Suspense>
-        </Reveal>
-      </section>
+        </section>
+      )}
 
+      {/* ── 5. SERVICES PARALLAX ── */}
+      {homeSettings.parallax_visible !== false && (
+        <section className="bg-bg">
+          <React.Suspense fallback={<div className="min-h-[400px]" />}>
+            <HeroParallax products={parallaxProducts} />
+          </React.Suspense>
+        </section>
+      )}
 
-      {/* ── 5. SERVICES PARALLAX ────────────────────────────────────────────── */}
-      <section className="bg-bg">
-        <React.Suspense fallback={<div className="min-h-[400px]" />}>
-          <HeroParallax products={parallaxProducts} />
-        </React.Suspense>
-      </section>
+      {/* ── 6. FAQ SECTION ── */}
+      {homeSettings.faq_visible !== false && (
+        <section
+          ref={faqSectionRef}
+          className="pt-6 pb-6 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start relative">
+            <div className="lg:col-span-5 sticky top-[72px] sm:top-20 lg:top-24 xl:top-28 self-start z-20 bg-bg/95 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none pt-4 pb-4 lg:pt-0 lg:pb-0">
+              <div className="flex flex-col items-center text-center pb-2 lg:pb-6">
+                <div className="inline-flex items-center gap-1.5 bg-ink text-bg px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-semibold tracking-wider uppercase mb-3 sm:mb-6 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                  FAQ
+                </div>
 
+                <h2 className="font-display text-[clamp(24px,3.5vw,44px)] font-medium leading-[1.12] tracking-tight text-ink mb-2.5 sm:mb-4 text-center whitespace-pre-line">
+                  {homeSettings.faq_heading || 'Got Questions?\nWe Have Answers.'}
+                </h2>
 
+                <p className="font-sans text-[13px] sm:text-[14px] text-ink-soft leading-relaxed mb-2 sm:mb-6 max-w-[400px] mx-auto text-center">
+                  {homeSettings.faq_subtitle || "From first consultation to final installation, we know you want to understand exactly what to expect. Here's everything you need to know about working with ESPACIO."}
+                </p>
 
-
-
-      {/* ── FAQ SECTION (Sticky Header / Scrolling Questions on Mobile & Desktop) ── */}
-      <section
-        ref={faqSectionRef}
-        className="pt-6 pb-6 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start relative">
-          
-          {/* Header Column: Sticky Pinned while questions scroll */}
-          <div className="lg:col-span-5 sticky top-[72px] sm:top-20 lg:top-24 xl:top-28 self-start z-20 bg-bg/95 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none pt-4 pb-4 lg:pt-0 lg:pb-0">
-            <div className="flex flex-col items-center text-center pb-2 lg:pb-6">
-              <div className="inline-flex items-center gap-1.5 bg-ink text-bg px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-semibold tracking-wider uppercase mb-3 sm:mb-6 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                FAQ
-              </div>
-
-              <h2 className="font-display text-[clamp(24px,3.5vw,44px)] font-medium leading-[1.12] tracking-tight text-ink mb-2.5 sm:mb-4 text-center">
-                Got Questions?
-                <br />
-                We Have Answers.
-              </h2>
-
-              <p className="font-sans text-[13px] sm:text-[14px] text-ink-soft leading-relaxed mb-2 sm:mb-6 max-w-[400px] mx-auto text-center">
-                From first consultation to final installation, we know you want to understand exactly what to expect. Here's everything you need to know about working with ESPACIO.
-              </p>
-
-              {/* FAQ Portrait Auto-Scrolling Projects Carousel (Desktop only) */}
-              <div className="hidden lg:block w-full max-w-[520px] xl:max-w-[560px]">
-                <AutoScrollingInteriorBox activeIdx={openFaqIdx} items={faqData} />
+                <div className="hidden lg:block w-full max-w-[520px] xl:max-w-[560px]">
+                  <AutoScrollingInteriorBox activeIdx={openFaqIdx} items={faqData} />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: FAQ Accordion List (Scrolls naturally) */}
-          <div className="lg:col-span-7 flex flex-col justify-start relative z-10">
-            <div className="border-t border-ink-border/20">
-              {faqData.map((faq, idx) => {
-                const isOpen = openFaqIdx === idx;
-                return (
-                  <MagneticItem
-                    key={idx}
-                    isOpen={isOpen}
-                    className="border-b border-ink-border/20 px-4 py-6 cursor-pointer transition-all duration-300 relative"
-                    onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                  >
-                    <button aria-label={faq.q} className="w-full flex items-start gap-4 text-left group bg-transparent border-0 cursor-pointer py-1">
-                      {/* Animated badge */}
-                      <Badge num={idx} isOpen={isOpen} />
-
-                      {/* Question text */}
-                      <motion.span
-                        className="font-sans text-[15px] md:text-[16px] font-medium leading-snug flex-1"
-                        animate={{ color: isOpen ? '#c5a572' : '#101014' }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {faq.q}
-                      </motion.span>
-
-                      {/* Animated chevron */}
-                      <motion.div
-                        className="shrink-0 mt-0.5 w-7 h-7 rounded-full flex items-center justify-center border"
-                        animate={{
-                          borderColor: isOpen ? '#c5a572' : 'rgba(0,0,0,0.12)',
-                          background: isOpen ? '#c5a572' : 'transparent',
-                          rotate: isOpen ? 180 : 0,
-                          boxShadow: isOpen ? '0 0 12px rgba(197,165,114,0.5)' : '0 0 0 transparent',
-                        }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                          <motion.path
-                            d="M2 4L5.5 7.5L9 4"
-                            stroke={isOpen ? 'white' : '#9ca3af'}
-                            strokeWidth="1.6"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </motion.div>
-                    </button>
-
-                    {/* Answer panel */}
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0, y: -10 }}
-                          animate={{ height: 'auto', opacity: 1, y: 0 }}
-                          exit={{ height: 0, opacity: 0, y: -10 }}
-                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
+            <div className="lg:col-span-7 flex flex-col justify-start relative z-10">
+              <div className="border-t border-ink-border/20">
+                {faqData.map((faq, idx) => {
+                  const isOpen = openFaqIdx === idx;
+                  return (
+                    <MagneticItem
+                      key={idx}
+                      isOpen={isOpen}
+                      className="border-b border-ink-border/20 px-4 py-6 cursor-pointer transition-all duration-300 relative"
+                      onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
+                    >
+                      <button aria-label={faq.q} className="w-full flex items-start gap-4 text-left group bg-transparent border-0 cursor-pointer py-1">
+                        <Badge num={idx} isOpen={isOpen} />
+                        <motion.span
+                          className="font-sans text-[15px] md:text-[16px] font-medium leading-snug flex-1"
+                          animate={{ color: isOpen ? '#c5a572' : '#101014' }}
+                          transition={{ duration: 0.3 }}
                         >
-                          <motion.div
-                            className="pl-10 pr-4 pb-4 pt-2"
-                            initial={{ x: -20, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.1, duration: 0.4 }}
-                          >
-                            {/* Gold accent bar */}
-                            <div className="flex gap-3 items-start">
-                              <motion.div
-                                className="w-0.5 rounded-full bg-gold shrink-0 mt-1"
-                                initial={{ height: 0 }}
-                                animate={{ height: 'auto' }}
-                                transition={{ duration: 0.4, delay: 0.15 }}
-                                style={{ minHeight: 40 }}
-                              />
-                              <p className="font-sans text-[14.5px] text-walnut leading-relaxed">
-                                {faq.a}
-                              </p>
-                            </div>
-                          </motion.div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                          {faq.q}
+                        </motion.span>
 
-                    {/* Ripple on open */}
-                    <AnimatePresence>
-                      {isOpen && (
                         <motion.div
-                          className="absolute inset-0 rounded-[16px] pointer-events-none"
-                          initial={{ opacity: 0.4, scale: 0.95 }}
-                          animate={{ opacity: 0, scale: 1.04 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.6 }}
-                          style={{ border: '1.5px solid rgba(197,165,114,0.6)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                        />
-                      )}
-                    </AnimatePresence>
-                  </MagneticItem>
-                );
-              })}
+                          className="shrink-0 mt-0.5 w-7 h-7 rounded-full flex items-center justify-center border"
+                          animate={{
+                            borderColor: isOpen ? '#c5a572' : 'rgba(0,0,0,0.12)',
+                            background: isOpen ? '#c5a572' : 'transparent',
+                            rotate: isOpen ? 180 : 0,
+                            boxShadow: isOpen ? '0 0 12px rgba(197,165,114,0.5)' : '0 0 0 transparent',
+                          }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                            <motion.path
+                              d="M2 4L5.5 7.5L9 4"
+                              stroke={isOpen ? 'white' : '#9ca3af'}
+                              strokeWidth="1.6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </motion.div>
+                      </button>
+
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0, y: -10 }}
+                            animate={{ height: 'auto', opacity: 1, y: 0 }}
+                            exit={{ height: 0, opacity: 0, y: -10 }}
+                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <motion.div
+                              className="pl-10 pr-4 pb-4 pt-2"
+                              initial={{ x: -20, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{ delay: 0.1, duration: 0.4 }}
+                            >
+                              <div className="flex gap-3 items-start">
+                                <motion.div
+                                  className="w-0.5 rounded-full bg-gold shrink-0 mt-1"
+                                  initial={{ height: 0 }}
+                                  animate={{ height: 'auto' }}
+                                  transition={{ duration: 0.4, delay: 0.15 }}
+                                  style={{ minHeight: 40 }}
+                                />
+                                <p className="font-sans text-[14.5px] text-walnut leading-relaxed">
+                                  {faq.a}
+                                </p>
+                              </div>
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            className="absolute inset-0 rounded-[16px] pointer-events-none"
+                            initial={{ opacity: 0.4, scale: 0.95 }}
+                            animate={{ opacity: 0, scale: 1.04 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.6 }}
+                            style={{ border: '1.5px solid rgba(197,165,114,0.6)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </MagneticItem>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Testimonials Marquee Section */}
-      <React.Suspense fallback={<div className="min-h-[200px]" />}>
-        <Testimonials />
-      </React.Suspense>
+      {/* ── 7. TESTIMONIALS ── */}
+      {homeSettings.testimonials_visible !== false && (
+        <React.Suspense fallback={<div className="min-h-[200px]" />}>
+          <Testimonials />
+        </React.Suspense>
+      )}
 
     </div>
   );

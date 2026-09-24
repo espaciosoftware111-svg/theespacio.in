@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ArrowLeft, CheckCircle, Lock, ArrowRight, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
@@ -788,6 +788,42 @@ const ProductDetails = () => {
   const fallbackProduct = localProduct || mockProduct;
   const p = storedProduct ? { ...fallbackProduct, ...storedProduct } : fallbackProduct;
   const previewLimit = p.previewLimit || 6;
+
+  // Safe Array Normalizations
+  const safeFeatures = useMemo(() => {
+    if (Array.isArray(p.features) && p.features.length > 0) return p.features;
+    if (typeof p.features === 'string') return p.features.split(',').map(s => s.trim()).filter(Boolean);
+    if (Array.isArray(fallbackProduct?.features) && fallbackProduct.features.length > 0) return fallbackProduct.features;
+    return mockProduct.features;
+  }, [p.features, fallbackProduct]);
+
+  const safeApplications = useMemo(() => {
+    if (Array.isArray(p.applications) && p.applications.length > 0) return p.applications;
+    if (typeof p.applications === 'string') return p.applications.split(',').map(s => s.trim()).filter(Boolean);
+    if (Array.isArray(fallbackProduct?.applications) && fallbackProduct.applications.length > 0) return fallbackProduct.applications;
+    return mockProduct.applications;
+  }, [p.applications, fallbackProduct]);
+
+  const safeColors = useMemo(() => {
+    if (Array.isArray(p.colors) && p.colors.length > 0) return p.colors;
+    if (Array.isArray(fallbackProduct?.colors) && fallbackProduct.colors.length > 0) return fallbackProduct.colors;
+    return mockProduct.colors;
+  }, [p.colors, fallbackProduct]);
+
+  const safeSpecifications = useMemo(() => {
+    let raw = p.specifications;
+    if (Array.isArray(raw) && raw.length > 0) return raw;
+    if (raw && typeof raw === 'object' && Object.keys(raw).length > 0) {
+      return Object.entries(raw).map(([label, value]) => ({
+        label,
+        value: typeof value === 'object' ? JSON.stringify(value) : String(value || '')
+      }));
+    }
+    if (Array.isArray(fallbackProduct?.specifications) && fallbackProduct.specifications.length > 0) {
+      return fallbackProduct.specifications;
+    }
+    return mockProduct.specifications;
+  }, [p.specifications, fallbackProduct]);
   
   const fallbackPages = (localProduct?.previewPages && localProduct.previewPages.length > 0) 
     ? localProduct.previewPages 
@@ -795,22 +831,61 @@ const ProductDetails = () => {
 
   const cmsCustomPages = (storedProduct?.previewPages && storedProduct.previewPages.length > 0) ? storedProduct.previewPages : [];
   
-  // Combine all CMS uploaded pages and full original catalog pages safely
+  // Full catalog image pool for realistic locked shade cards
+  const fullCatalogPool = [
+    '/images/materials/irish.png',
+    '/images/materials/azzurro.png',
+    '/images/materials/giallo.png',
+    '/images/materials/marbo.png',
+    '/images/materials/florida.png',
+    '/images/materials/menta.png',
+    '/images/materials/giallo_dining.png',
+    '/images/materials/ash.png',
+    '/images/materials/linia.png',
+    '/images/materials/florida_vanity.png',
+    '/images/materials/gracia.png',
+    '/images/materials/irish_gen2.png',
+    '/images/materials/blanco.png',
+    '/images/materials/formic.png',
+    '/images/materials/ash_gen2.png'
+  ];
+
+  // Combine all CMS uploaded pages and fallback catalog pages safely
   const sourcePages = cmsCustomPages.length > 0 ? cmsCustomPages : fallbackPages;
-  const combinedPages = Array.from(new Set([...sourcePages]));
-  const targetCount = p.totalShades || 12;
-  const rawPages = combinedPages.length >= targetCount 
-    ? combinedPages.slice(0, targetCount) 
-    : Array.from({ length: targetCount }, (_, i) => combinedPages[i % combinedPages.length]);
+
+  // Always ensure at least 6 unlocked and 6 locked = 12 total shades minimum
+  const totalShades = Math.max(12, Number(p.totalShades) || 12, previewLimit + 6);
+
+  // Build full list of pages for all totalShades
+  let pagesList = [...sourcePages];
+  if (pagesList.length < totalShades) {
+    fullCatalogPool.forEach(poolImg => {
+      if (pagesList.length < totalShades) {
+        const alreadyHas = pagesList.some(item => {
+          const u = typeof item === 'string' ? item : (item?.url || item?.src);
+          return u === poolImg;
+        });
+        if (!alreadyHas) {
+          pagesList.push(poolImg);
+        }
+      }
+    });
+  }
+  while (pagesList.length < totalShades) {
+    pagesList.push(pagesList[pagesList.length % (sourcePages.length || 1)]);
+  }
+
+  const rawPages = pagesList.slice(0, totalShades);
   
   // Separate into unlocked pages and locked pages
   const unlockedPages = [];
   const lockedPages = [];
 
   rawPages.forEach((pageImg, idx) => {
-    const isLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
+    const isExplicitlyLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
       ? pageImg.isLocked 
-      : idx >= previewLimit;
+      : null;
+    const isLocked = isExplicitlyLocked !== null ? isExplicitlyLocked : (idx >= previewLimit);
     
     if (isLocked) {
       lockedPages.push({ pageImg, originalIdx: idx, isLocked: true });
@@ -819,11 +894,18 @@ const ProductDetails = () => {
     }
   });
 
-  // Display all unlocked preview pages + at most 6 locked teaser pages
-  const cappedLockedPages = lockedPages.slice(0, 6);
+  // Guarantee that at least 6 locked teaser pages are displayed
+  if (lockedPages.length === 0) {
+    for (let i = 0; i < 6; i++) {
+      const fallbackLockedImg = fullCatalogPool[(previewLimit + i) % fullCatalogPool.length];
+      lockedPages.push({ pageImg: fallbackLockedImg, originalIdx: previewLimit + i, isLocked: true });
+    }
+  }
+
+  // Display all unlocked preview pages + at least 6 locked teaser pages (total 12)
+  const lockedTeaserCount = Math.max(6, totalShades - unlockedPages.length);
+  const cappedLockedPages = lockedPages.slice(0, lockedTeaserCount);
   const allPages = [...unlockedPages, ...cappedLockedPages];
-  
-  const totalShades = p.totalShades || 12;
 
   return (
     <div className="bg-cream min-h-screen pb-24">
@@ -865,7 +947,7 @@ const ProductDetails = () => {
                 <div className="space-y-3 pt-2">
                   <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.featuresSectionTitle || 'Key Features'}</h3>
                   <div className="grid grid-cols-2 gap-3">
-                    {(p.features || mockProduct.features).map((feat, idx) => (
+                    {safeFeatures.map((feat, idx) => (
                       <div key={idx} className="flex items-center space-x-2 text-xs font-sans text-walnut">
                         <CheckCircle size={14} className="text-gold shrink-0" />
                         <span>{feat}</span>
@@ -877,11 +959,11 @@ const ProductDetails = () => {
             )}
 
             {/* Applications */}
-            {p.showApplicationsSection !== false && (p.applications || mockProduct.applications)?.length > 0 && (
+            {p.showApplicationsSection !== false && safeApplications.length > 0 && (
               <div className="space-y-3 pt-2">
                 <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.applicationsSectionTitle || 'Applications'}</h3>
                 <div className="flex flex-wrap gap-2.5">
-                  {(p.applications || mockProduct.applications).map((app, idx) => (
+                  {safeApplications.map((app, idx) => (
                     <span key={idx} className="bg-offwhite border border-walnut/15 text-charcoal font-sans text-xs px-3.5 py-1.5 rounded-full font-medium">
                       {app}
                     </span>
@@ -893,11 +975,11 @@ const ProductDetails = () => {
 
           {/* Right Column: Color Swatches + Specifications */}
           <div className="space-y-6">
-            {p.showFinishesSection !== false && (
+            {p.showFinishesSection !== false && safeColors.length > 0 && (
               <div className="space-y-4">
                 <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.finishesSectionTitle || 'Available Finishes'}</h3>
                 <div className="flex flex-wrap gap-4">
-                  {(p.colors || mockProduct.colors).map((color, idx) => (
+                  {safeColors.map((color, idx) => (
                     <button key={idx} onClick={() => setActiveColor(idx)}
                       className={`flex flex-col items-center space-y-2 group transition-all duration-200 ${activeColor === idx ? 'scale-105' : ''}`}>
                       <div
@@ -912,11 +994,11 @@ const ProductDetails = () => {
             )}
 
             {/* Specifications Table */}
-            {p.showSpecificationsSection !== false && (
+            {p.showSpecificationsSection !== false && safeSpecifications.length > 0 && (
               <div className="mt-6 space-y-3">
                 <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.specificationsSectionTitle || 'Technical Specifications'}</h3>
                 <div className="border border-walnut/10 rounded-card overflow-hidden">
-                  {(p.specifications || mockProduct.specifications).map((spec, idx) => (
+                  {safeSpecifications.map((spec, idx) => (
                     <div key={idx} className={`flex items-center px-5 py-3.5 text-xs font-sans ${idx % 2 === 0 ? 'bg-offwhite' : 'bg-cream'}`}>
                       <span className="text-walnut font-medium w-1/2">{spec.label}</span>
                       <span className="text-charcoal font-bold w-1/2">{spec.value}</span>

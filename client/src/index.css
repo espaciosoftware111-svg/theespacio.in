@@ -97,7 +97,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-y: none;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     max-width: 100%;
     background-color: #F8F5F0;
   }
@@ -108,7 +109,8 @@
     font-feature-settings: "cv09" on, "cv03" on, "cv04" on, "cv11" on;
     font-size: 14.5px;
     overscroll-behavior-y: none;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     max-width: 100%;
     background-color: #F8F5F0;
   }
@@ -199,6 +201,29 @@
 .admin-portal-white {
   background-color: #F8F9FA !important;
   color: #1F2937 !important;
+}
+
+.admin-portal-white * {
+  scrollbar-width: thin !important;
+  scrollbar-color: #CBD5E1 transparent !important;
+}
+
+.admin-portal-white ::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+.admin-portal-white ::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.admin-portal-white ::-webkit-scrollbar-thumb {
+  background: #CBD5E1 !important;
+  border-radius: 999px !important;
+}
+
+.admin-portal-white ::-webkit-scrollbar-thumb:hover {
+  background: #C9A96E !important;
 }
 
 .admin-portal-white aside {

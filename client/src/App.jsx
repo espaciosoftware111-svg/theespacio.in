@@ -289,6 +289,7 @@ function App() {
                   <Route path="" element={<AdminLogin />} />
                   <Route path="dashboard" element={<AdminLayout><AdminDashboardHome /></AdminLayout>} />
                   <Route path="hero" element={<AdminLayout><AdminHomeHeroCMS /></AdminLayout>} />
+                  <Route path="home" element={<AdminLayout><AdminHomeHeroCMS /></AdminLayout>} />
                   <Route path="services" element={<AdminLayout><AdminServicesCMS /></AdminLayout>} />
                   <Route path="spaces" element={<AdminLayout><AdminSpacesCMS /></AdminLayout>} />
                   <Route path="materials" element={<AdminLayout><AdminMaterialsCMS /></AdminLayout>} />

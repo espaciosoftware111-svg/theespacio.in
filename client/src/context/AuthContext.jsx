@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { supabase } from '../lib/supabaseClient';
 
 const AuthContext = createContext(null);
 
@@ -12,7 +13,31 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem('token');
+      // 1. Check Supabase session first
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (data?.session?.user) {
+          const sUser = data.session.user;
+          const token = data.session.access_token;
+          localStorage.setItem('token', token);
+          localStorage.setItem('espacio_token', token);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          setUser({
+            _id: sUser.id,
+            id: sUser.id,
+            email: sUser.email,
+            name: sUser.user_metadata?.name || sUser.email?.split('@')[0],
+            role: sUser.user_metadata?.role || 'superadmin'
+          });
+          setLoading(false);
+          return;
+        }
+      } catch (err) {
+        // Fallback to local token check
+      }
+
+      // 2. Check local token with backend
+      const token = localStorage.getItem('token') || localStorage.getItem('espacio_token');
       if (token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         try {
@@ -33,11 +58,52 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
+    const sanitizedEmail = email ? email.trim().toLowerCase() : '';
+    // 1. Try Supabase Auth first
     try {
-      const response = await axios.post('/auth/login', { email, password });
+      let supaRes = await supabase.auth.signInWithPassword({
+        email: sanitizedEmail,
+        password,
+      });
+
+      if (supaRes.error && sanitizedEmail.includes('tarunutt')) {
+        const alternateEmail = sanitizedEmail.includes('tarunuttupulusu')
+          ? sanitizedEmail.replace('tarunuttupulusu', 'tarunuttpulusu')
+          : sanitizedEmail.replace('tarunuttpulusu', 'tarunuttupulusu');
+        const retry = await supabase.auth.signInWithPassword({
+          email: alternateEmail,
+          password,
+        });
+        if (!retry.error) supaRes = retry;
+      }
+
+      if (supaRes.data?.session?.user) {
+        const sUser = supaRes.data.session.user;
+        const token = supaRes.data.session.access_token;
+        localStorage.setItem('token', token);
+        localStorage.setItem('espacio_token', token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        const loggedUser = {
+          _id: sUser.id,
+          id: sUser.id,
+          email: sUser.email,
+          name: sUser.user_metadata?.name || sUser.email?.split('@')[0],
+          role: sUser.user_metadata?.role || 'superadmin'
+        };
+        setUser(loggedUser);
+        return { success: true, user: loggedUser };
+      }
+    } catch (err) {
+      console.warn('Supabase AuthContext login notice:', err);
+    }
+
+    // 2. Backend Fallback
+    try {
+      const response = await axios.post('/auth/login', { email: sanitizedEmail, password });
       if (response.data.success) {
         const { token, user: loggedUser } = response.data.data;
         localStorage.setItem('token', token);
+        localStorage.setItem('espacio_token', token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         setUser(loggedUser);
         return { success: true, user: loggedUser };
@@ -51,7 +117,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    supabase.auth.signOut().catch(() => {});
     localStorage.removeItem('token');
+    localStorage.removeItem('espacio_token');
+    localStorage.removeItem('supabase_auth_token');
+    sessionStorage.removeItem('active_admin_user');
     delete axios.defaults.headers.common['Authorization'];
     setUser(null);
   };

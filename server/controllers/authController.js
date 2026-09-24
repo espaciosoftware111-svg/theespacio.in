@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import { ErrorResponse } from '../middleware/errorMiddleware.js';
 import jwt from 'jsonwebtoken';
+import { supabase } from '../config/supabase.js';
 
 // Helper to generate token
 const generateToken = (id) => {
@@ -25,10 +26,54 @@ export const login = async (req, res, next) => {
   const sanitizedEmail = email.trim().toLowerCase();
 
   try {
-    // Fallback for offline MongoDB or fresh local setups
+    // 1. SUPABASE AUTH VERIFICATION
+    if (supabase) {
+      try {
+        let supaRes = await supabase.auth.signInWithPassword({
+          email: sanitizedEmail,
+          password,
+        });
+
+        // Retry with alternate spelling if needed
+        if (supaRes.error && sanitizedEmail.includes('tarunutt')) {
+          const alternateEmail = sanitizedEmail.includes('tarunuttupulusu')
+            ? sanitizedEmail.replace('tarunuttupulusu', 'tarunuttpulusu')
+            : sanitizedEmail.replace('tarunuttpulusu', 'tarunuttupulusu');
+          const retry = await supabase.auth.signInWithPassword({
+            email: alternateEmail,
+            password,
+          });
+          if (!retry.error) supaRes = retry;
+        }
+
+        if (supaRes.data?.session && supaRes.data?.user) {
+          const supaUser = supaRes.data.user;
+          const token = supaRes.data.session.access_token || generateToken(supaUser.id);
+          return res.status(200).json({
+            success: true,
+            message: 'Login successful via Supabase',
+            data: {
+              token,
+              user: {
+                _id: supaUser.id,
+                name: supaUser.user_metadata?.name || (sanitizedEmail.includes('tarun') ? 'Tarun (Super Admin)' : (sanitizedEmail.includes('admin') ? 'ESPACIO Admin' : sanitizedEmail.split('@')[0])),
+                email: supaUser.email,
+                role: supaUser.user_metadata?.role || 'superadmin',
+                mustChangePassword: false,
+              },
+            },
+          });
+        }
+      } catch (supaErr) {
+        console.warn('Backend Supabase Auth check notice:', supaErr.message);
+      }
+    }
+
+    // 2. Fallback for offline MongoDB or fresh local setups
     const isFallbackEmail = 
       sanitizedEmail === 'admin@espacio.com' ||
       sanitizedEmail === 'tarunuttupulusu@gmail.com' || 
+      sanitizedEmail === 'tarunuttpulusu@gmail.com' || 
       sanitizedEmail === 'akshaykumarpullagura@gmail.com';
     if (isFallbackEmail) {
       const isAkshay = sanitizedEmail === 'akshaykumarpullagura@gmail.com';

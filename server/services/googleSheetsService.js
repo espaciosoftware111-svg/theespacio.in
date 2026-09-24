@@ -224,13 +224,19 @@ export const appendToGoogleSheet = async (typeOrData, optionalData) => {
       let anySuccess = false;
       for (const webhookUrl of uniqueWebhooks) {
         try {
-          const response = await axios.post(webhookUrl, comprehensivePayload, {
+          const res = await fetch(webhookUrl, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            timeout: 25000,
-            maxRedirects: 5
+            body: JSON.stringify(comprehensivePayload),
+            redirect: 'follow'
           });
-          if (response.data?.leadId) {
-            leadId = response.data.leadId;
+          const resText = await res.text();
+          let parsedData = {};
+          try {
+            parsedData = JSON.parse(resText);
+          } catch {}
+          if (parsedData.leadId) {
+            leadId = parsedData.leadId;
           }
           anySuccess = true;
           console.log(`Google Sheets: Successfully synced lead [${data.name}] to Webhook URL (${webhookUrl.substring(0, 45)}...) (ID: ${leadId})`);

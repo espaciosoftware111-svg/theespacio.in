@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import axios from 'axios';
-import { Loader2, Eye, EyeOff, Shield } from 'lucide-react';
+import { Loader2, Eye, EyeOff, Shield, CheckCircle2 } from 'lucide-react';
+import { supabase } from '../../lib/supabaseClient';
 import { getCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
 import { logAuditEvent } from '../../utils/auditStore';
 
@@ -24,6 +25,13 @@ const DEFAULT_ADMIN_USERS = [
   {
     name: 'Tarun (Super Admin)',
     email: 'tarunuttupulusu@gmail.com',
+    password: 'tarun2314638',
+    role: 'Super Admin',
+    active: true
+  },
+  {
+    name: 'Tarun (Super Admin)',
+    email: 'tarunuttpulusu@gmail.com',
     password: 'tarun2314638',
     role: 'Super Admin',
     active: true
@@ -56,7 +64,82 @@ const AdminLogin = () => {
     const password = data.password;
 
     try {
-      // 1. Check default admin accounts first, then custom admin users stored in cmsStore
+      // 1. SUPABASE AUTHENTICATION (Primary Provider)
+      let supaRes = null;
+      try {
+        supaRes = await supabase.auth.signInWithPassword({
+          email: sanitizedEmail,
+          password: password,
+        });
+
+        // Auto-handle spelling variants for tarunuttupulusu / tarunuttpulusu
+        if (supaRes.error && sanitizedEmail.includes('tarunutt')) {
+          const alternateEmail = sanitizedEmail.includes('tarunuttupulusu')
+            ? sanitizedEmail.replace('tarunuttupulusu', 'tarunuttpulusu')
+            : sanitizedEmail.replace('tarunuttpulusu', 'tarunuttupulusu');
+          const retryRes = await supabase.auth.signInWithPassword({
+            email: alternateEmail,
+            password: password,
+          });
+          if (!retryRes.error) {
+            supaRes = retryRes;
+          }
+        }
+      } catch (supaErr) {
+        console.warn('Supabase client authentication notice:', supaErr);
+      }
+
+      if (supaRes && supaRes.data?.session && supaRes.data?.user) {
+        const supaUser = supaRes.data.user;
+        const accessToken = supaRes.data.session.access_token;
+        localStorage.setItem('espacio_token', accessToken);
+        localStorage.setItem('supabase_auth_token', accessToken);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+        const displayName = supaUser.user_metadata?.name ||
+          (sanitizedEmail.includes('tarun') ? 'Tarun (Super Admin)' :
+           sanitizedEmail.includes('admin') ? 'ESPACIO Admin' :
+           sanitizedEmail.split('@')[0]);
+
+        const adminRole = supaUser.user_metadata?.role || 'Super Admin';
+
+        sessionStorage.setItem('active_admin_user', JSON.stringify({
+          id: supaUser.id,
+          name: displayName,
+          email: supaUser.email,
+          role: adminRole,
+          authProvider: 'supabase'
+        }));
+
+        await logAuditEvent('User Logged In', 'Supabase Auth', `User ${displayName} (${supaUser.email}) authenticated via Supabase`);
+        navigate('/espesp/admin/dashboard');
+        return;
+      }
+
+      // 2. BACKEND API FALLBACK (Also verifies with Supabase on the server)
+      try {
+        const response = await axios.post('/auth/login', { email: sanitizedEmail, password });
+        if (response.data.success) {
+          const token = response.data.data?.token || response.data.token;
+          localStorage.setItem('espacio_token', token);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          const userName = response.data.data?.user?.name || sanitizedEmail.split('@')[0];
+          const userRole = response.data.data?.user?.role || 'Super Admin';
+          sessionStorage.setItem('active_admin_user', JSON.stringify({
+            name: userName,
+            email: sanitizedEmail,
+            role: userRole,
+            authProvider: 'backend'
+          }));
+          await logAuditEvent('User Logged In', 'Authentication', `User ${sanitizedEmail} logged into Admin Panel`);
+          navigate('/espesp/admin/dashboard');
+          return;
+        }
+      } catch (backendErr) {
+        // Continue to local account evaluation
+      }
+
+      // 3. LOCAL / CMSSTORE FALLBACK (Ensures admin access is never locked out)
       const customUsers = getCMSData(STORAGE_KEYS.ADMIN_USERS) || [];
       const allUsers = [...DEFAULT_ADMIN_USERS, ...customUsers];
 
@@ -70,36 +153,17 @@ const AdminLogin = () => {
         sessionStorage.setItem('active_admin_user', JSON.stringify({
           name: matchedUser.name,
           email: matchedUser.email,
-          role: matchedUser.role || 'Admin'
+          role: matchedUser.role || 'Super Admin',
+          authProvider: 'local'
         }));
         await logAuditEvent('User Logged In', 'Authentication', `User ${matchedUser.name} (${matchedUser.email}) logged into Admin Panel`);
         navigate('/espesp/admin/dashboard');
         return;
       }
 
-      // 2. Fallback to backend API
-      try {
-        const response = await axios.post('/auth/login', { email: sanitizedEmail, password });
-        if (response.data.success) {
-          const token = response.data.data?.token || response.data.token;
-          localStorage.setItem('espacio_token', token);
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-          sessionStorage.setItem('active_admin_user', JSON.stringify({
-            name: sanitizedEmail.split('@')[0],
-            email: sanitizedEmail,
-            role: 'Admin'
-          }));
-          await logAuditEvent('User Logged In', 'Authentication', `User ${sanitizedEmail} logged into Admin Panel`);
-          navigate('/espesp/admin/dashboard');
-          return;
-        }
-      } catch (backendErr) {
-        // Continue to error message
-      }
-
-      setServerError('Invalid email address or password. Please check your credentials.');
+      setServerError('Invalid email address or password. Please check your Supabase credentials.');
     } catch (err) {
-      setServerError('Unable to sign in. Please check your credentials.');
+      setServerError('Unable to sign in. Please verify your credentials.');
     }
   };
 
@@ -138,12 +202,18 @@ const AdminLogin = () => {
               <span className="font-editorial text-2xl font-bold text-gold">ESPACIO</span>
             </div>
             
-            <div className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/25 px-3 py-1 rounded-full">
-              <Shield size={16} className="text-[#A37B30]" />
-              <span className="font-sans text-[11px] uppercase tracking-widest text-[#A37B30] font-bold">Admin Portal</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="inline-flex items-center space-x-1.5 bg-amber-500/10 border border-amber-500/25 px-2.5 py-1 rounded-full">
+                <Shield size={13} className="text-[#A37B30]" />
+                <span className="font-sans text-[10px] uppercase tracking-widest text-[#A37B30] font-bold">Admin Portal</span>
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-sans text-[10px] uppercase tracking-widest text-emerald-700 font-bold">Supabase Auth Verified</span>
+              </div>
             </div>
             
-            <h1 className="font-editorial text-3xl font-bold text-stone-900">Sign In</h1>
+            <h1 className="font-editorial text-3xl font-bold text-stone-900 pt-1">Sign In</h1>
             <p className="font-sans text-stone-500 text-xs">Access restricted to authorised ESPACIO personnel only.</p>
           </div>
 

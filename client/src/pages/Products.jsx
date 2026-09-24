@@ -33,9 +33,13 @@ const Products = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const [cmsSettings, setCmsSettings] = useState(() => getCMSData(STORAGE_KEYS.SETTINGS) || {});
+
   useEffect(() => {
     const syncCMS = async () => {
       const stored = getCMSData(STORAGE_KEYS.PRODUCTS);
+      const settings = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+      setCmsSettings(settings);
       if (Array.isArray(stored) && stored.length > 0) {
         setProducts(stored);
       }
@@ -43,7 +47,7 @@ const Products = () => {
         const response = await axios.get('/products');
         if (response.data.success && Array.isArray(response.data.data) && response.data.data.length > 0) {
           setProducts(response.data.data);
-          setCMSData(STORAGE_KEYS.PRODUCTS, response.data.data);
+          setCMSData(STORAGE_KEYS.PRODUCTS, response.data.data, { silent: true });
         }
       } catch {}
     };
@@ -112,25 +116,47 @@ const Products = () => {
     <div className="bg-bg min-h-screen pb-24">
       <SEO title="Premium Material Library — WPC, Fluted, Acrylic Panels" description="Explore ESPACIO's curated material library. WPC wall panels, fluted panels, polygranite, acrylic sheets, mosaic tiles and more. Request samples and catalogue." url="/materials" />
       
-      {/* Hero with Dome Gallery — responsive compact height on mobile */}
-      <section className="relative h-[50vh] xs:h-[54vh] sm:h-[72vh] lg:h-[92vh] min-h-[320px] sm:min-h-[480px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-10 z-0">
+      {/* Hero with Dome Gallery — full height hero matching site hero ratios */}
+      <section className="relative h-[85dvh] sm:h-[77vh] lg:h-[96vh] min-h-[320px] sm:min-h-[480px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
         {/* Gallery frame: 100% full screen edge-to-edge on mobile, rounded framed on tablet/desktop */}
         <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
           {/* Dome Gallery Container */}
           <div className="absolute inset-0 w-full h-full z-0">
             <DomeGallery 
               images={domeImages}
-              fit={typeof window !== 'undefined' && window.innerWidth < 640 ? 0.72 : 0.8}
-              segments={typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 32}
-              minRadius={typeof window !== 'undefined' && window.innerWidth < 640 ? 280 : 700}
-              fitBasis="auto"
+              fit={
+                typeof window !== 'undefined' && window.innerWidth < 640
+                  ? 0.88        // mobile: globe fills 88% of min dimension
+                  : window.innerWidth < 1024
+                  ? 0.90        // tablet: 90%
+                  : 0.92        // desktop: 92% — large immersive sphere
+              }
+              fitBasis="height"
+              minRadius={
+                typeof window !== 'undefined' && window.innerWidth < 640
+                  ? 320
+                  : window.innerWidth < 1024
+                  ? 520
+                  : 820
+              }
+              segments={
+                typeof window !== 'undefined' && window.innerWidth < 640
+                  ? 22
+                  : window.innerWidth < 1024
+                  ? 28
+                  : 36
+              }
               overlayBlurColor="#EAE4D8"
               grayscale={false}
               autoRotate={true}
               autoRotateSpeed={0.08}
-              openedImageWidth="260px"
-              openedImageHeight="340px"
-              imageBorderRadius="16px"
+              openedImageWidth={
+                typeof window !== 'undefined' && window.innerWidth < 640 ? '240px' : '320px'
+              }
+              openedImageHeight={
+                typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px'
+              }
+              imageBorderRadius="14px"
               openedImageBorderRadius="22px"
             />
           </div>
@@ -143,8 +169,12 @@ const Products = () => {
       {/* Category Header */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-6 sm:pt-14 pb-5 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
         <div className="space-y-1 sm:space-y-2">
-          <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Premium Collection</span>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">Curated Material Library</h2>
+          <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">
+            {cmsSettings.materials_badge || 'Premium Collection'}
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
+            {cmsSettings.materials_title || 'Curated Material Library'}
+          </h2>
         </div>
       </div>
 

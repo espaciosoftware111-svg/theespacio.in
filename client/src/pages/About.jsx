@@ -149,17 +149,14 @@ const getValidStoryImage = (val, fallback = defaultAboutStoryImage) => {
 
 const getValidGenerations = (val) => {
   if (Array.isArray(val) && val.length > 0) {
-    // If user's stored generations still have old duplicate open_hall image, replace with new defaults
-    const hasDuplicates = val.some(g => g.image && (g.image.includes('3bhk_lux/open_hall.png') || g.image.includes('unsplash.com')));
-    if (!hasDuplicates) return val;
+    return val;
   }
   return defaultGenerations;
 };
 
 const getValidGallery = (val) => {
   if (Array.isArray(val) && val.length > 0) {
-    const hasDuplicates = val.some(g => g.url && (g.url.includes('3bhk_lux/open_hall.png') || g.url.includes('unsplash.com')));
-    if (!hasDuplicates) return val;
+    return val;
   }
   return defaultGalleryImages;
 };
