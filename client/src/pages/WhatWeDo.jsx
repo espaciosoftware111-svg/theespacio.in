@@ -3765,6 +3765,9 @@ const WhatWeDo = () => {
         // Helper to safely resolve category hero images with robust fallback
         const getCategoryHero = (cat) => {
           if (!cat) return '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+          if (cat.slug === 'commercial-office') {
+            return cat.heroImage || '/images/spaces/office/office_drive_4.webp';
+          }
           const img = cat.heroImage || cat.galleryImages?.[0];
           if (!img || img.includes('drive.google.com') || img.includes('undefined')) {
             const fallback = mockCategories.find(m => m.slug === cat.slug);
@@ -3795,18 +3798,18 @@ const WhatWeDo = () => {
         const rightCategories = remainingCategories.filter((_, idx) => idx % 2 !== 0);
 
         return (
-          <section className="w-full bg-[#0a0a0c] py-10 sm:py-14 lg:py-16 px-2 sm:px-3 lg:px-4 border-y border-white/5">
+          <section className="w-full bg-white py-12 sm:py-16 lg:py-20 px-2 sm:px-3 lg:px-4 border-y border-ink-border/20">
             <div className="max-w-[1720px] mx-auto">
               
               {/* Section Header */}
-              <div className="mb-8 sm:mb-10 text-center max-w-2xl mx-auto px-4">
+              <div className="mb-8 sm:mb-12 text-center max-w-2xl mx-auto px-4">
                 <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-gold block mb-2">
                   Architectural Spaces & Form
                 </span>
-                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
                   Curated Living Spaces
                 </h2>
-                <p className="font-sans text-xs sm:text-sm text-neutral-400 mt-2.5 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-ink-soft mt-2.5 leading-relaxed">
                   Explore bespoke modular craftsmanship, structural wood alignments, and high-tolerance interior architecture across every room.
                 </p>
               </div>
@@ -3819,7 +3822,7 @@ const WhatWeDo = () => {
                     <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
                       <Link 
                         to={`/spaces/${cat.slug}`}
-                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-md hover:shadow-xl border border-white/10 transition-all duration-500"
+                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                       >
                         <img 
                           src={heroSrc} 
@@ -3827,11 +3830,13 @@ const WhatWeDo = () => {
                           loading="lazy" 
                           decoding="async"
                           onError={(e) => {
-                            const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                            const fb = cat.slug === 'commercial-office' 
+                              ? '/images/spaces/office/office_drive_4.webp' 
+                              : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                          className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between">
@@ -3857,7 +3862,7 @@ const WhatWeDo = () => {
               </div>
 
               {/* 2. Desktop & Laptop 3-Column Sticky-Scroll Animation Layout (>= lg) */}
-              {/* Tight gap-2 grid matching reference screenshot */}
+              {/* Tight gap-2 grid on clean white background */}
               <div className="hidden lg:grid grid-cols-12 gap-2 items-start relative">
                 
                 {/* Left Column (Normal Scroll) */}
@@ -3868,7 +3873,7 @@ const WhatWeDo = () => {
                       <Reveal key={cat.slug || `left-${idx}`} delay={Math.min((idx % 3) * 0.05, 0.12)}>
                         <Link 
                           to={`/spaces/${cat.slug}`}
-                          className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-md hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
+                          className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                         >
                           <img 
                             src={heroSrc} 
@@ -3876,11 +3881,13 @@ const WhatWeDo = () => {
                             loading="lazy" 
                             decoding="async"
                             onError={(e) => {
-                              const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                              const fb = cat.slug === 'commercial-office' 
+                                ? '/images/spaces/office/office_drive_4.webp' 
+                                : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
                             style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                            className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
                           <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
@@ -3913,7 +3920,7 @@ const WhatWeDo = () => {
                       <Link 
                         key={cat.slug || `center-${idx}`}
                         to={`/spaces/${cat.slug}`}
-                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden h-full w-full bg-neutral-900 block shadow-lg hover:shadow-2xl border border-gold/30 hover:border-gold transition-all duration-500"
+                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden h-full w-full bg-neutral-900 block shadow-md hover:shadow-2xl border-2 border-gold/40 hover:border-gold transition-all duration-500"
                       >
                         <img 
                           src={heroSrc} 
@@ -3921,11 +3928,13 @@ const WhatWeDo = () => {
                           loading="lazy" 
                           decoding="async"
                           onError={(e) => {
-                            const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                            const fb = cat.slug === 'commercial-office' 
+                              ? '/images/spaces/office/office_drive_4.webp' 
+                              : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                          className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
+                          className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
                         
@@ -3961,7 +3970,7 @@ const WhatWeDo = () => {
                       <Reveal key={cat.slug || `right-${idx}`} delay={Math.min((idx % 3) * 0.05, 0.12)}>
                         <Link 
                           to={`/spaces/${cat.slug}`}
-                          className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-md hover:shadow-2xl border border-white/10 hover:border-gold/50 transition-all duration-500"
+                          className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                         >
                           <img 
                             src={heroSrc} 
@@ -3969,11 +3978,13 @@ const WhatWeDo = () => {
                             loading="lazy" 
                             decoding="async"
                             onError={(e) => {
-                              const fb = mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
+                              const fb = cat.slug === 'commercial-office' 
+                                ? '/images/spaces/office/office_drive_4.webp' 
+                                : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
                             style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" 
+                            className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" 
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
                           <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
