@@ -15,7 +15,7 @@ export const getProjects = async (req, res, next) => {
     const reqQuery = { ...req.query };
 
     // Fields to exclude
-    const removeFields = ['select', 'sort', 'page', 'limit', 'search'];
+    const removeFields = ['select', 'sort', 'page', 'limit', 'search', 'admin'];
     removeFields.forEach((param) => delete reqQuery[param]);
 
     reqQuery.softDelete = false;

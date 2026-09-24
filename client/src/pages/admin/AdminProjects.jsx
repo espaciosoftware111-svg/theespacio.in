@@ -10,6 +10,36 @@ import CTASectionEditor from '../../components/admin/CTASectionEditor';
 import MediaPickerModal from '../../components/admin/MediaPickerModal';
 import MediaInput from '../../components/admin/MediaInput';
 
+const IMAGE_FALLBACK_MAP = {
+  'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
+  'dimmu_01.webp': 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-',
+  'dimmu_06.webp': 'https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F',
+  'dimmu_03.webp': 'https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ',
+  'dimmu_10.webp': 'https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar',
+  'dimmu_09.webp': 'https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K',
+  'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
+  'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
+  'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
+  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-'
+};
+
+const resolveProjectImg = (src) => {
+  if (!src) return 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+  const fname = src.split('/').pop().split('?')[0];
+  if (IMAGE_FALLBACK_MAP[fname]) return IMAGE_FALLBACK_MAP[fname];
+  return src;
+};
+
+const handleImgError = (e) => {
+  const src = e.currentTarget?.src || '';
+  const fname = src.split('/').pop().split('?')[0];
+  if (IMAGE_FALLBACK_MAP[fname] && !src.includes(IMAGE_FALLBACK_MAP[fname])) {
+    e.currentTarget.src = IMAGE_FALLBACK_MAP[fname];
+    return;
+  }
+  e.currentTarget.src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+};
+
 // ─── Shared Admin Form Components ─────────────────────────────────────────────
 const AdminFormField = ({ label, required, children, error }) => (
   <div className="space-y-1.5">
@@ -215,35 +245,59 @@ const AdminProjects = () => {
     const initProjects = async () => {
       const stored = getCMSData(STORAGE_KEYS.PROJECTS);
       if (stored && stored.length > 0) {
-        setProjects(stored);
+        setProjects(stored.map(p => ({
+          ...p,
+          _id: p._id || p.id,
+          id: p.id || p._id,
+          heroImage: resolveProjectImg(p.heroImage || p.hero_image || p.data?.heroImage)
+        })));
         setLoading(false);
       } else {
-        setProjects(mockProjects);
-        setCMSData(STORAGE_KEYS.PROJECTS, mockProjects);
+        const normalizedMock = mockProjects.map(p => ({
+          ...p,
+          _id: p._id || p.id,
+          id: p.id || p._id,
+          heroImage: resolveProjectImg(p.heroImage || p.hero_image)
+        }));
+        setProjects(normalizedMock);
+        setCMSData(STORAGE_KEYS.PROJECTS, normalizedMock);
         setLoading(false);
       }
       try {
-        const res = await axios.get('/projects?admin=true&limit=50');
+        const res = await axios.get('/projects?admin=true&limit=100');
         const fetched = res.data.data?.projects || res.data.data;
         if (fetched && fetched.length > 0) {
-          setProjects(fetched);
-          setCMSData(STORAGE_KEYS.PROJECTS, fetched);
+          const normalized = fetched.map(p => ({
+            ...p,
+            _id: p._id || p.id,
+            id: p.id || p._id,
+            heroImage: resolveProjectImg(p.heroImage || p.hero_image || p.data?.heroImage),
+            gallery: (p.gallery && p.gallery.length > 0) ? p.gallery : (p.gallery_images || p.data?.gallery || []),
+          }));
+          setProjects(normalized);
+          setCMSData(STORAGE_KEYS.PROJECTS, normalized);
         }
-      } catch {}
+      } catch (err) {
+        console.warn('Backend projects fetch warning:', err);
+      }
     };
     initProjects();
   }, []);
 
   const handleEdit = (p) => {
     setEditingProject(p);
+    const heroImg = resolveProjectImg(p.heroImage || p.hero_image);
     const galleryArray = Array.isArray(p.gallery)
-      ? p.gallery
+      ? p.gallery.map(resolveProjectImg)
       : (typeof p.gallery === 'string' && p.gallery.length > 0
-          ? p.gallery.split(',').map(s => s.trim()).filter(Boolean)
-          : [p.heroImage].filter(Boolean));
+          ? p.gallery.split(',').map(s => resolveProjectImg(s.trim())).filter(Boolean)
+          : [heroImg].filter(Boolean));
     setForm({
       ...emptyForm,
       ...p,
+      heroImage: heroImg,
+      beforeImage: resolveProjectImg(p.beforeImage || p.before_image || (Array.isArray(p.before_after) && p.before_after[0]?.before) || ''),
+      afterImage: resolveProjectImg(p.afterImage || p.after_image || (Array.isArray(p.before_after) && p.before_after[0]?.after) || heroImg),
       visionStory: p.story?.vision || p.visionStory || p.description || '',
       challengeStory: p.story?.challenges || p.challengeStory || '',
       engineeringStory: p.story?.engineering || p.engineeringStory || '',
@@ -255,7 +309,7 @@ const AdminProjects = () => {
       gallery: galleryArray,
       tags: Array.isArray(p.tags) ? p.tags.join(', ') : (p.tags || '')
     });
-    setHeroPreview(p.heroImage || null);
+    setHeroPreview(heroImg);
     setView('form');
   };
 
@@ -298,20 +352,27 @@ const AdminProjects = () => {
   };
 
   const handleToggleFeatured = async (p) => {
+    const targetId = p._id || p.id;
     const updatedFeatured = !p.featured;
-    const updatedProjects = projects.map(item => item._id === p._id ? { ...item, featured: updatedFeatured } : item);
+    const updatedProjects = projects.map(item => ((item._id === targetId || item.id === targetId) ? { ...item, featured: updatedFeatured } : item));
     setProjects(updatedProjects);
     setCMSData(STORAGE_KEYS.PROJECTS, updatedProjects);
     try {
-      await axios.put(`/projects/${p._id}`, { ...p, featured: updatedFeatured });
-    } catch {}
+      await axios.put(`/projects/${targetId}`, { ...p, featured: updatedFeatured });
+    } catch (err) {
+      console.warn('Toggle featured error:', err);
+    }
   };
 
   const handleDelete = async (pid) => {
     if (!window.confirm('Archive this project?')) return;
-    try { await axios.delete(`/projects/${pid}`); } catch {}
+    try { 
+      await axios.delete(`/projects/${pid}`); 
+    } catch (err) {
+      console.warn('Delete project error:', err);
+    }
     setProjects((prev) => {
-      const updated = prev.filter((p) => p._id !== pid);
+      const updated = prev.filter((p) => (p._id !== pid && p.id !== pid));
       setCMSData(STORAGE_KEYS.PROJECTS, updated);
       return updated;
     });
@@ -348,40 +409,32 @@ const AdminProjects = () => {
       tags: tagsClean
     };
     
+    const targetId = editingProject?._id || editingProject?.id;
+    let savedProject = null;
+
     try {
-      let savedProject = null;
-      if (editingProject) {
-        const res = await axios.put(`/projects/${editingProject._id}`, payload);
+      if (editingProject && targetId) {
+        const res = await axios.put(`/projects/${targetId}`, payload);
         if (res.data?.data) savedProject = res.data.data;
       } else {
         const res = await axios.post('/projects', payload);
         if (res.data?.data) savedProject = res.data.data;
       }
-
-      setProjects((prev) => {
-        let updated;
-        if (editingProject) {
-          updated = prev.map((p) => (p._id === editingProject._id ? { ...p, ...payload, ...(savedProject || {}) } : p));
-        } else {
-          updated = [savedProject || { _id: String(Date.now()), ...payload }, ...prev];
-        }
-        setCMSData(STORAGE_KEYS.PROJECTS, updated);
-        return updated;
-      });
     } catch (err) {
-      console.warn('Project save error:', err);
-      // Fallback local update
-      setProjects((prev) => {
-        let updated;
-        if (editingProject) {
-          updated = prev.map((p) => (p._id === editingProject._id ? { ...p, ...payload } : p));
-        } else {
-          updated = [{ _id: String(Date.now()), ...payload }, ...prev];
-        }
-        setCMSData(STORAGE_KEYS.PROJECTS, updated);
-        return updated;
-      });
+      console.warn('Project save API error:', err);
     }
+
+    setProjects((prev) => {
+      let updated;
+      if (editingProject && targetId) {
+        updated = prev.map((p) => ((p._id === targetId || p.id === targetId) ? { ...p, ...payload, ...(savedProject || {}) } : p));
+      } else {
+        const newDoc = savedProject || { _id: String(Date.now()), id: String(Date.now()), ...payload };
+        updated = [newDoc, ...prev];
+      }
+      setCMSData(STORAGE_KEYS.PROJECTS, updated);
+      return updated;
+    });
 
     setSaved(true);
     setTimeout(() => { setSaved(false); setView('list'); }, 1200);
@@ -510,7 +563,7 @@ const AdminProjects = () => {
                   />
                   {form.beforeImage && (
                     <div className="mt-2 rounded-lg overflow-hidden border border-white/10 aspect-video bg-black/40 relative">
-                      <img src={form.beforeImage} alt="Before preview" className="w-full h-full object-cover" />
+                      <img src={resolveProjectImg(form.beforeImage)} alt="Before preview" onError={handleImgError} className="w-full h-full object-cover" />
                       <span className="absolute bottom-2 left-2 bg-black/80 text-white font-sans text-[10px] uppercase font-bold px-2 py-0.5 rounded">Before</span>
                     </div>
                   )}
@@ -524,7 +577,7 @@ const AdminProjects = () => {
                   />
                   {form.afterImage && (
                     <div className="mt-2 rounded-lg overflow-hidden border border-white/10 aspect-video bg-black/40 relative">
-                      <img src={form.afterImage} alt="After preview" className="w-full h-full object-cover" />
+                      <img src={resolveProjectImg(form.afterImage)} alt="After preview" onError={handleImgError} className="w-full h-full object-cover" />
                       <span className="absolute bottom-2 left-2 bg-gold text-charcoal font-sans text-[10px] uppercase font-bold px-2 py-0.5 rounded">After</span>
                     </div>
                   )}
@@ -647,7 +700,7 @@ const AdminProjects = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
                 {(Array.isArray(form.gallery) ? form.gallery : (form.gallery ? form.gallery.split(',').map(s=>s.trim()) : [])).map((imgUrl, idx) => (
                   <div key={idx} className="relative group rounded-lg overflow-hidden border border-white/10 aspect-video bg-black/40">
-                    <img src={imgUrl} alt={`Project photo ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img src={resolveProjectImg(imgUrl)} alt={`Project photo ${idx + 1}`} onError={handleImgError} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2">
                       <button
                         type="button"
@@ -699,7 +752,7 @@ const AdminProjects = () => {
               <h3 className="font-sans text-[10px] uppercase tracking-widest text-white/50 font-bold">Main Hero Cover Photo</h3>
               {heroPreview ? (
                 <div className="relative rounded-lg overflow-hidden aspect-video">
-                  <img src={heroPreview} alt="Hero" className="w-full h-full object-cover" />
+                  <img src={resolveProjectImg(heroPreview)} alt="Hero" onError={handleImgError} className="w-full h-full object-cover" />
                   <button type="button" onClick={() => { setHeroPreview(null); setForm({ ...form, heroImage: '' }); }}
                     className="absolute top-2 right-2 w-7 h-7 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors">
                     <X size={12} />
@@ -786,40 +839,49 @@ const AdminProjects = () => {
           <tbody className="divide-y divide-white/5">
             {loading ? [1,2,3].map((n) => (
               <tr key={n}><td colSpan={6} className="px-5 py-4"><div className="h-3 bg-white/5 rounded animate-pulse w-1/2" /></td></tr>
-            )) : projects.map((p) => (
-              <tr key={p._id} className="hover:bg-white/2 transition-colors">
-                <td className="px-5 py-4">
-                  <div className="flex items-center space-x-3">
-                    {p.heroImage && <img src={p.heroImage} alt="" className="w-10 h-10 rounded-lg object-cover" />}
-                    <div>
-                      <p className="font-sans text-xs font-bold text-white">{p.title}</p>
-                      {p.featured && <span className="text-[9px] font-sans text-gold uppercase tracking-wide">Featured</span>}
+            )) : projects.map((p) => {
+              const pId = p._id || p.id;
+              const thumbSrc = resolveProjectImg(p.heroImage || p.hero_image || (Array.isArray(p.gallery) ? p.gallery[0] : null));
+              return (
+                <tr key={pId} className="hover:bg-white/2 transition-colors">
+                  <td className="px-5 py-4">
+                    <div className="flex items-center space-x-3">
+                      <img
+                        src={thumbSrc}
+                        alt={p.title || 'Project'}
+                        onError={handleImgError}
+                        className="w-10 h-10 rounded-lg object-cover bg-white/5 border border-white/10 shrink-0"
+                      />
+                      <div>
+                        <p className="font-sans text-xs font-bold text-white">{p.title}</p>
+                        {p.featured && <span className="text-[9px] font-sans text-gold uppercase tracking-wide">Featured</span>}
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td className="px-5 py-4"><span className="font-sans text-xs text-white/50 capitalize">{(p.category || '').replace('_', ' ')}</span></td>
-                <td className="px-5 py-4"><span className="font-sans text-xs text-white/50">{p.location}</span></td>
-                <td className="px-5 py-4"><span className="font-sans text-xs text-white/50">{p.completionYear}</span></td>
-                <td className="px-5 py-4">
-                  <span className={`px-2.5 py-1 rounded-full text-[9px] font-bold font-sans uppercase tracking-wide ${p.status === 'published' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-white/5 text-white/30'}`}>
-                    {p.status}
-                  </span>
-                </td>
-                <td className="px-5 py-4">
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => handleToggleFeatured(p)}
-                      className={`px-2.5 py-1 rounded transition-all text-[10px] font-sans font-bold flex items-center space-x-1 ${p.featured ? 'bg-gold/20 text-gold border border-gold/40' : 'bg-white/5 text-white/40 hover:text-white hover:bg-white/10'}`}
-                      title={p.featured ? "Featured on Homepage" : "Click to feature on Homepage"}
-                    >
-                      ★ {p.featured ? 'Featured' : 'Feature'}
-                    </button>
-                    <button onClick={() => handleEdit(p)} className="p-1.5 rounded text-white/40 hover:text-white hover:bg-white/5 transition-all text-xs font-sans">Edit</button>
-                    <button onClick={() => handleDelete(p._id)} className="p-1.5 rounded text-red-400/50 hover:text-red-400 hover:bg-red-500/10 transition-all"><Trash2 size={13} /></button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td className="px-5 py-4"><span className="font-sans text-xs text-white/50 capitalize">{(p.category || '').replace('_', ' ')}</span></td>
+                  <td className="px-5 py-4"><span className="font-sans text-xs text-white/50">{p.location}</span></td>
+                  <td className="px-5 py-4"><span className="font-sans text-xs text-white/50">{p.completionYear || p.year}</span></td>
+                  <td className="px-5 py-4">
+                    <span className={`px-2.5 py-1 rounded-full text-[9px] font-bold font-sans uppercase tracking-wide ${p.status === 'published' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-white/5 text-white/30'}`}>
+                      {p.status}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => handleToggleFeatured(p)}
+                        className={`px-2.5 py-1 rounded transition-all text-[10px] font-sans font-bold flex items-center space-x-1 ${p.featured ? 'bg-gold/20 text-gold border border-gold/40' : 'bg-white/5 text-white/40 hover:text-white hover:bg-white/10'}`}
+                        title={p.featured ? "Featured on Homepage" : "Click to feature on Homepage"}
+                      >
+                        ★ {p.featured ? 'Featured' : 'Feature'}
+                      </button>
+                      <button onClick={() => handleEdit(p)} className="p-1.5 rounded text-white/40 hover:text-white hover:bg-white/5 transition-all text-xs font-sans">Edit</button>
+                      <button onClick={() => handleDelete(pId)} className="p-1.5 rounded text-red-400/50 hover:text-red-400 hover:bg-red-500/10 transition-all"><Trash2 size={13} /></button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

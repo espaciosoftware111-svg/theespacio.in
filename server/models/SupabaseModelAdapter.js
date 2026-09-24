@@ -9,7 +9,7 @@ const camelToSnake = (str) =>
   str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 
 const sanitizeFilterKey = (k) => {
-  if (['select', 'sort', 'page', 'limit', 'search', 'populate', 'lean'].includes(k)) {
+  if (['select', 'sort', 'page', 'limit', 'search', 'populate', 'lean', 'admin'].includes(k)) {
     return null;
   }
   return k;
@@ -196,7 +196,7 @@ export class SupabaseModelAdapter {
           whereParts.push(`LOWER(email) = $${params.length}`);
         } else if (colName === '_id' || colName === 'id') {
           params.push(String(val));
-          whereParts.push(`id = $${params.length}`);
+          whereParts.push(`(id = $${params.length} OR _id = $${params.length})`);
         } else {
           const safeCol = colName === 'order' ? '"order"' : colName;
           params.push(val);
@@ -346,6 +346,9 @@ export class SupabaseModelAdapter {
     clean.id = id;
     clean._id = id;
 
+    const inputData = typeof clean.data === 'object' && clean.data !== null ? clean.data : {};
+    delete clean.data;
+
     if (this.tableName === 'users' && clean.password && !clean.password.startsWith('$2b$')) {
       clean.password = await bcrypt.hash(clean.password, 10);
     }
@@ -358,9 +361,10 @@ export class SupabaseModelAdapter {
     const cols = [];
     const placeholders = [];
     const vals = [];
+    const seenCols = new Set();
 
     Object.keys(clean).forEach((k) => {
-      if (['save', 'comparePassword'].includes(k)) return;
+      if (['save', 'comparePassword', 'data'].includes(k)) return;
       let targetCol = null;
       if (!hasColMap) {
         targetCol = camelToSnake(k);
@@ -376,6 +380,9 @@ export class SupabaseModelAdapter {
       }
 
       const safeCol = targetCol === 'order' ? '"order"' : targetCol;
+      if (seenCols.has(safeCol)) return;
+      seenCols.add(safeCol);
+
       let val = clean[k];
       const colType = tableCols[targetCol];
       if (val !== undefined && val !== null && (typeof val === 'object' || colType === 'jsonb' || colType === 'json')) {
@@ -386,8 +393,8 @@ export class SupabaseModelAdapter {
       placeholders.push(`$${vals.length}`);
     });
 
-    if (hasDataCol && !cols.includes('data')) {
-      const mergedData = { ...(clean.data || {}), ...extraFields };
+    if (hasDataCol && !seenCols.has('data')) {
+      const mergedData = { ...inputData, ...extraFields };
       cols.push('data');
       vals.push(JSON.stringify(mergedData));
       placeholders.push(`$${vals.length}`);
@@ -415,6 +422,9 @@ export class SupabaseModelAdapter {
     delete clean.save;
     delete clean.comparePassword;
 
+    const inputData = typeof clean.data === 'object' && clean.data !== null ? clean.data : {};
+    delete clean.data;
+
     const tableCols = await getTableColumns(this.tableName);
     const hasColMap = Object.keys(tableCols).length > 0;
     const hasDataCol = !!tableCols['data'];
@@ -422,8 +432,10 @@ export class SupabaseModelAdapter {
 
     const setParts = [];
     const vals = [id];
+    const seenCols = new Set();
 
     Object.keys(clean).forEach((k) => {
+      if (['created_at', 'createdAt', 'updated_at', 'updatedAt', 'save', 'comparePassword', 'data'].includes(k)) return;
       let targetCol = null;
       if (!hasColMap) {
         targetCol = camelToSnake(k);
@@ -439,6 +451,9 @@ export class SupabaseModelAdapter {
       }
 
       const safeCol = targetCol === 'order' ? '"order"' : targetCol;
+      if (seenCols.has(safeCol)) return;
+      seenCols.add(safeCol);
+
       let val = clean[k];
       const colType = tableCols[targetCol];
       if (val !== undefined && val !== null && (typeof val === 'object' || colType === 'jsonb' || colType === 'json')) {
@@ -448,7 +463,7 @@ export class SupabaseModelAdapter {
       setParts.push(`${safeCol} = $${vals.length}`);
     });
 
-    if (hasDataCol && Object.keys(extraFields).length > 0) {
+    if (hasDataCol && !seenCols.has('data') && (Object.keys(extraFields).length > 0 || Object.keys(inputData).length > 0)) {
       let existingData = {};
       try {
         const existRes = await query(`SELECT data FROM ${this.tableName} WHERE id = $1 LIMIT 1`, [id]);
@@ -456,7 +471,7 @@ export class SupabaseModelAdapter {
           existingData = typeof existRes.rows[0].data === 'object' ? existRes.rows[0].data : JSON.parse(existRes.rows[0].data);
         }
       } catch {}
-      const mergedData = { ...existingData, ...(clean.data || {}), ...extraFields };
+      const mergedData = { ...existingData, ...inputData, ...extraFields };
       vals.push(JSON.stringify(mergedData));
       setParts.push(`data = $${vals.length}`);
     }
@@ -469,13 +484,13 @@ export class SupabaseModelAdapter {
       setParts.push('updated_at = NOW()');
     }
 
-    const sql = `UPDATE ${this.tableName} SET ${setParts.join(', ')} WHERE id = $1 RETURNING *`;
+    const sql = `UPDATE ${this.tableName} SET ${setParts.join(', ')} WHERE (id = $1 OR _id = $1) RETURNING *`;
     const res = await query(sql, vals);
     return res.rows[0] ? this._toDoc(res.rows[0]) : null;
   }
 
   async findByIdAndDelete(id) {
-    const res = await query(`DELETE FROM ${this.tableName} WHERE id = $1 RETURNING *`, [id]);
+    const res = await query(`DELETE FROM ${this.tableName} WHERE (id = $1 OR _id = $1) RETURNING *`, [id]);
     return res.rows[0] ? this._toDoc(res.rows[0]) : null;
   }
 
