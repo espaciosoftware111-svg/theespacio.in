@@ -261,11 +261,11 @@ export function HeroCarousel({
         className
       )}
     >
-      {/* ── Background: the focused photo, blown up and re-hued to its accent ── */}
+      {/* ── Background: 4K Crisp True-Color Architectural Photo ── */}
       <AnimatePresence initial={false}>
         <motion.div
           key={index}
-          className="absolute inset-0"
+          className="absolute inset-0 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -274,33 +274,20 @@ export function HeroCarousel({
           <motion.img
             src={active.image}
             onError={handleImgError}
-            alt=""
+            alt={active.title || "Project Space"}
             aria-hidden
             draggable={false}
+            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
             className="absolute inset-0 h-full w-full object-cover"
-            initial={{ scale: reduced ? 1.28 : 1.42 }}
-            animate={{ scale: 1.28 }}
-            transition={reduced ? { duration: 0 } : { duration: 6, ease: "linear" }}
-          />
-          {/* Keep the photo's luminance, take the accent's hue. */}
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: accent, mixBlendMode: "color" }}
-          />
-          <div
-            className="absolute inset-0 opacity-55"
-            style={{ backgroundColor: accent, mixBlendMode: "multiply" }}
+            initial={{ scale: reduced ? 1.0 : 1.04 }}
+            animate={{ scale: 1.0 }}
+            transition={reduced ? { duration: 0 } : { duration: 6, ease: "easeOut" }}
           />
         </motion.div>
       </AnimatePresence>
 
-      {/* Legibility wash + grain, above the swap so they never flicker. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70" />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
-        style={{ backgroundImage: GRAIN, backgroundSize: "180px 180px" }}
-      />
+      {/* Subtle cinematic gradient wash for crystal-clear 4K view + effortless text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/60 pointer-events-none" />
 
       {/* ── Top bar: a centred cluster, not edge-to-edge ── */}
       <div
@@ -447,19 +434,19 @@ export function HeroCarousel({
               <img
                 src={item.image}
                 onError={handleImgError}
-                alt=""
+                alt={item.title || "Gallery thumbnail"}
                 draggable={false}
+                style={{ imageRendering: 'high-quality', objectPosition: "50% 50%" }}
                 className="h-full w-full object-cover"
-                style={{ objectPosition: "50% 26%" }}
               />
               <motion.span
                 aria-hidden
                 className="absolute inset-0 bg-black"
-                animate={{ opacity: i === index ? 0 : 0.25 }}
+                animate={{ opacity: i === index ? 0 : 0.12 }}
                 transition={spring}
               />
               {i === index && (
-                <div className="absolute inset-0 ring-2 ring-gold/70 rounded-xl pointer-events-none" />
+                <div className="absolute inset-0 ring-2 ring-gold rounded-xl pointer-events-none shadow-[0_0_15px_rgba(201,169,110,0.6)]" />
               )}
             </motion.button>
           ))}
