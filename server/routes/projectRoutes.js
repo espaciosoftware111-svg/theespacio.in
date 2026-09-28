@@ -4,6 +4,7 @@ import {
   getProjectBySlug,
   createProject,
   updateProject,
+  updateProjectsBulk,
   deleteProject,
 } from '../controllers/projectController.js';
 import { protect, authorize } from '../middleware/authMiddleware.js';
@@ -23,7 +24,11 @@ const projectUploadFields = upload.fields([
 router.get('/', getProjects);
 router.get('/:slug', getProjectBySlug);
 
-// Admin-only endpoints
+// Batch updates from Admin Projects CMS
+router.put('/bulk', protect, authorize('admin', 'superadmin'), updateProjectsBulk);
+router.put('/', protect, authorize('admin', 'superadmin'), updateProjectsBulk);
+
+// Admin-only individual endpoints
 router.post('/', protect, authorize('admin', 'superadmin'), projectUploadFields, createProject);
 router.put('/:id', protect, authorize('admin', 'superadmin'), projectUploadFields, updateProject);
 router.delete('/:id', protect, authorize('admin', 'superadmin'), deleteProject);

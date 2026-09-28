@@ -116,6 +116,10 @@ const GooeyNav = ({
 
   const handleClick = (e, index, path) => {
     const targetPath = normalizeRoute(path);
+
+    // Dismiss the intro preloader immediately on any nav click
+    window.dispatchEvent(new CustomEvent('espacio_nav_click'));
+
     const liEl = navRef.current?.querySelectorAll('li')[index];
     if (liEl) {
       updateEffectPosition(liEl);

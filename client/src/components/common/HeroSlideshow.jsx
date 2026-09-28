@@ -150,6 +150,7 @@ const HeroSlideshow = memo(({
               pointerEvents: 'none',
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden',
+              imageRendering: 'high-quality',
             }}
           />
         );

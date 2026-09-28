@@ -69,21 +69,22 @@ const AdminPagesCMS = () => {
     projects_hero_title: 'Our Projects',
     projects_hero_subtitle: 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
     projects_hero_images: [
-      '/images/projects/project_hero_1.jpg',
-      '/images/projects/project_hero_2.jpg',
-      '/images/projects/project_hero_3.jpg',
-      '/images/projects/project_hero_4.jpg'
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425351/hf_20260926_121205_b316b4e3-2daa-4fa2-9be5-d6a0ee716587.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425297/hf_20260926_121300_6a3eef61-953b-4da3-b308-15aabfa0e9d0.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425214/hf_20260926_121425_c188d1e6-1db5-4729-b2a9-ad90bbddbf3a.png'
     ],
 
     services_hero_badge: 'Services & Offerings',
     services_hero_title: 'Our Services',
     services_hero_subtitle: 'Turnkey design and build with engineering tolerances. No templates. No hidden package tricks.',
     services_hero_images: [
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=90',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=90',
-      'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1920&q=90',
-      'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1920&q=90',
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=90'
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
     ],
     services_list: [
       {
@@ -99,7 +100,7 @@ const AdminPagesCMS = () => {
           'Lighting That Sets the Mood, Room by Room',
           'Full Execution, Managed Start to Finish'
         ],
-        img: '/images/company/2bhk_mordern_retro/hall.jpg'
+        img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png'
       },
       {
         num: '02',
@@ -114,7 +115,7 @@ const AdminPagesCMS = () => {
           'Clean Tech and Cabling, Nothing on Show',
           'Full Commercial Buildout, Start to Finish'
         ],
-        img: '/images/company/2bhk_mordern_retro/office_3.jpg'
+        img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png'
       },
       {
         num: '03',
@@ -129,7 +130,7 @@ const AdminPagesCMS = () => {
           'Greenery Picked to Suit the Light and Layout',
           'A Styling Review for Homes Already Done'
         ],
-        img: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg'
+        img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png'
       },
       {
         num: '04',
@@ -144,7 +145,7 @@ const AdminPagesCMS = () => {
           'Electrical and Plumbing Re-Laid the Right Way',
           'A Fully Managed Renovation, Start to Finish'
         ],
-        img: '/images/services/services_after.webp'
+        img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png'
       },
       {
         num: '05',
@@ -159,7 +160,7 @@ const AdminPagesCMS = () => {
           'Wholesale and Retail Purchase Available',
           'Fast Delivery Straight From Our Hyderabad Warehouse'
         ],
-        img: '/images/services/service_materials.jpg'
+        img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
       }
     ],
   });
@@ -819,7 +820,6 @@ const AdminPagesCMS = () => {
                     {[
                       { key: 'home', title: 'Home' },
                       { key: 'services', title: 'Services' },
-                      { key: 'projects', title: 'Projects' },
                       { key: 'materials', title: 'Materials' },
                       { key: 'faqs', title: 'FAQs' },
                       { key: 'spaces', title: 'Spaces' },

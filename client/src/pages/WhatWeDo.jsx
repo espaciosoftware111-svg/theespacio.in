@@ -157,7 +157,7 @@ const mockCategories = [
     "name": "Modular Kitchen",
     "slug": "modular-kitchen",
     "description": "Precision-engineered kitchens with high-gloss acrylic, polygranite surfaces, and concealed lighting tracks.",
-    "heroImage": "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png",
     "visible": true,
     "details": {
       "tag": "Culinary Architecture",
@@ -212,7 +212,7 @@ const mockCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "/images/spaces/bedroom/bedroom_drive_24.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
@@ -266,7 +266,7 @@ const mockCategories = [
     "name": "Living Room",
     "slug": "living-room",
     "description": "Editorial living zones crafted around natural light, marble accents, and low-profile custom furniture.",
-    "heroImage": "/images/spaces/living/living_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427851/hf_20260926_125614_59b74a58-c260-4e7a-820c-a59241fcfcf8.png",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -320,7 +320,7 @@ const mockCategories = [
     "name": "Wardrobe Systems",
     "slug": "wardrobes",
     "description": "Bespoke floor-to-ceiling storage with velvet drawer linings, mirror panels, and hidden pull-out trays.",
-    "heroImage": "/images/spaces/wardrobes/wardrobe_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427805/hf_20260926_125507_56ae13ff-2251-4e94-baba-dc9f8b300620.png",
     "visible": true,
     "details": {
       "tag": "Bespoke Storage",
@@ -482,7 +482,7 @@ const mockCategories = [
     "name": "Pooja Room",
     "slug": "pooja-room",
     "description": "Sacred sanctuaries merging ancestral stone textures with sleek back-lit marble panels and warm lighting.",
-    "heroImage": "/images/spaces/pooja/pooja_drive_12.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427772/hf_20260926_125414_74dd535c-b43d-4439-8e1d-29f1d5ce46e5.png",
     "visible": true,
     "details": {
       "tag": "Sacred Spaces",
@@ -536,7 +536,7 @@ const mockCategories = [
     "name": "Dining Room",
     "slug": "dining-room",
     "description": "Refined gathering spaces with custom hardwood dining tables, feature pendant lighting, and plaster wall finishes.",
-    "heroImage": "/images/spaces/dining/dining_drive_27.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png",
     "visible": true,
     "details": {
       "tag": "Gather & Dine",
@@ -914,7 +914,7 @@ const mockCategories = [
     "name": "Bar",
     "slug": "bar",
     "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
-    "heroImage": "/images/spaces/bar/bar_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427837/hf_20260926_125558_d6e03bd2-82c9-4157-8f76-54556a1ebe41.png",
     "visible": true,
     "details": {
       "tag": "Hospitality & Entertaining",
@@ -968,7 +968,7 @@ const mockCategories = [
     "name": "Walk-in Wardrobe",
     "slug": "walk-in-wardrobe",
     "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
-    "heroImage": "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427788/hf_20260926_125434_bbbaef9a-ed61-4c98-9ec4-1dd081357147.png",
     "visible": true,
     "details": {
       "tag": "Boutique Dressing Suites",
@@ -1024,35 +1024,35 @@ const mockCategories = [
 const transformationSlides = [
   {
     title: 'Living Rooms',
-    tag: 'Indo-Classical Living Lounge',
+    tag: 'Panoramic Sunken Lounge & Terrace',
     location: 'Financial District, Hyderabad',
-    scope: 'Arched Window Alcove & Neoclassical Paneling',
+    scope: 'Sunken Living Seating, Warm Cove Ceiling & Seamless Coastal Flow',
     before: '/images/spaces/spaces_hero_before.webp',
-    after: '/images/spaces/spaces_hero_after.webp',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png',
   },
   {
     title: 'Modular Kitchens',
-    tag: 'Precision-Engineered Kitchen',
+    tag: 'Precision-Engineered Chef Suite',
     location: 'Jubilee Hills, Hyderabad',
-    scope: 'Quartz Waterfall Island & Acrylic Shutters',
+    scope: 'Handleless Matte Anthracite, Walk-In Pantry & Quartz Island',
     before: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_0-20260810-173514.jpg',
-    after: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png',
   },
   {
     title: 'Master Bedrooms',
-    tag: 'Sanctuary Master Suite',
+    tag: 'Serene Sanctuary Suite',
     location: 'Kokapet, Hyderabad',
-    scope: 'Custom Walnut Headboard & Warm Coves',
+    scope: 'Custom Floating Bed, Architectural Chandelier & Warm Dressing Nook',
     before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-164320.jpg',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png',
   },
   {
     title: 'Dining & Bars',
-    tag: 'Hospitality & Entertaining',
+    tag: 'Black Marble & Gold Statement Suite',
     location: 'Banjara Hills, Hyderabad',
-    scope: 'Fluted Glass Partition & Backlit Bar',
+    scope: 'Sculptural Brass Pedestal Dining, Fluted Glass Chandelier & Velvet Seating',
     before: '/images/company/2bhk_mordern_retro/dining_2.jpg',
-    after: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png',
   }
 ];
 
@@ -2882,7 +2882,7 @@ const WhatWeDo = () => {
 
         {/* ── 1. CINEMATIC DETAIL HERO ────────────────────────────────────────── */}
         {spacesSettings.space_detail_hero_visible !== false && (
-          <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-2.5 sm:px-4 md:px-5 lg:px-6 w-full h-[58vh] sm:h-[75vh] lg:h-[90vh] min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
+          <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-3 sm:px-4 md:px-5 lg:px-6 w-full h-[80dvh] sm:h-[80vh] lg:h-[90vh] min-h-[500px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
             <div className="relative w-full h-full rounded-[18px] sm:rounded-[26px] lg:rounded-[32px] overflow-hidden bg-bg-dark shadow-[0_16px_40px_rgba(0,0,0,0.22)] border border-white/10 flex items-end">
               <img 
                 src={getOptimizedImageUrl(
@@ -2897,7 +2897,8 @@ const WhatWeDo = () => {
                   95
                 )} 
                 alt={activeCategory.name} 
-                className="absolute inset-0 w-full h-full object-cover opacity-80 scale-100 transition-transform duration-1000" 
+                style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                className="absolute inset-0 w-full h-full object-cover object-center opacity-85 scale-100 transition-transform duration-1000" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/45 to-black/25" />
               
@@ -3019,13 +3020,14 @@ const WhatWeDo = () => {
                       className="group relative rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 shadow-sm hover:shadow-xl hover:border-gold/40 transition-all duration-500 cursor-pointer flex flex-col"
                     >
                       {/* Photo Container */}
-                      <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
+                      <div className="relative aspect-[16/10] sm:aspect-[4/3] overflow-hidden bg-bg-dark">
                         <img 
                           src={getOptimizedImageUrl(item.img, 1400, 92)} 
                           alt={`${item.title} — ${activeCategory.name}`} 
                           loading="lazy" 
                           decoding="async" 
-                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" 
+                          style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                          className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         
@@ -3349,11 +3351,6 @@ const WhatWeDo = () => {
           </section>
         )}
 
-        {/* ── 9. BOTTOM CTA (FOOTER CTA) ── */}
-        {spacesSettings.space_cta_visible !== false && (
-          <PageCTASection pageKey="spaces" className="border-t border-ink-border/20" />
-        )}
-
         {/* ── ZOOM LIGHTBOX MODAL (With Escape key dismiss & detailed specs) ───── */}
         <AnimatePresence>
           {zoomedImage && (
@@ -3623,7 +3620,7 @@ const WhatWeDo = () => {
         <section
           ref={heroRef}
           data-lenis-prevent
-          className="relative h-[85dvh] sm:h-[77vh] lg:h-[96vh] min-h-[360px] sm:min-h-[480px] lg:min-h-0 px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none touch-none"
+          className="relative h-[80dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none touch-none"
           style={{ touchAction: 'none' }}
           onMouseDown={onStart}
           onTouchStart={onStart}
@@ -3646,7 +3643,7 @@ const WhatWeDo = () => {
                 src={getOptimizedImageUrl(currentSlide.after || '/images/spaces/spaces_hero_after.webp', 1920, 90)}
                 alt="After Transformation"
                 style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-                className="absolute inset-0 w-full h-full object-cover transform-gpu"
+                className="absolute inset-0 w-full h-full object-cover object-center transform-gpu"
               />
             </motion.div>
 
@@ -3680,7 +3677,7 @@ const WhatWeDo = () => {
                   src={getOptimizedImageUrl(currentSlide.before || '/images/spaces/spaces_hero_before.webp', 1920, 90)}
                   alt="Before Transformation"
                   style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-                  className="absolute inset-0 w-full h-full object-cover transform-gpu"
+                  className="absolute inset-0 w-full h-full object-cover object-center transform-gpu"
                 />
               </motion.div>
 
@@ -3783,7 +3780,7 @@ const WhatWeDo = () => {
                 </p>
               </div>
 
-              {/* 1. Mobile & Tablet Grid (< lg) - Tight Gap */}
+              {/* 1. Mobile & Tablet Grid (< lg) - Optimized Phone Aspect Ratio */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 lg:hidden">
                 {visibleCategories.map((cat, idx) => {
                   const heroSrc = getCategoryHero(cat);
@@ -3791,7 +3788,7 @@ const WhatWeDo = () => {
                     <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
                       <Link 
                         to={`/spaces/${cat.slug}`}
-                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
+                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                       >
                         <img 
                           src={heroSrc} 
@@ -3805,23 +3802,23 @@ const WhatWeDo = () => {
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                          className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
+                          className="absolute inset-0 w-full h-full object-cover object-center opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                        <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between">
                           <div>
-                            <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-gold/90 block mb-0.5">
+                            <span className="font-sans text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-gold/90 block mb-0.5">
                               ESPACIO Space
                             </span>
-                            <h3 className="font-display text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-gold transition-colors duration-300">
+                            <h3 className="font-display text-base sm:text-xl font-bold text-white mb-0.5 sm:mb-1 group-hover:text-gold transition-colors duration-300">
                               {cat.name}
                             </h3>
-                            <p className="font-sans text-xs text-neutral-300 max-w-[280px] leading-relaxed line-clamp-2">
+                            <p className="font-sans text-[11px] sm:text-xs text-neutral-300 max-w-[280px] leading-relaxed line-clamp-1 sm:line-clamp-2">
                               {cat.description?.substring(0, 90)}...
                             </p>
                           </div>
-                          <div className="shrink-0 w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300">
-                            <ArrowUpRight size={14} />
+                          <div className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300">
+                            <ArrowUpRight size={13} />
                           </div>
                         </div>
                       </Link>
@@ -3984,10 +3981,6 @@ const WhatWeDo = () => {
         );
       })()}
 
-      {/* ── 3. BOTTOM CTA SECTION ── */}
-      {spacesSettings.space_cta_visible !== false && (
-        <PageCTASection pageKey="spaces" className="border-t border-ink-border/20" />
-      )}
     </div>
   );
 };

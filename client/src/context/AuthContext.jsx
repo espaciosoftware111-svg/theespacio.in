@@ -36,8 +36,10 @@ export const AuthProvider = ({ children }) => {
         // Fallback to local token check
       }
 
-      // 2. Check local token with backend
-      const token = localStorage.getItem('token') || localStorage.getItem('espacio_token');
+      const token = localStorage.getItem('token') || 
+                    localStorage.getItem('authToken') || 
+                    localStorage.getItem('espacio_token') || 
+                    localStorage.getItem('supabase_auth_token');
       if (token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         try {

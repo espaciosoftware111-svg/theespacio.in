@@ -1,100 +1,165 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, Volume2, VolumeX } from 'lucide-react';
+
+// Tracks whether the intro preloader has played during active client-side session.
+// This ensures navigating back to "/" inside the SPA does not re-lock the screen,
+// but refreshing the page (F5 or new tab) will smoothly run the intro!
+let hasIntroPlayedInSession = false;
 
 export const IntroPreloader = () => {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const pathname = window.location.pathname;
+    const isHomePage = pathname === '/' || pathname === '' || pathname === '/index.html';
+    return isHomePage && !hasIntroPlayedInSession;
+  });
+
   const [hasStarted, setHasStarted] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+
+  const videoRef = useRef(null);
+  const hasTriggeredPlayRef = useRef(false);
+
+  // Determine mobile vs desktop video source
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.innerWidth < 768 || window.innerHeight > window.innerWidth;
   });
 
-  const videoRef = useRef(null);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768 || window.innerHeight > window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const videoSource = isMobile ? '/videos/intro-mobile.mp4' : '/videos/intro-desktop.mp4';
+  const fallbackSource = isMobile ? '/videos/intro-desktop.mp4' : '/videos/intro-mobile.mp4';
 
   const handleComplete = useCallback(() => {
+    if (isEnded) return;
     setIsEnded(true);
+    hasIntroPlayedInSession = true;
     try {
       if (typeof document !== 'undefined') {
         document.body.style.backgroundColor = '';
       }
     } catch {}
     setShowIntro(false);
-  }, []);
-
-  const handlePlayOrUnmute = useCallback(() => {
-    if (isEnded) return;
-    const video = videoRef.current;
-    if (video) {
-      video.muted = false;
-      video.volume = 1.0;
-      video.play()
-        .then(() => {
-          setHasStarted(true);
-        })
-        .catch(() => {
-          // If browser policy requires muted playback first
-          video.muted = true;
-          video.play()
-            .then(() => {
-              setHasStarted(true);
-            })
-            .catch((e) => console.warn('Play retry notice:', e));
-        });
-    }
   }, [isEnded]);
 
-  useEffect(() => {
-    if (!showIntro) return;
+  // Sound toggle handler
+  const toggleSound = useCallback((e) => {
+    if (e) e.stopPropagation();
+    const video = videoRef.current;
+    if (video) {
+      const nextMuted = !video.muted;
+      video.muted = nextMuted;
+      setIsMuted(nextMuted);
+    }
+  }, []);
 
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768 || window.innerHeight > window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
+  // Screen click handler: if video is paused, start it; if playing muted, unmute it; does NOT prematurely dismiss!
+  const handleScreenClick = useCallback(() => {
+    if (isEnded) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.defaultMuted = true;
+      video.muted = true;
+      video.play()
+        .then(() => setHasStarted(true))
+        .catch(() => handleComplete());
+    } else if (video.muted) {
+      // Unmute on tap so user hears sound
+      video.muted = false;
+      setIsMuted(false);
+    }
+  }, [isEnded, handleComplete]);
+
+  // Video playback initialization (runs ONCE when showIntro is true)
+  useEffect(() => {
+    if (!showIntro || hasTriggeredPlayRef.current) return;
+    hasTriggeredPlayRef.current = true;
 
     const video = videoRef.current;
     if (video) {
-      video.muted = true;
       video.defaultMuted = true;
+      video.muted = true;
       video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
 
-      // Attempt automatic playback
-      video.play()
-        .then(() => {
-          setHasStarted(true);
-        })
-        .catch((err) => {
-          console.warn('Browser requires tap to play:', err.message);
-        });
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setHasStarted(true);
+          })
+          .catch((err) => {
+            console.warn('Autoplay waiting for interaction:', err?.message);
+            // Retry muted explicitly
+            video.muted = true;
+            video.play()
+              .then(() => setHasStarted(true))
+              .catch(() => {
+                // Keep preloader up with "Tap to Start" prompt
+                setHasStarted(false);
+              });
+          });
+      }
     }
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      try {
-        if (typeof document !== 'undefined') {
-          document.body.style.backgroundColor = '';
-        }
-      } catch {}
-    };
-  }, [showIntro]);
+    // Safety Watchdog: If playback doesn't complete within 7.5s (video is 5.08s), gracefully exit
+    const watchdog = setTimeout(() => {
+      handleComplete();
+    }, 7500);
 
+    // Dismiss immediately if the user navigates (clicks a nav link)
+    const handleNavigation = () => handleComplete();
+    window.addEventListener('popstate', handleNavigation);
+
+    // Dismiss on any custom navigation event dispatched by nav links
+    window.addEventListener('espacio_nav_click', handleNavigation);
+
+    return () => {
+      clearTimeout(watchdog);
+      window.removeEventListener('popstate', handleNavigation);
+      window.removeEventListener('espacio_nav_click', handleNavigation);
+    };
+  }, [showIntro, handleComplete]);
+
+  // Update progress bar & trigger completion near the very end
   const handleTimeUpdate = () => {
-    if (videoRef.current && videoRef.current.duration) {
-      const cur = videoRef.current.currentTime;
-      const dur = videoRef.current.duration;
-      const pct = (cur / dur) * 100;
+    const video = videoRef.current;
+    if (video && video.duration && video.duration > 0) {
+      const cur = video.currentTime;
+      const dur = video.duration;
+      const pct = Math.min((cur / dur) * 100, 100);
       setProgress(pct);
 
-      // Transition smoothly right at the end of the video
-      if (dur > 0 && cur >= dur - 0.25) {
+      // Smooth fade-out 0.2s before the end to avoid freezing on last frame
+      if (cur >= dur - 0.2) {
         handleComplete();
       }
     }
   };
 
-  const videoSource = isMobile ? '/videos/intro-mobile.mp4' : '/videos/intro-desktop.mp4';
+  // Video error fallback
+  const handleVideoError = () => {
+    const video = videoRef.current;
+    if (video && !video.src.includes(fallbackSource)) {
+      video.src = fallbackSource;
+      video.play().catch(() => handleComplete());
+    } else {
+      handleComplete();
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -104,28 +169,24 @@ export const IntroPreloader = () => {
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            scale: 1.01,
-            transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] }
+            scale: 1.02,
+            transition: { duration: 0.65, ease: [0.77, 0, 0.175, 1] }
           }}
           className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black cursor-pointer"
-          onClick={handlePlayOrUnmute}
+          onClick={handleScreenClick}
         >
           {/* Full-screen Edge-to-Edge Video */}
           <div className="relative z-[2] w-full h-full flex items-center justify-center overflow-hidden">
             <video
               ref={videoRef}
-              key={videoSource}
               src={videoSource}
               autoPlay
-              muted
+              muted={isMuted}
               playsInline
               preload="auto"
               onPlay={() => setHasStarted(true)}
-              onError={(e) => {
-                if (e.currentTarget.src.includes('intro-mobile.mp4')) {
-                  e.currentTarget.src = '/videos/intro-desktop.mp4';
-                }
-              }}
+              onPlaying={() => setHasStarted(true)}
+              onError={handleVideoError}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleComplete}
               className="w-full h-full object-cover pointer-events-none"
@@ -133,14 +194,15 @@ export const IntroPreloader = () => {
           </div>
 
           {/* Top Branding Hint */}
-          <div className="absolute top-6 left-6 z-30 pointer-events-none opacity-85">
-            <span className="text-white/90 font-sans text-[11px] tracking-[0.25em] uppercase font-semibold">
+          <div className="absolute top-6 left-6 z-30 pointer-events-none opacity-90 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+            <span className="text-white/90 font-sans text-[11px] sm:text-[12px] tracking-[0.25em] uppercase font-semibold">
               ESPACIO • Turnkey Interiors
             </span>
           </div>
 
-          {/* Center "Tap to Play" ONLY appears initially if autoplay was blocked - NEVER AT THE END */}
-          {!hasStarted && !isEnded && (
+          {/* Center "Tap to Play" ONLY appears if autoplay was blocked by browser policy */}
+          {!hasStarted && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -148,8 +210,8 @@ export const IntroPreloader = () => {
               transition={{ duration: 0.25 }}
               className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
             >
-              <div className="flex flex-col items-center gap-3 bg-black/60 backdrop-blur-md px-6 py-5 rounded-2xl border border-white/20 shadow-2xl">
-                <div className="w-14 h-14 rounded-full bg-gold/90 text-black flex items-center justify-center shadow-lg animate-pulse">
+              <div className="flex flex-col items-center gap-3 bg-black/70 backdrop-blur-md px-7 py-6 rounded-2xl border border-white/20 shadow-2xl">
+                <div className="w-14 h-14 rounded-full bg-gold text-black flex items-center justify-center shadow-lg animate-pulse">
                   <Play size={24} className="ml-1 fill-black" />
                 </div>
                 <span className="text-white font-sans text-sm font-semibold tracking-wider uppercase">
@@ -159,7 +221,27 @@ export const IntroPreloader = () => {
             </motion.div>
           )}
 
-          {/* Dedicated Enter / Skip Button */}
+          {/* Bottom Left: Audio / Sound Toggle */}
+          <button
+            type="button"
+            onClick={toggleSound}
+            className="absolute bottom-6 left-6 flex items-center gap-2 text-white/90 hover:text-gold font-sans text-[11px] sm:text-[12px] font-medium tracking-wider uppercase transition-all px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/25 bg-black/75 hover:bg-black/90 backdrop-blur-md z-30 shadow-xl cursor-pointer pointer-events-auto"
+            title={isMuted ? "Click to enable sound" : "Mute sound"}
+          >
+            {isMuted ? (
+              <>
+                <VolumeX size={15} className="text-white/70" />
+                <span>Sound Off</span>
+              </>
+            ) : (
+              <>
+                <Volume2 size={15} className="text-gold animate-pulse" />
+                <span className="text-gold">Sound On</span>
+              </>
+            )}
+          </button>
+
+          {/* Bottom Right: Dedicated Enter / Skip Button */}
           <button
             type="button"
             onClick={(e) => {

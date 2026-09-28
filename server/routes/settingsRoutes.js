@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', getAllSettings);
 router.put('/', updateAllSettings);
+router.post('/', updateAllSettings);
 router.get('/:key', getSettings);
 router.put('/:key', updateSettings);
 

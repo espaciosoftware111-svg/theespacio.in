@@ -104,7 +104,7 @@ const Products = () => {
       if (src && !seen.has(src)) {
         seen.add(src);
         uniqueImages.push({ 
-          src: getOptimizedImageUrl(src, 1600, 95), 
+          src: getOptimizedImageUrl(src, 480, 80), 
           alt: p.title 
         });
       }
@@ -126,30 +126,35 @@ const Products = () => {
               images={domeImages}
               fit={
                 typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 0.78        // mobile: decreased to 78-80% for compact proportion
+                  ? 1.05        // mobile: immersive scale filling total width
                   : window.innerWidth < 1024
                   ? 0.90        // tablet: 90%
                   : 0.92        // desktop: 92% — large immersive sphere
               }
-              fitBasis="height"
+              fitBasis={
+                typeof window !== 'undefined' && window.innerWidth < 640
+                  ? 'width'     // mobile: fit based on screen width to occupy total section width
+                  : 'height'
+              }
               minRadius={
                 typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 260
+                  ? 380
                   : window.innerWidth < 1024
                   ? 520
                   : 820
               }
               segments={
                 typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 22
+                  ? 18
                   : window.innerWidth < 1024
-                  ? 28
-                  : 36
+                  ? 26
+                  : 32
               }
               overlayBlurColor="#EAE4D8"
               grayscale={false}
               autoRotate={true}
-              autoRotateSpeed={0.08}
+              autoRotateSpeed={0.12}
+              dragSensitivity={12}
               openedImageWidth={
                 typeof window !== 'undefined' && window.innerWidth < 640 ? '200px' : '320px'
               }

@@ -8,7 +8,7 @@ import {
   Compass, ExternalLink, ShieldCheck, Sparkles, Layout,
   ChevronDown, ArrowRight
 } from 'lucide-react';
-import { getCMSData, setCMSData, STORAGE_KEYS, uploadImageFile } from '../../utils/cmsStore';
+import { getCMSData, setCMSData, STORAGE_KEYS, uploadImageFile, notifyCMSUpdate } from '../../utils/cmsStore';
 import CTASectionEditor from '../../components/admin/CTASectionEditor';
 import MediaPickerModal from '../../components/admin/MediaPickerModal';
 
@@ -27,12 +27,13 @@ const AdminHomeHeroCMS = () => {
     // Section 1: Hero Section
     hero_visible: true,
     hero_bg_images: [
-      '/images/hero/hero_bedroom_4k.webp',
-      '/images/hero/hero_kitchen_4k.webp',
-      '/images/hero/hero_kids_bedroom_4k.webp',
-      '/images/hero/hero_dining_4k.webp'
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
     ],
-    hero_card_image: '/images/hero/hero_bedroom_4k.webp',
+    hero_card_image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
     hero_card_heading: 'We Craft the Future Dwelling',
     hero_card_cta_text: 'Our Projects',
     hero_card_cta_link: '/projects',
@@ -75,10 +76,41 @@ const AdminHomeHeroCMS = () => {
 
     // Section 4: Showcase Carousel Slides
     showcase_slides: [
-      { projectImg: "/images/company/3bhk_lux/open_hall.png", projectLabel: "Kokapet Luxury Duplex" },
-      { projectImg: "/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg", projectLabel: "Modular Kitchen Fitout" },
-      { projectImg: "/images/company/3bhk_lux/open_hall.png", projectLabel: "Jubilee Hills 3BHK" },
-      { projectImg: "/images/company/2bhk_mordern_retro/office_3.jpg", projectLabel: "Gachibowli Modern Office" }
+      {
+        name: "Spatial Design Lead",
+        role: "Thematic Spatial Planning",
+        memberImg: "/reviews/paladugu_raju.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
+        projectLabel: "Cosmic Odyssey Kids Suite"
+      },
+      {
+        name: "Interior Specialist",
+        role: "Luxury Living Spaces",
+        memberImg: "/reviews/harish_v.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
+        projectLabel: "Contemporary Living Room"
+      },
+      {
+        name: "Principal Architect",
+        role: "Modular Kitchen & Dining",
+        memberImg: "/reviews/priya_sharma.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
+        projectLabel: "Executive Minimalist Suite"
+      },
+      {
+        name: "Craftsmanship Director",
+        role: "Bespoke Millwork & Joinery",
+        memberImg: "/reviews/vikram_mehta.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
+        projectLabel: "Grand Foyer & Architecture"
+      },
+      {
+        name: "Creative Director",
+        role: "Turnkey Architecture & Styling",
+        memberImg: "/reviews/anjali_nair.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
+        projectLabel: "High-End Master Lounge"
+      }
     ],
 
     // Section 5: Selected Work / Our Projects
@@ -121,10 +153,15 @@ const AdminHomeHeroCMS = () => {
                   ? prev.hero_bg_images
                   : merged.hero_bg_images;
 
+            const showcaseSlides = (Array.isArray(apiData.showcase_slides) && apiData.showcase_slides.length === 5 && !apiData.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')))
+              ? apiData.showcase_slides
+              : prev.showcase_slides;
+
             const finalMerged = {
               ...merged,
               hero_bg_images: bgImgs,
-              hero_images: bgImgs
+              hero_images: bgImgs,
+              showcase_slides: showcaseSlides
             };
             setCMSData(STORAGE_KEYS.SETTINGS, finalMerged);
             return finalMerged;
@@ -170,6 +207,8 @@ const AdminHomeHeroCMS = () => {
     } catch (err) {
       console.warn('Database sync offline, updated in local CMS store.', err);
     }
+
+    notifyCMSUpdate();
 
     setSaving(false);
     setSaved(true);

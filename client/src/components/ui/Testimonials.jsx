@@ -417,6 +417,46 @@ const MarqueeRow = ({ items, reverse = false }) => {
   );
 };
 
+const ALL_DEFAULT_TESTIMONIALS = [...topTestimonials, ...bottomTestimonials];
+
+const resolveTestimonialItem = (item) => {
+  const rawName = (item.name || item.clientName || 'Anonymous Client').trim();
+  const cleanName = rawName.replace(/\d+$/g, '').trim() || rawName;
+  const lowerCleanName = cleanName.toLowerCase();
+
+  const matchedDefault = ALL_DEFAULT_TESTIMONIALS.find(d => {
+    const dLower = d.name.toLowerCase();
+    const dFirst = dLower.split(' ')[0];
+    const cleanFirst = lowerCleanName.split(' ')[0];
+    return dLower.includes(lowerCleanName) || lowerCleanName.includes(dLower) || (cleanFirst.length >= 3 && dFirst === cleanFirst);
+  });
+
+  const rawTitle = (item.title || item.headline || '').trim();
+  const isGenericTitle = !rawTitle || rawTitle.toLowerCase().includes('review') || rawTitle.toLowerCase() === lowerCleanName;
+
+  const title = (!isGenericTitle && rawTitle)
+    ? rawTitle
+    : (matchedDefault?.title || 'Exceptional Quality & Craftsmanship');
+
+  const rawBody = (item.body || item.reviewText || item.review || item.text || item.comment || item.description || '').trim();
+  const isGenericBody = !rawBody || rawBody.length < 5 || rawBody.toLowerCase().includes('review');
+
+  const body = (!isGenericBody && rawBody)
+    ? rawBody
+    : (matchedDefault?.body || 'ESPACIO delivered exceptional interior design, premium material quality, and transparent turnkey execution for our project. Highly satisfied!');
+
+  return {
+    source: item.source || matchedDefault?.source || 'GOOGLE',
+    rating: Number(item.rating) || matchedDefault?.rating || 5,
+    title,
+    body,
+    name: cleanName,
+    role: item.designation || item.role || item.projectType || matchedDefault?.role || 'Homeowner • ESPACIO Client',
+    avatar: item.avatar || item.photo || item.clientPhoto || matchedDefault?.avatar || '/reviews/ganesh_nayak.png',
+    date: item.date || matchedDefault?.date || 'Recently'
+  };
+};
+
 const Testimonials = () => {
   const [topItems, setTopItems] = React.useState(topTestimonials);
   const [bottomItems, setBottomItems] = React.useState(bottomTestimonials);
@@ -427,19 +467,9 @@ const Testimonials = () => {
         const { getCMSData, STORAGE_KEYS } = await import('../../utils/cmsStore');
         const stored = getCMSData(STORAGE_KEYS.TESTIMONIALS);
         if (stored && Array.isArray(stored) && stored.length > 0) {
-          // Keep only testimonials that have valid profile pictures
-          const visibleWithAvatar = stored.filter(item => item.visible !== false && item.avatar && item.avatar.trim() !== '');
+          const visibleWithAvatar = stored.filter(item => item.visible !== false);
           if (visibleWithAvatar.length > 0) {
-            const cmsData = visibleWithAvatar.map((item) => ({
-              source: item.source || 'GOOGLE',
-              rating: item.rating || 5,
-              title: item.title || `${item.name || 'Client'} Review`,
-              body: item.body || item.reviewText || item.review || '',
-              name: item.name || item.clientName || 'Anonymous Client',
-              role: item.designation || item.role || 'Homeowner • ESPACIO Client',
-              avatar: item.avatar || item.photo || '',
-              date: item.date || 'Recently'
-            }));
+            const cmsData = visibleWithAvatar.map(resolveTestimonialItem);
             const mid = Math.ceil(cmsData.length / 2);
             setTopItems([...cmsData.slice(0, mid)]);
             setBottomItems([...cmsData.slice(mid)]);
@@ -450,18 +480,9 @@ const Testimonials = () => {
         if (res?.data?.success && Array.isArray(res.data?.data) && res.data.data.length > 0) {
           const fresh = res.data.data;
           setCMSData(STORAGE_KEYS.TESTIMONIALS, fresh);
-          const visibleWithAvatar = fresh.filter(item => item.visible !== false && item.avatar && item.avatar.trim() !== '');
+          const visibleWithAvatar = fresh.filter(item => item.visible !== false);
           if (visibleWithAvatar.length > 0) {
-            const cmsData = visibleWithAvatar.map((item) => ({
-              source: item.source || 'GOOGLE',
-              rating: item.rating || 5,
-              title: item.title || `${item.name || 'Client'} Review`,
-              body: item.body || item.reviewText || item.review || '',
-              name: item.name || item.clientName || 'Anonymous Client',
-              role: item.designation || item.role || 'Homeowner • ESPACIO Client',
-              avatar: item.avatar || item.photo || '',
-              date: item.date || 'Recently'
-            }));
+            const cmsData = visibleWithAvatar.map(resolveTestimonialItem);
             const mid = Math.ceil(cmsData.length / 2);
             setTopItems([...cmsData.slice(0, mid)]);
             setBottomItems([...cmsData.slice(mid)]);

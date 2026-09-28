@@ -92,6 +92,8 @@ const AdminLogin = () => {
       if (supaRes && supaRes.data?.session && supaRes.data?.user) {
         const supaUser = supaRes.data.user;
         const accessToken = supaRes.data.session.access_token;
+        localStorage.setItem('token', accessToken);
+        localStorage.setItem('authToken', accessToken);
         localStorage.setItem('espacio_token', accessToken);
         localStorage.setItem('supabase_auth_token', accessToken);
         axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
@@ -121,6 +123,8 @@ const AdminLogin = () => {
         const response = await axios.post('/auth/login', { email: sanitizedEmail, password });
         if (response.data.success) {
           const token = response.data.data?.token || response.data.token;
+          localStorage.setItem('token', token);
+          localStorage.setItem('authToken', token);
           localStorage.setItem('espacio_token', token);
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
           const userName = response.data.data?.user?.name || sanitizedEmail.split('@')[0];
@@ -149,6 +153,8 @@ const AdminLogin = () => {
 
       if (matchedUser) {
         const dummyToken = 'jwt_espacio_token_' + Date.now();
+        localStorage.setItem('token', dummyToken);
+        localStorage.setItem('authToken', dummyToken);
         localStorage.setItem('espacio_token', dummyToken);
         sessionStorage.setItem('active_admin_user', JSON.stringify({
           name: matchedUser.name,

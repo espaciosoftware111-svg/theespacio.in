@@ -184,6 +184,16 @@ const cacheMiddleware = (req, res, next) => {
   const isCacheable = ['/projects', '/products', '/categories', '/testimonials', '/faqs', '/settings', '/media'].some(route => url.includes(route));
   if (!isCacheable) return next();
 
+  // Ensure browser never holds stale CMS data
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+
+  // In development, skip in-memory cache completely for live instant admin editing
+  if (process.env.NODE_ENV !== 'production') {
+    return next();
+  }
+
   const cached = apiCache.get(url);
   if (cached && (Date.now() - cached.timestamp < CACHE_TTL_MS)) {
     res.setHeader('X-Cache', 'HIT');

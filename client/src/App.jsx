@@ -51,7 +51,11 @@ const AdminMedia = React.lazy(() => import('./pages/admin/AdminCMS').then(m => (
 const AdminSettings = React.lazy(() => import('./pages/admin/AdminCMS').then(m => ({ default: m.AdminSettings })));
 
 const PublicLoaderFallback = () => (
-  <div className="fixed inset-0 bg-[#0a0b0d] z-[99999]" />
+  <div className="min-h-[60vh] flex items-center justify-center bg-bg">
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-7 h-7 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+    </div>
+  </div>
 );
 
 const AdminLoaderFallback = () => (
@@ -62,6 +66,56 @@ const AdminLoaderFallback = () => (
     </div>
   </div>
 );
+
+class RouteErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Route error caught by boundary:', error, errorInfo);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.locationKey !== this.props.locationKey && this.state.hasError) {
+      this.setState({ hasError: false, error: null });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 bg-cream text-charcoal space-y-4">
+          <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Project Details</span>
+          <h2 className="font-editorial text-3xl font-bold">Refreshing Project View</h2>
+          <p className="font-sans text-sm text-walnut max-w-md">
+            Click below to return to the full projects catalog or reload the case study.
+          </p>
+          <div className="flex items-center gap-3 pt-2">
+            <a
+              href="/projects"
+              className="inline-flex items-center space-x-2 bg-charcoal text-cream px-6 py-3 rounded-full font-sans text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-charcoal transition-all"
+            >
+              <span>Back to Projects ↗</span>
+            </a>
+            <button
+              onClick={() => this.setState({ hasError: false, error: null })}
+              className="inline-flex items-center space-x-2 bg-gold/15 text-charcoal border border-gold/40 px-5 py-3 rounded-full font-sans text-xs font-bold uppercase tracking-wider hover:bg-gold transition-all cursor-pointer"
+            >
+              <span>Retry</span>
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 // Manual scroll restoration to prevent browser from restoring scrolled positions on navigation
 if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
@@ -177,6 +231,23 @@ const MainLayout = () => {
       if (s) setSettings(s);
     };
     syncSettings();
+
+    // Fetch master settings from backend on app launch and populate store
+    const fetchMasterSettings = async () => {
+      try {
+        const { default: axios } = await import('axios');
+        const res = await axios.get('/settings');
+        if (res.data?.success && res.data?.data && Object.keys(res.data.data).length > 0) {
+          const apiData = res.data.data;
+          const { setCMSData, notifyCMSUpdate } = await import('./utils/cmsStore');
+          setCMSData(STORAGE_KEYS.SETTINGS, apiData, { silent: true });
+          setSettings(apiData);
+          notifyCMSUpdate();
+        }
+      } catch (err) {}
+    };
+    fetchMasterSettings();
+
     window.addEventListener('espacio_cms_update', syncSettings);
     window.addEventListener('storage', syncSettings);
     return () => {
@@ -185,7 +256,8 @@ const MainLayout = () => {
     };
   }, []);
 
-  if (settings?.maintenanceMode) {
+  // Safety guard: only show maintenance if specifically enabled on public routes and not admin or public navigation
+  if (settings?.maintenanceMode === true && !location.pathname.startsWith('/espesp/admin')) {
     return <MaintenanceMode settings={settings} />;
   }
 
@@ -194,9 +266,14 @@ const MainLayout = () => {
       <IntroPreloader />
       <Navbar />
       <main className="flex-grow">
-        <React.Suspense fallback={<PublicLoaderFallback />}>
-          <Outlet />
-        </React.Suspense>
+        <RouteErrorBoundary locationKey={location.pathname}>
+          <React.Suspense fallback={<PublicLoaderFallback />}>
+            {/* key on this div forces React to unmount+remount the page on every route change */}
+            <div key={location.pathname} style={{ display: 'contents' }}>
+              <Outlet />
+            </div>
+          </React.Suspense>
+        </RouteErrorBoundary>
       </main>
       {!isContactSuccess && <Footer />}
       <React.Suspense fallback={null}>
@@ -277,6 +354,10 @@ function App() {
               <Route path="/products" element={<Navigate to="/materials" replace />} />
               <Route path="/products/:slug" element={<Navigate to="/materials" replace />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/admin" element={<Navigate to="/espesp/admin" replace />} />
+              <Route path="/admin/*" element={<Navigate to="/espesp/admin" replace />} />
+              <Route path="/cms" element={<Navigate to="/espesp/admin" replace />} />
+              <Route path="/cms/*" element={<Navigate to="/espesp/admin" replace />} />
               
               {/* 404 fallback */}
               <Route path="*" element={<NotFound />} />

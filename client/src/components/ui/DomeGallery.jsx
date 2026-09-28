@@ -264,29 +264,38 @@ export default function DomeGallery({
     let lastTime = performance.now();
 
     const loop = (now) => {
-      const delta = Math.min((now - lastTime) / 16.67, 2);
+      // Clamped delta normalized to 60fps (1.0)
+      const elapsed = now - lastTime;
       lastTime = now;
+      const delta = Math.min(Math.max(elapsed / 16.67, 0.2), 2.0);
 
       // Only pause rotation when a modal detail viewer is opened
       if (!focusedElRef.current && !openingRef.current) {
         if (!draggingRef.current) {
           // Smoothly decay manual fling velocity toward 0
-          inertiaVelRef.current.x *= 0.95;
-          inertiaVelRef.current.y *= 0.95;
+          inertiaVelRef.current.x *= 0.94;
+          inertiaVelRef.current.y *= 0.94;
           if (Math.abs(inertiaVelRef.current.x) < 0.0005) inertiaVelRef.current.x = 0;
           if (Math.abs(inertiaVelRef.current.y) < 0.0005) inertiaVelRef.current.y = 0;
 
           // Continuous turning: autoRotateSpeed is ALWAYS maintained so it never stops!
-          const activeSpeedY = (autoRotate ? autoRotateSpeed : 0.08) + inertiaVelRef.current.y;
-          const nextY = wrapAngleSigned(rotationRef.current.y + activeSpeedY * delta);
+          const baseSpeedY = autoRotate ? autoRotateSpeed : 0.10;
+          const activeSpeedY = baseSpeedY + inertiaVelRef.current.y;
+          
+          const currentY = Number.isFinite(rotationRef.current.y) ? rotationRef.current.y : 0;
+          const currentX = Number.isFinite(rotationRef.current.x) ? rotationRef.current.x : 0;
+
+          const nextY = wrapAngleSigned(currentY + activeSpeedY * delta);
           const nextX = clamp(
-            rotationRef.current.x - inertiaVelRef.current.x * delta,
+            currentX - inertiaVelRef.current.x * delta,
             -maxVerticalRotationDeg,
             maxVerticalRotationDeg
           );
 
-          rotationRef.current = { x: nextX, y: nextY };
-          applyTransform(nextX, nextY);
+          if (Number.isFinite(nextX) && Number.isFinite(nextY)) {
+            rotationRef.current = { x: nextX, y: nextY };
+            applyTransform(nextX, nextY);
+          }
         }
       }
       animId = requestAnimationFrame(loop);
@@ -298,56 +307,73 @@ export default function DomeGallery({
 
   useGesture(
     {
-      onDragStart: ({ event }) => {
+      onDragStart: () => {
         if (focusedElRef.current) return;
         inertiaVelRef.current = { x: 0, y: 0 };
-        const evt = event;
         draggingRef.current = true;
         movedRef.current = false;
-        startRotRef.current = { ...rotationRef.current };
-        startPosRef.current = { x: evt.clientX, y: evt.clientY };
+        startRotRef.current = {
+          x: Number.isFinite(rotationRef.current.x) ? rotationRef.current.x : 0,
+          y: Number.isFinite(rotationRef.current.y) ? rotationRef.current.y : 0
+        };
       },
-      onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
-        if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
-        const evt = event;
-        const dxTotal = evt.clientX - startPosRef.current.x;
-        const dyTotal = evt.clientY - startPosRef.current.y;
-        if (!movedRef.current) {
-          const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
-          if (dist2 > 16) movedRef.current = true;
+      onDrag: ({ movement, velocity = [0, 0], direction = [0, 0], last }) => {
+        if (focusedElRef.current || !draggingRef.current) return;
+
+        const [mx = 0, my = 0] = Array.isArray(movement) ? movement : [0, 0];
+        const dxTotal = Number.isFinite(mx) ? mx : 0;
+        const dyTotal = Number.isFinite(my) ? my : 0;
+
+        if (!movedRef.current && (dxTotal * dxTotal + dyTotal * dyTotal > 16)) {
+          movedRef.current = true;
         }
+
         const nextX = clamp(
           startRotRef.current.x - dyTotal / dragSensitivity,
           -maxVerticalRotationDeg,
           maxVerticalRotationDeg
         );
         const nextY = wrapAngleSigned(startRotRef.current.y + dxTotal / dragSensitivity);
-        if (rotationRef.current.x !== nextX || rotationRef.current.y !== nextY) {
+
+        if (Number.isFinite(nextX) && Number.isFinite(nextY)) {
           rotationRef.current = { x: nextX, y: nextY };
           applyTransform(nextX, nextY);
         }
+
         if (last) {
           draggingRef.current = false;
-          let [vMagX, vMagY] = velocity;
-          const [dirX, dirY] = direction;
-          let vx = vMagX * dirX;
-          let vy = vMagY * dirY;
-          if (Math.abs(vx) < 0.001 && Math.abs(vy) < 0.001 && Array.isArray(movement)) {
-            const [mx, my] = movement;
-            vx = clamp((mx / dragSensitivity) * 0.02, -1.2, 1.2);
-            vy = clamp((my / dragSensitivity) * 0.02, -1.2, 1.2);
+          let [vMagX = 0, vMagY = 0] = Array.isArray(velocity) ? velocity : [0, 0];
+          let [dirX = 0, dirY = 0] = Array.isArray(direction) ? direction : [0, 0];
+          let vx = (Number.isFinite(vMagX) ? vMagX : 0) * (Number.isFinite(dirX) ? dirX : 0);
+          let vy = (Number.isFinite(vMagY) ? vMagY : 0) * (Number.isFinite(dirY) ? dirY : 0);
+
+          if (Math.abs(vx) < 0.001 && Math.abs(vy) < 0.001) {
+            vx = clamp((dxTotal / dragSensitivity) * 0.04, -1.8, 1.8);
+            vy = clamp((dyTotal / dragSensitivity) * 0.04, -1.0, 1.0);
           }
-          // Transfer fling velocity to inertiaVelRef so the continuous loop carries the motion effortlessly
+
+          // Transfer fling velocity to inertiaVelRef for seamless continuous glide
           inertiaVelRef.current = {
             x: clamp(vy * 0.35, -0.6, 0.6),
-            y: clamp(vx * 0.35, -1.2, 1.2)
+            y: clamp(vx * 0.45, -2.0, 2.0)
           };
-          if (movedRef.current) lastDragEndAt.current = performance.now();
-          movedRef.current = false;
+
+          if (movedRef.current) {
+            lastDragEndAt.current = performance.now();
+          }
+          setTimeout(() => {
+            movedRef.current = false;
+          }, 120);
         }
       }
     },
-    { target: mainRef, eventOptions: { passive: true } }
+    {
+      target: mainRef,
+      eventOptions: { passive: true },
+      drag: {
+        filterTaps: true
+      }
+    }
   );
 
   useEffect(() => {
@@ -569,19 +595,7 @@ export default function DomeGallery({
     e => {
       if (draggingRef.current) return;
       if (movedRef.current) return;
-      if (performance.now() - lastDragEndAt.current < 80) return;
-      if (openingRef.current) return;
-      openItemFromElement(e.currentTarget);
-    },
-    [openItemFromElement]
-  );
-
-  const onTilePointerUp = useCallback(
-    e => {
-      if (e.pointerType !== 'touch') return;
-      if (draggingRef.current) return;
-      if (movedRef.current) return;
-      if (performance.now() - lastDragEndAt.current < 80) return;
+      if (performance.now() - lastDragEndAt.current < 250) return;
       if (openingRef.current) return;
       openItemFromElement(e.currentTarget);
     },
@@ -632,7 +646,6 @@ export default function DomeGallery({
                   tabIndex={0}
                   aria-label={it.alt || 'Open image'}
                   onClick={onTileClick}
-                  onPointerUp={onTilePointerUp}
                 >
                   <img src={it.src} draggable={false} alt={it.alt} />
                 </div>

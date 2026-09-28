@@ -2,6 +2,15 @@ import Settings from '../models/Settings.js';
 import { query } from '../config/supabase.js';
 import { ErrorResponse } from '../middleware/errorMiddleware.js';
 
+let cachedSettings = null;
+let cachedSettingsTime = 0;
+const SETTINGS_CACHE_TTL_MS = 60000;
+
+export const invalidateSettingsCache = () => {
+  cachedSettings = null;
+  cachedSettingsTime = 0;
+};
+
 /**
  * @desc    Get all system settings as a key-value object
  * @route   GET /api/settings
@@ -9,6 +18,15 @@ import { ErrorResponse } from '../middleware/errorMiddleware.js';
  */
 export const getAllSettings = async (req, res, next) => {
   try {
+    if (cachedSettings && (Date.now() - cachedSettingsTime < SETTINGS_CACHE_TTL_MS)) {
+      res.setHeader('X-Cache', 'HIT');
+      res.setHeader('Cache-Control', 'public, max-age=30');
+      return res.status(200).json({
+        success: true,
+        data: cachedSettings,
+      });
+    }
+
     const settingsList = await Settings.find();
     const settingsMap = {};
     let siteSettingsVal = null;
@@ -31,12 +49,13 @@ export const getAllSettings = async (req, res, next) => {
     // Individual updated settings keys take priority over master site_settings object
     const finalMap = { ...(siteSettingsVal || {}), ...settingsMap };
 
-    // Default 4 curated luxury company images
+    // Default 5 curated luxury company images
     const defaultHeroImages = [
-      '/images/company/3bhk_lux/open_hall.png',
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg',
-      '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg',
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_27-20260810-124917.jpg'
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
     ];
 
     // Synchronize hero_bg_images and hero_images array references
@@ -48,6 +67,45 @@ export const getAllSettings = async (req, res, next) => {
 
     finalMap.hero_bg_images = heroBgImgs;
     finalMap.hero_images = heroBgImgs;
+
+    const defaultServicesHeroImages = [
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
+    ];
+
+    if (!Array.isArray(finalMap.services_hero_images) || finalMap.services_hero_images.length !== 5 || finalMap.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
+      finalMap.services_hero_images = defaultServicesHeroImages;
+    }
+
+    if (Array.isArray(finalMap.services_list) && finalMap.services_list.length >= 5) {
+      defaultServicesHeroImages.forEach((imgUrl, idx) => {
+        if (finalMap.services_list[idx] && (!finalMap.services_list[idx].img || !finalMap.services_list[idx].img.includes('res.cloudinary.com'))) {
+          finalMap.services_list[idx].img = imgUrl;
+        }
+      });
+    }
+
+    finalMap.projects_cta_visible = true;
+    if (!finalMap.cta_projects || finalMap.cta_projects.enabled === false) {
+      finalMap.cta_projects = {
+        ...(finalMap.cta_projects || {}),
+        enabled: true,
+        heading: finalMap.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
+        description: finalMap.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
+        buttonText: finalMap.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
+        buttonHoverText: finalMap.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
+        buttonLink: finalMap.cta_projects?.buttonLink || "/contact"
+      };
+    }
+
+    cachedSettings = finalMap;
+    cachedSettingsTime = Date.now();
+
+    res.setHeader('Cache-Control', 'public, max-age=30');
+    res.setHeader('X-Cache', 'MISS');
 
     res.status(200).json({
       success: true,
@@ -77,6 +135,8 @@ export const getSettings = async (req, res, next) => {
         data: null,
       });
     }
+
+    invalidateSettingsCache();
 
     res.status(200).json({
       success: true,
@@ -120,6 +180,8 @@ export const updateSettings = async (req, res, next) => {
       });
     }
 
+    invalidateSettingsCache();
+
     res.status(200).json({
       success: true,
       message: `Settings key '${req.params.key}' updated successfully`,
@@ -137,7 +199,11 @@ export const updateSettings = async (req, res, next) => {
  * @access  Private (Admin)
  */
 export const updateAllSettings = async (req, res, next) => {
-  const settingsObj = req.body;
+  const rawInput = req.body;
+  const settingsObj = (rawInput && rawInput.data && typeof rawInput.data === 'object' && !Array.isArray(rawInput.data))
+    ? rawInput.data
+    : rawInput;
+
   if (!settingsObj || typeof settingsObj !== 'object') {
     return next(new ErrorResponse('Please provide a settings dictionary', 400));
   }
@@ -200,6 +266,8 @@ export const updateAllSettings = async (req, res, next) => {
         }
       })
     );
+
+    invalidateSettingsCache();
 
     res.status(200).json({
       success: true,

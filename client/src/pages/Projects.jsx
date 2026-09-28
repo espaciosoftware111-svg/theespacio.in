@@ -1,27 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import axios from 'axios';
-import { Search, ArrowUpRight, FolderKanban } from 'lucide-react';
+import { ArrowUpRight, FolderKanban } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import HeroSlideshow from '../components/common/HeroSlideshow';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
-import GooeyInput from '../components/ui/gooey-input';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
-import { DEFAULT_PROJECTS } from '../utils/cmsStore';
+import { DEFAULT_PROJECTS, getCMSData, setCMSData, STORAGE_KEYS } from '../utils/cmsStore';
+import { prefetchProject } from '../utils/projectPrefetch';
 
-const Reveal = ({ children, delay = 0, className = '' }) => {
+// ─── Reveal animation (stable, no re-render on parent updates) ───────────────
+const Reveal = memo(({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '-60px' });
   return (
     <motion.div ref={ref} className={className}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 22 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}>
+      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}>
       {children}
     </motion.div>
   );
-};
+});
+Reveal.displayName = 'Reveal';
 
 const IMAGE_FALLBACK_MAP = {
   'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
@@ -33,140 +35,252 @@ const IMAGE_FALLBACK_MAP = {
   'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
   'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
   'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
-  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-'
+  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-',
+  'venkatesh_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
+  'koteswara_gallery_1.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'koteswara_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'subbarao_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'sayuk_after_open_hall.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425297/hf_20260926_121300_6a3eef61-953b-4da3-b308-15aabfa0e9d0.png',
+  'kokapet_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
+  'rahul_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
+  'kiran_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425214/hf_20260926_121425_c188d1e6-1db5-4729-b2a9-ad90bbddbf3a.png'
 };
 
-const handleImgError = (e) => {
-  const src = e.currentTarget?.src || '';
+const PROJECT_SLUG_FALLBACKS = {
+  'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
+  'gachibowli-minimalist-beige-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'dimmu-chachu-luxury-villa': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90'
+};
+
+const GENERAL_FALLBACK = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png';
+
+// Stable module-level handler with project-level fallbacks & loop protection
+const handleImgError = (e, slug) => {
+  const target = e.currentTarget;
+  if (!target) return;
+  target.onerror = null; // Prevent re-triggering error events
+  const src = target.src || '';
   const fname = src.split('/').pop().split('?')[0];
+
   if (IMAGE_FALLBACK_MAP[fname] && !src.includes(IMAGE_FALLBACK_MAP[fname])) {
-    e.currentTarget.src = IMAGE_FALLBACK_MAP[fname];
+    target.src = IMAGE_FALLBACK_MAP[fname];
+    return;
+  }
+  if (slug && PROJECT_SLUG_FALLBACKS[slug] && !src.includes(PROJECT_SLUG_FALLBACKS[slug])) {
+    target.src = PROJECT_SLUG_FALLBACKS[slug];
+    return;
+  }
+  if (!src.includes('res.cloudinary.com') && !src.includes('googleusercontent.com')) {
+    target.src = GENERAL_FALLBACK;
   }
 };
 
 const heroImages = [
-  // 1. Indo-Classical Elegance 3BHK: Majestic 4K Dining Hall & Classical Arches
-  '/images/projects/project_hero_1.jpg',
-  // 2. Modern Desi Duplex 4BHK: Grand Luxury 4K Living Lounge & Ambient Timber Paneling
-  '/images/projects/project_hero_2.jpg',
-  // 3. Minimalist Beige 2BHK: Panoramic 4K Designer Living Room
-  '/images/projects/project_hero_3.jpg',
-  // 4. 2BHK Modern Retro: 4K Panoramic Timber Louvered Living Room
-  '/images/projects/project_hero_4.jpg'
+  '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
+  '/images/projects/my_home_sayuk/sayuk_4.webp',
+  '/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp',
+  '/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp',
+  '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp'
+];
+
+const CANONICAL_ORDER = {
+  'rajapushpa-provincia-3bhk': 1,
+  'my-home-sayuk-3bhk': 2,
+  'kokapet-2bhk': 3,
+  'kokapet-urban-2bhk': 4,
+  'gandipet-modern-retro-2bhk': 5,
+  'kondapur-minimalist-2bhk': 6,
+  'gachibowli-minimalist-beige-2bhk': 7,
+  'kachiguda-fusion-duplex-villa': 8,
+  'dimmu-chachu-luxury-villa': 9
+};
+
+// Display name override map (stable, outside component)
+const DISPLAY_NAMES = {
+  'rajapushpa-provincia-3bhk': 'The Arcstone Residence',
+  'my-home-sayuk-3bhk': 'The Lattice Retreat',
+  'kokapet-2bhk': 'The Boucle Residence',
+  'kokapet-urban-2bhk': 'The Ivory Retreat',
+  'gandipet-modern-retro-2bhk': 'The Panelled Muse',
+  'kondapur-minimalist-2bhk': 'The Dusk Lounge',
+};
+
+const getDisplayName = (project) =>
+  DISPLAY_NAMES[project.slug] || project.title;
+
+// ─── Project Card (memoized to avoid re-renders on filter/sort changes) ───────
+const ProjectCard = memo(({ project, idx, priority }) => {
+  const imgSrc = useMemo(() => {
+    let raw = project.heroImage;
+    if (raw && typeof raw === 'string' && raw.startsWith('/images/projects/')) {
+      // Append cache-buster so any browser session with cached 404 bypasses it immediately
+      const sep = raw.includes('?') ? '&' : '?';
+      raw = `${raw}${sep}v=20260928_4`;
+    }
+    return getOptimizedImageUrl(raw, priority ? 900 : 700, 85);
+  }, [project.heroImage, priority]);
+
+  return (
+    <Reveal delay={(idx % 3) * 0.07}>
+      <Link
+        to={`/projects/${project.slug}`}
+        onMouseEnter={() => prefetchProject(project.slug)}
+        onTouchStart={() => prefetchProject(project.slug)}
+        className="group block rounded-card overflow-hidden bg-bg-card card-lift cursor-pointer select-none relative z-10 pointer-events-auto"
+      >
+        <div className="relative overflow-hidden aspect-[16/10] sm:aspect-[4/3] bg-bg-card">
+          <img
+            src={imgSrc}
+            onError={(e) => handleImgError(e, project.slug)}
+            loading="eager"
+            decoding="async"
+            fetchPriority={priority ? 'high' : 'auto'}
+            alt={getDisplayName(project)}
+            width="700"
+            height="525"
+            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-expo-out"
+          />
+          {/* Hover overlay */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+        </div>
+        <div className="p-6 select-none">
+          <div className="mb-2">
+            <span className="font-sans text-[10px] uppercase tracking-widest text-gold font-bold">
+              {project.style || 'Luxury build'}
+            </span>
+          </div>
+          <h3 className="font-display text-[22px] font-bold text-ink group-hover:text-ink-soft transition-colors mb-2 leading-snug select-none">
+            {getDisplayName(project)}
+          </h3>
+          <p className="font-sans text-[13px] text-ink-soft select-none">{project.location}</p>
+          <div className="pt-4 flex items-center gap-1 text-[11px] text-ink font-semibold uppercase tracking-wider group-hover:translate-x-0.5 transition-transform select-none">
+            <span>View case study</span>
+            <ArrowUpRight size={13} />
+          </div>
+        </div>
+      </Link>
+    </Reveal>
+  );
+});
+ProjectCard.displayName = 'ProjectCard';
+
+// ─── Filter chip (memoized) ──────────────────────────────────────────────────
+const FilterChip = memo(({ chip, isActive, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className={`px-4 py-2 rounded-full text-xs font-sans font-semibold uppercase tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+      isActive
+        ? 'bg-gold text-charcoal shadow-md font-bold'
+        : 'bg-bg-card hover:bg-white/10 text-ink-soft hover:text-ink border border-ink-border/30'
+    }`}
+  >
+    {chip.label}
+  </button>
+));
+FilterChip.displayName = 'FilterChip';
+
+// ─── In-memory fetch cache (prevents duplicate API calls within same session) ─
+let projectsCache = null;
+let settingsCache = null;
+
+const filterChips = [
+  { label: 'All Projects', value: 'all' },
+  { label: 'Apartments', value: 'apartment' },
+  { label: 'Villas', value: 'villa' },
+  { label: 'Duplex', value: 'duplex' }
 ];
 
 const Projects = () => {
-  const [projects, setProjects]               = useState(DEFAULT_PROJECTS);
-  const [filteredProjects, setFilteredProjects] = useState(DEFAULT_PROJECTS);
-  const [activeFilter, setActiveFilter]       = useState('all');
-  const [searchQuery, setSearchQuery]         = useState('');
-  const [loading, setLoading]                 = useState(false);
-  const [currentImageIdx, setCurrentImageIdx] = useState(0);
-  const [visibleCount, setVisibleCount]       = useState(8);
-  const [isUnlocked, setIsUnlocked]           = useState(false);
-  const heroRef = useRef(null);
+  const [projects, setProjects] = useState(() => {
+    if (projectsCache) return projectsCache;
+    try {
+      const stored = getCMSData(STORAGE_KEYS.PROJECTS);
+      if (stored && Array.isArray(stored) && stored.length > 0) {
+        return [...stored].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+      }
+    } catch {}
+    return DEFAULT_PROJECTS;
+  });
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [loading, setLoading] = useState(false);
 
-  const [heroContent, setHeroContent] = useState({
-    badge: 'Portfolio & Case Studies',
-    title: 'Our Projects',
-    subtitle: 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
-    images: heroImages
+  const [heroContent, setHeroContent] = useState(() => {
+    if (settingsCache) return settingsCache;
+    return {
+      badge: 'Portfolio & Case Studies',
+      title: 'Our Projects',
+      subtitle: 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
+      images: heroImages
+    };
   });
 
-  // Page-level parallax (same as Home & Services)
+  // Page-level parallax
   const { scrollYProgress } = useScroll();
-  const bgScale = useTransform(scrollYProgress, [0, 0.2], [1.05, 0.97]);
-  const bgY     = useTransform(scrollYProgress, [0, 0.2], ['0%', '6%']);
-  const textY   = useTransform(scrollYProgress, [0, 0.15], ['0px', '-30px']);
-  const textOp  = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const textY  = useTransform(scrollYProgress, [0, 0.15], ['0px', '-30px']);
+  const textOp = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  const filterChips = [
-    { label: 'All Projects',       value: 'all'        },
-    { label: '★ Featured Case Studies', value: 'featured' },
-    { label: 'Villas',             value: 'villa'       },
-    { label: 'Apartments',         value: 'apartment'   },
-    { label: 'Commercial Offices', value: 'office'      },
-    { label: 'Commercial',         value: 'commercial'  },
-    { label: 'Renovations',        value: 'renovation'  },
-    { label: 'Luxury Homes',       value: 'luxury_home' },
-  ];
+  const handleFilterClick = useCallback((val) => setActiveFilter(val), []);
 
   useEffect(() => {
-    const handleUnlock = () => {
-      setIsUnlocked(true);
-      setVisibleCount(999);
-    };
-    window.addEventListener('projects-unlocked', handleUnlock);
-    return () => window.removeEventListener('projects-unlocked', handleUnlock);
-  }, []);
-
-  const handleLoadMore = () => {
-    window.dispatchEvent(new CustomEvent('open-quote-modal', {
-      detail: {
-        mode: 'projects',
-        title: 'Fill Details to Get More Projects',
-        context: 'Projects Portfolio Unlock'
-      }
-    }));
-  };
-
-  useEffect(() => {
+    let cancelled = false;
     const loadData = async () => {
+      // 1. Load from localStorage immediately (instant paint)
       try {
-        const { getCMSData, STORAGE_KEYS } = await import('../utils/cmsStore');
         const stored = getCMSData(STORAGE_KEYS.PROJECTS);
-        if (stored && stored.length > 0) {
+        if (stored && stored.length > 0 && !cancelled) {
           const sorted = [...stored].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
           setProjects(sorted);
+          projectsCache = sorted;
         }
-
         const settings = getCMSData(STORAGE_KEYS.SETTINGS);
-        if (settings) {
+        if (settings && !cancelled) {
           const rawImgs = (Array.isArray(settings.projects_hero_images) && settings.projects_hero_images.length > 0)
-            ? settings.projects_hero_images
-            : heroImages;
-          const uniqueImgs = Array.from(new Set(rawImgs.filter(Boolean)));
-
-          setHeroContent({
+            ? settings.projects_hero_images : heroImages;
+          const h = {
             badge: settings.projects_hero_badge || 'Portfolio & Case Studies',
             title: settings.projects_hero_title || 'Our Projects',
             subtitle: settings.projects_hero_subtitle || 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
-            images: uniqueImgs.length > 0 ? uniqueImgs : heroImages
-          });
+            images: Array.from(new Set(rawImgs.filter(Boolean)))
+          };
+          setHeroContent(h);
+          settingsCache = h;
         }
       } catch {}
 
+      // 2. Fetch fresh data from API in background (stale-while-revalidate)
       try {
         const [projRes, setRes] = await Promise.all([
-          axios.get('/projects').catch(() => null),
-          axios.get('/settings').catch(() => null)
+          axios.get('/projects', { timeout: 8000 }).catch(() => null),
+          axios.get('/settings', { timeout: 8000 }).catch(() => null)
         ]);
 
-        if (projRes?.data?.success && Array.isArray(projRes.data?.data) && projRes.data.data.length > 0) {
-          const sorted = [...projRes.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-          setProjects(sorted);
-          setCMSData(STORAGE_KEYS.PROJECTS, sorted);
+        if (!cancelled) {
+          if (projRes?.data?.success && Array.isArray(projRes.data?.data) && projRes.data.data.length > 0) {
+            const sorted = [...projRes.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+            setProjects(sorted);
+            setCMSData(STORAGE_KEYS.PROJECTS, sorted);
+            projectsCache = sorted;
+          }
+          if (setRes?.data?.success && setRes.data?.data) {
+            const s = setRes.data.data;
+            setCMSData(STORAGE_KEYS.SETTINGS, s);
+            const rawImgs = (Array.isArray(s.projects_hero_images) && s.projects_hero_images.length > 0)
+              ? s.projects_hero_images : heroImages;
+            const h = {
+              badge: s.projects_hero_badge || 'Portfolio & Case Studies',
+              title: s.projects_hero_title || 'Our Projects',
+              subtitle: s.projects_hero_subtitle || 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
+              images: Array.from(new Set(rawImgs.filter(Boolean)))
+            };
+            setHeroContent(h);
+            settingsCache = h;
+          }
         }
-
-        if (setRes?.data?.success && setRes.data?.data) {
-          const settings = setRes.data.data;
-          setCMSData(STORAGE_KEYS.SETTINGS, settings);
-          const rawImgs = (Array.isArray(settings.projects_hero_images) && settings.projects_hero_images.length > 0)
-            ? settings.projects_hero_images
-            : heroImages;
-          const uniqueImgs = Array.from(new Set(rawImgs.filter(Boolean)));
-
-          setHeroContent({
-            badge: settings.projects_hero_badge || 'Portfolio & Case Studies',
-            title: settings.projects_hero_title || 'Our Projects',
-            subtitle: settings.projects_hero_subtitle || 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
-            images: uniqueImgs.length > 0 ? uniqueImgs : heroImages
-          });
-        }
-      } catch (err) {
-      } finally {
-        setLoading(false);
-      }
+      } catch {}
+      finally { if (!cancelled) setLoading(false); }
     };
 
     loadData();
@@ -175,131 +289,27 @@ const Projects = () => {
     window.addEventListener('espacio_cms_update', handleSync);
     window.addEventListener('storage', handleSync);
     return () => {
+      cancelled = true;
       window.removeEventListener('espacio_cms_update', handleSync);
       window.removeEventListener('storage', handleSync);
     };
   }, []);
 
-  // Authentic company project image pools for each category type
-  const unsplashPool = {
-    villa: [
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-164320.jpg',
-      '/images/company/3bhk_lux/open_hall.png',
-      '/images/company/3bhk_lux/open_hall2.png',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Boys_Room_4-20260813-110616.jpg',
-      '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-balcony_1-20260810-120429.jpg'
-    ],
-    apartment: [
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg',
-      '/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Living_room_1-20260810-122238.jpg',
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-      '/images/company/2bhk_mordern_retro/b1_2.jpg',
-      '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg',
-      '/images/company/2bhk_lux/hall1_1.png',
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_27-20260810-124917.jpg',
-      '/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Bedroom_24-20260810-122233.jpg'
-    ],
-    office: [
-      '/images/company/2bhk_mordern_retro/office_3.jpg',
-      '/images/company/2bhk_mordern_retro/office_2.jpg',
-      '/images/company/2bhk_mordern_retro/office_1.jpg',
-      '/images/company/2bhk_mordern_retro/hall_5.jpg',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_4-20260813-110617.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_1-20260810-164320.jpg',
-      '/images/company/3bhk_lux/balcony_1.png',
-      '/images/company/2bhk_lux/hall_2.png'
-    ],
-    commercial: [
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg',
-      '/images/company/2bhk_mordern_retro/office_3.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg',
-      '/images/company/3bhk_lux/open_hall.png',
-      '/images/company/2bhk_mordern_retro/hall_5.jpg',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Boys_Room_4-20260813-110616.jpg',
-      '/images/company/3bhk_lux/open_hall2.png'
-    ],
-    renovation: [
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg',
-      '/images/company/2bhk_mordern_retro/b1_2.jpg',
-      '/images/company/3bhk_lux/open_hall.png',
-      '/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Living_room_1-20260810-122238.jpg',
-      '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-      '/images/company/3bhk_lux/bedroom_1.png'
-    ],
-    luxury_home: [
-      '/images/company/3bhk_lux/open_hall.png',
-      '/images/company/3bhk_lux/open_hall2.png',
-      '/images/company/3bhk_lux/bedroom_1.png',
-      '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg',
-      '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-164320.jpg',
-      '/images/company/2bhk_lux/hall1_1.png',
-      '/images/company/2bhk_lux/bed_room_2.png'
-    ]
-  };
+  // Memoized canonical 9 projects
+  const canonicalProjects = useMemo(() => {
+    return (projects && projects.length > 0 ? projects : DEFAULT_PROJECTS)
+      .filter(p => p && (CANONICAL_ORDER[p.slug] !== undefined || DEFAULT_PROJECTS.some(dp => dp._id === p._id)))
+      .map(p => ({ ...p, order: CANONICAL_ORDER[p.slug] || Number(p.order) || 999 }))
+      .sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999))
+      .slice(0, 9);
+  }, [projects]);
 
-  const categoriesList = ['villa', 'apartment', 'office', 'commercial', 'renovation', 'luxury_home'];
-  const neighborhoods = ['Banjara Hills', 'Jubilee Hills', 'Gachibowli', 'Kondapur', 'HITEC City', 'Kokapet', 'Begumpet', 'Madhapur', 'Gandipet', 'Financial District'];
-  const styles = ['Warm Minimalist', 'Warm Editorial', 'Clean Contemporary', 'Luxury Architectural', 'Scandinavian Crafted', 'Modern Classic', 'Warm Contemporary', 'Industrial Editorial'];
-
-  const generatedMockProjects = [];
-  categoriesList.forEach((cat) => {
-    for (let index = 0; index < 8; index++) {
-      const hood = neighborhoods[(cat.charCodeAt(0) + index) % neighborhoods.length];
-      const style = styles[(cat.charCodeAt(1) + index) % styles.length];
-      const year = 2023 + (index % 3);
-      
-      const label = cat === 'luxury_home' ? 'Residence' : cat.charAt(0).toUpperCase() + cat.slice(1);
-      const title = `${style} ${label} ${index + 1}`;
-      
-      const heroImage = unsplashPool[cat][index % 8];
-      const slug = `${cat}-${index + 1}`;
-      
-      generatedMockProjects.push({
-        title,
-        location: `${hood}, Hyd`,
-        category: cat,
-        style,
-        heroImage,
-        slug,
-        year
-      });
-    }
-  });
-
-  const mockProjects = generatedMockProjects;
-
-  const sourceData = projects.length > 0 ? projects : mockProjects;
-
-  useEffect(() => {
-    let result = [...sourceData];
-    if (activeFilter === 'featured') {
-      result = result.filter(p => p.featured === true || p.featured === 'true');
-    } else if (activeFilter !== 'all') {
-      result = result.filter(p => p.category === activeFilter);
-    } else {
-      // For 'all', sort featured projects to top
-      result.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-    }
-
-    if (searchQuery.trim() !== '') {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(p =>
-        p.title.toLowerCase().includes(q) ||
-        p.location.toLowerCase().includes(q) ||
-        p.style?.toLowerCase().includes(q)
-      );
-    }
-    setFilteredProjects(result);
-  }, [activeFilter, searchQuery, projects]);
-
-  const displayedProjects = filteredProjects;
+  const displayedProjects = useMemo(() => {
+    const result = activeFilter === 'all'
+      ? canonicalProjects
+      : canonicalProjects.filter(p => p.category === activeFilter);
+    return [...result].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+  }, [canonicalProjects, activeFilter]);
 
   return (
     <div className="bg-bg">
@@ -309,62 +319,49 @@ const Projects = () => {
         url="/projects"
       />
 
-      {/* ── ROUNDED CARD HERO (same as Home & Services) ── */}
-      <section
-        ref={heroRef}
-        className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12"
-      >
-        <div
-          className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px]"
-        >
-          {/* Background image slideshow — crisp 1:1 pixel rendering without scale blur */}
+      {/* ── HERO ── */}
+      <section className="relative h-[80dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12">
+        <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px]">
           <div className="absolute inset-0 overflow-hidden">
             <HeroSlideshow
               images={heroContent.images && heroContent.images.length > 0 ? heroContent.images : heroImages}
-              intervalMs={3800}
-              transitionDuration={1.2}
+              intervalMs={4200}
+              transitionDuration={1.1}
               showGradient={false}
-              onIndexChange={setCurrentImageIdx}
             />
           </div>
 
-          {/* Subtle bottom-only text protection scrim — unmasked, bright, vivid 4K image */}
-          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 pointer-events-none" />
+          {/* Scrim */}
+          <div className="absolute inset-x-0 bottom-0 h-[52%] sm:h-[42%] bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none" />
 
-          {/* Text — pinned bottom-left */}
+          {/* Text */}
           <motion.div
             style={{ y: textY, opacity: textOp }}
             className="absolute inset-0 z-20 flex flex-col justify-end"
           >
-            <div className="w-full px-8 md:px-12 pb-10 md:pb-14">
+            <div className="w-full px-5 sm:px-8 md:px-12 pb-16 sm:pb-14 md:pb-14">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-start gap-4"
+                transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-start gap-2.5 sm:gap-4"
               >
-                {/* Clean White Pill label */}
-                <div className="inline-flex items-center gap-2 bg-white text-[#101014] px-4 py-1.5 rounded-full text-[13px] font-sans font-medium shadow-lg border border-black/5 select-none tracking-normal mb-1">
-                  <FolderKanban size={14} className="text-[#101014] shrink-0" />
+                <div className="inline-flex items-center gap-2 bg-white text-[#101014] px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-sans font-medium shadow-lg border border-black/5 select-none tracking-normal mb-0.5 sm:mb-1">
+                  <FolderKanban size={13} className="text-[#101014] shrink-0" />
                   <span>{heroContent.badge || 'Portfolio & Case Studies'}</span>
                 </div>
-
-                {/* Heading */}
                 <h1
                   className="font-display font-bold leading-none tracking-tight text-white"
-                  style={{ fontSize: 'clamp(48px, 8vw, 108px)' }}
+                  style={{ fontSize: 'clamp(36px, 8vw, 108px)' }}
                 >
                   {heroContent.title}
                 </h1>
-
-                <p className="font-sans text-[14px] md:text-[15px] text-white/60 max-w-[500px] leading-relaxed">
+                <p className="font-sans text-[13px] sm:text-[14px] md:text-[15px] text-white/90 max-w-[500px] leading-relaxed">
                   {heroContent.subtitle}
                 </p>
               </motion.div>
             </div>
-
-            {/* Scroll Down Indicator */}
-            <ScrollDownIndicator />
+            <ScrollDownIndicator className="scale-85 sm:scale-100 bottom-3.5 sm:bottom-4" />
           </motion.div>
         </div>
       </section>
@@ -374,94 +371,47 @@ const Projects = () => {
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-16">
 
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-ink-border pb-6 sm:pb-8 mb-8 sm:mb-12 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-ink-border pb-6 sm:pb-8 mb-6 gap-4">
             <div>
-              <h2 className="font-display text-2xl font-bold text-ink">All Featured Projects</h2>
-              <p className="font-sans text-xs text-ink-soft mt-1">Explore our turnkey interior design and execution portfolio</p>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">All Featured Projects</h2>
+              <p className="font-sans text-xs sm:text-sm text-ink-soft mt-1">Explore our turnkey interior design and execution portfolio</p>
             </div>
           </div>
 
-          {/* Project Grid */}
+          {/* Filter Pills */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8 sm:mb-10">
+            {filterChips.map((chip) => (
+              <FilterChip
+                key={chip.value}
+                chip={chip}
+                isActive={activeFilter === chip.value}
+                onClick={() => handleFilterClick(chip.value)}
+              />
+            ))}
+          </div>
+
+          {/* Grid */}
           {loading && projects.length === 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map(n => (
                 <div key={n} className="aspect-[4/3] bg-bg-card animate-pulse rounded-card" />
               ))}
             </div>
-          ) : filteredProjects.length === 0 ? (
+          ) : displayedProjects.length === 0 ? (
             <div className="text-center py-20 bg-bg-card rounded-card border border-ink-border">
-              <p className="font-sans text-sm text-ink-soft select-none">No projects found matching your search.</p>
+              <p className="font-sans text-sm text-ink-soft select-none">No projects found for this filter.</p>
             </div>
           ) : (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {displayedProjects.map((project, idx) => {
-                  return (
-                    <Reveal key={idx} delay={(idx % 3) * 0.08}>
-                      <Link
-                        to={`/projects/${project.slug}`}
-                        className="group block rounded-card overflow-hidden bg-bg-card card-lift cursor-pointer select-none"
-                      >
-                        <div className="relative overflow-hidden aspect-[4/3]">
-                          <img
-                            src={getOptimizedImageUrl(project.heroImage, 1200, 92)}
-                            onError={handleImgError}
-                            loading="lazy"
-                            decoding="async"
-                            alt={project.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-expo-out"
-                          />
-                        </div>
-                        <div className="p-6 select-none">
-                          <div className="mb-2 select-none">
-                            <span className="font-sans text-[10px] uppercase tracking-widest text-gold font-bold select-none">
-                              {project.style || 'Luxury build'}
-                            </span>
-                          </div>
-                          <h3 className="font-display text-[22px] font-bold text-ink group-hover:text-ink-soft transition-colors mb-2 leading-snug select-none">
-                            {(project.slug === 'rajapushpa-provincia-3bhk' || project.title === 'A 3BHK Residence, Narsingi')
-                              ? 'The Arcstone Residence'
-                              : (project.slug === 'my-home-sayuk-3bhk' || project.title === 'A 3BHK Residence, Tellapur')
-                              ? 'The Lattice Retreat'
-                              : (project.slug === 'kokapet-2bhk' || project._id === 'proj_3_kokapet_nagesh')
-                              ? 'The Boucle Residence'
-                              : (project.slug === 'kokapet-urban-2bhk' || project._id === 'proj_4_kokapet_rahul')
-                              ? 'The Ivory Retreat'
-                              : (project.slug === 'gandipet-modern-retro-2bhk' || project._id === 'proj_5_gandipet_kiran')
-                              ? 'The Panelled Muse'
-                              : (project.slug === 'kondapur-minimalist-2bhk' || project._id === 'proj_6_kondapur_venkatesh')
-                              ? 'The Dusk Lounge'
-                              : project.title}
-                          </h3>
-                          <p className="font-sans text-[13px] text-ink-soft select-none">{project.location}</p>
-                          <div className="pt-4 flex items-center gap-1 text-[11px] text-ink font-semibold uppercase tracking-wider group-hover:translate-x-0.5 transition-transform select-none">
-                            <span>View case study</span>
-                            <ArrowUpRight size={13} />
-                          </div>
-                        </div>
-                      </Link>
-                    </Reveal>
-                  );
-                })}
-              </div>
-
-              {!isUnlocked && (
-                <div className="mt-14 sm:mt-18 text-center flex flex-col items-center justify-center">
-                  <motion.button
-                    type="button"
-                    onClick={handleLoadMore}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-ink text-white font-sans text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-gold hover:text-ink transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer border border-white/10 group select-none"
-                  >
-                    <span>Load More Projects</span>
-                    <div className="w-6 h-6 rounded-full bg-white/10 group-hover:bg-ink/10 flex items-center justify-center transition-colors">
-                      <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
-                  </motion.button>
-                </div>
-              )}
-            </>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {displayedProjects.map((project, idx) => (
+                <ProjectCard
+                  key={project.slug || project._id || idx}
+                  project={project}
+                  idx={idx}
+                  priority={idx < 3}
+                />
+              ))}
+            </div>
           )}
         </div>
       </div>

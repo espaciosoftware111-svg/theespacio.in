@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
@@ -10,6 +10,7 @@ import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
 import { USER_UPLOADED_BEDROOM_IMAGE } from '../assets/userUploadedBedroom';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
+import { Button as MovingBorderButton } from '../components/ui/moving-border';
 
 const StickyScroll = React.lazy(() => import('../components/ui/sticky-scroll-reveal').then(m => ({ default: m.StickyScroll })));
 const HeroParallax = React.lazy(() => import('../components/ui/hero-parallax').then(m => ({ default: m.HeroParallax })));
@@ -198,32 +199,39 @@ const AutoScrollingInteriorBox = ({ activeIdx, items }) => {
 
 const teamProjectsData = [
   {
-    projectImg: "/images/about/about_showcase_1.jpg",
+    projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
     memberImg: "/reviews/paladugu_raju.png",
     name: "Spatial Design Lead",
     role: "Thematic Spatial Planning",
     projectLabel: "Cosmic Odyssey Kids Suite"
   },
   {
-    projectImg: "/images/about/about_showcase_2.jpg",
+    projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
     memberImg: "/reviews/kishor_kumar.png",
     name: "Interior Specialist",
     role: "Classical Boiserie Styling",
     projectLabel: "Sage Classical Lounge"
   },
   {
-    projectImg: "/images/about/about_showcase_3.jpg",
+    projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
     memberImg: "/reviews/amresh_kumar.png",
     name: "Joinery & Detailing",
     role: "Bespoke Study & Atelier",
     projectLabel: "Executive Study & Atelier"
   },
   {
-    projectImg: "/images/about/about_showcase_4.jpg",
+    projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
     memberImg: "/reviews/imtiyaz_shaik.png",
     name: "Modular Specialist",
     role: "High-Gloss Modular Kitchens",
     projectLabel: "Modern Quartzite Kitchen"
+  },
+  {
+    projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
+    memberImg: "/reviews/kishor_kumar.png",
+    name: "Principal Architect",
+    role: "Contemporary Spatial Refinement",
+    projectLabel: "Grand Minimalist Suite"
   }
 ];
 
@@ -503,10 +511,11 @@ const faqItemVariants = {
 };
 
 const HERO_IMAGES = [
-  '/images/hero/hero_bedroom_4k.webp',
-  '/images/hero/hero_kitchen_4k.webp',
-  '/images/hero/hero_kids_bedroom_4k.webp',
-  '/images/hero/hero_dining_4k.webp'
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
 ];
 
 const Home = () => {
@@ -523,7 +532,7 @@ const Home = () => {
     hero_visible: true,
 
     hero_bg_images: HERO_IMAGES,
-    hero_card_image: '/images/hero/hero_bedroom_4k.webp',
+    hero_card_image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
     hero_card_heading: 'We Craft the Future Dwelling',
     hero_card_cta_text: 'Our Projects',
     hero_card_cta_link: '/projects',
@@ -595,6 +604,13 @@ const Home = () => {
           if (sanitizedStored.intro_description && sanitizedStored.intro_description.includes('We bring 40+ years of family construction heritage')) {
             sanitizedStored.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
           }
+          if (Array.isArray(sanitizedStored.hero_bg_images) && (sanitizedStored.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || sanitizedStored.hero_bg_images.length !== 5)) {
+            sanitizedStored.hero_bg_images = HERO_IMAGES;
+            sanitizedStored.hero_card_image = HERO_IMAGES[0];
+          }
+          if (!Array.isArray(sanitizedStored.showcase_slides) || sanitizedStored.showcase_slides.length !== 5 || sanitizedStored.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com'))) {
+            sanitizedStored.showcase_slides = teamProjectsData;
+          }
           setHomeSettings((prev) => ({ ...prev, ...sanitizedStored }));
         }
       } catch {}
@@ -608,6 +624,13 @@ const Home = () => {
           }
           if (apiData.intro_description && apiData.intro_description.includes('We bring 40+ years of family construction heritage')) {
             apiData.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+          }
+          if (Array.isArray(apiData.hero_bg_images) && (apiData.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || apiData.hero_bg_images.length !== 5)) {
+            apiData.hero_bg_images = HERO_IMAGES;
+            apiData.hero_card_image = HERO_IMAGES[0];
+          }
+          if (!Array.isArray(apiData.showcase_slides) || apiData.showcase_slides.length !== 5 || apiData.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com'))) {
+            apiData.showcase_slides = teamProjectsData;
           }
           setHomeSettings((prev) => ({ ...prev, ...apiData }));
           setCMSData(STORAGE_KEYS.SETTINGS, apiData);
@@ -803,19 +826,16 @@ const Home = () => {
   useEffect(() => {
     const loadFeaturedProjects = async () => {
       try {
-        const { getCMSData, STORAGE_KEYS } = await import('../utils/cmsStore');
         const storedProjects = getCMSData(STORAGE_KEYS.PROJECTS);
         if (storedProjects && Array.isArray(storedProjects) && storedProjects.length > 0) {
           const sorted = [...storedProjects].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
           const featuredOnly = sorted.filter(p => p.featured === true || p.featured === 'true');
-          if (featuredOnly.length > 0) {
-            setProjects(featuredOnly.slice(0, 6));
-          }
+          setProjects(featuredOnly.length > 0 ? featuredOnly : sorted);
         }
       } catch {}
 
       try {
-        const r = await axios.get('/projects?limit=6&featured=true');
+        const r = await axios.get('/projects?limit=20&featured=true');
         if (r.data?.success && Array.isArray(r.data?.data) && r.data.data.length > 0) {
           const sorted = [...r.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
           setProjects(sorted);
@@ -837,31 +857,31 @@ const Home = () => {
   const mockProjects = [
     { 
       title: 'Indo-Classical Elegance 3BHK', location: 'Jubilee Hills', category: '3BHK Villa', 
-      heroImage: '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg', 
+      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png', 
       slug: 'indo-classical-elegance-3bhk',
       description: 'A masterclass in spatial refinement blending traditional classical motifs with sleek modern lines, custom fluted panelling, and bespoke brass accents.'
     },
     { 
       title: 'Minimalist Beige Sanctuary 2BHK', location: 'Financial District', category: 'Apartment', 
-      heroImage: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg', 
+      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png', 
       slug: 'minimalist-beige-2bhk',
       description: 'Designed around soft earthen palettes, warm ambient profile lighting, and concealed handle-less joinery high above the city.'
     },
     { 
       title: 'Exquisite Duplex Fusion 4BHK', location: 'Kokapet', category: 'Duplex Villa', 
-      heroImage: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg', 
+      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png', 
       slug: 'exquisite-duplex-fusion-4bhk',
       description: 'A bespoke double-height villa interior blending Italian marble flooring, custom fluted glass partitions, and an open show kitchen.'
     },
     { 
       title: 'Aparna Zicon High-Rise 2BHK', location: 'Nanakramguda', category: 'Apartment', 
-      heroImage: '/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Living_room_1-20260810-122238.jpg', 
+      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png', 
       slug: 'aparna-zicon-high-rise-2bhk',
       description: 'Precision engineered for maximum spatial efficiency, featuring custom TV media units, acrylic modular kitchen, and integrated wardrobes.'
     },
     { 
       title: 'Modern Retro Haven 2BHK', location: 'Madhapur', category: 'Luxury Home', 
-      heroImage: '/images/company/2bhk_mordern_retro/b1_2.jpg', 
+      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png', 
       slug: 'modern-retro-haven-2bhk',
       description: 'A cozy interplay of mid-century aesthetics, rich natural walnut veneers, custom fluted wall paneling, and warm cove ambient illumination.'
     },
@@ -875,7 +895,7 @@ const Home = () => {
 
   const displayProjects = projects.length > 0 ? projects : mockProjects;
 
-  const stickyContent = displayProjects.slice(0, 6).map((p) => {
+  const stickyContent = displayProjects.map((p) => {
     const title = p.title || 'ESPACIO Project';
 
     return {
@@ -921,31 +941,31 @@ const Home = () => {
       title: "Duplex Dining & Glass Partition",
       category: "Glass Partitions",
       link: "/projects/exquisite-duplex-fusion-4bhk",
-      thumbnail: "/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg",
+      thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
     },
     {
       title: "Open Pantry & Kitchen Storage",
       category: "Modular Kitchen",
       link: "/spaces/modular-kitchen",
-      thumbnail: "/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg",
+      thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
     },
     {
       title: "Beige Modular Kitchen Counter",
       category: "Modular Kitchen",
       link: "/spaces/modular-kitchen",
-      thumbnail: "/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg",
+      thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
     },
     {
       title: "Classical Dining & Bar Console",
       category: "Dining Room",
       link: "/projects/indo-classical-elegance-3bhk",
-      thumbnail: "/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg",
+      thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
     },
     {
       title: "Penthouse Minimalist Suite",
       category: "Penthouse Suite",
       link: "/projects/grand-3bhk-penthouse-luxe",
-      thumbnail: "/images/company/3bhk_lux/bedroom_3.png",
+      thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
     },
     {
       title: "Bespoke Mandir & Pooja Unit",
@@ -1108,8 +1128,8 @@ const Home = () => {
               />
             </div>
 
-            {/* Foreground Glass Cards */}
-            <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none pt-0 pb-20 sm:pb-8 lg:pb-10 xl:pb-12">
+            {/* Foreground Glass Cards - positioned down towards bottom on mobile */}
+            <div className="absolute inset-0 z-10 flex flex-col justify-end pointer-events-none pt-0 pb-3.5 sm:pb-6 lg:pb-10 xl:pb-12">
               <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 md:px-12 pointer-events-auto">
                 <motion.div 
                   className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-3 sm:gap-4 lg:gap-6"
@@ -1118,7 +1138,7 @@ const Home = () => {
                   variants={{
                     hidden: { opacity: 0 },
                     visible: { 
-                      opacity: 1,
+                      opacity: 1, 
                       transition: {
                         staggerChildren: 0.22,
                         delayChildren: 0.15
@@ -1127,7 +1147,7 @@ const Home = () => {
                   }}
                 >
                   {/* LEFT: Craft Card */}
-                  <motion.div className="w-full max-w-[325px] sm:max-w-[375px] mx-auto lg:mx-0 lg:max-w-[395px]">
+                  <motion.div className="w-full max-w-[335px] sm:max-w-[375px] mx-auto lg:mx-0 lg:max-w-[395px]">
                     <motion.div 
                       className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
                       style={{ 
@@ -1146,8 +1166,8 @@ const Home = () => {
                     >
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                       
-                      <div className="p-4 sm:p-5.5 md:p-6">
-                        <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3.5 sm:mb-5 relative bg-black/20">
+                      <div className="p-3.5 sm:p-5.5 md:p-6">
+                        <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3 sm:mb-5 relative bg-black/20">
                           {activeHeroBgImages.map((imgUrl, imgIdx) => {
                             const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
                             const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
@@ -1176,15 +1196,15 @@ const Home = () => {
                           })}
                         </div>
 
-                        <h2 className="font-display text-[19px] xs:text-[20.5px] sm:text-[22.5px] md:text-[24px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-3.5 sm:mb-5 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+                        <h2 className="font-display text-[18px] xs:text-[19.5px] sm:text-[22.5px] md:text-[24px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-3 sm:mb-5 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
                           {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                         </h2>
 
                         {homeSettings.hero_card_cta_visible !== false && (
-                          <div className="flex items-center justify-center gap-2">
+                          <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full">
                             <Link 
                               to={homeSettings.hero_card_cta_link || "/projects"}
-                              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/20 backdrop-blur-md px-5 py-2 sm:px-5.5 sm:py-2.5 text-[11.5px] sm:text-[12px] md:text-[12.5px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300 shrink-0"
+                              className="group relative flex-1 sm:flex-initial inline-flex items-center justify-center h-[38px] sm:h-[42px] overflow-hidden rounded-full border border-white/35 bg-white/20 backdrop-blur-md px-3 sm:px-5.5 text-[11.5px] sm:text-[12px] md:text-[12.5px] font-bold text-white hover:bg-white hover:text-[#101014] shadow-md transition-all duration-300"
                             >
                               <span className="inline-flex items-center gap-1.5 opacity-0 pointer-events-none select-none whitespace-nowrap">
                                 <span>Discover Our Works</span>
@@ -1192,17 +1212,17 @@ const Home = () => {
                               </span>
                               <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 text-white whitespace-nowrap">
                                 <span>{homeSettings.hero_card_cta_text || 'Our Projects'}</span>
-                                <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                <ArrowUpRight size={12} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                               </span>
                               <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-all duration-300 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-[#101014] font-bold whitespace-nowrap">
                                 <span style={{ color: '#101014' }}>Discover Our Works</span>
-                                <ArrowUpRight size={13} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#101014', stroke: '#101014', strokeWidth: 2.5 }} />
+                                <ArrowUpRight size={12} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#101014', stroke: '#101014', strokeWidth: 2.5 }} />
                               </span>
                             </Link>
-                            {/* Mobile: Contact Us button visible inside the card */}
+                            {/* Mobile: Contact Us button arranged inside the card */}
                             <Link
                               to="/contact"
-                              className="lg:hidden inline-flex items-center justify-center gap-1.5 rounded-full bg-[#101014] text-white px-4 py-2 text-[11.5px] font-bold uppercase tracking-wider shadow-md hover:bg-ink-soft transition-all duration-300 shrink-0"
+                              className="lg:hidden flex-1 sm:flex-initial inline-flex items-center justify-center h-[38px] sm:h-[42px] gap-1.5 rounded-full bg-[#101014]/90 border border-white/15 text-white px-3 sm:px-5 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider shadow-md hover:bg-white hover:text-[#101014] transition-all duration-300"
                             >
                               <span>Contact Us</span>
                               <ArrowUpRight size={12} className="shrink-0" />
@@ -1213,8 +1233,8 @@ const Home = () => {
                     </motion.div>
                   </motion.div>
 
-                  {/* RIGHT: Stats */}
-                  <motion.div className="w-full lg:flex-1">
+                  {/* RIGHT: Stats — Hidden on mobile, visible on desktop/laptop */}
+                  <motion.div className="hidden lg:block lg:flex-1">
                     <motion.div
                       className="flex flex-col gap-6 md:gap-8 w-full"
                       variants={{
@@ -1394,22 +1414,31 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="border border-ink-border/20 bg-bg rounded-[20px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-[145px] w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 group hover:border-gold hover:shadow-md transition-all duration-300"
+                className="w-full max-w-[550px] mx-auto lg:max-w-none lg:mx-0 h-full"
               >
-                <div className="space-y-1">
-                  <p className="font-sans text-[11px] font-semibold text-ink-muted uppercase tracking-[0.2em]">{stat.label}</p>
-                  <div className="font-display text-4xl lg:text-5xl font-semibold text-ink tracking-tight">
-                    <AnimatedCounter value={stat.value} duration={2} />
+                <MovingBorderButton
+                  as="div"
+                  borderRadius="20px"
+                  duration={3500 + i * 500}
+                  containerClassName="w-full h-full min-h-[145px]"
+                  borderClassName="bg-[radial-gradient(circle,#dfc28d_0%,#c5a572_45%,transparent_70%)]"
+                  className="bg-bg rounded-[18.5px] p-6 shadow-sm relative overflow-hidden flex flex-col justify-between h-full min-h-[145px] group hover:shadow-md transition-all duration-300 text-left items-stretch"
+                >
+                  <div className="space-y-1">
+                    <p className="font-sans text-[11px] font-semibold text-ink-muted uppercase tracking-[0.2em]">{stat.label}</p>
+                    <div className="font-display text-4xl lg:text-5xl font-semibold text-ink tracking-tight">
+                      <AnimatedCounter value={stat.value} duration={2} />
+                    </div>
                   </div>
-                </div>
-                {stat.subtext ? (
-                  <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
-                    <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
-                      {stat.subtext}
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
-                  </div>
-                ) : null}
+                  {stat.subtext ? (
+                    <div className="mt-4 pt-4 border-t border-ink-border/20 flex items-center justify-between">
+                      <span className="font-sans text-[11px] sm:text-[11.5px] font-medium text-ink-muted group-hover:text-ink transition-colors duration-200">
+                        {stat.subtext}
+                      </span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-300 group-hover:scale-125" />
+                    </div>
+                  ) : null}
+                </MovingBorderButton>
               </motion.div>
             ))}
           </div>
@@ -1418,18 +1447,23 @@ const Home = () => {
 
       {/* ── 4. PROJECTS GRID ── */}
       {homeSettings.projects_visible !== false && (
-        <section className="pt-8 pb-2 sm:pt-12 sm:pb-8 lg:py-14 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto">
-          <div className="flex items-end justify-between mb-4 sm:mb-6">
+        <section className="pt-8 pb-4 sm:pt-12 sm:pb-8 lg:py-16 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto">
+          {/* Section Header: Title on Left, All Projects CTA on Right */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-4">
             <Reveal>
-              <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-gold mb-4">
-                {homeSettings.projects_subtitle || 'Selected Work'}
-              </p>
-              <h2 className="font-display text-[clamp(26px,2.8vw,44px)] font-medium tracking-tight text-ink">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-gold shadow-[0_0_8px_rgba(201,169,110,0.6)]" />
+                <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.22em] text-gold">
+                  {homeSettings.projects_subtitle || 'Selected Work'}
+                </p>
+              </div>
+              <h2 className="font-display text-[clamp(28px,3vw,48px)] font-medium tracking-tight text-ink leading-[1.1]">
                 {homeSettings.projects_heading || 'Our Projects'}
               </h2>
             </Reveal>
+
             <Reveal delay={0.1}>
-              <Link to={homeSettings.projects_cta_link || "/projects"} className="btn-sliding-cta-dark">
+              <Link to={homeSettings.projects_cta_link || "/projects"} className="btn-sliding-cta-dark shrink-0">
                 <span className="invisible select-none pointer-events-none whitespace-nowrap opacity-0">
                   {homeSettings.projects_cta_text || 'All Projects ↗'}
                 </span>

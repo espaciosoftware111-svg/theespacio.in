@@ -48,7 +48,7 @@ const services = [
       'Lighting That Sets the Mood, Room by Room',
       'Full Execution, Managed Start to Finish'
     ], 
-    img: '/images/company/2bhk_mordern_retro/hall.jpg',
+    img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
     ctaText: 'Enquire About Residential Interiors',
     ctaLink: '/contact'
   },
@@ -65,7 +65,7 @@ const services = [
       'Clean Tech and Cabling, Nothing on Show',
       'Full Commercial Buildout, Start to Finish'
     ], 
-    img: '/images/company/2bhk_mordern_retro/office_3.jpg',
+    img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
     ctaText: 'Enquire About Commercial Fit-Outs',
     ctaLink: '/contact'
   },
@@ -82,7 +82,7 @@ const services = [
       'Greenery Picked to Suit the Light and Layout',
       'A Styling Review for Homes Already Done'
     ], 
-    img: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg',
+    img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
     ctaText: 'Enquire About Styling Services',
     ctaLink: '/contact'
   },
@@ -99,7 +99,7 @@ const services = [
       'Electrical and Plumbing Re-Laid the Right Way',
       'A Fully Managed Renovation, Start to Finish'
     ], 
-    img: '/images/services/services_after.webp', 
+    img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png', 
     ctaText: 'Enquire About Renovation',
     ctaLink: '/contact'
   },
@@ -116,7 +116,7 @@ const services = [
       'Wholesale and Retail Purchase Available',
       'Fast Delivery Straight From Our Hyderabad Warehouse'
     ], 
-    img: '/images/services/service_materials.jpg',
+    img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png',
     ctaText: 'Enquire About Materials',
     ctaLink: '/materials',
     hasSecondaryLink: true
@@ -145,21 +145,16 @@ const getStepIcon = (step) => {
 };
 
 const heroImages = [
-  '/images/services/service_hero_1.jpg',
-  '/images/services/service_hero_2.jpg',
-  '/images/services/service_hero_3.jpg',
-  '/images/services/service_hero_4.jpg'
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
 ];
 
 import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
 
 const getNonEmpty = (val, fallback) => (val && typeof val === 'string' && val.trim().length > 0 ? val : fallback);
-
-const defaultTestimonials = [
-  { name: 'Rajesh & Ananya Sharma', designation: 'Jubilee Hills Villa • Full Interiors', body: 'ESPACIO delivered our 3BHK villa turnkey interior ahead of schedule. Their transparent BOQ quotation had zero hidden surprises, and the fluted acrylic finish is breathtaking.', rating: 5 },
-  { name: 'Dr. Vikram Reddy', designation: 'Gachibowli Residence • Kitchen & Louvers', body: 'The modular kitchen and charcoal louver wall in our living room turned out exactly like the 3D renders. The quotation matched down to the last rupee.', rating: 5 },
-  { name: 'Siddharth Mehta', designation: 'HITECH City • Corporate Office', body: 'We fitted our 4,000 sq.ft executive office with ESPACIO PVC ceiling panels and glass partitions. Professional project management and impeccable finishing.', rating: 5 }
-];
 
 const Services = () => {
   const heroRef = useRef(null);
@@ -167,57 +162,62 @@ const Services = () => {
 
   const [heroContent, setHeroContent] = useState(() => {
     const s = getCMSData(STORAGE_KEYS.SETTINGS);
+    const validHeroImgs = (Array.isArray(s?.services_hero_images) && s.services_hero_images.length === 5 && !s.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')))
+      ? s.services_hero_images
+      : heroImages;
     return {
       badge: getNonEmpty(s?.services_hero_badge, 'Services'),
       title: getNonEmpty(s?.services_hero_title, 'Our Services'),
       subtitle: getNonEmpty(s?.services_hero_subtitle, 'Turnkey design and build with engineering tolerances. No templates. No hidden package tricks.'),
-      images: heroImages,
+      images: validHeroImgs,
       visible: true
     };
   });
 
   const [servicesList, setServicesList] = useState(() => {
     const s = getCMSData(STORAGE_KEYS.SETTINGS);
-    return (Array.isArray(s?.services_list) && s.services_list.length > 0) ? s.services_list : services;
-  });
-
-  const [testimonialsList, setTestimonialsList] = useState(() => {
-    const stored = getCMSData(STORAGE_KEYS.TESTIMONIALS);
-    if (Array.isArray(stored) && stored.length > 0) {
-      const filtered = stored.filter(t => t.visible !== false && t.featured);
-      return filtered.length > 0 ? filtered.slice(0, 3) : defaultTestimonials;
-    }
-    return defaultTestimonials;
+    const validList = (Array.isArray(s?.services_list) && s.services_list.length >= 5 && !s.services_list.some(item => typeof item.img === 'string' && !item.img.includes('res.cloudinary.com')))
+      ? s.services_list
+      : services;
+    return validList;
   });
 
   useEffect(() => {
     const syncCMS = () => {
       const settings = getCMSData(STORAGE_KEYS.SETTINGS);
       if (settings) {
+        const validHeroImgs = (Array.isArray(settings.services_hero_images) && settings.services_hero_images.length === 5 && !settings.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')))
+          ? settings.services_hero_images
+          : heroImages;
         setHeroContent({
           badge: getNonEmpty(settings.services_hero_badge, 'Services'),
           title: getNonEmpty(settings.services_hero_title, 'Our Services'),
           subtitle: getNonEmpty(settings.services_hero_subtitle, 'Turnkey design and build with engineering tolerances. No templates. No hidden package tricks.'),
-          images: (Array.isArray(settings.services_hero_images) && settings.services_hero_images.length > 0)
-            ? settings.services_hero_images
-            : heroImages,
+          images: validHeroImgs,
           visible: settings.services_hero_visible !== false
         });
-        if (Array.isArray(settings.services_list) && settings.services_list.length > 0) {
-          setServicesList(settings.services_list);
-        }
-      }
-
-      const storedTestimonials = getCMSData(STORAGE_KEYS.TESTIMONIALS);
-      if (Array.isArray(storedTestimonials) && storedTestimonials.length > 0) {
-        const filtered = storedTestimonials.filter(t => t.visible !== false && t.featured);
-        if (filtered.length > 0) {
-          setTestimonialsList(filtered.slice(0, 3));
-        }
+        const validList = (Array.isArray(settings.services_list) && settings.services_list.length >= 5 && !settings.services_list.some(item => typeof item.img === 'string' && !item.img.includes('res.cloudinary.com')))
+          ? settings.services_list
+          : services;
+        setServicesList(validList);
       }
     };
 
     syncCMS();
+
+    // Fetch fresh settings from API
+    const fetchFreshData = async () => {
+      try {
+        const { default: axios } = await import('axios');
+        const settingsRes = await axios.get('/settings').catch(() => null);
+        if (settingsRes?.data?.success && settingsRes.data.data) {
+          const { setCMSData } = await import('../utils/cmsStore');
+          setCMSData(STORAGE_KEYS.SETTINGS, settingsRes.data.data, { silent: true });
+        }
+        syncCMS();
+      } catch (err) {}
+    };
+    fetchFreshData();
 
     window.addEventListener('espacio_cms_update', syncCMS);
     window.addEventListener('storage', syncCMS);
@@ -238,7 +238,7 @@ const Services = () => {
       <SEO title="Services — ESPACIO Interiors" description="Full home interiors, modular kitchens, commercial spaces, and renovations. Engineering-first luxury design executed by ESPACIO." url="/services" />
 
       {heroContent.visible !== false && (
-        <section ref={heroRef} className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+        <section ref={heroRef} className="relative h-[80dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
             <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
               <HeroSlideshow
@@ -256,17 +256,17 @@ const Services = () => {
             <div className="absolute inset-0 z-20 flex flex-col justify-end pointer-events-none">
               <motion.div 
                 style={{ y: textY, opacity: textOpacity }}
-                className="w-full px-8 md:px-12 pb-10 md:pb-14 pointer-events-auto"
+                className="w-full px-5 sm:px-8 md:px-12 pb-16 sm:pb-14 md:pb-14 pointer-events-auto"
               >
-                <div className="flex flex-col items-start gap-3">
-                  <div className="inline-flex items-center gap-2 bg-white text-[#101014] px-4 py-1.5 rounded-full text-[13px] font-sans font-medium shadow-lg border border-black/5 select-none tracking-normal mb-1">
-                    <Layers size={14} className="text-[#101014] shrink-0" />
+                <div className="flex flex-col items-start gap-2.5 sm:gap-3">
+                  <div className="inline-flex items-center gap-2 bg-white text-[#101014] px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-sans font-medium shadow-lg border border-black/5 select-none tracking-normal mb-0.5 sm:mb-1">
+                    <Layers size={13} className="text-[#101014] shrink-0" />
                     <span>{heroContent.badge || 'Services'}</span>
                   </div>
-                  <h1 className="font-display font-bold leading-none tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]" style={{ fontSize: 'clamp(40px, 6vw, 84px)' }}>
+                  <h1 className="font-display font-bold leading-none tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]" style={{ fontSize: 'clamp(32px, 6vw, 84px)' }}>
                     {heroContent.title}
                   </h1>
-                  <p className="font-sans text-[14px] md:text-[15.5px] text-white/90 max-w-[520px] leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                  <p className="font-sans text-[13px] sm:text-[14px] md:text-[15.5px] text-white/90 max-w-[520px] leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                     {heroContent.subtitle}
                   </p>
                 </div>
@@ -274,7 +274,7 @@ const Services = () => {
             </div>
 
             {/* Scroll Down Indicator */}
-            <ScrollDownIndicator />
+            <ScrollDownIndicator className="scale-85 sm:scale-100 bottom-3.5 sm:bottom-4" />
           </div>
         </section>
       )}
@@ -286,8 +286,8 @@ const Services = () => {
             return (
               <div key={s.num || i} className="py-8 sm:py-12 md:py-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <Reveal delay={0.05} direction={isOdd ? 'right' : 'left'} className={isOdd ? 'lg:order-2' : ''}>
-                  <div className="aspect-[4/3] rounded-card overflow-hidden bg-bg-card">
-                    <img src={getOptimizedImageUrl(s.img, 1400, 92)} alt={s.title} loading="lazy" decoding="async" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                  <div className="aspect-[16/10] sm:aspect-[4/3] rounded-card overflow-hidden bg-bg-card shadow-sm border border-ink-border/20">
+                    <img src={getOptimizedImageUrl(s.img, 1400, 92)} alt={s.title} loading="lazy" decoding="async" style={{ imageRendering: 'high-quality' }} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700" />
                   </div>
                 </Reveal>
                 <Reveal delay={0.15} direction={isOdd ? 'left' : 'right'} className={`space-y-4 sm:space-y-6 ${isOdd ? 'lg:order-1' : ''}`}>
@@ -386,64 +386,14 @@ const Services = () => {
         </div>
       </section>
 
-      {/* ── CLIENT REVIEWS & TESTIMONIALS ────────────────────────────────────────── */}
-      <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 bg-cream">
-        <div className="max-w-[1440px] mx-auto">
-          <Reveal className="text-center max-w-[600px] mx-auto mb-14 space-y-3">
-            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">Client Feedback</span>
-            <h2 className="font-display text-[clamp(28px,3.5vw,44px)] font-bold text-charcoal">What Our Clients Say</h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-            {testimonialsList.map((t, idx) => {
-              const quoteText = (t.body || t.reviewText || '').replace(/^["'“\s]+|["'”\s]+$/g, '');
-
-              return (
-                <Reveal key={t.id || idx} delay={idx * 0.08} className="bg-[#FAF8F5] border border-[#E8E2D6] rounded-[20px] sm:rounded-[24px] p-5 sm:p-6 shadow-[0_4px_20px_rgba(20,15,10,0.05)] space-y-3.5 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-1">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <svg
-                          key={star}
-                          viewBox="0 0 24 24"
-                          width="15"
-                          height="15"
-                          className={star <= (t.rating || 5) ? 'text-[#FFB800] fill-[#FFB800]' : 'text-[#E2DCD2] fill-[#E2DCD2]'}
-                        >
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="font-sans text-[12.5px] sm:text-[13.5px] text-[#3E3933] leading-relaxed italic m-0 line-clamp-4">
-                      “{quoteText}”
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#E6E0D6] flex items-center space-x-3">
-                    {t.avatar && t.avatar.trim() !== '' ? (
-                      <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover shrink-0 shadow-xs" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                    ) : (
-                      <div className="w-9 h-9 rounded-full bg-[#E5DFD4] text-[#2C2720] font-bold flex items-center justify-center text-[12px] shrink-0 shadow-xs select-none uppercase font-sans">
-                        {(t.name || 'C').trim().charAt(0)}
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0 truncate">
-                      <h4 className="font-sans text-[13px] sm:text-[14px] font-bold text-[#1A1815] m-0 leading-tight truncate">{t.name}</h4>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
 
 // ── QUOTATION CALCULATOR COMPONENT ─────────────────────────────────────────
 const QuotationCalculator = () => {
-  const [propertyType, setPropertyType] = useState('3bhk');
-  const [scope, setScope] = useState('full');
+  const [propertyType, setPropertyType] = useState('');
+  const [scope, setScope] = useState('');
   const [finishGrade, setFinishGrade] = useState('premium');
   const [submitted, setSubmitted] = useState(false);
   const [phone, setPhone] = useState('');
@@ -452,6 +402,14 @@ const QuotationCalculator = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!propertyType) {
+      setErrorMsg('Please select your Property Type.');
+      return;
+    }
+    if (!scope) {
+      setErrorMsg('Please select your Scope of Work.');
+      return;
+    }
     if (!name || name.trim().length < 3) {
       setErrorMsg('Please enter your name (minimum 3 characters).');
       return;
@@ -473,8 +431,14 @@ const QuotationCalculator = () => {
       materials: 'Materials Supply',
       other: 'Other'
     };
-    const scopeLabel = scopeMap[scope] || 'Full Home Interior Design';
-    const propLabel = propertyType === '2bhk' ? '2 BHK' : propertyType === '3bhk' ? '3 BHK' : propertyType === 'villa' ? 'Villa' : 'Office';
+    const propMap = {
+      '2bhk': '2 BHK',
+      '3bhk': '3 BHK',
+      'villa': 'Villa',
+      'office': 'Office'
+    };
+    const scopeLabel = scopeMap[scope] || 'Not Specified';
+    const propLabel = propMap[propertyType] || 'Not Specified';
     
     // 1. Save to local CMS enquiries
     try {
@@ -583,18 +547,25 @@ const QuotationCalculator = () => {
   };
 
   return (
-    <div className="bg-cream border border-walnut/15 rounded-card p-6 md:p-8 shadow-xl space-y-6">
+    <div className="bg-[#FAF8F5] border border-walnut/15 rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.07)] space-y-6">
       {!submitted ? (
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="space-y-1 pb-3 border-b border-walnut/10">
-            <h3 className="font-display text-xl font-bold text-charcoal">Project Estimate</h3>
-            <p className="font-sans text-xs text-walnut">Configure your project details to unlock your personalized estimate</p>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-1.5 pb-4 border-b border-walnut/10">
+            <h3 className="font-display text-2xl font-bold text-charcoal">Project Estimate</h3>
+            <p className="font-sans text-xs text-walnut/80">Configure your project details to unlock your personalized estimate</p>
           </div>
 
           {/* Property Type */}
-          <div className="space-y-2">
-            <label className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal">1. Property Type</label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <label className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal">
+                1. Property Type
+              </label>
+              {!propertyType && (
+                <span className="font-sans text-[11px] text-walnut/60 italic">Please select</span>
+              )}
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { id: '2bhk', label: '2 BHK' },
                 { id: '3bhk', label: '3 BHK' },
@@ -604,11 +575,14 @@ const QuotationCalculator = () => {
                 <button
                   type="button"
                   key={item.id}
-                  onClick={() => setPropertyType(item.id)}
-                  className={`py-2.5 px-3 rounded-card text-xs font-sans font-medium transition-all ${
+                  onClick={() => {
+                    setPropertyType(item.id);
+                    if (errorMsg) setErrorMsg('');
+                  }}
+                  className={`h-12 px-3 rounded-2xl text-xs sm:text-[13px] font-sans transition-all duration-200 flex items-center justify-center text-center cursor-pointer select-none ${
                     propertyType === item.id 
-                      ? 'bg-charcoal text-cream shadow-md font-bold' 
-                      : 'bg-offwhite text-walnut border border-walnut/10 hover:border-walnut/30'
+                      ? 'bg-[#1A1A1A] text-white shadow-md font-semibold ring-1 ring-black/10' 
+                      : 'bg-[#ECE7DF] hover:bg-[#E2DDD3] text-charcoal/80 hover:text-charcoal border border-transparent font-medium'
                   }`}
                 >
                   {item.label}
@@ -618,9 +592,16 @@ const QuotationCalculator = () => {
           </div>
 
           {/* Scope */}
-          <div className="space-y-2">
-            <label className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal">2. Scope of Work</label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <label className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal">
+                2. Scope of Work
+              </label>
+              {!scope && (
+                <span className="font-sans text-[11px] text-walnut/60 italic">Please select</span>
+              )}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 { id: 'full', label: 'Full Home Interior Design' },
                 { id: 'commercial', label: 'Commercial & Office Interiors' },
@@ -632,11 +613,14 @@ const QuotationCalculator = () => {
                 <button
                   type="button"
                   key={item.id}
-                  onClick={() => setScope(item.id)}
-                  className={`py-2.5 px-3 rounded-card text-xs font-sans font-medium transition-all ${
+                  onClick={() => {
+                    setScope(item.id);
+                    if (errorMsg) setErrorMsg('');
+                  }}
+                  className={`min-h-[52px] h-full px-3 py-2 rounded-2xl text-[12px] sm:text-[12.5px] font-sans leading-snug transition-all duration-200 flex items-center justify-center text-center cursor-pointer select-none ${
                     scope === item.id 
-                      ? 'bg-charcoal text-cream shadow-md font-bold' 
-                      : 'bg-offwhite text-walnut border border-walnut/10 hover:border-walnut/30'
+                      ? 'bg-[#1A1A1A] text-white shadow-md font-semibold ring-1 ring-black/10' 
+                      : 'bg-[#ECE7DF] hover:bg-[#E2DDD3] text-charcoal/80 hover:text-charcoal border border-transparent font-medium'
                   }`}
                 >
                   {item.label}
@@ -657,7 +641,7 @@ const QuotationCalculator = () => {
                 setName(e.target.value);
                 if (errorMsg) setErrorMsg('');
               }}
-              className="w-full px-4 py-3 rounded-xl border border-walnut/20 bg-white text-xs font-sans focus:outline-none focus:border-gold"
+              className="w-full px-4 py-3.5 rounded-2xl border border-walnut/20 bg-white text-xs font-sans text-charcoal placeholder:text-walnut/50 focus:outline-none focus:border-gold shadow-2xs"
             />
             <input
               type="tel"
@@ -668,19 +652,20 @@ const QuotationCalculator = () => {
                 setPhone(e.target.value);
                 if (errorMsg) setErrorMsg('');
               }}
-              className="w-full px-4 py-3 rounded-xl border border-walnut/20 bg-white text-xs font-sans focus:outline-none focus:border-gold"
+              className="w-full px-4 py-3.5 rounded-2xl border border-walnut/20 bg-white text-xs font-sans text-charcoal placeholder:text-walnut/50 focus:outline-none focus:border-gold shadow-2xs"
             />
           </div>
 
           {errorMsg && (
-            <p className="text-red-500 font-sans text-xs text-center font-medium">{errorMsg}</p>
+            <p className="text-red-500 font-sans text-xs text-center font-medium bg-red-50 py-2 px-3 rounded-lg border border-red-200">{errorMsg}</p>
           )}
 
           <button
             type="submit"
-            className="w-full text-center bg-gold text-charcoal font-sans text-xs font-bold uppercase tracking-wider px-6 py-4 rounded-xl hover:bg-charcoal hover:text-cream transition-all shadow-md cursor-pointer"
+            className="w-full text-center bg-[#C5A572] hover:bg-[#B89660] text-charcoal font-sans text-xs font-bold uppercase tracking-wider px-6 py-4 rounded-2xl transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
           >
-            Unlock Personalized Estimate →
+            <span>Unlock Personalized Estimate</span>
+            <span>→</span>
           </button>
         </form>
       ) : (

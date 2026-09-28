@@ -1,74 +1,79 @@
 /**
- * ESPACIO Image Optimization Utility
- * ─────────────────────────────────────────────────────────────────────────────
- * PURPOSE:
- *   Centralized image URL transformer that ensures every image served through
- *   the site is format-optimal, size-capped, and cached efficiently.
- *
- * STRATEGY:
- *   1. Cloudinary URLs  → inject f_auto,q_auto,w_{width},c_limit transforms
- *   2. Unsplash URLs    → append fm=webp&q={quality}&w={width} parameters
- *   3. Local assets     → auto-resolve .jpg/.png → .webp (pre-converted by Sharp)
- *   4. SVG / base64     → returned unchanged (already optimal)
- *
- * RESULT:
- *   Network image payload drops from ~22 MB → < 2.2 MB (90%+ saving)
- * ─────────────────────────────────────────────────────────────────────────────
+ * ESPACIO Image Optimization Utility — Performance Edition
+ * ─────────────────────────────────────────────────────────
+ * • Cloudinary: f_auto,q_auto,w_N,c_limit + WebP via f_auto
+ * • Unsplash: fm=webp&q=N&w=N
+ * • Google Drive: =wN size hint
+ * • Local: .jpg/.png → .webp (pre-converted)
+ * • In-process memoization: repeated calls for the same URL+size are O(1)
  */
 
-/**
- * Transform any image URL to its optimal format, quality and size.
- * Enhanced for HD rendering with zero compression grain and retina crispness.
- *
- * @param {string} url      - Original image URL or path
- * @param {number} width    - Target max width in pixels (default: 1600)
- * @param {number} quality  - JPEG/WebP quality 0–100 (default: 92)
- * @returns {string}        - Optimized image URL
- */
-export const getOptimizedImageUrl = (url, width = 1600, quality = 92) => {
-  // Guard: skip falsy or non-string values
+// Memoization cache: key = `${url}|${width}|${quality}` → optimizedUrl
+const _cache = new Map();
+
+export const getOptimizedImageUrl = (url, width = 1600, quality = 88) => {
   if (!url || typeof url !== 'string') return url;
 
-  // PERF: Base64 data URIs and inline SVGs are already optimal — skip
-  if (url.startsWith('data:') || url.endsWith('.svg')) {
-    return url;
-  }
+  // Already optimal — skip transformations
+  if (url.startsWith('data:') || url.endsWith('.svg')) return url;
 
-  const targetWidth = Math.max(width, 1400);
-  const targetQuality = Math.max(quality, 90);
+  const w = Math.max(width || 1400, 200);
+  const q = Math.max(quality || 88, 60);
 
-  // ── 1. Cloudinary Transformation ──────────────────────────────────────────
+  const cacheKey = `${url}|${w}|${q}`;
+  if (_cache.has(cacheKey)) return _cache.get(cacheKey);
+
+  let result = url;
+
+  // ── 1. Cloudinary ──────────────────────────────────────────────────────────
   if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
-    if (!url.includes('f_auto') && !url.includes('q_auto')) {
-      return url.replace('/upload/', `/upload/f_auto,q_auto:best,w_${targetWidth},c_limit/`);
+    if (!url.includes('f_auto')) {
+      // f_auto → WebP/AVIF automatically; q_auto:good = best quality/size ratio
+      result = url.replace('/upload/', `/upload/f_auto,q_auto:good,w_${w},c_limit,dpr_auto/`);
+    } else {
+      result = url;
     }
-    return url; // Already optimized
   }
 
-  // ── 2. Unsplash Transformation ─────────────────────────────────────────────
-  if (url.includes('images.unsplash.com')) {
-    let cleanUrl = url
-      .replace(/([?&])w=\d+/g, '')          // Remove old width param
-      .replace(/([?&])q=\d+/g, '')          // Remove old quality param
-      .replace(/([?&])fm=[a-zA-Z0-9]+/g, ''); // Remove old format param
-    const separator = cleanUrl.includes('?') ? '&' : '?';
-    // fm=webp with high quality (90+) prevents blocky compression grain and missing pixels
-    return `${cleanUrl}${separator}fm=webp&q=${targetQuality}&w=${targetWidth}&auto=format&fit=crop`;
+  // ── 2. Unsplash ────────────────────────────────────────────────────────────
+  else if (url.includes('images.unsplash.com')) {
+    let clean = url
+      .replace(/([?&])w=\d+/g, '')
+      .replace(/([?&])q=\d+/g, '')
+      .replace(/([?&])fm=[a-zA-Z0-9]+/g, '');
+    const sep = clean.includes('?') ? '&' : '?';
+    result = `${clean}${sep}fm=webp&q=${q}&w=${w}&auto=format&fit=crop`;
   }
 
-  // ── 3. Local Static Asset → WebP Auto-Resolution ──────────────────────────
-  if (url.startsWith('/images/') && /\.(jpe?g|png)$/i.test(url)) {
-    return url.replace(/\.(jpe?g|png)$/i, '.webp');
+  // ── 3. Google Drive / GoogleUserContent ────────────────────────────────────
+  else if (url.includes('googleusercontent.com/d/')) {
+    result = `${url.split('=')[0]}=w${w}`;
   }
 
-  // ── 4. Google Drive CDN Sizing ────────────────────────────────────────────
-  if (url.includes('googleusercontent.com/d/')) {
-    const base = url.split('=')[0];
-    return `${base}=w${targetWidth}`;
+  // ── 4. Google Lens / lh3.googleusercontent.com ────────────────────────────
+  else if (url.includes('lh3.googleusercontent.com')) {
+    // Append =wNNN size hint if not already present
+    if (!url.includes('=w')) {
+      result = `${url}=w${w}`;
+    } else {
+      result = url.replace(/=w\d+/, `=w${w}`);
+    }
   }
 
-  // ── 5. All other URLs (external CDNs, absolute paths) ─────────────────────
-  return url;
+  // ── 5. Local static assets → prefer .webp ─────────────────────────────────
+  else if (url.startsWith('/') && /\.(jpe?g|png)$/i.test(url)) {
+    result = url.replace(/\.(jpe?g|png)$/i, '.webp');
+  }
+
+  // ── 6. All others — return as-is ──────────────────────────────────────────
+  else {
+    result = url;
+  }
+
+  // Limit cache size to prevent unbounded growth
+  if (_cache.size > 2000) _cache.clear();
+  _cache.set(cacheKey, result);
+  return result;
 };
 
 export default getOptimizedImageUrl;

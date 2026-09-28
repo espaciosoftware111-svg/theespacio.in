@@ -9,10 +9,11 @@ import { getCMSData, setCMSData, STORAGE_KEYS, uploadImageFile, DEFAULT_SERVICES
 import CTASectionEditor from '../../components/admin/CTASectionEditor';
 
 const defaultHeroImages = [
-  '/images/company/2bhk_mordern_retro/hall.jpg',
-  '/images/company/2bhk_mordern_retro/office_3.jpg',
-  '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg',
-  '/images/services/services_after.webp'
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
 ];
 
 const defaultServices = DEFAULT_SERVICES;
@@ -56,13 +57,15 @@ const AdminServicesCMS = () => {
     const fetchCMSData = async () => {
       const storedSettings = getCMSData(STORAGE_KEYS.SETTINGS);
       if (storedSettings) {
+        const validHeroImgs = (Array.isArray(storedSettings.services_hero_images) && storedSettings.services_hero_images.length === 5 && !storedSettings.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')))
+          ? storedSettings.services_hero_images
+          : defaultHeroImages;
+
         setHeroState({
           services_hero_badge: getNonEmpty(storedSettings.services_hero_badge, 'Services'),
           services_hero_title: getNonEmpty(storedSettings.services_hero_title, 'Our Services'),
           services_hero_subtitle: getNonEmpty(storedSettings.services_hero_subtitle, 'Turnkey design and build with engineering tolerances. No templates. No hidden package tricks.'),
-          services_hero_images: (Array.isArray(storedSettings.services_hero_images) && storedSettings.services_hero_images.length > 0)
-            ? storedSettings.services_hero_images
-            : defaultHeroImages,
+          services_hero_images: validHeroImgs,
           services_hero_visible: storedSettings.services_hero_visible !== false
         });
 
@@ -75,20 +78,26 @@ const AdminServicesCMS = () => {
           services_ba_visible: storedSettings.services_ba_visible !== false
         });
 
-        if (Array.isArray(storedSettings.services_list) && storedSettings.services_list.length > 0) {
-          setServicesList(storedSettings.services_list);
-        }
+        const validList = (Array.isArray(storedSettings.services_list) && storedSettings.services_list.length >= 5 && !storedSettings.services_list.some(item => typeof item.img === 'string' && !item.img.includes('res.cloudinary.com')))
+          ? storedSettings.services_list
+          : defaultServices;
+
+        setServicesList(validList);
       }
       try {
         const res = await axios.get('/settings');
         if (res.data.success && res.data.data) {
           const d = res.data.data;
+          const apiHeroImgs = (Array.isArray(d.services_hero_images) && d.services_hero_images.length === 5 && !d.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')))
+            ? d.services_hero_images
+            : defaultHeroImages;
+
           setHeroState((prev) => ({
             ...prev,
             services_hero_badge: getNonEmpty(d.services_hero_badge, prev.services_hero_badge),
             services_hero_title: getNonEmpty(d.services_hero_title, prev.services_hero_title),
             services_hero_subtitle: getNonEmpty(d.services_hero_subtitle, prev.services_hero_subtitle),
-            services_hero_images: (Array.isArray(d.services_hero_images) && d.services_hero_images.length > 0) ? d.services_hero_images : prev.services_hero_images
+            services_hero_images: apiHeroImgs
           }));
           setBaState((prev) => ({
             ...prev,
@@ -99,9 +108,11 @@ const AdminServicesCMS = () => {
             services_after_image: getNonEmpty(d.services_after_image, prev.services_after_image),
             services_ba_visible: d.services_ba_visible !== false
           }));
-          if (Array.isArray(d.services_list) && d.services_list.length > 0) {
-            setServicesList(d.services_list);
-          }
+          const apiList = (Array.isArray(d.services_list) && d.services_list.length >= 5 && !d.services_list.some(item => typeof item.img === 'string' && !item.img.includes('res.cloudinary.com')))
+            ? d.services_list
+            : defaultServices;
+
+          setServicesList(apiList);
         }
       } catch {}
       finally {

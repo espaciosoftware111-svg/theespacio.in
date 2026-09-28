@@ -141,7 +141,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`${navPosition} top-0 left-0 w-full z-[100] transition-all duration-500 ${
+      <nav className={`${navPosition} top-0 left-0 w-full z-[9999999] transition-all duration-500 ${
         isBgTransparent
           ? 'bg-transparent px-5 pt-[6px] lg:px-12 lg:pt-[3px]'
           : 'bg-bg/95 backdrop-blur-md shadow-sm px-0 pt-0'
@@ -204,7 +204,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-[#F8F5F0] text-ink z-[100] flex flex-col p-8"
+            className="fixed inset-0 bg-[#F8F5F0] text-ink z-[9999999] flex flex-col p-8"
           >
             <div className="flex items-center justify-between mb-8 sm:mb-12 shrink-0">
               <Link to="/" className="hover:opacity-90" onClick={() => setMobileMenuOpen(false)}>
@@ -267,7 +267,7 @@ const Navbar = () => {
 
       {/* Mobile Sticky Bottom Tab Bar (D'LIFE inspired) */}
       <div 
-        className="lg:hidden fixed bottom-0 left-0 w-full z-[100] bg-bg/95 backdrop-blur-md border-t border-ink-border/30 flex items-center justify-around px-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transform-gpu will-change-transform"
+        className="lg:hidden fixed bottom-0 left-0 w-full z-[9999999] bg-bg/95 backdrop-blur-md border-t border-ink-border/30 flex items-center justify-around px-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transform-gpu will-change-transform"
         style={{
           WebkitTransform: 'translate3d(0, 0, 0)',
           transform: 'translate3d(0, 0, 0)',

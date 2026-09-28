@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { SocialLightButton } from '../ui/SocialLightButton';
 import { PAGE_CTAS } from '../../utils/siteData';
-import { getCMSData, STORAGE_KEYS, getCtaDataForPage } from '../../utils/cmsStore';
+import { getCMSData, setCMSData, STORAGE_KEYS, getCtaDataForPage } from '../../utils/cmsStore';
 
 const renderSocialIcon = (iconName) => {
   const iconLower = (iconName || '').toLowerCase();
@@ -89,7 +89,6 @@ const Footer = () => {
       const stored = getCMSData(STORAGE_KEYS.SETTINGS);
       if (stored && Object.keys(stored).length > 0) {
         setCmsSettings(stored);
-        return;
       }
 
       try {

@@ -219,26 +219,24 @@ export const StickyScroll = ({ content = [], className = "" }) => {
         </div>
       </div>
 
-      {/* Mobile/Tablet list view (below lg) with stacked card scroll stack animation */}
-      <div className="lg:hidden w-full px-2 sm:px-4 py-1">
-        <ScrollStack useWindowScroll={true} itemDistance={25} className="w-full !h-auto !overflow-visible">
-          {content.map((item, index) => (
-            <ScrollStackItem 
-              key={item.title + index} 
-              itemClassName="bg-bg border border-ink-border/20 flex flex-col gap-3.5 shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-3.5 sm:p-5 pb-5 sm:pb-6 rounded-[24px] mb-3"
-            >
-              {/* Project Image Card */}
-              <div className="w-full aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm">
-                {item.content}
-              </div>
-              {/* Description */}
-              <div className="px-1.5 sm:px-2 text-left pt-1 pb-1">
-                <h3 className="font-display text-[22px] sm:text-2xl font-bold text-ink mb-2 leading-snug">{item.title}</h3>
-                {item.description}
-              </div>
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+      {/* Mobile/Tablet list view (below lg) with clean non-overlapping cards */}
+      <div className="lg:hidden w-full px-2 sm:px-4 py-2 flex flex-col gap-6">
+        {content.map((item, index) => (
+          <div 
+            key={item.title + index} 
+            className="bg-white border border-ink-border/20 flex flex-col gap-3.5 shadow-sm p-4 sm:p-5 pb-5 sm:pb-6 rounded-[24px]"
+          >
+            {/* Project Image Card */}
+            <div className="w-full aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm bg-neutral-900">
+              {item.content}
+            </div>
+            {/* Description */}
+            <div className="px-1.5 sm:px-2 text-left pt-1 pb-1">
+              <h3 className="font-display text-[22px] sm:text-2xl font-bold text-ink mb-2 leading-snug">{item.title}</h3>
+              {item.description}
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

@@ -59,6 +59,8 @@ export interface HeroCarouselProps {
   autoplay?: boolean;
   /** Milliseconds between autoplay steps. @default 4000 */
   autoplayDelay?: number;
+  /** Callback when user clicks the active slide, headline, or focused thumbnail to navigate to project details */
+  onActiveItemClick?: (item: HeroCarouselItem, index: number) => void;
   /** Extra classes for the stage. @default undefined */
   className?: string;
 }
@@ -130,6 +132,7 @@ export function HeroCarousel({
   onMenu,
   autoplay = false,
   autoplayDelay = 4000,
+  onActiveItemClick,
   className,
 }: HeroCarouselProps) {
   const stageRef = React.useRef<HTMLDivElement>(null);
@@ -138,6 +141,8 @@ export function HeroCarousel({
   const [dragging, setDragging] = React.useState(false);
   const [paused, setPaused] = React.useState(false);
   const reduced = useReducedMotion();
+
+  if (!items || items.length === 0) return null;
 
   const last = items.length - 1;
   const index = clamp(controlled ?? uncontrolled, 0, Math.max(0, last));
@@ -343,11 +348,20 @@ export function HeroCarousel({
           paddingBottom: Math.round(box.h * 0.028),
         }}
       >
-        <div className="flex w-full flex-wrap items-end gap-x-[4vw] gap-y-2">
+        <div 
+          onClick={() => onActiveItemClick && onActiveItemClick(active, index)}
+          className={cn(
+            "flex w-full flex-wrap items-end gap-x-[4vw] gap-y-2",
+            onActiveItemClick && "cursor-pointer pointer-events-auto group/headline"
+          )}
+        >
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.h2
               key={index}
-              className="font-display font-bold leading-[0.95] tracking-[-0.02em] text-white"
+              className={cn(
+                "font-display font-bold leading-[0.95] tracking-[-0.02em] text-white transition-colors duration-300",
+                onActiveItemClick && "group-hover/headline:text-gold"
+              )}
               style={{ fontSize: Math.max(26, Math.round(box.h * TITLE)) }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -375,13 +389,21 @@ export function HeroCarousel({
           {active.credit ? (
             <motion.p
               key={`credit-${index}`}
-              className="font-sans text-xs uppercase tracking-[0.2em] text-gold/90 font-semibold"
+              className={cn(
+                "font-sans text-xs uppercase tracking-[0.2em] text-gold/90 font-semibold transition-all duration-300 flex items-center gap-1.5",
+                onActiveItemClick && "group-hover/headline:text-white"
+              )}
               style={{ fontSize: Math.max(10, label) }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.9 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              {active.credit}
+              <span>{active.credit}</span>
+              {onActiveItemClick && (
+                <span className="inline-block text-gold text-sm font-bold transition-transform duration-300 group-hover/headline:translate-x-1">
+                  ↗
+                </span>
+              )}
             </motion.p>
           ) : null}
 
@@ -434,8 +456,14 @@ export function HeroCarousel({
               type="button"
               aria-label={(item.title || "").replace(/\n/g, " ")}
               aria-current={i === index}
-              onClick={() => go(i)}
-              className="relative shrink-0 overflow-hidden rounded-xl bg-white/5 border border-white/20 hover:border-gold/60 cursor-pointer shadow-lg transition-colors"
+              onClick={() => {
+                if (i === index && onActiveItemClick) {
+                  onActiveItemClick(item, i);
+                } else {
+                  go(i);
+                }
+              }}
+              className="relative shrink-0 overflow-hidden rounded-xl bg-white/5 border border-white/20 hover:border-gold/60 cursor-pointer shadow-lg transition-colors group/thumb"
               style={{ width: cardW }}
               animate={{ height: i === index ? fullH : halfH }}
               transition={spring}
@@ -455,7 +483,15 @@ export function HeroCarousel({
                 transition={spring}
               />
               {i === index && (
-                <div className="absolute inset-0 ring-2 ring-gold rounded-xl pointer-events-none shadow-[0_0_15px_rgba(201,169,110,0.6)]" />
+                <>
+                  <div className="absolute inset-0 ring-2 ring-gold rounded-xl pointer-events-none shadow-[0_0_15px_rgba(201,169,110,0.6)]" />
+                  {onActiveItemClick && (
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-2 text-center rounded-xl pointer-events-none z-10 backdrop-blur-[2px]">
+                      <span className="text-white text-[9.5px] font-bold uppercase tracking-wider leading-tight">View Details</span>
+                      <span className="text-gold text-sm font-bold mt-0.5">↗</span>
+                    </div>
+                  )}
+                </>
               )}
             </motion.button>
           ))}
@@ -477,8 +513,8 @@ export function HeroCarousel({
         <div className="relative mt-2 h-[2px] w-full bg-white/20 rounded-full overflow-hidden">
           <motion.div
             className="absolute inset-y-0 bg-gold rounded-full"
-            style={{ width: `${100 / items.length}%` }}
-            animate={{ left: `${(index / items.length) * 100}%` }}
+            style={{ width: `${items.length > 0 ? 100 / items.length : 0}%` }}
+            animate={{ left: `${items.length > 0 ? (index / items.length) * 100 : 0}%` }}
             transition={spring}
           />
         </div>

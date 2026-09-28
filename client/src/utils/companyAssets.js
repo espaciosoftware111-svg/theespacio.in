@@ -1,28 +1,34 @@
 // Curated high-resolution real company assets from Google Drive
 export const COMPANY_HERO_SLIDES = [
   {
-    image: '/images/company/3bhk_lux/open_hall.png',
+    image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
     heading: 'Architecture of Living',
     tagline: 'Precision engineered interiors crafted for Hyderabad’s most discerning homeowners.',
     project: 'Duplex Fusion 4BHK'
   },
   {
-    image: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg',
+    image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
     heading: 'Minimalist Sanctuary',
     tagline: 'Warm beige tones, clean architectural lines, and seamless fluted wood craftsmanship.',
     project: 'Minimalist Beige 2BHK'
   },
   {
-    image: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg',
+    image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
     heading: 'Monolithic Modern Kitchens',
     tagline: 'High-end modular cabinetry with integrated LED shadowline profiles and quartz waterfall islands.',
     project: 'Urban Minimalist 2BHK'
   },
   {
-    image: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_27-20260810-124917.jpg',
+    image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
     heading: 'Architectural Media Lounge',
     tagline: 'Custom marble backdrop walls, concealed LED profile tracks, and floating credenza joinery.',
     project: 'Contemporary Luxury Lounge'
+  },
+  {
+    image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png',
+    heading: 'Grand Minimalist Suite',
+    tagline: 'Bespoke high-end spatial geometry, ambient cove lighting, and textured wall paneling.',
+    project: 'Grand Minimalist Villa'
   }
 ];
 

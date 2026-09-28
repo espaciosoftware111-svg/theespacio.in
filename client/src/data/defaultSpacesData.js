@@ -1,18 +1,23 @@
 export const defaultSlides = [
   {
     before: '/images/spaces/spaces_hero_before.webp',
-    after: '/images/spaces/spaces_hero_after.webp',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png',
     title: 'Living Rooms'
   },
   {
     before: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_0-20260810-173514.jpg',
-    after: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_2-20260810-173514.jpg',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png',
     title: 'Modular Kitchens'
   },
   {
     before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-164320.jpg',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png',
     title: 'Master Bedrooms'
+  },
+  {
+    before: '/images/company/2bhk_mordern_retro/dining_2.jpg',
+    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png',
+    title: 'Dining & Bars'
   }
 ];
 
@@ -22,7 +27,7 @@ export const defaultSpacesCategories = [
     "name": "Modular Kitchen",
     "slug": "modular-kitchen",
     "description": "Precision-engineered kitchens with high-gloss acrylic, polygranite surfaces, and concealed lighting tracks.",
-    "heroImage": "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png",
     "visible": true,
     "details": {
       "tag": "Precision-Engineered",
@@ -86,7 +91,7 @@ export const defaultSpacesCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "/images/spaces/bedroom/bedroom_drive_24.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
@@ -146,7 +151,7 @@ export const defaultSpacesCategories = [
     "name": "Living Room",
     "slug": "living-room",
     "description": "Editorial living zones crafted around natural light, marble accents, and low-profile custom furniture.",
-    "heroImage": "/images/spaces/living/living_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427851/hf_20260926_125614_59b74a58-c260-4e7a-820c-a59241fcfcf8.png",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -215,7 +220,7 @@ export const defaultSpacesCategories = [
     "name": "Wardrobe Systems",
     "slug": "wardrobes",
     "description": "Bespoke floor-to-ceiling storage with velvet drawer linings, mirror panels, and hidden pull-out trays.",
-    "heroImage": "/images/spaces/wardrobes/wardrobe_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427805/hf_20260926_125507_56ae13ff-2251-4e94-baba-dc9f8b300620.png",
     "visible": true,
     "details": {
       "tag": "Bespoke Storage",
@@ -422,7 +427,7 @@ export const defaultSpacesCategories = [
     "name": "Pooja Room",
     "slug": "pooja-room",
     "description": "Sacred sanctuaries merging ancestral stone textures with sleek back-lit marble panels and warm lighting.",
-    "heroImage": "/images/spaces/pooja/pooja_drive_12.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427772/hf_20260926_125414_74dd535c-b43d-4439-8e1d-29f1d5ce46e5.png",
     "visible": true,
     "details": {
       "tag": "Sacred Spaces",
@@ -481,7 +486,7 @@ export const defaultSpacesCategories = [
     "name": "Dining Room",
     "slug": "dining-room",
     "description": "Refined gathering spaces with custom hardwood dining tables, feature pendant lighting, and plaster wall finishes.",
-    "heroImage": "/images/spaces/dining/dining_drive_27.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png",
     "visible": true,
     "details": {
       "tag": "Gather & Dine",
@@ -977,7 +982,7 @@ export const defaultSpacesCategories = [
     "name": "Bar",
     "slug": "bar",
     "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
-    "heroImage": "/images/spaces/bar/bar_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427837/hf_20260926_125558_d6e03bd2-82c9-4157-8f76-54556a1ebe41.png",
     "visible": true,
     "details": {
       "tag": "Hospitality & Entertaining",
@@ -1046,7 +1051,7 @@ export const defaultSpacesCategories = [
     "name": "Walk-in Wardrobe",
     "slug": "walk-in-wardrobe",
     "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
-    "heroImage": "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427788/hf_20260926_125434_bbbaef9a-ed61-4c98-9ec4-1dd081357147.png",
     "visible": true,
     "details": {
       "tag": "Boutique Dressing Suites",

@@ -36,8 +36,8 @@ export const PAGE_CTAS = {
   PROJECTS: {
     headline: "Have a Project Like\nThis in Mind?",
     subtext: "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
-    buttonText: "Get A Formal Quote ↗",
-    buttonHoverText: "Request BOQ ↗",
+    buttonText: "GET A FORMAL QUOTE ↗",
+    buttonHoverText: "REQUEST BOQ ↗",
     path: "/contact",
     bgImage: DEFAULT_CTA_BG,
     opacity: 80,

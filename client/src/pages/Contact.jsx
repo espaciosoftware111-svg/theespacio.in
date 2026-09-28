@@ -96,6 +96,20 @@ const Contact = () => {
       }
     };
     syncCMS();
+
+    // Fetch fresh contact settings from API
+    const fetchFreshSettings = async () => {
+      try {
+        const res = await axios.get('/settings');
+        if (res?.data?.success && res.data.data) {
+          const { setCMSData } = await import('../utils/cmsStore');
+          setCMSData(STORAGE_KEYS.SETTINGS, res.data.data, { silent: true });
+          syncCMS();
+        }
+      } catch (err) {}
+    };
+    fetchFreshSettings();
+
     window.addEventListener('espacio_cms_update', syncCMS);
     window.addEventListener('storage', syncCMS);
     return () => {
