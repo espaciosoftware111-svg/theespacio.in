@@ -20,6 +20,7 @@ const preloadImages = (urls = []) => {
 
 const HeroSlideshow = memo(({
   images = [],
+  mobileImages = [],
   intervalMs = 2800,
   initialIntervalMs = 1000,
   transitionDuration = 1.0,
@@ -28,26 +29,22 @@ const HeroSlideshow = memo(({
   showGradient = true,
   gradientClassName = "absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 z-10 pointer-events-none"
 }) => {
-  const activeImages = Array.isArray(images) && images.length > 0 ? images : [];
+  const desktopList = Array.isArray(images) && images.length > 0 ? images : [];
+  const mobileList = Array.isArray(mobileImages) && mobileImages.length > 0 ? mobileImages : desktopList;
+  const slideCount = Math.max(desktopList.length, mobileList.length);
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [canRenderSubsequent, setCanRenderSubsequent] = useState(false);
   const timerRef = useRef(null);
 
-  const imagesKey = activeImages.join('|');
-
-  // Preload and pre-decode all hero slides immediately so transitions are instantaneous
+  // Preload both mobile and desktop hero slides immediately so transitions are instantaneous
   useEffect(() => {
-    if (activeImages.length > 0) {
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-      const urlsToPreload = activeImages.map(url => {
-        if (isMobile && typeof url === 'string' && (url.includes('/images/hero/hero_') || url.includes('/images/services/service_hero_'))) {
-          return url.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp');
-        }
-        return getOptimizedImageUrl(url);
-      });
+    if (slideCount > 0) {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      const targetList = isMobile ? mobileList : desktopList;
+      const urlsToPreload = targetList.map(url => getOptimizedImageUrl(url, isMobile ? 900 : 1600, 88));
       preloadImages(urlsToPreload);
     }
-  }, [imagesKey]);
+  }, [slideCount]);
 
   // Notify parent on index change
   useEffect(() => {
@@ -75,21 +72,20 @@ const HeroSlideshow = memo(({
 
   // Main slideshow timer: runs only when in viewport, pauses when offscreen
   useEffect(() => {
-    if (activeImages.length <= 1 || !isInViewport) return;
+    if (slideCount <= 1 || !isInViewport) return;
 
     let initTimeout;
     const startRegularTimer = () => {
       clearInterval(timerRef.current);
       timerRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % activeImages.length);
+        setCurrentIndex((prev) => (prev + 1) % slideCount);
       }, intervalMs);
     };
 
     const firstDelay = Math.min(initialIntervalMs ?? 1500, intervalMs);
 
-    // Prompt transition for first slide so visitor doesn't wait through a long static pause
     initTimeout = setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % activeImages.length);
+      setCurrentIndex((prev) => (prev + 1) % slideCount);
       startRegularTimer();
     }, firstDelay);
 
@@ -109,28 +105,23 @@ const HeroSlideshow = memo(({
       clearInterval(timerRef.current);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [activeImages.length, intervalMs, isInViewport]);
+  }, [slideCount, intervalMs, isInViewport]);
 
-  // Safety check for empty image array
-  if (activeImages.length === 0) return null;
+  if (slideCount === 0) return null;
 
   return (
     <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
-      {activeImages.map((src, idx) => {
-        const isActive = idx === (currentIndex % activeImages.length);
-        const optimizedSrc = getOptimizedImageUrl(src);
+      {Array.from({ length: slideCount }).map((_, idx) => {
+        const isActive = idx === (currentIndex % slideCount);
+        const dSrc = desktopList[idx % desktopList.length];
+        const mSrc = mobileList[idx % mobileList.length] || dSrc;
 
-        const isHeroImg = typeof src === 'string' && (src.includes('/images/hero/hero_') || src.includes('/images/services/service_hero_'));
-        const mobileSrc = isHeroImg ? src.replace(/(_4k|_mobile|_thumb)?\.(webp|jpg|png)$/i, '_916.webp') : optimizedSrc;
+        const desktopOptimized = getOptimizedImageUrl(dSrc, 1600, 88);
+        const mobileOptimized = getOptimizedImageUrl(mSrc, 900, 88);
 
         return (
-          <motion.img
-            key={src}
-            src={typeof window !== 'undefined' && window.innerWidth < 768 ? mobileSrc : optimizedSrc}
-            alt="ESPACIO Hero Showcase"
-            decoding={idx === 0 ? 'sync' : 'async'}
-            loading="eager"
-            fetchPriority={idx === 0 ? "high" : "auto"}
+          <motion.picture
+            key={`hero-slide-${idx}`}
             initial={idx === 0 ? { opacity: 1 } : { opacity: 0 }}
             animate={{
               opacity: isActive ? 1 : 0,
@@ -144,15 +135,27 @@ const HeroSlideshow = memo(({
               inset: 0,
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
               zIndex: isActive ? 2 : 1,
               pointerEvents: 'none',
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden',
-              imageRendering: 'high-quality',
             }}
-          />
+          >
+            {mobileOptimized && (
+              <source media="(max-width: 1023px)" srcSet={mobileOptimized} />
+            )}
+            <img
+              src={desktopOptimized || mobileOptimized}
+              alt="ESPACIO Hero Showcase"
+              decoding={idx === 0 ? 'sync' : 'async'}
+              loading="eager"
+              fetchPriority={idx === 0 ? "high" : "auto"}
+              className="w-full h-full object-cover object-center select-none pointer-events-none"
+              style={{
+                imageRendering: 'high-quality',
+              }}
+            />
+          </motion.picture>
         );
       })}
 

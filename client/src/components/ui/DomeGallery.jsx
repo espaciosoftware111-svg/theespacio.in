@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
+import gsap from 'gsap';
 import './DomeGallery.css';
 
 const DEFAULT_IMAGES = [
@@ -388,11 +389,29 @@ export default function DomeGallery({
       if (!overlay) return;
       const refDiv = parent.querySelector('.item__image--reference');
       const originalPos = originalTilePositionRef.current;
+      // Reset 3D Make Way dispersion on sphere siblings
+      if (sphereRef.current) {
+        const allItems = sphereRef.current.querySelectorAll('.item');
+        allItems.forEach(sib => {
+          if (sib !== parent) {
+            gsap.to(sib, {
+              '--rot-y-delta': '0deg',
+              '--rot-x-delta': '0deg',
+              '--rot-z-delta': '0deg',
+              duration: 0.6,
+              ease: 'power3.out',
+              overwrite: 'auto'
+            });
+          }
+        });
+      }
+
       if (!originalPos) {
         overlay.remove();
         if (refDiv) refDiv.remove();
         parent.style.setProperty('--rot-y-delta', '0deg');
         parent.style.setProperty('--rot-x-delta', '0deg');
+        parent.style.setProperty('--rot-z-delta', '0deg');
         el.style.visibility = '';
         el.style.zIndex = 0;
         focusedElRef.current = null;
@@ -498,6 +517,39 @@ export default function DomeGallery({
       const rotX = -parentRot.rotateX - rotationRef.current.x;
       parent.style.setProperty('--rot-y-delta', `${rotY}deg`);
       parent.style.setProperty('--rot-x-delta', `${rotX}deg`);
+
+      // ── Make Way Grid Effect on the 3D Sphere ─────────────────────────
+      // Sibling tiles on the sphere disperse radially and tilt away from clicked card
+      if (sphereRef.current) {
+        const allItems = sphereRef.current.querySelectorAll('.item');
+        allItems.forEach(sib => {
+          if (sib === parent) return;
+          const sibX = getDataNumber(sib, 'offsetX', 0);
+          const sibY = getDataNumber(sib, 'offsetY', 0);
+          let diffX = sibX - offsetX;
+          if (diffX > segments) diffX -= segments * 2;
+          if (diffX < -segments) diffX += segments * 2;
+          const diffY = sibY - offsetY;
+          const dist = Math.hypot(diffX, diffY);
+          const maxDist = 8;
+          if (dist > 0 && dist <= maxDist) {
+            const factor = Math.pow((maxDist - dist) / maxDist, 1.25);
+            const angle = Math.atan2(diffY, diffX);
+            const spreadRotY = Math.cos(angle) * factor * 16;
+            const spreadRotX = Math.sin(angle) * factor * 12;
+            const rotZ = ((Math.random() - 0.5) * 14) * factor;
+            gsap.to(sib, {
+              '--rot-y-delta': `${spreadRotY}deg`,
+              '--rot-x-delta': `${spreadRotX}deg`,
+              '--rot-z-delta': `${rotZ}deg`,
+              duration: 0.75,
+              ease: 'expo.out',
+              overwrite: 'auto'
+            });
+          }
+        });
+      }
+
       const refDiv = document.createElement('div');
       refDiv.className = 'item__image item__image--reference';
       refDiv.style.opacity = '0';

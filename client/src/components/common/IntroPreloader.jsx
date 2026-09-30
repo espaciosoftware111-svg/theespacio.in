@@ -172,7 +172,7 @@ export const IntroPreloader = () => {
             scale: 1.02,
             transition: { duration: 0.65, ease: [0.77, 0, 0.175, 1] }
           }}
-          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black cursor-pointer"
+          className="fixed inset-0 z-[99999999] w-screen h-screen flex items-center justify-center select-none overflow-hidden bg-black cursor-pointer"
           onClick={handleScreenClick}
         >
           {/* Full-screen Edge-to-Edge Video */}
@@ -191,14 +191,6 @@ export const IntroPreloader = () => {
               onEnded={handleComplete}
               className="w-full h-full object-cover pointer-events-none"
             />
-          </div>
-
-          {/* Top Branding Hint */}
-          <div className="absolute top-6 left-6 z-30 pointer-events-none opacity-90 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-            <span className="text-white/90 font-sans text-[11px] sm:text-[12px] tracking-[0.25em] uppercase font-semibold">
-              ESPACIO • Turnkey Interiors
-            </span>
           </div>
 
           {/* Center "Tap to Play" ONLY appears if autoplay was blocked by browser policy */}

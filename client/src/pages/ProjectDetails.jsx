@@ -10,16 +10,16 @@ import { HeroCarousel } from '../components/ui/hero-carousel';
 import { getCMSData, STORAGE_KEYS, DEFAULT_PROJECTS } from '../utils/cmsStore';
 
 const IMAGE_FALLBACK_MAP = {
-  'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
-  'dimmu_01.webp': 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-',
-  'dimmu_06.webp': 'https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F',
-  'dimmu_03.webp': 'https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ',
-  'dimmu_10.webp': 'https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar',
-  'dimmu_09.webp': 'https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K',
-  'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
-  'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
-  'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
-  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-',
+  'dimmu_05.webp': '/images/projects/dimmu_residence/dimmu_05.webp',
+  'dimmu_01.webp': '/images/projects/dimmu_residence/dimmu_01.webp',
+  'dimmu_06.webp': '/images/projects/dimmu_residence/dimmu_06.webp',
+  'dimmu_03.webp': '/images/projects/dimmu_residence/dimmu_03.webp',
+  'dimmu_10.webp': '/images/projects/dimmu_residence/dimmu_10.webp',
+  'dimmu_09.webp': '/images/projects/dimmu_residence/dimmu_09.webp',
+  'dimmu_08.webp': '/images/projects/dimmu_residence/dimmu_08.webp',
+  'dimmu_02.webp': '/images/projects/dimmu_residence/dimmu_02.webp',
+  'dimmu_07.webp': '/images/projects/dimmu_residence/dimmu_07.webp',
+  'dimmu_04.webp': '/images/projects/dimmu_residence/dimmu_04.webp',
   'venkatesh_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
   'koteswara_gallery_1.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
   'koteswara_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
@@ -28,6 +28,19 @@ const IMAGE_FALLBACK_MAP = {
   'kokapet_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
   'rahul_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
   'kiran_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425214/hf_20260926_121425_c188d1e6-1db5-4729-b2a9-ad90bbddbf3a.png'
+};
+
+const GOOGLE_DRIVE_TO_LOCAL_MAP = {
+  '11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90': '/images/projects/dimmu_residence/dimmu_05.webp',
+  '1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-': '/images/projects/dimmu_residence/dimmu_01.webp',
+  '1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F': '/images/projects/dimmu_residence/dimmu_06.webp',
+  '1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ': '/images/projects/dimmu_residence/dimmu_03.webp',
+  '1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar': '/images/projects/dimmu_residence/dimmu_10.webp',
+  '1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K': '/images/projects/dimmu_residence/dimmu_09.webp',
+  '1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc': '/images/projects/dimmu_residence/dimmu_08.webp',
+  '12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA': '/images/projects/dimmu_residence/dimmu_02.webp',
+  '1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF': '/images/projects/dimmu_residence/dimmu_07.webp',
+  '1smFAVnKujLD_imWl--XMcNFas-faQXc-': '/images/projects/dimmu_residence/dimmu_04.webp'
 };
 
 const GENERAL_FALLBACK = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png';
@@ -42,9 +55,13 @@ const handleImgError = (e) => {
     target.src = IMAGE_FALLBACK_MAP[fname];
     return;
   }
-  if (!src.includes('res.cloudinary.com') && !src.includes('googleusercontent.com')) {
-    target.src = GENERAL_FALLBACK;
+  for (const [driveId, localPath] of Object.entries(GOOGLE_DRIVE_TO_LOCAL_MAP)) {
+    if (src.includes(driveId)) {
+      target.src = localPath;
+      return;
+    }
   }
+  target.src = GENERAL_FALLBACK;
 };
 
 
@@ -418,14 +435,273 @@ const ProjectDetails = () => {
 
   const rawP = project || findProjectMatch(getCMSData(STORAGE_KEYS.PROJECTS) || DEFAULT_PROJECTS, resolvedSlug, cleanSlug) || getMockFallback(slug);
 
-  // Compute clean deduplicated project
+  // Compute clean deduplicated project with guaranteed full hydration
   const p = useMemo(() => {
     const item = { ...rawP };
+
+    // 1. Match canonical default project entry to fill any missing/sparse fields
+    const defaultMatch = findProjectMatch(DEFAULT_PROJECTS, resolvedSlug, cleanSlug) ||
+                         findProjectMatch(DEFAULT_PROJECTS, item.slug, item._id) ||
+                         (item.title ? DEFAULT_PROJECTS.find(dp => dp.title?.toLowerCase() === item.title?.toLowerCase()) : null) ||
+                         DEFAULT_PROJECTS[0];
+
+    if (defaultMatch) {
+      if (!item.title || item.title === 'ESPACIO Project') item.title = defaultMatch.title;
+      if (!item.location) item.location = defaultMatch.location;
+      if (!item.area) item.area = defaultMatch.area;
+      if (!item.year) item.year = defaultMatch.year;
+      if (!item.style) item.style = defaultMatch.style;
+      if (!item.category) item.category = defaultMatch.category;
+      if (!item.configuration) item.configuration = defaultMatch.configuration;
+      if (!item.description) item.description = defaultMatch.description;
+      if (!item.story || !item.story.vision) item.story = defaultMatch.story;
+      if (!item.heroImage) item.heroImage = defaultMatch.heroImage;
+      if (!item.beforeImage) item.beforeImage = defaultMatch.beforeImage;
+      if (!item.afterImage) item.afterImage = defaultMatch.afterImage;
+      if (!Array.isArray(item.beforeImages) || item.beforeImages.length === 0) item.beforeImages = defaultMatch.beforeImages;
+      if (!Array.isArray(item.afterImages) || item.afterImages.length === 0) item.afterImages = defaultMatch.afterImages;
+      if (!Array.isArray(item.gallery) || item.gallery.length === 0) item.gallery = defaultMatch.gallery;
+      if (!item.testimonial && defaultMatch.testimonial) item.testimonial = defaultMatch.testimonial;
+      if (!item.testimonialName && defaultMatch.testimonialName) item.testimonialName = defaultMatch.testimonialName;
+      if (!item.testimonialProfession && defaultMatch.testimonialProfession) item.testimonialProfession = defaultMatch.testimonialProfession;
+      if (!item.testimonialText && defaultMatch.testimonialText) item.testimonialText = defaultMatch.testimonialText;
+      if (!item.testimonialRating && defaultMatch.testimonialRating) item.testimonialRating = defaultMatch.testimonialRating;
+    }
+
+    // 2. Specific canonical overrides for Project 9 (The Celestial Curve Villa / Dimmu Chachu Villa)
+    if (
+      item.slug === 'dimmu-chachu-luxury-villa' || 
+      item._id === 'proj_9_dimmu_chachu_residence' || 
+      item.title?.includes('Dimmu') || 
+      item.title?.includes('Celestial Curve') ||
+      cleanSlug === 'dimmu-chachu-luxury-villa' ||
+      cleanSlug === 'dimmu-chachu' ||
+      cleanSlug === 'dimmu' ||
+      resolvedSlug === 'dimmu-chachu-luxury-villa'
+    ) {
+      const DIMMU_PHOTOS = [
+        '/images/projects/dimmu_residence/dimmu_05.webp',
+        '/images/projects/dimmu_residence/dimmu_01.webp',
+        '/images/projects/dimmu_residence/dimmu_06.webp',
+        '/images/projects/dimmu_residence/dimmu_03.webp',
+        '/images/projects/dimmu_residence/dimmu_10.webp',
+        '/images/projects/dimmu_residence/dimmu_09.webp',
+        '/images/projects/dimmu_residence/dimmu_08.webp',
+        '/images/projects/dimmu_residence/dimmu_02.webp',
+        '/images/projects/dimmu_residence/dimmu_07.webp',
+        '/images/projects/dimmu_residence/dimmu_04.webp'
+      ];
+      item.gallery = DIMMU_PHOTOS;
+      item.location = 'Banjara Hills, Hyderabad';
+      item.area = '4,200 sq.ft.';
+      item.year = 2026;
+      item.style = 'Contemporary Luxury Duplex Villa';
+      item.configuration = 'Luxury Duplex Villa';
+      item.category = 'villa';
+      item.title = 'The Celestial Curve Villa';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png';
+      item.heroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+      item.story = DEFAULT_PROJECTS[8].story;
+      item.description = DEFAULT_PROJECTS[8].description;
+      item.testimonial = DEFAULT_PROJECTS[8].testimonial;
+      item.testimonialName = DEFAULT_PROJECTS[8].testimonialName;
+      item.testimonialProfession = DEFAULT_PROJECTS[8].testimonialProfession;
+      item.testimonialText = DEFAULT_PROJECTS[8].testimonialText;
+    }
+
+    // Specific canonical overrides for Project 8 (Kachiguda Fusion Duplex Villa)
+    if (
+      item.slug === 'kachiguda-fusion-duplex-villa' || 
+      item._id === 'proj_8_kachiguda_subbarao' || 
+      item.title?.includes('Kachiguda') || 
+      item.title?.includes('Subbarao') ||
+      cleanSlug === 'kachiguda-fusion-duplex-villa' ||
+      cleanSlug === 'kachiguda-duplex' ||
+      cleanSlug === 'kachiguda' ||
+      resolvedSlug === 'kachiguda-fusion-duplex-villa'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 7 (Gachibowli Minimalist Beige 2BHK)
+    if (
+      item.slug === 'gachibowli-minimalist-beige-2bhk' || 
+      item._id === 'proj_7_gachibowli_koteswara' || 
+      item.title?.includes('Gachibowli') || 
+      item.title?.includes('Koteswara') ||
+      cleanSlug === 'gachibowli-minimalist-beige-2bhk' || 
+      cleanSlug === 'gachibowli-minimalist' || 
+      cleanSlug === 'gachibowli' || 
+      resolvedSlug === 'gachibowli-minimalist-beige-2bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 6 (Kondapur Minimalist 2BHK / The Dusk Lounge)
+    if (
+      item.slug === 'kondapur-minimalist-2bhk' || 
+      item._id === 'proj_6_kondapur_venkatesh' || 
+      item.title?.includes('Kondapur') || 
+      item.title?.includes('Venkatesh') ||
+      item.title?.includes('Dusk Lounge') ||
+      cleanSlug === 'kondapur-minimalist-2bhk' || 
+      cleanSlug === 'kondapur-minimalist' || 
+      cleanSlug === 'kondapur' || 
+      resolvedSlug === 'kondapur-minimalist-2bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 5 (Gandipet Modern Retro 2BHK / The Panelled Muse)
+    if (
+      item.slug === 'gandipet-modern-retro-2bhk' || 
+      item._id === 'proj_5_gandipet_kiran' || 
+      item.title?.includes('Panelled') || 
+      item.title?.includes('Kiran') ||
+      cleanSlug === 'gandipet-modern-retro-2bhk' || 
+      cleanSlug === 'gandipet-modern-retro' || 
+      cleanSlug === 'gandipet' || 
+      resolvedSlug === 'gandipet-modern-retro-2bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 4 (Kokapet Urban 2BHK / The Ivory Retreat)
+    if (
+      item.slug === 'kokapet-urban-2bhk' || 
+      item._id === 'proj_4_kokapet_rahul' || 
+      item.title?.includes('Ivory') || 
+      item.title?.includes('Rahul') ||
+      cleanSlug === 'kokapet-urban-2bhk' || 
+      cleanSlug === 'kokapet-urban' || 
+      cleanSlug === 'the-ivory-retreat' || 
+      resolvedSlug === 'kokapet-urban-2bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 3 (Kokapet 2BHK / The Boucle Residence)
+    if (
+      item.slug === 'kokapet-2bhk' || 
+      item._id === 'proj_3_kokapet_nagesh' || 
+      item.title?.includes('Boucle') || 
+      item.title?.includes('Nagesh') ||
+      cleanSlug === 'kokapet-2bhk' || 
+      cleanSlug === 'kokapet' || 
+      cleanSlug === 'the-boucle-residence' || 
+      resolvedSlug === 'kokapet-2bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 2 (My Home Sayuk 3BHK / The Lattice Retreat)
+    if (
+      item.slug === 'my-home-sayuk-3bhk' || 
+      item._id === 'proj_2_my_home_sayuk' || 
+      item.title?.includes('Sayuk') || 
+      item.title?.includes('Lattice') ||
+      cleanSlug === 'my-home-sayuk-3bhk' || 
+      cleanSlug === 'my-home-sayuk' || 
+      cleanSlug === 'sayuk' || 
+      resolvedSlug === 'my-home-sayuk-3bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // Specific canonical overrides for Project 1 (Rajapushpa Provincia 3BHK / The Arcstone Residence)
+    if (
+      item.slug === 'rajapushpa-provincia-3bhk' || 
+      item._id === 'proj_1_rajapushpa_provincia' || 
+      item.title?.includes('Provincia') || 
+      item.title?.includes('Arcstone') ||
+      cleanSlug === 'rajapushpa-provincia-3bhk' || 
+      cleanSlug === 'rajapushpa' || 
+      cleanSlug === 'provincia' || 
+      resolvedSlug === 'rajapushpa-provincia-3bhk'
+    ) {
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
+      item.beforeImages = [item.beforeImage];
+      item.afterImages = [item.afterImage];
+    }
+
+    // 3. Guarantee that ANY project has complete location, story, before/after, and gallery
+    if (!item.location) item.location = 'Banjara Hills, Hyderabad';
+    if (!item.area) item.area = '2,850 sq.ft.';
+    if (!item.year) item.year = 2025;
+    if (!item.style) item.style = 'Contemporary Warm Minimalist';
+    if (!item.category) item.category = 'apartment';
+    if (!item.configuration) item.configuration = 'Luxury Residence';
+    if (!item.description) item.description = 'A monumental spatial optimization balancing material warmth, custom joinery, and tailored lighting environments.';
+    if (!item.story || !item.story.vision) {
+      item.story = {
+        vision: item.description || 'A monumental spatial optimization balancing material warmth, custom joinery, and tailored lighting environments.',
+        challenges: 'Integrating concealed cooling tracks and shadowline joints into custom panel transitions without visible fasteners.',
+        solutions: 'Custom laser-aligned sub-framing with acoustic isolation buffers and high-tolerance joinery.',
+        engineering: 'Engineered structural load-distribution anchors and integrated warm architectural cove lighting profiles.',
+        outcome: 'An impeccable turnkey interior showcase balancing functionality, bespoke craftsmanship, and effortless elegance.'
+      };
+    }
+    if (!item.beforeImage) item.beforeImage = '/images/spaces/spaces_hero_before.webp';
+    if (!item.afterImage) item.afterImage = item.heroImage || (Array.isArray(item.gallery) && item.gallery[0]) || '/images/company/3bhk_lux/open_hall.png';
+    if (!Array.isArray(item.beforeImages) || item.beforeImages.length === 0) item.beforeImages = [item.beforeImage];
+    if (!Array.isArray(item.afterImages) || item.afterImages.length === 0) item.afterImages = [item.afterImage];
+
+    // Guarantee gallery images are always present and never empty
+    if (!Array.isArray(item.gallery) || item.gallery.length === 0) {
+      const cat = item.category || 'villa';
+      const pool = unsplashPool[cat] || unsplashPool['villa'] || [];
+      item.gallery = pool.length > 0 ? pool : [
+        '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_7.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_9.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_11.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_1.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_5.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_3.webp',
+        '/images/projects/rajapushpa_provincia/rajapushpa_13.webp'
+      ];
+    } else {
+      // Map any Google Drive links to local WebP assets
+      item.gallery = item.gallery.map(img => {
+        if (typeof img === 'string') {
+          for (const [driveId, localPath] of Object.entries(GOOGLE_DRIVE_TO_LOCAL_MAP)) {
+            if (img.includes(driveId)) return localPath;
+          }
+        }
+        return img;
+      });
+    }
+
     if (Array.isArray(item.gallery)) {
       item.gallery = Array.from(new Set(item.gallery.filter(Boolean)));
     }
     return item;
-  }, [rawP]);
+  }, [rawP, cleanSlug, resolvedSlug]);
 
   // Resolve authentic client testimonial (always available)
   const clientReview = useMemo(() => {
@@ -475,7 +751,16 @@ const ProjectDetails = () => {
       const img = rawImages[idx];
       if (!img) continue;
       const fname = (img || '').split('/').pop()?.split('?')[0] || '';
-      const resolvedSrc = (fname.startsWith('dimmu_') && IMAGE_FALLBACK_MAP[fname]) ? IMAGE_FALLBACK_MAP[fname] : img;
+      let resolvedSrc = img;
+      for (const [driveId, localPath] of Object.entries(GOOGLE_DRIVE_TO_LOCAL_MAP)) {
+        if (typeof resolvedSrc === 'string' && resolvedSrc.includes(driveId)) {
+          resolvedSrc = localPath;
+          break;
+        }
+      }
+      if (fname.startsWith('dimmu_') && IMAGE_FALLBACK_MAP[fname]) {
+        resolvedSrc = IMAGE_FALLBACK_MAP[fname];
+      }
       
       if (seenSrcs.has(resolvedSrc) || seenSrcs.has(fname)) continue;
       seenSrcs.add(resolvedSrc);
@@ -487,9 +772,7 @@ const ProjectDetails = () => {
         ? `${parts.slice(0, Math.ceil(parts.length / 2)).join(' ')}\n${parts.slice(Math.ceil(parts.length / 2)).join(' ')}`
         : (roomName.includes('&') ? roomName.replace('&', '\n&') : `${roomName}\nSuite`);
 
-      const finalImage = resolvedSrc.startsWith('http') 
-        ? resolvedSrc 
-        : getOptimizedImageUrl(resolvedSrc, 1400, 85);
+      const finalImage = getOptimizedImageUrl(resolvedSrc, 1400, 85);
 
       uniqueItems.push({
         id: `${p?.slug || 'proj'}-${uniqueItems.length}`,
@@ -679,9 +962,47 @@ const ProjectDetails = () => {
 
       {/* ── 5. Before / After Transformation Slider ── */}
       {(() => {
-        const beforeImg = p.beforeImage || (Array.isArray(p.before_after) && p.before_after[0]?.before) || (Array.isArray(p.beforeImages) && p.beforeImages[0]) || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80';
-        const afterImg = p.afterImage || (Array.isArray(p.before_after) && p.before_after[0]?.after) || (Array.isArray(p.afterImages) && p.afterImages[0]) || p.heroImage || (Array.isArray(p.gallery) && p.gallery[0]);
-        if (!beforeImg || !afterImg) return null;
+        let beforeImg = p.beforeImage || (Array.isArray(p.before_after) && p.before_after[0]?.before) || (Array.isArray(p.beforeImages) && p.beforeImages[0]) || '/images/spaces/spaces_hero_before.webp';
+        let afterImg = p.afterImage || (Array.isArray(p.before_after) && p.before_after[0]?.after) || (Array.isArray(p.afterImages) && p.afterImages[0]) || p.heroImage || (Array.isArray(p.gallery) && p.gallery[0]) || '/images/company/3bhk_lux/open_hall.png';
+
+        if (p.slug === 'dimmu-chachu-luxury-villa' || p._id === 'proj_9_dimmu_chachu_residence' || p.order === 9 || cleanSlug === 'dimmu-chachu-luxury-villa' || cleanSlug === 'dimmu-chachu' || cleanSlug === 'dimmu' || resolvedSlug === 'dimmu-chachu-luxury-villa') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png';
+        }
+        if (p.slug === 'kachiguda-fusion-duplex-villa' || p._id === 'proj_8_kachiguda_subbarao' || p.order === 8 || cleanSlug === 'kachiguda-fusion-duplex-villa' || cleanSlug === 'kachiguda-duplex' || cleanSlug === 'kachiguda' || resolvedSlug === 'kachiguda-fusion-duplex-villa') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png';
+        }
+        if (p.slug === 'gachibowli-minimalist-beige-2bhk' || p._id === 'proj_7_gachibowli_koteswara' || p.order === 7 || cleanSlug === 'gachibowli-minimalist-beige-2bhk' || cleanSlug === 'gachibowli-minimalist' || cleanSlug === 'gachibowli' || resolvedSlug === 'gachibowli-minimalist-beige-2bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png';
+        }
+        if (p.slug === 'kondapur-minimalist-2bhk' || p._id === 'proj_6_kondapur_venkatesh' || p.order === 6 || cleanSlug === 'kondapur-minimalist-2bhk' || cleanSlug === 'kondapur-minimalist' || cleanSlug === 'kondapur' || resolvedSlug === 'kondapur-minimalist-2bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png';
+        }
+        if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran' || p.order === 5 || cleanSlug === 'gandipet-modern-retro-2bhk' || cleanSlug === 'gandipet-modern-retro' || cleanSlug === 'gandipet' || resolvedSlug === 'gandipet-modern-retro-2bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
+        }
+        if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul' || p.order === 4 || cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'kokapet-urban' || cleanSlug === 'the-ivory-retreat' || resolvedSlug === 'kokapet-urban-2bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png';
+        }
+        if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh' || p.order === 3 || cleanSlug === 'kokapet-2bhk' || cleanSlug === 'kokapet' || cleanSlug === 'the-boucle-residence' || resolvedSlug === 'kokapet-2bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png';
+        }
+        if (p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk' || p.order === 2 || cleanSlug === 'my-home-sayuk-3bhk' || cleanSlug === 'my-home-sayuk' || cleanSlug === 'sayuk' || resolvedSlug === 'my-home-sayuk-3bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png';
+        }
+        if (p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia' || p.order === 1 || cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'rajapushpa' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || resolvedSlug === 'rajapushpa-provincia-3bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
+        }
+        if (!beforeImg) beforeImg = '/images/spaces/spaces_hero_before.webp';
+        if (!afterImg) afterImg = '/images/company/3bhk_lux/open_hall.png';
 
         return (
           <section className="max-w-[1100px] mx-auto px-6 py-16">

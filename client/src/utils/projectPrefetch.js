@@ -90,7 +90,29 @@ export const PROJECT_SLUG_ALIASES = {
   'the-celestial-curve-villa': 'dimmu-chachu-luxury-villa',
   'celestial-curve-villa': 'dimmu-chachu-luxury-villa',
   'celestial': 'dimmu-chachu-luxury-villa',
-  'grand-3bhk-penthouse-luxe': 'dimmu-chachu-luxury-villa'
+  'grand-3bhk-penthouse-luxe': 'dimmu-chachu-luxury-villa',
+
+  // Project _id mappings
+  'proj_1_rajapushpa_provincia': 'rajapushpa-provincia-3bhk',
+  'proj_2_my_home_sayuk': 'my-home-sayuk-3bhk',
+  'proj_3_kokapet_nagesh': 'kokapet-2bhk',
+  'proj_4_kokapet_rahul': 'kokapet-urban-2bhk',
+  'proj_5_gandipet_kiran': 'gandipet-modern-retro-2bhk',
+  'proj_6_kondapur_venkatesh': 'kondapur-minimalist-2bhk',
+  'proj_7_gachibowli_koteswara': 'gachibowli-minimalist-beige-2bhk',
+  'proj_8_kachiguda_subbarao': 'kachiguda-fusion-duplex-villa',
+  'proj_9_dimmu_chachu_residence': 'dimmu-chachu-luxury-villa',
+
+  // Order number mappings
+  '1': 'rajapushpa-provincia-3bhk',
+  '2': 'my-home-sayuk-3bhk',
+  '3': 'kokapet-2bhk',
+  '4': 'kokapet-urban-2bhk',
+  '5': 'gandipet-modern-retro-2bhk',
+  '6': 'kondapur-minimalist-2bhk',
+  '7': 'gachibowli-minimalist-beige-2bhk',
+  '8': 'kachiguda-fusion-duplex-villa',
+  '9': 'dimmu-chachu-luxury-villa'
 };
 
 export const resolveCanonicalSlug = (rawSlug = '') => {

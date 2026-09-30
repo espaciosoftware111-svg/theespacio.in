@@ -332,246 +332,285 @@ const ProductDetails = () => {
       title: 'Acrylic Luxe Collection',
       category: 'acrylic_luxe',
       description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
-      heroImage: '/images/materials/luminous_grid_8313.jpg',
-      features: ['High-Gloss', 'Anti-Scratch', 'UV Stable', 'Seamless Finish'],
+      heroImage: '/images/materials/fluted_acrylic_azzurro.webp',
+      features: ['Ultra-Gloss Anti-Scratch', 'Concealed Track Fit', 'Zero Fingerprints', 'Class 1 Fire Safe', 'UV Protected'],
       specifications: [
         { label: 'Sheet Size', value: '2440mm × 1220mm × 2mm' },
-        { label: 'Surface', value: 'Hard-coated Acrylic' },
-        { label: 'Finishes', value: 'Luminous Grid (8313), Crema Imperiale (8302), Elysian Vein (8303), Vector Grid (8306), Crema Radiance (8309), Sylvan Gold (8314)' }
+        { label: 'Surface', value: 'Hard-coated Ultra-Gloss Acrylic' },
+        { label: 'Finishes', value: 'Azzurro Blue (2104), Luminous Grid (8313), Crema Imperiale (8302), Elysian Vein (8303), Vector Grid (8306), Crema Radiance (8309)' },
+        { label: 'Material Code', value: 'MAT-ACR-01' }
       ],
-      totalShades: 23,
+      totalShades: 18,
       previewLimit: 6,
       previewPages: [
-        '/images/materials/luminous_grid_8313.jpg',
-        '/images/materials/crema_imperiale_8302.jpg',
-        '/images/materials/elysian_vein_8303.jpg',
-        '/images/materials/vector_grid_8306.jpg',
-        '/images/materials/crema_radiance_8309.jpg',
-        '/images/materials/sylvan_gold_8314.jpg'
+        '/images/materials/fluted_acrylic_azzurro.webp',
+        '/images/materials/luminous_grid_8313.webp',
+        '/images/materials/crema_imperiale_8302.webp',
+        '/images/materials/elysian_vein_8303.webp',
+        '/images/materials/vector_grid_8306.webp',
+        '/images/materials/crema_radiance_8309.webp'
       ],
       gallery: [
-        '/images/materials/luminous_grid_8313.jpg',
-        '/images/materials/crema_imperiale_8302.jpg',
-        '/images/materials/elysian_vein_8303.jpg',
-        '/images/materials/vector_grid_8306.jpg',
-        '/images/materials/crema_radiance_8309.jpg',
-        '/images/materials/sylvan_gold_8314.jpg'
+        '/images/materials/fluted_acrylic_azzurro.webp',
+        '/images/materials/luminous_grid_8313.webp',
+        '/images/materials/crema_imperiale_8302.webp',
+        '/images/materials/elysian_vein_8303.webp',
+        '/images/materials/vector_grid_8306.webp',
+        '/images/materials/crema_radiance_8309.webp'
       ],
-      applications: ['Modular Kitchen Shutters', 'Wardrobe Sliding Doors', 'Bathroom Vanity']
-    },
-    'fluted-pvc-luxe': {
-      title: 'Fluted PVC Luxe Collection',
-      category: 'fluted_pvc',
-      description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
-      heroImage: '/images/materials/irish.png',
-      features: ['Waterproof', 'Easy Install', 'Flame Retardant', 'Anti-Scratch'],
-      specifications: [
-        { label: 'Standard Dimensions', value: '2900mm × 122mm × 12mm' },
-        { label: 'Material Composition', value: 'Polymer PVC Resin' }
-      ],
-      previewPages: [
-        '/images/materials/irish.png',
-        '/images/materials/azzurro.png',
-        '/images/materials/giallo.png',
-        '/images/materials/marbo.png',
-        '/images/materials/florida.png',
-        '/images/materials/menta.png'
-      ],
-      gallery: [
-        '/images/materials/irish.png',
-        '/images/materials/azzurro.png',
-        '/images/materials/giallo.png',
-        '/images/materials/marbo.png'
-      ],
-      applications: ['Living Room Accent Walls', 'TV Consoles & Partitions', 'Powder Room Vanity Backdrops']
+      applications: ['Modular Kitchen Shutters', 'Wardrobe Sliding Doors', 'Bathroom Vanity Units', 'Luxe Elevation Panels']
     },
     'digital-korean-poly-granite': {
       title: 'Digital Korean Poly Granite',
       category: 'poly_granite',
       description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
-      heroImage: '/images/materials/florida.png',
-      features: ['Scratch-Proof', 'Marble Finish', 'High-Gloss', 'Zero Seams'],
+      heroImage: '/images/materials/fluted_acrylic_gracia.jpg',
+      features: ['High-Gloss Stone Overlay', 'Scratch & Heat Resistant', 'Italian Marble Veins', 'Direct Wall Mount', 'Zero Moisture Seepage'],
       specifications: [
         { label: 'Sheet Size', value: '2440mm × 1220mm × 3mm' },
-        { label: 'Gloss Rating', value: '95+ GU' }
+        { label: 'Gloss Rating', value: '95+ GU Mirror Polish' },
+        { label: 'Surface Finish', value: 'Crema Imperiale (8302), Elysian Vein (8303), Gracia Vein, Linia Gold' },
+        { label: 'Material Code', value: 'MAT-GNT-02' }
       ],
+      totalShades: 16,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/florida.png',
-        '/images/materials/linia.png',
-        '/images/materials/florida_vanity.png',
-        '/images/materials/gracia.png',
-        '/images/materials/marbo.png',
-        '/images/materials/giallo_dining.png'
+        '/images/materials/fluted_acrylic_gracia.jpg',
+        '/images/materials/crema_imperiale_8302.webp',
+        '/images/materials/elysian_vein_8303.webp',
+        '/images/materials/crema_radiance_8309.webp',
+        '/images/materials/gracia.webp',
+        '/images/materials/linia.webp'
       ],
       gallery: [
-        '/images/materials/florida.png',
-        '/images/materials/linia.png',
-        '/images/materials/florida_vanity.png'
+        '/images/materials/fluted_acrylic_gracia.jpg',
+        '/images/materials/crema_imperiale_8302.webp',
+        '/images/materials/elysian_vein_8303.webp',
+        '/images/materials/crema_radiance_8309.webp',
+        '/images/materials/gracia.webp',
+        '/images/materials/linia.webp'
       ],
-      applications: ['TV Unit Backdrops', 'Dining Room Accent Walls', 'Lobby Elevations']
+      applications: ['Living Room TV Unit Elevation', 'Dining Room Feature Wall', 'Lobby & Reception Backdrop', 'Foyer Accent']
     },
     'charcoal-panels-luxe': {
       title: 'Charcoal Panels Luxe Collection',
       category: 'charcoal_panels',
       description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
-      heroImage: '/images/materials/charcoal_luxe_4015.jpg',
-      features: ['Air Purifying', 'Premium Texture', 'Sound Dampening'],
+      heroImage: '/images/materials/charcoal_luxe_4018_4017_4016.webp',
+      features: ['Active Charcoal Core', 'VOC Air Purification', 'Matte Deep Texture', 'Zero Warping', 'Acoustic Isolation'],
       specifications: [
         { label: 'Dimensions', value: '2900mm × 120mm × 12mm' },
-        { label: 'Finishes', value: 'LUXE Edition 4015, Tone 4009/4011, Tone 4001/4003, LUXE Edition 6015, Tone 4018/4017/4016, Tone 6083/6082/6081' }
+        { label: 'Finishes', value: 'Tone 4018/4017/4016, Edition 4015, Tone 4009/4011, Tone 4001/4003, Edition 6015, Tone 6083/6082/6081' },
+        { label: 'Material Code', value: 'MAT-CHR-03' }
       ],
+      totalShades: 18,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/charcoal_luxe_4015.jpg',
-        '/images/materials/charcoal_luxe_4009_4011.jpg',
-        '/images/materials/charcoal_luxe_4001_4003.jpg',
-        '/images/materials/charcoal_luxe_6015.jpg',
-        '/images/materials/charcoal_luxe_4018_4017_4016.jpg',
-        '/images/materials/charcoal_luxe_6083_6082_6081.jpg'
+        '/images/materials/charcoal_luxe_4018_4017_4016.webp',
+        '/images/materials/charcoal_luxe_4015.webp',
+        '/images/materials/charcoal_luxe_4009_4011.webp',
+        '/images/materials/charcoal_luxe_4001_4003.webp',
+        '/images/materials/charcoal_luxe_6015.webp',
+        '/images/materials/charcoal_luxe_6083_6082_6081.webp'
       ],
       gallery: [
-        '/images/materials/charcoal_luxe_4015.jpg',
-        '/images/materials/charcoal_luxe_4009_4011.jpg',
-        '/images/materials/charcoal_luxe_4001_4003.jpg',
-        '/images/materials/charcoal_luxe_6015.jpg',
-        '/images/materials/charcoal_luxe_4018_4017_4016.jpg',
-        '/images/materials/charcoal_luxe_6083_6082_6081.jpg'
+        '/images/materials/charcoal_luxe_4018_4017_4016.webp',
+        '/images/materials/charcoal_luxe_4015.webp',
+        '/images/materials/charcoal_luxe_4009_4011.webp',
+        '/images/materials/charcoal_luxe_4001_4003.webp',
+        '/images/materials/charcoal_luxe_6015.webp',
+        '/images/materials/charcoal_luxe_6083_6082_6081.webp'
       ],
-      applications: ['Home Theatre Acoustic Wall', 'Master Bedroom Headboard', 'Executive Lounge']
+      applications: ['Home Theatre Acoustic Wall', 'Master Bedroom Headboard', 'Executive Lounge Focus Wall', 'Conference Room Cladding']
     },
-    'charcoal-panels-luxe-1': {
-      title: 'Espacio Charcoal Panels Luxe Collection (1)',
-      category: 'charcoal_panels_1',
-      description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-      heroImage: '/images/materials/charcoal_luxe_1_6015.jpg',
-      features: ['Premium Texture', 'Acoustic Relief', 'Air Purifying'],
+    'fluted-pvc-luxe': {
+      title: 'Fluted PVC Luxe Collection',
+      category: 'fluted_pvc',
+      description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
+      heroImage: '/images/materials/irish.webp',
+      features: ['Waterproof PVC Core', 'Easy Tongue & Groove', 'Flame Retardant', 'Lightweight Modular', 'Anti-Scratch'],
       specifications: [
-        { label: 'Dimensions', value: '2900mm × 120mm × 12mm' },
-        { label: 'Finishes', value: 'LUXE Edition 6015, Tone 6085/4009, Tone 5005/5006/5002, Tone 6049/6052/6050/6051, Tone 4001/4003' }
+        { label: 'Standard Dimensions', value: '2900mm × 122mm × 12mm' },
+        { label: 'Material Composition', value: 'High-Density Polymer PVC Resin' },
+        { label: 'Finishes', value: 'Irish Off-White, Tone 1201/1204, Tone 1202/1206, Azzurro Blue, Marbo Beige, Giallo Slate' },
+        { label: 'Material Code', value: 'MAT-PVC-04' }
       ],
+      totalShades: 16,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/charcoal_luxe_1_6015.jpg',
-        '/images/materials/charcoal_luxe_1_6085_4009.jpg',
-        '/images/materials/charcoal_luxe_1_5005_5006_5002.jpg',
-        '/images/materials/charcoal_luxe_1_6049_6052_6050_6051.jpg',
-        '/images/materials/charcoal_luxe_1_4001_4003.jpg',
-        '/images/materials/charcoal_luxe_1_6015.jpg'
+        '/images/materials/irish.webp',
+        '/images/materials/pvc_luxe_1201_1204_1203.webp',
+        '/images/materials/pvc_luxe_1202_1206_2013.webp',
+        '/images/materials/azzurro.webp',
+        '/images/materials/marbo.webp',
+        '/images/materials/giallo.webp'
       ],
       gallery: [
-        '/images/materials/charcoal_luxe_1_6015.jpg',
-        '/images/materials/charcoal_luxe_1_6085_4009.jpg',
-        '/images/materials/charcoal_luxe_1_5005_5006_5002.jpg',
-        '/images/materials/charcoal_luxe_1_6049_6052_6050_6051.jpg',
-        '/images/materials/charcoal_luxe_1_4001_4003.jpg'
+        '/images/materials/irish.webp',
+        '/images/materials/pvc_luxe_1201_1204_1203.webp',
+        '/images/materials/pvc_luxe_1202_1206_2013.webp',
+        '/images/materials/azzurro.webp',
+        '/images/materials/marbo.webp',
+        '/images/materials/giallo.webp'
       ],
-      applications: ['Master Bedroom Headboard', 'Executive Lounge']
+      applications: ['Living Room Accent Walls', 'TV Consoles & Partitions', 'Powder Room Vanity Backdrops', 'Corridor Cladding']
     },
     'lvt-luxe-flooring': {
       title: 'LVT Luxe Flooring',
       category: 'lvt_flooring',
       description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
-      heroImage: '/images/materials/giallo_dining.png',
-      features: ['Durable', 'Water-Resistant', 'Easy Install', 'Noise Reduction'],
+      heroImage: '/images/materials/fluted_acrylic_giallo_dining.jpg',
+      features: ['Commercial Grade Wear Layer', '100% Waterproof', 'Quiet Acoustic Underlay', 'Click-Lock System', 'Scratch Resistant'],
       specifications: [
-        { label: 'Plank Size', value: '1220mm × 180mm × 5mm' }
+        { label: 'Plank Size', value: '1220mm × 180mm × 5mm' },
+        { label: 'Wear Layer', value: '0.55mm Heavy Commercial' },
+        { label: 'Finishes', value: 'Scandinavian Oak, Smoked Walnut, Ashen Gray, Slate Marble' },
+        { label: 'Material Code', value: 'MAT-FLR-05' }
       ],
+      totalShades: 14,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/giallo_dining.png',
-        '/images/materials/giallo.png',
-        '/images/materials/marbo.png',
-        '/images/materials/florida.png',
-        '/images/materials/menta.png',
-        '/images/materials/linia.png'
+        '/images/materials/fluted_acrylic_giallo_dining.jpg',
+        '/images/materials/giallo.webp',
+        '/images/materials/ash.webp',
+        '/images/materials/marbo.webp',
+        '/images/materials/menta.webp',
+        '/images/materials/linia.webp'
       ],
       gallery: [
-        '/images/materials/giallo_dining.png',
-        '/images/materials/giallo.png'
+        '/images/materials/fluted_acrylic_giallo_dining.jpg',
+        '/images/materials/giallo.webp',
+        '/images/materials/ash.webp',
+        '/images/materials/marbo.webp',
+        '/images/materials/menta.webp',
+        '/images/materials/linia.webp'
       ],
-      applications: ['Living Room Flooring', 'Bedroom Flooring', 'Office Workspace']
+      applications: ['Living Room Flooring', 'Master Bedroom Flooring', 'Office Workspace', 'Boutique Retail']
+    },
+    'fluted-acrylic-luxe': {
+      title: 'Fluted Acrylic Luxe Collection',
+      category: 'fluted_acrylic',
+      description: 'Dynamic fluted acrylic panels creating sophisticated shadow play and backlit radiance.',
+      heroImage: '/images/materials/fluted_acrylic_florida.jpg',
+      features: ['3D Relief Grooves', 'Zero Moisture Absorption', 'Backlit Ready', 'UV Protected', 'Anti-Scratch'],
+      specifications: [
+        { label: 'Standard Dimensions', value: '2900mm × 122mm × 12mm' },
+        { label: 'Core Weight', value: '1.8 kg/m' },
+        { label: 'Finishes', value: 'Florida Gold Marble, Giallo Pale (Desk), Azzurro Blue, Giallo Dining, Gracia White, Irish' },
+        { label: 'Material Code', value: 'MAT-ACR-06' }
+      ],
+      totalShades: 16,
+      previewLimit: 6,
+      previewPages: [
+        '/images/materials/fluted_acrylic_florida.jpg',
+        '/images/materials/fluted_acrylic_giallo_desk.jpg',
+        '/images/materials/fluted_acrylic_azzurro.webp',
+        '/images/materials/fluted_acrylic_giallo_dining.jpg',
+        '/images/materials/fluted_acrylic_gracia.jpg',
+        '/images/materials/irish.webp'
+      ],
+      gallery: [
+        '/images/materials/fluted_acrylic_florida.jpg',
+        '/images/materials/fluted_acrylic_giallo_desk.jpg',
+        '/images/materials/fluted_acrylic_azzurro.webp',
+        '/images/materials/fluted_acrylic_giallo_dining.jpg',
+        '/images/materials/fluted_acrylic_gracia.jpg',
+        '/images/materials/irish.webp'
+      ],
+      applications: ['Master Suite Headboards', 'Living Room Accent Walls', 'TV Consoles & Partitions', 'Powder Room Vanity Backdrops']
     },
     'pvc-luxe-collection': {
       title: 'PVC Luxe Collection',
       category: 'pvc_luxe',
       description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
-      heroImage: '/images/materials/pvc_luxe_5003_5004.jpg',
-      features: ['Lightweight', 'Fire Retardant', 'Waterproof'],
+      heroImage: '/images/materials/pvc_luxe_5003_5004.webp',
+      features: ['Lightweight Construction', 'Fire Retardant B1', 'Moisture Proof', 'Dual Slat Profile', 'Click-lock Grid'],
       specifications: [
         { label: 'Dimensions', value: '3000mm × 200mm × 8mm' },
-        { label: 'Finishes', value: 'Tone 5003/5004, Tone 4010/4013/2007, Tone 1202/1206/2013, Tone 1201/1204/1203, Tone 2003/1205/3012' }
+        { label: 'Finishes', value: 'Tone 5003/5004, Tone 4010/4013/2007, Tone 1202/1206/2013, Tone 1201/1204/1203, Tone 2003/1205/3012' },
+        { label: 'Material Code', value: 'MAT-PVC-07' }
       ],
+      totalShades: 16,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/pvc_luxe_5003_5004.jpg',
-        '/images/materials/pvc_luxe_4010_4013_2007.jpg',
-        '/images/materials/pvc_luxe_1202_1206_2013.jpg',
-        '/images/materials/pvc_luxe_1201_1204_1203.jpg',
-        '/images/materials/pvc_luxe_2003_1205_3012.jpg',
-        '/images/materials/pvc_luxe_5003_5004.jpg'
+        '/images/materials/pvc_luxe_5003_5004.webp',
+        '/images/materials/pvc_luxe_4010_4013_2007.webp',
+        '/images/materials/pvc_luxe_1202_1206_2013.webp',
+        '/images/materials/pvc_luxe_1201_1204_1203.webp',
+        '/images/materials/pvc_luxe_2003_1205_3012.webp',
+        '/images/materials/irish_gen2.webp'
       ],
       gallery: [
-        '/images/materials/pvc_luxe_5003_5004.jpg',
-        '/images/materials/pvc_luxe_4010_4013_2007.jpg',
-        '/images/materials/pvc_luxe_1202_1206_2013.jpg',
-        '/images/materials/pvc_luxe_1201_1204_1203.jpg',
-        '/images/materials/pvc_luxe_2003_1205_3012.jpg'
+        '/images/materials/pvc_luxe_5003_5004.webp',
+        '/images/materials/pvc_luxe_4010_4013_2007.webp',
+        '/images/materials/pvc_luxe_1202_1206_2013.webp',
+        '/images/materials/pvc_luxe_1201_1204_1203.webp',
+        '/images/materials/pvc_luxe_2003_1205_3012.webp',
+        '/images/materials/irish_gen2.webp'
       ],
-      applications: ['Ceiling Panels', 'Wall Cladding', 'Reception Desk Backdrops']
+      applications: ['False Ceiling Panels', 'Cove Lighting Integration', 'Wall Cladding', 'Reception Desk Backdrops']
     },
     'wpc-luxe-collection': {
       title: 'WPC Luxe Collection',
       category: 'wpc_luxe',
       description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
-      heroImage: '/images/materials/wpc_luxe_1701_1606.jpg',
-      features: ['100% Waterproof', 'Termite Proof', 'UV Resistant'],
+      heroImage: '/images/materials/wpc_luxe_1701_1606.webp',
+      features: ['Solid Wood Composite', '100% Termite Proof', 'Acoustic Sound Baffle', '10 Year Warranty', 'UV Resistant'],
       specifications: [
         { label: 'Dimensions', value: '2900mm × 160mm × 24mm' },
-        { label: 'Finishes', value: 'Tone 1701/1606, Tone 1718/1717/1701, Tone 1401/1410/1411, Tone 1503/1502/1504, Tone 1506/1505' }
+        { label: 'Finishes', value: 'Tone 1701/1606, Tone 1718/1717/1701, Tone 1401/1410/1411, Tone 1503/1502/1504, Tone 1506/1505' },
+        { label: 'Material Code', value: 'MAT-WPC-08' }
       ],
+      totalShades: 18,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/wpc_luxe_1701_1606.jpg',
-        '/images/materials/wpc_luxe_1718_1717_1701.jpg',
-        '/images/materials/wpc_luxe_1401_1410_1411.jpg',
-        '/images/materials/wpc_luxe_1503_1502_1504.jpg',
-        '/images/materials/wpc_luxe_1506_1505.jpg',
-        '/images/materials/wpc_luxe_1701_1606.jpg'
+        '/images/materials/wpc_luxe_1701_1606.webp',
+        '/images/materials/wpc_luxe_1718_1717_1701.webp',
+        '/images/materials/wpc_luxe_1401_1410_1411.webp',
+        '/images/materials/wpc_luxe_1503_1502_1504.webp',
+        '/images/materials/wpc_luxe_1506_1505.webp',
+        '/images/materials/wpc_panels.webp'
       ],
       gallery: [
-        '/images/materials/wpc_luxe_1701_1606.jpg',
-        '/images/materials/wpc_luxe_1718_1717_1701.jpg',
-        '/images/materials/wpc_luxe_1401_1410_1411.jpg',
-        '/images/materials/wpc_luxe_1503_1502_1504.jpg',
-        '/images/materials/wpc_luxe_1506_1505.jpg'
+        '/images/materials/wpc_luxe_1701_1606.webp',
+        '/images/materials/wpc_luxe_1718_1717_1701.webp',
+        '/images/materials/wpc_luxe_1401_1410_1411.webp',
+        '/images/materials/wpc_luxe_1503_1502_1504.webp',
+        '/images/materials/wpc_luxe_1506_1505.webp',
+        '/images/materials/wpc_panels.webp'
       ],
-      applications: ['Kitchen Shutters', 'Living Room Walls', 'Bedroom Headboards']
+      applications: ['Kitchen Shutters', 'Living Room Walls', 'Bedroom Headboards', 'Balcony Feature Walls']
     },
-
-    'fluted-acrylic-luxe': {
-      title: 'Fluted Acrylic Luxe Panels',
-      category: 'fluted_panels',
-      description: 'Premium NX-GEN 1 & 2 fluted acrylic wall panels with rich relief lines, contemporary matte, and gold-veined marble textures.',
-      heroImage: '/images/materials/fluted_acrylic_florida.jpg',
-      features: ['NX-GEN 1 & 2', 'Curated Shades', '100% Waterproof', 'Anti-Scratch', 'Flame Retardant'],
+    'charcoal-panels-luxe-1': {
+      title: 'Espacio Charcoal Panels Luxe Collection (1)',
+      category: 'charcoal_panels_1',
+      description: 'Additional selection of richly textured wall panels infused with active charcoal.',
+      heroImage: '/images/materials/charcoal_luxe_1_6015.webp',
+      features: ['Active Charcoal Core', 'Architectural Deep Relief', 'Acoustic Isolation', 'Class A Fire Safety'],
       specifications: [
-        { label: 'Standard Dimensions', value: '2900mm × 122mm × 12mm' },
-        { label: 'Core Weight', value: '1.8 kg/m' },
-        { label: 'Material Composition', value: 'Polymer Acrylic Resin' },
-        { label: 'Finishes', value: 'NX-GEN 2 Florida, NX-GEN 1 Giallo (Desk), NX-GEN 1 Azzurro, NX-GEN 1 Giallo (Dining), NX-GEN 1 Gracia' },
-        { label: 'Installation Type', value: 'Interlocking Tongue & Groove' }
+        { label: 'Dimensions', value: '2900mm × 120mm × 12mm' },
+        { label: 'Finishes', value: 'LUXE Edition 6015, Tone 6085/4009, Tone 5005/5006/5002, Tone 6049/6052/6050/6051, Tone 4001/4003' },
+        { label: 'Material Code', value: 'MAT-CHR-09' }
       ],
+      totalShades: 16,
+      previewLimit: 6,
       previewPages: [
-        '/images/materials/fluted_acrylic_florida.jpg',
-        '/images/materials/fluted_acrylic_giallo_desk.jpg',
-        '/images/materials/fluted_acrylic_azzurro.jpg',
-        '/images/materials/fluted_acrylic_giallo_dining.jpg',
-        '/images/materials/fluted_acrylic_gracia.jpg',
-        '/images/materials/fluted_acrylic_florida.jpg'
+        '/images/materials/charcoal_luxe_1_6015.webp',
+        '/images/materials/charcoal_luxe_1_6085_4009.webp',
+        '/images/materials/charcoal_luxe_1_5005_5006_5002.webp',
+        '/images/materials/charcoal_luxe_1_6049_6052_6050_6051.webp',
+        '/images/materials/charcoal_luxe_1_4001_4003.webp',
+        '/images/materials/charcoal_luxe_4018_4017_4016.webp'
       ],
       gallery: [
-        '/images/materials/fluted_acrylic_florida.jpg',
-        '/images/materials/fluted_acrylic_giallo_desk.jpg',
-        '/images/materials/fluted_acrylic_azzurro.jpg',
-        '/images/materials/fluted_acrylic_giallo_dining.jpg',
-        '/images/materials/fluted_acrylic_gracia.jpg'
+        '/images/materials/charcoal_luxe_1_6015.webp',
+        '/images/materials/charcoal_luxe_1_6085_4009.webp',
+        '/images/materials/charcoal_luxe_1_5005_5006_5002.webp',
+        '/images/materials/charcoal_luxe_1_6049_6052_6050_6051.webp',
+        '/images/materials/charcoal_luxe_1_4001_4003.webp',
+        '/images/materials/charcoal_luxe_4018_4017_4016.webp'
       ],
-      applications: ['Master Suite Headboards', 'Living Room Accent Walls', 'TV Consoles & Partitions', 'Powder Room Vanity Backdrops']
+      applications: ['Master Bedroom Headboard', 'Living Room Accent Feature', 'Executive Lounge', 'Study Wall']
     },
     '3d-panels': {
       title: '3D Wall Panels',
@@ -853,59 +892,66 @@ const ProductDetails = () => {
   // Combine all CMS uploaded pages and fallback catalog pages safely
   const sourcePages = cmsCustomPages.length > 0 ? cmsCustomPages : fallbackPages;
 
-  // Always ensure at least 6 unlocked and 6 locked = 12 total shades minimum
-  const totalShades = Math.max(12, Number(p.totalShades) || 12, previewLimit + 6);
-
-  // Build full list of pages for all totalShades
-  let pagesList = [...sourcePages];
-  if (pagesList.length < totalShades) {
-    fullCatalogPool.forEach(poolImg => {
-      if (pagesList.length < totalShades) {
-        const alreadyHas = pagesList.some(item => {
-          const u = typeof item === 'string' ? item : (item?.url || item?.src);
-          return u === poolImg;
-        });
-        if (!alreadyHas) {
-          pagesList.push(poolImg);
-        }
-      }
-    });
-  }
-  while (pagesList.length < totalShades) {
-    pagesList.push(pagesList[pagesList.length % (sourcePages.length || 1)]);
-  }
-
-  const rawPages = pagesList.slice(0, totalShades);
-  
-  // Separate into unlocked pages and locked pages
-  const unlockedPages = [];
-  const lockedPages = [];
-
-  rawPages.forEach((pageImg, idx) => {
+  // 1. Guaranteed exactly 6 unlocked pages (Pages 1 to 6)
+  const finalUnlocked = [];
+  sourcePages.forEach((pageImg, idx) => {
     const isExplicitlyLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
       ? pageImg.isLocked 
       : null;
-    const isLocked = isExplicitlyLocked !== null ? isExplicitlyLocked : (idx >= previewLimit);
-    
-    if (isLocked) {
-      lockedPages.push({ pageImg, originalIdx: idx, isLocked: true });
-    } else {
-      unlockedPages.push({ pageImg, originalIdx: idx, isLocked: false });
+    const isLocked = isExplicitlyLocked !== null ? isExplicitlyLocked : (idx >= 6);
+    if (!isLocked && finalUnlocked.length < 6) {
+      finalUnlocked.push({ pageImg, originalIdx: finalUnlocked.length, isLocked: false, hideOnMobile: false });
     }
   });
 
-  // Guarantee that at least 6 locked teaser pages are displayed
-  if (lockedPages.length === 0) {
-    for (let i = 0; i < 6; i++) {
-      const fallbackLockedImg = fullCatalogPool[(previewLimit + i) % fullCatalogPool.length];
-      lockedPages.push({ pageImg: fallbackLockedImg, originalIdx: previewLimit + i, isLocked: true });
-    }
+  // If fewer than 6 unlocked pages, fill up to 6 from catalog pool
+  let unlockPoolIdx = 0;
+  while (finalUnlocked.length < 6) {
+    const fallbackImg = fullCatalogPool[unlockPoolIdx % fullCatalogPool.length];
+    finalUnlocked.push({ pageImg: fallbackImg, originalIdx: finalUnlocked.length, isLocked: false, hideOnMobile: false });
+    unlockPoolIdx++;
   }
 
-  // Display all unlocked preview pages + at least 6 locked teaser pages (total 12)
-  const lockedTeaserCount = Math.max(6, totalShades - unlockedPages.length);
-  const cappedLockedPages = lockedPages.slice(0, lockedTeaserCount);
-  const allPages = [...unlockedPages, ...cappedLockedPages];
+  // 2. Guaranteed exactly 6 locked pages on desktop (Pages 7 to 12), with only 4 visible on mobile
+  const finalLocked = [];
+  sourcePages.forEach((pageImg, idx) => {
+    const isExplicitlyLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
+      ? pageImg.isLocked 
+      : null;
+    const isLocked = isExplicitlyLocked !== null ? isExplicitlyLocked : (idx >= 6);
+    if (isLocked && finalLocked.length < 6) {
+      const lockedPos = finalLocked.length; // 0, 1, 2, 3, 4, 5
+      finalLocked.push({
+        pageImg,
+        originalIdx: 6 + lockedPos,
+        isLocked: true,
+        hideOnMobile: lockedPos >= 4 // 5th and 6th locked item only visible on desktop (sm: and up)
+      });
+    }
+  });
+
+  // If fewer than 6 locked pages, fill up to 6 from catalog pool with diverse teaser textures
+  while (finalLocked.length < 6) {
+    const lockedPos = finalLocked.length; // 0, 1, 2, 3, 4, 5
+    const fallbackImg = fullCatalogPool[(6 + lockedPos) % fullCatalogPool.length];
+    finalLocked.push({
+      pageImg: fallbackImg,
+      originalIdx: 6 + lockedPos,
+      isLocked: true,
+      hideOnMobile: lockedPos >= 4 // 5th and 6th locked item only visible on desktop (sm: and up)
+    });
+  }
+
+  const allPages = [...finalUnlocked, ...finalLocked];
+  const unlockedPages = finalUnlocked;
+  const totalShades = 12;
+
+  const unlockedImageUrls = useMemo(() => {
+    return unlockedPages.map((item) => {
+      const pageImg = item.pageImg || item;
+      return typeof pageImg === 'string' ? pageImg : (pageImg.url || pageImg.src || pageImg);
+    });
+  }, [unlockedPages]);
 
   return (
     <div className="bg-cream min-h-screen pb-24">
@@ -1020,7 +1066,7 @@ const ProductDetails = () => {
               <h2 className="font-editorial text-3xl font-bold text-charcoal">{p.catalogueTitle || 'Catalogue Preview'}</h2>
             </div>
             <span className="bg-charcoal text-cream font-sans text-[11px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full">
-              {unlockedPages.length} Unlocked / {totalShades} Total Shades
+              6 Unlocked / 12 Total Shades
             </span>
           </div>
 
@@ -1030,10 +1076,9 @@ const ProductDetails = () => {
             {allPages.map((item, idx) => {
               const pageImg = item.pageImg || item;
               const pageUrl = typeof pageImg === 'string' ? pageImg : (pageImg.url || pageImg.src || pageImg);
-              const isLocked = item.isLocked !== undefined 
-                ? item.isLocked 
-                : (typeof pageImg === 'object' && pageImg.isLocked !== undefined ? pageImg.isLocked : idx >= previewLimit);
-              const pageNum = (item.originalIdx !== undefined ? item.originalIdx : idx) + 1;
+              const isLocked = item.isLocked;
+              const pageNum = item.originalIdx + 1;
+              const responsiveClass = item.hideOnMobile ? 'hidden sm:block' : '';
 
               return (
                 <div
@@ -1048,14 +1093,15 @@ const ProductDetails = () => {
                         }
                       }));
                     } else {
-                      setLightboxIdx(idx % (p.gallery || mockProduct.gallery).length);
+                      const unlockedIndex = unlockedPages.findIndex(up => up.originalIdx === item.originalIdx);
+                      setLightboxIdx(unlockedIndex >= 0 ? unlockedIndex : 0);
                       setLightboxOpen(true);
                     }
                   }}
-                  className={`relative rounded-card overflow-hidden aspect-[3/4] border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+                  className={`relative rounded-card overflow-hidden aspect-[3/4] border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${responsiveClass} ${
                     isLocked 
                       ? 'border-walnut/10 select-none bg-stone-950/20' 
-                      : 'border-walnut/10'
+                      : 'border-walnut/10 hover:border-gold/60'
                   }`}
                 >
                   <img
@@ -1090,26 +1136,53 @@ const ProductDetails = () => {
       </section>
       )}
 
-      {/* Lightbox */}
-      {lightboxOpen && (
-        <div className="fixed inset-0 bg-charcoal/95 z-[100] flex items-center justify-center" onClick={() => setLightboxOpen(false)}>
-          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((prev) => Math.max(0, prev - 1)); }}
-            className="absolute left-6 p-3 text-white hover:text-gold transition-colors">
+      {/* Lightbox for Unlocked Catalogue Preview */}
+      {lightboxOpen && unlockedImageUrls.length > 0 && (
+        <div className="fixed inset-0 bg-charcoal/95 z-[100] flex items-center justify-center p-4 backdrop-blur-md" onClick={() => setLightboxOpen(false)}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((prev) => (prev > 0 ? prev - 1 : unlockedImageUrls.length - 1));
+            }}
+            className="absolute left-4 sm:left-8 p-3 rounded-full bg-white/10 hover:bg-gold hover:text-charcoal text-white transition-all cursor-pointer z-10"
+            title="Previous page"
+          >
             <ChevronLeft size={28} />
           </button>
-          <img src={(p.gallery || mockProduct.gallery)[lightboxIdx]} alt="Fullscreen"
-            className="max-h-[85vh] max-w-[90vw] object-contain rounded-card"
-            onClick={(e) => e.stopPropagation()} />
-          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((prev) => Math.min((p.gallery || mockProduct.gallery).length - 1, prev + 1)); }}
-            className="absolute right-6 p-3 text-white hover:text-gold transition-colors">
+
+          <div className="max-h-[85vh] max-w-[90vw] flex flex-col items-center gap-3 z-10" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={unlockedImageUrls[lightboxIdx]}
+              alt={`Page ${lightboxIdx + 1} Preview`}
+              className="max-h-[75vh] max-w-[85vw] object-contain rounded-2xl shadow-2xl border border-white/10"
+            />
+            <div className="flex items-center gap-4 text-cream font-sans text-xs">
+              <span className="font-bold text-gold uppercase tracking-wider">{p.title}</span>
+              <span className="text-white/40">•</span>
+              <span className="uppercase tracking-widest text-white/70">
+                Page {lightboxIdx + 1} of {unlockedImageUrls.length} (Unlocked Preview)
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((prev) => (prev < unlockedImageUrls.length - 1 ? prev + 1 : 0));
+            }}
+            className="absolute right-4 sm:right-8 p-3 rounded-full bg-white/10 hover:bg-gold hover:text-charcoal text-white transition-all cursor-pointer z-10"
+            title="Next page"
+          >
             <ChevronRightIcon size={28} />
           </button>
-          <button onClick={() => setLightboxOpen(false)} className="absolute top-6 right-6 text-white hover:text-gold text-2xl font-bold transition-colors">
+
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-gold hover:text-charcoal text-white flex items-center justify-center text-lg font-bold transition-all cursor-pointer z-10"
+            title="Close (Esc)"
+          >
             ✕
           </button>
-          <span className="absolute bottom-6 font-sans text-xs text-cream/60 uppercase tracking-widest">
-            {lightboxIdx + 1} / {(p.gallery || mockProduct.gallery).length}
-          </span>
         </div>
       )}
     </div>

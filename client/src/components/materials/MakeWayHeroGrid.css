@@ -1,0 +1,214 @@
+/* MakeWayHeroGrid — 24 Material Catalogs in 4 Rows x 6 Columns Layout with Codrops Make Way Animation */
+
+.makeway-hero-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  overflow: hidden;
+  background-color: #EAE4D8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.makeway-hero-stage {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  padding: 76px 20px 32px;
+  box-sizing: border-box;
+}
+
+.makeway-hero-grid-24 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px 14px;
+  width: 100%;
+  max-width: 1340px;
+  height: 100%;
+  max-height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (max-width: 1280px) {
+  .makeway-hero-stage {
+    padding: 72px 16px 30px;
+  }
+  .makeway-hero-grid-24 {
+    gap: 10px 12px;
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .makeway-hero-stage {
+    perspective: 950px;
+    padding: 68px 14px 32px;
+  }
+  .makeway-hero-grid-24 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 10px;
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 640px) {
+  .makeway-hero-stage {
+    perspective: 800px;
+    padding: 64px 10px 36px;
+  }
+  .makeway-hero-grid-24 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 8px;
+    max-width: 96%;
+  }
+}
+
+.makeway-card-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  border-radius: 14px;
+  background: #FAF7F2;
+  border: 1px solid rgba(215, 202, 185, 0.85);
+  box-shadow: 
+    0 10px 24px -4px rgba(35, 25, 15, 0.16),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 280ms ease, box-shadow 280ms ease;
+}
+
+@media (max-width: 640px) {
+  .makeway-card-item {
+    border-radius: 10px;
+  }
+}
+
+.makeway-card-item:hover {
+  border-color: rgba(201, 169, 110, 0.95);
+  box-shadow: 
+    0 16px 32px -4px rgba(35, 25, 15, 0.24),
+    0 0 20px rgba(201, 169, 110, 0.35);
+}
+
+.makeway-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.makeway-card-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #ECE6DC;
+  border-radius: inherit;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.makeway-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.makeway-card-item:hover .makeway-card-media img {
+  transform: scale(1.05) translateZ(0);
+}
+
+/* Glass & Card Perimeter Border Highlight */
+.makeway-card-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Backdrop Dim Scrim when an item is expanded */
+.makeway-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(20, 18, 15, 0.45);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+
+.makeway-hero-scrim.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Scroll down indicator */
+.makeway-scroll-hint {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: rgba(60, 50, 40, 0.75);
+  text-transform: uppercase;
+}
+
+.makeway-scroll-hint-bar {
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(to bottom, rgba(60, 50, 40, 0.8), transparent);
+  animation: makewayScrollAnim 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes makewayScrollAnim {
+  0% { transform: translateY(-3px) scaleY(0.4); opacity: 0; }
+  50% { transform: translateY(2px) scaleY(1); opacity: 1; }
+  100% { transform: translateY(7px) scaleY(0.2); opacity: 0; }
+}

@@ -24,7 +24,7 @@ const defaultGenerations = [
   },
   {
     gen: 'Generation II',
-    title: 'Mantana Constructions',
+    title: 'Mastana Constructions',
     company: 'Commercial & Multi-Family Residential',
     desc: 'Expanded into large-scale residential complexes and commercial landmarks across Hyderabad. Built a reputation for zero material compromises and strict engineering tolerances.',
     image: '/images/company/2bhk_urban/Ideas_2_2-_1-20260810-173541.jpg'
@@ -68,7 +68,7 @@ const defaultGalleryImages = [
   }
 ];
 
-const defaultAboutHeroImage = '/images/about/about_hero.jpg';
+const defaultAboutHeroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795926/922c2790-8bdd-4f8b-8680-d266658a22b5.png';
 const defaultAboutStoryImage = '/images/company/guntur_kaaram_lakeside_estate.webp';
 
 const getNonEmpty = (val, fallback) => (val && typeof val === 'string' && val.trim().length > 0 ? val : fallback);
@@ -89,7 +89,7 @@ const AdminAboutCMS = () => {
     // Hero
     about_hero_badge: 'About ESPACIO',
     about_hero_title: 'Four generations of construction. One new standard for design.',
-    about_hero_subtitle: 'Long before ESPACIO existed, our family was already building across Hyderabad through Mantana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.',
+    about_hero_subtitle: 'Long before ESPACIO existed, our family was already building across Hyderabad through Mastana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.',
     about_hero_image: defaultAboutHeroImage,
     about_hero_stats: defaultStats,
     about_hero_visible: true,
@@ -98,7 +98,7 @@ const AdminAboutCMS = () => {
     about_story_badge: 'OUR ORIGIN STORY',
     about_story_main: "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design, walls that were never built right in the first place.",
     about_story_highlight: "We've spent four generations making sure that never happens.",
-    about_story_p1: "Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.",
+    about_story_p1: "Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mastana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.",
     about_story_p2: "One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.",
     about_story_p3: "That's the world this brand comes from. Not showrooms. Job sites. Not mood boards. Load-bearing walls, material tolerances, what actually holds up over decades and what doesn't.",
     about_story_image: defaultAboutStoryImage,
@@ -136,8 +136,8 @@ const AdminAboutCMS = () => {
         setAboutState({
           about_hero_badge: getNonEmpty(storedSettings.about_hero_badge, 'About ESPACIO'),
           about_hero_title: getNonEmpty(storedSettings.about_hero_title, 'Four generations of construction. One new standard for design.'),
-          about_hero_subtitle: getNonEmpty(storedSettings.about_hero_subtitle, 'Long before ESPACIO existed, our family was already building across Hyderabad through Mantana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.'),
-          about_hero_image: (storedSettings.about_hero_image && !storedSettings.about_hero_image.includes('unsplash.com') && !storedSettings.about_hero_image.includes('Living_room_3'))
+          about_hero_subtitle: getNonEmpty(storedSettings.about_hero_subtitle, 'Long before ESPACIO existed, our family was already building across Hyderabad through Mastana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.'),
+          about_hero_image: (storedSettings.about_hero_image && !storedSettings.about_hero_image.includes('unsplash.com') && !storedSettings.about_hero_image.includes('Living_room_3') && storedSettings.about_hero_image !== '/images/about/about_hero.jpg' && !storedSettings.about_hero_image.includes('indo_classical_elegance_3bhk'))
             ? storedSettings.about_hero_image
             : defaultAboutHeroImage,
           about_hero_stats: (Array.isArray(storedSettings.about_hero_stats) && storedSettings.about_hero_stats.length > 0)
@@ -148,7 +148,7 @@ const AdminAboutCMS = () => {
           about_story_badge: getNonEmpty(storedSettings.about_story_badge, 'OUR ORIGIN STORY'),
           about_story_main: getNonEmpty(storedSettings.about_story_main, "Most interiors don't fail because of bad design. They fail because of what's hiding behind the design, walls that were never built right in the first place.").replace(/\s*[—–-]\s*walls/gi, ', walls'),
           about_story_highlight: getNonEmpty(storedSettings.about_story_highlight, "We've spent four generations making sure that never happens."),
-          about_story_p1: getNonEmpty(storedSettings.about_story_p1, 'Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mantana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.'),
+          about_story_p1: getNonEmpty(storedSettings.about_story_p1, 'Long before Espacio existed, our family was already building, as builders. Our great-grandfather laid the literal foundation of a construction legacy that would run four generations deep, through two companies, Mastana Constructions and Mastana Infra, and 40+ years of homes, commercial spaces, and landmark builds across Hyderabad.'),
           about_story_p2: getNonEmpty(storedSettings.about_story_p2, 'One of those builds is the lakeside home which was later chosen as a filming location for the movie Guntur Kaaram. Not because it was decorated well. Because it was built to be unforgettable.'),
           about_story_p3: getNonEmpty(storedSettings.about_story_p3, "That's the world this brand comes from. Not showrooms. Job sites. Not mood boards. Load-bearing walls, material tolerances, what actually holds up over decades and what doesn't."),
           about_story_image: (storedSettings.about_story_image && !storedSettings.about_story_image.includes('unsplash.com') && !storedSettings.about_story_image.includes('open_hall.png') && !storedSettings.about_story_image.includes('Guest_restaurant_10'))
@@ -589,7 +589,7 @@ const AdminAboutCMS = () => {
 
           <div className="space-y-4 pt-2">
             <div>
-              <label className={labelClass}>Story Paragraph 1 (Heritage & Mantana / Mastana)</label>
+              <label className={labelClass}>Story Paragraph 1 (Heritage & Mastana Constructions / Mastana Infra)</label>
               <textarea
                 rows={3}
                 value={aboutState.about_story_p1}

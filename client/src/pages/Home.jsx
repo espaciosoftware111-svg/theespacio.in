@@ -7,12 +7,11 @@ import SEO from '../components/common/SEO';
 import Logo from '../components/common/Logo';
 import HeroSlideshow from '../components/common/HeroSlideshow';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
-import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
+import { getCMSData, STORAGE_KEYS, DEFAULT_PROJECTS } from '../utils/cmsStore';
 import { USER_UPLOADED_BEDROOM_IMAGE } from '../assets/userUploadedBedroom';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 import { Button as MovingBorderButton } from '../components/ui/moving-border';
-
-const StickyScroll = React.lazy(() => import('../components/ui/sticky-scroll-reveal').then(m => ({ default: m.StickyScroll })));
+import { StickyScroll } from '../components/ui/sticky-scroll-reveal';
 const HeroParallax = React.lazy(() => import('../components/ui/hero-parallax').then(m => ({ default: m.HeroParallax })));
 const Testimonials = React.lazy(() => import('../components/ui/Testimonials'));
 
@@ -200,6 +199,7 @@ const AutoScrollingInteriorBox = ({ activeIdx, items }) => {
 const teamProjectsData = [
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
+    projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/29bd1f5f-9c48-4b99-9df3-ae7452c6501c.png",
     memberImg: "/reviews/paladugu_raju.png",
     name: "Spatial Design Lead",
     role: "Thematic Spatial Planning",
@@ -207,6 +207,7 @@ const teamProjectsData = [
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
+    projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5a8b9f37-4b58-44b8-b86e-bf262791b082.png",
     memberImg: "/reviews/kishor_kumar.png",
     name: "Interior Specialist",
     role: "Classical Boiserie Styling",
@@ -214,6 +215,7 @@ const teamProjectsData = [
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
+    projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ffa36fb4-cc01-498d-aaed-f244304711a6.png",
     memberImg: "/reviews/amresh_kumar.png",
     name: "Joinery & Detailing",
     role: "Bespoke Study & Atelier",
@@ -221,6 +223,7 @@ const teamProjectsData = [
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
+    projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/801e0ea0-440b-4a88-964a-278514967e9e.png",
     memberImg: "/reviews/imtiyaz_shaik.png",
     name: "Modular Specialist",
     role: "High-Gloss Modular Kitchens",
@@ -228,6 +231,7 @@ const teamProjectsData = [
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
+    projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/8a76287b-9789-481d-bbad-76181568229a.png",
     memberImg: "/reviews/kishor_kumar.png",
     name: "Principal Architect",
     role: "Contemporary Spatial Refinement",
@@ -299,7 +303,9 @@ const TeamProjectsShowcase = ({ customSlides }) => {
   };
 
   const current = slides[idx % slides.length] || teamProjectsData[0];
-  const currentImg = getOptimizedImageUrl(current.projectImg, 1400, 88);
+  const isMobileShowcase = typeof window !== 'undefined' && window.innerWidth < 768;
+  const currentImgSrc = (isMobileShowcase && current.projectImgMobile) ? current.projectImgMobile : current.projectImg;
+  const currentImg = getOptimizedImageUrl(currentImgSrc, 1400, 88);
 
   const slideVariants = {
     enter: (dir) => ({
@@ -348,14 +354,17 @@ const TeamProjectsShowcase = ({ customSlides }) => {
             className="absolute inset-0 cursor-grab active:cursor-grabbing select-none transform-gpu"
           >
             {/* Pure Ultra HD Crisp Image Layer */}
-            <img
-              src={currentImg}
-              alt={current.projectLabel}
-              decoding="async"
-              className="w-full h-full object-cover select-none pointer-events-none transform-gpu"
-              style={{ imageRendering: 'auto', backfaceVisibility: 'hidden' }}
-              draggable="false"
-            />
+            <picture className="w-full h-full block">
+              <source media="(max-width: 1023px)" srcSet={getOptimizedImageUrl(HERO_IMAGES_MOBILE[idx % HERO_IMAGES_MOBILE.length], 900, 88)} />
+              <img
+                src={getOptimizedImageUrl(current.projectImg, 1400, 88)}
+                alt={current.projectLabel}
+                decoding="async"
+                className="w-full h-full object-cover select-none pointer-events-none transform-gpu"
+                style={{ imageRendering: 'auto', backfaceVisibility: 'hidden' }}
+                draggable="false"
+              />
+            </picture>
 
             {/* Soft bottom vignette for text contrast */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
@@ -518,12 +527,37 @@ const HERO_IMAGES = [
   'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
 ];
 
+export const HERO_IMAGES_MOBILE = [
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/29bd1f5f-9c48-4b99-9df3-ae7452c6501c.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5a8b9f37-4b58-44b8-b86e-bf262791b082.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ffa36fb4-cc01-498d-aaed-f244304711a6.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/801e0ea0-440b-4a88-964a-278514967e9e.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/8a76287b-9789-481d-bbad-76181568229a.png'
+];
+
 const Home = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(() => {
+    try {
+      const stored = getCMSData(STORAGE_KEYS.PROJECTS);
+      if (stored && Array.isArray(stored) && stored.length > 0) {
+        return [...stored].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+      }
+    } catch {}
+    return DEFAULT_PROJECTS;
+  });
   const heroRef = useRef(null);
   const faqSectionRef = useRef(null);
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
   const [hoveredStatIdx, setHoveredStatIdx] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const [homeSettings, setHomeSettings] = useState({
     hero_title: 'Engineering. Elegance. Experience.',
@@ -712,7 +746,7 @@ const Home = () => {
     },
     {
       q: "Do you provide warranties on completed projects?",
-      a: "Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.",
+      a: "Yes. We offer up to 10-year comprehensive warranties on hardware and core modular components, backed directly by factory certification.",
       img: "/images/faq/faq_10_support.jpg",
       tag: "SUPPORT"
     },
@@ -784,9 +818,11 @@ const Home = () => {
     };
   }, []);
 
-  const activeHeroBgImages = (Array.isArray(homeSettings.hero_bg_images) && homeSettings.hero_bg_images.length > 0)
-    ? homeSettings.hero_bg_images
-    : HERO_IMAGES;
+  const activeHeroBgImages = isMobile
+    ? HERO_IMAGES_MOBILE
+    : ((Array.isArray(homeSettings.hero_bg_images) && homeSettings.hero_bg_images.length > 0)
+        ? homeSettings.hero_bg_images
+        : HERO_IMAGES);
 
   const activeHomeStats = [
     { 
@@ -829,14 +865,13 @@ const Home = () => {
         const storedProjects = getCMSData(STORAGE_KEYS.PROJECTS);
         if (storedProjects && Array.isArray(storedProjects) && storedProjects.length > 0) {
           const sorted = [...storedProjects].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-          const featuredOnly = sorted.filter(p => p.featured === true || p.featured === 'true');
-          setProjects(featuredOnly.length > 0 ? featuredOnly : sorted);
+          setProjects(sorted);
         }
       } catch {}
 
       try {
-        const r = await axios.get('/projects?limit=20&featured=true');
-        if (r.data?.success && Array.isArray(r.data?.data) && r.data.data.length > 0) {
+        const r = await axios.get('/projects?limit=20', { timeout: 3000 }).catch(() => null);
+        if (r?.data?.success && Array.isArray(r?.data?.data) && r.data.data.length >= 8) {
           const sorted = [...r.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
           setProjects(sorted);
         }
@@ -854,87 +889,88 @@ const Home = () => {
     };
   }, []);
 
-  const mockProjects = [
-    { 
-      title: 'Indo-Classical Elegance 3BHK', location: 'Jubilee Hills', category: '3BHK Villa', 
-      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png', 
-      slug: 'indo-classical-elegance-3bhk',
-      description: 'A masterclass in spatial refinement blending traditional classical motifs with sleek modern lines, custom fluted panelling, and bespoke brass accents.'
-    },
-    { 
-      title: 'Minimalist Beige Sanctuary 2BHK', location: 'Financial District', category: 'Apartment', 
-      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png', 
-      slug: 'minimalist-beige-2bhk',
-      description: 'Designed around soft earthen palettes, warm ambient profile lighting, and concealed handle-less joinery high above the city.'
-    },
-    { 
-      title: 'Exquisite Duplex Fusion 4BHK', location: 'Kokapet', category: 'Duplex Villa', 
-      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png', 
-      slug: 'exquisite-duplex-fusion-4bhk',
-      description: 'A bespoke double-height villa interior blending Italian marble flooring, custom fluted glass partitions, and an open show kitchen.'
-    },
-    { 
-      title: 'Aparna Zicon High-Rise 2BHK', location: 'Nanakramguda', category: 'Apartment', 
-      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png', 
-      slug: 'aparna-zicon-high-rise-2bhk',
-      description: 'Precision engineered for maximum spatial efficiency, featuring custom TV media units, acrylic modular kitchen, and integrated wardrobes.'
-    },
-    { 
-      title: 'Modern Retro Haven 2BHK', location: 'Madhapur', category: 'Luxury Home', 
-      heroImage: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png', 
-      slug: 'modern-retro-haven-2bhk',
-      description: 'A cozy interplay of mid-century aesthetics, rich natural walnut veneers, custom fluted wall paneling, and warm cove ambient illumination.'
-    },
-    { 
-      title: 'Grand 3BHK Penthouse Luxe', location: 'Banjara Hills', category: 'Penthouse', 
-      heroImage: '/images/company/3bhk_lux/open_hall.png', 
-      slug: 'grand-3bhk-penthouse-luxe',
-      description: 'An expansive open-concept living and dining layout featuring architectural false ceilings, minimalist island kitchen, and master suite.'
-    },
-  ];
+  // Verified high-speed Cloudinary CDN URLs for all 9 canonical projects
+  const CANONICAL_PROJECT_IMAGES = {
+    'rajapushpa-provincia-3bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
+    'my-home-sayuk-3bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
+    'kokapet-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
+    'kokapet-urban-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
+    'gandipet-modern-retro-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png',
+    'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
+    'gachibowli-minimalist-beige-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+    'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
+    'dimmu-chachu-luxury-villa': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png'
+  };
 
-  const displayProjects = projects.length > 0 ? projects : mockProjects;
+  const displayProjects = useMemo(() => {
+    const source = (projects && Array.isArray(projects) && projects.length > 0) ? projects : DEFAULT_PROJECTS;
+    return [...source].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999)).slice(0, 9);
+  }, [projects]);
 
-  const stickyContent = displayProjects.map((p) => {
-    const title = p.title || 'ESPACIO Project';
+  const stickyContent = useMemo(() => {
+    const fallbackList = Object.values(CANONICAL_PROJECT_IMAGES);
 
-    return {
-      title,
-      description: (
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="font-sans text-[12px] lg:text-[13px] font-bold uppercase tracking-widest text-gold">{p.category}</span>
-            <span className="text-ink-soft/40">•</span>
-            <span className="font-sans text-[13px] lg:text-[14px] text-ink-soft font-medium">{p.location}</span>
+    return displayProjects.map((p, idx) => {
+      const title = p.title || 'ESPACIO Project';
+      const category = p.category ? String(p.category).toUpperCase() : 'LUXURY RESIDENCE';
+      const location = p.location || 'Hyderabad';
+      const description = p.description || `A bespoke luxury ${category.toLowerCase()} interior design in ${location}, showcasing custom spatial architecture and premium materials.`;
+      
+      // Prioritize canonical Cloudinary CDN image, then valid http image
+      let heroImg = CANONICAL_PROJECT_IMAGES[p.slug];
+      if (!heroImg) {
+        if (p.heroImage && typeof p.heroImage === 'string' && p.heroImage.startsWith('http') && !p.heroImage.includes('googleusercontent')) {
+          heroImg = p.heroImage;
+        } else if (p.afterImage && typeof p.afterImage === 'string' && p.afterImage.startsWith('http') && !p.afterImage.includes('googleusercontent')) {
+          heroImg = p.afterImage;
+        } else {
+          heroImg = fallbackList[idx % fallbackList.length];
+        }
+      }
+
+      return {
+        title,
+        description: (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="font-sans text-[12px] lg:text-[13px] font-bold uppercase tracking-widest text-gold">{category}</span>
+              <span className="text-ink-soft/40">•</span>
+              <span className="font-sans text-[13px] lg:text-[14px] text-ink-soft font-medium">{location}</span>
+            </div>
+            <p className="font-sans text-[15px] lg:text-[17px] text-ink-soft leading-relaxed font-normal">
+              {description}
+            </p>
+            <div className="pt-2 pb-0">
+              <Link 
+                to={`/projects/${p.slug}`}
+                aria-label={`View Case Study: ${title}`}
+                className="inline-flex items-center gap-2 font-sans text-[13px] lg:text-[14px] font-bold uppercase tracking-wider text-gold hover:text-gold/80 transition-colors pt-1"
+              >
+                <span>View Case Study</span>
+                <ArrowUpRight size={15} />
+              </Link>
+            </div>
           </div>
-          <p className="font-sans text-[15px] lg:text-[17px] text-ink-soft leading-relaxed font-normal">
-            {p.description || `A luxury ${p.category.toLowerCase()} interior design in ${p.location}, showcasing custom spatial architecture and premium materials.`}
-          </p>
-          <div className="pt-2 pb-0">
-            <Link 
-              to={`/projects/${p.slug}`}
-              aria-label={`View Case Study: ${title}`}
-              className="inline-flex items-center gap-2 font-sans text-[13px] lg:text-[14px] font-bold uppercase tracking-wider text-gold hover:text-gold/80 transition-colors pt-1"
-            >
-              <span>View Case Study</span>
-              <ArrowUpRight size={15} />
-            </Link>
+        ),
+        content: (
+          <div className="h-full w-full relative overflow-hidden rounded-[24px] bg-[#1a1a1e]">
+            <img
+              src={getOptimizedImageUrl(heroImg, 1200, 85)}
+              decoding="async"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target) return;
+                target.onerror = null;
+                target.src = fallbackList[idx % fallbackList.length];
+              }}
+              className="h-full w-full object-cover transition-transform duration-700 ease-out"
+              alt={title}
+            />
           </div>
-        </div>
-      ),
-      content: (
-        <div className="h-full w-full relative overflow-hidden rounded-[24px]">
-          <img
-            src={getOptimizedImageUrl(p.heroImage, 1400, 92)}
-            loading="eager"
-            decoding="async"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out"
-            alt={title}
-          />
-        </div>
-      )
-    };
-  });
+        )
+      };
+    });
+  }, [displayProjects]);
 
   const rawParallaxProducts = [
     {
@@ -1120,7 +1156,8 @@ const Home = () => {
             {/* Background Image Layer */}
             <div className="absolute inset-0 overflow-hidden">
               <HeroSlideshow 
-                images={activeHeroBgImages}
+                images={HERO_IMAGES}
+                mobileImages={HERO_IMAGES_MOBILE}
                 intervalMs={3200}
                 initialIntervalMs={2400}
                 transitionDuration={0.9}
@@ -1168,17 +1205,15 @@ const Home = () => {
                       
                       <div className="p-3.5 sm:p-5.5 md:p-6">
                         <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3 sm:mb-5 relative bg-black/20">
-                          {activeHeroBgImages.map((imgUrl, imgIdx) => {
-                            const isActive = imgIdx === (currentImageIdx % activeHeroBgImages.length);
-                            const thumbSrc = (typeof imgUrl === 'string' && imgUrl.includes('/images/hero/hero_') && !imgUrl.includes('_thumb'))
-                              ? imgUrl.replace(/(_4k|_mobile)?\.(webp|jpg|png)$/i, '_thumb.webp')
-                              : imgUrl;
+                          {Array.from({ length: 5 }).map((_, imgIdx) => {
+                            const isActive = imgIdx === (currentImageIdx % 5);
+                            const desktopImg = HERO_IMAGES[imgIdx % HERO_IMAGES.length];
+                            const mobileImg = HERO_IMAGES_MOBILE[imgIdx % HERO_IMAGES_MOBILE.length];
+                            const desktopThumb = getOptimizedImageUrl(desktopImg, 600, 85);
+                            const mobileThumb = getOptimizedImageUrl(mobileImg, 600, 85);
                             return (
-                              <motion.img
-                                key={imgUrl}
-                                src={thumbSrc}
-                                alt="Luxury interior showcase"
-                                decoding="async"
+                              <motion.picture
+                                key={`craft-thumb-${imgIdx}`}
                                 initial={imgIdx === 0 ? { opacity: 1, scale: 1.05 } : { opacity: 0, scale: 1.04 }}
                                 animate={isActive ? { opacity: 1, scale: 1.0 } : { opacity: 0, scale: 1.04 }}
                                 transition={{
@@ -1186,12 +1221,23 @@ const Home = () => {
                                   ease: [0.22, 1, 0.36, 1],
                                 }}
                                 style={{
+                                  position: 'absolute',
+                                  inset: 0,
+                                  width: '100%',
+                                  height: '100%',
                                   zIndex: isActive ? 2 : 1,
                                   WebkitBackfaceVisibility: 'hidden',
                                   backfaceVisibility: 'hidden',
                                 }}
-                                className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-                              />
+                              >
+                                <source media="(max-width: 1023px)" srcSet={mobileThumb} />
+                                <img
+                                  src={desktopThumb}
+                                  alt="Luxury interior showcase"
+                                  decoding="async"
+                                  className="w-full h-full object-cover select-none pointer-events-none"
+                                />
+                              </motion.picture>
                             );
                           })}
                         </div>
@@ -1473,9 +1519,7 @@ const Home = () => {
             </Reveal>
           </div>
 
-          <React.Suspense fallback={<div className="min-h-[400px]" />}>
-            <StickyScroll content={stickyContent} />
-          </React.Suspense>
+          <StickyScroll content={stickyContent} />
         </section>
       )}
 

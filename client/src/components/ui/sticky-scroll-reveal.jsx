@@ -219,24 +219,33 @@ export const StickyScroll = ({ content = [], className = "" }) => {
         </div>
       </div>
 
-      {/* Mobile/Tablet list view (below lg) with clean non-overlapping cards */}
-      <div className="lg:hidden w-full px-2 sm:px-4 py-2 flex flex-col gap-6">
-        {content.map((item, index) => (
-          <div 
-            key={item.title + index} 
-            className="bg-white border border-ink-border/20 flex flex-col gap-3.5 shadow-sm p-4 sm:p-5 pb-5 sm:pb-6 rounded-[24px]"
-          >
-            {/* Project Image Card */}
-            <div className="w-full aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm bg-neutral-900">
-              {item.content}
-            </div>
-            {/* Description */}
-            <div className="px-1.5 sm:px-2 text-left pt-1 pb-1">
-              <h3 className="font-display text-[22px] sm:text-2xl font-bold text-ink mb-2 leading-snug">{item.title}</h3>
-              {item.description}
-            </div>
-          </div>
-        ))}
+      {/* Mobile/Tablet view (below lg) with stacked card scroll stack animation */}
+      <div className="lg:hidden w-full px-2 sm:px-4 py-2">
+        <ScrollStack useWindowScroll={true} itemDistance={25} className="w-full !h-auto !overflow-visible">
+          {content.map((item, index) => (
+            <ScrollStackItem 
+              key={item.title + index} 
+              index={index}
+              totalItems={content.length}
+              itemClassName="bg-[#FAF8F5] border border-ink-border/25 flex flex-col gap-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.1)] p-4 sm:p-5 pb-5 sm:pb-6 rounded-[24px] mb-12 sm:mb-16"
+            >
+              {/* Project Image Card */}
+              <div className="w-full aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm bg-neutral-900">
+                {item.content}
+              </div>
+              {/* Description */}
+              <div className="px-1.5 sm:px-2 text-left pt-1 pb-1">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-display text-[22px] sm:text-2xl font-bold text-ink leading-snug">{item.title}</h3>
+                  <span className="font-sans text-[11px] font-bold text-gold bg-bg px-2.5 py-0.5 rounded-full border border-ink-border/20 shrink-0">
+                    {String(index + 1).padStart(2, '0')} / {String(content.length).padStart(2, '0')}
+                  </span>
+                </div>
+                {item.description}
+              </div>
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
       </div>
     </>
   );

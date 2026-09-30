@@ -11,8 +11,25 @@
 // Memoization cache: key = `${url}|${width}|${quality}` → optimizedUrl
 const _cache = new Map();
 
+const DIMMU_DRIVE_MAP = {
+  '11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90': '/images/projects/dimmu_residence/dimmu_05.webp',
+  '1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-': '/images/projects/dimmu_residence/dimmu_01.webp',
+  '1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F': '/images/projects/dimmu_residence/dimmu_06.webp',
+  '1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ': '/images/projects/dimmu_residence/dimmu_03.webp',
+  '1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar': '/images/projects/dimmu_residence/dimmu_10.webp',
+  '1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K': '/images/projects/dimmu_residence/dimmu_09.webp',
+  '1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc': '/images/projects/dimmu_residence/dimmu_08.webp',
+  '12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA': '/images/projects/dimmu_residence/dimmu_02.webp',
+  '1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF': '/images/projects/dimmu_residence/dimmu_07.webp',
+  '1smFAVnKujLD_imWl--XMcNFas-faQXc-': '/images/projects/dimmu_residence/dimmu_04.webp'
+};
+
 export const getOptimizedImageUrl = (url, width = 1600, quality = 88) => {
   if (!url || typeof url !== 'string') return url;
+
+  for (const [id, localPath] of Object.entries(DIMMU_DRIVE_MAP)) {
+    if (url.includes(id)) return localPath;
+  }
 
   // Already optimal — skip transformations
   if (url.startsWith('data:') || url.endsWith('.svg')) return url;

@@ -157,7 +157,7 @@ const mockCategories = [
     "name": "Modular Kitchen",
     "slug": "modular-kitchen",
     "description": "Precision-engineered kitchens with high-gloss acrylic, polygranite surfaces, and concealed lighting tracks.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/f5ba100a-b7b4-4c3d-abd4-09fc76c02a1a.png",
     "visible": true,
     "details": {
       "tag": "Culinary Architecture",
@@ -212,7 +212,7 @@ const mockCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
@@ -266,7 +266,7 @@ const mockCategories = [
     "name": "Living Room",
     "slug": "living-room",
     "description": "Editorial living zones crafted around natural light, marble accents, and low-profile custom furniture.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427851/hf_20260926_125614_59b74a58-c260-4e7a-820c-a59241fcfcf8.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/fe4a004a-0264-4c56-bcec-87bf02aa6292.png",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -320,7 +320,7 @@ const mockCategories = [
     "name": "Wardrobe Systems",
     "slug": "wardrobes",
     "description": "Bespoke floor-to-ceiling storage with velvet drawer linings, mirror panels, and hidden pull-out trays.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427805/hf_20260926_125507_56ae13ff-2251-4e94-baba-dc9f8b300620.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6cf77808-04b5-41c1-afd4-601eea5bd274.png",
     "visible": true,
     "details": {
       "tag": "Bespoke Storage",
@@ -374,7 +374,7 @@ const mockCategories = [
     "name": "Home Office",
     "slug": "home-office",
     "description": "Focus zones with sound-dampening fluted panels, ergonomic wall shelving and concealed cable management.",
-    "heroImage": "/images/spaces/home_office/home_office_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/453968f9-cf57-4d07-8ec8-a5556159ae46.png",
     "visible": true,
     "details": {
       "tag": "Focus First",
@@ -428,7 +428,7 @@ const mockCategories = [
     "name": "Commercial Office",
     "slug": "commercial-office",
     "description": "Turnkey executive workspaces designed for efficient traffic flows, acoustic panels, and brand-aligned finishes.",
-    "heroImage": "/images/spaces/office/office_drive_4.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a3aab549-4f2b-40b3-99fb-2115b13c6c12.png",
     "visible": true,
     "details": {
       "tag": "Productivity-First",
@@ -482,7 +482,7 @@ const mockCategories = [
     "name": "Pooja Room",
     "slug": "pooja-room",
     "description": "Sacred sanctuaries merging ancestral stone textures with sleek back-lit marble panels and warm lighting.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427772/hf_20260926_125414_74dd535c-b43d-4439-8e1d-29f1d5ce46e5.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9ff3ef5a-a5a0-4fc6-9b59-23803b283bc3.png",
     "visible": true,
     "details": {
       "tag": "Sacred Spaces",
@@ -536,7 +536,7 @@ const mockCategories = [
     "name": "Dining Room",
     "slug": "dining-room",
     "description": "Refined gathering spaces with custom hardwood dining tables, feature pendant lighting, and plaster wall finishes.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b88b5c55-d357-46b8-b4ee-4843e9909190.png",
     "visible": true,
     "details": {
       "tag": "Gather & Dine",
@@ -590,7 +590,7 @@ const mockCategories = [
     "name": "TV Units",
     "slug": "tv-units",
     "description": "Custom TV walls and entertainment units that serve as the centrepiece of your living space — built-in storage, LED niches, and seamless cable management.",
-    "heroImage": "/images/spaces/tv_units/tv_drive_25.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png",
     "visible": true,
     "details": {
       "tag": "Focal Point",
@@ -698,7 +698,7 @@ const mockCategories = [
     "name": "Commercial Interiors",
     "slug": "commercial-interiors",
     "description": "Retail showrooms, clinics, salons, and brand spaces designed to communicate identity while maximising customer experience.",
-    "heroImage": "/images/spaces/commercial/commercial_drive_41.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png",
     "visible": true,
     "details": {
       "tag": "Brand Experience",
@@ -752,7 +752,7 @@ const mockCategories = [
     "name": "Reception Areas",
     "slug": "reception-areas",
     "description": "Striking lobby and reception spaces that communicate professionalism and set the tone for the entire building experience.",
-    "heroImage": "/images/spaces/reception/reception_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png",
     "visible": true,
     "details": {
       "tag": "First Impressions",
@@ -806,7 +806,7 @@ const mockCategories = [
     "name": "Cafes & Restaurants",
     "slug": "cafes-restaurants",
     "description": "Atmospheric F&B spaces built for dwell time — bespoke seating zones, bar counters, acoustic treatment, and curated ambient lighting.",
-    "heroImage": "/images/spaces/cafes/cafe_drive_16.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png",
     "visible": true,
     "details": {
       "tag": "Hospitality Design",
@@ -860,7 +860,7 @@ const mockCategories = [
     "name": "Foyer",
     "slug": "foyer",
     "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
-    "heroImage": "/images/spaces/foyer/foyer_drive_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -914,7 +914,7 @@ const mockCategories = [
     "name": "Bar",
     "slug": "bar",
     "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427837/hf_20260926_125558_d6e03bd2-82c9-4157-8f76-54556a1ebe41.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png",
     "visible": true,
     "details": {
       "tag": "Hospitality & Entertaining",
@@ -968,7 +968,7 @@ const mockCategories = [
     "name": "Walk-in Wardrobe",
     "slug": "walk-in-wardrobe",
     "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
-    "heroImage": "https://res.cloudinary.com/teg9ndhk/image/upload/v1790427788/hf_20260926_125434_bbbaef9a-ed61-4c98-9ec4-1dd081357147.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png",
     "visible": true,
     "details": {
       "tag": "Boutique Dressing Suites",
@@ -1036,7 +1036,7 @@ const transformationSlides = [
     location: 'Jubilee Hills, Hyderabad',
     scope: 'Handleless Matte Anthracite, Walk-In Pantry & Quartz Island',
     before: '/images/company/2bhk_urban/Minimalist_Gray__A_Contemporary_Kitchen_Masterpiec-Unnamed_0-20260810-173514.jpg',
-    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png',
+    after: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/f5ba100a-b7b4-4c3d-abd4-09fc76c02a1a.png',
   },
   {
     title: 'Master Bedrooms',
@@ -1044,7 +1044,7 @@ const transformationSlides = [
     location: 'Kokapet, Hyderabad',
     scope: 'Custom Floating Bed, Architectural Chandelier & Warm Dressing Nook',
     before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png',
+    after: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png',
   },
   {
     title: 'Dining & Bars',
@@ -1052,7 +1052,7 @@ const transformationSlides = [
     location: 'Banjara Hills, Hyderabad',
     scope: 'Sculptural Brass Pedestal Dining, Fluted Glass Chandelier & Velvet Seating',
     before: '/images/company/2bhk_mordern_retro/dining_2.jpg',
-    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png',
+    after: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b88b5c55-d357-46b8-b4ee-4843e9909190.png',
   }
 ];
 
@@ -3731,8 +3731,8 @@ const WhatWeDo = () => {
         // Helper to safely resolve category hero images with robust fallback
         const getCategoryHero = (cat) => {
           if (!cat) return '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
-          if (cat.slug === 'commercial-office') {
-            return cat.heroImage || '/images/spaces/commercial/commercial_drive_41.webp';
+          if (cat.slug === 'commercial-office' || cat.slug === 'commercial-interiors') {
+            return cat.heroImage || 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png';
           }
           const img = cat.heroImage || cat.galleryImages?.[0];
           if (!img || img.includes('drive.google.com') || img.includes('undefined')) {

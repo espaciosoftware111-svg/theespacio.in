@@ -24,6 +24,7 @@ try {
 // Global Axios configuration
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL || '/api';
+axios.defaults.timeout = 2500;
 
 // Request interceptor: ensure clean URLs (prevent /api/api/) and attach auth token
 axios.interceptors.request.use((config) => {

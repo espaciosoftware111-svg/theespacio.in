@@ -115,8 +115,6 @@ const GooeyNav = ({
   };
 
   const handleClick = (e, index, path) => {
-    const targetPath = normalizeRoute(path);
-
     // Dismiss the intro preloader immediately on any nav click
     window.dispatchEvent(new CustomEvent('espacio_nav_click'));
 
@@ -124,38 +122,19 @@ const GooeyNav = ({
     if (liEl) {
       updateEffectPosition(liEl);
 
-      if (filterRef.current) {
-        filterRef.current.querySelectorAll('.particle').forEach(p => {
-          try { filterRef.current.removeChild(p); } catch {}
-        });
-      }
-
       if (textRef.current) {
         textRef.current.classList.remove('active');
-        void textRef.current.offsetWidth;
         textRef.current.classList.add('active');
-      }
-
-      if (filterRef.current) {
-        makeParticles(filterRef.current);
       }
     }
 
-    // Immediately trigger navigation and scroll to top cleanly
-    navigate(targetPath);
+    // Immediately reset scroll for the incoming page
     if (window.lenis) {
       window.lenis.scrollTo(0, { immediate: true });
     }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-  };
-
-  const handleKeyDown = (e, index, path) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleClick(e, index, path);
-    }
   };
 
   useEffect(() => {
@@ -185,12 +164,16 @@ const GooeyNav = ({
             <li
               key={item.name}
               className={activeIndex === index ? 'active' : ''}
-              onClick={e => handleClick(e, index, item.path)}
-              onKeyDown={e => handleKeyDown(e, index, item.path)}
             >
-              <span role="link" tabIndex={0} style={{ cursor: 'pointer' }}>
-                {item.name}
-              </span>
+              <Link
+                to={normalizeRoute(item.path)}
+                onClick={e => handleClick(e, index, item.path)}
+                className="inline-block"
+              >
+                <span>
+                  {item.name}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>

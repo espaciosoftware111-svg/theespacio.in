@@ -149,29 +149,26 @@ export const DEFAULT_PROJECTS = [
       "engineering": "None of that \"effortless\" look happens by accident. Behind that wall is hidden wiring, precisely cut stone panels, and layered plasterwork — all planned out before a single piece went up, so nothing pokes through and nothing looks patched together later. That's really what you're paying for with us — not just how it looks on day one, but how solid it still feels five years down the line.",
       "outcome": "An impeccably detailed residential benchmark with zero visible hardware, ambient mood scenes, and seamless spatial flow."
     },
-    "heroImage": "/images/projects/rajapushpa_provincia/rajapushpa_8.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png",
     "gallery": [
-      "/images/projects/rajapushpa_provincia/rajapushpa_8.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_7.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_9.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_11.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_1.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_5.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_3.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_13.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_15.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_17.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_18.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_19.webp",
-      "/images/projects/rajapushpa_provincia/rajapushpa_20.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789694/c0485a67-f1b9-421e-94c2-1284149bbc98.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789713/5974209f-4bf4-48a7-bb22-4372856ffb97.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789726/e633e606-5bb8-4dad-86c0-20dcd694c75a.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789737/94ced607-e73b-4df5-aaf8-6f94a8c08fbe.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789746/04ad3ff9-4782-4218-9003-702e33e09414.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789748/dd97aa33-e9fe-43c2-83ca-c23e129b349c.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789768/46e29765-a1ec-4195-a947-ea566616fe2e.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789840/0f540e8d-87e8-4aa8-a80b-9340c28b4000.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789933/9d302a93-fe8b-42d0-b2e3-063518044156.png"
     ],
-    "beforeImage": "/images/projects/rajapushpa_provincia/rajapushpa_before.webp",
-    "afterImage": "/images/projects/rajapushpa_provincia/rajapushpa_8.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png",
     "beforeImages": [
-      "/images/projects/rajapushpa_provincia/rajapushpa_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png"
     ],
     "afterImages": [
-      "/images/projects/rajapushpa_provincia/rajapushpa_8.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png"
     ],
     "testimonialName": "Dharma Teja",
     "testimonialProfession": "Homeowner, Rajapushpa Provincia",
@@ -205,22 +202,22 @@ export const DEFAULT_PROJECTS = [
       "engineering": "To make that wooden platform work, we had to calculate exactly how much weight it could hold without any sagging or shifting over time. In the bedrooms, we also built in extra wall paneling designed to soften sound, so the rooms feel calmer and more private even in a busy household. It's the kind of detail you don't see, but you definitely feel every time you walk in.",
       "outcome": "An architectural masterpiece characterized by harmonious natural textures, zero visual clutter, and serene atmosphere."
     },
-    "heroImage": "/images/projects/my_home_sayuk/sayuk_4.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png",
     "gallery": [
-      "/images/projects/my_home_sayuk/sayuk_4.webp",
-      "/images/projects/my_home_sayuk/sayuk_6.webp",
-      "/images/projects/my_home_sayuk/sayuk_7.webp",
-      "/images/projects/my_home_sayuk/sayuk_1.webp",
-      "/images/projects/my_home_sayuk/sayuk_2.webp",
-      "/images/projects/my_home_sayuk/sayuk_3.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791050/004778f3-7240-4c73-837d-bf3dd2805420.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791058/64ae0ac4-810b-4913-9750-b6721d1cd256.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791066/48b80877-0de3-44bc-9167-b5c8b7887193.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791074/84661d49-bc93-47c9-85cb-c79b74fcdc9b.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791081/2969ce08-c39c-48bc-b63c-638f116e5ceb.png"
     ],
-    "beforeImage": "/images/projects/my_home_sayuk/sayuk_before_raw.webp",
-    "afterImage": "/images/projects/my_home_sayuk/sayuk_4.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png",
     "beforeImages": [
-      "/images/projects/my_home_sayuk/sayuk_before_raw.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png"
     ],
     "afterImages": [
-      "/images/projects/my_home_sayuk/sayuk_4.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png"
     ],
     "testimonialName": "Ganesh",
     "testimonialProfession": "Homeowner, My Home Sayuk",
@@ -254,21 +251,21 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Getting that seamless look meant planning the ceiling coves down to the millimeter, so the lighting sits perfectly aligned all the way around the room. The floating cabinetry needed strong hidden anchor points to carry its weight safely over time, and every surface was finished with an anti scratch coating so the home stays looking new for years, not just on the day it's handed over.",
       "outcome": "A flawless, turnkey residential masterpiece delivered on schedule with benchmark craftsmanship and enduring aesthetic charm."
     },
-    "heroImage": "/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png",
     "gallery": [
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp",
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_kitchen.webp",
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_crockery.webp",
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp",
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_guest_bedroom.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791783/6751a990-6636-47ab-b93e-616e5a21cc54.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791792/5d1538e9-0496-4fd6-85d0-4529702c6fb3.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791820/d65a1813-c2c0-4607-a2a6-61fd10f89cb0.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791828/c1682e0a-403d-4e0c-a623-e8a89d091a6a.png"
     ],
-    "beforeImage": "/images/projects/kokapet_nagesh_2bhk/kokapet_before.webp",
-    "afterImage": "/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png",
     "beforeImages": [
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png"
     ],
     "afterImages": [
-      "/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png"
     ],
     "testimonialName": "Nagesh",
     "testimonialProfession": "Homeowner, Kokapet",
@@ -302,28 +299,24 @@ export const DEFAULT_PROJECTS = [
       "engineering": "The floating TV console needed strong hidden anchors so it could hold its weight without any sagging over the years. We also ran mood lighting circuits flush into the ceiling across every room, so the light feels built into the architecture rather than added on top of it. The bedroom's marble panels were matched and aligned piece by piece before installation, so the pattern reads as one continuous sheet rather than a row of separate slabs. Small choices like these are what make a home feel finished rather than just decorated.",
       "outcome": "A pristine, modern 2BHK residence delivered on schedule with flawless finishes, high storage utility, and timeless contemporary appeal."
     },
-    "heroImage": "/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png",
     "gallery": [
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_4.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_5.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_7.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_9.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_12.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_14.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_16.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_17.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_20.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_21.webp",
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_22.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/39296685-c155-40af-b3f7-cadc122b32be.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/df8bd080-4933-45f6-b735-c67b71230b17.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/dd97aa33-e9fe-43c2-83ca-c23e129b349c.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/0f540e8d-87e8-4aa8-a80b-9340c28b4000.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9d302a93-fe8b-42d0-b2e3-063518044156.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/7c093f69-28d0-40b7-8ef5-3259b7f91fbd.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d8a1ed0a-5f63-4037-bae5-b9059d2defc5.png"
     ],
-    "beforeImage": "/images/projects/kokapet_rahul_2bhk/rahul_before.webp",
-    "afterImage": "/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png",
     "beforeImages": [
-      "/images/projects/kokapet_rahul_2bhk/rahul_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png"
     ],
     "afterImages": [
-      "/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png"
     ],
     "testimonialName": "Rahul",
     "testimonialProfession": "Homeowner, Kokapet",
@@ -357,29 +350,24 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Running LED lighting inside the timber framework meant working out proper heat management first, so the wood stays safe and doesn't warp or discolor over time. The TV wall also needed reinforced joinery underneath to carry its weight safely for years. It's the kind of planning that never shows on the surface, but it's exactly what keeps a home looking as good on day one thousand as it did on day one.",
       "outcome": "A warm, tactile, character-filled 2BHK residence with editorial-grade craftsmanship delivered turnkey on schedule."
     },
-    "heroImage": "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png",
     "gallery": [
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_5.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_7.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_9.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_12.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_14.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_15.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_16.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_17.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_18.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_21.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_24.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a59fb8f4-c200-468b-bf31-6e63302b0bed.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/06c85c57-84c6-48b8-86df-c0cda8641627.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d03da20b-2b8e-467e-a0c1-e87c0fb81b13.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/e5fd4044-dbc8-48e7-8269-3d107cc0c436.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/901c10b3-8957-4198-86c8-4589b1d42750.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/69fac825-2a00-4d3d-9f64-19d8336aa9ec.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/802e37b7-a758-4a54-bf4c-ac4666122714.png"
     ],
-    "beforeImage": "/images/projects/gandipet_kiran_2bhk/kiran_before.webp",
-    "afterImage": "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png",
     "beforeImages": [
-      "/images/projects/gandipet_kiran_2bhk/kiran_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png"
     ],
     "afterImages": [
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png"
     ],
     "testimonialName": "Kiran Raja",
     "testimonialProfession": "Homeowner, Gandipet",
@@ -413,28 +401,24 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Every cabinet and wardrobe was built using moisture resistant boards paired with premium soft close hardware, so the doors stay smooth and quiet for years, even in Hyderabad's humidity. Cable routing was also planned and hidden from the start, so the entertainment wall stays clean and clutter free, with nothing dangling or exposed to spoil the look.",
       "outcome": "A sleek, modern 2BHK residence with pristine geometric alignment, maximum storage utility, and timeless contemporary luxury."
     },
-    "heroImage": "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png",
     "gallery": [
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_6.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_8.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_9.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_4.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_2.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_12.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_15.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_16.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_17.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_19.webp",
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_20.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ad891782-7131-4b54-8b7d-73dda3d5eea0.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c951f195-af50-4d89-8ad7-f1daed330a75.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b438c830-9b61-45c5-96b5-d2ba352b7fc5.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/773a222b-ce2f-4f40-a2d6-f2e91199aec5.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/429bec7e-a053-4465-a821-74744ea494ae",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c90d8da8-3e5d-42aa-8a2e-f9cfa28af410.png"
     ],
-    "beforeImage": "/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp",
-    "afterImage": "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png",
     "beforeImages": [
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png"
     ],
     "afterImages": [
-      "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png"
     ],
     "testimonialName": "Venkatesh",
     "testimonialProfession": "Homeowner, Kondapur",
@@ -468,26 +452,23 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Ceiling channels were built in to house warm, high quality LED lighting that softly washes across the textured walls, bringing out the natural grain without ever feeling harsh. Even the entryway got the same attention to detail, with a striking gold console table and framed wall accents that turn a simple hallway into a proper welcome home moment.",
       "outcome": "A tranquil, sophisticated 2BHK haven delivering five-star hotel comfort with pristine finishes on schedule."
     },
-    "heroImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png",
     "gallery": [
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_7.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_11.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_14.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_15.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_16.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_18.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_22.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/26395709-3031-4b0e-974d-ec96241c7e27.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ad10b728-5797-4eb0-b810-032e828af858.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5a5b00bd-316f-45a5-a0ff-d716a9e1b759.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/50716894-d043-454b-a8f9-1731f81f12f1.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/075adc06-587f-4855-a645-588aafff2720",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/199e3414-0530-4337-bcb8-d51bd14409ef.png"
     ],
-    "beforeImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp",
-    "afterImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png",
     "beforeImages": [
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png"
     ],
     "afterImages": [
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png"
     ],
     "testimonialName": "Koteswara Rao",
     "testimonialProfession": "Homeowner, Gachibowli",
@@ -521,31 +502,24 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Wiring was routed carefully through the multi level ceilings so nothing was ever left exposed, and lighting was layered at different heights to bring warmth into every corner, including the dramatic double height areas. The plywood used throughout was specially treated to resist warping over time, so the home holds its shape and finish for years, not just for the first few seasons. Even the statement mural in the boys' room was planned around the lighting fixtures above it, so the pendant lights complement the artwork instead of casting awkward shadows across it.",
       "outcome": "A magnificent, warm duplex masterpiece celebrated for its craftsmanship and delivered with turnkey precision."
     },
-    "heroImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png",
     "gallery": [
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_3.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_4.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_5.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_14.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_15.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_7.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_10.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_12.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_16.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_17.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_18.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_19.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_21.webp",
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_22.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/92d8cde3-623f-4811-907d-7267962255ac.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/3f8f1874-d2b3-4b6c-9e5c-fb3333c11311.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/39876fee-140f-4c0f-bc16-01cdca3f2f76.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/8005ea3b-7d7a-4643-ac48-599d0cf0710e.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/919d61b3-2f89-40e4-9e8d-17af115b4a9f.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/445827f3-df4c-41c9-bd9c-da11399a47ff.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d6fa4de6-3f43-414a-a4d6-158eba4349ef.png"
     ],
-    "beforeImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_before.webp",
-    "afterImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png",
     "beforeImages": [
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png"
     ],
     "afterImages": [
-      "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png"
     ],
     "testimonialName": "K Subbarao",
     "testimonialProfession": "Homeowner, Kachiguda",
@@ -579,23 +553,26 @@ export const DEFAULT_PROJECTS = [
       "engineering": "All electrical conduits, HVAC feeds, and structural anchor points were integrated prior to framing. Heavy-duty concealed brackets support the floating TV console against full-height vertical timber fluted wall paneling, and acoustic isolation dampens ambient noise between the living lounge and private bedroom wings.",
       "outcome": "A breathtaking residential showcase combining opulent architectural features, turnkey precision joinery, and tailored spaces that reflect the family’s passions and everyday lifestyle."
     },
-    "heroImage": "https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png",
     "gallery": [
-      "https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-",
-      "https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F",
-      "https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ",
-      "https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar",
-      "https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K",
-      "https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA",
-      "https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-"
+      "/images/projects/dimmu_residence/dimmu_05.webp",
+      "/images/projects/dimmu_residence/dimmu_01.webp",
+      "/images/projects/dimmu_residence/dimmu_06.webp",
+      "/images/projects/dimmu_residence/dimmu_03.webp",
+      "/images/projects/dimmu_residence/dimmu_10.webp",
+      "/images/projects/dimmu_residence/dimmu_09.webp",
+      "/images/projects/dimmu_residence/dimmu_08.webp",
+      "/images/projects/dimmu_residence/dimmu_02.webp",
+      "/images/projects/dimmu_residence/dimmu_07.webp",
+      "/images/projects/dimmu_residence/dimmu_04.webp"
     ],
-    "beforeImage": "https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-",
-    "afterImage": "https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png",
     "beforeImages": [
-      "https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png"
     ],
     "afterImages": [
-      "https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png"
     ],
     "testimonialName": "Dimmu Chachu",
     "testimonialProfession": "Homeowner, Hyderabad",
@@ -619,9 +596,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'acrylic-luxe-collection',
     category: 'Acrylic & Finishes',
     materialCode: 'MAT-ACR-01',
-    badge: 'Premium Finish',
+    badge: 'ACRYLIC & FINISHES',
     description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
-    heroImage: '/images/materials/luminous_grid_8313.jpg',
+    heroImage: '/images/materials/fluted_acrylic_azzurro.webp',
     features: ['High-Gloss', 'Anti-Scratch', 'Concealed Track'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -634,9 +611,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'digital-korean-poly-granite',
     category: 'Natural Stone',
     materialCode: 'MAT-GNT-02',
-    badge: 'Marble Textures',
+    badge: 'NATURAL STONE',
     description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
-    heroImage: '/images/materials/florida.png',
+    heroImage: '/images/materials/fluted_acrylic_gracia.jpg',
     features: ['Scratch-Proof', 'Marble Finish', 'Heat Resistant'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -649,9 +626,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'charcoal-panels-luxe',
     category: 'Acoustic Panels',
     materialCode: 'MAT-CHR-03',
-    badge: 'Textured Accents',
+    badge: 'ACOUSTIC PANELS',
     description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
-    heroImage: '/images/materials/charcoal_luxe_4015.jpg',
+    heroImage: '/images/materials/charcoal_luxe_4018_4017_4016.webp',
     features: ['Air Purifying', 'Premium Texture', 'Acoustic Dampening'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -664,9 +641,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'fluted-pvc-luxe',
     category: 'Architectural Panels',
     materialCode: 'MAT-PVC-04',
-    badge: 'Architectural Panels',
+    badge: 'ARCHITECTURAL PANELS',
     description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
-    heroImage: '/images/materials/irish.png',
+    heroImage: '/images/materials/irish.webp',
     features: ['Waterproof', 'Easy Install', 'Flame Retardant'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -679,9 +656,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'lvt-luxe-flooring',
     category: 'Wood & Flooring',
     materialCode: 'MAT-FLR-05',
-    badge: 'Luxury Vinyl',
+    badge: 'WOOD & FLOORING',
     description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
-    heroImage: '/images/materials/giallo_dining.png',
+    heroImage: '/images/materials/fluted_acrylic_giallo_dining.jpg',
     features: ['Durable', 'Water-Resistant', 'Soft Acoustic Tread'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -694,7 +671,7 @@ export const DEFAULT_PRODUCTS = [
     slug: 'fluted-acrylic-luxe',
     category: 'Acrylic & Finishes',
     materialCode: 'MAT-ACR-06',
-    badge: '3D Relief',
+    badge: 'ACRYLIC & FINISHES',
     description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.',
     heroImage: '/images/materials/fluted_acrylic_florida.jpg',
     features: ['3D Relief', 'High-Gloss', 'Backlit Ready'],
@@ -709,9 +686,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'pvc-luxe-collection',
     category: 'Architectural Panels',
     materialCode: 'MAT-PVC-07',
-    badge: 'Versatile Panels',
+    badge: 'ARCHITECTURAL PANELS',
     description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
-    heroImage: '/images/materials/pvc_luxe_5003_5004.jpg',
+    heroImage: '/images/materials/pvc_luxe_5003_5004.webp',
     features: ['Lightweight', 'Fire Retardant', 'Moisture Proof'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -724,9 +701,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'wpc-luxe-collection',
     category: 'Composite Panels',
     materialCode: 'MAT-WPC-08',
-    badge: 'Wood Composite',
+    badge: 'COMPOSITE PANELS',
     description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
-    heroImage: '/images/materials/wpc_luxe_1701_1606.jpg',
+    heroImage: '/images/materials/wpc_luxe_1701_1606.webp',
     features: ['100% Waterproof', 'Termite Proof', 'Zero Swelling'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -739,9 +716,9 @@ export const DEFAULT_PRODUCTS = [
     slug: 'charcoal-panels-luxe-1',
     category: 'Acoustic Panels',
     materialCode: 'MAT-CHR-09',
-    badge: 'Textured Accents',
+    badge: 'ACOUSTIC PANELS',
     description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-    heroImage: '/images/materials/charcoal_luxe_1_6015.jpg',
+    heroImage: '/images/materials/charcoal_luxe_1_6015.webp',
     features: ['Premium Texture', 'Acoustic Relief', 'Modern Aesthetic'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -909,8 +886,8 @@ export const DEFAULT_FAQS = [
     id: 'faq-9',
     q: 'Do you provide warranties on completed projects?',
     question: 'Do you provide warranties on completed projects?',
-    a: 'Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.',
-    answer: 'Yes. We offer up to ten year comprehensive warranties on hardware and core modular components, backed directly by factory certification.',
+    a: 'Yes. We offer up to 10-year comprehensive warranties on hardware and core modular components, backed directly by factory certification.',
+    answer: 'Yes. We offer up to 10-year comprehensive warranties on hardware and core modular components, backed directly by factory certification.',
     img: '/images/faq/faq_10_support.jpg',
     image: '/images/faq/faq_10_support.jpg',
     imageLabel: 'SUPPORT',
@@ -1052,36 +1029,39 @@ export const DEFAULT_SERVICES = [
 
 // ─── DEFAULT TESTIMONIALS (Authentic Google Reviews) ──────────────────────────
 export const DEFAULT_TESTIMONIALS = [
-  { id: 'g_rev_01', googleReviewId: 'g_rev_01', source: 'GOOGLE', name: 'Dharma Teja', designation: 'Local Guide • 97 Reviews • 383 Photos', title: 'Best Interior Designer Decision', body: 'I was researching the best interior designer near me, and while doing that, I came across ESPACIO. Eventually, we hired them, and it turned out to be a good decision. The interior designer was nice, the quality of the materials and finishing was great.', rating: 5, avatar: '/reviews/dharma_teja.png', date: '2 months ago', visible: true, featured: true, order: 1, response: 'Thank you sir, for your support and valuable feedback' },
-  { id: 'g_rev_02', googleReviewId: 'g_rev_02', source: 'GOOGLE', name: 'Ganesh Nayak143', designation: 'Homeowner • Family Home Interiors', title: 'Practical Finishes & Organised Living', body: 'For our family home, we wanted interiors that looked good but were easy to maintain. Espacio suggested practical finishes and storage options based on our daily use. The bedrooms feel comfortable and the kitchen is much more organised now. We are happy with the overall outcome.', rating: 5, avatar: '/reviews/ganesh_nayak.png', date: '23 minutes ago', visible: true, featured: true, order: 2 },
+  { id: 'g_rev_01', googleReviewId: 'g_rev_01', source: 'GOOGLE', name: 'Dharma Teja', designation: 'Local Guide • 97 Reviews • 383 Photos', title: 'Best Interior Designer Near Me & Fantastic Job', body: 'I was researching the best interior designer near me, and while doing that, I came across ESPACIO. Eventually, we hired them, and it turned out to be a good decision. The interior designer was nice,the quality of the materials and finishing of the modular solutions is amazing, and the execution was really good.Espacio did a fantastic job.', rating: 5, avatar: '/reviews/dharma_teja.png', date: '3 months ago', visible: true, featured: true, order: 1, response: 'Thank you sir, for your support and valuable feedback' },
+  { id: 'g_rev_02', googleReviewId: 'g_rev_02', source: 'GOOGLE', name: 'Madhusudhan Vanam', designation: 'Google Reviewer • 1 Review • 1 Photo', title: 'Chala Bagundhi & Excellent TV Unit Execution', body: 'Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍', rating: 5, avatar: '/reviews/madhusudhan_vanam.png', date: '5 months ago', visible: true, featured: true, order: 2 },
   { id: 'g_rev_03', googleReviewId: 'g_rev_03', source: 'GOOGLE', name: 'Khaleel Shaik', designation: 'Interior Designer • 1 Review • 4 Photos', title: 'Largest Variety of Laminates, Veneers & Plywood', body: 'As an interior designer, I have found the largest variety of laminates, vineers, and plywood with all ranges of economy, premium and super premium as required by different customer segments at the best competitive rates. My suggestion for all to visit this place once before you buy.', rating: 5, avatar: '/reviews/khaleel_shaik.png', date: '5 months ago', visible: true, featured: true, order: 3, response: 'Thank you so much for your valuable feedback, look forward to assisting you again in your future projects!' },
-  { id: 'g_rev_04', googleReviewId: 'g_rev_04', source: 'GOOGLE', name: 'Juttiga Vaishnavi', designation: 'Homeowner • 3BHK Minimalist Interior', title: 'Clean Minimal Look & Great Material Guidance', body: 'We wanted a modern, minimal look for our 3BHK and specifically wanted to avoid too many decorative elements. Espacio understood that direction well. The colour combination and storage solutions came together nicely. We also liked that the team was willing to explain why certain materials were better for particular areas.', rating: 5, avatar: '/reviews/juttiga_vaishnavi.png', date: 'an hour ago', visible: true, featured: true, order: 4 },
-  { id: 'g_rev_05', googleReviewId: 'g_rev_05', source: 'GOOGLE', name: 'Sunkari santosh', designation: 'Google Reviewer • 2 Reviews', title: 'Professional & Great Interior and Exterior Elevation', body: 'Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.', rating: 5, avatar: '/reviews/sunkari_santosh.png', date: '3 days ago', visible: true, featured: true, order: 5 },
-  { id: 'g_rev_06', googleReviewId: 'g_rev_06', source: 'GOOGLE', name: 'Nani Varma', designation: 'Google Reviewer • 1 Review', title: 'Professional Reception & Functional Workspaces', body: 'Our requirement was a professional reception area along with functional workspaces. Espacio suggested a layout that made better use of the available area. The reception now gives a much better first impression, while the work area remains comfortable for the staff. Good experience overall.', rating: 5, avatar: '/reviews/nani_varma.png', date: '2 hours ago', visible: true, featured: true, order: 6 },
-  { id: 'g_rev_08', googleReviewId: 'g_rev_08', source: 'GOOGLE', name: 'Rafi Shaik', designation: 'Homeowner • 2BHK Turnkey', title: 'Clean Finish & Responsive Site Team', body: 'We got our 2BHK interiors done with Espacio Interiors & Modular. The team understood what we wanted and suggested practical options instead of simply adding more things. The modular kitchen storage came out really well and the overall finish looks clean. The site team was also responsive whenever we had a question.', rating: 5, avatar: '/reviews/rafi_shaik.png', date: '2 days ago', visible: true, featured: true, order: 8 },
-  { id: 'g_rev_09', googleReviewId: 'g_rev_09', source: 'GOOGLE', name: 'Lovely boy Laxman', designation: 'Homeowner • 1 Review • 3 Photos', title: 'Luxurious House at Reasonable Prices', body: 'Good equipment and well staff my house is now completely become luxurious with reasonable prices and thanks to espacio', rating: 5, avatar: '/reviews/lovely_boy_laxman.png', date: '5 months ago', visible: true, featured: true, order: 9, response: 'Thank you for your feedback! We’re glad you had a good experience with Espacio Interiors & Modular.' },
-  { id: 'g_rev_10', googleReviewId: 'g_rev_10', source: 'GOOGLE', name: 'Shaik BOB', designation: 'Google Reviewer • 3 Reviews • 3 Photos', title: 'Wide Range of Collections & Patient Service', body: 'Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding', rating: 5, avatar: '/reviews/shaik_bob.png', date: 'a year ago', visible: true, featured: true, order: 10, response: 'Thank you so much for visiting Espacio Interiors & Modular!' },
-  { id: 'g_rev_11', googleReviewId: 'g_rev_11', source: 'GOOGLE', name: 'Shaik Hussian', designation: 'Google Reviewer • 1 Review', title: 'Excellent Materials for Home & Office', body: 'Excellent materials for interior at home or office so pls visit this Espacio interiors and modular. Thank you...! ❤️', rating: 5, avatar: '/reviews/shaik_hussain.png', date: '5 months ago', visible: true, featured: true, order: 11 },
-  { id: 'g_rev_12', googleReviewId: 'g_rev_12', source: 'GOOGLE', name: 'KoteswaraRao Alaparthi', designation: 'Local Guide • 4 Reviews • 62 Photos', title: 'Good Quality Materials & Affordable Prices', body: 'Good quality of materials and affordable prices. Great experience working with ESPACIO Interiors & Modular.', rating: 5, avatar: '/reviews/koteswararao_alaparthi.png', date: '5 months ago', visible: true, featured: true, order: 12 },
-  { id: 'g_rev_13', googleReviewId: 'g_rev_13', source: 'GOOGLE', name: 'Jani Basha', designation: 'Google Reviewer • 4 Reviews', title: 'Good Service & Excellent Work 👍👏', body: 'Good service excellent work 👍👏 Very happy with Espacio Interiors & Modular service quality.', rating: 5, avatar: '/reviews/jani_basha.png', date: '5 months ago', visible: true, featured: true, order: 13 },
-  { id: 'g_rev_14', googleReviewId: 'g_rev_14', source: 'GOOGLE', name: 'Amresh kumar', designation: 'Google Reviewer • 1 Review', title: 'Good Experience and Excellent Service', body: 'Good experience and excellent service provided by Espacio Interiors & Modular.', rating: 5, avatar: '/reviews/amresh_kumar.png', date: '4 months ago', visible: true, featured: true, order: 14, response: 'Thank you sir' },
-  { id: 'g_rev_15', googleReviewId: 'g_rev_15', source: 'GOOGLE', name: 'G Rakesh', designation: 'Google Reviewer • 3 Reviews', title: 'Exceptional Modular Craftsmanship & Quality', body: 'Exceptional craftsmanship and smooth execution on modular wardrobes. The team at Espacio delivered top quality finishes.', rating: 5, avatar: '/reviews/g_rakesh.png', date: '3 months ago', visible: true, featured: true, order: 15 },
-  { id: 'g_rev_16', googleReviewId: 'g_rev_16', source: 'GOOGLE', name: 'RAJU PALADUGU', designation: 'Google Reviewer • 1 Review', title: 'Good Work & Good Communication 👍', body: 'Good work and good communication 👍 The team at Espacio delivered our project smoothly and transparently.', rating: 5, avatar: '/reviews/paladugu_raju.png', date: '5 months ago', visible: true, featured: true, order: 16 },
-  { id: 'g_rev_17', googleReviewId: 'g_rev_17', source: 'GOOGLE', name: 'Yadidya', designation: 'Google Reviewer • 3 Reviews', title: 'Good Work', body: 'Good work done on time.', rating: 5, avatar: '/reviews/yadidya.png', date: '5 months ago', visible: true, featured: true, order: 17, response: 'Thank you' },
-  { id: 'g_rev_18', googleReviewId: 'g_rev_18', source: 'GOOGLE', name: 'karagani pavankumar', designation: 'Google Reviewer • 2 Reviews', title: 'Super 👍😊', body: 'Super 👍😊 Great modular work and helpful team.', rating: 5, avatar: '/reviews/karagani_pavankumar.png', date: '5 months ago', visible: true, featured: true, order: 18 },
-  { id: 'g_rev_19', googleReviewId: 'g_rev_19', source: 'GOOGLE', name: 'Rajini Kumar', designation: 'Google Reviewer • 2 Reviews', title: 'Greate Experience', body: 'Greate experience working with Espacio Interiors & Modular.', rating: 5, avatar: '/reviews/rajini_kumar.png', date: '5 months ago', visible: true, featured: true, order: 19 },
-  { id: 'g_rev_20', googleReviewId: 'g_rev_20', source: 'GOOGLE', name: 'Ramesh Paladugu', designation: 'Google Reviewer • 3 Reviews', title: 'Good Service', body: 'Good service and reliable interior materials at ESPACIO.', rating: 5, avatar: '/reviews/ramesh_paladugu.png', date: '5 months ago', visible: true, featured: true, order: 20, response: 'Thank you' },
-  { id: 'g_rev_21', googleReviewId: 'g_rev_21', source: 'GOOGLE', name: 'naidu poola', designation: 'Google Reviewer • 2 Reviews', title: 'Good Service', body: 'Good service and friendly support.', rating: 5, avatar: '/reviews/naidu_poola.png', date: '5 months ago', visible: true, featured: true, order: 21 },
-  { id: 'g_rev_22', googleReviewId: 'g_rev_22', source: 'GOOGLE', name: 'Venkatesh mudhiraj', designation: 'Google Reviewer • 1 Review', title: 'Great Experience ❣️', body: 'great experience ❣️ Looking forward to working with Espacio Interiors & Modular again.', rating: 5, avatar: '/reviews/venkatesh_mudhiraj.png', date: '11 months ago', visible: true, featured: true, order: 22, response: 'Thank you!' },
-  { id: 'g_rev_23', googleReviewId: 'g_rev_23', source: 'GOOGLE', name: 'Haneef Abdul', designation: 'Google Reviewer • 4 Reviews • 4 Photos', title: 'Good Quality', body: 'Good experience with Espacio Interiors & Modular. Recommended.', rating: 5, avatar: '/reviews/haneef_abdul.png', date: '11 months ago', visible: true, featured: true, order: 23, response: 'Thank you for your feedback!' },
-  { id: 'g_rev_24', googleReviewId: 'g_rev_24', source: 'GOOGLE', name: 'K. SUBBARAO', designation: 'Google Reviewer • 5 Reviews', title: 'Super All Are Experts', body: 'Super... All’ are experts... Tq SPACIO Interiors', rating: 5, avatar: '/reviews/k_subbarao.png', date: '5 months ago', visible: true, featured: true, order: 24 },
-  { id: 'g_rev_25', googleReviewId: 'g_rev_25', source: 'GOOGLE', name: 'Paladugu Raju', designation: 'Local Guide • 1 Review', title: 'Reliable Quality & Execution', body: 'Reliable interior solutions and genuine quality materials. Thank you Espacio.', rating: 5, avatar: '/reviews/paladugu_raju.png', date: '5 months ago', visible: true, featured: true, order: 25, response: 'Thank you' },
-  { id: 'g_rev_26', googleReviewId: 'g_rev_26', source: 'GOOGLE', name: 'Kishor Kumar', designation: 'Google Reviewer • 6 Reviews • 5 Photos', title: 'Good Experience & Good Working Skills', body: 'Good experience & good working skills. The team at Espacio Interiors & Modular is dedicated and skilled.', rating: 5, avatar: '/reviews/kishor_kumar.png', date: '5 months ago', visible: true, featured: true, order: 26 },
-  { id: 'g_rev_27', googleReviewId: 'g_rev_27', source: 'GOOGLE', name: 'Ajayreddy Gowreddy123', designation: 'Google Reviewer • 2 Reviews', title: 'Good Service & Quality Materials', body: 'Good service and excellent quality materials offered at competitive pricing by Espacio.', rating: 5, avatar: '/reviews/ajayreddy_gowreddy.png', date: '5 months ago', visible: true, featured: true, order: 27 },
-  { id: 'g_rev_28', googleReviewId: 'g_rev_28', source: 'GOOGLE', name: 'imtiyaz shaik', designation: 'Google Reviewer • 9 Photos', title: 'Superb Design & Flawless Execution', body: 'Superb design variety and flawless material quality provided by Espacio Interiors & Modular.', rating: 5, avatar: '/reviews/imtiyaz_shaik.png', date: '5 months ago', visible: true, featured: true, order: 28 },
-  { id: 'g_rev_29', googleReviewId: 'g_rev_29', source: 'GOOGLE', name: 'Nakul Kirsani', designation: 'Google Reviewer • 1 Review • 1 Photo', title: 'Great Quality & Supportive Team', body: 'Good experience and quality materials with cooperative design staff.', rating: 5, avatar: '/reviews/nakul_kirsani.png', date: '11 months ago', visible: true, featured: true, order: 29 },
-  { id: 'g_rev_30', googleReviewId: 'g_rev_30', source: 'GOOGLE', name: 'Aditya Manda', designation: 'Local Guide • 4 Reviews', title: 'Professional Planning & Timely Delivery', body: 'Great experience with ESPACIO for home interiors. Professional planning and timely delivery.', rating: 5, avatar: '/reviews/aditya_manda.png', date: '4 months ago', visible: true, featured: true, order: 30 },
-  { id: 'g_rev_31', googleReviewId: 'g_rev_31', source: 'GOOGLE', name: 'Thumuganti Rithwik', designation: 'Google Reviewer • 2 Reviews', title: 'Delighted with Material Selection & Execution', body: 'Very satisfied with the interior design quality and material selection. Highly recommended!', rating: 5, avatar: '/reviews/thumuganti_rithwik.png', date: '3 months ago', visible: true, featured: true, order: 31 }
+  { id: 'g_rev_04', googleReviewId: 'g_rev_04', source: 'GOOGLE', name: 'Shaik Hussian', designation: 'Google Reviewer • 2 Reviews', title: 'Excellent Materials for Home & Office', body: 'Excellent materials for interior at home or office so pls visit this Espacio interiors and modular Thank you...! ❤️', rating: 5, avatar: '/reviews/shaik_hussain.png', date: '6 months ago', visible: true, featured: true, order: 4 },
+  { id: 'g_rev_05', googleReviewId: 'g_rev_05', source: 'GOOGLE', name: 'Lovely boy Laxman', designation: 'Google Reviewer • 1 Review • 3 Photos', title: 'Good Equipment, Well Staff & Luxurious House', body: 'Good equipment and well staff my house is now completely become luxurious with reasonable prices and thanks to espacio', rating: 5, avatar: '/reviews/lovely_boy_laxman.png', date: 'Edited 6 months ago', visible: true, featured: true, order: 5, response: 'Thank you for your feedback! We’re glad you had a good experience with Espacio Interiors & Modular.' },
+  { id: 'g_rev_06', googleReviewId: 'g_rev_06', source: 'GOOGLE', name: 'Amresh kumar', designation: 'Google Reviewer • 1 Review', title: 'Good Experience and Excellent Service', body: 'Good experience and excellent service', rating: 5, avatar: '/reviews/amresh_kumar.png', date: '5 months ago', visible: true, featured: true, order: 6, response: 'Thank you sir' },
+  { id: 'g_rev_07', googleReviewId: 'g_rev_07', source: 'GOOGLE', name: 'KoteswaraRao Alaparthi', designation: 'Local Guide • 4 Reviews • 62 Photos', title: 'Good Quality of Materials and Affordable Prices', body: 'Good quality of materials and affordable prices', rating: 5, avatar: '/reviews/koteswararao_alaparthi.png', date: '6 months ago', visible: true, featured: true, order: 7 },
+  { id: 'g_rev_08', googleReviewId: 'g_rev_08', source: 'GOOGLE', name: 'Shaik BOB', designation: 'Google Reviewer • 3 Reviews • 3 Photos', title: 'Wide Range of Varieties & Patient Customer Service', body: 'Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding', rating: 5, avatar: '/reviews/shaik_bob.png', date: 'a year ago', visible: true, featured: true, order: 8, response: 'Thank you so much for visiting Espacio Interiors & Modular!' },
+  { id: 'g_rev_09', googleReviewId: 'g_rev_09', source: 'GOOGLE', name: 'Jani Basha', designation: 'Google Reviewer • 4 Reviews', title: 'Good Service & Excellent Work 👍👏', body: 'Good service excellent work 👍 👏', rating: 5, avatar: '/reviews/jani_basha.png', date: '6 months ago', visible: true, featured: true, order: 9 },
+  { id: 'g_rev_10', googleReviewId: 'g_rev_10', source: 'GOOGLE', name: 'RAJU PALADUGU', designation: 'Google Reviewer • 1 Review', title: 'Good Work and Good Communication 👍', body: 'Good work and good communication 👍', rating: 5, avatar: '/reviews/paladugu_raju.png', date: 'Edited 6 months ago', visible: true, featured: true, order: 10, response: 'Thank you' },
+  { id: 'g_rev_11', googleReviewId: 'g_rev_11', source: 'GOOGLE', name: 'Shiak Ayub', designation: 'Google Reviewer • 2 Reviews', title: 'Good Work and Satisfied', body: 'Good work and satisfied', rating: 5, avatar: '/reviews/shaik_ayub.svg', date: '5 months ago', visible: true, featured: true, order: 11 },
+  { id: 'g_rev_12', googleReviewId: 'g_rev_12', source: 'GOOGLE', name: 'karagani pavankumar', designation: 'Google Reviewer • 2 Reviews', title: 'Super 👍😊', body: 'Super 👍 😊', rating: 5, avatar: '/reviews/karagani_pavankumar.png', date: '6 months ago', visible: true, featured: true, order: 12 },
+  { id: 'g_rev_13', googleReviewId: 'g_rev_13', source: 'GOOGLE', name: 'Rajini Kumar', designation: 'Google Reviewer • 2 Reviews', title: 'Greate Experience', body: 'Greate experience', rating: 5, avatar: '/reviews/rajini_kumar.png', date: '6 months ago', visible: true, featured: true, order: 13 },
+  { id: 'g_rev_14', googleReviewId: 'g_rev_14', source: 'GOOGLE', name: 'Ramesh Paladugu', designation: 'Google Reviewer • 3 Reviews', title: 'Good Service', body: 'Good service', rating: 5, avatar: '/reviews/ramesh_paladugu.png', date: '5 months ago', visible: true, featured: true, order: 14, response: 'Thank you' },
+  { id: 'g_rev_15', googleReviewId: 'g_rev_15', source: 'GOOGLE', name: 'naidu poola', designation: 'Google Reviewer • 2 Reviews', title: 'Good Service', body: 'Good service', rating: 5, avatar: '/reviews/naidu_poola.png', date: '6 months ago', visible: true, featured: true, order: 15 },
+  { id: 'g_rev_16', googleReviewId: 'g_rev_16', source: 'GOOGLE', name: 'Venkatesh mudhiraj', designation: 'Google Reviewer • 1 Review', title: 'Great Experience ❣️', body: 'great experience ❣️', rating: 5, avatar: '/reviews/venkatesh_mudhiraj.png', date: 'a year ago', visible: true, featured: true, order: 16, response: 'Thank you!' },
+  { id: 'g_rev_17', googleReviewId: 'g_rev_17', source: 'GOOGLE', name: 'K. SUBBARAO', designation: 'Google Reviewer • 5 Reviews', title: 'Super... All Are Experts... Tq ESPACIO', body: 'Super...\nAll\' are experts...\nTq ESPACIO Interiors', rating: 5, avatar: '/reviews/k_subbarao.png', date: '6 months ago', visible: true, featured: true, order: 17 },
+  { id: 'g_rev_18', googleReviewId: 'g_rev_18', source: 'GOOGLE', name: 'Reddy', designation: 'Google Reviewer', title: 'Exceptional Service & Quality', body: 'Thank you Reddy garu', rating: 5, avatar: '/reviews/reddy.svg', date: 'a month ago', visible: true, featured: true, order: 18, response: 'Thank you Reddy garu' },
+  { id: 'g_rev_19', googleReviewId: 'g_rev_19', source: 'GOOGLE', name: 'Nakul Kirsani', designation: 'Google Reviewer • 1 Review • 1 Photo', title: 'Great Quality & Supportive Team', body: 'Good experience and quality materials with cooperative design staff.', rating: 5, avatar: '/reviews/nakul_kirsani.png', date: 'a year ago', visible: true, featured: true, order: 19 },
+  { id: 'g_rev_20', googleReviewId: 'g_rev_20', source: 'GOOGLE', name: 'LEGAL AMICUS', designation: 'Local Guide • 7 Reviews • 78 Photos', title: 'Professional Planning & High-Quality Materials', body: 'Professional interior planning and exceptional materials supply from ESPACIO.', rating: 5, avatar: '/reviews/legal_amicus.svg', date: 'a year ago', visible: true, featured: true, order: 20 },
+  { id: 'g_rev_21', googleReviewId: 'g_rev_21', source: 'GOOGLE', name: 'A Sk', designation: 'Google Reviewer', title: '5 Star Rating & Satisfied Service', body: 'Great experience with Espacio Interiors & Modular. Recommended for turnkey interior solutions.', rating: 5, avatar: '/reviews/a_sk.svg', date: '6 months ago', visible: true, featured: true, order: 21 },
+  { id: 'g_rev_22', googleReviewId: 'g_rev_22', source: 'GOOGLE', name: 'imtiyaz shaik', designation: 'Google Reviewer • 9 Photos', title: 'Superb Design & Flawless Execution', body: 'Superb design variety and flawless material quality provided by Espacio Interiors & Modular.', rating: 5, avatar: '/reviews/imtiyaz_shaik.png', date: '6 months ago', visible: true, featured: true, order: 22 },
+  { id: 'g_rev_23', googleReviewId: 'g_rev_23', source: 'GOOGLE', name: 'Abdul Gaffar', designation: 'Local Guide • 2 Reviews', title: 'Professional Service & Quality Materials', body: 'Professional interior planning and exceptional materials supply from ESPACIO. Highly satisfied with their work.', rating: 5, avatar: '/reviews/abdul_gaffar.svg', date: '6 months ago', visible: true, featured: true, order: 23 },
+  { id: 'g_rev_24', googleReviewId: 'g_rev_24', source: 'GOOGLE', name: 'Kishor Kumar', designation: 'Google Reviewer • 6 Reviews • 5 Photos', title: 'Good Experience & Good Working Skills', body: 'Good experience & good working skills. The team at Espacio Interiors & Modular is dedicated and skilled.', rating: 5, avatar: '/reviews/kishor_kumar.png', date: '6 months ago', visible: true, featured: true, order: 24 },
+  { id: 'g_rev_25', googleReviewId: 'g_rev_25', source: 'GOOGLE', name: 'Ajayreddy Gowreddy123', designation: 'Google Reviewer • 2 Reviews', title: 'Good Service & Quality Materials', body: 'Good service and excellent quality materials offered at competitive pricing by Espacio.', rating: 5, avatar: '/reviews/ajayreddy_gowreddy.png', date: '6 months ago', visible: true, featured: true, order: 25 },
+  { id: 'g_rev_26', googleReviewId: 'g_rev_26', source: 'GOOGLE', name: 'Ganesh Nayak143', designation: 'Homeowner • Family Home Interiors', title: 'Practical Finishes & Organised Living', body: 'For our family home, we wanted interiors that looked good but were easy to maintain. Espacio suggested practical finishes and storage options based on our daily use. The bedrooms feel comfortable and the kitchen is much more organised now. We are happy with the overall outcome.', rating: 5, avatar: '/reviews/ganesh_nayak.png', date: '23 minutes ago', visible: true, featured: true, order: 26 },
+  { id: 'g_rev_27', googleReviewId: 'g_rev_27', source: 'GOOGLE', name: 'Juttiga Vaishnavi', designation: 'Homeowner • 3BHK Minimalist Interior', title: 'Clean Minimal Look & Great Material Guidance', body: 'We wanted a modern, minimal look for our 3BHK and specifically wanted to avoid too many decorative elements. Espacio understood that direction well. The colour combination and storage solutions came together nicely. We also liked that the team was willing to explain why certain materials were better for particular areas.', rating: 5, avatar: '/reviews/juttiga_vaishnavi.png', date: 'an hour ago', visible: true, featured: true, order: 27 },
+  { id: 'g_rev_28', googleReviewId: 'g_rev_28', source: 'GOOGLE', name: 'Sunkari santosh', designation: 'Google Reviewer • 2 Reviews', title: 'Professional & Great Interior and Exterior Elevation', body: 'Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.', rating: 5, avatar: '/reviews/sunkari_santosh.png', date: '3 days ago', visible: true, featured: true, order: 28 },
+  { id: 'g_rev_29', googleReviewId: 'g_rev_29', source: 'GOOGLE', name: 'Nani Varma', designation: 'Google Reviewer • 1 Review', title: 'Professional Reception & Functional Workspaces', body: 'Our requirement was a professional reception area along with functional workspaces. Espacio suggested a layout that made better use of the available area. The reception now gives a much better first impression, while the work area remains comfortable for the staff. Good experience overall.', rating: 5, avatar: '/reviews/nani_varma.png', date: '2 hours ago', visible: true, featured: true, order: 29 },
+  { id: 'g_rev_30', googleReviewId: 'g_rev_30', source: 'GOOGLE', name: 'Haneef Abdul', designation: 'Google Reviewer • 4 Reviews • 4 Photos', title: 'Good Quality', body: 'Good experience with Espacio Interiors & Modular. Recommended.', rating: 5, avatar: '/reviews/haneef_abdul.png', date: '11 months ago', visible: true, featured: true, order: 30, response: 'Thank you for your feedback!' },
+  { id: 'g_rev_31', googleReviewId: 'g_rev_31', source: 'GOOGLE', name: 'Paladugu Raju', designation: 'Local Guide • 1 Review', title: 'Reliable Quality & Execution', body: 'Reliable interior solutions and genuine quality materials. Thank you Espacio.', rating: 5, avatar: '/reviews/paladugu_raju.png', date: '5 months ago', visible: true, featured: true, order: 31, response: 'Thank you' },
+  { id: 'g_rev_32', googleReviewId: 'g_rev_32', source: 'GOOGLE', name: 'Aditya Manda', designation: 'Local Guide • 4 Reviews', title: 'Professional Planning & Timely Delivery', body: 'Great experience with ESPACIO for home interiors. Professional planning and timely delivery.', rating: 5, avatar: '/reviews/aditya_manda.png', date: '4 months ago', visible: true, featured: true, order: 32 },
+  { id: 'g_rev_33', googleReviewId: 'g_rev_33', source: 'GOOGLE', name: 'Thumuganti Rithwik', designation: 'Google Reviewer • 2 Reviews', title: 'Delighted with Material Selection & Execution', body: 'Very satisfied with the interior design quality and material selection. Highly recommended!', rating: 5, avatar: '/reviews/thumuganti_rithwik.png', date: '3 months ago', visible: true, featured: true, order: 33 }
 ];
 
 // ─── DEFAULT ADMIN USERS ──────────────────────────────────────────────────────
@@ -1235,6 +1215,101 @@ export const getCMSData = (key, fallback = null) => {
       let data = JSON.parse(raw);
                 if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
           let updated = false;
+          const p1Idx = data.findIndex(p => p._id === 'proj_1_rajapushpa_provincia' || p.slug === 'rajapushpa-provincia-3bhk');
+          if (p1Idx !== -1) {
+            if (
+              data[p1Idx].beforeImage !== DEFAULT_PROJECTS[0].beforeImage ||
+              data[p1Idx].afterImage !== DEFAULT_PROJECTS[0].afterImage ||
+              data[p1Idx].heroImage !== DEFAULT_PROJECTS[0].heroImage ||
+              !Array.isArray(data[p1Idx].gallery) ||
+              data[p1Idx].gallery.length !== DEFAULT_PROJECTS[0].gallery.length ||
+              data[p1Idx].gallery.some(img => typeof img === 'string' && img.includes('rajapushpa_'))
+            ) {
+              data[p1Idx].beforeImage = DEFAULT_PROJECTS[0].beforeImage;
+              data[p1Idx].afterImage = DEFAULT_PROJECTS[0].afterImage;
+              data[p1Idx].beforeImages = DEFAULT_PROJECTS[0].beforeImages;
+              data[p1Idx].afterImages = DEFAULT_PROJECTS[0].afterImages;
+              data[p1Idx].heroImage = DEFAULT_PROJECTS[0].heroImage;
+              data[p1Idx].gallery = DEFAULT_PROJECTS[0].gallery;
+              updated = true;
+            }
+          }
+          const p2Idx = data.findIndex(p => p._id === 'proj_2_my_home_sayuk' || p.slug === 'my-home-sayuk-3bhk');
+          if (p2Idx !== -1) {
+            if (
+              data[p2Idx].beforeImage !== DEFAULT_PROJECTS[1].beforeImage ||
+              data[p2Idx].afterImage !== DEFAULT_PROJECTS[1].afterImage ||
+              data[p2Idx].heroImage !== DEFAULT_PROJECTS[1].heroImage ||
+              !Array.isArray(data[p2Idx].gallery) ||
+              data[p2Idx].gallery.length !== DEFAULT_PROJECTS[1].gallery.length ||
+              data[p2Idx].gallery.some(img => typeof img === 'string' && img.includes('sayuk_'))
+            ) {
+              data[p2Idx].beforeImage = DEFAULT_PROJECTS[1].beforeImage;
+              data[p2Idx].afterImage = DEFAULT_PROJECTS[1].afterImage;
+              data[p2Idx].beforeImages = DEFAULT_PROJECTS[1].beforeImages;
+              data[p2Idx].afterImages = DEFAULT_PROJECTS[1].afterImages;
+              data[p2Idx].heroImage = DEFAULT_PROJECTS[1].heroImage;
+              data[p2Idx].gallery = DEFAULT_PROJECTS[1].gallery;
+              updated = true;
+            }
+          }
+          const p3Idx = data.findIndex(p => p._id === 'proj_3_kokapet_nagesh' || p.slug === 'kokapet-2bhk');
+          if (p3Idx !== -1) {
+            if (
+              data[p3Idx].beforeImage !== DEFAULT_PROJECTS[2].beforeImage ||
+              data[p3Idx].afterImage !== DEFAULT_PROJECTS[2].afterImage ||
+              data[p3Idx].heroImage !== DEFAULT_PROJECTS[2].heroImage ||
+              !Array.isArray(data[p3Idx].gallery) ||
+              data[p3Idx].gallery.length !== DEFAULT_PROJECTS[2].gallery.length ||
+              data[p3Idx].gallery.some(img => typeof img === 'string' && img.includes('kokapet_tv_unit'))
+            ) {
+              data[p3Idx].beforeImage = DEFAULT_PROJECTS[2].beforeImage;
+              data[p3Idx].afterImage = DEFAULT_PROJECTS[2].afterImage;
+              data[p3Idx].beforeImages = DEFAULT_PROJECTS[2].beforeImages;
+              data[p3Idx].afterImages = DEFAULT_PROJECTS[2].afterImages;
+              data[p3Idx].heroImage = DEFAULT_PROJECTS[2].heroImage;
+              data[p3Idx].gallery = DEFAULT_PROJECTS[2].gallery;
+              updated = true;
+            }
+          }
+          const p4Idx = data.findIndex(p => p._id === 'proj_4_kokapet_rahul' || p.slug === 'kokapet-urban-2bhk');
+          if (p4Idx !== -1) {
+            if (
+              data[p4Idx].beforeImage !== DEFAULT_PROJECTS[3].beforeImage ||
+              data[p4Idx].afterImage !== DEFAULT_PROJECTS[3].afterImage ||
+              data[p4Idx].heroImage !== DEFAULT_PROJECTS[3].heroImage ||
+              !Array.isArray(data[p4Idx].gallery) ||
+              data[p4Idx].gallery.length !== DEFAULT_PROJECTS[3].gallery.length ||
+              data[p4Idx].gallery.some(img => typeof img === 'string' && img.includes('rahul_gallery'))
+            ) {
+              data[p4Idx].beforeImage = DEFAULT_PROJECTS[3].beforeImage;
+              data[p4Idx].afterImage = DEFAULT_PROJECTS[3].afterImage;
+              data[p4Idx].beforeImages = DEFAULT_PROJECTS[3].beforeImages;
+              data[p4Idx].afterImages = DEFAULT_PROJECTS[3].afterImages;
+              data[p4Idx].heroImage = DEFAULT_PROJECTS[3].heroImage;
+              data[p4Idx].gallery = DEFAULT_PROJECTS[3].gallery;
+              updated = true;
+            }
+          }
+          const p5Idx = data.findIndex(p => p._id === 'proj_5_gandipet_kiran' || p.slug === 'gandipet-modern-retro-2bhk');
+          if (p5Idx !== -1) {
+            if (
+              data[p5Idx].beforeImage !== DEFAULT_PROJECTS[4].beforeImage ||
+              data[p5Idx].afterImage !== DEFAULT_PROJECTS[4].afterImage ||
+              data[p5Idx].heroImage !== DEFAULT_PROJECTS[4].heroImage ||
+              !Array.isArray(data[p5Idx].gallery) ||
+              data[p5Idx].gallery.length !== DEFAULT_PROJECTS[4].gallery.length ||
+              data[p5Idx].gallery.some(img => typeof img === 'string' && img.includes('kiran_gallery'))
+            ) {
+              data[p5Idx].beforeImage = DEFAULT_PROJECTS[4].beforeImage;
+              data[p5Idx].afterImage = DEFAULT_PROJECTS[4].afterImage;
+              data[p5Idx].beforeImages = DEFAULT_PROJECTS[4].beforeImages;
+              data[p5Idx].afterImages = DEFAULT_PROJECTS[4].afterImages;
+              data[p5Idx].heroImage = DEFAULT_PROJECTS[4].heroImage;
+              data[p5Idx].gallery = DEFAULT_PROJECTS[4].gallery;
+              updated = true;
+            }
+          }
           const hasKokapetNagesh = data.some(p => p._id === 'proj_3_kokapet_nagesh' || p.slug === 'kokapet-2bhk');
           if (!hasKokapetNagesh) {
             const idx = data.findIndex(p => p._id === 'proj_3_minimalist_beige' || p.slug === 'minimalist-beige-2bhk');
@@ -1274,6 +1349,26 @@ export const getCMSData = (key, fallback = null) => {
               data.splice(5, 0, DEFAULT_PROJECTS[5]);
             }
             updated = true;
+          } else {
+            const p6Idx = data.findIndex(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
+            if (p6Idx !== -1) {
+              if (
+                data[p6Idx].beforeImage !== DEFAULT_PROJECTS[5].beforeImage ||
+                data[p6Idx].afterImage !== DEFAULT_PROJECTS[5].afterImage ||
+                data[p6Idx].heroImage !== DEFAULT_PROJECTS[5].heroImage ||
+                !Array.isArray(data[p6Idx].gallery) ||
+                data[p6Idx].gallery.length !== DEFAULT_PROJECTS[5].gallery.length ||
+                data[p6Idx].gallery.some(img => typeof img === 'string' && img.includes('venkatesh_gallery'))
+              ) {
+                data[p6Idx].beforeImage = DEFAULT_PROJECTS[5].beforeImage;
+                data[p6Idx].afterImage = DEFAULT_PROJECTS[5].afterImage;
+                data[p6Idx].beforeImages = DEFAULT_PROJECTS[5].beforeImages;
+                data[p6Idx].afterImages = DEFAULT_PROJECTS[5].afterImages;
+                data[p6Idx].heroImage = DEFAULT_PROJECTS[5].heroImage;
+                data[p6Idx].gallery = DEFAULT_PROJECTS[5].gallery;
+                updated = true;
+              }
+            }
           }
                     const hasGachibowliKoteswara = data.some(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
           if (!hasGachibowliKoteswara) {
@@ -1284,17 +1379,57 @@ export const getCMSData = (key, fallback = null) => {
               data.splice(6, 0, DEFAULT_PROJECTS[6]);
             }
             updated = true;
+          } else {
+            const p7Idx = data.findIndex(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
+            if (p7Idx !== -1) {
+              if (
+                data[p7Idx].beforeImage !== DEFAULT_PROJECTS[6].beforeImage ||
+                data[p7Idx].afterImage !== DEFAULT_PROJECTS[6].afterImage ||
+                data[p7Idx].heroImage !== DEFAULT_PROJECTS[6].heroImage ||
+                !Array.isArray(data[p7Idx].gallery) ||
+                data[p7Idx].gallery.length !== DEFAULT_PROJECTS[6].gallery.length ||
+                data[p7Idx].gallery.some(img => typeof img === 'string' && img.includes('koteswara_gallery'))
+              ) {
+                data[p7Idx].beforeImage = DEFAULT_PROJECTS[6].beforeImage;
+                data[p7Idx].afterImage = DEFAULT_PROJECTS[6].afterImage;
+                data[p7Idx].beforeImages = DEFAULT_PROJECTS[6].beforeImages;
+                data[p7Idx].afterImages = DEFAULT_PROJECTS[6].afterImages;
+                data[p7Idx].heroImage = DEFAULT_PROJECTS[6].heroImage;
+                data[p7Idx].gallery = DEFAULT_PROJECTS[6].gallery;
+                updated = true;
+              }
+            }
           }
-                    const hasKachigudaSubbarao = data.some(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
+          const hasKachigudaSubbarao = data.some(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
           if (!hasKachigudaSubbarao) {
             const idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
             if (idx !== -1) {
               data[idx] = DEFAULT_PROJECTS[7];
             } else {
               data.splice(7, 0, DEFAULT_PROJECTS[7]);
+            }
+            updated = true;
+          } else {
+            const p8Idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
+            if (p8Idx !== -1) {
+              if (
+                data[p8Idx].beforeImage !== DEFAULT_PROJECTS[7].beforeImage ||
+                data[p8Idx].afterImage !== DEFAULT_PROJECTS[7].afterImage ||
+                data[p8Idx].heroImage !== DEFAULT_PROJECTS[7].heroImage ||
+                !Array.isArray(data[p8Idx].gallery) ||
+                data[p8Idx].gallery.length !== DEFAULT_PROJECTS[7].gallery.length ||
+                data[p8Idx].gallery.some(img => typeof img === 'string' && img.includes('subbarao_gallery'))
+              ) {
+                data[p8Idx].beforeImage = DEFAULT_PROJECTS[7].beforeImage;
+                data[p8Idx].afterImage = DEFAULT_PROJECTS[7].afterImage;
+                data[p8Idx].beforeImages = DEFAULT_PROJECTS[7].beforeImages;
+                data[p8Idx].afterImages = DEFAULT_PROJECTS[7].afterImages;
+                data[p8Idx].heroImage = DEFAULT_PROJECTS[7].heroImage;
+                data[p8Idx].gallery = DEFAULT_PROJECTS[7].gallery;
+                updated = true;
+              }
+            }
           }
-          updated = true;
-        }
         const hasDimmuChachu = data.some(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
         if (!hasDimmuChachu) {
           const idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
@@ -1306,9 +1441,22 @@ export const getCMSData = (key, fallback = null) => {
           updated = true;
         } else {
           const p9Idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-          if (p9Idx !== -1 && (data[p9Idx].heroImage?.includes('googleusercontent') || !data[p9Idx].heroImage?.includes('/images/projects/dimmu_residence'))) {
-            data[p9Idx] = { ...data[p9Idx], ...DEFAULT_PROJECTS[8] };
-            updated = true;
+          if (p9Idx !== -1) {
+            if (data[p9Idx].beforeImage !== DEFAULT_PROJECTS[8].beforeImage || data[p9Idx].afterImage !== DEFAULT_PROJECTS[8].afterImage) {
+              data[p9Idx].beforeImage = DEFAULT_PROJECTS[8].beforeImage;
+              data[p9Idx].afterImage = DEFAULT_PROJECTS[8].afterImage;
+              data[p9Idx].beforeImages = DEFAULT_PROJECTS[8].beforeImages;
+              data[p9Idx].afterImages = DEFAULT_PROJECTS[8].afterImages;
+              updated = true;
+            }
+            if (data[p9Idx].heroImage?.includes('googleusercontent')) {
+              data[p9Idx].heroImage = DEFAULT_PROJECTS[8].heroImage;
+              updated = true;
+            }
+            if (!Array.isArray(data[p9Idx].gallery) || data[p9Idx].gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || data[p9Idx].gallery.length !== DEFAULT_PROJECTS[8].gallery.length) {
+              data[p9Idx].gallery = DEFAULT_PROJECTS[8].gallery;
+              updated = true;
+            }
           }
         }
           // Sanitize gallery images and remove duplicates
@@ -1322,15 +1470,15 @@ export const getCMSData = (key, fallback = null) => {
 
           // Ensure all 9 projects have the high-resolution Cloudinary URLs
           const PROJECT_CLOUDINARY_MAP = {
-            0: '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
-            1: '/images/projects/my_home_sayuk/sayuk_4.webp',
-            2: '/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp',
-            3: '/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp',
-            4: '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
-            5: '/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp',
-            6: '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp',
-            7: '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
-            8: 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-'
+            0: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png',
+            1: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png',
+            2: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png',
+            3: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png',
+            4: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png',
+            5: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png',
+            6: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png',
+            7: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png',
+            8: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png'
           };
           data.forEach((p, idx) => {
             if (p && PROJECT_CLOUDINARY_MAP[idx]) {
@@ -1382,6 +1530,26 @@ export const getCMSData = (key, fallback = null) => {
             updated = true;
           }
 
+          if (updated) {
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          }
+        }
+        if (key === STORAGE_KEYS.TESTIMONIALS && Array.isArray(data)) {
+          let updated = false;
+          if (
+            !data.some(t => t.name === 'Shiak Ayub') ||
+            !data.some(t => t.name === 'Madhusudhan Vanam') ||
+            !data.some(t => t.name === 'LEGAL AMICUS') ||
+            !data.some(t => t.name === 'Reddy') ||
+            !data.some(t => t.name === 'Venkatesh mudhiraj') ||
+            !data.some(t => t.name === 'A Sk') ||
+            !data.some(t => t.name === 'Abdul Gaffar') ||
+            data[0]?.name !== 'Dharma Teja' ||
+            data[10]?.name !== 'Shiak Ayub'
+          ) {
+            data = DEFAULT_TESTIMONIALS;
+            updated = true;
+          }
           if (updated) {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
@@ -1493,6 +1661,22 @@ export const getCMSData = (key, fallback = null) => {
           if (data.intro_description && data.intro_description.includes('We bring 40+ years of family construction heritage')) {
             data.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
             modified = true;
+          }
+          if (typeof data.about_hero_subtitle === 'string' && data.about_hero_subtitle.includes('Mantana')) {
+            data.about_hero_subtitle = data.about_hero_subtitle.replace(/Mantana/g, 'Mastana');
+            modified = true;
+          }
+          if (typeof data.about_story_p1 === 'string' && data.about_story_p1.includes('Mantana')) {
+            data.about_story_p1 = data.about_story_p1.replace(/Mantana/g, 'Mastana');
+            modified = true;
+          }
+          if (Array.isArray(data.about_generations)) {
+            data.about_generations.forEach(g => {
+              if (g && typeof g.title === 'string' && g.title.includes('Mantana')) {
+                g.title = g.title.replace(/Mantana/g, 'Mastana');
+                modified = true;
+              }
+            });
           }
           if (Array.isArray(data.nav_items)) {
             data.nav_items.forEach(item => {
@@ -2480,10 +2664,15 @@ export const getCMSData = (key, fallback = null) => {
                 cat.heroImage = "/images/spaces/dining/dining_drive_27.webp";
                 modified = true;
               }
-              if (cat.slug === 'tv-units' && (!cat.galleryImages || cat.galleryImages.length !== 37 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = TV_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/tv_units/tv_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'tv-units') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png",
+                    ...TV_DRIVE_IMAGES
+                  ];
+                  modified = true;
+                }
               }
               if (cat.slug === 'false-ceilings' && (!cat.galleryImages || cat.galleryImages.length !== 46 || !cat.galleryImages[0]?.includes('.webp'))) {
                 cat.galleryImages = CEILING_DRIVE_IMAGES;
@@ -2495,35 +2684,65 @@ export const getCMSData = (key, fallback = null) => {
                 cat.heroImage = "/images/spaces/wardrobes/wardrobe_drive_1.webp";
                 modified = true;
               }
-              if (cat.slug === 'commercial-interiors' && (!cat.galleryImages || cat.galleryImages.length !== 41 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = COMMERCIAL_INTERIORS_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/commercial/commercial_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'commercial-interiors' || cat.slug === 'commercial-office') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png",
+                    ...COMMERCIAL_INTERIORS_DRIVE_IMAGES
+                  ];
+                  modified = true;
+                }
               }
-              if (cat.slug === 'cafes-restaurants' && (!cat.galleryImages || cat.galleryImages.length !== 42 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = CAFES_RESTAURANTS_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/cafes/cafe_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'cafes-restaurants') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png",
+                    ...CAFES_RESTAURANTS_DRIVE_IMAGES
+                  ];
+                  modified = true;
+                }
               }
-              if (cat.slug === 'foyer' && (!cat.galleryImages || cat.galleryImages.length !== 30 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = FOYER_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/foyer/foyer_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'foyer') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png",
+                    ...FOYER_DRIVE_IMAGES
+                  ];
+                  modified = true;
+                }
               }
-              if (cat.slug === 'bar' && (!cat.galleryImages || cat.galleryImages.length !== 38 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = BAR_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/bar/bar_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'bar') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png",
+                    ...BAR_DRIVE_IMAGES
+                  ];
+                  modified = true;
+                }
               }
-              if (cat.slug === 'walk-in-wardrobe' && (!cat.galleryImages || cat.galleryImages.length !== 24 || cat.galleryImages.includes('/images/spaces/wardrobes/walk_in_wardrobe_drive_2.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = WALK_IN_WARDROBE_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'walk-in-wardrobe') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png",
+                    ...WALK_IN_WARDROBE_DRIVE_IMAGES.filter(img => !img.includes('walk_in_wardrobe_drive_2.webp'))
+                  ];
+                  modified = true;
+                }
               }
-              if (cat.slug === 'reception-areas' && (!cat.galleryImages || cat.galleryImages.length !== 34 || cat.galleryImages.includes('/images/spaces/reception/reception_drive_29.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = RECEPTION_AREAS_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/reception/reception_drive_1.webp";
-                modified = true;
+              if (cat.slug === 'reception-areas') {
+                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png") {
+                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png";
+                  cat.galleryImages = [
+                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png",
+                    ...RECEPTION_AREAS_DRIVE_IMAGES.filter(img => !img.includes('reception_drive_29'))
+                  ];
+                  modified = true;
+                }
               }
             });
           }
@@ -2633,14 +2852,12 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
-            const p2 = data.find(p => p.slug === 'my-home-sayuk-3bhk');
+            const p2 = data.find(p => p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk');
             if (p2) {
               let changed2 = false;
-              if (!p2.beforeImage || p2.beforeImage.includes('unsplash') || p2.beforeImage.includes('spaces_hero')) {
-                p2.beforeImage = '/images/projects/my_home_sayuk/sayuk_before_raw.webp';
-                p2.afterImage = '/images/projects/my_home_sayuk/sayuk_after_open_hall.webp';
-                p2.beforeImages = ['/images/projects/my_home_sayuk/sayuk_before_raw.webp'];
-                p2.afterImages = ['/images/projects/my_home_sayuk/sayuk_after_open_hall.webp'];
+              if (p2.beforeImage !== DEFAULT_PROJECTS[1].beforeImage) {
+                p2.beforeImage = DEFAULT_PROJECTS[1].beforeImage;
+                p2.beforeImages = DEFAULT_PROJECTS[1].beforeImages;
                 changed2 = true;
               }
               if (p2.title !== 'The Lattice Retreat') {
@@ -2659,14 +2876,12 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
-            const p3 = data.find(p => p.slug === 'kokapet-2bhk');
+            const p3 = data.find(p => p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh');
             if (p3) {
               let changed3 = false;
-              if (!p3.beforeImage || p3.beforeImage.includes('unsplash') || p3.beforeImage.includes('spaces_hero')) {
-                p3.beforeImage = '/images/projects/kokapet_nagesh_2bhk/kokapet_before.webp';
-                p3.afterImage = '/images/projects/kokapet_nagesh_2bhk/kokapet_after.webp';
-                p3.beforeImages = ['/images/projects/kokapet_nagesh_2bhk/kokapet_before.webp'];
-                p3.afterImages = ['/images/projects/kokapet_nagesh_2bhk/kokapet_after.webp'];
+              if (p3.beforeImage !== DEFAULT_PROJECTS[2].beforeImage) {
+                p3.beforeImage = DEFAULT_PROJECTS[2].beforeImage;
+                p3.beforeImages = DEFAULT_PROJECTS[2].beforeImages;
                 changed3 = true;
               }
               if (p3.title !== 'The Boucle Residence') {
@@ -2685,14 +2900,12 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
-            const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk');
+            const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul');
             if (p4) {
               let changed4 = false;
-              if (!p4.beforeImage || p4.beforeImage.includes('unsplash') || p4.beforeImage.includes('spaces_hero')) {
-                p4.beforeImage = '/images/projects/kokapet_rahul_2bhk/rahul_before.webp';
-                p4.afterImage = '/images/projects/kokapet_rahul_2bhk/rahul_after.webp';
-                p4.beforeImages = ['/images/projects/kokapet_rahul_2bhk/rahul_before.webp'];
-                p4.afterImages = ['/images/projects/kokapet_rahul_2bhk/rahul_after.webp'];
+              if (p4.beforeImage !== DEFAULT_PROJECTS[3].beforeImage) {
+                p4.beforeImage = DEFAULT_PROJECTS[3].beforeImage;
+                p4.beforeImages = DEFAULT_PROJECTS[3].beforeImages;
                 changed4 = true;
               }
               if (p4.title !== 'The Ivory Retreat') {
@@ -2711,14 +2924,12 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
-            const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk');
+            const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran');
             if (p5) {
               let changed5 = false;
-              if (!p5.beforeImage || p5.beforeImage.includes('unsplash') || p5.beforeImage.includes('spaces_hero')) {
-                p5.beforeImage = '/images/projects/gandipet_kiran_2bhk/kiran_before.webp';
-                p5.afterImage = '/images/projects/gandipet_kiran_2bhk/kiran_after.webp';
-                p5.beforeImages = ['/images/projects/gandipet_kiran_2bhk/kiran_before.webp'];
-                p5.afterImages = ['/images/projects/gandipet_kiran_2bhk/kiran_after.webp'];
+              if (p5.beforeImage !== DEFAULT_PROJECTS[4].beforeImage) {
+                p5.beforeImage = DEFAULT_PROJECTS[4].beforeImage;
+                p5.beforeImages = DEFAULT_PROJECTS[4].beforeImages;
                 changed5 = true;
               }
               if (p5.title !== 'The Panelled Muse') {
@@ -2744,11 +2955,9 @@ export const getCMSData = (key, fallback = null) => {
                 p6.heroImage = DEFAULT_PROJECTS[5].heroImage;
                 changed6 = true;
               }
-              if (!p6.beforeImage || p6.beforeImage.includes('unsplash') || p6.beforeImage.includes('spaces_hero')) {
-                p6.beforeImage = '/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp';
-                p6.afterImage = '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp';
-                p6.beforeImages = ['/images/projects/kondapur_venkatesh_2bhk/venkatesh_before.webp'];
-                p6.afterImages = ['/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp'];
+              if (p6.beforeImage !== DEFAULT_PROJECTS[5].beforeImage) {
+                p6.beforeImage = DEFAULT_PROJECTS[5].beforeImage;
+                p6.beforeImages = DEFAULT_PROJECTS[5].beforeImages;
                 changed6 = true;
               }
               if (p6.title !== 'The Dusk Lounge') {
@@ -2774,11 +2983,11 @@ export const getCMSData = (key, fallback = null) => {
                 p7.heroImage = DEFAULT_PROJECTS[6].heroImage;
                 changed7 = true;
               }
-              if (!p7.beforeImage || p7.beforeImage.includes('unsplash') || p7.beforeImage.includes('spaces_hero')) {
-                p7.beforeImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp';
-                p7.afterImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp';
-                p7.beforeImages = ['/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp'];
-                p7.afterImages = ['/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp'];
+              if (p7.beforeImage !== DEFAULT_PROJECTS[6].beforeImage || p7.afterImage !== DEFAULT_PROJECTS[6].afterImage) {
+                p7.beforeImage = DEFAULT_PROJECTS[6].beforeImage;
+                p7.afterImage = DEFAULT_PROJECTS[6].afterImage;
+                p7.beforeImages = DEFAULT_PROJECTS[6].beforeImages;
+                p7.afterImages = DEFAULT_PROJECTS[6].afterImages;
                 changed7 = true;
               }
               if (p7.title !== 'A 2BHK Residence, Gachibowli') {
@@ -2804,11 +3013,11 @@ export const getCMSData = (key, fallback = null) => {
                 p8.heroImage = DEFAULT_PROJECTS[7].heroImage;
                 changed8 = true;
               }
-              if (!p8.beforeImage || p8.beforeImage.includes('unsplash') || p8.beforeImage.includes('spaces_hero')) {
-                p8.beforeImage = '/images/projects/kachiguda_subbarao_duplex/subbarao_before.webp';
-                p8.afterImage = '/images/projects/kachiguda_subbarao_duplex/subbarao_after.webp';
-                p8.beforeImages = ['/images/projects/kachiguda_subbarao_duplex/subbarao_before.webp'];
-                p8.afterImages = ['/images/projects/kachiguda_subbarao_duplex/subbarao_after.webp'];
+              if (p8.beforeImage !== DEFAULT_PROJECTS[7].beforeImage || p8.afterImage !== DEFAULT_PROJECTS[7].afterImage) {
+                p8.beforeImage = DEFAULT_PROJECTS[7].beforeImage;
+                p8.afterImage = DEFAULT_PROJECTS[7].afterImage;
+                p8.beforeImages = DEFAULT_PROJECTS[7].beforeImages;
+                p8.afterImages = DEFAULT_PROJECTS[7].afterImages;
                 changed8 = true;
               }
               if (p8.title !== 'A Duplex Residence, Kachiguda') {
@@ -2927,14 +3136,21 @@ export const getCMSData = (key, fallback = null) => {
           }
 
           const SPACES_IMG_MAP = {
-            'modular-kitchen': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427747/hf_20260926_125254_d829d747-17df-43a6-8786-0a4d6b041695.png',
-            'pooja-room': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427772/hf_20260926_125414_74dd535c-b43d-4439-8e1d-29f1d5ce46e5.png',
-            'walk-in-wardrobe': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427788/hf_20260926_125434_bbbaef9a-ed61-4c98-9ec4-1dd081357147.png',
-            'wardrobes': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427805/hf_20260926_125507_56ae13ff-2251-4e94-baba-dc9f8b300620.png',
-            'master-bedroom': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png',
-            'bar': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427837/hf_20260926_125558_d6e03bd2-82c9-4157-8f76-54556a1ebe41.png',
-            'living-room': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427851/hf_20260926_125614_59b74a58-c260-4e7a-820c-a59241fcfcf8.png',
-            'dining-room': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427871/hf_20260926_125650_185b9f72-b95c-4152-89ad-f10a7b14ffd3.png'
+            'modular-kitchen': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/f5ba100a-b7b4-4c3d-abd4-09fc76c02a1a.png',
+            'pooja-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9ff3ef5a-a5a0-4fc6-9b59-23803b283bc3.png',
+            'walk-in-wardrobe': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png',
+            'wardrobes': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6cf77808-04b5-41c1-afd4-601eea5bd274.png',
+            'master-bedroom': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png',
+            'bar': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png',
+            'living-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/fe4a004a-0264-4c56-bcec-87bf02aa6292.png',
+            'dining-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b88b5c55-d357-46b8-b4ee-4843e9909190.png',
+            'tv-units': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png',
+            'commercial-interiors': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png',
+            'reception-areas': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png',
+            'cafes-restaurants': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png',
+            'home-office': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/453968f9-cf57-4d07-8ec8-a5556159ae46.png',
+            'commercial-office': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a3aab549-4f2b-40b3-99fb-2115b13c6c12.png',
+            'foyer': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png'
           };
 
           if (Array.isArray(data.spaces_list)) {

@@ -49,6 +49,7 @@ const services = [
       'Full Execution, Managed Start to Finish'
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+    mobileImg: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
     ctaText: 'Enquire About Residential Interiors',
     ctaLink: '/contact'
   },
@@ -66,6 +67,7 @@ const services = [
       'Full Commercial Buildout, Start to Finish'
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+    mobileImg: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
     ctaText: 'Enquire About Commercial Fit-Outs',
     ctaLink: '/contact'
   },
@@ -83,6 +85,7 @@ const services = [
       'A Styling Review for Homes Already Done'
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+    mobileImg: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781720/38ce044a-38ca-4be2-a9c5-413b2c5917a6.png',
     ctaText: 'Enquire About Styling Services',
     ctaLink: '/contact'
   },
@@ -100,6 +103,7 @@ const services = [
       'A Fully Managed Renovation, Start to Finish'
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png', 
+    mobileImg: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
     ctaText: 'Enquire About Renovation',
     ctaLink: '/contact'
   },
@@ -117,6 +121,7 @@ const services = [
       'Fast Delivery Straight From Our Hyderabad Warehouse'
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png',
+    mobileImg: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png',
     ctaText: 'Enquire About Materials',
     ctaLink: '/materials',
     hasSecondaryLink: true
@@ -148,6 +153,14 @@ const heroImages = [
   'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
   'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
   'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
+];
+
+export const SERVICES_MOBILE_IMAGES = [
+  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781720/38ce044a-38ca-4be2-a9c5-413b2c5917a6.png',
   'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
   'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
 ];
@@ -243,6 +256,7 @@ const Services = () => {
             <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
               <HeroSlideshow
                 images={heroContent.images && heroContent.images.length > 0 ? heroContent.images : heroImages}
+                mobileImages={SERVICES_MOBILE_IMAGES}
                 intervalMs={4000}
                 transitionDuration={1.3}
                 showGradient={false}
@@ -287,7 +301,26 @@ const Services = () => {
               <div key={s.num || i} className="py-8 sm:py-12 md:py-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <Reveal delay={0.05} direction={isOdd ? 'right' : 'left'} className={isOdd ? 'lg:order-2' : ''}>
                   <div className="aspect-[16/10] sm:aspect-[4/3] rounded-card overflow-hidden bg-bg-card shadow-sm border border-ink-border/20">
-                    <img src={getOptimizedImageUrl(s.img, 1400, 92)} alt={s.title} loading="lazy" decoding="async" style={{ imageRendering: 'high-quality' }} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700" />
+                    <picture className="w-full h-full block">
+                      <source
+                        media="(max-width: 1023px)"
+                        srcSet={getOptimizedImageUrl(
+                          (i === 0 || i === 1 || i === 3 || i === 4 || s.num === '01' || s.num === '02' || s.num === '04' || s.num === '05' || s.title?.includes('Full Home') || s.title?.includes('Commercial') || s.title?.includes('Renovation') || s.title?.includes('Materials'))
+                            ? s.img
+                            : (s.mobileImg || SERVICES_MOBILE_IMAGES[i % SERVICES_MOBILE_IMAGES.length]),
+                          900,
+                          88
+                        )}
+                      />
+                      <img
+                        src={getOptimizedImageUrl(s.img, 1400, 92)}
+                        alt={s.title}
+                        loading="lazy"
+                        decoding="async"
+                        style={{ imageRendering: 'high-quality' }}
+                        className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                      />
+                    </picture>
                   </div>
                 </Reveal>
                 <Reveal delay={0.15} direction={isOdd ? 'left' : 'right'} className={`space-y-4 sm:space-y-6 ${isOdd ? 'lg:order-1' : ''}`}>

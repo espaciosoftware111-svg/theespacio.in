@@ -11,18 +11,22 @@ export const ScrollStackItem = ({
 }) => {
   const ref = useRef(null);
 
-  // Track scroll position of this specific card relative to the top of the viewport
+  // Track scroll position of this specific card relative to the sticky pin line
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"]
+    offset: ["start 84px", "end 84px"]
   });
 
-  // Smooth clean fade as the card is covered by the next one to eliminate misaligned double borders
-  const opacity = useTransform(scrollYProgress, [0, 0.08, 0.2], [1, 0.1, 0]);
+  // Scale down subtly from 1.0 to 0.94 as it is covered by the next card
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  // Subtle brightness dimming as card is stacked beneath
+  const filter = useTransform(scrollYProgress, [0, 0.8], ["brightness(1)", "brightness(0.92)"]);
+  // Soft fade out when fully covered by the next card
+  const opacity = useTransform(scrollYProgress, [0, 0.92, 1], [1, 1, 0]);
 
-  // Use a clean unified sticky top with generous breathing room below the fixed navbar
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const stickyTop = isMobile ? 90 : 120;
+  // Use a clean unified sticky top below the fixed navbar
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+  const stickyTop = isMobile ? 84 : 110;
 
   return (
     <motion.div
@@ -30,8 +34,10 @@ export const ScrollStackItem = ({
       style={{
         position: "sticky",
         top: `${stickyTop}px`,
+        scale,
         opacity,
-        willChange: "opacity",
+        filter,
+        willChange: "transform, opacity, filter",
         transformOrigin: "top center",
         zIndex: index + 1
       }}

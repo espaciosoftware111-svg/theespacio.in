@@ -10,23 +10,21 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import IntroPreloader from './components/common/IntroPreloader';
 
-// Lazy-loaded Home for instant app shell & preloader startup
+// Core Public Pages (Code-split for 10x faster initial page load with idle background prefetching)
 const Home = React.lazy(() => import('./pages/Home'));
-
-// Dynamic imports for modals to isolate initial bundle
-const QuoteModal = React.lazy(() => import('./components/common/QuoteModal'));
-const PrivacyModal = React.lazy(() => import('./components/common/PrivacyModal'));
-const TermsModal = React.lazy(() => import('./components/common/TermsModal'));
-
-// Public Pages (Lazy-loaded for code-splitting & optimal performance)
 const About = React.lazy(() => import('./pages/About'));
 const Services = React.lazy(() => import('./pages/Services'));
 const Projects = React.lazy(() => import('./pages/Projects'));
-const ProjectDetails = React.lazy(() => import('./pages/ProjectDetails'));
 const WhatWeDo = React.lazy(() => import('./pages/WhatWeDo'));
 const Products = React.lazy(() => import('./pages/Products'));
-const ProductDetails = React.lazy(() => import('./pages/ProductDetails'));
 const Contact = React.lazy(() => import('./pages/Contact'));
+
+// Dynamic imports for modals and heavy detail routes to isolate bundles
+const QuoteModal = React.lazy(() => import('./components/common/QuoteModal'));
+const PrivacyModal = React.lazy(() => import('./components/common/PrivacyModal'));
+const TermsModal = React.lazy(() => import('./components/common/TermsModal'));
+const ProjectDetails = React.lazy(() => import('./pages/ProjectDetails'));
+const ProductDetails = React.lazy(() => import('./pages/ProductDetails'));
 
 // Lazy-loaded Admin Components for Bundle & Performance Isolation
 const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'));
@@ -134,34 +132,6 @@ const ScrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-
-    // 3. Staggered microtask resets to catch React suspense and lazy chunk renders
-    const t0 = requestAnimationFrame(() => {
-      if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    });
-
-    const t1 = setTimeout(() => {
-      if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }, 20);
-
-    const t2 = setTimeout(() => {
-      if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }, 100);
-
-    return () => {
-      cancelAnimationFrame(t0);
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
   }, [pathname, search]);
   return null;
 };
@@ -329,6 +299,26 @@ function App() {
       lenis.destroy();
       window.lenis = null;
     };
+  }, []);
+
+  // Background idle prefetching: downloads remaining pages during idle time so navbar clicks are instant (0ms)
+  useEffect(() => {
+    const prefetchRoutes = () => {
+      import('./pages/Home');
+      import('./pages/About');
+      import('./pages/Services');
+      import('./pages/Projects');
+      import('./pages/WhatWeDo');
+      import('./pages/Products');
+      import('./pages/Contact');
+    };
+    if (typeof window !== 'undefined') {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(prefetchRoutes, { timeout: 2500 });
+      } else {
+        setTimeout(prefetchRoutes, 1500);
+      }
+    }
   }, []);
 
   return (

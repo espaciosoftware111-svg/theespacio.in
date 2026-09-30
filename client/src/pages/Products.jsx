@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Search, ArrowRight, ChevronRight, ArrowUpRight } from 'lucide-react';
+import { Search, ArrowRight, Sparkles } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import SEO from '../components/common/SEO';
-import DomeGallery from '../components/ui/DomeGallery';
+import MakeWayHeroGrid from '../components/materials/MakeWayHeroGrid';
 import GooeyInput from '../components/ui/gooey-input';
-import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getCMSData, STORAGE_KEYS, DEFAULT_PRODUCTS } from '../utils/cmsStore';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
@@ -14,21 +13,116 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   return (
-    <motion.div ref={ref} className={className}
+    <motion.div
+      ref={ref}
+      className={className}
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}>
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
       {children}
     </motion.div>
   );
 };
 
-const Products = () => {
-  const mockProducts = DEFAULT_PRODUCTS;
+// Canonical 9 Material Catalogs — Matching user curated material library screenshots
+export const CANONICAL_MATERIALS = [
+  {
+    order: 1,
+    title: 'Acrylic Luxe Collection',
+    slug: 'acrylic-luxe-collection',
+    category: 'Acrylic & Finishes',
+    badge: 'ACRYLIC & FINISHES',
+    materialCode: 'MAT-ACR-01',
+    description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
+    heroImage: '/images/materials/fluted_acrylic_azzurro.webp',
+  },
+  {
+    order: 2,
+    title: 'Digital Korean Poly Granite',
+    slug: 'digital-korean-poly-granite',
+    category: 'Natural Stone',
+    badge: 'NATURAL STONE',
+    materialCode: 'MAT-GNT-02',
+    description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
+    heroImage: '/images/materials/fluted_acrylic_gracia.jpg',
+  },
+  {
+    order: 3,
+    title: 'Charcoal Panels Luxe Collection',
+    slug: 'charcoal-panels-luxe',
+    category: 'Acoustic Panels',
+    badge: 'ACOUSTIC PANELS',
+    materialCode: 'MAT-CHR-03',
+    description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
+    heroImage: '/images/materials/charcoal_luxe_4018_4017_4016.webp',
+  },
+  {
+    order: 4,
+    title: 'Fluted PVC Luxe Collection',
+    slug: 'fluted-pvc-luxe',
+    category: 'Architectural Panels',
+    badge: 'ARCHITECTURAL PANELS',
+    materialCode: 'MAT-PVC-04',
+    description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
+    heroImage: '/images/materials/irish.webp',
+  },
+  {
+    order: 5,
+    title: 'LVT Luxe Flooring',
+    slug: 'lvt-luxe-flooring',
+    category: 'Wood & Flooring',
+    badge: 'WOOD & FLOORING',
+    materialCode: 'MAT-FLR-05',
+    description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
+    heroImage: '/images/materials/fluted_acrylic_giallo_dining.jpg',
+  },
+  {
+    order: 6,
+    title: 'Fluted Acrylic Luxe Collection',
+    slug: 'fluted-acrylic-luxe',
+    category: 'Acrylic & Finishes',
+    badge: 'ACRYLIC & FINISHES',
+    materialCode: 'MAT-ACR-06',
+    description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.',
+    heroImage: '/images/materials/fluted_acrylic_florida.jpg',
+  },
+  {
+    order: 7,
+    title: 'PVC Luxe Collection',
+    slug: 'pvc-luxe-collection',
+    category: 'Architectural Panels',
+    badge: 'ARCHITECTURAL PANELS',
+    materialCode: 'MAT-PVC-07',
+    description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
+    heroImage: '/images/materials/pvc_luxe_5003_5004.webp',
+  },
+  {
+    order: 8,
+    title: 'WPC Luxe Collection',
+    slug: 'wpc-luxe-collection',
+    category: 'Composite Panels',
+    badge: 'COMPOSITE PANELS',
+    materialCode: 'MAT-WPC-08',
+    description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
+    heroImage: '/images/materials/wpc_luxe_1701_1606.webp',
+  },
+  {
+    order: 9,
+    title: 'Espacio Charcoal Panels Luxe Collection (1)',
+    slug: 'charcoal-panels-luxe-1',
+    category: 'Acoustic Panels',
+    badge: 'ACOUSTIC PANELS',
+    materialCode: 'MAT-CHR-09',
+    description: 'Additional selection of richly textured wall panels infused with active charcoal.',
+    heroImage: '/images/materials/charcoal_luxe_1_6015.webp',
+  }
+];
 
+const Products = () => {
   const [products, setProducts] = useState(() => {
     const stored = getCMSData(STORAGE_KEYS.PRODUCTS);
-    return (Array.isArray(stored) && stored.length > 0) ? stored : DEFAULT_PRODUCTS;
+    return Array.isArray(stored) && stored.length > 0 ? stored : CANONICAL_MATERIALS;
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -40,16 +134,20 @@ const Products = () => {
       const stored = getCMSData(STORAGE_KEYS.PRODUCTS);
       const settings = getCMSData(STORAGE_KEYS.SETTINGS) || {};
       setCmsSettings(settings);
-      if (Array.isArray(stored) && stored.length > 0) {
+      const hasStored = Array.isArray(stored) && stored.length > 0;
+      if (hasStored) {
         setProducts(stored);
       }
       try {
-        const response = await axios.get('/products');
-        if (response.data.success && Array.isArray(response.data.data) && response.data.data.length > 0) {
+        if (!hasStored) setLoading(true);
+        const response = await axios.get('/products', { timeout: 2000 });
+        if (response.data?.success && Array.isArray(response.data.data) && response.data.data.length > 0) {
           setProducts(response.data.data);
-          setCMSData(STORAGE_KEYS.PRODUCTS, response.data.data, { silent: true });
         }
-      } catch {}
+      } catch {
+      } finally {
+        setLoading(false);
+      }
     };
 
     syncCMS();
@@ -62,157 +160,136 @@ const Products = () => {
     };
   }, []);
 
-  const sourceData = (products.length > 0 ? products : mockProducts).filter(
-    (p) => p.slug !== 'espacio-master-catalogue' && p.showInCard !== false
-  );
+  // Merge live CMS or API edits if available, but strictly preserve the 9 curated materials
+  const sourceData = useMemo(() => {
+    const liveList = Array.isArray(products) && products.length > 0 ? products : [];
+    return CANONICAL_MATERIALS.map((canon) => {
+      const match = liveList.find(
+        (p) => p && (p.slug === canon.slug || p.title === canon.title)
+      );
+      if (!match) return canon;
+      return {
+        ...canon,
+        title: match.title || canon.title,
+        description: match.description || canon.description,
+        heroImage: match.heroImage || canon.heroImage,
+        category: match.category || canon.category,
+        badge: match.badge || canon.badge,
+        materialCode: match.materialCode || canon.materialCode,
+      };
+    });
+  }, [products]);
 
   const query = searchQuery.trim().toLowerCase();
-  const filteredProducts = query
-    ? sourceData.filter((p) => {
-        const titleMatch = (p.title || '').toLowerCase().includes(query);
-        const descMatch = (p.description || '').toLowerCase().includes(query);
-        const catMatch = (p.category || '').toLowerCase().includes(query);
-        const codeMatch = (p.materialCode || '').toLowerCase().includes(query);
-        const featMatch = Array.isArray(p.features) && p.features.some(f => (f || '').toLowerCase().includes(query));
-        return titleMatch || descMatch || catMatch || codeMatch || featMatch;
+  const filteredProducts = useMemo(() => {
+    return query
+      ? sourceData.filter((p) => {
+          const titleMatch = (p.title || '').toLowerCase().includes(query);
+          const descMatch = (p.description || '').toLowerCase().includes(query);
+          const catMatch = (p.category || '').toLowerCase().includes(query);
+          const codeMatch = (p.materialCode || '').toLowerCase().includes(query);
+          const badgeMatch = (p.badge || '').toLowerCase().includes(query);
+          return titleMatch || descMatch || catMatch || codeMatch || badgeMatch;
+        })
+      : sourceData;
+  }, [sourceData, query]);
+
+  const handleEnquire = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.dispatchEvent(
+      new CustomEvent('open-quote-modal', {
+        detail: {
+          mode: 'catalogue',
+          productName: `${product.title} (${product.materialCode || ''})`,
+          title: `Request Sample: ${product.title}`
+        }
       })
-    : sourceData;
-
-  const fallbacks = [
-    '/images/materials/irish.png',
-    '/images/materials/azzurro.png',
-    '/images/materials/giallo.png',
-    '/images/materials/marbo.png',
-    '/images/materials/florida.png',
-    '/images/materials/menta.png',
-    '/images/materials/giallo_dining.png',
-    '/images/materials/ash.png',
-    '/images/materials/linia.png',
-    '/images/materials/florida_vanity.png',
-    '/images/materials/gracia.png',
-    '/images/materials/irish_gen2.png',
-    '/images/materials/blanco.png',
-    '/images/materials/formic.png',
-    '/images/materials/ash_gen2.png'
-  ];
-
-  const domeImages = useMemo(() => {
-    const seen = new Set();
-    const uniqueImages = [];
-    sourceData.forEach((p, idx) => {
-      const src = p.heroImage || fallbacks[idx % fallbacks.length];
-      if (src && !seen.has(src)) {
-        seen.add(src);
-        uniqueImages.push({ 
-          src: getOptimizedImageUrl(src, 480, 80), 
-          alt: p.title 
-        });
-      }
-    });
-    return uniqueImages;
-  }, [sourceData]);
+    );
+  };
 
   return (
     <div className="bg-bg min-h-screen pb-24">
-      <SEO title="Premium Material Library — WPC, Fluted, Acrylic Panels" description="Explore ESPACIO's curated material library. WPC wall panels, fluted panels, polygranite, acrylic sheets, mosaic tiles and more. Request samples and catalogue." url="/materials" />
-      
-      {/* Hero with Dome Gallery — 80% viewport height on mobile */}
-      <section className="relative h-[80dvh] sm:h-[77vh] lg:h-[96vh] min-h-[300px] sm:min-h-[480px] lg:min-h-0 px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
-        {/* Gallery frame: 100% full screen edge-to-edge on mobile, rounded framed on tablet/desktop */}
-        <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
-          {/* Dome Gallery Container */}
-          <div className="absolute inset-0 w-full h-full z-0">
-            <DomeGallery 
-              images={domeImages}
-              fit={
-                typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 1.05        // mobile: immersive scale filling total width
-                  : window.innerWidth < 1024
-                  ? 0.90        // tablet: 90%
-                  : 0.92        // desktop: 92% — large immersive sphere
-              }
-              fitBasis={
-                typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 'width'     // mobile: fit based on screen width to occupy total section width
-                  : 'height'
-              }
-              minRadius={
-                typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 380
-                  : window.innerWidth < 1024
-                  ? 520
-                  : 820
-              }
-              segments={
-                typeof window !== 'undefined' && window.innerWidth < 640
-                  ? 18
-                  : window.innerWidth < 1024
-                  ? 26
-                  : 32
-              }
-              overlayBlurColor="#EAE4D8"
-              grayscale={false}
-              autoRotate={true}
-              autoRotateSpeed={0.12}
-              dragSensitivity={12}
-              openedImageWidth={
-                typeof window !== 'undefined' && window.innerWidth < 640 ? '200px' : '320px'
-              }
-              openedImageHeight={
-                typeof window !== 'undefined' && window.innerWidth < 640 ? '260px' : '400px'
-              }
-              imageBorderRadius="12px"
-              openedImageBorderRadius="20px"
-            />
-          </div>
+      <SEO
+        title="Premium Material Library — WPC, Fluted, Acrylic Panels"
+        description="Explore ESPACIO's curated 9 material catalog collections. WPC wall panels, fluted panels, polygranite, acrylic sheets, and charcoal panels. Request samples and explore all finishes."
+        url="/materials"
+      />
 
-          {/* Scroll Down Indicator */}
-          <ScrollDownIndicator light={true} className="scale-80 sm:scale-100 bottom-2 sm:bottom-4" />
+      {/* Hero Landing Section: 9 Material Catalogs Make Way Grid with 3D Spherical Dome Tilt */}
+      <section className="relative h-[86dvh] sm:h-[88vh] lg:h-[95vh] min-h-[540px] sm:min-h-[640px] px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
+        <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
+          <MakeWayHeroGrid />
         </div>
       </section>
 
-      {/* Category Header */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-6 sm:pt-14 pb-5 sm:pb-8 flex items-center justify-between gap-6 flex-wrap">
-        <div className="space-y-1 sm:space-y-2">
-          <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">
-            {cmsSettings.materials_badge || 'Premium Collection'}
+      {/* Curated Material Library Section Header (Matching Screenshot) */}
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 sm:pt-16 pb-8 flex items-end justify-between gap-6 flex-wrap">
+        <div className="space-y-2">
+          <span className="font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-gold flex items-center gap-1.5">
+            <Sparkles size={13} className="text-gold" />
+            {cmsSettings.materials_badge || 'PREMIUM COLLECTION'}
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
+          <h2 className="font-display text-3xl sm:text-4xl font-normal text-ink">
             {cmsSettings.materials_title || 'Curated Material Library'}
           </h2>
         </div>
+
+        {/* Live Search Bar */}
+        <div className="w-full sm:w-auto min-w-[260px] max-w-sm">
+          <GooeyInput
+            placeholder="Search WPC, Acrylic, Fluted, Charcoal..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
       </div>
 
-      {/* Material Cards Grid */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-12 pb-16">
+      {/* The 9 Material Catalog Cards Grid (4 Columns matching screenshot) */}
+      <section className="max-w-[1440px] mx-auto px-6 md:px-12 pb-24">
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[1,2,3,4,5,6,7,8].map((n) => <div key={n} className="aspect-[3/4] bg-bg-card animate-pulse rounded-[24px]" />)}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+              <div key={n} className="aspect-[3/4] bg-[#FAF7F2] animate-pulse rounded-[24px] border border-[#E8E2D8]" />
+            ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product, idx) => (
-              <Link key={product.slug || idx} to={`/materials/${product.slug}`}
-                className="group block rounded-[24px] overflow-hidden bg-bg-card border border-ink-border/30 hover:border-gold/50 hover:-translate-y-2 transition-all duration-400 shadow-sm hover:shadow-xl">
-                <div className="relative aspect-[4/3] overflow-hidden bg-bg-dark">
-                  <img src={getOptimizedImageUrl(product.heroImage || fallbacks[idx % fallbacks.length], 1200, 92)} alt={product.title}
-                    loading="lazy" decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  {product.category && (
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[9.5px] font-sans font-semibold uppercase tracking-wider text-white border border-white/15">
-                        {product.category}
+              <Link
+                key={product.slug || idx}
+                to={`/materials/${product.slug}`}
+                className="group relative block rounded-[24px] bg-[#FAF7F2] p-3.5 border border-[#E8E2D8] hover:border-gold/70 shadow-sm hover:shadow-xl transition-all duration-300 ease-out flex flex-col justify-between transform-gpu hover:scale-[1.015] backface-hidden"
+              >
+                {/* Image Media Frame with rounded corners */}
+                <div className="relative aspect-[4/3] rounded-[18px] overflow-hidden bg-[#ECE6DC] transform-gpu">
+                  <img
+                    src={getOptimizedImageUrl(product.heroImage, 800, 90)}
+                    alt={product.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform"
+                  />
+
+                  {/* Category Badge Pill on Top-Left (Gold Luxury Pill) */}
+                  {product.badge && (
+                    <div className="absolute top-2.5 left-2.5 z-10">
+                      <span className="px-3 py-1 rounded-full bg-gold text-charcoal backdrop-blur-md text-[9px] font-sans font-bold uppercase tracking-wider border border-gold/40 shadow-xs">
+                        {product.badge}
                       </span>
                     </div>
                   )}
                 </div>
-                <div className="p-6 space-y-3">
-                  <h3 className="font-display text-lg font-bold text-ink group-hover:text-gold transition-colors">{product.title}</h3>
-                  <p className="font-sans text-xs text-ink-soft leading-relaxed line-clamp-2">{product.description}</p>
-                  <div className="pt-2 flex items-center space-x-1.5 text-[10.5px] text-gold uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>{product.ctaText || 'Explore Material'}</span>
-                    <ArrowRight size={11} />
+
+                {/* Card Body */}
+                <div className="pt-3.5 pb-1 px-1 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <h3 className="font-display text-[17px] font-bold text-ink leading-snug group-hover:text-gold transition-colors duration-200">
+                      {product.title}
+                    </h3>
+                    <p className="font-sans text-[11.5px] text-ink-soft leading-relaxed line-clamp-2">
+                      {product.description}
+                    </p>
                   </div>
                 </div>
               </Link>

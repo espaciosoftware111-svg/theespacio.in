@@ -26,16 +26,16 @@ const Reveal = memo(({ children, delay = 0, className = '' }) => {
 Reveal.displayName = 'Reveal';
 
 const IMAGE_FALLBACK_MAP = {
-  'dimmu_05.webp': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90',
-  'dimmu_01.webp': 'https://lh3.googleusercontent.com/d/1-3G3pcdQjdfQdQIgV9_NiPVHug1jBEV-',
-  'dimmu_06.webp': 'https://lh3.googleusercontent.com/d/1AU0ZTuIDg3GFVukC10lhQIL9ciUHOP6F',
-  'dimmu_03.webp': 'https://lh3.googleusercontent.com/d/1P7uXgbUY5Fxi1-PpHJMLMwJ3buW0--uZ',
-  'dimmu_10.webp': 'https://lh3.googleusercontent.com/d/1NSvtQJQT6yMaXzaKo0MuYCh6QASUpIar',
-  'dimmu_09.webp': 'https://lh3.googleusercontent.com/d/1vBO1eqO5WOqGfwUH_SHVH7w4SDYW_F6K',
-  'dimmu_08.webp': 'https://lh3.googleusercontent.com/d/1DJKwU5PAkkFGGnh5USDg-X2x87ZIYFxc',
-  'dimmu_02.webp': 'https://lh3.googleusercontent.com/d/12NBwWBswtvKr0wNiU8qLvvzp6r4IX4mA',
-  'dimmu_07.webp': 'https://lh3.googleusercontent.com/d/1GftiecMuUOlfXEMdCtL6q0O5cpkrW2EF',
-  'dimmu_04.webp': 'https://lh3.googleusercontent.com/d/1smFAVnKujLD_imWl--XMcNFas-faQXc-',
+  'dimmu_05.webp': '/images/projects/dimmu_residence/dimmu_05.webp',
+  'dimmu_01.webp': '/images/projects/dimmu_residence/dimmu_01.webp',
+  'dimmu_06.webp': '/images/projects/dimmu_residence/dimmu_06.webp',
+  'dimmu_03.webp': '/images/projects/dimmu_residence/dimmu_03.webp',
+  'dimmu_10.webp': '/images/projects/dimmu_residence/dimmu_10.webp',
+  'dimmu_09.webp': '/images/projects/dimmu_residence/dimmu_09.webp',
+  'dimmu_08.webp': '/images/projects/dimmu_residence/dimmu_08.webp',
+  'dimmu_02.webp': '/images/projects/dimmu_residence/dimmu_02.webp',
+  'dimmu_07.webp': '/images/projects/dimmu_residence/dimmu_07.webp',
+  'dimmu_04.webp': '/images/projects/dimmu_residence/dimmu_04.webp',
   'venkatesh_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
   'koteswara_gallery_1.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
   'koteswara_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
@@ -50,7 +50,7 @@ const PROJECT_SLUG_FALLBACKS = {
   'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
   'gachibowli-minimalist-beige-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
   'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-  'dimmu-chachu-luxury-villa': 'https://lh3.googleusercontent.com/d/11vRjw6c7ggNcKN0lxai6ITtYi9pFAb90'
+  'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp'
 };
 
 const GENERAL_FALLBACK = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png';
@@ -71,9 +71,7 @@ const handleImgError = (e, slug) => {
     target.src = PROJECT_SLUG_FALLBACKS[slug];
     return;
   }
-  if (!src.includes('res.cloudinary.com') && !src.includes('googleusercontent.com')) {
-    target.src = GENERAL_FALLBACK;
-  }
+  target.src = GENERAL_FALLBACK;
 };
 
 const heroImages = [
