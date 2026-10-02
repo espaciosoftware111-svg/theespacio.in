@@ -503,8 +503,11 @@ const About = () => {
             ))}
           </div>
 
-          {/* Right Column — Narrative Story (Sticky on desktop until bottom of images match) */}
-          <div className="lg:col-span-7 lg:sticky lg:top-24 xl:top-28 lg:self-start">
+          {/* Right Column — Narrative Story (Locks at vertical middle of frame while landmark images scroll) */}
+          <div 
+            className="lg:col-span-7 lg:sticky lg:self-start"
+            style={{ top: 'max(96px, calc(50vh - 230px))' }}
+          >
             <Reveal delay={0.15} className="space-y-5 sm:space-y-6 pt-1">
               <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em', fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyBadge}
