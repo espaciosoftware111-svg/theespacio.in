@@ -757,14 +757,14 @@ export const DEFAULT_FAQS = [
   },
   {
     id: 'faq-5',
-    q: 'How can customers request a quotation?',
-    question: 'How can customers request a quotation?',
+    q: 'How can we request a quotation?',
+    question: 'How can we request a quotation?',
     a: 'Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.',
     answer: 'Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.',
     img: '/images/faq/faq_5_pricing.jpg',
     image: '/images/faq/faq_5_pricing.jpg',
     imageLabel: 'PRICING',
-    imageCaption: 'How can customers request a quotation?',
+    imageCaption: 'How can we request a quotation?',
     tag: 'Pricing',
     category: 'PRICING',
     showOnFaqPage: true,
@@ -2720,11 +2720,12 @@ export const getCMSData = (key, fallback = null) => {
             DEFAULT_FAQS.forEach(def => {
               const match = data.find(item => item.id === def.id || item._id === def.id);
               if (match) {
-                if (match.question !== def.question || match.answer !== def.answer || match.q !== def.q || match.a !== def.a) {
+                if (match.question !== def.question || match.answer !== def.answer || match.q !== def.q || match.a !== def.a || match.imageCaption !== def.imageCaption) {
                   match.question = def.question;
                   match.q = def.q;
                   match.answer = def.answer;
                   match.a = def.a;
+                  match.imageCaption = def.imageCaption;
                   modified = true;
                 }
               }

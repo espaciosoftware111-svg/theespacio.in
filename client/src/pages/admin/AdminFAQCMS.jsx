@@ -52,7 +52,7 @@ const defaultShowcaseSlides = [
     id: 'slide-5',
     image: '/images/faq/faq_5_pricing.jpg',
     tag: 'PRICING',
-    caption: 'How can customers request a quotation?'
+    caption: 'How can we request a quotation?'
   }
 ];
 

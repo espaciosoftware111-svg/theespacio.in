@@ -28,7 +28,7 @@ const faqItems = [
     tag: "Location"
   },
   {
-    q: "How can customers request a quotation?",
+    q: "How can we request a quotation?",
     a: "Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.",
     img: "/images/faq/faq_5_pricing.jpg",
     tag: "Pricing"
@@ -203,7 +203,7 @@ const FAQ = () => {
     { image: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg', tag: 'SERVICES', caption: 'Do you provide turnkey interior solutions?' },
     { image: '/images/company/indo_classical_elegance_3bhk/3BHK-Guest_restaurant_4-20260810-164320.jpg', tag: 'PROCESS', caption: 'What is your consultation process?' },
     { image: '/images/company/3bhk_lux/open_hall.png', tag: 'LOCATION', caption: 'Which locations do you currently serve?' },
-    { image: '/images/company/2bhk_lux/hall1_1.png', tag: 'PRICING', caption: 'How can customers request a quotation?' }
+    { image: '/images/company/2bhk_lux/hall1_1.png', tag: 'PRICING', caption: 'How can we request a quotation?' }
   ];
 
   const [showcaseSlides, setShowcaseSlides] = useState(() => {

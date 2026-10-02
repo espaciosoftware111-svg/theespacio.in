@@ -726,7 +726,7 @@ const Home = () => {
       tag: "LOCATION"
     },
     {
-      q: "How can customers request a quotation?",
+      q: "How can we request a quotation?",
       a: "Just fill out the contact form on our website, and our team will personally reach out to understand your project and walk you through next steps.",
       img: "/images/faq/faq_5_pricing.jpg",
       tag: "PRICING"
