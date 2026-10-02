@@ -201,25 +201,25 @@ const teamProjectsData = [
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
     projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/29bd1f5f-9c48-4b99-9df3-ae7452c6501c.png",
     memberImg: "/reviews/paladugu_raju.png",
-    name: "Spatial Design Lead",
-    role: "Thematic Spatial Planning",
-    projectLabel: "Cosmic Odyssey Kids Suite"
+    name: "Architectural Lead",
+    role: "Duplex Mezzanine & Murals",
+    projectLabel: "Duplex Mezzanine & Sculpted Wall Mural"
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
     projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5a8b9f37-4b58-44b8-b86e-bf262791b082.png",
     memberImg: "/reviews/kishor_kumar.png",
-    name: "Interior Specialist",
-    role: "Classical Boiserie Styling",
-    projectLabel: "Sage Classical Lounge"
+    name: "Spatial Architecture Specialist",
+    role: "Double-Height Atrium Architecture",
+    projectLabel: "Double-Height Atrium & Living Mezzanine"
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
     projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ffa36fb4-cc01-498d-aaed-f244304711a6.png",
     memberImg: "/reviews/amresh_kumar.png",
-    name: "Joinery & Detailing",
-    role: "Bespoke Study & Atelier",
-    projectLabel: "Executive Study & Atelier"
+    name: "Joinery & Detailing Lead",
+    role: "Warm Contemporary Joinery",
+    projectLabel: "Warm Contemporary Living Lounge"
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
@@ -227,20 +227,25 @@ const teamProjectsData = [
     memberImg: "/reviews/imtiyaz_shaik.png",
     name: "Modular Specialist",
     role: "High-Gloss Modular Kitchens",
-    projectLabel: "Modern Quartzite Kitchen"
+    projectLabel: "Modern Modular Kitchen & Island Bar"
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
     projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/8a76287b-9789-481d-bbad-76181568229a.png",
     memberImg: "/reviews/kishor_kumar.png",
     name: "Principal Architect",
-    role: "Contemporary Spatial Refinement",
-    projectLabel: "Grand Minimalist Suite"
+    role: "Japandi Spatial Refinement",
+    projectLabel: "Japandi Living Lounge & Tea Deck"
   }
 ];
 
 const TeamProjectsShowcase = ({ customSlides }) => {
-  const slides = (Array.isArray(customSlides) && customSlides.length > 0 && !customSlides.some(s => s.projectImg?.includes('company/'))) ? customSlides : teamProjectsData;
+  const slides = (
+    Array.isArray(customSlides) &&
+    customSlides.length > 0 &&
+    !customSlides.some(s => s.projectImg?.includes('company/')) &&
+    !customSlides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))
+  ) ? customSlides : teamProjectsData;
   const [idx, setIdx] = useState(0);
   const [direction, setDirection] = useState(1);
   const containerRef = useRef(null);
@@ -642,7 +647,7 @@ const Home = () => {
             sanitizedStored.hero_bg_images = HERO_IMAGES;
             sanitizedStored.hero_card_image = HERO_IMAGES[0];
           }
-          if (!Array.isArray(sanitizedStored.showcase_slides) || sanitizedStored.showcase_slides.length !== 5 || sanitizedStored.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com'))) {
+          if (!Array.isArray(sanitizedStored.showcase_slides) || sanitizedStored.showcase_slides.length !== 5 || sanitizedStored.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || sanitizedStored.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
             sanitizedStored.showcase_slides = teamProjectsData;
           }
           setHomeSettings((prev) => ({ ...prev, ...sanitizedStored }));
@@ -663,7 +668,7 @@ const Home = () => {
             apiData.hero_bg_images = HERO_IMAGES;
             apiData.hero_card_image = HERO_IMAGES[0];
           }
-          if (!Array.isArray(apiData.showcase_slides) || apiData.showcase_slides.length !== 5 || apiData.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com'))) {
+          if (!Array.isArray(apiData.showcase_slides) || apiData.showcase_slides.length !== 5 || apiData.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || apiData.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
             apiData.showcase_slides = teamProjectsData;
           }
           setHomeSettings((prev) => ({ ...prev, ...apiData }));

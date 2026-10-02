@@ -25,15 +25,15 @@ const defaultGenerations = [
     gen: 'Generation II',
     title: 'Mastana Constructions',
     company: 'Commercial & Multi-Family Residential',
-    desc: 'Expanded into large-scale residential complexes and commercial landmarks across Hyderabad. Built a reputation for zero material compromises and strict engineering tolerances.',
-    image: '/images/company/2bhk_urban/Ideas_2_2-_1-20260810-173541.jpg'
+    desc: 'Expanded into large-scale residential complexes and institutional landmarks across Hyderabad, including Sreenidhi International School and landmark residential enclaves.',
+    image: '/images/company/sreenidhi_international_school.jpg'
   },
   {
     gen: 'Generation III',
     title: 'Mastana Infra',
     company: 'Iconic Private Estates & Infrastructure',
-    desc: 'Pioneered luxury architectural builds and bespoke private lakefront residences — including the lakeside estate chosen as a primary filming location in the movie Guntur Kaaram.',
-    image: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_15-20260813-110616.jpg'
+    desc: 'Pioneered luxury architectural builds and bespoke private lakefront residences — including the lakeside estate chosen as a primary filming location in the movie Guntur Kaaram, and Velak Lake View Residency.',
+    image: '/images/company/velak_lake_view_residency.jpg'
   },
   {
     gen: 'Generation IV',
@@ -41,6 +41,36 @@ const defaultGenerations = [
     company: 'Engineering-First Bespoke Interiors',
     desc: 'Fusing structural construction mastery with luxury interior architecture. We don\'t just style spaces — we engineer every wall, cabinet, and finish for lifetime permanence.',
     image: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_23-20260810-124912.jpg'
+  }
+];
+
+const defaultLandmarkBuilds = [
+  {
+    id: 'guntur-karam-lake-house',
+    title: 'Guntur Karam',
+    subtitle: 'Lake House',
+    fullName: 'Guntur Karam Lake House',
+    tag: 'Cinema Landmark',
+    desc: 'Iconic private lakeside estate chosen as a primary filming location in the movie Guntur Kaaram.',
+    image: '/images/company/guntur_kaaram_lakeside_estate.webp'
+  },
+  {
+    id: 'sreenidhi-international-school',
+    title: 'Sreenidhi International',
+    subtitle: 'School',
+    fullName: 'Sreenidhi International School',
+    tag: 'Institutional Campus',
+    desc: 'Sprawling international school campus and pavilions built to exacting architectural and structural tolerances.',
+    image: '/images/company/sreenidhi_international_school.jpg'
+  },
+  {
+    id: 'velak-lake-view-residency',
+    title: 'Velak',
+    subtitle: 'Lake View Residency',
+    fullName: 'Velak Lake View Residency',
+    tag: 'Luxury Villa Enclave',
+    desc: 'Contemporary luxury lakefront villa featuring sweeping driveway engineering and precision architectural stone facades.',
+    image: '/images/company/velak_lake_view_residency.jpg'
   }
 ];
 
@@ -426,53 +456,71 @@ const About = () => {
 
       {/* ── 2. OUR STORY SECTION (Warm Cream Background) ─────────────────── */}
       <section className="pt-6 sm:pt-16 lg:pt-16 pb-12 sm:pb-20 lg:pb-24 px-4 sm:px-6 md:px-12 border-b border-ink-border bg-bg relative">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start relative">
           
-          {/* Left Column — Sticky Showcase Card on Mobile & Desktop */}
-          <div className="lg:col-span-5 sticky top-[72px] sm:top-20 lg:top-28 z-20 pb-3 lg:pb-0 bg-bg/95 backdrop-blur-md -mx-4 px-4 sm:mx-0 sm:px-0 pt-3 sm:pt-4 lg:pt-0">
-            <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-[18px] sm:rounded-[24px] overflow-hidden shadow-xl border border-ink-border group">
-              <img
-                src={getOptimizedImageUrl(aboutData.storyImage, 1400, 92)}
-                alt="ESPACIO Studio Craft"
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              {aboutData.milestoneVisible !== false && (
-                <div className="absolute bottom-3 sm:bottom-5 left-3 sm:left-5 right-3 sm:right-5 p-3 sm:p-5 rounded-[14px] sm:rounded-[16px] bg-white/95 backdrop-blur-xl border border-white/60 shadow-xl">
-                  <span className="font-sans text-[9.5px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#9E7B3B] block">
-                    {aboutData.milestoneLabel}
+          {/* Left Column — 3 Landmark Images Down by Down (Scrolls naturally) */}
+          <div className="lg:col-span-5 flex flex-col gap-5 sm:gap-7 w-full">
+            {defaultLandmarkBuilds.map((item, idx) => (
+              <div 
+                key={item.id}
+                className="relative aspect-[16/10] sm:aspect-[16/9.5] rounded-[16px] sm:rounded-[20px] overflow-hidden shadow-md hover:shadow-2xl border border-ink-border group bg-neutral-900 transition-all duration-300"
+              >
+                <img
+                  src={getOptimizedImageUrl(item.image, 1200, 90)}
+                  alt={item.fullName}
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.retried) {
+                      e.currentTarget.dataset.retried = 'true';
+                      e.currentTarget.src = item.image;
+                    }
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                
+                {/* Top Corner Landmark Tag — Refined Glass Pill with Gold Indicator */}
+                <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 shadow-sm transition-all duration-300 group-hover:border-white/35 group-hover:bg-black/55 select-none z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 ring-1 ring-gold/40" />
+                  <span className="font-sans text-[8.5px] sm:text-[9px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                    {item.tag}
                   </span>
-                  <p className="font-display text-[13px] sm:text-lg font-bold text-[#101014] mt-0.5 sm:mt-1 leading-snug">
-                    {aboutData.milestoneText}
-                  </p>
                 </div>
-              )}
-            </div>
+
+                {/* Bottom Glass Pill — Fits snug to text only */}
+                <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 py-1.5 sm:py-2 px-3 sm:px-3.5 rounded-[8px] sm:rounded-[10px] bg-white/95 dark:bg-[#151518]/92 backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-md z-10 inline-flex items-center">
+                  <span className="font-sans text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-[#9E7B3B] dark:text-[#E8BA60] whitespace-nowrap">
+                    {item.title} · {item.subtitle}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right Column — Narrative Story */}
-          <Reveal delay={0.15} className="lg:col-span-7 space-y-6 pt-2">
-            <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em' }}>
-              {aboutData.storyBadge}
-            </h2>
-            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
-              {aboutData.storyMain}
-            </p>
-            <p className="font-sans text-gold font-semibold text-[16px] sm:text-[18px] leading-relaxed">
-              {aboutData.storyHighlight}
-            </p>
-            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
-              {aboutData.storyP1}
-            </p>
-            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
-              {aboutData.storyP2}
-            </p>
-            <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
-              {aboutData.storyP3}
-            </p>
-          </Reveal>
+          {/* Right Column — Narrative Story (Sticky on desktop until bottom of images match) */}
+          <div className="lg:col-span-7 lg:sticky lg:top-24 xl:top-28 lg:self-start">
+            <Reveal delay={0.15} className="space-y-5 sm:space-y-6 pt-1">
+              <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em' }}>
+                {aboutData.storyBadge}
+              </h2>
+              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+                {aboutData.storyMain}
+              </p>
+              <p className="font-sans text-gold font-semibold text-[16px] sm:text-[18px] leading-relaxed">
+                {aboutData.storyHighlight}
+              </p>
+              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+                {aboutData.storyP1}
+              </p>
+              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+                {aboutData.storyP2}
+              </p>
+              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+                {aboutData.storyP3}
+              </p>
+            </Reveal>
+          </div>
 
         </div>
       </section>

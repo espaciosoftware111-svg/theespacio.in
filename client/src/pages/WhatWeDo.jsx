@@ -3904,10 +3904,10 @@ const WhatWeDo = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         
-                        {/* Minimal Luxury Showcase Tag */}
-                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/15 shadow-sm transition-all duration-300 group-hover:border-white/30 group-hover:bg-black/50">
-                          <span className="w-1 h-1 rounded-full bg-[#C9A96E]" />
-                          <span className="font-sans text-[9px] font-medium uppercase tracking-[0.2em] text-white/90">Featured Space</span>
+                        {/* Architectural Precision Spec Tag */}
+                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-2.5 py-1 rounded-[3px] bg-black/45 backdrop-blur-md border border-white/15 shadow-sm transition-all duration-300 group-hover:border-white/30 group-hover:bg-black/60 select-none">
+                          <span className="w-1.5 h-1.5 rounded-[1px] bg-[#C5A265]" />
+                          <span className="font-sans text-[9px] font-semibold uppercase tracking-[0.22em] text-white/90">Featured Space</span>
                         </div>
 
                         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">

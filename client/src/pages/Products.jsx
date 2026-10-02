@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Search, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import SEO from '../components/common/SEO';
-import MakeWayHeroGrid from '../components/materials/MakeWayHeroGrid';
+import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import GooeyInput from '../components/ui/gooey-input';
 import { getCMSData, STORAGE_KEYS, DEFAULT_PRODUCTS } from '../utils/cmsStore';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
@@ -128,6 +128,19 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
 
   const [cmsSettings, setCmsSettings] = useState(() => getCMSData(STORAGE_KEYS.SETTINGS) || {});
+  const videoRef = useRef(null);
+  const heroVideoUrl = cmsSettings.materials_hero_video || 'https://res.cloudinary.com/r3jwfy0y/video/upload/v1790935342/thronetegelslaminaat_pindown.io_1790935254.mp4';
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    }
+  }, [heroVideoUrl]);
 
   useEffect(() => {
     const syncCMS = async () => {
@@ -216,20 +229,36 @@ const Products = () => {
         url="/materials"
       />
 
-      {/* Hero Landing Section: 9 Material Catalogs Make Way Grid with 3D Spherical Dome Tilt */}
+      {/* Hero Landing Section: Full-Width Autoplay Cinematic Video (Muted, Without Audio) */}
       <section className="relative h-[86dvh] sm:h-[88vh] lg:h-[95vh] min-h-[540px] sm:min-h-[640px] px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
-        <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#EAE4D8] border-b sm:border border-black/10 shadow-sm">
-          <MakeWayHeroGrid />
+        <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#1a1a1a] border-b sm:border border-black/10 shadow-md">
+          <video
+            ref={videoRef}
+            src={heroVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover select-none"
+          />
+
+          {/* Subtle Ambient Vignette & Gradient for Smooth Bottom Transition */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 35%, transparent 70%)'
+            }}
+          />
+
+          {/* Scroll Down Indicator */}
+          <ScrollDownIndicator light={false} />
         </div>
       </section>
 
       {/* Curated Material Library Section Header (Matching Screenshot) */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 sm:pt-16 pb-8 flex items-end justify-between gap-6 flex-wrap">
-        <div className="space-y-2">
-          <span className="font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-gold flex items-center gap-1.5">
-            <Sparkles size={13} className="text-gold" />
-            {cmsSettings.materials_badge || 'PREMIUM COLLECTION'}
-          </span>
+        <div>
           <h2 className="font-display text-3xl sm:text-4xl font-normal text-ink">
             {cmsSettings.materials_title || 'Curated Material Library'}
           </h2>

@@ -1029,7 +1029,8 @@ export const DEFAULT_SERVICES = [
 
 // ─── DEFAULT TESTIMONIALS (Authentic Google Reviews) ──────────────────────────
 export const DEFAULT_TESTIMONIALS = [
-  { id: 'g_rev_01', googleReviewId: 'g_rev_01', source: 'GOOGLE', name: 'Dharma Teja', designation: 'Local Guide • 97 Reviews • 383 Photos', title: 'Best Interior Designer Near Me & Fantastic Job', body: 'I was researching the best interior designer near me, and while doing that, I came across ESPACIO. Eventually, we hired them, and it turned out to be a good decision. The interior designer was nice,the quality of the materials and finishing of the modular solutions is amazing, and the execution was really good.Espacio did a fantastic job.', rating: 5, avatar: '/reviews/dharma_teja.png', date: '3 months ago', visible: true, featured: true, order: 1, response: 'Thank you sir, for your support and valuable feedback' },
+  { id: 'g_rev_00', googleReviewId: 'g_rev_00', source: 'GOOGLE', name: 'Siddharth Mehta', designation: 'HITECH City · Corporate Office', title: 'Executive Office Fit-Out', body: 'We fitted our 4,000 sq.ft executive office with ESPACIO PVC ceiling panels and glass partitions. Professional project management and impeccable finishing.', rating: 5, avatar: '', date: '2 months ago', visible: true, featured: true, order: 0 },
+  { id: 'g_rev_01', googleReviewId: 'g_rev_01', source: 'GOOGLE', name: 'Dharma Teja', designation: 'Narsingi · Residential 3BHK', title: 'Best Interior Designer Near Me & Fantastic Job', body: 'I was researching the best interior designer near me, and while doing that, I came across ESPACIO. Eventually, we hired them, and it turned out to be a good decision. The interior designer was nice,the quality of the materials and finishing of the modular solutions is amazing, and the execution was really good.Espacio did a fantastic job.', rating: 5, avatar: '/reviews/dharma_teja.png', date: '3 months ago', visible: true, featured: true, order: 1, response: 'Thank you sir, for your support and valuable feedback' },
   { id: 'g_rev_02', googleReviewId: 'g_rev_02', source: 'GOOGLE', name: 'Madhusudhan Vanam', designation: 'Google Reviewer • 1 Review • 1 Photo', title: 'Chala Bagundhi & Excellent TV Unit Execution', body: 'Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍', rating: 5, avatar: '/reviews/madhusudhan_vanam.png', date: '5 months ago', visible: true, featured: true, order: 2 },
   { id: 'g_rev_03', googleReviewId: 'g_rev_03', source: 'GOOGLE', name: 'Khaleel Shaik', designation: 'Interior Designer • 1 Review • 4 Photos', title: 'Largest Variety of Laminates, Veneers & Plywood', body: 'As an interior designer, I have found the largest variety of laminates, vineers, and plywood with all ranges of economy, premium and super premium as required by different customer segments at the best competitive rates. My suggestion for all to visit this place once before you buy.', rating: 5, avatar: '/reviews/khaleel_shaik.png', date: '5 months ago', visible: true, featured: true, order: 3, response: 'Thank you so much for your valuable feedback, look forward to assisting you again in your future projects!' },
   { id: 'g_rev_04', googleReviewId: 'g_rev_04', source: 'GOOGLE', name: 'Shaik Hussian', designation: 'Google Reviewer • 2 Reviews', title: 'Excellent Materials for Home & Office', body: 'Excellent materials for interior at home or office so pls visit this Espacio interiors and modular Thank you...! ❤️', rating: 5, avatar: '/reviews/shaik_hussain.png', date: '6 months ago', visible: true, featured: true, order: 4 },
@@ -1567,42 +1568,42 @@ export const getCMSData = (key, fallback = null) => {
           data.hero_card_image = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png';
           try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
         }
-        if (!Array.isArray(data.showcase_slides) || data.showcase_slides.length !== 5 || data.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com'))) {
+        if (!Array.isArray(data.showcase_slides) || data.showcase_slides.length !== 5 || data.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || data.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
           data.showcase_slides = [
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
               memberImg: "/reviews/paladugu_raju.png",
-              name: "Spatial Design Lead",
-              role: "Thematic Spatial Planning",
-              projectLabel: "Cosmic Odyssey Kids Suite"
+              name: "Architectural Lead",
+              role: "Duplex Mezzanine & Murals",
+              projectLabel: "Duplex Mezzanine & Sculpted Wall Mural"
             },
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
               memberImg: "/reviews/kishor_kumar.png",
-              name: "Interior Specialist",
-              role: "Classical Boiserie Styling",
-              projectLabel: "Sage Classical Lounge"
+              name: "Spatial Architecture Specialist",
+              role: "Double-Height Atrium Architecture",
+              projectLabel: "Double-Height Atrium & Living Mezzanine"
             },
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
               memberImg: "/reviews/amresh_kumar.png",
-              name: "Joinery & Detailing",
-              role: "Bespoke Study & Atelier",
-              projectLabel: "Executive Study & Atelier"
+              name: "Joinery & Detailing Lead",
+              role: "Warm Contemporary Joinery",
+              projectLabel: "Warm Contemporary Living Lounge"
             },
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
               memberImg: "/reviews/imtiyaz_shaik.png",
               name: "Modular Specialist",
               role: "High-Gloss Modular Kitchens",
-              projectLabel: "Modern Quartzite Kitchen"
+              projectLabel: "Modern Modular Kitchen & Island Bar"
             },
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
               memberImg: "/reviews/kishor_kumar.png",
               name: "Principal Architect",
-              role: "Contemporary Spatial Refinement",
-              projectLabel: "Grand Minimalist Suite"
+              role: "Japandi Spatial Refinement",
+              projectLabel: "Japandi Living Lounge & Tea Deck"
             }
           ];
           try { localStorage.setItem(key, JSON.stringify(data)); } catch {}

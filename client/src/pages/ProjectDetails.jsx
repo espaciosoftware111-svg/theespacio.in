@@ -6,7 +6,6 @@ import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getProjectRoomName } from '../utils/projectRooms';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
-import { HeroCarousel } from '../components/ui/hero-carousel';
 import { getCMSData, STORAGE_KEYS, DEFAULT_PROJECTS } from '../utils/cmsStore';
 
 const IMAGE_FALLBACK_MAP = {
@@ -738,55 +737,6 @@ const ProjectDetails = () => {
     }
   };
 
-  const carouselItems = useMemo(() => {
-    const rawImages = (Array.isArray(p?.gallery) && p.gallery.length > 0)
-      ? p.gallery.filter(Boolean)
-      : [p?.heroImage || '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_18-20260813-110611.jpg'];
-    
-    const accents = ['#c5a572', '#8c7355', '#3d5a80', '#9c6644', '#588157', '#6c584c', '#7f5539'];
-    const seenSrcs = new Set();
-    const uniqueItems = [];
-
-    for (let idx = 0; idx < rawImages.length; idx++) {
-      const img = rawImages[idx];
-      if (!img) continue;
-      const fname = (img || '').split('/').pop()?.split('?')[0] || '';
-      let resolvedSrc = img;
-      for (const [driveId, localPath] of Object.entries(GOOGLE_DRIVE_TO_LOCAL_MAP)) {
-        if (typeof resolvedSrc === 'string' && resolvedSrc.includes(driveId)) {
-          resolvedSrc = localPath;
-          break;
-        }
-      }
-      if (fname.startsWith('dimmu_') && IMAGE_FALLBACK_MAP[fname]) {
-        resolvedSrc = IMAGE_FALLBACK_MAP[fname];
-      }
-      
-      if (seenSrcs.has(resolvedSrc) || seenSrcs.has(fname)) continue;
-      seenSrcs.add(resolvedSrc);
-      if (fname) seenSrcs.add(fname);
-
-      const roomName = getProjectRoomName ? getProjectRoomName(p, img, idx) : `Space 0${idx + 1}`;
-      const parts = (roomName || `Space 0${idx + 1}`).split(' ');
-      const title = parts.length > 2
-        ? `${parts.slice(0, Math.ceil(parts.length / 2)).join(' ')}\n${parts.slice(Math.ceil(parts.length / 2)).join(' ')}`
-        : (roomName.includes('&') ? roomName.replace('&', '\n&') : `${roomName}\nSuite`);
-
-      const finalImage = getOptimizedImageUrl(resolvedSrc, 1400, 85);
-
-      uniqueItems.push({
-        id: `${p?.slug || 'proj'}-${uniqueItems.length}`,
-        title,
-        image: finalImage,
-        accent: accents[uniqueItems.length % accents.length]
-      });
-
-      if (uniqueItems.length >= 14) break;
-    }
-
-    return uniqueItems;
-  }, [p]);
-
   return (
     <div className="bg-cream min-h-screen pb-24">
       <SEO 
@@ -796,38 +746,11 @@ const ProjectDetails = () => {
         url={`/projects/${p.slug}`} 
       />
 
-      {/* ── 1. DESKTOP HERO: Filmstrip Editorial Hero Carousel (>= md) ── */}
-      <section className="hidden md:block pt-20 sm:pt-24 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1560px] mx-auto">
-        <div className="relative h-[82vh] min-h-[560px] max-h-[820px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/20">
-          {carouselItems.length > 0 && (
-            <HeroCarousel
-              key={resolvedSlug}
-              items={carouselItems}
-              defaultIndex={0}
-              brand="ESPACIO"
-              onBack={() => navigate('/projects')}
-              onMenu={() => {
-                const el = document.getElementById('project-overview-stats');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              onActiveItemClick={(item, idx) => {
-                setActivePhotoIdx(idx);
-                setLightboxOpen(true);
-              }}
-              autoplay
-              autoplayDelay={4500}
-              className="h-full w-full"
-            />
-          )}
-          <ScrollDownIndicator />
-        </div>
-      </section>
-
-      {/* ── 2. MOBILE HERO: Touch-friendly Card Hero (< md) ── */}
-      <section className="md:hidden pt-20 px-3 max-w-[1440px] mx-auto">
-        <div className="relative h-[80dvh] sm:h-[80vh] min-h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
+      {/* ── 1. PROJECT HERO: Clean Full-Bleed Card (Unified responsive layout matching mobile style) ── */}
+      <section className="pt-20 sm:pt-24 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1560px] mx-auto">
+        <div className="relative h-[80dvh] sm:h-[80vh] lg:h-[84vh] min-h-[500px] sm:min-h-[540px] md:min-h-[580px] max-h-[820px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
           <img
-            src={getOptimizedImageUrl(p.heroImage, 1000, 85)}
+            src={getOptimizedImageUrl(p.heroImage, 1600, 88)}
             onError={handleImgError}
             fetchPriority="high"
             loading="eager"
@@ -839,25 +762,35 @@ const ProjectDetails = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/30 to-black/50 pointer-events-none" />
 
           {/* Back button */}
-          <div className="relative z-10 p-5">
-            <Link to="/projects" className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-md">
+          <div className="relative z-10 p-5 sm:p-6 md:p-8">
+            <Link 
+              to="/projects" 
+              className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors bg-black/50 backdrop-blur-md px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/10 shadow-md"
+            >
               <ArrowLeft size={14} />
               <span>Back</span>
             </Link>
           </div>
 
-          <div className="absolute bottom-16 sm:bottom-14 left-0 w-full z-10 px-5 sm:px-6">
-            <div className="flex flex-col space-y-1 sm:space-y-1.5">
-              <span className="font-sans text-[11px] uppercase tracking-widest text-gold font-bold drop-shadow">
+          {/* Project Details Bottom Left Header */}
+          <div className="absolute bottom-16 sm:bottom-16 md:bottom-20 left-0 w-full z-10 px-5 sm:px-8 md:px-12">
+            <div className="flex flex-col space-y-1 sm:space-y-1.5 md:space-y-2 max-w-3xl">
+              <span className="font-sans text-[11px] sm:text-xs md:text-sm uppercase tracking-widest text-gold font-bold drop-shadow">
                 {p.style || 'Bespoke execution'}
               </span>
-              <h1 className="text-white text-xl sm:text-2xl font-editorial font-bold leading-tight drop-shadow-md">
+              <h1 className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-editorial font-bold leading-tight drop-shadow-md">
                 {p.title}
               </h1>
+              {p.location && (
+                <p className="font-sans text-xs sm:text-sm text-white/80 drop-shadow flex items-center gap-1.5 pt-0.5">
+                  <MapPin size={13} className="text-gold shrink-0" />
+                  <span>{p.location}</span>
+                </p>
+              )}
             </div>
           </div>
 
-          <ScrollDownIndicator className="scale-85 sm:scale-100 bottom-3.5 sm:bottom-4" />
+          <ScrollDownIndicator className="scale-85 sm:scale-100 bottom-3.5 sm:bottom-4 md:bottom-5" />
         </div>
       </section>
 

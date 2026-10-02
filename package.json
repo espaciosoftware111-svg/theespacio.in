@@ -8,7 +8,7 @@
     "install:all": "npm install && npm install --prefix server && npm install --prefix client",
     "dev:server": "npm run dev --prefix server",
     "dev:client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\""
+    "dev": "npx concurrently \"npm run dev:server\" \"npm run dev:client\""
   },
   "dependencies": {
     "@supabase/server": "^1.5.3",

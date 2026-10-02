@@ -77,39 +77,39 @@ const AdminHomeHeroCMS = () => {
     // Section 4: Showcase Carousel Slides
     showcase_slides: [
       {
-        name: "Spatial Design Lead",
-        role: "Thematic Spatial Planning",
+        name: "Architectural Lead",
+        role: "Duplex Mezzanine & Murals",
         memberImg: "/reviews/paladugu_raju.png",
         projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
-        projectLabel: "Cosmic Odyssey Kids Suite"
+        projectLabel: "Duplex Mezzanine & Sculpted Wall Mural"
       },
       {
-        name: "Interior Specialist",
-        role: "Luxury Living Spaces",
-        memberImg: "/reviews/harish_v.png",
+        name: "Spatial Architecture Specialist",
+        role: "Double-Height Atrium Architecture",
+        memberImg: "/reviews/kishor_kumar.png",
         projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
-        projectLabel: "Contemporary Living Room"
+        projectLabel: "Double-Height Atrium & Living Mezzanine"
+      },
+      {
+        name: "Joinery & Detailing Lead",
+        role: "Warm Contemporary Joinery",
+        memberImg: "/reviews/amresh_kumar.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
+        projectLabel: "Warm Contemporary Living Lounge"
+      },
+      {
+        name: "Modular Specialist",
+        role: "High-Gloss Modular Kitchens",
+        memberImg: "/reviews/imtiyaz_shaik.png",
+        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
+        projectLabel: "Modern Modular Kitchen & Island Bar"
       },
       {
         name: "Principal Architect",
-        role: "Modular Kitchen & Dining",
-        memberImg: "/reviews/priya_sharma.png",
-        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
-        projectLabel: "Executive Minimalist Suite"
-      },
-      {
-        name: "Craftsmanship Director",
-        role: "Bespoke Millwork & Joinery",
-        memberImg: "/reviews/vikram_mehta.png",
-        projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
-        projectLabel: "Grand Foyer & Architecture"
-      },
-      {
-        name: "Creative Director",
-        role: "Turnkey Architecture & Styling",
-        memberImg: "/reviews/anjali_nair.png",
+        role: "Japandi Spatial Refinement",
+        memberImg: "/reviews/kishor_kumar.png",
         projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
-        projectLabel: "High-End Master Lounge"
+        projectLabel: "Japandi Living Lounge & Tea Deck"
       }
     ],
 
