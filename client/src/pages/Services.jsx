@@ -39,7 +39,7 @@ const services = [
     num: '01', 
     title: 'Full Home Interior Design and Execution', 
     tag: 'Turnkey Design & Build', 
-    desc: 'A complete home interior, planned and built by one team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
+    desc: 'A complete home interior, planned and built by our team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
     includes: [
       'Living & Dining Layouts Built Around You',
       'Kitchens Designed for Real Everyday Use',

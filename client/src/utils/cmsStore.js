@@ -877,7 +877,7 @@ export const DEFAULT_SERVICES = [
     num: '01', 
     title: 'Full Home Interior Design and Execution', 
     tag: 'Turnkey Design & Build', 
-    desc: 'A complete home interior, planned and built by one team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
+    desc: 'A complete home interior, planned and built by our team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
     includes: [
       'Living & Dining Layouts Built Around You',
       'Kitchens Designed for Real Everyday Use',
@@ -3346,6 +3346,13 @@ export const getCMSData = (key, fallback = null) => {
           if (!Array.isArray(data.services_list) || data.services_list.length === 0 || data.services_list.some(s => typeof s.img === 'string' && s.img.includes('unsplash.com')) || !data.services_list.some(s => s.title === 'Full Home Interior Design and Execution')) {
             data.services_list = DEFAULT_SERVICES;
             modified = true;
+          } else {
+            data.services_list.forEach(s => {
+              if (s && typeof s.desc === 'string' && s.desc.includes('planned and built by one team')) {
+                s.desc = s.desc.replace('planned and built by one team', 'planned and built by our team');
+                modified = true;
+              }
+            });
           }
           if (!Array.isArray(data.hero_bg_images) || data.hero_bg_images.length === 0) {
             data.hero_bg_images = DEFAULT_SETTINGS.hero_bg_images;
