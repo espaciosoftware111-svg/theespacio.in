@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
 const StarRating = ({ rating = 5 }) => (
-  <div className="flex items-center gap-1.5">
+  <div className="flex items-center gap-0.5">
     {[1, 2, 3, 4, 5].map((star) => (
       <svg
         key={star}

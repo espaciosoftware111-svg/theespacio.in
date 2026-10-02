@@ -1176,7 +1176,7 @@ const ProjectDetails = () => {
           <span className="font-sans text-xs font-bold uppercase tracking-widest text-gold block mb-3">Client Endorsement & Feedback</span>
           <h2 className="font-editorial text-3xl font-bold text-charcoal mb-8">What the Client Says About Our Work</h2>
 
-          <div className="flex justify-center items-center gap-1.5 mb-6">
+          <div className="flex justify-center items-center gap-0.5 mb-6">
             {Array.from({ length: Number(clientReview.rating || 5) }).map((_, idx) => (
               <svg
                 key={idx}
