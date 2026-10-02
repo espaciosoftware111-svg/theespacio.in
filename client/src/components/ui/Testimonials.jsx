@@ -271,7 +271,7 @@ const TestimonialCard = ({ t }) => {
   const subtitle = t.role || (t.location && t.projectType ? `${t.location} · ${t.projectType}` : 'Hyderabad · Verified Client');
 
   return (
-    <div className="relative group w-[310px] sm:w-[380px] md:w-[430px] shrink-0 bg-[#F5F2EB] rounded-[20px] p-4.5 sm:p-5 md:p-6 mx-2 sm:mx-2.5 md:mx-3 flex flex-col justify-between h-[165px] sm:h-[180px] md:h-[195px] shadow-[0_4px_20px_rgba(20,15,10,0.05)] hover:shadow-[0_14px_32px_rgba(20,15,10,0.12)] border border-[#E8E1D5] hover:border-[#C5A265]/60 transition-all duration-300 hover:-translate-y-1 select-none text-left overflow-hidden">
+    <div className="relative group w-[310px] sm:w-[380px] md:w-[430px] shrink-0 bg-white rounded-[20px] p-4.5 sm:p-5 md:p-6 mx-2 sm:mx-2.5 md:mx-3 flex flex-col justify-between h-[165px] sm:h-[180px] md:h-[195px] shadow-[0_4px_24px_rgba(20,15,10,0.06)] hover:shadow-[0_14px_32px_rgba(20,15,10,0.12)] border border-[#E2DDD5] hover:border-[#C5A265]/60 transition-all duration-300 hover:-translate-y-1 select-none text-left overflow-hidden">
       {/* 1. Star Rating Header */}
       <div className="flex items-center">
         <StarRating rating={t.rating} />
@@ -419,10 +419,10 @@ const Testimonials = () => {
   const rowB = bottomItems.length > 0 ? bottomItems : [];
 
   return (
-    <section className="relative py-8 sm:py-16 md:py-24 overflow-hidden w-full max-w-full bg-[#342D26]">
+    <section className="relative py-8 sm:py-16 md:py-24 overflow-hidden w-full max-w-full bg-[#F0EDE7]">
 
-      {/* Dark Beige Background */}
-      <div className="absolute inset-0 z-0 bg-[#342D26] pointer-events-none" />
+      {/* Background with user swatch color #F0EDE7 */}
+      <div className="absolute inset-0 z-0 bg-[#F0EDE7] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-full overflow-hidden">
 
@@ -430,9 +430,9 @@ const Testimonials = () => {
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} className="text-center mb-6 sm:mb-8 md:mb-12 px-4 sm:px-6">
           
           {/* Testimonials Badge */}
-          <div className="inline-flex items-center gap-2 bg-white text-ink px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[12px] sm:text-[13.5px] font-sans font-medium shadow-md border border-black/5 mb-3 sm:mb-5 select-none tracking-normal">
+          <div className="inline-flex items-center gap-2 bg-white text-[#181512] px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[12px] sm:text-[13.5px] font-sans font-medium shadow-[0_2px_8px_rgba(20,15,10,0.06)] border border-[#E2DDD5] mb-3 sm:mb-5 select-none tracking-normal">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-              <path d="M2 3C1.44772 3 1 3.44772 1 4V11C1 11.5523 1.44772 12 2 12H4V15L7.5 12H14C14.5523 12 15 11.5523 15 11V4C15 3.44772 14.5523 3 14 3H2Z" fill="#101014" />
+              <path d="M2 3C1.44772 3 1 3.44772 1 4V11C1 11.5523 1.44772 12 2 12H4V15L7.5 12H14C14.5523 12 15 11.5523 15 11V4C15 3.44772 14.5523 3 14 3H2Z" fill="#181512" />
               <circle cx="4.5" cy="7.5" r="0.9" fill="white" />
               <circle cx="8" cy="7.5" r="0.9" fill="white" />
               <circle cx="11.5" cy="7.5" r="0.9" fill="white" />
@@ -440,10 +440,10 @@ const Testimonials = () => {
             <span>Testimonials</span>
           </div>
 
-          <h2 className="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal text-white leading-[1.12] mb-2.5 sm:mb-4 tracking-tight">
+          <h2 className="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal text-[#181512] leading-[1.12] mb-2.5 sm:mb-4 tracking-tight">
             Client Reviews & Ratings
           </h2>
-          <p className="font-sans text-[13.5px] sm:text-base md:text-lg font-medium text-white/90 max-w-[580px] mx-auto leading-relaxed">
+          <p className="font-sans text-[13.5px] sm:text-base md:text-lg font-medium text-[#524C42] max-w-[580px] mx-auto leading-relaxed">
             Backed by 40+ Years of Combined Construction & Interior Heritage in Hyderabad
           </p>
         </motion.div>
