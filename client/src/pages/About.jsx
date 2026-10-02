@@ -32,7 +32,7 @@ const defaultGenerations = [
     gen: 'Generation III',
     title: 'Mastana Infra',
     company: 'Iconic Private Estates & Infrastructure',
-    desc: 'Pioneered luxury architectural builds and bespoke private lakefront residences — including the lakeside estate chosen as a primary filming location in the movie Guntur Kaaram, and Velak Lake View Residency.',
+    desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds — including the estate chosen as a primary filming location in Guntur Kaaram, and many more.',
     image: '/images/company/velak_lake_view_residency.jpg'
   },
   {
@@ -180,6 +180,12 @@ const getValidStoryImage = (val, fallback = defaultAboutStoryImage) => {
 const getValidGenerations = (val) => {
   const list = Array.isArray(val) && val.length > 0 ? val : defaultGenerations;
   return list.map((item) => {
+    if (item?.gen === 'Generation III') {
+      return {
+        ...item,
+        desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds — including the estate chosen as a primary filming location in Guntur Kaaram, and many more.'
+      };
+    }
     if (item?.desc && typeof item.desc === 'string') {
       return {
         ...item,

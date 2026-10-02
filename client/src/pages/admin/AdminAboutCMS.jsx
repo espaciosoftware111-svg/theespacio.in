@@ -33,7 +33,7 @@ const defaultGenerations = [
     gen: 'Generation III',
     title: 'Mastana Infra',
     company: 'Iconic Private Estates & Infrastructure',
-    desc: 'Pioneered luxury architectural builds and bespoke private lakefront residences — including the lakeside estate chosen as a primary filming location in the movie Guntur Kaaram.',
+    desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds — including the estate chosen as a primary filming location in Guntur Kaaram, and many more.',
     image: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_15-20260813-110616.jpg'
   },
   {
