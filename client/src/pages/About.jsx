@@ -506,22 +506,22 @@ const About = () => {
           {/* Right Column — Narrative Story (Sticky on desktop until bottom of images match) */}
           <div className="lg:col-span-7 lg:sticky lg:top-24 xl:top-28 lg:self-start">
             <Reveal delay={0.15} className="space-y-5 sm:space-y-6 pt-1">
-              <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em' }}>
+              <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em', fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyBadge}
               </h2>
-              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+              <p className="font-editorial text-ink-soft text-[18px] sm:text-[20px] md:text-[21px] font-normal leading-[1.65]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyMain}
               </p>
-              <p className="font-sans text-gold font-semibold text-[16px] sm:text-[18px] leading-relaxed">
+              <p className="font-editorial text-gold font-semibold text-[20px] sm:text-[22px] md:text-[23px] leading-[1.5]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyHighlight}
               </p>
-              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+              <p className="font-editorial text-ink-soft text-[18px] sm:text-[20px] md:text-[21px] font-normal leading-[1.65]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyP1}
               </p>
-              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+              <p className="font-editorial text-ink-soft text-[18px] sm:text-[20px] md:text-[21px] font-normal leading-[1.65]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyP2}
               </p>
-              <p className="font-sans text-ink-soft text-[14.5px] sm:text-[16px] font-normal leading-relaxed">
+              <p className="font-editorial text-ink-soft text-[18px] sm:text-[20px] md:text-[21px] font-normal leading-[1.65]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyP3}
               </p>
             </Reveal>

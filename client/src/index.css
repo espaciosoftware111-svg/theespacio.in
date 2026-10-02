@@ -91,6 +91,10 @@
   --radius-pill:   999px;
 }
 
+.font-editorial, .font-display {
+  font-family: 'Cormorant Garamond', serif;
+}
+
 /* ── Base Reset ──────────────────────────────────────────────────────────────── */
 @layer base {
   html {
