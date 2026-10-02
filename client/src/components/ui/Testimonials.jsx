@@ -419,19 +419,10 @@ const Testimonials = () => {
   const rowB = bottomItems.length > 0 ? bottomItems : [];
 
   return (
-    <section className="relative py-8 sm:py-16 md:py-24 overflow-hidden w-full max-w-full">
+    <section className="relative py-8 sm:py-16 md:py-24 overflow-hidden w-full max-w-full bg-[#342D26]">
 
-      {/* Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none">
-        <img 
-          src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1920&q=80&fm=webp" 
-          loading="lazy" 
-          decoding="async" 
-          alt="ESPACIO Luxury Interior Background" 
-          className="w-full h-full object-cover object-center scale-105" 
-        />
-        <div className="absolute inset-0 bg-[#0c0c10]/85 backdrop-blur-[3px]" />
-      </div>
+      {/* Dark Beige Background */}
+      <div className="absolute inset-0 z-0 bg-[#342D26] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-full overflow-hidden">
 
