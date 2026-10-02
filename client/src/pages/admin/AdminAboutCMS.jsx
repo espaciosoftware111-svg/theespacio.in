@@ -88,7 +88,7 @@ const AdminAboutCMS = () => {
   const [aboutState, setAboutState] = useState({
     // Hero
     about_hero_badge: 'About ESPACIO',
-    about_hero_title: 'Four generations of construction. One new standard for design.',
+    about_hero_title: 'Four Generations Of Construction. One New Standard For Design.',
     about_hero_subtitle: 'Long before ESPACIO existed, our family was already building across Hyderabad through Mastana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.',
     about_hero_image: defaultAboutHeroImage,
     about_hero_stats: defaultStats,
@@ -135,7 +135,7 @@ const AdminAboutCMS = () => {
       if (storedSettings) {
         setAboutState({
           about_hero_badge: getNonEmpty(storedSettings.about_hero_badge, 'About ESPACIO'),
-          about_hero_title: getNonEmpty(storedSettings.about_hero_title, 'Four generations of construction. One new standard for design.'),
+          about_hero_title: getNonEmpty(storedSettings.about_hero_title, 'Four Generations Of Construction. One New Standard For Design.'),
           about_hero_subtitle: getNonEmpty(storedSettings.about_hero_subtitle, 'Long before ESPACIO existed, our family was already building across Hyderabad through Mastana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.'),
           about_hero_image: (storedSettings.about_hero_image && !storedSettings.about_hero_image.includes('unsplash.com') && !storedSettings.about_hero_image.includes('Living_room_3') && storedSettings.about_hero_image !== '/images/about/about_hero.jpg' && !storedSettings.about_hero_image.includes('indo_classical_elegance_3bhk'))
             ? storedSettings.about_hero_image

@@ -216,11 +216,16 @@ const About = () => {
     return val;
   };
 
+  const capitalizeEveryWord = (str) => {
+    if (!str || typeof str !== 'string') return str;
+    return str.replace(/\b([a-z])/g, (_, letter) => letter.toUpperCase());
+  };
+
   const [aboutData, setAboutData] = useState(() => {
     const s = getCMSData(STORAGE_KEYS.SETTINGS);
     return {
       heroBadge: getNonEmpty(s?.about_hero_badge, 'About ESPACIO'),
-      heroTitle: getNonEmpty(s?.about_hero_title, 'Four generations of construction.\nOne new standard for design.'),
+      heroTitle: capitalizeEveryWord(getNonEmpty(s?.about_hero_title, 'Four Generations Of Construction.\nOne New Standard For Design.')),
       heroSubtitle: getNonEmpty(s?.about_hero_subtitle, 'Long before ESPACIO existed, our family was already building across Hyderabad through Mastana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.'),
       heroImage: getValidHeroImage(s?.about_hero_image, defaultAboutHeroImage),
       heroStats: (Array.isArray(s?.about_hero_stats) && s.about_hero_stats.length > 0) ? s.about_hero_stats : defaultStats,
@@ -263,7 +268,7 @@ const About = () => {
       if (s) {
         setAboutData({
           heroBadge: getNonEmpty(s.about_hero_badge, 'About ESPACIO'),
-          heroTitle: getNonEmpty(s.about_hero_title, 'Four generations of construction.\nOne new standard for design.'),
+          heroTitle: capitalizeEveryWord(getNonEmpty(s.about_hero_title, 'Four Generations Of Construction.\nOne New Standard For Design.')),
           heroSubtitle: getNonEmpty(s.about_hero_subtitle, 'Long before ESPACIO existed, our family was already building across Hyderabad through Mastana Constructions and Mastana Infra. We bring 40 years of load-bearing precision and structural engineering to luxury interior architecture.'),
           heroImage: getValidHeroImage(s.about_hero_image, defaultAboutHeroImage),
           heroStats: (Array.isArray(s.about_hero_stats) && s.about_hero_stats.length > 0) ? s.about_hero_stats : defaultStats,

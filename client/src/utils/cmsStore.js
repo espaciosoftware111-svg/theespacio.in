@@ -1373,6 +1373,7 @@ export const DEFAULT_SETTINGS = {
   ],
   services_hero_visible: true,
   services_list: DEFAULT_SERVICES,
+  about_hero_title: 'Four Generations Of Construction.\nOne New Standard For Design.',
   projects_hero_badge: 'Portfolio & Case Studies',
   projects_hero_title: 'Our Projects',
   projects_hero_subtitle: 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
@@ -3357,6 +3358,13 @@ export const getCMSData = (key, fallback = null) => {
                 modified = true;
               }
             });
+          }
+          if (data.about_hero_title && typeof data.about_hero_title === 'string') {
+            const updatedTitle = data.about_hero_title.replace(/\b([a-z])/g, (_, l) => l.toUpperCase());
+            if (updatedTitle !== data.about_hero_title) {
+              data.about_hero_title = updatedTitle;
+              modified = true;
+            }
           }
           if (!Array.isArray(data.hero_bg_images) || data.hero_bg_images.length === 0) {
             data.hero_bg_images = DEFAULT_SETTINGS.hero_bg_images;
