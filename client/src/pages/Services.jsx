@@ -359,9 +359,13 @@ const Services = () => {
                       <Link to={s.ctaLink || "/contact"} className="btn-primary w-fit">
                         {s.ctaText || "Enquire About This"} <ArrowUpRight size={13} />
                       </Link>
-                      {(s.hasSecondaryLink || s.num === '05' || s.title.includes('Materials')) && (
-                        <Link to="/materials" className="inline-flex items-center gap-1.5 font-sans text-[12.5px] sm:text-[13px] font-bold text-gold hover:text-gold/80 transition-colors uppercase tracking-wider">
-                          Browse Materials →
+                      {(s.hasSecondaryLink || s.num === '05' || s.title?.includes('Materials')) && (
+                        <Link 
+                          to="/materials" 
+                          className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-lg border-1.5 border-[#C5A265] bg-white hover:bg-[#C5A265] text-[#8F6E32] hover:text-[#101014] font-sans text-xs sm:text-[12.5px] font-bold uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-0.5 group select-none"
+                        >
+                          <span>Browse Materials</span>
+                          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                         </Link>
                       )}
                     </div>
