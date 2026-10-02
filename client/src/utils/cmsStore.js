@@ -1129,6 +1129,7 @@ export const DEFAULT_SETTINGS = {
   exp_card3_supportingText: 'Private evening consultations available upon request.',
   exp_card3_bottomLabel: 'CONSULTATION HOURS',
   exp_card3_visible: true,
+  footer_brand_subtitle: 'INTERIORS AND MODULARS',
   footer_location_title: 'LOCATION',
   footer_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
   footer_map_url: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
@@ -1537,6 +1538,10 @@ export const getCMSData = (key, fallback = null) => {
           let modified = false;
           if (data.projects_cta_visible !== true) {
             data.projects_cta_visible = true;
+            modified = true;
+          }
+          if (data.footer_brand_subtitle === undefined) {
+            data.footer_brand_subtitle = 'INTERIORS AND MODULARS';
             modified = true;
           }
           if (!data.cta_projects || data.cta_projects.enabled !== true) {

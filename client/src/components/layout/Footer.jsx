@@ -214,6 +214,10 @@ const Footer = () => {
     ? cmsSettings.footer_brand_right 
     : (cmsSettings.footer_brand_text ? cmsSettings.footer_brand_text.slice(3) : 'ACIO.');
 
+  const brandSubtitle = cmsSettings.footer_brand_subtitle !== undefined 
+    ? cmsSettings.footer_brand_subtitle 
+    : 'INTERIORS AND MODULARS';
+
   const brandWeight = (cmsSettings.footer_brand_weight !== undefined && cmsSettings.footer_brand_weight !== 500)
     ? Number(cmsSettings.footer_brand_weight)
     : 700;
@@ -384,7 +388,7 @@ const Footer = () => {
       {/* 4. Giant Cinematic Typography Wordmark */}
       <div 
         ref={brandRef} 
-        className="w-full flex justify-center overflow-hidden py-6 md:py-8 select-none relative z-10 px-4"
+        className="w-full flex flex-col items-center justify-center overflow-hidden py-6 md:py-8 select-none relative z-10 px-4"
       >
         <div 
           className="font-sans tracking-[-0.04em] uppercase text-white leading-[0.8] whitespace-nowrap text-center select-none"
@@ -430,6 +434,18 @@ const Footer = () => {
             {brandRight}
           </motion.span>
         </div>
+
+        {/* Sub-Brand Tagline */}
+        {brandSubtitle && (
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="font-sans text-[clamp(11px,1.4vw,20px)] font-bold text-white/80 tracking-[0.25em] sm:tracking-[0.38em] uppercase text-center mt-3 sm:mt-4 md:mt-5 m-0"
+          >
+            {brandSubtitle}
+          </motion.p>
+        )}
       </div>
 
       {/* 5. Copyright Strip */}

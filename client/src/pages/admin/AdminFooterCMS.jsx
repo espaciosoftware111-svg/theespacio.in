@@ -68,6 +68,7 @@ const defaultFooterData = {
   // Branding
   footer_brand_left: 'ESP',
   footer_brand_right: 'ACIO.',
+  footer_brand_subtitle: 'INTERIORS AND MODULARS',
   footer_brand_weight: 700,
   footer_brand_opacity: 100,
 
@@ -616,6 +617,20 @@ const AdminFooterCMS = () => {
                   This text slides in dynamically from the right side.
                 </p>
               </div>
+
+              <div className="md:col-span-2">
+                <label className={labelClass}>Brand Tagline / Subtitle (Under Wordmark)</label>
+                <input
+                  type="text"
+                  value={footerState.footer_brand_subtitle !== undefined ? footerState.footer_brand_subtitle : 'INTERIORS AND MODULARS'}
+                  onChange={(e) => updateField('footer_brand_subtitle', e.target.value)}
+                  className={inpClass}
+                  placeholder="INTERIORS AND MODULARS"
+                />
+                <p className="font-sans text-[10px] text-white/30 mt-1">
+                  Sub-brand tagline displayed directly underneath the giant ESPACIO wordmark.
+                </p>
+              </div>
             </div>
 
             {/* Dynamic Boldness (Font Weight) Control */}
@@ -706,6 +721,11 @@ const AdminFooterCMS = () => {
                 <span>{footerState.footer_brand_left || 'ESP'}</span>
                 <span>{footerState.footer_brand_right || 'ACIO.'}</span>
               </div>
+              {footerState.footer_brand_subtitle && (
+                <p className="font-sans text-xs font-bold text-white/70 tracking-[0.3em] uppercase -mt-1">
+                  {footerState.footer_brand_subtitle}
+                </p>
+              )}
               <p className="font-sans text-[11px] text-white/50">
                 Font Weight: <span className="text-gold font-bold">{footerState.footer_brand_weight || 700}</span> | Opacity: <span className="text-gold font-bold">{footerState.footer_brand_opacity !== undefined ? footerState.footer_brand_opacity : 100}%</span>
               </p>
