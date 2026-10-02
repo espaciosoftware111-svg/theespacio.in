@@ -423,7 +423,7 @@ const Services = () => {
             <div className="lg:col-span-5 space-y-4 sm:space-y-6">
               <Reveal>
                 <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">Project Planner</span>
-                <h2 className="font-display text-[clamp(26px,3.5vw,48px)] font-bold text-charcoal leading-tight">Project Estimate</h2>
+                <h2 className="font-display text-[clamp(26px,3.5vw,48px)] font-bold text-charcoal leading-tight">Design Consultation</h2>
                 <p className="font-sans text-[13.5px] sm:text-sm text-walnut leading-relaxed">
                   Tell us a bit about your space, and we'll get you a real, personalized range instead of a generic number. Since every site has its own quirks that affect the final cost, our principal design team will walk you through your estimate on a quick call, no guesswork, no copy paste pricing.
                 </p>
@@ -513,8 +513,8 @@ const QuotationCalculator = () => {
           propertyType: propLabel,
           scopeOfWork: scopeLabel,
           finishGrade: finishGrade,
-          notesText: `Project Estimate Submission — Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
-          notes: [{ id: `n-${Date.now()}`, text: `Captured via Project Estimate calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}.`, createdAt: new Date().toISOString() }],
+          notesText: `Design Consultation Submission — Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`,
+          notes: [{ id: `n-${Date.now()}`, text: `Captured via Design Consultation calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}.`, createdAt: new Date().toISOString() }],
           status: 'NEW',
           read: false,
           submittedAt: new Date().toISOString(),
@@ -533,9 +533,9 @@ const QuotationCalculator = () => {
       phone2: '',
       email: `${trimmedPhone.replace(/\D/g, '')}@leads.theespacio.com`,
       location: `Property: ${propLabel}`,
-      projectType: 'Project Estimate',
+      projectType: 'Design Consultation',
       serviceType: scopeLabel,
-      message: `Project Estimate — Property: ${propLabel}, Scope: ${scopeLabel}, Finish Grade: ${finishGrade}`,
+      message: `Design Consultation — Property: ${propLabel}, Scope: ${scopeLabel}, Finish Grade: ${finishGrade}`,
       propertyDetails: {
         propertyType: propLabel,
         spaces: scopeLabel,
@@ -543,7 +543,7 @@ const QuotationCalculator = () => {
       },
       projectDetails: {
         stage: finishGrade,
-        notes: `Project Estimate Calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
+        notes: `Design Consultation Calculator on Services page. Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
       },
       googleSheetData: {
         name: trimmedName,
@@ -553,7 +553,7 @@ const QuotationCalculator = () => {
         location: `Property: ${propLabel}`,
         requirement: scopeLabel,
         stage: finishGrade,
-        source: 'Services Page (Project Estimate)',
+        source: 'Services Page (Design Consultation)',
         notes: `Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
       }
     };
@@ -604,8 +604,8 @@ const QuotationCalculator = () => {
       {!submitted ? (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-1.5 pb-4 border-b border-walnut/10">
-            <h3 className="font-display text-2xl font-bold text-charcoal">Project Estimate</h3>
-            <p className="font-sans text-xs text-walnut/80">Configure your project details to unlock your personalized estimate</p>
+            <h3 className="font-display text-2xl font-bold text-charcoal">Design Consultation</h3>
+            <p className="font-sans text-xs text-walnut/80">Configure your project details to schedule your personalized consultation</p>
           </div>
 
           {/* Property Type */}
@@ -717,7 +717,7 @@ const QuotationCalculator = () => {
             type="submit"
             className="w-full text-center bg-[#C5A572] hover:bg-[#B89660] text-charcoal font-sans text-xs font-bold uppercase tracking-wider px-6 py-4 rounded-2xl transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>Unlock Personalized Estimate</span>
+            <span>Schedule Design Consultation</span>
             <span>→</span>
           </button>
         </form>
@@ -726,16 +726,16 @@ const QuotationCalculator = () => {
           <div className="w-14 h-14 rounded-full bg-gold/15 text-gold flex items-center justify-center mx-auto border border-gold/30">
             <CheckCircle2 size={32} />
           </div>
-          <h3 className="font-display text-xl font-bold text-charcoal">Your Estimate is Ready</h3>
+          <h3 className="font-display text-xl font-bold text-charcoal">Your Consultation is Scheduled</h3>
           <p className="font-sans text-xs text-walnut leading-relaxed max-w-[420px] mx-auto">
-            Your estimate is ready — we'll share your personalized range on a quick call, since site conditions affect final BOQ significantly.
+            Your design consultation request is received — our principal design team will connect with you on a quick call to walk you through your custom space planning.
           </p>
           <div className="pt-2">
             <button
               onClick={() => setSubmitted(false)}
               className="px-6 py-2.5 rounded-full border border-walnut/20 text-charcoal font-sans text-xs font-bold hover:bg-charcoal hover:text-cream transition-all"
             >
-              Configure Another Estimate
+              Schedule Another Consultation
             </button>
           </div>
         </div>
