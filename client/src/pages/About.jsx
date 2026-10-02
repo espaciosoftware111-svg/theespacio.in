@@ -39,7 +39,7 @@ const defaultGenerations = [
     gen: 'Generation IV',
     title: 'ESPACIO Interiors & Modular',
     company: 'Engineering-First Bespoke Interiors',
-    desc: 'Fusing structural construction mastery with luxury interior architecture. We don\'t just style spaces — we engineer every wall, cabinet, and finish for lifetime permanence.',
+    desc: 'Fusing structural construction mastery with luxury interior architecture. We don\'t just style spaces, we engineer every wall, cabinet, and finish for lifetime permanence.',
     image: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_23-20260810-124912.jpg'
   }
 ];
@@ -178,10 +178,16 @@ const getValidStoryImage = (val, fallback = defaultAboutStoryImage) => {
 };
 
 const getValidGenerations = (val) => {
-  if (Array.isArray(val) && val.length > 0) {
-    return val;
-  }
-  return defaultGenerations;
+  const list = Array.isArray(val) && val.length > 0 ? val : defaultGenerations;
+  return list.map((item) => {
+    if (item?.desc && typeof item.desc === 'string') {
+      return {
+        ...item,
+        desc: item.desc.replace(/spaces\s*[—–-]\s*we/gi, 'spaces, we')
+      };
+    }
+    return item;
+  });
 };
 
 const getValidGallery = (val) => {
