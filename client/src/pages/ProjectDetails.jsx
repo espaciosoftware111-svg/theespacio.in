@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, Calendar, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ArrowLeft, MapPin, Home, CheckCircle2, Layers, Maximize2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getProjectRoomName } from '../utils/projectRooms';
@@ -642,7 +642,7 @@ const ProjectDetails = () => {
       cleanSlug === 'provincia' || 
       resolvedSlug === 'rajapushpa-provincia-3bhk'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+      item.beforeImage = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
       item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
@@ -795,7 +795,7 @@ const ProjectDetails = () => {
       </section>
 
       {/* ── 3. Comprehensive Project Overview & Specifications Grid ── */}
-      <section id="project-overview-stats" className="max-w-[1440px] mx-auto px-6 md:px-12 py-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 border-b border-walnut/10">
+      <section id="project-overview-stats" className="max-w-[1440px] mx-auto px-6 md:px-12 py-14 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 border-b border-walnut/10">
         <div className="flex items-center space-x-3">
           <MapPin className="text-gold shrink-0" size={20} />
           <div>
@@ -810,20 +810,6 @@ const ProjectDetails = () => {
             <span className="font-sans font-bold text-sm text-charcoal">
               {p.configuration || (p.title?.match(/(\d+BHK|Duplex)/i) ? `${p.title.match(/(\d+BHK|Duplex)/i)[0]} Residence` : 'Luxury Residence')}
             </span>
-          </div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <Maximize2 className="text-gold shrink-0" size={20} />
-          <div>
-            <span className="font-sans text-[10px] text-walnut uppercase tracking-widest block">Built-up Area</span>
-            <span className="font-sans font-bold text-sm text-charcoal">{p.area || '2,400+ sq.ft.'}</span>
-          </div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <Calendar className="text-gold shrink-0" size={20} />
-          <div>
-            <span className="font-sans text-[10px] text-walnut uppercase tracking-widest block">Handover Year</span>
-            <span className="font-sans font-bold text-sm text-charcoal">{p.year || p.completionYear || '2025'}</span>
           </div>
         </div>
         <div className="flex items-center space-x-3">
@@ -931,7 +917,7 @@ const ProjectDetails = () => {
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png';
         }
         if (p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia' || p.order === 1 || cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'rajapushpa' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || resolvedSlug === 'rajapushpa-provincia-3bhk') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+          beforeImg = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
         }
         if (afterImg?.includes('master_bedroom') || beforeImg?.includes('Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0')) {

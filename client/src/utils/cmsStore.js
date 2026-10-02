@@ -157,15 +157,12 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789726/e633e606-5bb8-4dad-86c0-20dcd694c75a.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789737/94ced607-e73b-4df5-aaf8-6f94a8c08fbe.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789746/04ad3ff9-4782-4218-9003-702e33e09414.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789748/dd97aa33-e9fe-43c2-83ca-c23e129b349c.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789768/46e29765-a1ec-4195-a947-ea566616fe2e.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789840/0f540e8d-87e8-4aa8-a80b-9340c28b4000.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789933/9d302a93-fe8b-42d0-b2e3-063518044156.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789768/46e29765-a1ec-4195-a947-ea566616fe2e.png"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png",
+    "beforeImage": "/images/projects/rajapushpa_provincia/rajapushpa_before.webp",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png"
+      "/images/projects/rajapushpa_provincia/rajapushpa_before.webp"
     ],
     "afterImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png"
@@ -234,56 +231,8 @@ export const DEFAULT_PROJECTS = [
     "status": "published"
   },
   {
-    "_id": "proj_3_kokapet_nagesh",
-    "order": 3,
-    "title": "The Boucle Residence",
-    "slug": "kokapet-2bhk",
-    "category": "apartment",
-    "area": "1,650 sq.ft.",
-    "location": "Kokapet, Hyderabad",
-    "year": 2025,
-    "style": "Contemporary Warm Minimalist",
-    "description": "A refined 2BHK home with handleless modular cabinetry, a striking marble TV feature wall, a beautifully lit crockery display, and bedrooms designed purely for rest. Every inch was planned to feel bigger, brighter, and effortlessly put together.",
-    "story": {
-      "vision": "Nagesh wanted his 2BHK to feel elegant without feeling tight. Even though the layout was compact, the goal was to make every room feel open, well lit, and thoughtfully planned. Clean modern lines, warm ambient lighting, and custom cabinetry built specifically for how he lives were all part of the plan from day one.",
-      "challenges": "In a 2BHK, every inch matters. The real challenge was fitting in generous storage and a fully handleless kitchen and wardrobe system without the space ever feeling cramped or heavy. On top of that, the TV wall had to sit completely flush against the surrounding paneling, with no visible gaps or bulk breaking the clean look.",
-      "solutions": "Engineered custom fluted wall paneling, integrated floating crockery and entertainment units, and premium modular storage solutions with soft-close German hardware.",
-      "engineering": "Getting that seamless look meant planning the ceiling coves down to the millimeter, so the lighting sits perfectly aligned all the way around the room. The floating cabinetry needed strong hidden anchor points to carry its weight safely over time, and every surface was finished with an anti scratch coating so the home stays looking new for years, not just on the day it's handed over.",
-      "outcome": "A flawless, turnkey residential masterpiece delivered on schedule with benchmark craftsmanship and enduring aesthetic charm."
-    },
-    "heroImage": "/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp",
-    "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791783/6751a990-6636-47ab-b93e-616e5a21cc54.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791792/5d1538e9-0496-4fd6-85d0-4529702c6fb3.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791820/d65a1813-c2c0-4607-a2a6-61fd10f89cb0.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791828/c1682e0a-403d-4e0c-a623-e8a89d091a6a.png"
-    ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png",
-    "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png"
-    ],
-    "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png"
-    ],
-    "testimonialName": "Nagesh",
-    "testimonialProfession": "Homeowner, Kokapet",
-    "testimonialText": "ESPACIO delivered beyond our expectations for our 2BHK flat at Kokapet. The quality of materials, the finish of the modular kitchen, and the TV unit craftsmanship are top-notch. The team was highly professional, transparent, and completed the handover right on time. Highly recommended!",
-    "testimonialRating": 5,
-    "testimonial": {
-      "name": "Nagesh",
-      "profession": "Homeowner, Kokapet",
-      "role": "Homeowner, Kokapet, Hyderabad",
-      "text": "ESPACIO delivered beyond our expectations for our 2BHK flat at Kokapet. The quality of materials, the finish of the modular kitchen, and the TV unit craftsmanship are top-notch. The team was highly professional, transparent, and completed the handover right on time. Highly recommended!",
-      "rating": 5
-    },
-    "featured": true,
-    "status": "published"
-  },
-  {
     "_id": "proj_4_kokapet_rahul",
-    "order": 4,
+    "order": 3,
     "title": "The Ivory Retreat",
     "slug": "kokapet-urban-2bhk",
     "category": "apartment",
@@ -334,7 +283,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_5_gandipet_kiran",
-    "order": 5,
+    "order": 4,
     "title": "The Panelled Muse",
     "slug": "gandipet-modern-retro-2bhk",
     "category": "apartment",
@@ -385,7 +334,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_6_kondapur_venkatesh",
-    "order": 6,
+    "order": 5,
     "title": "The Dusk Lounge",
     "slug": "kondapur-minimalist-2bhk",
     "category": "apartment",
@@ -436,7 +385,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_7_gachibowli_koteswara",
-    "order": 7,
+    "order": 6,
     "title": "A 2BHK Residence, Gachibowli",
     "slug": "gachibowli-minimalist-beige-2bhk",
     "category": "apartment",
@@ -486,7 +435,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_8_kachiguda_subbarao",
-    "order": 8,
+    "order": 7,
     "title": "A Duplex Residence, Kachiguda",
     "slug": "kachiguda-fusion-duplex-villa",
     "category": "duplex",
@@ -537,7 +486,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_9_dimmu_chachu_residence",
-    "order": 9,
+    "order": 8,
     "title": "The Celestial Curve Villa",
     "slug": "dimmu-chachu-luxury-villa",
     "category": "villa",
@@ -1212,6 +1161,13 @@ export const getCMSData = (key, fallback = null) => {
       let data = JSON.parse(raw);
                 if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
           let updated = false;
+
+          // Strip any deleted or legacy Kokapet Nagesh project
+          if (data.some(p => p && (p._id === 'proj_3_kokapet_nagesh' || p.slug === 'kokapet-2bhk' || (p.title && p.title.includes('Boucle'))))) {
+            data = data.filter(p => p && p._id !== 'proj_3_kokapet_nagesh' && p.slug !== 'kokapet-2bhk' && !(p.title && p.title.includes('Boucle')));
+            updated = true;
+          }
+
           const p1Idx = data.findIndex(p => p._id === 'proj_1_rajapushpa_provincia' || p.slug === 'rajapushpa-provincia-3bhk');
           if (p1Idx !== -1) {
             if (
@@ -1220,7 +1176,7 @@ export const getCMSData = (key, fallback = null) => {
               data[p1Idx].heroImage !== DEFAULT_PROJECTS[0].heroImage ||
               !Array.isArray(data[p1Idx].gallery) ||
               data[p1Idx].gallery.length !== DEFAULT_PROJECTS[0].gallery.length ||
-              data[p1Idx].gallery.some(img => typeof img === 'string' && img.includes('rajapushpa_'))
+              data[p1Idx].gallery.some(img => typeof img === 'string' && (img.includes('rajapushpa_') || img.includes('dd97aa33') || img.includes('0f540e8d') || img.includes('9d302a93')))
             ) {
               data[p1Idx].beforeImage = DEFAULT_PROJECTS[0].beforeImage;
               data[p1Idx].afterImage = DEFAULT_PROJECTS[0].afterImage;
@@ -1250,66 +1206,47 @@ export const getCMSData = (key, fallback = null) => {
               updated = true;
             }
           }
-          const p3Idx = data.findIndex(p => p._id === 'proj_3_kokapet_nagesh' || p.slug === 'kokapet-2bhk');
-          if (p3Idx !== -1) {
-            if (
-              data[p3Idx].beforeImage !== DEFAULT_PROJECTS[2].beforeImage ||
-              data[p3Idx].afterImage !== DEFAULT_PROJECTS[2].afterImage ||
-              data[p3Idx].heroImage !== DEFAULT_PROJECTS[2].heroImage ||
-              !Array.isArray(data[p3Idx].gallery) ||
-              data[p3Idx].gallery.length !== DEFAULT_PROJECTS[2].gallery.length ||
-              data[p3Idx].gallery.some(img => typeof img === 'string' && img.includes('kokapet_tv_unit'))
-            ) {
-              data[p3Idx].beforeImage = DEFAULT_PROJECTS[2].beforeImage;
-              data[p3Idx].afterImage = DEFAULT_PROJECTS[2].afterImage;
-              data[p3Idx].beforeImages = DEFAULT_PROJECTS[2].beforeImages;
-              data[p3Idx].afterImages = DEFAULT_PROJECTS[2].afterImages;
-              data[p3Idx].heroImage = DEFAULT_PROJECTS[2].heroImage;
-              data[p3Idx].gallery = DEFAULT_PROJECTS[2].gallery;
-              updated = true;
-            }
-          }
           const p4Idx = data.findIndex(p => p._id === 'proj_4_kokapet_rahul' || p.slug === 'kokapet-urban-2bhk');
           if (p4Idx !== -1) {
             if (
-              data[p4Idx].beforeImage !== DEFAULT_PROJECTS[3].beforeImage ||
-              data[p4Idx].afterImage !== DEFAULT_PROJECTS[3].afterImage ||
-              data[p4Idx].heroImage !== DEFAULT_PROJECTS[3].heroImage ||
+              data[p4Idx].beforeImage !== DEFAULT_PROJECTS[2].beforeImage ||
+              data[p4Idx].afterImage !== DEFAULT_PROJECTS[2].afterImage ||
+              data[p4Idx].heroImage !== DEFAULT_PROJECTS[2].heroImage ||
               !Array.isArray(data[p4Idx].gallery) ||
-              data[p4Idx].gallery.length !== DEFAULT_PROJECTS[3].gallery.length ||
+              data[p4Idx].gallery.length !== DEFAULT_PROJECTS[2].gallery.length ||
               data[p4Idx].gallery.some(img => typeof img === 'string' && img.includes('rahul_gallery'))
             ) {
-              data[p4Idx].beforeImage = DEFAULT_PROJECTS[3].beforeImage;
-              data[p4Idx].afterImage = DEFAULT_PROJECTS[3].afterImage;
-              data[p4Idx].beforeImages = DEFAULT_PROJECTS[3].beforeImages;
-              data[p4Idx].afterImages = DEFAULT_PROJECTS[3].afterImages;
-              data[p4Idx].heroImage = DEFAULT_PROJECTS[3].heroImage;
-              data[p4Idx].gallery = DEFAULT_PROJECTS[3].gallery;
+              data[p4Idx].beforeImage = DEFAULT_PROJECTS[2].beforeImage;
+              data[p4Idx].afterImage = DEFAULT_PROJECTS[2].afterImage;
+              data[p4Idx].beforeImages = DEFAULT_PROJECTS[2].beforeImages;
+              data[p4Idx].afterImages = DEFAULT_PROJECTS[2].afterImages;
+              data[p4Idx].heroImage = DEFAULT_PROJECTS[2].heroImage;
+              data[p4Idx].gallery = DEFAULT_PROJECTS[2].gallery;
               updated = true;
             }
           }
           const p5Idx = data.findIndex(p => p._id === 'proj_5_gandipet_kiran' || p.slug === 'gandipet-modern-retro-2bhk');
           if (p5Idx !== -1) {
             if (
-              data[p5Idx].beforeImage !== DEFAULT_PROJECTS[4].beforeImage ||
-              data[p5Idx].afterImage !== DEFAULT_PROJECTS[4].afterImage ||
-              data[p5Idx].heroImage !== DEFAULT_PROJECTS[4].heroImage ||
+              data[p5Idx].beforeImage !== DEFAULT_PROJECTS[3].beforeImage ||
+              data[p5Idx].afterImage !== DEFAULT_PROJECTS[3].afterImage ||
+              data[p5Idx].heroImage !== DEFAULT_PROJECTS[3].heroImage ||
               !Array.isArray(data[p5Idx].gallery) ||
-              data[p5Idx].gallery.length !== DEFAULT_PROJECTS[4].gallery.length ||
+              data[p5Idx].gallery.length !== DEFAULT_PROJECTS[3].gallery.length ||
               data[p5Idx].gallery.some(img => typeof img === 'string' && img.includes('kiran_gallery'))
             ) {
-              data[p5Idx].beforeImage = DEFAULT_PROJECTS[4].beforeImage;
-              data[p5Idx].afterImage = DEFAULT_PROJECTS[4].afterImage;
-              data[p5Idx].beforeImages = DEFAULT_PROJECTS[4].beforeImages;
-              data[p5Idx].afterImages = DEFAULT_PROJECTS[4].afterImages;
-              data[p5Idx].heroImage = DEFAULT_PROJECTS[4].heroImage;
-              data[p5Idx].gallery = DEFAULT_PROJECTS[4].gallery;
+              data[p5Idx].beforeImage = DEFAULT_PROJECTS[3].beforeImage;
+              data[p5Idx].afterImage = DEFAULT_PROJECTS[3].afterImage;
+              data[p5Idx].beforeImages = DEFAULT_PROJECTS[3].beforeImages;
+              data[p5Idx].afterImages = DEFAULT_PROJECTS[3].afterImages;
+              data[p5Idx].heroImage = DEFAULT_PROJECTS[3].heroImage;
+              data[p5Idx].gallery = DEFAULT_PROJECTS[3].gallery;
               updated = true;
             }
           }
-          const hasKokapetNagesh = data.some(p => p._id === 'proj_3_kokapet_nagesh' || p.slug === 'kokapet-2bhk');
-          if (!hasKokapetNagesh) {
-            const idx = data.findIndex(p => p._id === 'proj_3_minimalist_beige' || p.slug === 'minimalist-beige-2bhk');
+          const hasKokapetRahul = data.some(p => p._id === 'proj_4_kokapet_rahul' || p.slug === 'kokapet-urban-2bhk');
+          if (!hasKokapetRahul) {
+            const idx = data.findIndex(p => p._id === 'proj_4_aparna_zicon' || p.slug === 'aparna-zicon-high-rise');
             if (idx !== -1) {
               data[idx] = DEFAULT_PROJECTS[2];
             } else {
@@ -1317,9 +1254,9 @@ export const getCMSData = (key, fallback = null) => {
             }
             updated = true;
           }
-          const hasKokapetRahul = data.some(p => p._id === 'proj_4_kokapet_rahul' || p.slug === 'kokapet-urban-2bhk');
-          if (!hasKokapetRahul) {
-            const idx = data.findIndex(p => p._id === 'proj_4_aparna_zicon' || p.slug === 'aparna-zicon-high-rise');
+          const hasGandipetKiran = data.some(p => p._id === 'proj_5_gandipet_kiran' || p.slug === 'gandipet-modern-retro-2bhk');
+          if (!hasGandipetKiran) {
+            const idx = data.findIndex(p => p._id === 'proj_5_modern_retro' || p.slug === 'modern-retro-timber-residence');
             if (idx !== -1) {
               data[idx] = DEFAULT_PROJECTS[3];
             } else {
@@ -1327,19 +1264,39 @@ export const getCMSData = (key, fallback = null) => {
             }
             updated = true;
           }
-          const hasGandipetKiran = data.some(p => p._id === 'proj_5_gandipet_kiran' || p.slug === 'gandipet-modern-retro-2bhk');
-          if (!hasGandipetKiran) {
-            const idx = data.findIndex(p => p._id === 'proj_5_modern_retro' || p.slug === 'modern-retro-timber-residence');
+          const hasKondapurVenkatesh = data.some(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
+          if (!hasKondapurVenkatesh) {
+            const idx = data.findIndex(p => p._id === 'proj_6_glasshouse_suite' || p.slug === 'the-glasshouse-executive-suite');
             if (idx !== -1) {
               data[idx] = DEFAULT_PROJECTS[4];
             } else {
               data.splice(4, 0, DEFAULT_PROJECTS[4]);
             }
             updated = true;
+          } else {
+            const p6Idx = data.findIndex(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
+            if (p6Idx !== -1) {
+              if (
+                data[p6Idx].beforeImage !== DEFAULT_PROJECTS[4].beforeImage ||
+                data[p6Idx].afterImage !== DEFAULT_PROJECTS[4].afterImage ||
+                data[p6Idx].heroImage !== DEFAULT_PROJECTS[4].heroImage ||
+                !Array.isArray(data[p6Idx].gallery) ||
+                data[p6Idx].gallery.length !== DEFAULT_PROJECTS[4].gallery.length ||
+                data[p6Idx].gallery.some(img => typeof img === 'string' && img.includes('venkatesh_gallery'))
+              ) {
+                data[p6Idx].beforeImage = DEFAULT_PROJECTS[4].beforeImage;
+                data[p6Idx].afterImage = DEFAULT_PROJECTS[4].afterImage;
+                data[p6Idx].beforeImages = DEFAULT_PROJECTS[4].beforeImages;
+                data[p6Idx].afterImages = DEFAULT_PROJECTS[4].afterImages;
+                data[p6Idx].heroImage = DEFAULT_PROJECTS[4].heroImage;
+                data[p6Idx].gallery = DEFAULT_PROJECTS[4].gallery;
+                updated = true;
+              }
+            }
           }
-          const hasKondapurVenkatesh = data.some(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
-          if (!hasKondapurVenkatesh) {
-            const idx = data.findIndex(p => p._id === 'proj_6_glasshouse_suite' || p.slug === 'the-glasshouse-executive-suite');
+          const hasGachibowliKoteswara = data.some(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
+          if (!hasGachibowliKoteswara) {
+            const idx = data.findIndex(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
             if (idx !== -1) {
               data[idx] = DEFAULT_PROJECTS[5];
             } else {
@@ -1347,52 +1304,22 @@ export const getCMSData = (key, fallback = null) => {
             }
             updated = true;
           } else {
-            const p6Idx = data.findIndex(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
-            if (p6Idx !== -1) {
-              if (
-                data[p6Idx].beforeImage !== DEFAULT_PROJECTS[5].beforeImage ||
-                data[p6Idx].afterImage !== DEFAULT_PROJECTS[5].afterImage ||
-                data[p6Idx].heroImage !== DEFAULT_PROJECTS[5].heroImage ||
-                !Array.isArray(data[p6Idx].gallery) ||
-                data[p6Idx].gallery.length !== DEFAULT_PROJECTS[5].gallery.length ||
-                data[p6Idx].gallery.some(img => typeof img === 'string' && img.includes('venkatesh_gallery'))
-              ) {
-                data[p6Idx].beforeImage = DEFAULT_PROJECTS[5].beforeImage;
-                data[p6Idx].afterImage = DEFAULT_PROJECTS[5].afterImage;
-                data[p6Idx].beforeImages = DEFAULT_PROJECTS[5].beforeImages;
-                data[p6Idx].afterImages = DEFAULT_PROJECTS[5].afterImages;
-                data[p6Idx].heroImage = DEFAULT_PROJECTS[5].heroImage;
-                data[p6Idx].gallery = DEFAULT_PROJECTS[5].gallery;
-                updated = true;
-              }
-            }
-          }
-                    const hasGachibowliKoteswara = data.some(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
-          if (!hasGachibowliKoteswara) {
-            const idx = data.findIndex(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[6];
-            } else {
-              data.splice(6, 0, DEFAULT_PROJECTS[6]);
-            }
-            updated = true;
-          } else {
             const p7Idx = data.findIndex(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
             if (p7Idx !== -1) {
               if (
-                data[p7Idx].beforeImage !== DEFAULT_PROJECTS[6].beforeImage ||
-                data[p7Idx].afterImage !== DEFAULT_PROJECTS[6].afterImage ||
-                data[p7Idx].heroImage !== DEFAULT_PROJECTS[6].heroImage ||
+                data[p7Idx].beforeImage !== DEFAULT_PROJECTS[5].beforeImage ||
+                data[p7Idx].afterImage !== DEFAULT_PROJECTS[5].afterImage ||
+                data[p7Idx].heroImage !== DEFAULT_PROJECTS[5].heroImage ||
                 !Array.isArray(data[p7Idx].gallery) ||
-                data[p7Idx].gallery.length !== DEFAULT_PROJECTS[6].gallery.length ||
+                data[p7Idx].gallery.length !== DEFAULT_PROJECTS[5].gallery.length ||
                 data[p7Idx].gallery.some(img => typeof img === 'string' && img.includes('koteswara_gallery'))
               ) {
-                data[p7Idx].beforeImage = DEFAULT_PROJECTS[6].beforeImage;
-                data[p7Idx].afterImage = DEFAULT_PROJECTS[6].afterImage;
-                data[p7Idx].beforeImages = DEFAULT_PROJECTS[6].beforeImages;
-                data[p7Idx].afterImages = DEFAULT_PROJECTS[6].afterImages;
-                data[p7Idx].heroImage = DEFAULT_PROJECTS[6].heroImage;
-                data[p7Idx].gallery = DEFAULT_PROJECTS[6].gallery;
+                data[p7Idx].beforeImage = DEFAULT_PROJECTS[5].beforeImage;
+                data[p7Idx].afterImage = DEFAULT_PROJECTS[5].afterImage;
+                data[p7Idx].beforeImages = DEFAULT_PROJECTS[5].beforeImages;
+                data[p7Idx].afterImages = DEFAULT_PROJECTS[5].afterImages;
+                data[p7Idx].heroImage = DEFAULT_PROJECTS[5].heroImage;
+                data[p7Idx].gallery = DEFAULT_PROJECTS[5].gallery;
                 updated = true;
               }
             }
@@ -1401,66 +1328,66 @@ export const getCMSData = (key, fallback = null) => {
           if (!hasKachigudaSubbarao) {
             const idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
             if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[7];
+              data[idx] = DEFAULT_PROJECTS[6];
             } else {
-              data.splice(7, 0, DEFAULT_PROJECTS[7]);
+              data.splice(6, 0, DEFAULT_PROJECTS[6]);
             }
             updated = true;
           } else {
             const p8Idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
             if (p8Idx !== -1) {
               if (
-                data[p8Idx].beforeImage !== DEFAULT_PROJECTS[7].beforeImage ||
-                data[p8Idx].afterImage !== DEFAULT_PROJECTS[7].afterImage ||
-                data[p8Idx].heroImage !== DEFAULT_PROJECTS[7].heroImage ||
+                data[p8Idx].beforeImage !== DEFAULT_PROJECTS[6].beforeImage ||
+                data[p8Idx].afterImage !== DEFAULT_PROJECTS[6].afterImage ||
+                data[p8Idx].heroImage !== DEFAULT_PROJECTS[6].heroImage ||
                 !Array.isArray(data[p8Idx].gallery) ||
-                data[p8Idx].gallery.length !== DEFAULT_PROJECTS[7].gallery.length ||
+                data[p8Idx].gallery.length !== DEFAULT_PROJECTS[6].gallery.length ||
                 data[p8Idx].gallery.some(img => typeof img === 'string' && img.includes('subbarao_gallery'))
               ) {
-                data[p8Idx].beforeImage = DEFAULT_PROJECTS[7].beforeImage;
-                data[p8Idx].afterImage = DEFAULT_PROJECTS[7].afterImage;
-                data[p8Idx].beforeImages = DEFAULT_PROJECTS[7].beforeImages;
-                data[p8Idx].afterImages = DEFAULT_PROJECTS[7].afterImages;
-                data[p8Idx].heroImage = DEFAULT_PROJECTS[7].heroImage;
-                data[p8Idx].gallery = DEFAULT_PROJECTS[7].gallery;
+                data[p8Idx].beforeImage = DEFAULT_PROJECTS[6].beforeImage;
+                data[p8Idx].afterImage = DEFAULT_PROJECTS[6].afterImage;
+                data[p8Idx].beforeImages = DEFAULT_PROJECTS[6].beforeImages;
+                data[p8Idx].afterImages = DEFAULT_PROJECTS[6].afterImages;
+                data[p8Idx].heroImage = DEFAULT_PROJECTS[6].heroImage;
+                data[p8Idx].gallery = DEFAULT_PROJECTS[6].gallery;
                 updated = true;
               }
             }
           }
-        const hasDimmuChachu = data.some(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-        if (!hasDimmuChachu) {
-          const idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-          if (idx !== -1) {
-            data[idx] = DEFAULT_PROJECTS[8];
+          const hasDimmuChachu = data.some(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+          if (!hasDimmuChachu) {
+            const idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+            if (idx !== -1) {
+              data[idx] = DEFAULT_PROJECTS[7];
+            } else {
+              data.splice(7, 0, DEFAULT_PROJECTS[7]);
+            }
+            updated = true;
           } else {
-            data.splice(8, 0, DEFAULT_PROJECTS[8]);
-          }
-          updated = true;
-        } else {
-          const p9Idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-          if (p9Idx !== -1) {
-            if (data[p9Idx].beforeImage !== DEFAULT_PROJECTS[8].beforeImage || data[p9Idx].afterImage !== DEFAULT_PROJECTS[8].afterImage) {
-              data[p9Idx].beforeImage = DEFAULT_PROJECTS[8].beforeImage;
-              data[p9Idx].afterImage = DEFAULT_PROJECTS[8].afterImage;
-              data[p9Idx].beforeImages = DEFAULT_PROJECTS[8].beforeImages;
-              data[p9Idx].afterImages = DEFAULT_PROJECTS[8].afterImages;
-              updated = true;
-            }
-            if (data[p9Idx].heroImage?.includes('googleusercontent')) {
-              data[p9Idx].heroImage = DEFAULT_PROJECTS[8].heroImage;
-              updated = true;
-            }
-            if (!Array.isArray(data[p9Idx].gallery) || data[p9Idx].gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || data[p9Idx].gallery.length !== DEFAULT_PROJECTS[8].gallery.length) {
-              data[p9Idx].gallery = DEFAULT_PROJECTS[8].gallery;
-              updated = true;
-            }
-            if (data[p9Idx].testimonialName !== 'Hussain' || data[p9Idx].testimonial?.name !== 'Hussain') {
-              data[p9Idx].testimonialName = 'Hussain';
-              data[p9Idx].testimonial = { ...(data[p9Idx].testimonial || {}), name: 'Hussain' };
-              updated = true;
+            const p9Idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+            if (p9Idx !== -1) {
+              if (data[p9Idx].beforeImage !== DEFAULT_PROJECTS[7].beforeImage || data[p9Idx].afterImage !== DEFAULT_PROJECTS[7].afterImage) {
+                data[p9Idx].beforeImage = DEFAULT_PROJECTS[7].beforeImage;
+                data[p9Idx].afterImage = DEFAULT_PROJECTS[7].afterImage;
+                data[p9Idx].beforeImages = DEFAULT_PROJECTS[7].beforeImages;
+                data[p9Idx].afterImages = DEFAULT_PROJECTS[7].afterImages;
+                updated = true;
+              }
+              if (data[p9Idx].heroImage?.includes('googleusercontent')) {
+                data[p9Idx].heroImage = DEFAULT_PROJECTS[7].heroImage;
+                updated = true;
+              }
+              if (!Array.isArray(data[p9Idx].gallery) || data[p9Idx].gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || data[p9Idx].gallery.length !== DEFAULT_PROJECTS[7].gallery.length) {
+                data[p9Idx].gallery = DEFAULT_PROJECTS[7].gallery;
+                updated = true;
+              }
+              if (data[p9Idx].testimonialName !== 'Hussain' || data[p9Idx].testimonial?.name !== 'Hussain') {
+                data[p9Idx].testimonialName = 'Hussain';
+                data[p9Idx].testimonial = { ...(data[p9Idx].testimonial || {}), name: 'Hussain' };
+                updated = true;
+              }
             }
           }
-        }
           // Sanitize gallery images and remove duplicates
           data.forEach(p => {
             if (p && Array.isArray(p.gallery)) {
@@ -1470,22 +1397,21 @@ export const getCMSData = (key, fallback = null) => {
             }
           });
 
-          // Ensure all 9 projects have the high-resolution Cloudinary URLs
+          // Ensure all active projects have the high-resolution Cloudinary URLs
           const PROJECT_CLOUDINARY_MAP = {
             0: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png',
             1: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png',
-            2: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png',
-            3: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png',
-            4: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png',
-            5: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png',
-            6: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png',
-            7: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png',
-            8: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png'
+            2: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png',
+            3: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png',
+            4: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png',
+            5: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png',
+            6: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png',
+            7: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png'
           };
           data.forEach((p, idx) => {
             if (p && PROJECT_CLOUDINARY_MAP[idx]) {
               const targetUrl = PROJECT_CLOUDINARY_MAP[idx];
-              if (p.heroImage?.includes('WhatsApp_Image_2026-09-28_at_4.26.36_PM') || idx === 8) {
+              if (p.heroImage?.includes('WhatsApp_Image_2026-09-28_at_4.26.36_PM') || idx === 7) {
                 p.heroImage = targetUrl;
                 p.afterImage = targetUrl;
                 if (Array.isArray(p.afterImages)) p.afterImages = [targetUrl];
@@ -1501,11 +1427,10 @@ export const getCMSData = (key, fallback = null) => {
             }
           });
 
-          // Retain strictly the 9 canonical projects in sequence order (1..9)
+          // Retain strictly the 8 canonical projects in sequence order (1..8)
           const canonicalSlugs = [
             'rajapushpa-provincia-3bhk',
             'my-home-sayuk-3bhk',
-            'kokapet-2bhk',
             'kokapet-urban-2bhk',
             'gandipet-modern-retro-2bhk',
             'kondapur-minimalist-2bhk',
@@ -1527,8 +1452,8 @@ export const getCMSData = (key, fallback = null) => {
             }
           });
           data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-          if (data.length > 9) {
-            data = data.slice(0, 9);
+          if (data.length > 8) {
+            data = data.slice(0, 8);
             updated = true;
           }
 
@@ -2847,8 +2772,14 @@ export const getCMSData = (key, fallback = null) => {
                 p1.description = DEFAULT_PROJECTS[0].description;
                 changed = true;
               }
-              if (Array.isArray(p1.gallery) && p1.gallery.some(img => typeof img === 'string' && img.includes('125614_59b74a58'))) {
-                p1.gallery = p1.gallery.filter(img => typeof img === 'string' && !img.includes('125614_59b74a58'));
+              if (p1.beforeImage !== DEFAULT_PROJECTS[0].beforeImage) {
+                p1.beforeImage = DEFAULT_PROJECTS[0].beforeImage;
+                p1.beforeImages = DEFAULT_PROJECTS[0].beforeImages;
+                changed = true;
+              }
+              const unwantedRajapushpa = ['125614_59b74a58', 'dd97aa33', '0f540e8d', '9d302a93'];
+              if (Array.isArray(p1.gallery) && p1.gallery.some(img => typeof img === 'string' && unwantedRajapushpa.some(bad => img.includes(bad)))) {
+                p1.gallery = p1.gallery.filter(img => typeof img === 'string' && !unwantedRajapushpa.some(bad => img.includes(bad)));
                 changed = true;
               }
               if (changed) {

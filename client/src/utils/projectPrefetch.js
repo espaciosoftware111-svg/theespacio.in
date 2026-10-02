@@ -106,13 +106,12 @@ export const PROJECT_SLUG_ALIASES = {
   // Order number mappings
   '1': 'rajapushpa-provincia-3bhk',
   '2': 'my-home-sayuk-3bhk',
-  '3': 'kokapet-2bhk',
-  '4': 'kokapet-urban-2bhk',
-  '5': 'gandipet-modern-retro-2bhk',
-  '6': 'kondapur-minimalist-2bhk',
-  '7': 'gachibowli-minimalist-beige-2bhk',
-  '8': 'kachiguda-fusion-duplex-villa',
-  '9': 'dimmu-chachu-luxury-villa'
+  '3': 'kokapet-urban-2bhk',
+  '4': 'gandipet-modern-retro-2bhk',
+  '5': 'kondapur-minimalist-2bhk',
+  '6': 'gachibowli-minimalist-beige-2bhk',
+  '7': 'kachiguda-fusion-duplex-villa',
+  '8': 'dimmu-chachu-luxury-villa'
 };
 
 export const resolveCanonicalSlug = (rawSlug = '') => {

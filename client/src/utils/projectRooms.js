@@ -4,30 +4,102 @@
 const EXACT_PROJECT_ROOMS = {
   // 1. The Arcstone Residence (Rajapushpa Provincia 3BHK)
   'rajapushpa-provincia-3bhk': {
-    '74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png': 'Grand Living Lounge & Arched Feature Wall',
-    '74dc6fc0-aa92-46fd-8330-ebf67be7dda4': 'Grand Living Lounge & Arched Feature Wall',
-    'c0485a67-f1b9-421e-94c2-1284149bbc98.png': 'Sculpted TV Feature Wall & Fluted Panelling',
-    'c0485a67-f1b9-421e-94c2-1284149bbc98': 'Sculpted TV Feature Wall & Fluted Panelling',
-    '5974209f-4bf4-48a7-bb22-4372856ffb97.png': 'Formal Dining Suite & Ambient Bar Console',
-    '5974209f-4bf4-48a7-bb22-4372856ffb97': 'Formal Dining Suite & Ambient Bar Console',
-    'e633e606-5bb8-4dad-86c0-20dcd694c75a.png': 'Bespoke Island Kitchen & Quartz Surfaces',
-    'e633e606-5bb8-4dad-86c0-20dcd694c75a': 'Bespoke Island Kitchen & Quartz Surfaces',
-    '94ced607-e73b-4df5-aaf8-6f94a8c08fbe.png': 'Master Suite & Custom Upholstered Bed Back',
-    '94ced607-e73b-4df5-aaf8-6f94a8c08fbe': 'Master Suite & Custom Upholstered Bed Back',
-    '04ad3ff9-4782-4218-9003-702e33e09414.png': 'Master Dressing Lounge & Fluted Wardrobes',
-    '04ad3ff9-4782-4218-9003-702e33e09414': 'Master Dressing Lounge & Fluted Wardrobes',
-    'dd97aa33-e9fe-43c2-83ca-c23e129b349c.png': 'Guest Bedroom Suite & Warm Accent Lighting',
-    'dd97aa33-e9fe-43c2-83ca-c23e129b349c': 'Guest Bedroom Suite & Warm Accent Lighting',
-    '46e29765-a1ec-4195-a947-ea566616fe2e.png': 'Kids Bedroom Suite & Integrated Study Desk',
-    '46e29765-a1ec-4195-a947-ea566616fe2e': 'Kids Bedroom Suite & Integrated Study Desk',
-    '0f540e8d-87e8-4aa8-a80b-9340c28b4000.png': 'Pooja Mandir & Sacred Teak Carvings',
-    '0f540e8d-87e8-4aa8-a80b-9340c28b4000': 'Pooja Mandir & Sacred Teak Carvings',
-    '9d302a93-fe8b-42d0-b2e3-063518044156.png': 'Entry Foyer & Sculpted Corridor',
-    '9d302a93-fe8b-42d0-b2e3-063518044156': 'Entry Foyer & Sculpted Corridor'
+    // Living Lounge & Arched Feature Walls (True living room shown in photos)
+    'rajapushpa_8.webp': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_8': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_9.webp': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_9': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_6.webp': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_6': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_7.webp': 'Sculpted TV Feature Wall & Fluted Panelling',
+    'rajapushpa_7': 'Sculpted TV Feature Wall & Fluted Panelling',
+    'rajapushpa_10.webp': 'Living Lounge & Reading Chair Nook',
+    'rajapushpa_10': 'Living Lounge & Reading Chair Nook',
+
+    // Modular Kitchen
+    'rajapushpa_11.webp': 'Modular Kitchen & Quartz Countertops',
+    'rajapushpa_11': 'Modular Kitchen & Quartz Countertops',
+    'rajapushpa_12.webp': 'L-Shaped Modular Kitchen & Fluted Cabinetry',
+    'rajapushpa_12': 'L-Shaped Modular Kitchen & Fluted Cabinetry',
+
+    // Pooja Mandir & Foyer
+    'rajapushpa_17.webp': 'Pooja Mandir & Foyer Transition',
+    'rajapushpa_17': 'Pooja Mandir & Foyer Transition',
+
+    // Master Bedroom Suite
+    'rajapushpa_13.webp': 'Master Bedroom & Curved Feature Wall',
+    'rajapushpa_13': 'Master Bedroom & Curved Feature Wall',
+    'rajapushpa_14.webp': 'Master Suite with Chandelier & Glass Wardrobes',
+    'rajapushpa_14': 'Master Suite with Chandelier & Glass Wardrobes',
+    'rajapushpa_15.webp': 'Master Bedroom Suite & Ambient Cove Lighting',
+    'rajapushpa_15': 'Master Bedroom Suite & Ambient Cove Lighting',
+    'rajapushpa_16.webp': 'Master Suite & Tinted Glass Wardrobes',
+    'rajapushpa_16': 'Master Suite & Tinted Glass Wardrobes',
+
+    // Guest Bedroom Suite
+    'rajapushpa_1.webp': 'Guest Bedroom Suite & Arched Wall Accents',
+    'rajapushpa_1': 'Guest Bedroom Suite & Arched Wall Accents',
+    'rajapushpa_2.webp': 'Guest Bedroom Suite & Backlit Headboard',
+    'rajapushpa_2': 'Guest Bedroom Suite & Backlit Headboard',
+    'rajapushpa_5.webp': 'Guest Dressing Vanity & Wardrobes',
+    'rajapushpa_5': 'Guest Dressing Vanity & Wardrobes',
+    'rajapushpa_20.webp': 'Guest Dressing Vanity & Wardrobes',
+    'rajapushpa_20': 'Guest Dressing Vanity & Wardrobes',
+
+    // Kids Bedroom Suite
+    'rajapushpa_3.webp': 'Kids Bedroom Suite & Pink Wardrobes',
+    'rajapushpa_3': 'Kids Bedroom Suite & Pink Wardrobes',
+    'rajapushpa_4.webp': 'Kids Bedroom Suite & Arched Headboard',
+    'rajapushpa_4': 'Kids Bedroom Suite & Arched Headboard',
+
+    // Dressing Nook & Utility Suite
+    'rajapushpa_19.webp': 'Dressing Nook & Fluted Wall with Round Mirror',
+    'rajapushpa_19': 'Dressing Nook & Fluted Wall with Round Mirror',
+    'rajapushpa_18.webp': 'Utility & Laundry Suite',
+    'rajapushpa_18': 'Utility & Laundry Suite',
+
+    // Cloudinary Asset Hashes for Arcstone
+    '74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png': 'Guest Dressing Vanity & Wardrobes',
+    '74dc6fc0-aa92-46fd-8330-ebf67be7dda4': 'Guest Dressing Vanity & Wardrobes',
+    'c0485a67-f1b9-421e-94c2-1284149bbc98.png': 'Dressing Nook & Fluted Wall with Round Mirror',
+    'c0485a67-f1b9-421e-94c2-1284149bbc98': 'Dressing Nook & Fluted Wall with Round Mirror',
+    '5974209f-4bf4-48a7-bb22-4372856ffb97.png': 'Utility & Laundry Suite',
+    '5974209f-4bf4-48a7-bb22-4372856ffb97': 'Utility & Laundry Suite',
+    'e633e606-5bb8-4dad-86c0-20dcd694c75a.png': 'Pooja Mandir & Foyer Transition',
+    'e633e606-5bb8-4dad-86c0-20dcd694c75a': 'Pooja Mandir & Foyer Transition',
+    '94ced607-e73b-4df5-aaf8-6f94a8c08fbe.png': 'Master Bedroom Suite & Ambient Cove Lighting',
+    '94ced607-e73b-4df5-aaf8-6f94a8c08fbe': 'Master Bedroom Suite & Ambient Cove Lighting',
+    '04ad3ff9-4782-4218-9003-702e33e09414.png': 'Master Bedroom & Curved Feature Wall',
+    '04ad3ff9-4782-4218-9003-702e33e09414': 'Master Bedroom & Curved Feature Wall',
+    '46e29765-a1ec-4195-a947-ea566616fe2e.png': 'Kids Bedroom Suite & Pink Wardrobes',
+    '46e29765-a1ec-4195-a947-ea566616fe2e': 'Kids Bedroom Suite & Pink Wardrobes',
+
+    // Before & After Transformation
+    'rajapushpa_before.webp': 'Raw Site Shell & Pre-Fitout Framing',
+    'rajapushpa_before.jpg': 'Raw Site Shell & Pre-Fitout Framing',
+    'rajapushpa_before': 'Raw Site Shell & Pre-Fitout Framing',
+    'ba_1.webp': 'Raw Site Shell & Pre-Fitout Framing',
+    'rajapushpa_after.webp': 'Grand Living Lounge & Arched Feature Wall',
+    'rajapushpa_after': 'Grand Living Lounge & Arched Feature Wall'
   },
 
   // 2. The Lattice Retreat (My Home Sayuk 3BHK)
   'my-home-sayuk-3bhk': {
+    'sayuk_4.webp': 'Open Island Kitchen & Dining',
+    'sayuk_4': 'Open Island Kitchen & Dining',
+    'sayuk_6.webp': 'Japandi Living Lounge & Latticework',
+    'sayuk_6': 'Japandi Living Lounge & Latticework',
+    'sayuk_7.webp': 'Geometric Latticework & TV Wall',
+    'sayuk_7': 'Geometric Latticework & TV Wall',
+    'sayuk_5.webp': 'Japandi Living Lounge & Raised Deck',
+    'sayuk_5': 'Japandi Living Lounge & Raised Deck',
+    'sayuk_1.webp': 'Master Bedroom Suite & Acoustic Wall',
+    'sayuk_1': 'Master Bedroom Suite & Acoustic Wall',
+    'sayuk_2.webp': 'Guest Bedroom Suite & Wardrobes',
+    'sayuk_2': 'Guest Bedroom Suite & Wardrobes',
+    'sayuk_3.webp': 'Parents Bedroom Suite & Dressing Vanity',
+    'sayuk_3': 'Parents Bedroom Suite & Dressing Vanity',
+
     '2557add0-0cc5-4a63-9062-4f49eff9978a.png': 'Japandi Living Lounge & Raised Deck',
     '2557add0-0cc5-4a63-9062-4f49eff9978a': 'Japandi Living Lounge & Raised Deck',
     '004778f3-7240-4c73-837d-bf3dd2805420.png': 'Geometric Latticework & TV Wall',
@@ -44,6 +116,19 @@ const EXACT_PROJECT_ROOMS = {
 
   // 3. The Bouclé Residence (Kokapet 2BHK)
   'kokapet-2bhk': {
+    'kokapet_hall.webp': 'Contemporary Warm Living Lounge & TV Wall',
+    'kokapet_hall': 'Contemporary Warm Living Lounge & TV Wall',
+    'kokapet_tv_unit.webp': 'Contemporary TV Media Console',
+    'kokapet_tv_unit': 'Contemporary TV Media Console',
+    'kokapet_kitchen.webp': 'Handleless Modular Kitchen & Breakfast Bar',
+    'kokapet_kitchen': 'Handleless Modular Kitchen & Breakfast Bar',
+    'kokapet_crockery.webp': 'Ambient Dining Area & Glass Crockery Unit',
+    'kokapet_crockery': 'Ambient Dining Area & Glass Crockery Unit',
+    'kokapet_master_bedroom.webp': 'Master Bedroom Suite & Integrated Wardrobes',
+    'kokapet_master_bedroom': 'Master Bedroom Suite & Integrated Wardrobes',
+    'kokapet_guest_bedroom.webp': 'Guest Bedroom Suite & Rest Nook',
+    'kokapet_guest_bedroom': 'Guest Bedroom Suite & Rest Nook',
+
     '7f7c35f2-81e3-44c2-8b70-41a3c2930942.png': 'Contemporary Warm Living Lounge & TV Wall',
     '7f7c35f2-81e3-44c2-8b70-41a3c2930942': 'Contemporary Warm Living Lounge & TV Wall',
     '6751a990-6636-47ab-b93e-616e5a21cc54.png': 'Handleless Modular Kitchen & Breakfast Bar',
@@ -190,9 +275,69 @@ EXACT_PROJECT_ROOMS['proj_7_gachibowli_koteswara'] = EXACT_PROJECT_ROOMS['gachib
 EXACT_PROJECT_ROOMS['proj_8_kachiguda_subbarao'] = EXACT_PROJECT_ROOMS['kachiguda-fusion-duplex-villa'];
 EXACT_PROJECT_ROOMS['proj_9_dimmu_chachu_residence'] = EXACT_PROJECT_ROOMS['dimmu-chachu-luxury-villa'];
 
-// Smart filename keyword matcher
+// Smart filename keyword matcher & project prefix resolver
 function detectRoomFromFilename(filename) {
+  if (!filename) return null;
   const lower = filename.toLowerCase();
+
+  // 1. Specific Rajapushpa Provincia 3BHK image mapping
+  if (lower.includes('rajapushpa_')) {
+    if (lower.includes('rajapushpa_6') || lower.includes('rajapushpa_8') || lower.includes('rajapushpa_9') || lower.includes('rajapushpa_after')) {
+      return 'Grand Living Lounge & Arched Feature Wall';
+    }
+    if (lower.includes('rajapushpa_7')) return 'Sculpted TV Feature Wall & Fluted Panelling';
+    if (lower.includes('rajapushpa_10')) return 'Living Lounge & Reading Chair Nook';
+    if (lower.includes('rajapushpa_11')) return 'Modular Kitchen & Quartz Countertops';
+    if (lower.includes('rajapushpa_12')) return 'L-Shaped Modular Kitchen & Fluted Cabinetry';
+    if (lower.includes('rajapushpa_17')) return 'Pooja Mandir & Foyer Transition';
+    if (lower.includes('rajapushpa_13') || lower.includes('rajapushpa_14') || lower.includes('rajapushpa_15') || lower.includes('rajapushpa_16')) {
+      return 'Master Bedroom Suite';
+    }
+    if (lower.includes('rajapushpa_1') || lower.includes('rajapushpa_2') || lower.includes('rajapushpa_5') || lower.includes('rajapushpa_20')) {
+      return 'Guest Bedroom Suite';
+    }
+    if (lower.includes('rajapushpa_3') || lower.includes('rajapushpa_4')) return 'Kids Bedroom Suite';
+    if (lower.includes('rajapushpa_19')) return 'Dressing Nook & Vanity';
+    if (lower.includes('rajapushpa_18')) return 'Utility & Laundry Suite';
+    if (lower.includes('rajapushpa_before') || lower.includes('ba_1')) return 'Raw Site Shell & Pre-Fitout Framing';
+  }
+
+  // 2. Specific My Home Sayuk image mapping
+  if (lower.includes('sayuk_')) {
+    if (lower.includes('sayuk_4')) return 'Open Island Kitchen & Dining';
+    if (lower.includes('sayuk_5') || lower.includes('sayuk_6') || lower.includes('sayuk_after')) return 'Japandi Living Lounge & Raised Deck';
+    if (lower.includes('sayuk_7')) return 'Geometric Latticework & TV Wall';
+    if (lower.includes('sayuk_1')) return 'Master Bedroom Suite & Acoustic Wall';
+    if (lower.includes('sayuk_2')) return 'Guest Bedroom Suite & Wardrobes';
+    if (lower.includes('sayuk_3')) return 'Parents Bedroom Suite & Dressing Vanity';
+    if (lower.includes('sayuk_before')) return 'Raw Site Shell';
+  }
+
+  // 3. Specific Kokapet Nagesh image mapping
+  if (lower.includes('kokapet_')) {
+    if (lower.includes('kokapet_hall') || lower.includes('kokapet_after')) return 'Contemporary Warm Living Lounge & TV Wall';
+    if (lower.includes('kokapet_tv')) return 'Contemporary TV Media Console';
+    if (lower.includes('kokapet_kitchen')) return 'Handleless Modular Kitchen & Breakfast Bar';
+    if (lower.includes('kokapet_crockery')) return 'Ambient Dining Area & Glass Crockery Unit';
+    if (lower.includes('kokapet_master')) return 'Master Bedroom Suite & Integrated Wardrobes';
+    if (lower.includes('kokapet_guest')) return 'Guest Bedroom Suite & Rest Nook';
+  }
+
+  // 4. Specific Dimmu Chachu Villa image mapping
+  if (lower.includes('dimmu_')) {
+    if (lower.includes('dimmu_05')) return 'Double-Height Foyer & Grand Staircase';
+    if (lower.includes('dimmu_01')) return 'Living Lounge & TV Media Wall';
+    if (lower.includes('dimmu_06')) return 'Formal Lounge & Sculpted Wave Ceiling';
+    if (lower.includes('dimmu_03')) return 'Upper Level Mezzanine & Chandelier';
+    if (lower.includes('dimmu_10')) return 'High-Gloss Modular Kitchen';
+    if (lower.includes('dimmu_09')) return 'Cricket Tribute Suite (Wide View)';
+    if (lower.includes('dimmu_08')) return 'Cricket Tribute Suite & Custom Wardrobes';
+    if (lower.includes('dimmu_02')) return 'Teal Master Suite & Bay Window Seating';
+    if (lower.includes('dimmu_07')) return 'Teal Master Bedroom Daybed Nook';
+    if (lower.includes('dimmu_04')) return 'Terracotta Guest Suite & Study Desk';
+  }
+
+  // General room keyword matches
   if (lower.includes('master_bed') || lower.includes('master-bed') || lower.includes('masterbed')) return 'Master Bedroom Suite';
   if (lower.includes('guest_bed') || lower.includes('guest-bed') || lower.includes('guestbed')) return 'Guest Bedroom Suite';
   if (lower.includes('kids_bed') || lower.includes('kids-bed') || lower.includes('boy') || lower.includes('children')) return 'Kids Bedroom';
@@ -231,33 +376,52 @@ const DEFAULT_ROOM_CYCLE = [
 
 /**
  * Returns the luxury room title for a given project image.
- * Never returns "Photo #1" or numbers.
+ * Never returns "Photo #1" or numbers. Always ensures accurate room name matches the image.
  */
 export function getProjectRoomName(project, imgUrl, index = 0) {
-  if (!imgUrl) return 'Living Room';
+  if (!imgUrl) return 'Living Room Lounge';
 
   // Extract clean filename from URL or path
-  const filename = imgUrl.split('/').pop().split('?')[0];
+  let cleanUrl = String(imgUrl);
+  try {
+    cleanUrl = decodeURIComponent(cleanUrl);
+  } catch {}
+  const rawFile = cleanUrl.split('/').pop().split('?')[0];
+  const withoutExt = rawFile.replace(/\.[^/.]+$/, '');
 
-  // 1. Check project-specific map
+  // 1. Resolve project-specific map key
   const projectKey = project?.slug || project?._id || project?.id;
-  if (projectKey && EXACT_PROJECT_ROOMS[projectKey]) {
-    const map = EXACT_PROJECT_ROOMS[projectKey];
-    if (map[filename]) return map[filename];
-  }
+  const canonicalCandidates = [
+    projectKey,
+    projectKey?.toLowerCase(),
+    EXACT_PROJECT_ROOMS[projectKey] ? projectKey : null,
+    project?.title ? project.title.toLowerCase().replace(/[^a-z0-9]/g, '-') : null
+  ].filter(Boolean);
 
-  // Also check all project maps in case the image filename is unique
-  for (const pKey of Object.keys(EXACT_PROJECT_ROOMS)) {
-    if (EXACT_PROJECT_ROOMS[pKey][filename]) {
-      return EXACT_PROJECT_ROOMS[pKey][filename];
+  for (const pKey of canonicalCandidates) {
+    if (EXACT_PROJECT_ROOMS[pKey]) {
+      const map = EXACT_PROJECT_ROOMS[pKey];
+      if (map[rawFile]) return map[rawFile];
+      if (map[withoutExt]) return map[withoutExt];
+      if (map[rawFile.toLowerCase()]) return map[rawFile.toLowerCase()];
+      if (map[withoutExt.toLowerCase()]) return map[withoutExt.toLowerCase()];
     }
   }
 
-  // 2. Detect from filename keywords
-  const detected = detectRoomFromFilename(filename);
+  // 2. Also check across all project maps
+  for (const pKey of Object.keys(EXACT_PROJECT_ROOMS)) {
+    const map = EXACT_PROJECT_ROOMS[pKey];
+    if (map[rawFile]) return map[rawFile];
+    if (map[withoutExt]) return map[withoutExt];
+    if (map[rawFile.toLowerCase()]) return map[rawFile.toLowerCase()];
+    if (map[withoutExt.toLowerCase()]) return map[withoutExt.toLowerCase()];
+  }
+
+  // 3. Detect from filename pattern & room keywords
+  const detected = detectRoomFromFilename(rawFile);
   if (detected) return detected;
 
-  // 3. Fallback to clean room sequence
+  // 4. Fallback to clean room sequence
   const cycleIndex = (index >= 0 ? index : 0) % DEFAULT_ROOM_CYCLE.length;
   return DEFAULT_ROOM_CYCLE[cycleIndex];
 }
