@@ -38,8 +38,8 @@ const NEW_BEFORE_AFTER_SLIDES = [
     tag: 'Serene Sanctuary Suite',
     location: 'Kokapet, Hyderabad',
     scope: 'Custom Floating Bed, Architectural Chandelier & Warm Dressing Nook',
-    before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790427821/hf_20260926_125525_38864436-c886-4bc1-8e0c-1f45db24f7bb.png'
+    before: '/images/spaces/master_bedroom_before.webp',
+    after: '/images/spaces/master_bedroom_after.webp'
   },
   {
     title: 'Dining & Bars',

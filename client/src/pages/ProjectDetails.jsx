@@ -124,7 +124,7 @@ const SLUG_CLIENT_TESTIMONIALS = {
     rating: 5
   },
   'dimmu-chachu-luxury-villa': {
-    name: 'Dimmu Chachu',
+    name: 'Hussain',
     profession: 'Homeowner, Hyderabad',
     mobile: '',
     text: 'ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.',
@@ -1000,6 +1000,10 @@ const ProjectDetails = () => {
         if (p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia' || p.order === 1 || cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'rajapushpa' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || resolvedSlug === 'rajapushpa-provincia-3bhk') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
+        }
+        if (afterImg?.includes('master_bedroom') || beforeImg?.includes('Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0')) {
+          beforeImg = '/images/spaces/master_bedroom_before.webp';
+          afterImg = '/images/spaces/master_bedroom_after.webp';
         }
         if (!beforeImg) beforeImg = '/images/spaces/spaces_hero_before.webp';
         if (!afterImg) afterImg = '/images/company/3bhk_lux/open_hall.png';

@@ -212,7 +212,7 @@ const mockCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png",
+    "heroImage": "/images/spaces/master_bedroom_after.webp",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
@@ -1043,8 +1043,8 @@ const transformationSlides = [
     tag: 'Serene Sanctuary Suite',
     location: 'Kokapet, Hyderabad',
     scope: 'Custom Floating Bed, Architectural Chandelier & Warm Dressing Nook',
-    before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png',
+    before: '/images/spaces/master_bedroom_before.webp',
+    after: '/images/spaces/master_bedroom_after.webp',
   },
   {
     title: 'Dining & Bars',
@@ -2807,8 +2807,8 @@ const WhatWeDo = () => {
   const heroExitOpacity = useTransform(heroScroll, [0, 1], [1, 0]);
   const heroExitY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
 
-  const bgScale = useTransform(heroScroll, [0, 1], [1.05, 0.95]);
-  const bgY = useTransform(heroScroll, [0, 1], ['0%', '8%']);
+  const bgScale = useTransform(heroScroll, [0, 1], [1, 0.96]);
+  const bgY = useTransform(heroScroll, [0, 1], ['0%', '5%']);
 
   const displayCategories = spacesList.filter(c => c.slug !== 'luxury-homes');
   const rawActiveCategory = slug ? displayCategories.find(c => c.slug === slug) : null;
@@ -3886,7 +3886,7 @@ const WhatWeDo = () => {
                       <Link 
                         key={cat.slug || `center-${idx}`}
                         to={`/spaces/${cat.slug}`}
-                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden h-full w-full bg-neutral-900 block shadow-md hover:shadow-2xl border-2 border-gold/40 hover:border-gold transition-all duration-500"
+                        className="group relative rounded-xl sm:rounded-2xl overflow-hidden h-full w-full bg-neutral-900 block shadow-md hover:shadow-2xl border border-white/10 hover:border-gold/40 transition-all duration-500"
                       >
                         <img 
                           src={heroSrc} 
@@ -3904,10 +3904,10 @@ const WhatWeDo = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         
-                        {/* Pinned Showcase Tag */}
-                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-gold/40">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                          <span className="font-sans text-[8.5px] font-bold uppercase tracking-widest text-gold">Featured Space</span>
+                        {/* Minimal Luxury Showcase Tag */}
+                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/15 shadow-sm transition-all duration-300 group-hover:border-white/30 group-hover:bg-black/50">
+                          <span className="w-1 h-1 rounded-full bg-[#C9A96E]" />
+                          <span className="font-sans text-[9px] font-medium uppercase tracking-[0.2em] text-white/90">Featured Space</span>
                         </div>
 
                         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
@@ -3919,7 +3919,7 @@ const WhatWeDo = () => {
                               {cat.description?.substring(0, 75)}...
                             </p>
                           </div>
-                          <div className="shrink-0 w-8 h-8 rounded-full bg-gold text-neutral-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                          <div className="shrink-0 w-8 h-8 rounded-full border border-white/20 bg-black/30 backdrop-blur-md text-white flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal group-hover:scale-105 transition-all duration-300 shadow-sm">
                             <ArrowUpRight size={14} />
                           </div>
                         </div>

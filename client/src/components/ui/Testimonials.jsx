@@ -26,7 +26,7 @@ const StarRating = ({ rating = 5 }) => (
   </div>
 );
 
-// Only reviews with authentic customer profile pictures
+// Only authentic Google reviews with verified customer profile pictures
 const topTestimonials = [
   {
     rating: 5,
@@ -71,7 +71,7 @@ const topTestimonials = [
     name: "Lovely boy Laxman",
     role: "Google Reviewer • 1 Review • 3 Photos",
     avatar: "/reviews/lovely_boy_laxman.png",
-    date: "Edited 6 months ago"
+    date: "6 months ago"
   },
   {
     rating: 5,
@@ -116,60 +116,33 @@ const topTestimonials = [
     name: "RAJU PALADUGU",
     role: "Google Reviewer • 1 Review",
     avatar: "/reviews/paladugu_raju.png",
-    date: "Edited 6 months ago"
+    date: "6 months ago"
   },
   {
     rating: 5,
-    title: "Practical Finishes & Organised Living",
-    body: "For our family home, we wanted interiors that looked good but were easy to maintain. Espacio suggested practical finishes and storage options based on our daily use. The bedrooms feel comfortable and the kitchen is much more organised now. We are happy with the overall outcome.",
-    name: "Ganesh Nayak",
-    role: "Homeowner • Family Home Interiors",
-    avatar: "/reviews/ganesh_nayak.png",
-    date: "23 minutes ago"
-  },
-  {
-    rating: 5,
-    title: "Clean Minimal Look & Great Material Guidance",
-    body: "We wanted a modern, minimal look for our 3BHK and specifically wanted to avoid too many decorative elements. Espacio understood that direction well. The colour combination and storage solutions came together nicely. We also liked that the team was willing to explain why certain materials were better for particular areas.",
-    name: "Juttiga Vaishnavi",
-    role: "Homeowner • 3BHK Minimalist Interior",
-    avatar: "/reviews/juttiga_vaishnavi.png",
-    date: "an hour ago"
-  },
-  {
-    rating: 5,
-    title: "Professional & Great Interior and Exterior Elevation",
+    title: "Professional & Passionate Towards Their Work",
     body: "Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.",
     name: "Sunkari Santosh",
     role: "Google Reviewer • 2 Reviews",
     avatar: "/reviews/sunkari_santosh.png",
-    date: "3 days ago"
+    date: "6 months ago"
   },
   {
     rating: 5,
-    title: "Professional Reception & Functional Workspaces",
-    body: "Our requirement was a professional reception area along with functional workspaces. Espacio suggested a layout that made better use of the available area. The reception now gives a much better first impression, while the work area remains comfortable for the staff. Good experience overall.",
-    name: "Nani Varma",
-    role: "Google Reviewer • 1 Review",
-    avatar: "/reviews/nani_varma.png",
-    date: "2 hours ago"
+    title: "Professional Planning & Timely Delivery",
+    body: "Great experience with ESPACIO for home interiors. Professional planning and timely delivery.",
+    name: "Aditya Manda",
+    role: "Local Guide • 4 Reviews",
+    avatar: "/reviews/aditya_manda.png",
+    date: "4 months ago"
   },
   {
     rating: 5,
-    title: "Clean Finish & Responsive Site Team",
-    body: "We got our 2BHK interiors done with Espacio Interiors & Modular. The team understood what we wanted and suggested practical options instead of simply adding more things. The modular kitchen storage came out really well and the overall finish looks clean. The site team was also responsive whenever we had a question.",
-    name: "Rafi Shaik",
-    role: "Homeowner • 2BHK Turnkey",
-    avatar: "/reviews/rafi_shaik.png",
-    date: "2 days ago"
-  },
-  {
-    rating: 5,
-    title: "Exceptional Modular Craftsmanship & Quality",
-    body: "Exceptional craftsmanship and smooth execution on modular wardrobes. The team at Espacio delivered top quality finishes.",
-    name: "G Rakesh",
-    role: "Google Reviewer • 3 Reviews",
-    avatar: "/reviews/g_rakesh.png",
+    title: "Delighted with Material Selection & Execution",
+    body: "Very satisfied with the interior design quality and material selection. Highly recommended!",
+    name: "Thumuganti Rithwik",
+    role: "Google Reviewer • 2 Reviews",
+    avatar: "/reviews/thumuganti_rithwik.png",
     date: "3 months ago"
   }
 ];
@@ -244,8 +217,8 @@ const bottomTestimonials = [
     body: "Thank you Reddy garu",
     name: "Reddy",
     role: "Google Reviewer",
-    avatar: "/reviews/reddy.png",
-    date: "a month ago"
+    avatar: "/reviews/reddy.svg",
+    date: "6 months ago"
   },
   {
     rating: 5,
@@ -318,47 +291,71 @@ const bottomTestimonials = [
     role: "Google Reviewer • 3 Reviews",
     avatar: "/reviews/yadidya.png",
     date: "5 months ago"
-  },
-  {
-    rating: 5,
-    title: "Good Quality",
-    body: "Good experience with Espacio Interiors & Modular. Recommended.",
-    name: "Haneef Abdul",
-    role: "Google Reviewer • 4 Reviews • 4 Photos",
-    avatar: "/reviews/haneef_abdul.png",
-    date: "11 months ago"
-  },
-  {
-    rating: 5,
-    title: "Reliable Quality & Execution",
-    body: "Reliable interior solutions and genuine quality materials. Thank you Espacio.",
-    name: "Paladugu Raju",
-    role: "Local Guide • 1 Review",
-    avatar: "/reviews/paladugu_raju.png",
-    date: "5 months ago"
-  },
-  {
-    rating: 5,
-    title: "Professional Planning & Timely Delivery",
-    body: "Great experience with ESPACIO for home interiors. Professional planning and timely delivery.",
-    name: "Aditya Manda",
-    role: "Local Guide • 4 Reviews",
-    avatar: "/reviews/aditya_manda.png",
-    date: "4 months ago"
-  },
-  {
-    rating: 5,
-    title: "Delighted with Material Selection & Execution",
-    body: "Very satisfied with the interior design quality and material selection. Highly recommended!",
-    name: "Thumuganti Rithwik",
-    role: "Google Reviewer • 2 Reviews",
-    avatar: "/reviews/thumuganti_rithwik.png",
-    date: "3 months ago"
   }
 ];
 
-const TestimonialCard = ({ t }) => {
+const TestimonialCard = ({ t, hideText = false }) => {
   const quoteText = (t.body || '').replace(/^["'“\s]+|["'”\s]+$/g, '');
+
+  if (hideText) {
+    return (
+      <div className="relative group w-[260px] sm:w-[310px] md:w-[350px] shrink-0 bg-gradient-to-b from-[#FAF7F2] to-[#F5EFE6] rounded-[18px] sm:rounded-[22px] p-3.5 sm:p-4 md:p-4.5 mx-1.5 sm:mx-2 md:mx-2.5 flex flex-col justify-between h-[105px] sm:h-[112px] md:h-[120px] shadow-[0_4px_18px_rgba(20,15,10,0.06)] hover:shadow-[0_12px_28px_rgba(20,15,10,0.12)] border border-[#E7DFD0] hover:border-[#C9A96E]/70 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
+        {/* Top Header: Star Rating & Google Verified Badge */}
+        <div className="flex items-center justify-between">
+          <StarRating rating={t.rating} />
+          {t.source === 'MANUAL' ? (
+            <div className="inline-flex items-center gap-1.5 bg-[#F4EDE0] border border-[#DECBB0] px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-sans font-semibold text-[#825F23] shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
+              <span>Client Story</span>
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-1.5 bg-[#EFE8DC] border border-[#DDD3C2] px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-sans font-semibold text-[#4A4237] shadow-xs">
+              <GoogleGLogo />
+              <span className="text-[9px] sm:text-[10px]">Verified Review</span>
+            </div>
+          )}
+        </div>
+
+        {/* Customer Details: Avatar, Name, Role, Date */}
+        <div className="flex items-center justify-between pt-1.5 border-t border-[#E8DFCFA0]">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            {t.avatar && t.avatar.trim() !== '' ? (
+              <img 
+                src={t.avatar}
+                alt={t.name}
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+                className="w-7 h-7 sm:w-7.5 sm:h-7.5 md:w-8 md:h-8 rounded-full object-cover object-center shrink-0 ring-1.5 ring-[#C9A96E]/50 shadow-xs" 
+              />
+            ) : (
+              <div 
+                className="w-7 h-7 sm:w-7.5 sm:h-7.5 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#D9BE90] to-[#B68F52] text-[#18140E] font-bold flex items-center justify-center text-[10px] sm:text-[11px] shrink-0 ring-1.5 ring-[#C9A96E]/50 shadow-xs select-none uppercase font-sans"
+              >
+                {(t.name || 'C').trim().charAt(0)}
+              </div>
+            )}
+            <div className="flex-1 min-w-0 truncate">
+              <p className="font-sans text-[11.5px] sm:text-[12px] md:text-[12.5px] font-bold text-[#181511] m-0 leading-tight truncate">
+                {t.name}
+              </p>
+              <p className="font-sans text-[9px] sm:text-[9.5px] md:text-[10px] font-medium text-[#736B5E] m-0 leading-tight mt-0.5 truncate">
+                {t.role || 'Google Reviewer'}
+              </p>
+            </div>
+          </div>
+
+          {t.date && (
+            <span className="text-[9px] sm:text-[9.5px] md:text-[10px] font-sans text-[#8C8274] font-medium shrink-0 ml-1.5">
+              {t.date}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative group w-[280px] sm:w-[350px] md:w-[420px] shrink-0 bg-gradient-to-b from-[#FAF7F2] to-[#F5EFE6] rounded-[20px] sm:rounded-[24px] p-4.5 sm:p-5 md:p-6 mx-1.5 sm:mx-2 md:mx-2.5 flex flex-col justify-between h-[205px] sm:h-[225px] md:h-[245px] shadow-[0_6px_24px_rgba(20,15,10,0.06)] hover:shadow-[0_16px_36px_rgba(20,15,10,0.13)] border border-[#E7DFD0] hover:border-[#C9A96E]/70 transition-all duration-300 hover:-translate-y-1 select-none overflow-hidden">
@@ -438,7 +435,7 @@ const TestimonialCard = ({ t }) => {
   );
 };
 
-const MarqueeRow = ({ items, reverse = false }) => {
+const MarqueeRow = ({ items, reverse = false, hideText = false }) => {
   const [isPaused, setIsPaused] = React.useState(false);
 
   if (!items || items.length === 0) return null;
@@ -464,7 +461,7 @@ const MarqueeRow = ({ items, reverse = false }) => {
         }}
       >
         {displayItems.map((t, i) => (
-          <TestimonialCard key={i} t={t} />
+          <TestimonialCard key={i} t={t} hideText={hideText} />
         ))}
       </div>
     </div>
@@ -587,7 +584,7 @@ const Testimonials = () => {
 
         {/* Row 2 — Auto-scrolls Left-to-Right */}
         <div className="relative w-full max-w-full overflow-hidden">
-          <MarqueeRow items={rowB} reverse={true} />
+          <MarqueeRow items={rowB} reverse={true} hideText={true} />
         </div>
 
       </div>

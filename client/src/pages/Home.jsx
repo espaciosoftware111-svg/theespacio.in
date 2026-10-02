@@ -889,17 +889,26 @@ const Home = () => {
     };
   }, []);
 
-  // Verified high-speed Cloudinary CDN URLs for all 9 canonical projects
+  const PROJECT_DISPLAY_NAMES = {
+    'rajapushpa-provincia-3bhk': 'The Arcstone Residence',
+    'my-home-sayuk-3bhk': 'The Lattice Retreat',
+    'kokapet-2bhk': 'The Boucle Residence',
+    'kokapet-urban-2bhk': 'The Ivory Retreat',
+    'gandipet-modern-retro-2bhk': 'The Panelled Muse',
+    'kondapur-minimalist-2bhk': 'The Dusk Lounge',
+  };
+
+  // Authentic canonical thumbnails matching the Project Section catalog exactly
   const CANONICAL_PROJECT_IMAGES = {
-    'rajapushpa-provincia-3bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
-    'my-home-sayuk-3bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
-    'kokapet-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
-    'kokapet-urban-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
-    'gandipet-modern-retro-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png',
-    'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
-    'gachibowli-minimalist-beige-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-    'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
-    'dimmu-chachu-luxury-villa': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png'
+    'rajapushpa-provincia-3bhk': '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
+    'my-home-sayuk-3bhk': '/images/projects/my_home_sayuk/sayuk_4.webp',
+    'kokapet-2bhk': '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp',
+    'kokapet-urban-2bhk': '/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp',
+    'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
+    'kondapur-minimalist-2bhk': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp',
+    'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp',
+    'kachiguda-fusion-duplex-villa': '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
+    'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp'
   };
 
   const displayProjects = useMemo(() => {
@@ -911,21 +920,19 @@ const Home = () => {
     const fallbackList = Object.values(CANONICAL_PROJECT_IMAGES);
 
     return displayProjects.map((p, idx) => {
-      const title = p.title || 'ESPACIO Project';
+      const title = PROJECT_DISPLAY_NAMES[p.slug] || p.title || 'ESPACIO Project';
       const category = p.category ? String(p.category).toUpperCase() : 'LUXURY RESIDENCE';
       const location = p.location || 'Hyderabad';
       const description = p.description || `A bespoke luxury ${category.toLowerCase()} interior design in ${location}, showcasing custom spatial architecture and premium materials.`;
       
-      // Prioritize canonical Cloudinary CDN image, then valid http image
-      let heroImg = CANONICAL_PROJECT_IMAGES[p.slug];
-      if (!heroImg) {
-        if (p.heroImage && typeof p.heroImage === 'string' && p.heroImage.startsWith('http') && !p.heroImage.includes('googleusercontent')) {
-          heroImg = p.heroImage;
-        } else if (p.afterImage && typeof p.afterImage === 'string' && p.afterImage.startsWith('http') && !p.afterImage.includes('googleusercontent')) {
-          heroImg = p.afterImage;
-        } else {
-          heroImg = fallbackList[idx % fallbackList.length];
-        }
+      // Match the exact project section thumbnail: prioritize project.heroImage, then canonical map
+      let heroImg = p.heroImage || p.hero_image;
+      if (!heroImg || (typeof heroImg === 'string' && (!heroImg.trim() || heroImg.includes('kokapet_tv_unit')))) {
+        heroImg = CANONICAL_PROJECT_IMAGES[p.slug] || p.afterImage || fallbackList[idx % fallbackList.length];
+      }
+      if (typeof heroImg === 'string' && heroImg.startsWith('/images/projects/')) {
+        const sep = heroImg.includes('?') ? '&' : '?';
+        heroImg = `${heroImg}${sep}v=20260928_4`;
       }
 
       return {
@@ -961,7 +968,10 @@ const Home = () => {
                 const target = e.currentTarget;
                 if (!target) return;
                 target.onerror = null;
-                target.src = fallbackList[idx % fallbackList.length];
+                const fallback = CANONICAL_PROJECT_IMAGES[p.slug] || fallbackList[idx % fallbackList.length];
+                if (target.src !== fallback) {
+                  target.src = fallback;
+                }
               }}
               className="h-full w-full object-cover transition-transform duration-700 ease-out"
               alt={title}
@@ -974,33 +984,33 @@ const Home = () => {
 
   const rawParallaxProducts = [
     {
-      title: "Duplex Dining & Glass Partition",
-      category: "Glass Partitions",
+      title: "Duplex Mezzanine & Sculpted Wall Mural",
+      category: "Mezzanine & Murals",
       link: "/projects/exquisite-duplex-fusion-4bhk",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
     },
     {
-      title: "Open Pantry & Kitchen Storage",
-      category: "Modular Kitchen",
-      link: "/spaces/modular-kitchen",
+      title: "Double-Height Atrium & Living Mezzanine",
+      category: "Living Room",
+      link: "/spaces/living-room",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
     },
     {
-      title: "Beige Modular Kitchen Counter",
-      category: "Modular Kitchen",
-      link: "/spaces/modular-kitchen",
+      title: "Warm Contemporary Living Lounge",
+      category: "Living Room",
+      link: "/spaces/living-room",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
     },
     {
-      title: "Classical Dining & Bar Console",
-      category: "Dining Room",
-      link: "/projects/indo-classical-elegance-3bhk",
+      title: "Modern Modular Kitchen & Island Bar",
+      category: "Modular Kitchen",
+      link: "/spaces/modular-kitchen",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
     },
     {
-      title: "Penthouse Minimalist Suite",
-      category: "Penthouse Suite",
-      link: "/projects/grand-3bhk-penthouse-luxe",
+      title: "Japandi Living Lounge & Tea Deck",
+      category: "Living Room",
+      link: "/spaces/living-room",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
     },
     {

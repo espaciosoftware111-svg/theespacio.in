@@ -14,15 +14,15 @@ export const COMPANY_HERO_SLIDES = [
   },
   {
     image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
-    heading: 'Monolithic Modern Kitchens',
-    tagline: 'High-end modular cabinetry with integrated LED shadowline profiles and quartz waterfall islands.',
+    heading: 'Warm Contemporary Lounge',
+    tagline: 'Warm beige tones, arched illuminated marble features, and vertical fluted wood craftsmanship.',
     project: 'Urban Minimalist 2BHK'
   },
   {
     image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
-    heading: 'Architectural Media Lounge',
-    tagline: 'Custom marble backdrop walls, concealed LED profile tracks, and floating credenza joinery.',
-    project: 'Contemporary Luxury Lounge'
+    heading: 'Monolithic Modern Kitchens',
+    tagline: 'High-end modular cabinetry with integrated LED shadowline profiles and quartz waterfall islands.',
+    project: 'Contemporary Luxury Kitchen'
   },
   {
     image: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png',

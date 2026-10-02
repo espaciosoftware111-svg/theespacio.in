@@ -77,7 +77,7 @@ const handleImgError = (e, slug) => {
 const heroImages = [
   '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
   '/images/projects/my_home_sayuk/sayuk_4.webp',
-  '/images/projects/kokapet_nagesh_2bhk/kokapet_tv_unit.webp',
+  '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp',
   '/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp',
   '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp'
 ];
@@ -164,32 +164,9 @@ const ProjectCard = memo(({ project, idx, priority }) => {
 });
 ProjectCard.displayName = 'ProjectCard';
 
-// ─── Filter chip (memoized) ──────────────────────────────────────────────────
-const FilterChip = memo(({ chip, isActive, onClick }) => (
-  <button
-    type="button"
-    onClick={onClick}
-    className={`px-4 py-2 rounded-full text-xs font-sans font-semibold uppercase tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
-      isActive
-        ? 'bg-gold text-charcoal shadow-md font-bold'
-        : 'bg-bg-card hover:bg-white/10 text-ink-soft hover:text-ink border border-ink-border/30'
-    }`}
-  >
-    {chip.label}
-  </button>
-));
-FilterChip.displayName = 'FilterChip';
-
 // ─── In-memory fetch cache (prevents duplicate API calls within same session) ─
 let projectsCache = null;
 let settingsCache = null;
-
-const filterChips = [
-  { label: 'All Projects', value: 'all' },
-  { label: 'Apartments', value: 'apartment' },
-  { label: 'Villas', value: 'villa' },
-  { label: 'Duplex', value: 'duplex' }
-];
 
 const Projects = () => {
   const [projects, setProjects] = useState(() => {
@@ -202,7 +179,6 @@ const Projects = () => {
     } catch {}
     return DEFAULT_PROJECTS;
   });
-  const [activeFilter, setActiveFilter] = useState('all');
   const [loading, setLoading] = useState(false);
 
   const [heroContent, setHeroContent] = useState(() => {
@@ -215,12 +191,9 @@ const Projects = () => {
     };
   });
 
-  // Page-level parallax
   const { scrollYProgress } = useScroll();
   const textY  = useTransform(scrollYProgress, [0, 0.15], ['0px', '-30px']);
   const textOp = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-
-  const handleFilterClick = useCallback((val) => setActiveFilter(val), []);
 
   useEffect(() => {
     let cancelled = false;
@@ -303,11 +276,8 @@ const Projects = () => {
   }, [projects]);
 
   const displayedProjects = useMemo(() => {
-    const result = activeFilter === 'all'
-      ? canonicalProjects
-      : canonicalProjects.filter(p => p.category === activeFilter);
-    return [...result].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-  }, [canonicalProjects, activeFilter]);
+    return [...canonicalProjects].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+  }, [canonicalProjects]);
 
   return (
     <div className="bg-bg">
@@ -369,23 +339,11 @@ const Projects = () => {
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-16">
 
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-ink-border pb-6 sm:pb-8 mb-6 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-ink-border pb-6 sm:pb-8 mb-8 sm:mb-12 gap-4">
             <div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">All Featured Projects</h2>
               <p className="font-sans text-xs sm:text-sm text-ink-soft mt-1">Explore our turnkey interior design and execution portfolio</p>
             </div>
-          </div>
-
-          {/* Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8 sm:mb-10">
-            {filterChips.map((chip) => (
-              <FilterChip
-                key={chip.value}
-                chip={chip}
-                isActive={activeFilter === chip.value}
-                onClick={() => handleFilterClick(chip.value)}
-              />
-            ))}
           </div>
 
           {/* Grid */}

@@ -4,22 +4,18 @@ import { ScrollStack, ScrollStackItem } from "./scroll-stack";
 
 export const StickyScroll = ({ content = [], className = "" }) => {
   const [activeCard, setActiveCard] = useState(0);
+  const activeCardRef = useRef(0);
   const ref = useRef(null);
   const cardLength = content.length || 1;
 
-  // GPU-accelerated motion values for continuous scroll tracking
+  // GPU-accelerated motion value for continuous scroll tracking
   const scrollProgress = useMotionValue(0);
-  const smoothProgress = useSpring(scrollProgress, {
-    stiffness: 300,
-    damping: 32,
-    mass: 0.15,
-  });
 
   const CARD_HEIGHT = 340;
 
-  // Direct 1:1 scroll transform for fluid physical scrolling of text
+  // Direct 1:1 scroll transform synchronized with scroll position
   const textTranslateY = useTransform(
-    smoothProgress,
+    scrollProgress,
     [0, 1],
     [0, -(cardLength - 1) * CARD_HEIGHT]
   );
@@ -40,14 +36,29 @@ export const StickyScroll = ({ content = [], className = "" }) => {
 
     scrollProgress.set(clampedProgress);
 
-    // Active card calculation evenly distributed across all cards
+    // Active card calculation with generous deadband hysteresis to eliminate shuttering/flicker
     if (cardLength > 1) {
-      const step = 1 / (cardLength - 1);
-      const calculatedIdx = Math.round(clampedProgress / step);
-      const nextIdx = Math.max(0, Math.min(cardLength - 1, calculatedIdx));
-      setActiveCard(nextIdx);
+      const continuousIdx = clampedProgress * (cardLength - 1);
+      const current = activeCardRef.current;
+      
+      let nextIdx = current;
+      // Generous deadband hysteresis (0.65 threshold):
+      // Must cross current + 0.65 to advance to next card, or drop below current - 0.65 to retreat
+      if (continuousIdx > current + 0.65) {
+        nextIdx = Math.min(cardLength - 1, Math.round(continuousIdx));
+      } else if (continuousIdx < current - 0.65) {
+        nextIdx = Math.max(0, Math.round(continuousIdx));
+      }
+
+      if (nextIdx !== current) {
+        activeCardRef.current = nextIdx;
+        setActiveCard(nextIdx);
+      }
     } else {
-      setActiveCard(0);
+      if (activeCardRef.current !== 0) {
+        activeCardRef.current = 0;
+        setActiveCard(0);
+      }
     }
   }, [cardLength, scrollProgress]);
 
@@ -67,21 +78,31 @@ export const StickyScroll = ({ content = [], className = "" }) => {
     // Immediate initial sync
     updateScrollProgress();
 
-    // 1. Listen to Lenis smooth scroll
+    // Listen to Lenis smooth scroll if present and window scroll as fallback
+    let lenisListenerAttached = false;
     if (window.lenis) {
       window.lenis.on("scroll", handleScroll);
+      lenisListenerAttached = true;
     }
-
-    // 2. Listen to native window scroll as guaranteed fallback
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
 
-    // Catch any late DOM layout shifts from preceding image loads
+    // Catch late Lenis attachment if App mounts after
+    const checkLenis = setInterval(() => {
+      if (!lenisListenerAttached && window.lenis) {
+        window.lenis.on("scroll", handleScroll);
+        lenisListenerAttached = true;
+        clearInterval(checkLenis);
+      }
+    }, 200);
+
+    // Catch late DOM layout shifts from preceding image loads
     const t1 = setTimeout(updateScrollProgress, 100);
     const t2 = setTimeout(updateScrollProgress, 400);
     const t3 = setTimeout(updateScrollProgress, 1000);
 
     return () => {
+      clearInterval(checkLenis);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
@@ -195,25 +216,29 @@ export const StickyScroll = ({ content = [], className = "" }) => {
 
           {/* Right: full-height animated image showcase */}
           <div className="w-[54%] shrink-0 h-full rounded-[26px] bg-bg-dark overflow-hidden border border-ink-border/40 shadow-2xl relative">
-            {content.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={false}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0,
-                  scale: activeCard === index ? 1 : 1.05,
-                }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  zIndex: activeCard === index ? 2 : 1,
-                  pointerEvents: activeCard === index ? 'auto' : 'none',
-                  willChange: "opacity, transform",
-                }}
-                className="absolute inset-0 h-full w-full"
-              >
-                {item.content}
-              </motion.div>
-            ))}
+            {content.map((item, index) => {
+              const isCurrent = activeCard === index;
+              const isNearby = Math.abs(activeCard - index) <= 1;
+              return (
+                <motion.div
+                  key={index}
+                  initial={false}
+                  animate={{
+                    opacity: isCurrent ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  style={{
+                    zIndex: isCurrent ? 2 : 1,
+                    pointerEvents: isCurrent ? 'auto' : 'none',
+                    visibility: isNearby ? 'visible' : 'hidden',
+                    willChange: "opacity",
+                  }}
+                  className="absolute inset-0 h-full w-full"
+                >
+                  {item.content}
+                </motion.div>
+              );
+            })}
           </div>
 
         </div>

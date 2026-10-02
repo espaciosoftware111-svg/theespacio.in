@@ -91,7 +91,7 @@ const AdminTestimonialsCMS = () => {
       setGoogleStats(prev => ({
         ...prev,
         rating: settings.google_overall_rating || 5.0,
-        reviewCount: cleanAvatarList.length || 31,
+        reviewCount: cleanAvatarList.length || 30,
         lastSynced: settings.google_last_synced || prev.lastSynced
       }));
     }

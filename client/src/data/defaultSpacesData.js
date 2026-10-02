@@ -10,8 +10,8 @@ export const defaultSlides = [
     title: 'Modular Kitchens'
   },
   {
-    before: '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg',
-    after: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png',
+    before: '/images/spaces/master_bedroom_before.webp',
+    after: '/images/spaces/master_bedroom_after.webp',
     title: 'Master Bedrooms'
   },
   {
@@ -91,7 +91,7 @@ export const defaultSpacesCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6417934e-0d4d-4ed9-bba1-fded7f33f9ab.png",
+    "heroImage": "/images/spaces/master_bedroom_after.webp",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
