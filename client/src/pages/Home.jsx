@@ -1131,7 +1131,7 @@ const Home = () => {
     <div className="bg-bg">
       <SEO
         title="Luxury Interior Design & Architecture Studio, Hyderabad"
-        description="ESPACIO is Hyderabad's premier luxury interior design studio. Delivering turnkey full-home interiors, modular kitchens, commercial fitouts, and premium material supply."
+        description="ESPACIO is Hyderabad's premier luxury interior design studio. Delivering turnkey full-home interiors, modular kitchens, commercial interiors, and premium material supply."
         url="/"
         schema={{
           '@context': 'https://schema.org',

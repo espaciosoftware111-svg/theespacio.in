@@ -68,7 +68,7 @@ const services = [
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
     mobileImg: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
-    ctaText: 'Enquire About Commercial Fit-Outs',
+    ctaText: 'Enquire About Commercial Interiors',
     ctaLink: '/contact'
   },
   { 

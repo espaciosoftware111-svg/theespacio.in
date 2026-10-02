@@ -907,7 +907,7 @@ export const DEFAULT_SERVICES = [
       'Full Commercial Buildout, Start to Finish'
     ], 
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
-    ctaText: 'Enquire About Commercial Fit-Outs',
+    ctaText: 'Enquire About Commercial Interiors',
     ctaLink: '/contact',
     ctaVisible: true,
     visible: true,
@@ -1157,7 +1157,7 @@ export const DEFAULT_TESTIMONIALS = [
     googleReviewId: 'g_rev_02',
     source: 'GOOGLE',
     name: 'Madhusudhan Vanam',
-    designation: 'Kukatpally · Living Room Fit-Out',
+    designation: 'Kukatpally · Living Room Interior',
     title: 'Chala Bagundhi & Excellent TV Unit Execution',
     body: 'Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍',
     rating: 5,
@@ -3350,6 +3350,10 @@ export const getCMSData = (key, fallback = null) => {
             data.services_list.forEach(s => {
               if (s && typeof s.desc === 'string' && s.desc.includes('planned and built by one team')) {
                 s.desc = s.desc.replace('planned and built by one team', 'planned and built by our team');
+                modified = true;
+              }
+              if (s && typeof s.ctaText === 'string' && s.ctaText.includes('Fit-Outs')) {
+                s.ctaText = s.ctaText.replace('Fit-Outs', 'Interiors');
                 modified = true;
               }
             });

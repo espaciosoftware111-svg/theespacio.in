@@ -117,7 +117,7 @@ const bottomTestimonials = [
     title: "Chala Bagundhi & Excellent TV Unit Execution",
     body: "Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍",
     name: "Madhusudhan Vanam",
-    role: "Kukatpally · Living Room Fit-Out",
+    role: "Kukatpally · Living Room Interior",
     date: "5 months ago"
   },
   {
