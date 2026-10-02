@@ -328,7 +328,23 @@ const Services = () => {
                     <span className="font-sans text-[11px] font-semibold text-gold">{String(i + 1).padStart(2, '0')}</span>
                     <span className="font-sans text-[10px] font-semibold uppercase tracking-widest text-ink-muted bg-bg-card px-3 py-1 rounded-pill">{s.tag}</span>
                   </div>
-                  <h2 className="font-display text-[clamp(24px,3vw,42px)] font-bold tracking-tight text-ink leading-tight">{s.title}</h2>
+                  <h2 className="font-display text-[clamp(24px,3vw,42px)] font-bold tracking-tight text-ink leading-tight">
+                    {(() => {
+                      const titleStr = s.title || '';
+                      const match = titleStr.match(/^(.*?)\s*(\(.*?\))$/);
+                      if (match) {
+                        return (
+                          <>
+                            <span>{match[1]}</span>{' '}
+                            <span className="text-[0.52em] font-normal text-ink-muted/80 tracking-normal inline-block align-baseline">
+                              {match[2]}
+                            </span>
+                          </>
+                        );
+                      }
+                      return titleStr;
+                    })()}
+                  </h2>
                   <p className="font-sans text-[13.5px] sm:text-[15px] text-ink-soft leading-relaxed">{s.desc}</p>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {(Array.isArray(s.includes) ? s.includes : []).map((item, fIdx) => (
