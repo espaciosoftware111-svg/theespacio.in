@@ -23,11 +23,11 @@ const StarRating = ({ rating = 5 }) => (
 const topTestimonials = [
   {
     rating: 5,
-    title: "Executive Office Interior",
-    body: "We fitted our 4,000 sq.ft executive office with ESPACIO PVC ceiling panels and glass partitions. Professional project management and impeccable finishing.",
-    name: "Siddharth Mehta",
-    role: "HITECH City · Corporate Office",
-    date: "2 months ago"
+    title: "Simple, Elegant & Beautiful Jesus Artwork",
+    body: "Really happy with how Espacio brought the interiors together. Everything feels simple and elegant, but the Jesus artwork is our favourite. It's the first thing everyone notices when they walk in. Overall, we're very happy with how the space came together.",
+    name: "MANOJ & KRIPA",
+    role: "Bandlaguda Jagir · Residential Villa",
+    date: "1 month ago"
   },
   {
     rating: 5,
@@ -39,11 +39,11 @@ const topTestimonials = [
   },
   {
     rating: 5,
-    title: "Chala Bagundhi & Excellent TV Unit Execution",
-    body: "Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍",
-    name: "Madhusudhan Vanam",
-    role: "Kukatpally · Living Room Fit-Out",
-    date: "5 months ago"
+    title: "Customised Store Layout & Dedicated Support",
+    body: "The team customised the store around our products in ways we hadn't even thought of. They were patient through every discussion, even late night calls when I was unsure. The final space looks great and works perfectly for our brand. Thank you Espacio!",
+    name: "MIVA ESSENTIALS",
+    role: "Kismatpur · Retail Brand Store",
+    date: "2 months ago"
   },
   {
     rating: 5,
@@ -55,59 +55,27 @@ const topTestimonials = [
   },
   {
     rating: 5,
-    title: "Excellent Materials for Home & Office",
-    body: "Excellent materials for interior at home or office so pls visit this Espacio interiors and modular Thank you...! ❤️",
-    name: "Shaik Hussian",
-    role: "Madhapur · Turnkey Office",
-    date: "6 months ago"
+    title: "Good Quality Work & Punctual Execution",
+    body: "Good quality work, and the team actually turns up on time, which is rare. The wardrobes look great, no complaints.",
+    name: "SRINIVAS & MADHURI",
+    role: "Narsingi · Residential 3BHK",
+    date: "2 months ago"
   },
   {
     rating: 5,
-    title: "Good Equipment, Well Staff & Luxurious House",
-    body: "Good equipment and well staff my house is now completely become luxurious with reasonable prices and thanks to espacio",
-    name: "Lovely boy Laxman",
-    role: "Banjara Hills · Villa Renovation",
-    date: "6 months ago"
+    title: "Executive Office Interior",
+    body: "We fitted our 4,000 sq.ft executive office with ESPACIO PVC ceiling panels and glass partitions. Professional project management and impeccable finishing.",
+    name: "Siddharth Mehta",
+    role: "HITECH City · Corporate Office",
+    date: "2 months ago"
   },
   {
     rating: 5,
-    title: "Good Experience and Excellent Service",
-    body: "Good experience and excellent service",
-    name: "Amresh kumar",
-    role: "Gachibowli · Premium Apartment",
-    date: "5 months ago"
-  },
-  {
-    rating: 5,
-    title: "Good Quality of Materials and Affordable Prices",
-    body: "Good quality of materials and affordable prices",
-    name: "KoteswaraRao Alaparthi",
-    role: "Kondapur · Modular Interiors",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Wide Range of Varieties & Patient Customer Service",
-    body: "Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding",
-    name: "Shaik BOB",
-    role: "Manikonda · Turnkey Residence",
-    date: "a year ago"
-  },
-  {
-    rating: 5,
-    title: "Good Service & Excellent Work 👍👏",
-    body: "Good service excellent work 👍 👏",
-    name: "Jani Basha",
-    role: "Tellapur · 3BHK Flat Fit-Out",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Good Work and Good Communication 👍",
-    body: "Good work and good communication 👍",
-    name: "RAJU PALADUGU",
-    role: "Kokapet · Luxury Villa",
-    date: "6 months ago"
+    title: "Thoughtful Advice & Patient Execution",
+    body: "I'm really thankful to Espacio for patiently working with us. Whenever we suggested something, they didn't just reject it, they explained why it may not work and suggested better options. We're really happy with how our home turned out.",
+    name: "HUSSAIN & PARVEEN",
+    role: "Kukatpally · Turnkey Residence",
+    date: "1 month ago"
   },
   {
     rating: 5,
@@ -119,118 +87,46 @@ const topTestimonials = [
   },
   {
     rating: 5,
-    title: "Professional Planning & Timely Delivery",
-    body: "Great experience with ESPACIO for home interiors. Professional planning and timely delivery.",
-    name: "Aditya Manda",
-    role: "Narsingi · Modular Kitchen",
-    date: "4 months ago"
+    title: "Consistent Board & Laminate Quality",
+    body: "We've sourced boards and laminates from Espacio on a few projects. Quality is consistent batch to batch and deliveries are dependable, which matters when we're working to client deadlines.",
+    name: "STUDIO VERTEX ARCHITECTS",
+    role: "Jubilee Hills · Architecture Firm",
+    date: "3 months ago"
   },
   {
     rating: 5,
-    title: "Delighted with Material Selection & Execution",
-    body: "Very satisfied with the interior design quality and material selection. Highly recommended!",
-    name: "Thumuganti Rithwik",
-    role: "Jubilee Hills · Contemporary Villa",
-    date: "3 months ago"
+    title: "Wide Range of Varieties & Patient Customer Service",
+    body: "Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding.",
+    name: "Shaik BOB",
+    role: "Manikonda · Turnkey Residence",
+    date: "a year ago"
   }
 ];
 
 const bottomTestimonials = [
   {
     rating: 5,
-    title: "Good Work and Satisfied",
-    body: "Good work and satisfied",
-    name: "Shiak Ayub",
-    role: "HiTech City · Commercial Fit-Out",
+    title: "Thoughtful Interiors & Floral Wardrobe Feature",
+    body: "I'm really happy with how Espacio did our whole house. Everything feels so thoughtfully done. My favourite is definitely the floral wardrobe, it's so pretty and adds such a lovely touch to the bedroom. I absolutely love how the house turned out.",
+    name: "ARJUN & SHENA",
+    role: "Financial District · Luxury Flat",
+    date: "1 month ago"
+  },
+  {
+    rating: 5,
+    title: "Chala Bagundhi & Excellent TV Unit Execution",
+    body: "Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍",
+    name: "Madhusudhan Vanam",
+    role: "Kukatpally · Living Room Fit-Out",
     date: "5 months ago"
   },
   {
     rating: 5,
-    title: "Super 👍😊",
-    body: "Super 👍 😊",
-    name: "karagani pavankumar",
-    role: "Madhapur · Home Interior",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Greate Experience",
-    body: "Greate experience with the design consultation and seamless material procurement.",
-    name: "Rajini Kumar",
-    role: "Gachibowli · Turnkey 3BHK",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Good Service",
-    body: "Good service and transparent pricing throughout the project execution.",
-    name: "Ramesh Paladugu",
-    role: "Kondapur · Interior Renovation",
-    date: "5 months ago"
-  },
-  {
-    rating: 5,
-    title: "Good Service",
-    body: "Good service and attention to detailing in all rooms.",
-    name: "naidu poola",
-    role: "Banjara Hills · Penthouse",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Great Experience ❣️",
-    body: "Great experience from space layout to final installation. Highly satisfied with ESPACIO!",
-    name: "Venkatesh mudhiraj",
-    role: "Kokapet · Villa Interior",
-    date: "a year ago"
-  },
-  {
-    rating: 5,
-    title: "Super... All Are Experts... Tq ESPACIO",
-    body: "Super... All are experts... Thank you ESPACIO Interiors for delivering top-class finish.",
-    name: "K. SUBBARAO",
-    role: "Narsingi · Residential Apartment",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Exceptional Service & Quality",
-    body: "Exceptional service, premium quality materials, and dedicated supervisory staff.",
-    name: "Reddy",
-    role: "Jubilee Hills · Custom Fit-Out",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Great Quality & Supportive Team",
-    body: "Good experience and quality materials with cooperative design staff.",
-    name: "Nakul Kirsani",
-    role: "Tellapur · 3BHK Renovation",
-    date: "a year ago"
-  },
-  {
-    rating: 5,
-    title: "Professional Planning & High-Quality Materials",
-    body: "Professional interior planning and exceptional materials supply from ESPACIO.",
-    name: "LEGAL AMICUS",
-    role: "Financial District · Corporate Office",
-    date: "a year ago"
-  },
-  {
-    rating: 5,
-    title: "5 Star Rating & Satisfied Service",
-    body: "Great experience with Espacio Interiors & Modular. Recommended for turnkey interior solutions.",
-    name: "A Sk",
-    role: "Kukatpally · Living Space",
-    date: "6 months ago"
-  },
-  {
-    rating: 5,
-    title: "Superb Design & Flawless Execution",
-    body: "Superb design variety and flawless material quality provided by Espacio Interiors & Modular.",
-    name: "imtiyaz shaik",
-    role: "Manikonda · Modular Design",
-    date: "6 months ago"
+    title: "Cohesive Spatial Design & Family Comfort",
+    body: "Pura ghar ek hi style mein lag raha hai, upar se neeche tak. Parents ko bhi comfortable lagta hai aur bachon ko bhi apna room pasand aaya. Thank you Espacio!",
+    name: "VIKRAM & SNEHA SHARMA",
+    role: "Gachibowli · 3BHK Residence",
+    date: "2 months ago"
   },
   {
     rating: 5,
@@ -242,27 +138,51 @@ const bottomTestimonials = [
   },
   {
     rating: 5,
-    title: "Good Experience & Good Working Skills",
-    body: "Good experience & good working skills. The team at Espacio Interiors & Modular is dedicated and skilled.",
-    name: "Kishor Kumar",
-    role: "HiTech City · Workspace",
-    date: "6 months ago"
+    title: "On-Time Commercial Handover & Impressive Finishes",
+    body: "We had a tight opening date and I wasn't sure it would work out, but the team coordinated everything on site. Customers keep asking who did our interiors.",
+    name: "THE COFFEE ATELIER",
+    role: "Banjara Hills · Commercial Cafe",
+    date: "2 months ago"
   },
   {
     rating: 5,
-    title: "Good Service & Quality Materials",
-    body: "Good service and excellent quality materials offered at competitive pricing by Espacio.",
-    name: "Ajayreddy Gowreddy123",
-    role: "Gachibowli · Home Interior",
-    date: "6 months ago"
+    title: "Professional Planning & Timely Delivery",
+    body: "Great experience with ESPACIO for home interiors. Professional planning and timely delivery.",
+    name: "Aditya Manda",
+    role: "Narsingi · Modular Kitchen",
+    date: "4 months ago"
   },
   {
     rating: 5,
-    title: "Good Work",
-    body: "Good work done on time with precision and clean handover.",
-    name: "Yadidya",
-    role: "Kondapur · Turnkey Project",
-    date: "5 months ago"
+    title: "End-to-End Home Interiors & 3D Precision",
+    body: "Espacio handled our home interiors from design to installation. Communication was clear throughout, and the final finish matched the 3D designs closely. We'd happily work with them again.",
+    name: "DR. CHENNA KESHAVA & LAKSHMI",
+    role: "Tellapur · High-Rise 3BHK",
+    date: "3 months ago"
+  },
+  {
+    rating: 5,
+    title: "Delighted with Material Selection & Execution",
+    body: "Very satisfied with the interior design quality and material selection. Highly recommended!",
+    name: "Thumuganti Rithwik",
+    role: "Jubilee Hills · Contemporary Villa",
+    date: "3 months ago"
+  },
+  {
+    rating: 5,
+    title: "Accurate 3D Visualizations & Fast Turnaround",
+    body: "Their 3D renders were accurate enough that our client signed off without second-guessing. Turnaround was quick, and revisions were no trouble.",
+    name: "AXIS LINE ARCHITECTS",
+    role: "Madhapur · Interior Design Studio",
+    date: "2 months ago"
+  },
+  {
+    rating: 5,
+    title: "Professional Planning & High-Quality Materials",
+    body: "Professional interior planning and exceptional materials supply from ESPACIO.",
+    name: "LEGAL AMICUS",
+    role: "Financial District · Corporate Office",
+    date: "a year ago"
   }
 ];
 

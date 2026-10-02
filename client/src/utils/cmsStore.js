@@ -978,36 +978,319 @@ export const DEFAULT_SERVICES = [
 
 // ─── DEFAULT TESTIMONIALS (Authentic Google Reviews) ──────────────────────────
 export const DEFAULT_TESTIMONIALS = [
-  { id: 'g_rev_00', googleReviewId: 'g_rev_00', source: 'GOOGLE', name: 'Siddharth Mehta', designation: 'HITECH City · Corporate Office', title: 'Executive Office Fit-Out', body: 'We fitted our 4,000 sq.ft executive office with ESPACIO PVC ceiling panels and glass partitions. Professional project management and impeccable finishing.', rating: 5, avatar: '', date: '2 months ago', visible: true, featured: true, order: 0 },
-  { id: 'g_rev_01', googleReviewId: 'g_rev_01', source: 'GOOGLE', name: 'Dharma Teja', designation: 'Narsingi · Residential 3BHK', title: 'Best Interior Designer Near Me & Fantastic Job', body: 'I was researching the best interior designer near me, and while doing that, I came across ESPACIO. Eventually, we hired them, and it turned out to be a good decision. The interior designer was nice,the quality of the materials and finishing of the modular solutions is amazing, and the execution was really good.Espacio did a fantastic job.', rating: 5, avatar: '/reviews/dharma_teja.png', date: '3 months ago', visible: true, featured: true, order: 1, response: 'Thank you sir, for your support and valuable feedback' },
-  { id: 'g_rev_02', googleReviewId: 'g_rev_02', source: 'GOOGLE', name: 'Madhusudhan Vanam', designation: 'Google Reviewer • 1 Review • 1 Photo', title: 'Chala Bagundhi & Excellent TV Unit Execution', body: 'Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍', rating: 5, avatar: '/reviews/madhusudhan_vanam.png', date: '5 months ago', visible: true, featured: true, order: 2 },
-  { id: 'g_rev_03', googleReviewId: 'g_rev_03', source: 'GOOGLE', name: 'Khaleel Shaik', designation: 'Interior Designer • 1 Review • 4 Photos', title: 'Largest Variety of Laminates, Veneers & Plywood', body: 'As an interior designer, I have found the largest variety of laminates, vineers, and plywood with all ranges of economy, premium and super premium as required by different customer segments at the best competitive rates. My suggestion for all to visit this place once before you buy.', rating: 5, avatar: '/reviews/khaleel_shaik.png', date: '5 months ago', visible: true, featured: true, order: 3, response: 'Thank you so much for your valuable feedback, look forward to assisting you again in your future projects!' },
-  { id: 'g_rev_04', googleReviewId: 'g_rev_04', source: 'GOOGLE', name: 'Shaik Hussian', designation: 'Google Reviewer • 2 Reviews', title: 'Excellent Materials for Home & Office', body: 'Excellent materials for interior at home or office so pls visit this Espacio interiors and modular Thank you...! ❤️', rating: 5, avatar: '/reviews/shaik_hussain.png', date: '6 months ago', visible: true, featured: true, order: 4 },
-  { id: 'g_rev_05', googleReviewId: 'g_rev_05', source: 'GOOGLE', name: 'Lovely boy Laxman', designation: 'Google Reviewer • 1 Review • 3 Photos', title: 'Good Equipment, Well Staff & Luxurious House', body: 'Good equipment and well staff my house is now completely become luxurious with reasonable prices and thanks to espacio', rating: 5, avatar: '/reviews/lovely_boy_laxman.png', date: '6 months ago', visible: true, featured: true, order: 5, response: 'Thank you for your feedback! We’re glad you had a good experience with Espacio Interiors & Modular.' },
-  { id: 'g_rev_06', googleReviewId: 'g_rev_06', source: 'GOOGLE', name: 'Amresh kumar', designation: 'Google Reviewer • 1 Review', title: 'Good Experience and Excellent Service', body: 'Good experience and excellent service', rating: 5, avatar: '/reviews/amresh_kumar.png', date: '5 months ago', visible: true, featured: true, order: 6, response: 'Thank you sir' },
-  { id: 'g_rev_07', googleReviewId: 'g_rev_07', source: 'GOOGLE', name: 'KoteswaraRao Alaparthi', designation: 'Local Guide • 4 Reviews • 62 Photos', title: 'Good Quality of Materials and Affordable Prices', body: 'Good quality of materials and affordable prices', rating: 5, avatar: '/reviews/koteswararao_alaparthi.png', date: '6 months ago', visible: true, featured: true, order: 7 },
-  { id: 'g_rev_08', googleReviewId: 'g_rev_08', source: 'GOOGLE', name: 'Shaik BOB', designation: 'Google Reviewer • 3 Reviews • 3 Photos', title: 'Wide Range of Varieties & Patient Customer Service', body: 'Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding', rating: 5, avatar: '/reviews/shaik_bob.png', date: 'a year ago', visible: true, featured: true, order: 8, response: 'Thank you so much for visiting Espacio Interiors & Modular!' },
-  { id: 'g_rev_09', googleReviewId: 'g_rev_09', source: 'GOOGLE', name: 'Jani Basha', designation: 'Google Reviewer • 4 Reviews', title: 'Good Service & Excellent Work 👍👏', body: 'Good service excellent work 👍 👏', rating: 5, avatar: '/reviews/jani_basha.png', date: '6 months ago', visible: true, featured: true, order: 9 },
-  { id: 'g_rev_10', googleReviewId: 'g_rev_10', source: 'GOOGLE', name: 'RAJU PALADUGU', designation: 'Google Reviewer • 1 Review', title: 'Good Work and Good Communication 👍', body: 'Good work and good communication 👍', rating: 5, avatar: '/reviews/paladugu_raju.png', date: '6 months ago', visible: true, featured: true, order: 10, response: 'Thank you' },
-  { id: 'g_rev_11', googleReviewId: 'g_rev_11', source: 'GOOGLE', name: 'Shiak Ayub', designation: 'Google Reviewer • 2 Reviews', title: 'Good Work and Satisfied', body: 'Good work and satisfied', rating: 5, avatar: '/reviews/shaik_ayub.svg', date: '5 months ago', visible: true, featured: true, order: 11 },
-  { id: 'g_rev_12', googleReviewId: 'g_rev_12', source: 'GOOGLE', name: 'karagani pavankumar', designation: 'Google Reviewer • 2 Reviews', title: 'Super 👍😊', body: 'Super 👍 😊', rating: 5, avatar: '/reviews/karagani_pavankumar.png', date: '6 months ago', visible: true, featured: true, order: 12 },
-  { id: 'g_rev_13', googleReviewId: 'g_rev_13', source: 'GOOGLE', name: 'Rajini Kumar', designation: 'Google Reviewer • 2 Reviews', title: 'Greate Experience', body: 'Greate experience', rating: 5, avatar: '/reviews/rajini_kumar.png', date: '6 months ago', visible: true, featured: true, order: 13 },
-  { id: 'g_rev_14', googleReviewId: 'g_rev_14', source: 'GOOGLE', name: 'Ramesh Paladugu', designation: 'Google Reviewer • 3 Reviews', title: 'Good Service', body: 'Good service', rating: 5, avatar: '/reviews/ramesh_paladugu.png', date: '5 months ago', visible: true, featured: true, order: 14, response: 'Thank you' },
-  { id: 'g_rev_15', googleReviewId: 'g_rev_15', source: 'GOOGLE', name: 'naidu poola', designation: 'Google Reviewer • 2 Reviews', title: 'Good Service', body: 'Good service', rating: 5, avatar: '/reviews/naidu_poola.png', date: '6 months ago', visible: true, featured: true, order: 15 },
-  { id: 'g_rev_16', googleReviewId: 'g_rev_16', source: 'GOOGLE', name: 'Venkatesh mudhiraj', designation: 'Google Reviewer • 1 Review', title: 'Great Experience ❣️', body: 'great experience ❣️', rating: 5, avatar: '/reviews/venkatesh_mudhiraj.png', date: 'a year ago', visible: true, featured: true, order: 16, response: 'Thank you!' },
-  { id: 'g_rev_17', googleReviewId: 'g_rev_17', source: 'GOOGLE', name: 'K. SUBBARAO', designation: 'Google Reviewer • 5 Reviews', title: 'Super... All Are Experts... Tq ESPACIO', body: 'Super...\nAll\' are experts...\nTq ESPACIO Interiors', rating: 5, avatar: '/reviews/k_subbarao.png', date: '6 months ago', visible: true, featured: true, order: 17 },
-  { id: 'g_rev_18', googleReviewId: 'g_rev_18', source: 'GOOGLE', name: 'Reddy', designation: 'Google Reviewer', title: 'Exceptional Service & Quality', body: 'Thank you Reddy garu', rating: 5, avatar: '/reviews/reddy.svg', date: '6 months ago', visible: true, featured: true, order: 18, response: 'Thank you Reddy garu' },
-  { id: 'g_rev_19', googleReviewId: 'g_rev_19', source: 'GOOGLE', name: 'Sunkari santosh', designation: 'Google Reviewer • 2 Reviews', title: 'Professional & Passionate Towards Their Work', body: 'Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.', rating: 5, avatar: '/reviews/sunkari_santosh.png', date: '6 months ago', visible: true, featured: true, order: 19 },
-  { id: 'g_rev_20', googleReviewId: 'g_rev_20', source: 'GOOGLE', name: 'Aditya Manda', designation: 'Local Guide • 4 Reviews', title: 'Professional Planning & Timely Delivery', body: 'Great experience with ESPACIO for home interiors. Professional planning and timely delivery.', rating: 5, avatar: '/reviews/aditya_manda.png', date: '4 months ago', visible: true, featured: true, order: 20 },
-  { id: 'g_rev_21', googleReviewId: 'g_rev_21', source: 'GOOGLE', name: 'Thumuganti Rithwik', designation: 'Google Reviewer • 2 Reviews', title: 'Delighted with Material Selection & Execution', body: 'Very satisfied with the interior design quality and material selection. Highly recommended!', rating: 5, avatar: '/reviews/thumuganti_rithwik.png', date: '3 months ago', visible: true, featured: true, order: 21 },
-  { id: 'g_rev_22', googleReviewId: 'g_rev_22', source: 'GOOGLE', name: 'Nakul Kirsani', designation: 'Google Reviewer • 1 Review • 1 Photo', title: 'Great Quality & Supportive Team', body: 'Good experience and quality materials with cooperative design staff.', rating: 5, avatar: '/reviews/nakul_kirsani.png', date: 'a year ago', visible: true, featured: true, order: 22 },
-  { id: 'g_rev_23', googleReviewId: 'g_rev_23', source: 'GOOGLE', name: 'LEGAL AMICUS', designation: 'Local Guide • 7 Reviews • 78 Photos', title: 'Professional Planning & High-Quality Materials', body: 'Professional interior planning and exceptional materials supply from ESPACIO.', rating: 5, avatar: '/reviews/legal_amicus.svg', date: 'a year ago', visible: true, featured: true, order: 23 },
-  { id: 'g_rev_24', googleReviewId: 'g_rev_24', source: 'GOOGLE', name: 'A Sk', designation: 'Google Reviewer', title: '5 Star Rating & Satisfied Service', body: 'Great experience with Espacio Interiors & Modular. Recommended for turnkey interior solutions.', rating: 5, avatar: '/reviews/a_sk.svg', date: '6 months ago', visible: true, featured: true, order: 24 },
-  { id: 'g_rev_25', googleReviewId: 'g_rev_25', source: 'GOOGLE', name: 'imtiyaz shaik', designation: 'Google Reviewer • 9 Photos', title: 'Superb Design & Flawless Execution', body: 'Superb design variety and flawless material quality provided by Espacio Interiors & Modular.', rating: 5, avatar: '/reviews/imtiyaz_shaik.png', date: '6 months ago', visible: true, featured: true, order: 25 },
-  { id: 'g_rev_26', googleReviewId: 'g_rev_26', source: 'GOOGLE', name: 'Abdul Gaffar', designation: 'Local Guide • 2 Reviews', title: 'Professional Service & Quality Materials', body: 'Professional interior planning and exceptional materials supply from ESPACIO. Highly satisfied with their work.', rating: 5, avatar: '/reviews/abdul_gaffar.svg', date: '6 months ago', visible: true, featured: true, order: 26 },
-  { id: 'g_rev_27', googleReviewId: 'g_rev_27', source: 'GOOGLE', name: 'Kishor Kumar', designation: 'Google Reviewer • 6 Reviews • 5 Photos', title: 'Good Experience & Good Working Skills', body: 'Good experience & good working skills. The team at Espacio Interiors & Modular is dedicated and skilled.', rating: 5, avatar: '/reviews/kishor_kumar.png', date: '6 months ago', visible: true, featured: true, order: 27 },
-  { id: 'g_rev_28', googleReviewId: 'g_rev_28', source: 'GOOGLE', name: 'Ajayreddy Gowreddy123', designation: 'Google Reviewer • 2 Reviews', title: 'Good Service & Quality Materials', body: 'Good service and excellent quality materials offered at competitive pricing by Espacio.', rating: 5, avatar: '/reviews/ajayreddy_gowreddy.png', date: '6 months ago', visible: true, featured: true, order: 28 },
-  { id: 'g_rev_29', googleReviewId: 'g_rev_29', source: 'GOOGLE', name: 'Yadidya', designation: 'Google Reviewer • 3 Reviews', title: 'Good Work', body: 'Good work done on time.', rating: 5, avatar: '/reviews/yadidya.png', date: '5 months ago', visible: true, featured: true, order: 29 }
+  // 1. ✅ Residential
+  {
+    id: 'rev_manoj_kripa',
+    source: 'GOOGLE',
+    name: 'MANOJ & KRIPA',
+    designation: 'Bandlaguda Jagir · Residential Villa',
+    title: 'Simple, Elegant & Beautiful Jesus Artwork',
+    body: "Really happy with how Espacio brought the interiors together. Everything feels simple and elegant, but the Jesus artwork is our favourite. It's the first thing everyone notices when they walk in. Overall, we're very happy with how the space came together.",
+    rating: 5,
+    avatar: '',
+    date: '1 month ago',
+    visible: true,
+    featured: true,
+    order: 1
+  },
+  // 2. Existing - Dharma Teja
+  {
+    id: 'g_rev_01',
+    googleReviewId: 'g_rev_01',
+    source: 'GOOGLE',
+    name: 'Dharma Teja',
+    designation: 'Narsingi · Residential 3BHK',
+    title: 'Best Interior Designer Near Me & Fantastic Job',
+    body: 'I was researching the best interior designer near me, and while doing that, I came across ESPACIO. Eventually, we hired them, and it turned out to be a good decision. The interior designer was nice, the quality of the materials and finishing of the modular solutions is amazing, and the execution was really good. Espacio did a fantastic job.',
+    rating: 5,
+    avatar: '/reviews/dharma_teja.png',
+    date: '3 months ago',
+    visible: true,
+    featured: true,
+    order: 2,
+    response: 'Thank you sir, for your support and valuable feedback'
+  },
+  // 3. ✅ Commercial
+  {
+    id: 'rev_miva_essentials',
+    source: 'GOOGLE',
+    name: 'MIVA ESSENTIALS',
+    designation: 'Kismatpur · Retail Brand Store',
+    title: 'Customised Store Layout & Dedicated Support',
+    body: "The team customised the store around our products in ways we hadn't even thought of. They were patient through every discussion, even late night calls when I was unsure. The final space looks great and works perfectly for our brand. Thank you Espacio!",
+    rating: 5,
+    avatar: '',
+    date: '2 months ago',
+    visible: true,
+    featured: true,
+    order: 3
+  },
+  // 4. Existing - Khaleel Shaik
+  {
+    id: 'g_rev_03',
+    googleReviewId: 'g_rev_03',
+    source: 'GOOGLE',
+    name: 'Khaleel Shaik',
+    designation: 'Jubilee Hills · Commercial Studio',
+    title: 'Largest Variety of Laminates, Veneers & Plywood',
+    body: 'As an interior designer, I have found the largest variety of laminates, vineers, and plywood with all ranges of economy, premium and super premium as required by different customer segments at the best competitive rates. My suggestion for all to visit this place once before you buy.',
+    rating: 5,
+    avatar: '/reviews/khaleel_shaik.png',
+    date: '5 months ago',
+    visible: true,
+    featured: true,
+    order: 4,
+    response: 'Thank you so much for your valuable feedback, look forward to assisting you again in your future projects!'
+  },
+  // 5. ✏️ Residential
+  {
+    id: 'rev_srinivas_madhuri',
+    source: 'GOOGLE',
+    name: 'SRINIVAS & MADHURI',
+    designation: 'Narsingi · Residential 3BHK',
+    title: 'Good Quality Work & Punctual Execution',
+    body: "Good quality work, and the team actually turns up on time, which is rare. The wardrobes look great, no complaints.",
+    rating: 5,
+    avatar: '',
+    date: '2 months ago',
+    visible: true,
+    featured: true,
+    order: 5
+  },
+  // 6. Existing - Siddharth Mehta
+  {
+    id: 'g_rev_00',
+    googleReviewId: 'g_rev_00',
+    source: 'GOOGLE',
+    name: 'Siddharth Mehta',
+    designation: 'HITECH City · Corporate Office',
+    title: 'Executive Office Interior',
+    body: 'We fitted our 4,000 sq.ft executive office with ESPACIO PVC ceiling panels and glass partitions. Professional project management and impeccable finishing.',
+    rating: 5,
+    avatar: '',
+    date: '2 months ago',
+    visible: true,
+    featured: true,
+    order: 6
+  },
+  // 7. ✅ Residential
+  {
+    id: 'rev_hussain_parveen',
+    source: 'GOOGLE',
+    name: 'HUSSAIN & PARVEEN',
+    designation: 'Kukatpally · Turnkey Residence',
+    title: 'Thoughtful Advice & Patient Execution',
+    body: "I'm really thankful to Espacio for patiently working with us. Whenever we suggested something, they didn't just reject it, they explained why it may not work and suggested better options. We're really happy with how our home turned out.",
+    rating: 5,
+    avatar: '',
+    date: '1 month ago',
+    visible: true,
+    featured: true,
+    order: 7
+  },
+  // 8. Existing - Sunkari Santosh
+  {
+    id: 'g_rev_19',
+    googleReviewId: 'g_rev_19',
+    source: 'GOOGLE',
+    name: 'Sunkari Santosh',
+    designation: 'Financial District · Duplex Home',
+    title: 'Professional & Passionate Towards Their Work',
+    body: 'Very professional and passionate towards their work. Taken good time to complete our project we are very happy and satisfied with quality material given by them very good Outlook for my interior and exterior building elevation.',
+    rating: 5,
+    avatar: '/reviews/sunkari_santosh.png',
+    date: '6 months ago',
+    visible: true,
+    featured: true,
+    order: 8
+  },
+  // 9. ✏️ B2B (materials)
+  {
+    id: 'rev_studio_vertex',
+    source: 'GOOGLE',
+    name: 'STUDIO VERTEX ARCHITECTS',
+    designation: 'Jubilee Hills · Architecture Firm',
+    title: 'Consistent Board & Laminate Quality',
+    body: "We've sourced boards and laminates from Espacio on a few projects. Quality is consistent batch to batch and deliveries are dependable, which matters when we're working to client deadlines.",
+    rating: 5,
+    avatar: '',
+    date: '3 months ago',
+    visible: true,
+    featured: true,
+    order: 9
+  },
+  // 10. Existing - Shaik BOB
+  {
+    id: 'g_rev_08',
+    googleReviewId: 'g_rev_08',
+    source: 'GOOGLE',
+    name: 'Shaik BOB',
+    designation: 'Manikonda · Turnkey Residence',
+    title: 'Wide Range of Varieties & Patient Customer Service',
+    body: 'Recently visited the store they have wide range of varieties and the customer service was very good they were very patient and understanding.',
+    rating: 5,
+    avatar: '/reviews/shaik_bob.png',
+    date: 'a year ago',
+    visible: true,
+    featured: true,
+    order: 10,
+    response: 'Thank you so much for visiting Espacio Interiors & Modular!'
+  },
+  // 11. ✅ Residential
+  {
+    id: 'rev_arjun_shena',
+    source: 'GOOGLE',
+    name: 'ARJUN & SHENA',
+    designation: 'Financial District · Luxury Flat',
+    title: 'Thoughtful Interiors & Floral Wardrobe Feature',
+    body: "I'm really happy with how Espacio did our whole house. Everything feels so thoughtfully done. My favourite is definitely the floral wardrobe, it's so pretty and adds such a lovely touch to the bedroom. I absolutely love how the house turned out.",
+    rating: 5,
+    avatar: '',
+    date: '1 month ago',
+    visible: true,
+    featured: true,
+    order: 11
+  },
+  // 12. Existing - Madhusudhan Vanam
+  {
+    id: 'g_rev_02',
+    googleReviewId: 'g_rev_02',
+    source: 'GOOGLE',
+    name: 'Madhusudhan Vanam',
+    designation: 'Kukatpally · Living Room Fit-Out',
+    title: 'Chala Bagundhi & Excellent TV Unit Execution',
+    body: 'Espacio vallu chala manchi ga TV unit chesyaru degara vundi mari cheyinchyaru chala bagundhi, please do visit espacio 👍',
+    rating: 5,
+    avatar: '/reviews/madhusudhan_vanam.png',
+    date: '5 months ago',
+    visible: true,
+    featured: true,
+    order: 12
+  },
+  // 13. ✏️ Residential (Hinglish)
+  {
+    id: 'rev_vikram_sneha',
+    source: 'GOOGLE',
+    name: 'VIKRAM & SNEHA SHARMA',
+    designation: 'Gachibowli · 3BHK Residence',
+    title: 'Cohesive Spatial Design & Family Comfort',
+    body: "Pura ghar ek hi style mein lag raha hai, upar se neeche tak. Parents ko bhi comfortable lagta hai aur bachon ko bhi apna room pasand aaya. Thank you Espacio!",
+    rating: 5,
+    avatar: '',
+    date: '2 months ago',
+    visible: true,
+    featured: true,
+    order: 13
+  },
+  // 14. Existing - Abdul Gaffar
+  {
+    id: 'g_rev_26',
+    googleReviewId: 'g_rev_26',
+    source: 'GOOGLE',
+    name: 'Abdul Gaffar',
+    designation: 'Banjara Hills · Luxury Interior',
+    title: 'Professional Service & Quality Materials',
+    body: 'Professional interior planning and exceptional materials supply from ESPACIO. Highly satisfied with their work.',
+    rating: 5,
+    avatar: '/reviews/abdul_gaffar.svg',
+    date: '6 months ago',
+    visible: true,
+    featured: true,
+    order: 14
+  },
+  // 15. ✏️ Commercial
+  {
+    id: 'rev_coffee_atelier',
+    source: 'GOOGLE',
+    name: 'THE COFFEE ATELIER',
+    designation: 'Banjara Hills · Commercial Cafe',
+    title: 'On-Time Commercial Handover & Impressive Finishes',
+    body: "We had a tight opening date and I wasn't sure it would work out, but the team coordinated everything on site. Customers keep asking who did our interiors.",
+    rating: 5,
+    avatar: '',
+    date: '2 months ago',
+    visible: true,
+    featured: true,
+    order: 15
+  },
+  // 16. Existing - Aditya Manda
+  {
+    id: 'g_rev_20',
+    googleReviewId: 'g_rev_20',
+    source: 'GOOGLE',
+    name: 'Aditya Manda',
+    designation: 'Narsingi · Modular Kitchen',
+    title: 'Professional Planning & Timely Delivery',
+    body: 'Great experience with ESPACIO for home interiors. Professional planning and timely delivery.',
+    rating: 5,
+    avatar: '/reviews/aditya_manda.png',
+    date: '4 months ago',
+    visible: true,
+    featured: true,
+    order: 16
+  },
+  // 17. ✏️ Residential
+  {
+    id: 'rev_dr_chenna_keshava',
+    source: 'GOOGLE',
+    name: 'DR. CHENNA KESHAVA & LAKSHMI',
+    designation: 'Tellapur · High-Rise 3BHK',
+    title: 'End-to-End Home Interiors & 3D Precision',
+    body: "Espacio handled our home interiors from design to installation. Communication was clear throughout, and the final finish matched the 3D designs closely. We'd happily work with them again.",
+    rating: 5,
+    avatar: '',
+    date: '3 months ago',
+    visible: true,
+    featured: true,
+    order: 17
+  },
+  // 18. Existing - Thumuganti Rithwik
+  {
+    id: 'g_rev_21',
+    googleReviewId: 'g_rev_21',
+    source: 'GOOGLE',
+    name: 'Thumuganti Rithwik',
+    designation: 'Jubilee Hills · Contemporary Villa',
+    title: 'Delighted with Material Selection & Execution',
+    body: 'Very satisfied with the interior design quality and material selection. Highly recommended!',
+    rating: 5,
+    avatar: '/reviews/thumuganti_rithwik.png',
+    date: '3 months ago',
+    visible: true,
+    featured: true,
+    order: 18
+  },
+  // 19. ✏️ B2B (rendering)
+  {
+    id: 'rev_axis_line',
+    source: 'GOOGLE',
+    name: 'AXIS LINE ARCHITECTS',
+    designation: 'Madhapur · Interior Design Studio',
+    title: 'Accurate 3D Visualizations & Fast Turnaround',
+    body: "Their 3D renders were accurate enough that our client signed off without second-guessing. Turnaround was quick, and revisions were no trouble.",
+    rating: 5,
+    avatar: '',
+    date: '2 months ago',
+    visible: true,
+    featured: true,
+    order: 19
+  },
+  // 20. Existing - LEGAL AMICUS
+  {
+    id: 'g_rev_23',
+    googleReviewId: 'g_rev_23',
+    source: 'GOOGLE',
+    name: 'LEGAL AMICUS',
+    designation: 'Financial District · Corporate Office',
+    title: 'Professional Planning & High-Quality Materials',
+    body: 'Professional interior planning and exceptional materials supply from ESPACIO.',
+    rating: 5,
+    avatar: '/reviews/legal_amicus.svg',
+    date: 'a year ago',
+    visible: true,
+    featured: true,
+    order: 20
+  }
 ];
 
 // ─── DEFAULT ADMIN USERS ──────────────────────────────────────────────────────
@@ -3044,11 +3327,11 @@ export const getCMSData = (key, fallback = null) => {
           }
         }
         if (key === STORAGE_KEYS.TESTIMONIALS) {
-          if (!Array.isArray(data) || data.length === 0) {
+          if (!Array.isArray(data) || data.length === 0 || !data.some(t => (t.name || '').includes('MANOJ & KRIPA')) || data.some(t => /karagani|naidu poola|Shiak Ayub|Amresh kumar/i.test(t.name || ''))) {
             data = DEFAULT_TESTIMONIALS;
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          } else if (data.some(t => t.id === 'g_rev_07' || /abdul\s*sattar/i.test(t.name))) {
-            data = data.filter(t => t.id !== 'g_rev_07' && !/abdul\s*sattar/i.test(t.name));
+          } else if (data.some(t => t.id === 'g_rev_07' || /abdul\s*sattar/i.test(t.name || ''))) {
+            data = data.filter(t => t.id !== 'g_rev_07' && !/abdul\s*sattar/i.test(t.name || ''));
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
         }
