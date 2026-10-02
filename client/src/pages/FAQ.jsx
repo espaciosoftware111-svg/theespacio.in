@@ -53,7 +53,7 @@ const faqItems = [
   },
   {
     q: "Do you provide warranties on completed projects?",
-    a: "Yes. We offer up to 10-year comprehensive warranties on hardware and core modular components, backed directly by factory certification.",
+    a: "Yes. We offer up to 10years comprehensive warranties on hardware and core modular components, backed directly by factory certification.",
     img: "/images/faq/faq_10_support.jpg",
     tag: "Support"
   },
