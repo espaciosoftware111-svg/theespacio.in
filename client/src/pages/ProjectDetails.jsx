@@ -748,7 +748,10 @@ const ProjectDetails = () => {
 
       {/* ── 1. PROJECT HERO: Clean Full-Bleed Card (Unified responsive layout matching mobile style) ── */}
       <section className="pt-20 sm:pt-24 px-3 sm:px-4 md:px-8 lg:px-12 max-w-[1560px] mx-auto">
-        <div className="relative h-[80dvh] sm:h-[80vh] lg:h-[84vh] min-h-[500px] sm:min-h-[540px] md:min-h-[580px] max-h-[820px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-black border border-walnut/15">
+        <div 
+          className="relative h-[90dvh] sm:h-[80vh] lg:h-[84vh] min-h-[500px] sm:min-h-[540px] md:min-h-[580px] max-h-[820px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-bg-card isolate"
+          style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+        >
           <img
             src={getOptimizedImageUrl(p.heroImage, 1600, 88)}
             onError={handleImgError}

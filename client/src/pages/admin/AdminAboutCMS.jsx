@@ -47,24 +47,24 @@ const defaultGenerations = [
 
 const defaultGalleryImages = [
   {
-    url: '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-121310.jpg',
-    title: 'Architectural Cornice & Fluted Wainscoting',
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781490/c0ffc7ad-06d1-4927-b2dc-ceff8491bf0e.png',
+    title: 'Neoclassical Boiserie & Halo Luminaire',
     subtitle: 'Jubilee Hills Master Suite'
   },
   {
-    url: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Parents_Room_1-20260813-110616.jpg',
-    title: 'Bespoke Solid Walnut Veneer Joinery',
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781720/38ce044a-38ca-4be2-a9c5-413b2c5917a6.png',
+    title: 'Calacatta Marble Waterfall Island & Joinery',
+    subtitle: 'Penthouse Culinary Suite'
+  },
+  {
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781753/d7eeaf8c-6df3-414a-a584-a55077db4f5b.png',
+    title: 'Fluted Acoustic Panelling & Ambient Architecture',
     subtitle: 'Contemporary Luxury Suite'
   },
   {
-    url: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg',
-    title: 'Curved Archways & Classical Plaster Trim',
-    subtitle: 'Bespoke Living Lounge'
-  },
-  {
-    url: '/images/company/2bhk_mordern_retro/hall_2.jpg',
-    title: 'Halo Luminaire & Wall Paneling Architecture',
-    subtitle: 'Modern Retro Residence'
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781734/7ae88285-3c07-4afb-83d4-12edb5ec18f6.png',
+    title: 'Architectural Timber Ceiling & Executive Lounge',
+    subtitle: 'Commercial & Hospitality Atelier'
   }
 ];
 
@@ -170,7 +170,7 @@ const AdminAboutCMS = () => {
 
           about_gallery_badge: getNonEmpty(storedSettings.about_gallery_badge, 'Visual Standards'),
           about_gallery_title: getNonEmpty(storedSettings.about_gallery_title, 'Craftsmanship in Detail'),
-          about_gallery_images: (Array.isArray(storedSettings.about_gallery_images) && storedSettings.about_gallery_images.length > 0 && !storedSettings.about_gallery_images.some(g => g.url && g.url.includes('open_hall.png')))
+          about_gallery_images: (Array.isArray(storedSettings.about_gallery_images) && storedSettings.about_gallery_images.length > 0 && !storedSettings.about_gallery_images.some(g => !g.url || g.url.includes('open_hall.png') || g.url.includes('indo_classical_elegance_3bhk') || g.url.includes('2bhk_mordern_retro/hall_2.jpg') || g.url.includes('Exquisite_Fusion_of_Modern__Desi') || g.url.includes('ac9e2276-8d7b-4646-be00-dedda2d90aa8')))
             ? storedSettings.about_gallery_images
             : defaultGalleryImages,
 

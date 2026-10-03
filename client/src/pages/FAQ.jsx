@@ -255,11 +255,11 @@ const FAQ = () => {
         ]);
         if (faqsRes?.data?.success && Array.isArray(faqsRes.data?.data) && faqsRes.data.data.length > 0) {
           setFaqs(parseFaqList(faqsRes.data.data));
-          setCMSData(STORAGE_KEYS.FAQS, faqsRes.data.data);
+          setCMSData(STORAGE_KEYS.FAQS, faqsRes.data.data, { silent: true });
         }
         if (setRes?.data?.success && setRes.data?.data) {
           const s = setRes.data.data;
-          setCMSData(STORAGE_KEYS.SETTINGS, s);
+          setCMSData(STORAGE_KEYS.SETTINGS, s, { silent: true });
           setHeaderState({
             eyebrow: s.faq_eyebrow || 'Frequently Asked',
             title: s.faq_title || 'Got Questions?\nWe Have Answers.',
@@ -274,11 +274,27 @@ const FAQ = () => {
 
     syncCMS();
 
-    window.addEventListener('espacio_cms_update', syncCMS);
-    window.addEventListener('storage', syncCMS);
+    const handleSync = () => {
+      const stored = getCMSData(STORAGE_KEYS.FAQS);
+      if (stored) setFaqs(parseFaqList(stored));
+      const s = getCMSData(STORAGE_KEYS.SETTINGS);
+      if (s) {
+        setHeaderState({
+          eyebrow: s.faq_eyebrow || 'Frequently Asked',
+          title: s.faq_title || 'Got Questions?\nWe Have Answers.',
+          desc: s.faq_description || 'Everything you need to know about working with ESPACIO — from first call to final handover.'
+        });
+        if (Array.isArray(s.faq_showcase_slides) && s.faq_showcase_slides.length > 0) {
+          setShowcaseSlides(s.faq_showcase_slides);
+        }
+      }
+    };
+
+    window.addEventListener('espacio_cms_update', handleSync);
+    window.addEventListener('storage', handleSync);
     return () => {
-      window.removeEventListener('espacio_cms_update', syncCMS);
-      window.removeEventListener('storage', syncCMS);
+      window.removeEventListener('espacio_cms_update', handleSync);
+      window.removeEventListener('storage', handleSync);
     };
   }, []);
 

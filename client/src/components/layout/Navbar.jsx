@@ -11,15 +11,21 @@ const Navbar = () => {
   const location = useLocation();
 
   const isMaterials = location.pathname.startsWith('/materials') || location.pathname.startsWith('/products');
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Pages that start with a dark cinematic hero
-  // Note: /projects/:slug (project detail) has an inset hero within a light cream background, so navbar sits on light bg
-  // /materials has a beige hero matching the site background
-  const hasDarkHero = ['/', '/about', '/services', '/projects', '/spaces', '/what-we-do'].some(path => {
+  // Note: /materials on desktop has a light showcase graphic, while mobile view has the dark video
+  const hasDarkHero = (['/', '/about', '/services', '/projects', '/spaces', '/what-we-do'].some(path => {
     if (path === '/') return location.pathname === '/';
     if (path === '/projects') return location.pathname === '/projects' || location.pathname === '/projects/';
     return location.pathname.startsWith(path);
-  }) && !location.search.includes('success=true');
+  }) || (isMaterials && isMobile)) && !location.search.includes('success=true');
 
   useEffect(() => {
     let ticking = false;
@@ -155,7 +161,7 @@ const Navbar = () => {
           <Link 
             to="/" 
             aria-label="ESPACIO Home"
-            className={`hover:opacity-90 transition-opacity ${isNavLight ? '' : 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]'}`}
+            className={`hover:opacity-90 transition-opacity ${isNavLight ? '' : 'drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] filter'}`}
             onClick={() => resetScroll(true, '/')}
           >
             <Logo scrolled={isNavLight} />
@@ -185,10 +191,10 @@ const Navbar = () => {
           <button 
             aria-label="Toggle navigation menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden p-2.5 rounded-full transition-colors flex items-center justify-center cursor-pointer ${
+            className={`lg:hidden p-2.5 rounded-full transition-all flex items-center justify-center cursor-pointer ${
               isNavLight 
                 ? 'text-ink hover:bg-ink-muted/10' 
-                : 'text-white hover:bg-white/10'
+                : 'text-white bg-black/35 backdrop-blur-md border border-white/20 hover:bg-black/55 shadow-[0_2px_12px_rgba(0,0,0,0.5)]'
             }`}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

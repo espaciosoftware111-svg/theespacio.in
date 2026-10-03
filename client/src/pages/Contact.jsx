@@ -175,7 +175,7 @@ const Contact = () => {
     ? ['Requirement', 'Materials Info', 'Your Details', 'Review'] 
     : isIndividualFlow
       ? ['Requirement', 'Your Details', 'Review']
-      : ['Requirement', 'Property Info', 'A Bit More Detail', 'Your Details', 'Review'];
+      : ['Requirement', 'Space Info', 'A Bit More Detail', 'Your Details', 'Review'];
   
   const activeStepIdx = isMaterials
     ? (step === 1 ? 0 : step === 3 ? 1 : step === 4 ? 2 : 3)
@@ -213,7 +213,16 @@ const Contact = () => {
       }
     } else if (step === 4) {
       if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required.';
-      if (!formData.mobile.trim()) newErrors.mobile = 'Mobile number is required.';
+      
+      const cleanMobile = (formData.mobile || '').replace(/\D/g, '');
+      if (!cleanMobile) {
+        newErrors.mobile = 'Mobile number is required.';
+      } else if (cleanMobile.length !== 10) {
+        newErrors.mobile = 'Mobile number must be exactly 10 digits.';
+      } else if (!/^[6-9]\d{9}$/.test(cleanMobile)) {
+        newErrors.mobile = 'Please enter a valid 10-digit mobile number.';
+      }
+
       if (!formData.email.trim()) {
         newErrors.email = 'Email address is required.';
       } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -525,11 +534,15 @@ const Contact = () => {
           </div>
           <h1 className="font-editorial text-4xl font-bold text-charcoal">Request Received.</h1>
           <p className="font-sans text-sm text-walnut leading-relaxed">
-            Your estimate request has been logged. Our principal design team will share your personalized estimate range on a quick call, since actual site conditions affect final BOQ significantly.
+            Your requirement request has been logged. Our principal design team will share your personalized estimate range on a quick call, since actual site conditions affect final BOQ significantly.
           </p>
           <div className="pt-4 space-y-3 flex flex-col items-center">
             <p className="font-sans text-xs uppercase tracking-widest text-gold font-bold mb-1">What happens next?</p>
-            {['We review your project requirements', 'Design director contacts you for site specifics', 'Receive personalized BOQ & 3D proposal'].map((s, idx) => (
+            {[
+              'We review your project requirements.',
+              'Design consultant will get in touch with you.',
+              'Receive personalized BOQ & 3D proposal.'
+            ].map((s, idx) => (
               <div key={idx} className="flex items-center space-x-3 text-xs font-sans text-walnut w-full max-w-[340px] text-left">
                 <span className="w-5 h-5 rounded-full bg-gold/20 text-gold flex items-center justify-center font-bold text-[10px] shrink-0">{idx + 1}</span>
                 <span>{s}</span>
@@ -705,7 +718,7 @@ const Contact = () => {
               className="space-y-8"
             >
               <div className="space-y-2">
-                <h2 className="font-editorial text-3xl font-bold text-charcoal">Tell us about the property</h2>
+                <h2 className="font-editorial text-3xl font-bold text-charcoal">Tell us about your space</h2>
                 <p className="font-sans text-sm text-walnut">Help us with some basic information about your project location and size.</p>
               </div>
 
@@ -813,9 +826,27 @@ const Contact = () => {
                 <div className="space-y-1.5">
                   <label className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">Property Size (optional)</label>
                   <input 
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={8}
                     value={formData.size}
-                    onChange={(e) => setFormData(prev => ({ ...prev, size: e.target.value }))}
-                    placeholder="e.g. 3200 sq ft or 3 BHK" 
+                    onKeyDown={(e) => {
+                      if (
+                        ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key) ||
+                        (e.ctrlKey || e.metaKey)
+                      ) {
+                        return;
+                      }
+                      if (!/^\d$/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, '');
+                      setFormData(prev => ({ ...prev, size: val }));
+                    }}
+                    placeholder="e.g. 3200 (in sq ft)" 
                     className="espacio-input" 
                   />
                 </div>
@@ -875,7 +906,7 @@ const Contact = () => {
                   value={formData.notes}
                   onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
                   rows={5} 
-                  placeholder="Describe your vision, style preferences, or any specific requirements..."
+                  placeholder="Describe your vision, style preferences, or any specific requirements."
                   className="espacio-input resize-none" 
                 />
               </div>
@@ -995,13 +1026,37 @@ const Contact = () => {
                 <div className="space-y-1.5">
                   <label className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">Mobile Number *</label>
                   <input 
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={10}
                     value={formData.mobile}
-                    onChange={(e) => {
-                      setFormData(prev => ({ ...prev, mobile: e.target.value }));
-                      setErrors(prev => ({ ...prev, mobile: null }));
+                    onKeyDown={(e) => {
+                      if (
+                        ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key) ||
+                        (e.ctrlKey || e.metaKey)
+                      ) {
+                        return;
+                      }
+                      if (!/^\d$/.test(e.key)) {
+                        e.preventDefault();
+                      }
                     }}
-                    placeholder="e.g. +91 95051 51116" 
-                    className="espacio-input" 
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/\D/g, '');
+                      if (val.length === 12 && val.startsWith('91')) {
+                        val = val.slice(2);
+                      } else if (val.length > 10 && val.startsWith('0')) {
+                        val = val.slice(1);
+                      }
+                      val = val.slice(0, 10);
+                      setFormData(prev => ({ ...prev, mobile: val }));
+                      if (val.length === 10 && /^[6-9]\d{9}$/.test(val)) {
+                        setErrors(prev => ({ ...prev, mobile: null }));
+                      }
+                    }}
+                    placeholder="10-digit mobile number (e.g. 9505151116)" 
+                    className={`espacio-input ${errors.mobile ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
                   />
                   {errors.mobile && <p className="font-sans text-xs text-red-500">{errors.mobile}</p>}
                 </div>
@@ -1137,7 +1192,7 @@ const Contact = () => {
                           {formData.size && (
                             <div className="grid grid-cols-3">
                               <span className="font-sans text-xs text-walnut/70 uppercase tracking-wide">Size / Area</span>
-                              <span className="font-sans text-sm text-charcoal font-semibold col-span-2">{formData.size}</span>
+                              <span className="font-sans text-sm text-charcoal font-semibold col-span-2">{formData.size} sq ft</span>
                             </div>
                           )}
                           {formData.stage && (
@@ -1230,7 +1285,7 @@ const Contact = () => {
               </div>
               
               <p className="text-center font-sans text-xs text-walnut/60 pt-2">
-                We'll get back to you within 24 hours with your personalized quote.
+                We'll get back to you within 24 hours with your personalized consultation.
               </p>
             </motion.div>
           )}

@@ -108,9 +108,13 @@ const QuoteModal = () => {
   };
 
   const handleChange = (e) => {
+    let { name, value } = e.target;
+    if (name === 'phone1' || name === 'phone2') {
+      value = value.replace(/\D/g, '').slice(0, 10);
+    }
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
@@ -426,14 +430,14 @@ const QuoteModal = () => {
                     ? 'Catalogue Request Received!' 
                     : modalMode === 'projects'
                     ? 'Portfolio Access Unlocked!'
-                    : 'Estimate Request Received!'}
+                    : 'Requirement Request Received!'}
                 </h3>
                 <p className="font-sans text-sm text-ink-soft max-w-[380px] mx-auto leading-relaxed">
                   {modalMode === 'catalogue' 
                     ? <>Thank you, <strong>{formData.name || 'valued client'}</strong>. You will receive an SMS and email with details to access our full catalog library shortly.</>
                     : modalMode === 'projects'
                     ? <>Thank you, <strong>{formData.name || 'valued client'}</strong>! Our senior design consultancy team has unlocked our private portfolio and will also share our high-res project lookbooks and floor plans with you via WhatsApp.</>
-                    : <>Thank you, <strong>{formData.name || 'valued client'}</strong>. Your estimate request has been logged. Our principal design team will share your personalized estimate range on a quick call, since actual site conditions affect final BOQ significantly.</>
+                    : <>Thank you, <strong>{formData.name || 'valued client'}</strong>. Your requirement request has been logged. Our principal design team will share your personalized estimate range on a quick call, since actual site conditions affect final BOQ significantly.</>
                   }
                 </p>
                 <button

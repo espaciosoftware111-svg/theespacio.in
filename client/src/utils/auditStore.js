@@ -50,7 +50,7 @@ export const getAuditLogs = () => {
   let logs = getCMSData(STORAGE_KEYS.AUDIT_LOGS);
   if (!Array.isArray(logs) || logs.length === 0) {
     logs = initialAuditLogs;
-    setCMSData(STORAGE_KEYS.AUDIT_LOGS, initialAuditLogs);
+    setCMSData(STORAGE_KEYS.AUDIT_LOGS, initialAuditLogs, { silent: true });
   }
   return logs;
 };

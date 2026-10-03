@@ -48,14 +48,18 @@ if (syncChannel) {
   };
 }
 
-// Dispatch change event to all tabs and active components
+// Dispatch change event to all tabs and active components (debounced to prevent re-entrant update storms)
+let notifyDebounceTimer = null;
 export const notifyCMSUpdate = () => {
-  window.dispatchEvent(new Event('espacio_cms_update'));
-  if (syncChannel) {
-    try {
-      syncChannel.postMessage({ type: 'CMS_UPDATED', timestamp: Date.now() });
-    } catch {}
-  }
+  if (notifyDebounceTimer) clearTimeout(notifyDebounceTimer);
+  notifyDebounceTimer = setTimeout(() => {
+    window.dispatchEvent(new Event('espacio_cms_update'));
+    if (syncChannel) {
+      try {
+        syncChannel.postMessage({ type: 'CMS_UPDATED', timestamp: Date.now() });
+      } catch {}
+    }
+  }, 100);
 };
 
 // Universal Publish to Live Site function: Syncs all local CMS stores, notifies active website views, and uploads to Supabase/backend
@@ -3485,7 +3489,12 @@ export const setCMSData = (key, data, options = {}) => {
       });
       data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
     }
-    localStorage.setItem(key, JSON.stringify(data));
+    const newStr = JSON.stringify(data);
+    const oldStr = localStorage.getItem(key);
+    if (oldStr === newStr) {
+      return;
+    }
+    localStorage.setItem(key, newStr);
     if (!silent) {
       notifyCMSUpdate();
     }

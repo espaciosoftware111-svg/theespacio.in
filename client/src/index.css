@@ -811,3 +811,24 @@ html.lenis, html.lenis body {
   scrollbar-width: none !important;
 }
 
+/* ── Hardware-accelerated rounded box clipping for mobile & desktop heroes ── */
+.hero-card-clipped {
+  border-radius: 24px;
+  overflow: hidden;
+  clip-path: inset(0 round 24px);
+  -webkit-clip-path: inset(0 round 24px);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  isolation: isolate;
+}
+
+@media (min-width: 1024px) {
+  .hero-card-clipped {
+    border-radius: 40px;
+    clip-path: inset(0 round 40px);
+    -webkit-clip-path: inset(0 round 40px);
+  }
+}
+

@@ -82,6 +82,14 @@ const heroImages = [
   '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp'
 ];
 
+export const PROJECTS_MOBILE_IMAGES = [
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/29bd1f5f-9c48-4b99-9df3-ae7452c6501c.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5a8b9f37-4b58-44b8-b86e-bf262791b082.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ffa36fb4-cc01-498d-aaed-f244304711a6.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/801e0ea0-440b-4a88-964a-278514967e9e.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/8a76287b-9789-481d-bbad-76181568229a.png'
+];
+
 const CANONICAL_ORDER = {
   'rajapushpa-provincia-3bhk': 1,
   'my-home-sayuk-3bhk': 2,
@@ -232,12 +240,12 @@ const Projects = () => {
           if (projRes?.data?.success && Array.isArray(projRes.data?.data) && projRes.data.data.length > 0) {
             const sorted = [...projRes.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
             setProjects(sorted);
-            setCMSData(STORAGE_KEYS.PROJECTS, sorted);
+            setCMSData(STORAGE_KEYS.PROJECTS, sorted, { silent: true });
             projectsCache = sorted;
           }
           if (setRes?.data?.success && setRes.data?.data) {
             const s = setRes.data.data;
-            setCMSData(STORAGE_KEYS.SETTINGS, s);
+            setCMSData(STORAGE_KEYS.SETTINGS, s, { silent: true });
             const rawImgs = (Array.isArray(s.projects_hero_images) && s.projects_hero_images.length > 0)
               ? s.projects_hero_images : heroImages;
             const h = {
@@ -256,7 +264,26 @@ const Projects = () => {
 
     loadData();
 
-    const handleSync = () => loadData();
+    const handleSync = () => {
+      try {
+        const storedProjects = getCMSData(STORAGE_KEYS.PROJECTS);
+        if (storedProjects && Array.isArray(storedProjects) && storedProjects.length > 0) {
+          const sorted = [...storedProjects].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+          setProjects(sorted);
+        }
+        const s = getCMSData(STORAGE_KEYS.SETTINGS);
+        if (s) {
+          const rawImgs = (Array.isArray(s.projects_hero_images) && s.projects_hero_images.length > 0)
+            ? s.projects_hero_images : heroImages;
+          setHeroContent({
+            badge: s.projects_hero_badge || 'Portfolio & Case Studies',
+            title: s.projects_hero_title || 'Our Projects',
+            subtitle: s.projects_hero_subtitle || 'Every space reflects thoughtful layouts, structural precision, custom material procurement, and meticulous attention to detail.',
+            images: Array.from(new Set(rawImgs.filter(Boolean)))
+          });
+        }
+      } catch {}
+    };
     window.addEventListener('espacio_cms_update', handleSync);
     window.addEventListener('storage', handleSync);
     return () => {
@@ -288,11 +315,14 @@ const Projects = () => {
       />
 
       {/* ── HERO ── */}
-      <section className="relative h-[80dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12">
-        <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px]">
-          <div className="absolute inset-0 overflow-hidden">
+      <section className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-[10px] lg:px-12">
+        <div 
+          className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] bg-bg-card isolate hero-card-clipped"
+        >
+          <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
             <HeroSlideshow
               images={heroContent.images && heroContent.images.length > 0 ? heroContent.images : heroImages}
+              mobileImages={PROJECTS_MOBILE_IMAGES}
               intervalMs={4200}
               transitionDuration={1.1}
               showGradient={false}

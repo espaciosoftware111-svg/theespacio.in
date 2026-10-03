@@ -158,11 +158,11 @@ const heroImages = [
 ];
 
 export const SERVICES_MOBILE_IMAGES = [
-  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
-  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781490/c0ffc7ad-06d1-4927-b2dc-ceff8491bf0e.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781734/7ae88285-3c07-4afb-83d4-12edb5ec18f6.png',
   'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781720/38ce044a-38ca-4be2-a9c5-413b2c5917a6.png',
-  'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
-  'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781753/d7eeaf8c-6df3-414a-a584-a55077db4f5b.png',
+  'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/801e0ea0-440b-4a88-964a-278514967e9e.png'
 ];
 
 import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
@@ -178,11 +178,15 @@ const Services = () => {
     const validHeroImgs = (Array.isArray(s?.services_hero_images) && s.services_hero_images.length === 5 && !s.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')))
       ? s.services_hero_images
       : heroImages;
+    const validMobileImgs = (Array.isArray(s?.services_mobile_images) && s.services_mobile_images.length === 5)
+      ? s.services_mobile_images
+      : SERVICES_MOBILE_IMAGES;
     return {
       badge: getNonEmpty(s?.services_hero_badge, 'Services'),
       title: getNonEmpty(s?.services_hero_title, 'Our Services'),
       subtitle: getNonEmpty(s?.services_hero_subtitle, 'Turnkey design and build with engineering tolerances. No templates. No hidden package tricks.'),
       images: validHeroImgs,
+      mobileImages: validMobileImgs,
       visible: true
     };
   });
@@ -202,11 +206,15 @@ const Services = () => {
         const validHeroImgs = (Array.isArray(settings.services_hero_images) && settings.services_hero_images.length === 5 && !settings.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')))
           ? settings.services_hero_images
           : heroImages;
+        const validMobileImgs = (Array.isArray(settings.services_mobile_images) && settings.services_mobile_images.length === 5)
+          ? settings.services_mobile_images
+          : SERVICES_MOBILE_IMAGES;
         setHeroContent({
           badge: getNonEmpty(settings.services_hero_badge, 'Services'),
           title: getNonEmpty(settings.services_hero_title, 'Our Services'),
           subtitle: getNonEmpty(settings.services_hero_subtitle, 'Turnkey design and build with engineering tolerances. No templates. No hidden package tricks.'),
           images: validHeroImgs,
+          mobileImages: validMobileImgs,
           visible: settings.services_hero_visible !== false
         });
         const validList = (Array.isArray(settings.services_list) && settings.services_list.length >= 5 && !settings.services_list.some(item => typeof item.img === 'string' && !item.img.includes('res.cloudinary.com')))
@@ -241,8 +249,6 @@ const Services = () => {
   }, []);
 
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.15]);
-  const bgY     = useTransform(scrollYProgress, [0, 1], ['0%', '16%']);
   const textY   = useTransform(scrollYProgress, [0, 0.8], ['0px', '-45px']);
   const textOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.25]);
 
@@ -251,20 +257,22 @@ const Services = () => {
       <SEO title="Services — ESPACIO Interiors" description="Full home interiors, modular kitchens, commercial spaces, and renovations. Engineering-first luxury design executed by ESPACIO." url="/services" />
 
       {heroContent.visible !== false && (
-        <section ref={heroRef} className="relative h-[80dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
-          <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
-            <motion.div style={{ scale: bgScale, y: bgY }} className="absolute inset-0 overflow-hidden">
+        <section ref={heroRef} className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+          <div 
+            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl bg-bg-card isolate hero-card-clipped"
+          >
+            <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
               <HeroSlideshow
                 images={heroContent.images && heroContent.images.length > 0 ? heroContent.images : heroImages}
-                mobileImages={SERVICES_MOBILE_IMAGES}
+                mobileImages={heroContent.mobileImages && heroContent.mobileImages.length > 0 ? heroContent.mobileImages : SERVICES_MOBILE_IMAGES}
                 intervalMs={4000}
                 transitionDuration={1.3}
                 showGradient={false}
                 onIndexChange={setCurrentImageIdx}
               />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 z-10 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/20 z-10 pointer-events-none" />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 z-10 pointer-events-none rounded-[inherit]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/20 z-10 pointer-events-none rounded-[inherit]" />
             
             {/* Hero Text Content with Dynamic Scroll Parallax */}
             <div className="absolute inset-0 z-20 flex flex-col justify-end pointer-events-none">

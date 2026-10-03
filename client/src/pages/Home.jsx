@@ -137,7 +137,10 @@ const AutoScrollingInteriorBox = ({ activeIdx, items }) => {
   return (
     <div ref={containerRef} className="w-full">
       <TiltCard className="relative w-full max-w-[520px] xl:max-w-[560px] mx-auto">
-        <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[26px] shadow-2xl bg-stone-900 cursor-pointer border border-black/10">
+        <div 
+          className="relative aspect-[16/11] w-full overflow-hidden rounded-[26px] shadow-2xl bg-bg-card cursor-pointer border border-black/[0.04]"
+          style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+        >
           <AnimatePresence mode="sync">
             <motion.img
               key={index}
@@ -334,7 +337,10 @@ const TeamProjectsShowcase = ({ customSlides }) => {
     <div ref={containerRef} className="relative w-full max-w-[580px] lg:max-w-none mx-auto aspect-[4/3.3] sm:aspect-[4/3] min-h-[290px] sm:min-h-[380px] group">
 
       {/* ── Main Card ── */}
-      <div className="w-full h-full rounded-[20px] sm:rounded-[26px] overflow-hidden shadow-2xl border border-ink-border/15 relative z-10 bg-stone-950">
+      <div 
+        className="w-full h-full rounded-[20px] sm:rounded-[26px] overflow-hidden shadow-2xl relative z-10 bg-bg-card"
+        style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+      >
         <AnimatePresence custom={direction} initial={false} mode="sync">
           <motion.div
             key={`proj-${idx}`}
@@ -672,14 +678,21 @@ const Home = () => {
             apiData.showcase_slides = teamProjectsData;
           }
           setHomeSettings((prev) => ({ ...prev, ...apiData }));
-          setCMSData(STORAGE_KEYS.SETTINGS, apiData);
+          setCMSData(STORAGE_KEYS.SETTINGS, apiData, { silent: true });
         }
       } catch {}
     };
 
     loadHomeCMS();
 
-    const handleSync = () => loadHomeCMS();
+    const handleSync = () => {
+      try {
+        const stored = getCMSData(STORAGE_KEYS.SETTINGS);
+        if (stored && Object.keys(stored).length > 0) {
+          setHomeSettings((prev) => ({ ...prev, ...stored }));
+        }
+      } catch {}
+    };
     window.addEventListener('espacio_cms_update', handleSync);
     window.addEventListener('storage', handleSync);
     return () => {
@@ -790,9 +803,8 @@ const Home = () => {
   });
 
   useEffect(() => {
-    const syncHomeFaqs = async () => {
+    const readFaqsFromStorage = () => {
       try {
-        const { getCMSData, STORAGE_KEYS } = await import('../utils/cmsStore');
         const stored = getCMSData(STORAGE_KEYS.FAQS);
         if (Array.isArray(stored) && stored.length > 0) {
           const filtered = mapFaqItems(stored);
@@ -801,7 +813,10 @@ const Home = () => {
           }
         }
       } catch {}
+    };
 
+    const syncHomeFaqs = async () => {
+      readFaqsFromStorage();
       try {
         const res = await axios.get('/faqs');
         if (res.data?.success && Array.isArray(res.data?.data) && res.data.data.length > 0) {
@@ -815,11 +830,11 @@ const Home = () => {
 
     syncHomeFaqs();
 
-    window.addEventListener('espacio_cms_update', syncHomeFaqs);
-    window.addEventListener('storage', syncHomeFaqs);
+    window.addEventListener('espacio_cms_update', readFaqsFromStorage);
+    window.addEventListener('storage', readFaqsFromStorage);
     return () => {
-      window.removeEventListener('espacio_cms_update', syncHomeFaqs);
-      window.removeEventListener('storage', syncHomeFaqs);
+      window.removeEventListener('espacio_cms_update', readFaqsFromStorage);
+      window.removeEventListener('storage', readFaqsFromStorage);
     };
   }, []);
 
@@ -865,7 +880,7 @@ const Home = () => {
   const heroExitY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
 
   useEffect(() => {
-    const loadFeaturedProjects = async () => {
+    const readProjectsFromStorage = () => {
       try {
         const storedProjects = getCMSData(STORAGE_KEYS.PROJECTS);
         if (storedProjects && Array.isArray(storedProjects) && storedProjects.length > 0) {
@@ -873,7 +888,10 @@ const Home = () => {
           setProjects(sorted);
         }
       } catch {}
+    };
 
+    const loadFeaturedProjects = async () => {
+      readProjectsFromStorage();
       try {
         const r = await axios.get('/projects?limit=20', { timeout: 3000 }).catch(() => null);
         if (r?.data?.success && Array.isArray(r?.data?.data) && r.data.data.length >= 8) {
@@ -885,12 +903,11 @@ const Home = () => {
 
     loadFeaturedProjects();
 
-    const handleSync = () => loadFeaturedProjects();
-    window.addEventListener('espacio_cms_update', handleSync);
-    window.addEventListener('storage', handleSync);
+    window.addEventListener('espacio_cms_update', readProjectsFromStorage);
+    window.addEventListener('storage', readProjectsFromStorage);
     return () => {
-      window.removeEventListener('espacio_cms_update', handleSync);
-      window.removeEventListener('storage', handleSync);
+      window.removeEventListener('espacio_cms_update', readProjectsFromStorage);
+      window.removeEventListener('storage', readProjectsFromStorage);
     };
   }, []);
 
@@ -1163,13 +1180,17 @@ const Home = () => {
 
       {/* ── 1. HERO ── */}
       {homeSettings.hero_visible !== false && (
-        <section ref={heroRef} className="relative h-[85dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
+        <section ref={heroRef} className="relative h-[90dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <motion.div
-            style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY }}
-            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl bg-neutral-900"
+            style={{ 
+              scale: heroExitScale, 
+              opacity: heroExitOpacity, 
+              y: heroExitY,
+            }}
+            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl bg-bg-card isolate hero-card-clipped"
           >
             {/* Background Image Layer */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
               <HeroSlideshow 
                 images={HERO_IMAGES}
                 mobileImages={HERO_IMAGES_MOBILE}
@@ -1218,8 +1239,11 @@ const Home = () => {
                     >
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                       
-                      <div className="p-3.5 sm:p-5.5 md:p-6">
-                        <div className="w-full aspect-[16/9] rounded-[12px] sm:rounded-[14px] overflow-hidden mb-3 sm:mb-5 relative bg-black/20">
+                      <div className="p-3.5 sm:p-5 md:p-6 flex flex-col items-center">
+                        <div 
+                          className="w-full aspect-[3/4] max-h-[44dvh] sm:max-h-[380px] lg:max-h-none lg:aspect-[16/9] rounded-[14px] overflow-hidden mb-3 sm:mb-4 relative bg-white/10"
+                          style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                        >
                           {Array.from({ length: 5 }).map((_, imgIdx) => {
                             const isActive = imgIdx === (currentImageIdx % 5);
                             const desktopImg = HERO_IMAGES[imgIdx % HERO_IMAGES.length];
@@ -1257,7 +1281,7 @@ const Home = () => {
                           })}
                         </div>
 
-                        <h2 className="font-display text-[18px] xs:text-[19.5px] sm:text-[22.5px] md:text-[24px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-3 sm:mb-5 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+                        <h2 className="font-display text-[16px] xs:text-[17.5px] sm:text-[20px] md:text-[22px] lg:text-[25px] font-semibold leading-tight tracking-[-0.02em] text-white mb-2.5 sm:mb-4 text-center whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
                           {homeSettings.hero_card_heading || 'We Craft the Future Dwelling'}
                         </h2>
 

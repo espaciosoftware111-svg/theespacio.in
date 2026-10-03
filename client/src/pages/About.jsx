@@ -76,24 +76,24 @@ const defaultLandmarkBuilds = [
 
 const defaultGalleryImages = [
   {
-    url: '/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-121310.jpg',
-    title: 'Architectural Cornice & Fluted Wainscoting',
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781490/c0ffc7ad-06d1-4927-b2dc-ceff8491bf0e.png',
+    title: 'Neoclassical Boiserie & Halo Luminaire',
     subtitle: 'Jubilee Hills Master Suite'
   },
   {
-    url: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Parents_Room_1-20260813-110616.jpg',
-    title: 'Bespoke Solid Walnut Veneer Joinery',
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781720/38ce044a-38ca-4be2-a9c5-413b2c5917a6.png',
+    title: 'Calacatta Marble Waterfall Island & Joinery',
+    subtitle: 'Penthouse Culinary Suite'
+  },
+  {
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781753/d7eeaf8c-6df3-414a-a584-a55077db4f5b.png',
+    title: 'Fluted Acoustic Panelling & Ambient Architecture',
     subtitle: 'Contemporary Luxury Suite'
   },
   {
-    url: '/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-Guest_restaurant_20-20260810-120432.jpg',
-    title: 'Curved Archways & Classical Plaster Trim',
-    subtitle: 'Bespoke Living Lounge'
-  },
-  {
-    url: '/images/company/2bhk_mordern_retro/hall_2.jpg',
-    title: 'Halo Luminaire & Wall Paneling Architecture',
-    subtitle: 'Modern Retro Residence'
+    url: 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790781734/7ae88285-3c07-4afb-83d4-12edb5ec18f6.png',
+    title: 'Architectural Timber Ceiling & Executive Lounge',
+    subtitle: 'Commercial & Hospitality Atelier'
   }
 ];
 
@@ -198,7 +198,16 @@ const getValidGenerations = (val) => {
 
 const getValidGallery = (val) => {
   if (Array.isArray(val) && val.length > 0) {
-    return val;
+    const hasOldDefaults = val.some(item => 
+      !item?.url ||
+      item.url.includes('indo_classical_elegance_3bhk') || 
+      item.url.includes('2bhk_mordern_retro/hall_2.jpg') ||
+      item.url.includes('Exquisite_Fusion_of_Modern__Desi') ||
+      item.url.includes('ac9e2276-8d7b-4646-be00-dedda2d90aa8')
+    );
+    if (!hasOldDefaults) {
+      return val;
+    }
   }
   return defaultGalleryImages;
 };
@@ -403,17 +412,19 @@ const About = () => {
       {/* ── 1. SIGNATURE HERO BANNER (Matches Services hero layout with bottom-anchored content) ────────────── */}
       {aboutData.heroVisible !== false && (
         <section ref={heroRef} className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
-          <div className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl">
+          <div 
+            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl bg-bg-card isolate hero-card-clipped"
+          >
             {/* Background image container — crisp 1:1 pixel rendering without scale blur */}
-            <div className="absolute inset-0 overflow-hidden">
-              <picture className="w-full h-full">
+            <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
+              <picture className="w-full h-full rounded-[inherit] overflow-hidden">
                 <source srcSet={aboutData.heroImage.replace(/\.jpg$/i, '.webp')} type="image/webp" />
                 <img
                   src={aboutData.heroImage}
                   alt="ESPACIO Luxury Background"
                   decoding="async"
                   loading="eager"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center rounded-[inherit]"
                 />
               </picture>
             </div>
@@ -473,7 +484,7 @@ const About = () => {
 
       {/* ── 2. OUR STORY SECTION (Warm Cream Background) ─────────────────── */}
       <section className="pt-6 sm:pt-16 lg:pt-16 pb-12 sm:pb-20 lg:pb-24 px-4 sm:px-6 md:px-12 border-b border-ink-border bg-bg relative">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start relative">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative">
           
           {/* Left Column — 3 Landmark Images Down by Down (Scrolls naturally) */}
           <div className="lg:col-span-5 flex flex-col gap-5 sm:gap-7 w-full">
@@ -515,11 +526,8 @@ const About = () => {
             ))}
           </div>
 
-          {/* Right Column — Narrative Story (Locks at vertical middle of frame while landmark images scroll) */}
-          <div 
-            className="lg:col-span-7 lg:sticky lg:self-start"
-            style={{ top: 'max(96px, calc(50vh - 230px))' }}
-          >
+          {/* Right Column — Narrative Story (Vertically centered, scrolls together with landmark images in one go) */}
+          <div className="lg:col-span-7 lg:self-center">
             <Reveal delay={0.15} className="space-y-5 sm:space-y-6 pt-1">
               <h2 className="font-display text-gold leading-tight tracking-tight font-normal" style={{ fontSize: 'clamp(36px,5.5vw,64px)', letterSpacing: '0.02em', fontFamily: "'Cormorant Garamond', serif" }}>
                 {aboutData.storyBadge}
@@ -667,34 +675,46 @@ const About = () => {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6">
             {(aboutData.galleryImages || defaultGalleryImages).map((img, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <motion.div 
-                  whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative aspect-[16/11] sm:aspect-[3/4] rounded-[20px] overflow-hidden border border-ink-border shadow-md hover:shadow-xl transition-all duration-300 bg-bg-card cursor-pointer"
-                >
-                  <img
-                    src={img.url}
-                    alt={img.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Color-Corrected High-Contrast Glass Card */}
-                  <div 
-                    className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-xl border border-black/5 rounded-[15px] sm:rounded-[16px] p-3.5 sm:p-5 shadow-2xl opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 pointer-events-none overflow-hidden"
+                <div className="group flex flex-col cursor-pointer">
+                  <motion.div 
+                    whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
+                    whileTap={{ scale: 0.98 }}
+                    className="relative aspect-[3/4] rounded-[20px] overflow-hidden border border-ink-border shadow-md hover:shadow-xl transition-all duration-300 bg-bg-card"
                   >
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-[#B89047]" />
-                    <p className="font-sans text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-[#9E7B3B] pl-2 line-clamp-1">
+                    <img
+                      src={img.url}
+                      alt={img.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none hidden sm:block" />
+                    
+                    {/* Desktop Hover Glass Card (Hidden on Mobile) */}
+                    <div 
+                      className="hidden sm:block absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-[#151518]/95 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-[16px] p-4 shadow-2xl opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none overflow-hidden"
+                    >
+                      <div className="absolute top-0 left-0 w-1.5 h-full bg-[#B89047]" />
+                      <p className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-[#9E7B3B] dark:text-[#E8BA60] pl-2 line-clamp-1">
+                        {img.subtitle}
+                      </p>
+                      <h3 className="font-display text-[15px] font-bold text-[#101014] dark:text-white leading-snug mt-0.5 pl-2 line-clamp-2">
+                        {img.title}
+                      </h3>
+                    </div>
+                  </motion.div>
+
+                  {/* Mobile Caption (Below image so it never covers the render) */}
+                  <div className="sm:hidden pt-3 px-1">
+                    <p className="font-sans text-[10.5px] font-bold uppercase tracking-[0.18em] text-gold">
                       {img.subtitle}
                     </p>
-                    <h3 className="font-display text-[15px] sm:text-[16px] font-bold text-[#101014] leading-snug mt-0.5 sm:mt-1 pl-2 line-clamp-2">
+                    <h3 className="font-display text-[16px] font-bold text-ink leading-snug mt-1">
                       {img.title}
                     </h3>
                   </div>
-                </motion.div>
+                </div>
               </Reveal>
             ))}
           </div>

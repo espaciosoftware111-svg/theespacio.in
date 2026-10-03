@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Search, ArrowRight } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import GooeyInput from '../components/ui/gooey-input';
@@ -119,6 +119,8 @@ export const CANONICAL_MATERIALS = [
   }
 ];
 
+export const DEFAULT_MATERIALS_HERO_IMAGE = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791021147/Materials_That_Shape_Home_1.png';
+
 const Products = () => {
   const [products, setProducts] = useState(() => {
     const stored = getCMSData(STORAGE_KEYS.PRODUCTS);
@@ -128,16 +130,31 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
 
   const [cmsSettings, setCmsSettings] = useState(() => getCMSData(STORAGE_KEYS.SETTINGS) || {});
+  const heroRef = useRef(null);
   const videoRef = useRef(null);
   const heroVideoUrl = cmsSettings.materials_hero_video || 'https://res.cloudinary.com/r3jwfy0y/video/upload/v1790935342/thronetegelslaminaat_pindown.io_1790935254.mp4';
+  const heroImageUrl = cmsSettings.materials_hero_image || DEFAULT_MATERIALS_HERO_IMAGE;
+
+  // Desktop subtle parallax scroll motion
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const desktopBgY = useTransform(scrollYProgress, [0, 1], ['0px', '28px']);
+  const desktopBgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.025]);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {});
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      if (isMobile) {
+        videoRef.current.defaultMuted = true;
+        videoRef.current.muted = true;
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      } else {
+        videoRef.current.pause();
       }
     }
   }, [heroVideoUrl]);
@@ -229,30 +246,60 @@ const Products = () => {
         url="/materials"
       />
 
-      {/* Hero Landing Section: Full-Width Autoplay Cinematic Video (Muted, Without Audio) */}
-      <section className="relative h-[86dvh] sm:h-[88vh] lg:h-[95vh] min-h-[540px] sm:min-h-[640px] px-0 sm:px-6 pt-0 sm:pt-2.5 lg:pt-3 pb-0 sm:pb-3 lg:px-12 z-0">
-        <div className="relative w-full h-full overflow-hidden rounded-none sm:rounded-[24px] lg:rounded-[40px] bg-[#1a1a1a] border-b sm:border border-black/10 shadow-md">
-          <video
-            ref={videoRef}
-            src={heroVideoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover select-none"
-          />
+      {/* Hero Landing Section: 96% Screen Size Hero Banner */}
+      <section 
+        ref={heroRef} 
+        className="relative w-full z-0 h-[96dvh] sm:h-[96vh] min-h-[500px] sm:min-h-[540px] px-2 sm:px-4 lg:px-[2%] pt-1 sm:pt-1.5 lg:pt-1.5 pb-1 sm:pb-1.5"
+      >
+        <div 
+          className="relative w-full h-full overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[36px] bg-[#ded4c5] shadow-lg border border-black/5 hero-card-clipped isolate flex items-center justify-center"
+        >
+          {/* Mobile View: Autoplay Cinematic Video (strictly on mobile) */}
+          <div className="md:hidden w-full h-full relative overflow-hidden">
+            <video
+              ref={videoRef}
+              src={heroVideoUrl}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover select-none"
+            />
+            {/* Top Ambient Vignette for Navbar & Logo Contrast on Mobile Video */}
+            <div 
+              className="absolute inset-x-0 top-0 h-32 pointer-events-none z-10"
+              style={{
+                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 50%, transparent 100%)'
+              }}
+            />
+            {/* Subtle Bottom Ambient Vignette on Mobile */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 35%, transparent 70%)'
+              }}
+            />
+            {/* Scroll Down Indicator (Mobile Only) */}
+            <ScrollDownIndicator light={false} />
+          </div>
 
-          {/* Subtle Ambient Vignette & Gradient for Smooth Bottom Transition */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 35%, transparent 70%)'
-            }}
-          />
-
-          {/* Scroll Down Indicator */}
-          <ScrollDownIndicator light={false} />
+          {/* Desktop View: 90% Screen Size Showcase Graphic (No Black Fade, Full Visibility) */}
+          <div className="hidden md:flex w-full h-full items-center justify-center relative overflow-hidden bg-[#ded4c5]">
+            <motion.div
+              style={{ y: desktopBgY, scale: desktopBgScale }}
+              className="w-full h-full flex items-center justify-center will-change-transform origin-center"
+            >
+              <img
+                src={heroImageUrl}
+                alt="Materials That Shape Home — ESPACIO"
+                className="w-full h-full object-cover object-center select-none pointer-events-none"
+                loading="eager"
+                fetchPriority="high"
+                style={{ imageRendering: 'high-quality' }}
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 

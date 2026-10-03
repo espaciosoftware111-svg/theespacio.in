@@ -2666,7 +2666,7 @@ const WhatWeDo = () => {
         const res = await axios.get('/settings');
         if (res.data?.success && res.data?.data) {
           const d = res.data.data;
-          setCMSData(STORAGE_KEYS.SETTINGS, d);
+          setCMSData(STORAGE_KEYS.SETTINGS, d, { silent: true });
           if (Array.isArray(d.spaces_list) && d.spaces_list.length > 0) {
             setSpacesList(d.spaces_list.filter(c => c.slug !== 'apartments' && c.slug !== 'villas'));
           }
@@ -2684,11 +2684,26 @@ const WhatWeDo = () => {
 
     syncCMS();
 
-    window.addEventListener('espacio_cms_update', syncCMS);
-    window.addEventListener('storage', syncCMS);
+    const handleSync = () => {
+      const settings = getCMSData(STORAGE_KEYS.SETTINGS) || {};
+      if (Array.isArray(settings.spaces_list) && settings.spaces_list.length > 0) {
+        setSpacesList(settings.spaces_list.filter(c => c.slug !== 'apartments' && c.slug !== 'villas'));
+      }
+      if (Array.isArray(settings.spaces_before_after_slides) && settings.spaces_before_after_slides.length > 0) {
+        setSpacesHeroState((prev) => ({
+          ...prev,
+          slides: settings.spaces_before_after_slides,
+          beforeLabel: getNonEmpty(settings.spaces_before_label, prev.beforeLabel),
+          afterLabel: getNonEmpty(settings.spaces_after_label, prev.afterLabel),
+        }));
+      }
+    };
+
+    window.addEventListener('espacio_cms_update', handleSync);
+    window.addEventListener('storage', handleSync);
     return () => {
-      window.removeEventListener('espacio_cms_update', syncCMS);
-      window.removeEventListener('storage', syncCMS);
+      window.removeEventListener('espacio_cms_update', handleSync);
+      window.removeEventListener('storage', handleSync);
     };
   }, []);
 
@@ -2882,7 +2897,7 @@ const WhatWeDo = () => {
 
         {/* ── 1. CINEMATIC DETAIL HERO ────────────────────────────────────────── */}
         {spacesSettings.space_detail_hero_visible !== false && (
-          <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-3 sm:px-4 md:px-5 lg:px-6 w-full h-[80dvh] sm:h-[80vh] lg:h-[90vh] min-h-[500px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
+          <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-3 sm:px-4 md:px-5 lg:px-6 w-full h-[90dvh] sm:h-[80vh] lg:h-[90vh] min-h-[500px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
             <div className="relative w-full h-full rounded-[18px] sm:rounded-[26px] lg:rounded-[32px] overflow-hidden bg-bg-dark shadow-[0_16px_40px_rgba(0,0,0,0.22)] border border-white/10 flex items-end">
               <img 
                 src={getOptimizedImageUrl(
@@ -3620,7 +3635,7 @@ const WhatWeDo = () => {
         <section
           ref={heroRef}
           data-lenis-prevent
-          className="relative h-[80dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none touch-none"
+          className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none touch-none"
           style={{ touchAction: 'none' }}
           onMouseDown={onStart}
           onTouchStart={onStart}
@@ -3631,8 +3646,13 @@ const WhatWeDo = () => {
           onClick={(e) => handleMove(e.clientX)}
         >
           <motion.div
-            style={{ scale: heroExitScale, opacity: heroExitOpacity, y: heroExitY, touchAction: 'none' }}
-            className="relative w-full h-full overflow-hidden rounded-[18px] sm:rounded-[24px] lg:rounded-[40px] origin-top cursor-ew-resize bg-bg-dark shadow-2xl touch-none select-none"
+            style={{ 
+              scale: heroExitScale, 
+              opacity: heroExitOpacity, 
+              y: heroExitY, 
+              touchAction: 'none',
+            }}
+            className="relative w-full h-full overflow-hidden rounded-[18px] sm:rounded-[24px] lg:rounded-[40px] origin-top cursor-ew-resize bg-bg-card shadow-2xl touch-none select-none isolate hero-card-clipped"
           >
             {/* AFTER Image Layer */}
             <motion.div

@@ -27,7 +27,7 @@ const HeroSlideshow = memo(({
   className = "absolute inset-0 w-full h-full object-cover",
   onIndexChange,
   showGradient = true,
-  gradientClassName = "absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 z-10 pointer-events-none"
+  gradientClassName = "absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none"
 }) => {
   const desktopList = Array.isArray(images) && images.length > 0 ? images : [];
   const mobileList = Array.isArray(mobileImages) && mobileImages.length > 0 ? mobileImages : desktopList;
@@ -110,7 +110,7 @@ const HeroSlideshow = memo(({
   if (slideCount === 0) return null;
 
   return (
-    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none rounded-[inherit]">
       {Array.from({ length: slideCount }).map((_, idx) => {
         const isActive = idx === (currentIndex % slideCount);
         const dSrc = desktopList[idx % desktopList.length];
@@ -130,6 +130,7 @@ const HeroSlideshow = memo(({
               duration: transitionDuration,
               ease: [0.25, 0.1, 0.25, 1],
             }}
+            className="rounded-[inherit] overflow-hidden"
             style={{
               position: 'absolute',
               inset: 0,
@@ -137,6 +138,8 @@ const HeroSlideshow = memo(({
               height: '100%',
               zIndex: isActive ? 2 : 1,
               pointerEvents: 'none',
+              borderRadius: 'inherit',
+              overflow: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden',
             }}
@@ -150,7 +153,7 @@ const HeroSlideshow = memo(({
               decoding={idx === 0 ? 'sync' : 'async'}
               loading="eager"
               fetchPriority={idx === 0 ? "high" : "auto"}
-              className="w-full h-full object-cover object-center select-none pointer-events-none"
+              className="w-full h-full object-cover object-center select-none pointer-events-none rounded-[inherit]"
               style={{
                 imageRendering: 'high-quality',
               }}
