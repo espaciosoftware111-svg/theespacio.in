@@ -156,23 +156,28 @@ export const COMPANY_PROJECTS = [
   },
   {
     id: 'gandipet-modern-retro-2bhk',
-    title: 'Gandipet Modern Retro 2BHK',
+    title: 'The Panelled Muse',
     category: 'Residential',
     location: 'Gandipet, Hyderabad',
     scope: 'Interior Styling & Turnkey Carpentry',
     area: '1,750 sq.ft',
     timeline: '55 Days',
-    heroImage: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png',
+    heroImage: '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
     description: 'A cozy interplay of mid-century aesthetics for Kiran Raja, rich natural walnut veneers, custom fluted wall paneling, and warm cove ambient illumination.',
     gallery: [
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a59fb8f4-c200-468b-bf31-6e63302b0bed.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/06c85c57-84c6-48b8-86df-c0cda8641627.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d03da20b-2b8e-467e-a0c1-e87c0fb81b13.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/e5fd4044-dbc8-48e7-8269-3d107cc0c436.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/901c10b3-8957-4198-86c8-4589b1d42750.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/69fac825-2a00-4d3d-9f64-19d8336aa9ec.png',
-      'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/802e37b7-a758-4a54-bf4c-ac4666122714.png'
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_5.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_7.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_9.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_12.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_14.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_15.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_16.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_17.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_18.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_21.webp',
+      '/images/projects/gandipet_kiran_2bhk/kiran_gallery_24.webp'
     ]
   },
   {
