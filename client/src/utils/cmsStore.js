@@ -138,48 +138,61 @@ export const DEFAULT_PROJECTS = [
   {
     "_id": "proj_1_rajapushpa_provincia",
     "order": 1,
-    "title": "The Arcstone Residence",
+    "title": "The Arcstone Residence, Narsingi",
     "slug": "rajapushpa-provincia-3bhk",
     "category": "apartment",
     "area": "2,850 sq.ft.",
     "location": "Narsingi, Hyderabad",
     "year": 2025,
     "style": "Contemporary Warm Minimalist",
-    "description": "Warm wood tones, sculpted feature walls, and hidden lighting that transforms the mood room to room — this 3BHK turns every corner into something worth showing off. Every finish built to stay flawless for years, not just on move-in day.",
+    "description": "Warm wood tones, sculpted feature walls, and hidden lighting that transforms the mood room to room — this 3BHK in Narsingi turns every corner into something worth showing off. Every finish built to stay flawless for years, not just on move-in day.",
     "story": {
-      "vision": "The brief was clear from day one: give the client a living room that feels warm and welcoming the moment you walk in — never stiff, never showroom-y. We planned to bring in wood paneling with a soft vertical texture, pair it with a marble-look backdrop behind the TV, and layer the ceiling with gentle cove lighting that could shift the whole mood of the room after sunset. A statement chandelier would tie the space together — the goal was a room that works just as well for a quiet evening in as it does when guests are over.",
-      "challenges": "The trickiest part was the feature wall — the one with all the arches and niches. Getting that wall to look like one flowing design, instead of a bunch of separate shapes stuck together, took a lot of careful planning. Every arch had to line up, every light strip had to sit exactly right, and the wall itself wasn't even flat to begin with — so we had to work around real-world imperfections while keeping the final look completely smooth.",
-      "solutions": "Engineered custom lightweight composite backer structures with laser-guided leveling and integrated concealed magnetic shadowline profiles.",
-      "engineering": "None of that \"effortless\" look happens by accident. Behind that wall is hidden wiring, precisely cut stone panels, and layered plasterwork — all planned out before a single piece went up, so nothing pokes through and nothing looks patched together later. That's really what you're paying for with us — not just how it looks on day one, but how solid it still feels five years down the line.",
-      "outcome": "An impeccably detailed residential benchmark with zero visible hardware, ambient mood scenes, and seamless spatial flow."
+      "vision": "The brief was clear from day one: give Dharma Teja a living room that feels warm and welcoming the moment you walk in — never stiff, never showroom-y. We planned to bring in wood paneling with a soft vertical texture, pair it with a marble-look backdrop behind the TV, and layer the ceiling with gentle cove lighting that could shift the whole mood of the room after sunset. A statement chandelier ties the space together — designed to work just as well for a quiet evening in as it does when guests are over.",
+      "challenges": "The trickiest part was the feature wall with arched niches in Narsingi. Getting that wall to look like one flowing design, instead of separate shapes stuck together, took careful planning. Every arch had to line up, every light strip had to sit exactly right, and the wall itself was not flat to begin with — requiring precision backer leveling while keeping the final look completely smooth.",
+      "solutions": "Engineered custom lightweight composite backer structures with laser-guided leveling and integrated concealed magnetic shadowline profiles across the living and dining spaces.",
+      "engineering": "None of that effortless look happens by accident. Behind that wall is hidden wiring, precisely cut stone panels, and layered plasterwork — all planned out before installation, so nothing pokes through and nothing looks patched together later. Built to remain flawless for years to come.",
+      "outcome": "An impeccably detailed residential benchmark in Narsingi with zero visible hardware, ambient mood scenes, and seamless spatial flow delivered on schedule for Dharma Teja."
     },
-    "heroImage": "/images/projects/rajapushpa_provincia/rajapushpa_8.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789694/c0485a67-f1b9-421e-94c2-1284149bbc98.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789713/5974209f-4bf4-48a7-bb22-4372856ffb97.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789726/e633e606-5bb8-4dad-86c0-20dcd694c75a.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789737/94ced607-e73b-4df5-aaf8-6f94a8c08fbe.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789746/04ad3ff9-4782-4218-9003-702e33e09414.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789768/46e29765-a1ec-4195-a947-ea566616fe2e.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047578/espacio_gallery/neljy4tkjufc3e2qm7oq.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047579/espacio_gallery/loml95jqkz3mzvbr3z5g.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047582/espacio_gallery/boddxdbbkc3vvz1sccmn.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047584/espacio_gallery/koiive2gy5yw5rysfwcx.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047585/espacio_gallery/rublks3kk1u3skfbhbsb.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047588/espacio_gallery/uwnpmsvmh5atr54ma5ds.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047589/espacio_gallery/z4irutpzt2hw5qabd9cg.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047591/espacio_gallery/bnyefgrrc9mpjjen20tq.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047592/espacio_gallery/kuunw858ws3n2t4l88xa.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047594/espacio_gallery/l0l52jndy37r67ld9dfl.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047595/espacio_gallery/nbvmn4dsrozpqpoaslf0.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047596/espacio_gallery/vavkk9wt57fqv5uu1du1.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047598/espacio_gallery/sidf1hbm5mcum6plj4lc.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047599/espacio_gallery/cldydk0ev0l4qejfq9on.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047601/espacio_gallery/ivclestyrevc8fsj3adp.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047602/espacio_gallery/jcm4du0ewbdu1mdnhzgv.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047603/espacio_gallery/p4gnc1zdgif0gngtqtro.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047605/espacio_gallery/xq85mtynhjvlp1tpvtld.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047606/espacio_gallery/oofymnichjtynx4yrhzk.jpg"
     ],
-    "beforeImage": "/images/projects/rajapushpa_provincia/rajapushpa_before.webp",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg",
     "beforeImages": [
-      "/images/projects/rajapushpa_provincia/rajapushpa_before.webp"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg"
     ],
     "testimonialName": "Dharma Teja",
-    "testimonialProfession": "Homeowner, Rajapushpa Provincia",
-    "testimonialText": "Working with ESPACIO for our 3BHK flat at Rajapushpa Provincia was an effortless experience from day one. Their attention to engineering tolerances, clean wood joinery, and on-time project handover exceeded our expectations. The house feels like an editorial luxury home.",
+    "testimonialProfession": "Homeowner, Narsingi",
+    "testimonialText": "Working with ESPACIO for our 3BHK flat at Narsingi was an effortless experience from day one. Their attention to engineering tolerances, clean wood joinery, and on-time project handover exceeded our expectations. The house feels like an editorial luxury home.",
     "testimonialRating": 5,
     "testimonial": {
       "name": "Dharma Teja",
-      "profession": "Homeowner, Rajapushpa Provincia",
-      "role": "Homeowner, Rajapushpa Provincia, Narsingi",
-      "text": "Working with ESPACIO for our 3BHK flat at Rajapushpa Provincia was an effortless experience from day one. Their attention to engineering tolerances, clean wood joinery, and on-time project handover exceeded our expectations. The house feels like an editorial luxury home.",
+      "profession": "Homeowner, Narsingi",
+      "role": "Homeowner, Narsingi, Hyderabad",
+      "text": "Working with ESPACIO for our 3BHK flat at Narsingi was an effortless experience from day one. Their attention to engineering tolerances, clean wood joinery, and on-time project handover exceeded our expectations. The house feels like an editorial luxury home.",
       "rating": 5
     },
     "featured": true,
@@ -212,10 +225,10 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791074/84661d49-bc93-47c9-85cb-c79b74fcdc9b.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791081/2969ce08-c39c-48bc-b63c-638f116e5ceb.png"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg"
     ],
     "afterImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png"
@@ -246,30 +259,51 @@ export const DEFAULT_PROJECTS = [
     "style": "Clean Contemporary Luxury",
     "description": "A bright, airy 2BHK with high gloss finishes, a bookmatched marble bedroom wall, sleek floating consoles, and calm bedroom retreats bathed in soft lighting. Every room was planned around comfort and light, giving Rahul a home that feels fresh from the moment he steps in.",
     "story": {
-      "vision": "Rahul wanted his 2BHK to feel clean and contemporary, with nothing crowding the space. Smooth spatial flow, high gloss surfaces, and generous modular storage were all part of the early plan, along with calm bedroom retreats that would feel like a proper escape from the rest of the day. In the main bedroom, the idea was to let one material do all the talking, a bookmatched marble wall running the full height behind the bed, quiet enough to relax into but striking enough to become the room's focal point.",
-      "challenges": "With a compact high rise layout, every wardrobe shutter and cabinet had to line up perfectly, since even a small gap would stand out in such a tight space. We also wanted integrated LED lighting running along the ceiling edges, but without dropping the ceiling height in a home where every inch of headroom already mattered. That same lighting logic carried into the bedroom, where soft edge lighting needed to trace the marble wall just right, so the veining would glow after dark instead of getting lost in shadow.",
-      "solutions": "Deployed moisture-resistant HDHMR core structures, German Häfele soft-close hardware, and laser-guided leveling for seamless wall-to-cabinet joints.",
-      "engineering": "The floating TV console needed strong hidden anchors so it could hold its weight without any sagging over the years. We also ran mood lighting circuits flush into the ceiling across every room, so the light feels built into the architecture rather than added on top of it. The bedroom's marble panels were matched and aligned piece by piece before installation, so the pattern reads as one continuous sheet rather than a row of separate slabs. Small choices like these are what make a home feel finished rather than just decorated.",
-      "outcome": "A pristine, modern 2BHK residence delivered on schedule with flawless finishes, high storage utility, and timeless contemporary appeal."
+      "vision": "Rahul wanted his 2BHK to feel clean, luminous, and contemporary, with nothing crowding the space. Smooth spatial flow, high-gloss ivory surfaces, and generous modular storage were part of the vision, alongside serene private retreats. In the main bedroom, the centerpiece was a full-height bookmatched Italian marble wall behind the bed, softly illuminated to create a restful luxury retreat. For the living area, a seamless flow connects the lounge, the bespoke marble Ganesha pooja mandir, and a modern modular kitchen with breakfast counter.",
+      "challenges": "With an urban high-rise layout, every wardrobe shutter, floating console, and wall panel had to align with millimeter precision. We integrated recessed cove lighting along the ceilings to wash the rooms in warm illumination without lowering headroom. The marble wall in the master bedroom required custom perimeter halo channels so the natural grey veining glows elegantly after dusk.",
+      "solutions": "Engineered moisture-resistant HDHMR substrates, concealed heavy-load steel anchors for the floating TV credenza, seamless bookmatched marble cladding, and laser-aligned acoustic wall panelling with German Häfele soft-close hardware.",
+      "engineering": "The floating TV media console required specialized internal cantilever steel bracketing to bear the load invisibly. The master bedroom marble slabs were dry-laid and laser-leveled before mounting to ensure unbroken vein continuity across panels. For the kids' bedroom, acoustic underlays were installed behind custom celestial wallpaper to maintain a peaceful environment throughout the home.",
+      "outcome": "A luminous 2BHK sanctuary delivered turnkey and on schedule, celebrated for its flawless ivory finishes, bookmatched marble craftsmanship, and tailored modular storage."
     },
-    "heroImage": "/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/jydtlxt9xagokmv8cnuu.jpg",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/39296685-c155-40af-b3f7-cadc122b32be.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/df8bd080-4933-45f6-b735-c67b71230b17.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/dd97aa33-e9fe-43c2-83ca-c23e129b349c.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/0f540e8d-87e8-4aa8-a80b-9340c28b4000.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9d302a93-fe8b-42d0-b2e3-063518044156.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/7c093f69-28d0-40b7-8ef5-3259b7f91fbd.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d8a1ed0a-5f63-4037-bae5-b9059d2defc5.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/jydtlxt9xagokmv8cnuu.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/qozg8gen0pnh1k9kxryr.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051302/espacio_gallery/b2hyi3o44yobnzzynbfa.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051304/espacio_gallery/gt8aknxvw1e9v2dywgzi.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051305/espacio_gallery/yocbcbuycsysstbt8j6k.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051308/espacio_gallery/pkitdbjvwmh506kgt7r3.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051309/espacio_gallery/kxktcafgsng7vp2ktavy.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051311/espacio_gallery/pimunyc8yfinkwkojz4h.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051312/espacio_gallery/etchqkf6qf76ppnikq27.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051313/espacio_gallery/tg1eyyafstazwm617ogh.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051314/espacio_gallery/q1tagfvgfazx3db03snx.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051315/espacio_gallery/z8fr3mynv9jd6whbpjnc.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051316/espacio_gallery/ymnore8wmb7pt2w8qfet.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051317/espacio_gallery/kkpzlguouw2l79qjvrw1.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051318/espacio_gallery/vkggyxdeedvs9pyzcaua.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051318/espacio_gallery/bi1scw8zgrgpzlogtocr.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051319/espacio_gallery/y5gm9gljg6z3irlqthuh.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051320/espacio_gallery/dljfie9qrl2k7tpoapwx.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051321/espacio_gallery/zpltgvn9y49gwqrqszd1.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051322/espacio_gallery/ihpleevkslgfnwpu68qf.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051323/espacio_gallery/s7kdga1oz9ptcsowg8ob.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051323/espacio_gallery/jqb3agmc0quwlkygvb91.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051325/espacio_gallery/rnpccbj0xacfbynmutqe.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051326/espacio_gallery/im530k1ngrx02dhuqtt8.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051326/espacio_gallery/i97d2c0pof4szdboir1x.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051327/espacio_gallery/dnrxn0epxezkfcby4zz1.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051328/espacio_gallery/nrpnwjy0usmclyfcvcvl.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051330/espacio_gallery/re3wfqbpnwhdgs1934kk.jpg"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg"
     ],
     "testimonialName": "Rahul",
     "testimonialProfession": "Homeowner, Kokapet",
@@ -536,6 +570,115 @@ export const DEFAULT_PROJECTS = [
       "profession": "Homeowner, Hyderabad",
       "role": "Homeowner, Hyderabad",
       "text": "ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.",
+      "rating": 5
+    },
+    "featured": true,
+    "status": "published"
+  },
+  {
+    "_id": "proj_10_the_restful_home_tellapur",
+    "order": 10,
+    "title": "The Restful Home",
+    "slug": "the-restful-home-tellapur",
+    "category": "apartment",
+    "area": "1,250 sq.ft.",
+    "location": "Tellapur, Hyderabad",
+    "year": 2026,
+    "style": "Japandi-inspired, light and functional",
+    "description": "A bright, serene 2BHK that feels more spacious than it is, and a home that welcomes the family back at the end of every day. Delivered turnkey with soft warm tones, custom slatted partitions, and smart full-height storage.",
+    "story": {
+      "vision": "After a long day at work, this young family wanted to come home and finally exhale. They asked for a simple, peaceful home with enough storage that nothing ever feels crowded, and a layout that can grow with their children.",
+      "challenges": "In a compact 2BHK layout, every inch matters. The challenge was ensuring every wall quietly carries its share of storage while keeping the rooms open, light, and uncluttered, preventing any feeling of confinement.",
+      "solutions": "We designed around one feeling: the moment they walk in, the day should slow down. Everything was planned together. An uncluttered entrance tucked everyday items neatly away. A slatted partition separates the dining area while maintaining continuous airflow and light. Both bedrooms feature full-height custom wardrobes.",
+      "engineering": "Doors close softly with premium German soft-close mechanisms, finishes are curated to withstand daily family life with ease, and every bespoke millwork piece was dry-fitted precisely before final installation. Soft, warm lighting circuits were planned to take over in the evening to settle the atmosphere.",
+      "outcome": "A bright, serene 2BHK that feels more spacious than it is, and a home that welcomes the family back at the end of every day. Delivered turnkey and handed over on the committed date."
+    },
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+    "gallery": [
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039570/espacio_gallery/dntcpbg0dg78vu5hktwt.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039573/espacio_gallery/xehnw42t41tcxvtc60ml.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039583/espacio_gallery/wazorsezkcaayd5bmrc1.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039588/espacio_gallery/s6vvkmvqz8h2aqbtwcam.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039591/espacio_gallery/zmsezgqkrwiqdgyno9oi.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039595/espacio_gallery/hexutd4jmmolynp91e28.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039600/espacio_gallery/ixrrcgxxhf1pytdjjhga.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039616/espacio_gallery/jmbconw0wz7rrzqqaiub.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png"
+    ],
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+    "beforeImages": [
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png"
+    ],
+    "afterImages": [
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png"
+    ],
+    "testimonialName": "Dinesh & Sarvani",
+    "testimonialProfession": "Homeowners, Tellapur",
+    "testimonialText": "We wanted a small home that didn't feel small, and Espacio delivered. Every inch is used well and nothing looks crowded. The team kept us informed at every stage and finished right on schedule.",
+    "testimonialRating": 5,
+    "testimonial": {
+      "name": "Dinesh & Sarvani",
+      "profession": "Homeowners, Tellapur",
+      "role": "Homeowners, Tellapur",
+      "text": "We wanted a small home that didn't feel small, and Espacio delivered. Every inch is used well and nothing looks crowded. The team kept us informed at every stage and finished right on schedule.",
+      "rating": 5
+    },
+    "featured": true,
+    "status": "published"
+  },
+  {
+    "_id": "proj_11_casa_alta_residence_kali_mandir",
+    "order": 11,
+    "title": "Casa Alta Residence",
+    "slug": "casa-alta-residence-kali-mandir",
+    "category": "apartment",
+    "area": "2,400 sq.ft.",
+    "location": "Kali Mandir, Hyderabad",
+    "year": 2026,
+    "style": "Contemporary Warm Minimalist & Timber Elegance",
+    "description": "A calm, well-balanced 3BHK home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule with warm timber, stone accents, and seamless cove lighting.",
+    "story": {
+      "vision": "The family wanted a home that feels calm and open, modern in its restraint but warm the way traditional homes are. Light, timber and stone were meant to tie the rooms together, so the house feels like one story from the front door to the bedroom.",
+      "challenges": "With open living and dining areas, the home needed one design language running through it. Fluted panels, veneer and stone had to meet cleanly from room to room, and the false ceiling had to carry into the wall treatments so nothing felt like a separate space.",
+      "solutions": "It starts in the living room, where a fluted feature wall sets the tone and grain-matched veneer carries on into the dining area. The double-height staircase is the heart of the home, with a Jesus mural rising along its wall. A backlit stone-and-timber pooja unit and a calm master suite with a walk-in wardrobe follow the same palette. Recessed warm-white coves tie every space together.",
+      "engineering": "Cove lighting needs ventilation gaps and safe clearances from the finishes, so we planned both in from the start. That keeps the veneer from warping or fading over time. The wardrobes and pooja unit are built on moisture-resistant boards with heavy-duty hardware made for daily use. None of this is visible once the home is finished, but it is why the home looks as good years later as it did on handover day.",
+      "outcome": "A calm, well-balanced home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule."
+    },
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+    "gallery": [
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040101/espacio_gallery/gn1gylu6rnd1jvpobceu.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040107/espacio_gallery/duhzjiu5foyimwshxgqx.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040124/espacio_gallery/z54sqdn0rxz5uvvz6vde.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040137/espacio_gallery/alkqwzmvoiitkbzqxci7.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040142/espacio_gallery/zoelg4rucvrxaeuxuqkx.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040145/espacio_gallery/dn73ubo6rocp6ptcxqzy.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040150/espacio_gallery/gctshkszvbpfjlegttqp.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png"
+    ],
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+    "beforeImages": [
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
+    ],
+    "afterImages": [
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
+    ],
+    "testimonialName": "Prakash",
+    "testimonialProfession": "Homeowner, Kali Mandir",
+    "testimonialText": "Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.",
+    "testimonialRating": 5,
+    "testimonial": {
+      "name": "Prakash",
+      "profession": "Homeowner, Kali Mandir",
+      "role": "Homeowner, Kali Mandir",
+      "text": "Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.",
       "rating": 5
     },
     "featured": true,
@@ -1351,7 +1494,7 @@ export const DEFAULT_SETTINGS = {
   hero_stat2_label: 'Happy Clients',
   hero_stat3_value: '40+',
   hero_stat3_label: 'Years Combined Legacy',
-  intro_heading: 'Turnkey interiors, done properly.',
+  intro_heading: 'From Concept to Handover — ESPACIO Delivers Complete Interiors.',
   intro_description: 'ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don\'t just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what\'s happening on site.',
   intro_cta_text1: 'Our Story ↗',
   intro_cta_text2: 'Read More ↗',
@@ -1417,7 +1560,7 @@ export const DEFAULT_SETTINGS = {
   exp_card3_supportingText: 'Private evening consultations available upon request.',
   exp_card3_bottomLabel: 'CONSULTATION HOURS',
   exp_card3_visible: true,
-  footer_brand_subtitle: 'INTERIORS AND MODULARS',
+  footer_brand_subtitle: 'Designing spaces. Defining life styles.',
   footer_location_title: 'LOCATION',
   footer_address: 'Moinabad Road, Aziz Nagar, Hyderabad, Telangana 500075',
   footer_map_url: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
@@ -1509,6 +1652,7 @@ export const getCMSData = (key, fallback = null) => {
               data[p4Idx].afterImage = DEFAULT_PROJECTS[2].afterImage;
               data[p4Idx].beforeImages = DEFAULT_PROJECTS[2].beforeImages;
               data[p4Idx].afterImages = DEFAULT_PROJECTS[2].afterImages;
+              data[p4Idx].before_after = [{ before: DEFAULT_PROJECTS[2].beforeImage, after: DEFAULT_PROJECTS[2].afterImage }];
               data[p4Idx].heroImage = DEFAULT_PROJECTS[2].heroImage;
               data[p4Idx].gallery = DEFAULT_PROJECTS[2].gallery;
               updated = true;
@@ -1677,6 +1821,44 @@ export const getCMSData = (key, fallback = null) => {
               }
             }
           }
+          const hasTheRestfulHome = data.some(p => p && (p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur'));
+          if (!hasTheRestfulHome) {
+            const dp10 = DEFAULT_PROJECTS.find(p => p.slug === 'the-restful-home-tellapur');
+            if (dp10) {
+              data.push(dp10);
+              updated = true;
+            }
+          } else {
+            const p10Idx = data.findIndex(p => p && (p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur'));
+            const dp10 = DEFAULT_PROJECTS.find(p => p.slug === 'the-restful-home-tellapur');
+            if (p10Idx !== -1 && dp10) {
+              if (!Array.isArray(data[p10Idx].gallery) || data[p10Idx].gallery.length !== dp10.gallery.length) {
+                data[p10Idx].gallery = dp10.gallery;
+                data[p10Idx].heroImage = dp10.heroImage;
+                updated = true;
+              }
+            }
+          }
+
+          const hasCasaAlta = data.some(p => p && (p._id === 'proj_11_casa_alta_residence_kali_mandir' || p.slug === 'casa-alta-residence-kali-mandir'));
+          if (!hasCasaAlta) {
+            const dp11 = DEFAULT_PROJECTS.find(p => p.slug === 'casa-alta-residence-kali-mandir');
+            if (dp11) {
+              data.push(dp11);
+              updated = true;
+            }
+          } else {
+            const p11Idx = data.findIndex(p => p && (p._id === 'proj_11_casa_alta_residence_kali_mandir' || p.slug === 'casa-alta-residence-kali-mandir'));
+            const dp11 = DEFAULT_PROJECTS.find(p => p.slug === 'casa-alta-residence-kali-mandir');
+            if (p11Idx !== -1 && dp11) {
+              if (!Array.isArray(data[p11Idx].gallery) || data[p11Idx].gallery.length !== dp11.gallery.length) {
+                data[p11Idx].gallery = dp11.gallery;
+                data[p11Idx].heroImage = dp11.heroImage;
+                updated = true;
+              }
+            }
+          }
+
           // Sanitize gallery images and remove duplicates
           data.forEach(p => {
             if (p && Array.isArray(p.gallery)) {
@@ -1686,37 +1868,7 @@ export const getCMSData = (key, fallback = null) => {
             }
           });
 
-          // Ensure all active projects have the high-resolution Cloudinary URLs
-          const PROJECT_CLOUDINARY_MAP = {
-            0: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png',
-            1: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png',
-            2: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png',
-            3: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png',
-            4: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png',
-            5: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png',
-            6: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png',
-            7: 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png'
-          };
-          data.forEach((p, idx) => {
-            if (p && PROJECT_CLOUDINARY_MAP[idx]) {
-              const targetUrl = PROJECT_CLOUDINARY_MAP[idx];
-              if (p.heroImage?.includes('WhatsApp_Image_2026-09-28_at_4.26.36_PM') || idx === 7) {
-                p.heroImage = targetUrl;
-                p.afterImage = targetUrl;
-                if (Array.isArray(p.afterImages)) p.afterImages = [targetUrl];
-                updated = true;
-              }
-              if (Array.isArray(p.gallery)) {
-                const cleanGal = p.gallery.filter(g => typeof g === 'string' && !g.includes('WhatsApp_Image_2026-09-28_at_4.26.36_PM'));
-                if (cleanGal.length !== p.gallery.length) {
-                  p.gallery = cleanGal;
-                  updated = true;
-                }
-              }
-            }
-          });
-
-          // Retain strictly the 8 canonical projects in sequence order (1..8)
+          // Retain canonical projects in sequence order
           const canonicalSlugs = [
             'rajapushpa-provincia-3bhk',
             'my-home-sayuk-3bhk',
@@ -1725,10 +1877,12 @@ export const getCMSData = (key, fallback = null) => {
             'kondapur-minimalist-2bhk',
             'gachibowli-minimalist-beige-2bhk',
             'kachiguda-fusion-duplex-villa',
-            'dimmu-chachu-luxury-villa'
+            'dimmu-chachu-luxury-villa',
+            'the-restful-home-tellapur',
+            'casa-alta-residence-kali-mandir'
           ];
           const origLen = data.length;
-          data = data.filter(p => p && (canonicalSlugs.includes(p.slug) || DEFAULT_PROJECTS.some(dp => dp._id === p._id)));
+          data = data.filter(p => p && (canonicalSlugs.includes(p.slug) || DEFAULT_PROJECTS.some(dp => dp._id === p._id || dp.slug === p.slug)));
           if (data.length !== origLen) updated = true;
 
           data.forEach(p => {
@@ -1741,10 +1895,6 @@ export const getCMSData = (key, fallback = null) => {
             }
           });
           data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-          if (data.length > 8) {
-            data = data.slice(0, 8);
-            updated = true;
-          }
 
           if (updated) {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
@@ -1828,8 +1978,8 @@ export const getCMSData = (key, fallback = null) => {
             data.projects_cta_visible = true;
             modified = true;
           }
-          if (data.footer_brand_subtitle === undefined) {
-            data.footer_brand_subtitle = 'INTERIORS AND MODULARS';
+          if (data.footer_brand_subtitle === undefined || data.footer_brand_subtitle === 'INTERIORS AND MODULARS' || data.footer_brand_subtitle === 'Designing spaces. Defining life styles') {
+            data.footer_brand_subtitle = 'Designing spaces. Defining life styles.';
             modified = true;
           }
           if (!data.cta_projects || data.cta_projects.enabled !== true) {
@@ -1875,8 +2025,8 @@ export const getCMSData = (key, fallback = null) => {
             data.projects_hero_images = cloudProjectsHero;
             modified = true;
           }
-          if (data.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.') {
-            data.intro_heading = 'Turnkey interiors, done properly.';
+          if (data.intro_heading === 'Turnkey interiors, done properly.' || !data.intro_heading) {
+            data.intro_heading = 'From Concept to Handover — ESPACIO Delivers Complete Interiors.';
             modified = true;
           }
           if (data.intro_description && data.intro_description.includes('We bring 40+ years of family construction heritage')) {
@@ -3041,39 +3191,39 @@ export const getCMSData = (key, fallback = null) => {
           } else {
             const p1 = data.find(p => p.slug === 'rajapushpa-provincia-3bhk');
             if (p1) {
-              let changed = false;
-              if (!p1.beforeImage || p1.beforeImage.includes('spaces_hero')) {
-                p1.beforeImage = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
-                p1.afterImage = '/images/projects/rajapushpa_provincia/rajapushpa_after.webp';
-                p1.beforeImages = ['/images/projects/rajapushpa_provincia/rajapushpa_before.webp'];
-                p1.afterImages = ['/images/projects/rajapushpa_provincia/rajapushpa_after.webp'];
+              if (p1.title !== DEFAULT_PROJECTS[0].title) {
+                p1.title = DEFAULT_PROJECTS[0].title;
                 changed = true;
               }
-              if (p1.heroImage !== '/images/projects/rajapushpa_provincia/rajapushpa_8.webp' || p1.hero_image !== '/images/projects/rajapushpa_provincia/rajapushpa_8.webp') {
-                p1.heroImage = '/images/projects/rajapushpa_provincia/rajapushpa_8.webp';
-                p1.hero_image = '/images/projects/rajapushpa_provincia/rajapushpa_8.webp';
+              if (p1.heroImage !== DEFAULT_PROJECTS[0].heroImage) {
+                p1.heroImage = DEFAULT_PROJECTS[0].heroImage;
+                p1.hero_image = DEFAULT_PROJECTS[0].heroImage;
                 changed = true;
               }
-              if (!p1.story || !p1.story.vision || p1.story.vision.includes('Dharma Teja')) {
-                p1.story = DEFAULT_PROJECTS[0].story;
-                changed = true;
-              }
-              if (p1.title !== 'The Arcstone Residence') {
-                p1.title = 'The Arcstone Residence';
+              if (p1.beforeImage !== DEFAULT_PROJECTS[0].beforeImage) {
+                p1.beforeImage = DEFAULT_PROJECTS[0].beforeImage;
+                p1.beforeImages = DEFAULT_PROJECTS[0].beforeImages;
+                p1.afterImage = DEFAULT_PROJECTS[0].afterImage;
+                p1.afterImages = DEFAULT_PROJECTS[0].afterImages;
                 changed = true;
               }
               if (p1.description !== DEFAULT_PROJECTS[0].description) {
                 p1.description = DEFAULT_PROJECTS[0].description;
                 changed = true;
               }
-              if (p1.beforeImage !== DEFAULT_PROJECTS[0].beforeImage) {
-                p1.beforeImage = DEFAULT_PROJECTS[0].beforeImage;
-                p1.beforeImages = DEFAULT_PROJECTS[0].beforeImages;
+              if (p1.story !== DEFAULT_PROJECTS[0].story) {
+                p1.story = DEFAULT_PROJECTS[0].story;
                 changed = true;
               }
-              const unwantedRajapushpa = ['125614_59b74a58', 'dd97aa33', '0f540e8d', '9d302a93'];
-              if (Array.isArray(p1.gallery) && p1.gallery.some(img => typeof img === 'string' && unwantedRajapushpa.some(bad => img.includes(bad)))) {
-                p1.gallery = p1.gallery.filter(img => typeof img === 'string' && !unwantedRajapushpa.some(bad => img.includes(bad)));
+              if (!Array.isArray(p1.gallery) || p1.gallery.length !== DEFAULT_PROJECTS[0].gallery.length || p1.gallery[0] !== DEFAULT_PROJECTS[0].gallery[0]) {
+                p1.gallery = DEFAULT_PROJECTS[0].gallery;
+                changed = true;
+              }
+              if (p1.testimonial !== DEFAULT_PROJECTS[0].testimonial) {
+                p1.testimonial = DEFAULT_PROJECTS[0].testimonial;
+                p1.testimonialName = DEFAULT_PROJECTS[0].testimonialName;
+                p1.testimonialProfession = DEFAULT_PROJECTS[0].testimonialProfession;
+                p1.testimonialText = DEFAULT_PROJECTS[0].testimonialText;
                 changed = true;
               }
               if (changed) {
@@ -3104,77 +3254,57 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
-            const p3 = data.find(p => p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh');
-            if (p3) {
-              let changed3 = false;
-              if (p3.heroImage !== '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp' || p3.hero_image !== '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp') {
-                p3.heroImage = '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp';
-                p3.hero_image = '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp';
-                changed3 = true;
-              }
-              if (p3.beforeImage !== DEFAULT_PROJECTS[2].beforeImage) {
-                p3.beforeImage = DEFAULT_PROJECTS[2].beforeImage;
-                p3.beforeImages = DEFAULT_PROJECTS[2].beforeImages;
-                changed3 = true;
-              }
-              if (p3.title !== 'The Boucle Residence') {
-                p3.title = 'The Boucle Residence';
-                changed3 = true;
-              }
-              if (p3.description !== DEFAULT_PROJECTS[2].description) {
-                p3.description = DEFAULT_PROJECTS[2].description;
-                changed3 = true;
-              }
-              if (!p3.story || !p3.story.vision || p3.story.vision.includes('Nagesh, envisioned')) {
-                p3.story = DEFAULT_PROJECTS[2].story;
-                changed3 = true;
-              }
-              if (changed3) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
+            const dpRahul = DEFAULT_PROJECTS.find(dp => dp._id === 'proj_4_kokapet_rahul' || dp.slug === 'kokapet-urban-2bhk');
             const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul');
-            if (p4) {
+            if (p4 && dpRahul) {
               let changed4 = false;
-              if (p4.beforeImage !== DEFAULT_PROJECTS[3].beforeImage) {
-                p4.beforeImage = DEFAULT_PROJECTS[3].beforeImage;
-                p4.beforeImages = DEFAULT_PROJECTS[3].beforeImages;
+              if (p4.beforeImage !== dpRahul.beforeImage || p4.afterImage !== dpRahul.afterImage) {
+                p4.beforeImage = dpRahul.beforeImage;
+                p4.afterImage = dpRahul.afterImage;
+                p4.beforeImages = dpRahul.beforeImages;
+                p4.afterImages = dpRahul.afterImages;
+                p4.before_after = [{ before: dpRahul.beforeImage, after: dpRahul.afterImage }];
                 changed4 = true;
               }
-              if (p4.title !== 'The Ivory Retreat') {
-                p4.title = 'The Ivory Retreat';
+              if (p4.heroImage !== dpRahul.heroImage) {
+                p4.heroImage = dpRahul.heroImage;
                 changed4 = true;
               }
-              if (p4.description !== DEFAULT_PROJECTS[3].description) {
-                p4.description = DEFAULT_PROJECTS[3].description;
+              if (p4.title !== dpRahul.title) {
+                p4.title = dpRahul.title;
                 changed4 = true;
               }
-              if (!p4.story || !p4.story.vision || p4.story.vision.includes('Rahul, wanted')) {
-                p4.story = DEFAULT_PROJECTS[3].story;
+              if (p4.description !== dpRahul.description) {
+                p4.description = dpRahul.description;
+                changed4 = true;
+              }
+              if (!p4.story || !p4.story.vision || p4.story.vision !== dpRahul.story?.vision) {
+                p4.story = dpRahul.story;
                 changed4 = true;
               }
               if (changed4) {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
+            const dpKiran = DEFAULT_PROJECTS.find(dp => dp._id === 'proj_5_gandipet_kiran' || dp.slug === 'gandipet-modern-retro-2bhk');
             const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran');
-            if (p5) {
+            if (p5 && dpKiran) {
               let changed5 = false;
-              if (p5.beforeImage !== DEFAULT_PROJECTS[4].beforeImage) {
-                p5.beforeImage = DEFAULT_PROJECTS[4].beforeImage;
-                p5.beforeImages = DEFAULT_PROJECTS[4].beforeImages;
+              if (p5.beforeImage !== dpKiran.beforeImage) {
+                p5.beforeImage = dpKiran.beforeImage;
+                p5.beforeImages = dpKiran.beforeImages;
                 changed5 = true;
               }
-              if (p5.title !== 'The Panelled Muse') {
-                p5.title = 'The Panelled Muse';
+              if (p5.title !== dpKiran.title) {
+                p5.title = dpKiran.title;
                 changed5 = true;
               }
-              if (p5.description !== DEFAULT_PROJECTS[4].description) {
-                p5.description = DEFAULT_PROJECTS[4].description;
+              if (p5.description !== dpKiran.description) {
+                p5.description = dpKiran.description;
                 changed5 = true;
               }
-              if (!p5.story || !p5.story.vision || p5.story.vision.includes('Kiran Raja, envisioned')) {
-                p5.story = DEFAULT_PROJECTS[4].story;
+              if (!p5.story || !p5.story.vision || p5.story.vision !== dpKiran.story?.vision) {
+                p5.story = dpKiran.story;
                 changed5 = true;
               }
               if (changed5) {

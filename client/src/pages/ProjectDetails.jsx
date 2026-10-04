@@ -382,7 +382,7 @@ const ProjectDetails = () => {
     // 2. Network fetch with stale-while-revalidate
     const loadProjectFromApi = async () => {
       try {
-        const response = await axios.get(`/projects/${resolvedSlug}`);
+        const response = await axios.get(`/api/projects/${resolvedSlug}`);
         if (!cancelled && response.data?.success && response.data?.data) {
           projectDetailCache.set(resolvedSlug, response.data.data);
           projectDetailCache.set(cleanSlug, response.data.data);
@@ -391,7 +391,7 @@ const ProjectDetails = () => {
       } catch (err) {
         // Fallback: query all projects and find matching entry
         try {
-          const allRes = await axios.get('/projects');
+          const allRes = await axios.get('/api/projects');
           if (!cancelled && allRes.data?.success && Array.isArray(allRes.data?.data)) {
             const match = findProjectMatch(allRes.data.data, resolvedSlug, cleanSlug);
             if (match) {
@@ -437,6 +437,119 @@ const ProjectDetails = () => {
   // Compute clean deduplicated project with guaranteed full hydration
   const p = useMemo(() => {
     const item = { ...rawP };
+
+    // Specific canonical overrides for Project 11 (Casa Alta Residence)
+    if (
+      item.slug === 'casa-alta-residence-kali-mandir' || 
+      item._id === 'proj_11_casa_alta_residence_kali_mandir' || 
+      item.title?.includes('Casa Alta') || 
+      cleanSlug === 'casa-alta-residence-kali-mandir' ||
+      cleanSlug === 'casa-alta' ||
+      resolvedSlug === 'casa-alta-residence-kali-mandir'
+    ) {
+      const CASA_ALTA_PHOTOS = [
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040101/espacio_gallery/gn1gylu6rnd1jvpobceu.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040107/espacio_gallery/duhzjiu5foyimwshxgqx.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040124/espacio_gallery/z54sqdn0rxz5uvvz6vde.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040137/espacio_gallery/alkqwzmvoiitkbzqxci7.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040142/espacio_gallery/zoelg4rucvrxaeuxuqkx.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040145/espacio_gallery/dn73ubo6rocp6ptcxqzy.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040150/espacio_gallery/gctshkszvbpfjlegttqp.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png'
+      ];
+      item.gallery = CASA_ALTA_PHOTOS;
+      item.location = 'Kali Mandir, Hyderabad';
+      item.area = '2,400 sq.ft.';
+      item.year = 2026;
+      item.style = 'Contemporary Warm Minimalist & Timber Elegance';
+      item.configuration = '3BHK Residence';
+      item.category = 'apartment';
+      item.title = 'Casa Alta Residence';
+      item.heroImage = CASA_ALTA_PHOTOS[0];
+      item.beforeImage = CASA_ALTA_PHOTOS[0];
+      item.afterImage = CASA_ALTA_PHOTOS[0];
+      item.beforeImages = [CASA_ALTA_PHOTOS[0]];
+      item.afterImages = [CASA_ALTA_PHOTOS[0]];
+      item.story = {
+        vision: "The family wanted a home that feels calm and open, modern in its restraint but warm the way traditional homes are. Light, timber and stone were meant to tie the rooms together, so the house feels like one story from the front door to the bedroom.",
+        challenges: "With open living and dining areas, the home needed one design language running through it. Fluted panels, veneer and stone had to meet cleanly from room to room, and the false ceiling had to carry into the wall treatments so nothing felt like a separate space.",
+        solutions: "It starts in the living room, where a fluted feature wall sets the tone and grain-matched veneer carries on into the dining area. The double-height staircase is the heart of the home, with a Jesus mural rising along its wall. A backlit stone-and-timber pooja unit and a calm master suite with a walk-in wardrobe follow the same palette. Recessed warm-white coves tie every space together.",
+        engineering: "Cove lighting needs ventilation gaps and safe clearances from the finishes, so we planned both in from the start. That keeps the veneer from warping or fading over time. The wardrobes and pooja unit are built on moisture-resistant boards with heavy-duty hardware made for daily use. None of this is visible once the home is finished, but it is why the home looks as good years later as it did on handover day.",
+        outcome: "A calm, well-balanced home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule."
+      };
+      item.description = "A calm, well-balanced 3BHK home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule with warm timber, stone accents, and seamless cove lighting.";
+      item.testimonial = {
+        name: 'Prakash',
+        profession: 'Homeowner, Kali Mandir',
+        role: 'Homeowner, Kali Mandir',
+        text: 'Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.',
+        rating: 5
+      };
+      item.testimonialName = 'Prakash';
+      item.testimonialProfession = 'Homeowner, Kali Mandir';
+      item.testimonialText = item.testimonial.text;
+      item.testimonialRating = 5;
+    }
+
+    // Specific canonical overrides for Project 10 (The Restful Home)
+    if (
+      item.slug === 'the-restful-home-tellapur' || 
+      item._id === 'proj_10_the_restful_home_tellapur' || 
+      item.title?.includes('Restful Home') || 
+      cleanSlug === 'the-restful-home-tellapur' ||
+      cleanSlug === 'the-restful-home' ||
+      resolvedSlug === 'the-restful-home-tellapur'
+    ) {
+      const RESTFUL_HOME_PHOTOS = [
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039570/espacio_gallery/dntcpbg0dg78vu5hktwt.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039573/espacio_gallery/xehnw42t41tcxvtc60ml.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039583/espacio_gallery/wazorsezkcaayd5bmrc1.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039588/espacio_gallery/s6vvkmvqz8h2aqbtwcam.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039591/espacio_gallery/zmsezgqkrwiqdgyno9oi.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039595/espacio_gallery/hexutd4jmmolynp91e28.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039600/espacio_gallery/ixrrcgxxhf1pytdjjhga.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039616/espacio_gallery/jmbconw0wz7rrzqqaiub.png',
+        'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png'
+      ];
+      item.gallery = RESTFUL_HOME_PHOTOS;
+      item.location = 'Tellapur, Hyderabad';
+      item.area = '1,250 sq.ft.';
+      item.year = 2026;
+      item.style = 'Japandi-inspired, light and functional';
+      item.configuration = '2BHK Apartment';
+      item.category = 'apartment';
+      item.title = 'The Restful Home';
+      item.heroImage = RESTFUL_HOME_PHOTOS[0];
+      item.beforeImage = RESTFUL_HOME_PHOTOS[0];
+      item.afterImage = RESTFUL_HOME_PHOTOS[0];
+      item.beforeImages = [RESTFUL_HOME_PHOTOS[0]];
+      item.afterImages = [RESTFUL_HOME_PHOTOS[0]];
+      item.story = {
+        vision: "After a long day at work, this young family wanted to come home and finally exhale. They asked for a simple, peaceful home with enough storage that nothing ever feels crowded, and a layout that can grow with their children.",
+        challenges: "In a compact 2BHK layout, every inch matters. The challenge was ensuring every wall quietly carries its share of storage while keeping the rooms open, light, and uncluttered, preventing any feeling of confinement.",
+        solutions: "We designed around one feeling: the moment they walk in, the day should slow down. Everything was planned together. An uncluttered entrance tucked everyday items neatly away. A slatted partition separates the dining area while maintaining continuous airflow and light. Both bedrooms feature full-height custom wardrobes.",
+        engineering: "Doors close softly with premium German soft-close mechanisms, finishes are curated to withstand daily family life with ease, and every bespoke millwork piece was dry-fitted precisely before final installation. Soft, warm lighting circuits were planned to take over in the evening to settle the atmosphere.",
+        outcome: "A bright, serene 2BHK that feels more spacious than it is, and a home that welcomes the family back at the end of every day. Delivered turnkey and handed over on the committed date."
+      };
+      item.description = "A bright, serene 2BHK that feels more spacious than it is, and a home that welcomes the family back at the end of every day. Delivered turnkey with soft warm tones, custom slatted partitions, and smart full-height storage.";
+      item.testimonial = {
+        name: 'Dinesh & Sarvani',
+        profession: 'Homeowners, Tellapur',
+        role: 'Homeowners, Tellapur',
+        text: "We wanted a small home that didn't feel small, and Espacio delivered. Every inch is used well and nothing looks crowded. The team kept us informed at every stage and finished right on schedule.",
+        rating: 5
+      };
+      item.testimonialName = 'Dinesh & Sarvani';
+      item.testimonialProfession = 'Homeowners, Tellapur';
+      item.testimonialText = item.testimonial.text;
+      item.testimonialRating = 5;
+    }
 
     // 1. Match canonical default project entry to fill any missing/sparse fields
     const defaultMatch = findProjectMatch(DEFAULT_PROJECTS, resolvedSlug, cleanSlug) ||
@@ -591,10 +704,11 @@ const ProjectDetails = () => {
       cleanSlug === 'the-ivory-retreat' || 
       resolvedSlug === 'kokapet-urban-2bhk'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png';
-      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
+      item.before_after = [{ before: item.beforeImage, after: item.afterImage }];
     }
 
     // Specific canonical overrides for Project 3 (Kokapet 2BHK / The Boucle Residence)
@@ -625,13 +739,13 @@ const ProjectDetails = () => {
       cleanSlug === 'sayuk' || 
       resolvedSlug === 'my-home-sayuk-3bhk'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg';
       item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
     }
 
-    // Specific canonical overrides for Project 1 (Rajapushpa Provincia 3BHK / The Arcstone Residence)
+    // Specific canonical overrides for Project 1 (The Arcstone Residence, Narsingi)
     if (
       item.slug === 'rajapushpa-provincia-3bhk' || 
       item._id === 'proj_1_rajapushpa_provincia' || 
@@ -640,12 +754,51 @@ const ProjectDetails = () => {
       cleanSlug === 'rajapushpa-provincia-3bhk' || 
       cleanSlug === 'rajapushpa' || 
       cleanSlug === 'provincia' || 
+      cleanSlug === 'the-arcstone-residence' ||
+      cleanSlug === 'the-arcstone-residence-narsingi' ||
+      cleanSlug === 'narsingi-3bhk' ||
       resolvedSlug === 'rajapushpa-provincia-3bhk'
     ) {
-      item.beforeImage = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
-      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
+      item.title = 'The Arcstone Residence, Narsingi';
+      item.location = 'Narsingi, Hyderabad';
+      item.heroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
+      item.gallery = [
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047578/espacio_gallery/neljy4tkjufc3e2qm7oq.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047579/espacio_gallery/loml95jqkz3mzvbr3z5g.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047582/espacio_gallery/boddxdbbkc3vvz1sccmn.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047584/espacio_gallery/koiive2gy5yw5rysfwcx.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047585/espacio_gallery/rublks3kk1u3skfbhbsb.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047588/espacio_gallery/uwnpmsvmh5atr54ma5ds.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047589/espacio_gallery/z4irutpzt2hw5qabd9cg.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047591/espacio_gallery/bnyefgrrc9mpjjen20tq.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047592/espacio_gallery/kuunw858ws3n2t4l88xa.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047594/espacio_gallery/l0l52jndy37r67ld9dfl.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047595/espacio_gallery/nbvmn4dsrozpqpoaslf0.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047596/espacio_gallery/vavkk9wt57fqv5uu1du1.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047598/espacio_gallery/sidf1hbm5mcum6plj4lc.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047599/espacio_gallery/cldydk0ev0l4qejfq9on.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047601/espacio_gallery/ivclestyrevc8fsj3adp.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047602/espacio_gallery/jcm4du0ewbdu1mdnhzgv.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047603/espacio_gallery/p4gnc1zdgif0gngtqtro.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047605/espacio_gallery/xq85mtynhjvlp1tpvtld.jpg",
+        "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047606/espacio_gallery/oofymnichjtynx4yrhzk.jpg"
+      ];
+      item.testimonial = {
+        name: 'Dharma Teja',
+        role: 'Homeowner, Narsingi, Hyderabad',
+        text: "The sheer structural rigor and high-tolerance wood joinery delivered by Espacio was benchmark quality. The curved feature walls, modular kitchen, and custom mood lighting turned our residence in Narsingi into an architectural trophy. Highly recommended for turnkey luxury interiors!",
+        rating: 5,
+        profession: 'Homeowner, Narsingi'
+      };
+      item.testimonialName = item.testimonial.name;
+      item.testimonialText = item.testimonial.text;
+      item.testimonialProfession = item.testimonial.profession;
+      item.testimonialRating = item.testimonial.rating;
     }
 
     // 3. Guarantee that ANY project has complete location, story, before/after, and gallery
@@ -903,25 +1056,25 @@ const ProjectDetails = () => {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png';
         }
-        if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran' || p.order === 5 || cleanSlug === 'gandipet-modern-retro-2bhk' || cleanSlug === 'gandipet-modern-retro' || cleanSlug === 'gandipet' || resolvedSlug === 'gandipet-modern-retro-2bhk') {
+        if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran' || p.title?.includes('Panelled') || p.title?.includes('Kiran') || cleanSlug === 'gandipet-modern-retro-2bhk' || cleanSlug === 'gandipet-modern-retro' || cleanSlug === 'gandipet' || cleanSlug === 'the-panelled-muse' || cleanSlug === 'kiran' || resolvedSlug === 'gandipet-modern-retro-2bhk') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
         }
-        if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul' || p.order === 4 || cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'kokapet-urban' || cleanSlug === 'the-ivory-retreat' || resolvedSlug === 'kokapet-urban-2bhk') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/bf38cae9-e7b8-4e4f-b382-377509a9a17b.png';
-          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/25b4c1ef-7205-463a-b488-ecc125a33d3e.png';
+        if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul' || p.title?.includes('Ivory') || p.title?.includes('Rahul') || cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'kokapet-urban' || cleanSlug === 'the-ivory-retreat' || cleanSlug === 'rahul' || resolvedSlug === 'kokapet-urban-2bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg';
         }
-        if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh' || p.order === 3 || cleanSlug === 'kokapet-2bhk' || cleanSlug === 'kokapet' || cleanSlug === 'the-boucle-residence' || resolvedSlug === 'kokapet-2bhk') {
+        if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh' || p.title?.includes('Boucle') || p.title?.includes('Nagesh') || cleanSlug === 'kokapet-2bhk' || cleanSlug === 'kokapet' || cleanSlug === 'the-boucle-residence' || resolvedSlug === 'kokapet-2bhk') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png';
         }
         if (p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk' || p.order === 2 || cleanSlug === 'my-home-sayuk-3bhk' || cleanSlug === 'my-home-sayuk' || cleanSlug === 'sayuk' || resolvedSlug === 'my-home-sayuk-3bhk') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2e0d529e-d037-4537-9a39-6b765dddb7eb.png';
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png';
         }
-        if (p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia' || p.order === 1 || cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'rajapushpa' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || resolvedSlug === 'rajapushpa-provincia-3bhk') {
-          beforeImg = '/images/projects/rajapushpa_provincia/rajapushpa_before.webp';
-          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790789679/74dc6fc0-aa92-46fd-8330-ebf67be7dda4.png';
+        if (p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia' || p.order === 1 || cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'rajapushpa' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || cleanSlug === 'the-arcstone-residence-narsingi' || cleanSlug === 'narsingi-3bhk' || resolvedSlug === 'rajapushpa-provincia-3bhk') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg';
         }
         if (afterImg?.includes('master_bedroom') || beforeImg?.includes('Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0')) {
           beforeImg = '/images/spaces/master_bedroom_before.webp';
@@ -948,7 +1101,7 @@ const ProjectDetails = () => {
             >
               {/* After Image */}
               <img
-                src={getOptimizedImageUrl(afterImg, 1200, 85)}
+                src={getOptimizedImageUrl(afterImg, 2560, 95)}
                 onError={handleImgError}
                 loading="lazy"
                 alt="Transformation After"
@@ -976,7 +1129,7 @@ const ProjectDetails = () => {
                 }}
               >
                 <img
-                  src={getOptimizedImageUrl(beforeImg, 1200, 85)}
+                  src={getOptimizedImageUrl(beforeImg, 2560, 95)}
                   onError={handleImgError}
                   loading="lazy"
                   alt="Transformation Before"

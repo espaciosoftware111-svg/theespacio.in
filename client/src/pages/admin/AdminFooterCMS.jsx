@@ -68,7 +68,7 @@ const defaultFooterData = {
   // Branding
   footer_brand_left: 'ESP',
   footer_brand_right: 'ACIO.',
-  footer_brand_subtitle: 'INTERIORS AND MODULARS',
+  footer_brand_subtitle: 'Designing spaces. Defining life styles.',
   footer_brand_weight: 700,
   footer_brand_opacity: 100,
 
@@ -622,10 +622,10 @@ const AdminFooterCMS = () => {
                 <label className={labelClass}>Brand Tagline / Subtitle (Under Wordmark)</label>
                 <input
                   type="text"
-                  value={footerState.footer_brand_subtitle !== undefined ? footerState.footer_brand_subtitle : 'INTERIORS AND MODULARS'}
+                  value={footerState.footer_brand_subtitle !== undefined && footerState.footer_brand_subtitle !== 'INTERIORS AND MODULARS' ? (footerState.footer_brand_subtitle === 'Designing spaces. Defining life styles' ? 'Designing spaces. Defining life styles.' : footerState.footer_brand_subtitle) : 'Designing spaces. Defining life styles.'}
                   onChange={(e) => updateField('footer_brand_subtitle', e.target.value)}
                   className={inpClass}
-                  placeholder="INTERIORS AND MODULARS"
+                  placeholder="Designing spaces. Defining life styles."
                 />
                 <p className="font-sans text-[10px] text-white/30 mt-1">
                   Sub-brand tagline displayed directly underneath the giant ESPACIO wordmark.

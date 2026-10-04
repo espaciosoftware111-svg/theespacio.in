@@ -599,7 +599,7 @@ const Home = () => {
     hero_stat3_order: 3,
 
     intro_visible: true,
-    intro_heading: 'Turnkey interiors, done properly.',
+    intro_heading: 'From Concept to Handover — ESPACIO Delivers Complete Interiors.',
     intro_description: "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.",
     intro_cta_text1: 'Our Story ↗',
     intro_cta_text2: 'Read More ↗',
@@ -643,8 +643,8 @@ const Home = () => {
         const stored = getCMSData(STORAGE_KEYS.SETTINGS);
         if (stored && Object.keys(stored).length > 0) {
           const sanitizedStored = { ...stored };
-          if (sanitizedStored.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.') {
-            sanitizedStored.intro_heading = 'Turnkey interiors, done properly.';
+          if (sanitizedStored.intro_heading === 'Turnkey interiors, done properly.' || !sanitizedStored.intro_heading) {
+            sanitizedStored.intro_heading = 'From Concept to Handover — ESPACIO Delivers Complete Interiors.';
           }
           if (sanitizedStored.intro_description && sanitizedStored.intro_description.includes('We bring 40+ years of family construction heritage')) {
             sanitizedStored.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
@@ -664,8 +664,8 @@ const Home = () => {
         const res = await axios.get('/settings');
         if (res.data && res.data.success && res.data.data && Object.keys(res.data.data).length > 0) {
           const apiData = { ...res.data.data };
-          if (apiData.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.') {
-            apiData.intro_heading = 'Turnkey interiors, done properly.';
+          if (apiData.intro_heading === 'Turnkey interiors, done properly.' || !apiData.intro_heading) {
+            apiData.intro_heading = 'From Concept to Handover — ESPACIO Delivers Complete Interiors.';
           }
           if (apiData.intro_description && apiData.intro_description.includes('We bring 40+ years of family construction heritage')) {
             apiData.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
@@ -893,7 +893,7 @@ const Home = () => {
     const loadFeaturedProjects = async () => {
       readProjectsFromStorage();
       try {
-        const r = await axios.get('/projects?limit=20', { timeout: 3000 }).catch(() => null);
+        const r = await axios.get('/api/projects?limit=50', { timeout: 4000 }).catch(() => null);
         if (r?.data?.success && Array.isArray(r?.data?.data) && r.data.data.length >= 8) {
           const sorted = [...r.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
           setProjects(sorted);
@@ -912,17 +912,19 @@ const Home = () => {
   }, []);
 
   const PROJECT_DISPLAY_NAMES = {
-    'rajapushpa-provincia-3bhk': 'The Arcstone Residence',
+    'rajapushpa-provincia-3bhk': 'The Arcstone Residence, Narsingi',
     'my-home-sayuk-3bhk': 'The Lattice Retreat',
     'kokapet-2bhk': 'The Boucle Residence',
     'kokapet-urban-2bhk': 'The Ivory Retreat',
     'gandipet-modern-retro-2bhk': 'The Panelled Muse',
     'kondapur-minimalist-2bhk': 'The Dusk Lounge',
+    'the-restful-home-tellapur': 'The Restful Home',
+    'casa-alta-residence-kali-mandir': 'Casa Alta Residence'
   };
 
   // Authentic canonical thumbnails matching the Project Section catalog exactly
   const CANONICAL_PROJECT_IMAGES = {
-    'rajapushpa-provincia-3bhk': '/images/projects/rajapushpa_provincia/rajapushpa_8.webp',
+    'rajapushpa-provincia-3bhk': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg',
     'my-home-sayuk-3bhk': '/images/projects/my_home_sayuk/sayuk_4.webp',
     'kokapet-2bhk': '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp',
     'kokapet-urban-2bhk': '/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp',
@@ -930,12 +932,14 @@ const Home = () => {
     'kondapur-minimalist-2bhk': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp',
     'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp',
     'kachiguda-fusion-duplex-villa': '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
-    'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp'
+    'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp',
+    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png',
+    'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png'
   };
 
   const displayProjects = useMemo(() => {
     const source = (projects && Array.isArray(projects) && projects.length > 0) ? projects : DEFAULT_PROJECTS;
-    return [...source].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999)).slice(0, 9);
+    return [...source].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
   }, [projects]);
 
   const stickyContent = useMemo(() => {
@@ -1438,7 +1442,7 @@ const Home = () => {
               <div className="lg:col-span-6 space-y-8 text-left">
                 <Reveal delay={0.1}>
                   <h2 className="font-display text-[clamp(34px,4.2vw,56px)] font-medium leading-[1.1] tracking-tight text-ink">
-                    {homeSettings.intro_heading || 'Turnkey interiors, done properly.'}
+                    {homeSettings.intro_heading || 'From Concept to Handover — ESPACIO Delivers Complete Interiors.'}
                   </h2>
                 </Reveal>
                 

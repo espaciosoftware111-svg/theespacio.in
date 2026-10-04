@@ -47,6 +47,8 @@ const IMAGE_FALLBACK_MAP = {
 };
 
 const PROJECT_SLUG_FALLBACKS = {
+  'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
+  'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png',
   'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
   'gachibowli-minimalist-beige-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
   'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
@@ -99,17 +101,21 @@ const CANONICAL_ORDER = {
   'kondapur-minimalist-2bhk': 6,
   'gachibowli-minimalist-beige-2bhk': 7,
   'kachiguda-fusion-duplex-villa': 8,
-  'dimmu-chachu-luxury-villa': 9
+  'dimmu-chachu-luxury-villa': 9,
+  'the-restful-home-tellapur': 10,
+  'casa-alta-residence-kali-mandir': 11
 };
 
 // Display name override map (stable, outside component)
 const DISPLAY_NAMES = {
-  'rajapushpa-provincia-3bhk': 'The Arcstone Residence',
+  'rajapushpa-provincia-3bhk': 'The Arcstone Residence, Narsingi',
   'my-home-sayuk-3bhk': 'The Lattice Retreat',
   'kokapet-2bhk': 'The Boucle Residence',
   'kokapet-urban-2bhk': 'The Ivory Retreat',
   'gandipet-modern-retro-2bhk': 'The Panelled Muse',
   'kondapur-minimalist-2bhk': 'The Dusk Lounge',
+  'the-restful-home-tellapur': 'The Restful Home',
+  'casa-alta-residence-kali-mandir': 'Casa Alta Residence'
 };
 
 const getDisplayName = (project) =>
@@ -232,8 +238,8 @@ const Projects = () => {
       // 2. Fetch fresh data from API in background (stale-while-revalidate)
       try {
         const [projRes, setRes] = await Promise.all([
-          axios.get('/projects', { timeout: 8000 }).catch(() => null),
-          axios.get('/settings', { timeout: 8000 }).catch(() => null)
+          axios.get('/api/projects', { timeout: 8000 }).catch(() => null),
+          axios.get('/api/settings', { timeout: 8000 }).catch(() => null)
         ]);
 
         if (!cancelled) {
@@ -293,13 +299,12 @@ const Projects = () => {
     };
   }, []);
 
-  // Memoized canonical 9 projects
+  // Memoized canonical projects list (shows all active portfolio case studies)
   const canonicalProjects = useMemo(() => {
     return (projects && projects.length > 0 ? projects : DEFAULT_PROJECTS)
-      .filter(p => p && (CANONICAL_ORDER[p.slug] !== undefined || DEFAULT_PROJECTS.some(dp => dp._id === p._id)))
+      .filter(p => p && (CANONICAL_ORDER[p.slug] !== undefined || DEFAULT_PROJECTS.some(dp => dp._id === p._id || dp.slug === p.slug)))
       .map(p => ({ ...p, order: CANONICAL_ORDER[p.slug] || Number(p.order) || 999 }))
-      .sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999))
-      .slice(0, 9);
+      .sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
   }, [projects]);
 
   const displayedProjects = useMemo(() => {

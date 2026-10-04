@@ -2,12 +2,16 @@ import axios from 'axios';
 import { getOptimizedImageUrl } from './imageOptimizer.js';
 
 export const PROJECT_SLUG_ALIASES = {
-  // 1. Rajapushpa Provincia 3BHK
+  // 1. Rajapushpa Provincia 3BHK / The Arcstone Residence, Narsingi
   'rajapushpa-provincia-3bhk': 'rajapushpa-provincia-3bhk',
   'rajapushpa-provincia': 'rajapushpa-provincia-3bhk',
   'rajapushpa': 'rajapushpa-provincia-3bhk',
   'provincia': 'rajapushpa-provincia-3bhk',
   'the-arcstone-residence': 'rajapushpa-provincia-3bhk',
+  'the-arcstone-residence-narsingi': 'rajapushpa-provincia-3bhk',
+  'narsingi-3bhk': 'rajapushpa-provincia-3bhk',
+  'narsingi': 'rajapushpa-provincia-3bhk',
+  'dharma-teja': 'rajapushpa-provincia-3bhk',
   'arcstone-residence': 'rajapushpa-provincia-3bhk',
   'arcstone': 'rajapushpa-provincia-3bhk',
   'indo-classical-elegance-3bhk': 'rajapushpa-provincia-3bhk',
@@ -101,17 +105,47 @@ export const PROJECT_SLUG_ALIASES = {
   'proj_6_kondapur_venkatesh': 'kondapur-minimalist-2bhk',
   'proj_7_gachibowli_koteswara': 'gachibowli-minimalist-beige-2bhk',
   'proj_8_kachiguda_subbarao': 'kachiguda-fusion-duplex-villa',
+  // 10. The Restful Home (Tellapur 2BHK - Dinesh & Sarvani)
+  'the-restful-home-tellapur': 'the-restful-home-tellapur',
+  'the-restful-home': 'the-restful-home-tellapur',
+  'restful-home': 'the-restful-home-tellapur',
+  'tellapur-2bhk': 'the-restful-home-tellapur',
+  'tellapur': 'the-restful-home-tellapur',
+  'dinesh-sarvani': 'the-restful-home-tellapur',
+
+  // 11. Casa Alta Residence (Kali Mandir 3BHK - Prakash)
+  'casa-alta-residence-kali-mandir': 'casa-alta-residence-kali-mandir',
+  'casa-alta-residence': 'casa-alta-residence-kali-mandir',
+  'casa-alta': 'casa-alta-residence-kali-mandir',
+  'kali-mandir-3bhk': 'casa-alta-residence-kali-mandir',
+  'kali-mandir': 'casa-alta-residence-kali-mandir',
+  'prakash': 'casa-alta-residence-kali-mandir',
+
+  // Project _id mappings
+  'proj_1_rajapushpa_provincia': 'rajapushpa-provincia-3bhk',
+  'proj_2_my_home_sayuk': 'my-home-sayuk-3bhk',
+  'proj_3_kokapet_nagesh': 'kokapet-2bhk',
+  'proj_4_kokapet_rahul': 'kokapet-urban-2bhk',
+  'proj_5_gandipet_kiran': 'gandipet-modern-retro-2bhk',
+  'proj_6_kondapur_venkatesh': 'kondapur-minimalist-2bhk',
+  'proj_7_gachibowli_koteswara': 'gachibowli-minimalist-beige-2bhk',
+  'proj_8_kachiguda_subbarao': 'kachiguda-fusion-duplex-villa',
   'proj_9_dimmu_chachu_residence': 'dimmu-chachu-luxury-villa',
+  'proj_10_the_restful_home_tellapur': 'the-restful-home-tellapur',
+  'proj_11_casa_alta_residence_kali_mandir': 'casa-alta-residence-kali-mandir',
 
   // Order number mappings
   '1': 'rajapushpa-provincia-3bhk',
   '2': 'my-home-sayuk-3bhk',
-  '3': 'kokapet-urban-2bhk',
-  '4': 'gandipet-modern-retro-2bhk',
-  '5': 'kondapur-minimalist-2bhk',
-  '6': 'gachibowli-minimalist-beige-2bhk',
-  '7': 'kachiguda-fusion-duplex-villa',
-  '8': 'dimmu-chachu-luxury-villa'
+  '3': 'kokapet-2bhk',
+  '4': 'kokapet-urban-2bhk',
+  '5': 'gandipet-modern-retro-2bhk',
+  '6': 'kondapur-minimalist-2bhk',
+  '7': 'gachibowli-minimalist-beige-2bhk',
+  '8': 'kachiguda-fusion-duplex-villa',
+  '9': 'dimmu-chachu-luxury-villa',
+  '10': 'the-restful-home-tellapur',
+  '11': 'casa-alta-residence-kali-mandir'
 };
 
 export const resolveCanonicalSlug = (rawSlug = '') => {
@@ -161,7 +195,7 @@ export const prefetchProject = (slug) => {
   const resolved = resolveCanonicalSlug(clean);
   if (projectDetailCache.has(resolved) || projectDetailCache.has(clean)) return;
 
-  axios.get(`/projects/${resolved}`).then(response => {
+  axios.get(`/api/projects/${resolved}`).then(response => {
     if (response.data?.success && response.data?.data) {
       projectDetailCache.set(resolved, response.data.data);
       projectDetailCache.set(clean, response.data.data);

@@ -157,8 +157,8 @@ const AdminProjects = () => {
       // Fetch Live from Database
       try {
         const [projRes, setRes] = await Promise.all([
-          axios.get('/projects?admin=true&limit=100').catch(() => null),
-          axios.get('/settings').catch(() => null)
+          axios.get('/api/projects?admin=true&limit=100').catch(() => null),
+          axios.get('/api/settings').catch(() => null)
         ]);
 
         if (projRes?.data?.data) {

@@ -3824,20 +3824,22 @@ const WhatWeDo = () => {
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
                           className="absolute inset-0 w-full h-full object-cover object-center opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                        <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between">
-                          <div>
-                            <span className="font-sans text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-gold/90 block mb-0.5">
+                        <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3.5 sm:left-3.5 sm:right-3.5 flex items-end justify-between gap-2 pointer-events-none">
+                          <div 
+                            className="w-fit max-w-[calc(100%-3rem)] backdrop-blur-xl bg-black/10 border border-white/20 shadow-lg rounded-xl px-3 py-1.5 sm:px-3.5 sm:py-2 pointer-events-auto transition-all duration-300 group-hover:bg-black/20 group-hover:border-white/30"
+                            style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                          >
+                            <span className="font-sans text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
                               ESPACIO Space
                             </span>
-                            <h3 className="font-display text-base sm:text-xl font-bold text-white mb-0.5 sm:mb-1 group-hover:text-gold transition-colors duration-300">
+                            <h3 className="font-display text-base sm:text-lg font-bold text-white mb-0.5 sm:mb-1 group-hover:text-gold transition-colors duration-300 truncate [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                               {cat.name}
                             </h3>
-                            <p className="font-sans text-[11px] sm:text-xs text-neutral-300 max-w-[280px] leading-relaxed line-clamp-1 sm:line-clamp-2">
-                              {cat.description?.substring(0, 90)}...
-                            </p>
                           </div>
-                          <div className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300">
+                          <div 
+                            className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/30 bg-black/10 backdrop-blur-xl flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 pointer-events-auto transition-all duration-300 shadow-md mb-0.5"
+                            style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                          >
                             <ArrowUpRight size={13} />
                           </div>
                         </div>
@@ -3875,20 +3877,22 @@ const WhatWeDo = () => {
                             style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
                             className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                          <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-                            <div className="space-y-1 pr-3">
-                              <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold/90 block">
+                          <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between gap-3 pointer-events-none">
+                            <div 
+                              className="w-fit max-w-[calc(100%-3.5rem)] backdrop-blur-xl bg-black/10 border border-white/20 shadow-lg rounded-xl px-3.5 py-2 sm:px-4 sm:py-2.5 pointer-events-auto transition-all duration-300 group-hover:bg-black/20 group-hover:border-white/30"
+                              style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                            >
+                              <span className="font-sans text-[9px] sm:text-[9.5px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
                                 ESPACIO Space
                               </span>
-                              <h3 className="font-display text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
+                              <h3 className="font-display text-lg sm:text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                                 {cat.name}
                               </h3>
-                              <p className="font-sans text-[12px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
-                                {cat.description?.substring(0, 95)}...
-                              </p>
                             </div>
-                            <div className="shrink-0 w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300 shadow-md">
+                            <div 
+                              className="shrink-0 w-9 h-9 rounded-full border border-white/25 bg-black/10 backdrop-blur-xl flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 pointer-events-auto transition-all duration-300 shadow-md mb-0.5"
+                              style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                            >
                               <ArrowUpRight size={15} />
                             </div>
                           </div>
@@ -3922,24 +3926,29 @@ const WhatWeDo = () => {
                           style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
                           className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         
                         {/* Architectural Precision Spec Tag */}
-                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-2.5 py-1 rounded-[3px] bg-black/45 backdrop-blur-md border border-white/15 shadow-sm transition-all duration-300 group-hover:border-white/30 group-hover:bg-black/60 select-none">
+                        <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-2.5 py-1 rounded-[3px] bg-black/20 backdrop-blur-xl border border-white/15 shadow-sm transition-all duration-300 group-hover:border-white/30 group-hover:bg-black/35 select-none">
                           <span className="w-1.5 h-1.5 rounded-[1px] bg-[#C5A265]" />
                           <span className="font-sans text-[9px] font-semibold uppercase tracking-[0.22em] text-white/90">Featured Space</span>
                         </div>
 
-                        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                          <div className="space-y-0.5 pr-2">
-                            <h3 className="font-display text-lg xl:text-xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-snug">
+                        <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between gap-2.5 pointer-events-none">
+                          <div 
+                            className="w-fit max-w-[calc(100%-3rem)] backdrop-blur-xl bg-black/10 border border-white/20 shadow-lg rounded-xl px-3 py-1.5 sm:px-3.5 sm:py-2 pointer-events-auto transition-all duration-300 group-hover:bg-black/20 group-hover:border-white/30"
+                            style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                          >
+                            <span className="font-sans text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
+                              ESPACIO Space
+                            </span>
+                            <h3 className="font-display text-base sm:text-lg xl:text-xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-snug truncate [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                               {cat.name}
                             </h3>
-                            <p className="font-sans text-[11px] text-white/75 max-w-[260px] leading-relaxed line-clamp-1">
-                              {cat.description?.substring(0, 75)}...
-                            </p>
                           </div>
-                          <div className="shrink-0 w-8 h-8 rounded-full border border-white/20 bg-black/30 backdrop-blur-md text-white flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal group-hover:scale-105 transition-all duration-300 shadow-sm">
+                          <div 
+                            className="shrink-0 w-8 h-8 rounded-full border border-white/20 bg-black/10 backdrop-blur-xl text-white flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-charcoal group-hover:scale-105 pointer-events-auto transition-all duration-300 shadow-sm mb-0.5"
+                            style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                          >
                             <ArrowUpRight size={14} />
                           </div>
                         </div>
@@ -3972,20 +3981,22 @@ const WhatWeDo = () => {
                             style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
                             className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                          <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-                            <div className="space-y-1 pr-3">
-                              <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold/90 block">
+                          <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between gap-3 pointer-events-none">
+                            <div 
+                              className="w-fit max-w-[calc(100%-3.5rem)] backdrop-blur-xl bg-black/10 border border-white/20 shadow-lg rounded-xl px-3.5 py-2 sm:px-4 sm:py-2.5 pointer-events-auto transition-all duration-300 group-hover:bg-black/20 group-hover:border-white/30"
+                              style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                            >
+                              <span className="font-sans text-[9px] sm:text-[9.5px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
                                 ESPACIO Space
                               </span>
-                              <h3 className="font-display text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight">
+                              <h3 className="font-display text-lg sm:text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                                 {cat.name}
                               </h3>
-                              <p className="font-sans text-[12px] text-white/70 max-w-[280px] leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
-                                {cat.description?.substring(0, 95)}...
-                              </p>
                             </div>
-                            <div className="shrink-0 w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 transition-all duration-300 shadow-md">
+                            <div 
+                              className="shrink-0 w-9 h-9 rounded-full border border-white/25 bg-black/10 backdrop-blur-xl flex items-center justify-center text-white group-hover:bg-gold group-hover:border-gold group-hover:text-neutral-900 pointer-events-auto transition-all duration-300 shadow-md mb-0.5"
+                              style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                            >
                               <ArrowUpRight size={15} />
                             </div>
                           </div>

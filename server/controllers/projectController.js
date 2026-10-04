@@ -205,6 +205,23 @@ const PROJECT_SLUG_ALIASES = {
   'celestial': 'dimmu-chachu-luxury-villa',
   'grand-3bhk-penthouse-luxe': 'dimmu-chachu-luxury-villa',
 
+  // 10. The Restful Home (Tellapur 2BHK - Dinesh & Sarvani)
+  'the-restful-home-tellapur': 'the-restful-home-tellapur',
+  'the-restful-home': 'the-restful-home-tellapur',
+  'restful-home': 'the-restful-home-tellapur',
+  'tellapur-2bhk': 'the-restful-home-tellapur',
+  'tellapur': 'the-restful-home-tellapur',
+  'dinesh-sarvani': 'the-restful-home-tellapur',
+  'dinesh': 'the-restful-home-tellapur',
+
+  // 11. Casa Alta Residence (Kali Mandir 3BHK - Prakash)
+  'casa-alta-residence-kali-mandir': 'casa-alta-residence-kali-mandir',
+  'casa-alta-residence': 'casa-alta-residence-kali-mandir',
+  'casa-alta': 'casa-alta-residence-kali-mandir',
+  'kali-mandir-3bhk': 'casa-alta-residence-kali-mandir',
+  'kali-mandir': 'casa-alta-residence-kali-mandir',
+  'prakash': 'casa-alta-residence-kali-mandir',
+
   // Project _id mappings
   'proj_1_rajapushpa_provincia': 'rajapushpa-provincia-3bhk',
   'proj_2_my_home_sayuk': 'my-home-sayuk-3bhk',
@@ -215,6 +232,8 @@ const PROJECT_SLUG_ALIASES = {
   'proj_7_gachibowli_koteswara': 'gachibowli-minimalist-beige-2bhk',
   'proj_8_kachiguda_subbarao': 'kachiguda-fusion-duplex-villa',
   'proj_9_dimmu_chachu_residence': 'dimmu-chachu-luxury-villa',
+  'proj_10_the_restful_home_tellapur': 'the-restful-home-tellapur',
+  'proj_11_casa_alta_residence_kali_mandir': 'casa-alta-residence-kali-mandir',
 
   // Order number mappings
   '1': 'rajapushpa-provincia-3bhk',
@@ -225,7 +244,9 @@ const PROJECT_SLUG_ALIASES = {
   '6': 'kondapur-minimalist-2bhk',
   '7': 'gachibowli-minimalist-beige-2bhk',
   '8': 'kachiguda-fusion-duplex-villa',
-  '9': 'dimmu-chachu-luxury-villa'
+  '9': 'dimmu-chachu-luxury-villa',
+  '10': 'the-restful-home-tellapur',
+  '11': 'casa-alta-residence-kali-mandir'
 };
 
 export const getProjectBySlug = async (req, res, next) => {

@@ -214,9 +214,10 @@ const Footer = () => {
     ? cmsSettings.footer_brand_right 
     : (cmsSettings.footer_brand_text ? cmsSettings.footer_brand_text.slice(3) : 'ACIO.');
 
-  const brandSubtitle = cmsSettings.footer_brand_subtitle !== undefined 
-    ? cmsSettings.footer_brand_subtitle 
-    : 'INTERIORS AND MODULARS';
+  const rawSubtitle = cmsSettings.footer_brand_subtitle;
+  const brandSubtitle = (rawSubtitle && rawSubtitle !== 'INTERIORS AND MODULARS') 
+    ? (rawSubtitle.trim() === 'Designing spaces. Defining life styles' ? 'Designing spaces. Defining life styles.' : rawSubtitle)
+    : 'Designing spaces. Defining life styles.';
 
   const brandWeight = (cmsSettings.footer_brand_weight !== undefined && cmsSettings.footer_brand_weight !== 500)
     ? Number(cmsSettings.footer_brand_weight)
