@@ -297,10 +297,10 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051328/espacio_gallery/nrpnwjy0usmclyfcvcvl.jpg",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051330/espacio_gallery/re3wfqbpnwhdgs1934kk.jpg"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg"
     ],
     "afterImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg"

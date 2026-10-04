@@ -704,7 +704,7 @@ const ProjectDetails = () => {
       cleanSlug === 'the-ivory-retreat' || 
       resolvedSlug === 'kokapet-urban-2bhk'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg';
       item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
@@ -1061,7 +1061,7 @@ const ProjectDetails = () => {
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
         }
         if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul' || p.title?.includes('Ivory') || p.title?.includes('Rahul') || cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'kokapet-urban' || cleanSlug === 'the-ivory-retreat' || cleanSlug === 'rahul' || resolvedSlug === 'kokapet-urban-2bhk') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051300/espacio_gallery/nslcfifkgxxmqncbouqz.jpg';
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg';
         }
         if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh' || p.title?.includes('Boucle') || p.title?.includes('Nagesh') || cleanSlug === 'kokapet-2bhk' || cleanSlug === 'kokapet' || cleanSlug === 'the-boucle-residence' || resolvedSlug === 'kokapet-2bhk') {
