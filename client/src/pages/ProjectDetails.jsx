@@ -687,7 +687,7 @@ const ProjectDetails = () => {
       cleanSlug === 'gandipet' || 
       resolvedSlug === 'gandipet-modern-retro-2bhk'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791132839/espacio_gallery/mysq2iymi1lwd2lgk5v0.jpg';
       item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
@@ -1057,7 +1057,7 @@ const ProjectDetails = () => {
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png';
         }
         if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran' || p.title?.includes('Panelled') || p.title?.includes('Kiran') || cleanSlug === 'gandipet-modern-retro-2bhk' || cleanSlug === 'gandipet-modern-retro' || cleanSlug === 'gandipet' || cleanSlug === 'the-panelled-muse' || cleanSlug === 'kiran' || resolvedSlug === 'gandipet-modern-retro-2bhk') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/48723afe-969c-4d67-8024-a74296aad3b2.png';
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791132839/espacio_gallery/mysq2iymi1lwd2lgk5v0.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
         }
         if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul' || p.title?.includes('Ivory') || p.title?.includes('Rahul') || cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'kokapet-urban' || cleanSlug === 'the-ivory-retreat' || cleanSlug === 'rahul' || resolvedSlug === 'kokapet-urban-2bhk') {

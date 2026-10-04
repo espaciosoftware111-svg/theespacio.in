@@ -419,7 +419,14 @@ const EXACT_PROJECT_ROOMS = {
     '69fac825-2a00-4d3d-9f64-19d8336aa9ec.png': 'Retro Guest Bedroom & Study Desk',
     '69fac825-2a00-4d3d-9f64-19d8336aa9ec': 'Retro Guest Bedroom & Study Desk',
     '802e37b7-a758-4a54-bf4c-ac4666122714.png': 'Louvered Entrance Foyer & Balcony Deck',
-    '802e37b7-a758-4a54-bf4c-ac4666122714': 'Louvered Entrance Foyer & Balcony Deck'
+    '802e37b7-a758-4a54-bf4c-ac4666122714': 'Louvered Entrance Foyer & Balcony Deck',
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791132839/espacio_gallery/mysq2iymi1lwd2lgk5v0.jpg': 'Raw Site Shell & Structural Framing',
+    'mysq2iymi1lwd2lgk5v0': 'Raw Site Shell & Structural Framing',
+    'mysq2iymi1lwd2lgk5v0.jpg': 'Raw Site Shell & Structural Framing',
+    'kiran_before.webp': 'Raw Site Shell & Structural Framing',
+    'kiran_before': 'Raw Site Shell & Structural Framing',
+    '48723afe-969c-4d67-8024-a74296aad3b2.png': 'Raw Site Shell & Structural Framing',
+    '48723afe-969c-4d67-8024-a74296aad3b2': 'Raw Site Shell & Structural Framing'
   },
 
   // 6. The Dusk Lounge (Kondapur Minimalist 2BHK)
