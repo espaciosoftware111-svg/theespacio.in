@@ -10,7 +10,7 @@ const updatedSocialItems = [
     beamColor: "rgba(228, 64, 95, 0.4)"
   },
   {
-    href: "https://www.facebook.com/share/1YCa9RnM8a/",
+    href: "https://www.facebook.com/share/1DkG2m4Ra7/",
     icon: "facebook",
     name: "Facebook",
     color: "#1877F2",

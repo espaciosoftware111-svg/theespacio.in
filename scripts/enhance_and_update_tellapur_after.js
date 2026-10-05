@@ -1,0 +1,116 @@
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import sharp from 'sharp';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../server/.env') });
+
+import { uploadToCloudinary } from '../server/utils/cloudinaryHelper.js';
+import { query } from '../server/config/supabase.js';
+
+async function main() {
+  console.log('=== Step 1: Enhancing Tellapur TV Unit After Image to UHD 4K (3840x2160) ===');
+  
+  // High-res source from Google Drive temp check
+  const sourcePath = path.resolve('temp_check_1Mar.png');
+  const targetDir = path.resolve('client/public/images/projects/the_restful_home_tellapur');
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+  const targetWebpPath = path.join(targetDir, 'tellapur_after.webp');
+
+  if (!fs.existsSync(sourcePath)) {
+    throw new Error(`Source file not found: ${sourcePath}`);
+  }
+
+  // 4K UHD processing: 3840 x 2160 with Lanczos3, unsharp masking, clarity optimization
+  console.log('Processing with Sharp at 3840x2160 lanczos3...');
+  const enhanced4kBuffer = await sharp(sourcePath)
+    .resize({
+      width: 3840,
+      height: 2160,
+      fit: 'cover',
+      kernel: sharp.kernel.lanczos3
+    })
+    .modulate({
+      brightness: 1.01,
+      saturation: 1.04
+    })
+    .sharpen({
+      sigma: 1.15,
+      m1: 0.5,
+      m2: 0.5
+    })
+    .webp({
+      quality: 96,
+      effort: 6
+    })
+    .toBuffer();
+
+  // Save to client public folder
+  fs.writeFileSync(targetWebpPath, enhanced4kBuffer);
+  const stats = fs.statSync(targetWebpPath);
+  console.log(`✓ Saved 4K WebP to ${targetWebpPath} (${Math.round(stats.size / 1024)} KB)`);
+
+  // Prepare high-quality JPEG buffer for Cloudinary upload
+  console.log('Preparing high-res JPEG for Cloudinary...');
+  const jpeg4kBuffer = await sharp(enhanced4kBuffer)
+    .jpeg({ quality: 96, chromaSubsampling: '4:4:4' })
+    .toBuffer();
+
+  console.log('=== Step 2: Uploading UHD 4K Enhanced After Image to Cloudinary ===');
+  const base64 = `data:image/jpeg;base64,${jpeg4kBuffer.toString('base64')}`;
+  const uploadResult = await uploadToCloudinary(base64, `tellapur_restful_home_uhd_4k_tv_after_${Date.now()}`);
+  console.log(`✓ Cloudinary Upload Successful: ${uploadResult.secure_url}`);
+  console.log(`  Dimensions: ${uploadResult.width}x${uploadResult.height}`);
+
+  const newAfterUrl = uploadResult.secure_url;
+
+  console.log('=== Step 3: Updating Supabase Database for the-restful-home-tellapur ===');
+  const selRes = await query("SELECT data, before_after FROM projects WHERE slug = 'the-restful-home-tellapur' OR id = 'proj_10_the_restful_home_tellapur'");
+  let currentData = {};
+  let currentBeforeUrl = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png';
+
+  if (selRes.rows.length > 0) {
+    if (selRes.rows[0].data) {
+      currentData = typeof selRes.rows[0].data === 'string' ? JSON.parse(selRes.rows[0].data) : selRes.rows[0].data;
+      if (currentData.beforeImage) {
+        currentBeforeUrl = currentData.beforeImage;
+      }
+    }
+  }
+
+  const newBeforeAfter = [{ before: currentBeforeUrl, after: newAfterUrl }];
+
+  const updatedData = {
+    ...currentData,
+    afterImage: newAfterUrl,
+    afterImages: [newAfterUrl],
+    before_after: newBeforeAfter
+  };
+
+  const updateRes = await query(`
+    UPDATE projects 
+    SET before_after = $1::jsonb,
+        data = $2::jsonb,
+        updated_at = NOW()
+    WHERE slug = 'the-restful-home-tellapur' OR id = 'proj_10_the_restful_home_tellapur'
+    RETURNING id, slug
+  `, [JSON.stringify(newBeforeAfter), JSON.stringify(updatedData)]);
+
+  console.log('✓ Supabase DB Updated for:', updateRes.rows);
+
+  console.log('\nSUCCESS! New UHD 4K After URL:', newAfterUrl);
+  return { newAfterUrl, currentBeforeUrl };
+}
+
+main().then(res => {
+  console.log('Finished with After URL:', res.newAfterUrl);
+  process.exit(0);
+}).catch(err => {
+  console.error('Fatal error:', err);
+  process.exit(1);
+});

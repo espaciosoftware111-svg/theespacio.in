@@ -2,6 +2,36 @@ import Product from '../models/Product.js';
 import { ErrorResponse } from '../middleware/errorMiddleware.js';
 import { uploadFile, deleteFile } from '../services/storageService.js';
 
+let cachedProducts = null;
+let cachedProductsTime = 0;
+let inflightProductsPromise = null;
+const PRODUCTS_CACHE_TTL_MS = 300000; // 5 minutes
+
+export const invalidateProductsCache = () => {
+  cachedProducts = null;
+  cachedProductsTime = 0;
+};
+
+export const loadProductsFromDB = async () => {
+  if (inflightProductsPromise) return inflightProductsPromise;
+  inflightProductsPromise = (async () => {
+    try {
+      const products = await Product.find({ softDelete: false }).catch(() => []);
+      cachedProducts = Array.isArray(products) ? products : [];
+      cachedProductsTime = Date.now();
+      return cachedProducts;
+    } catch {
+      return cachedProducts || [];
+    } finally {
+      inflightProductsPromise = null;
+    }
+  })();
+  return inflightProductsPromise;
+};
+
+// Pre-warm products cache on boot
+loadProductsFromDB().catch(() => {});
+
 /**
  * @desc    Get all materials / products (public library, filters, searches)
  * @route   GET /api/products
@@ -9,6 +39,36 @@ import { uploadFile, deleteFile } from '../services/storageService.js';
  */
 export const getProducts = async (req, res, next) => {
   try {
+    const hasFilters = req.query.search || req.query.category || req.query.select || req.query.sort;
+    
+    // Fast path: cached standard library query (sub-1ms response)
+    if (!hasFilters) {
+      if (cachedProducts) {
+        res.setHeader('X-Cache', 'HIT');
+        res.setHeader('Cache-Control', 'public, max-age=60');
+        if (Date.now() - cachedProductsTime > PRODUCTS_CACHE_TTL_MS) {
+          loadProductsFromDB().catch(() => {});
+        }
+        return res.status(200).json({
+          success: true,
+          count: cachedProducts.length,
+          data: cachedProducts
+        });
+      }
+
+      const products = await Promise.race([
+        loadProductsFromDB(),
+        new Promise((resolve) => setTimeout(() => resolve(cachedProducts || []), 2500))
+      ]);
+
+      res.setHeader('Cache-Control', 'public, max-age=60');
+      return res.status(200).json({
+        success: true,
+        count: (products || []).length,
+        data: products || []
+      });
+    }
+
     let query;
     const reqQuery = { ...req.query };
 
@@ -50,8 +110,8 @@ export const getProducts = async (req, res, next) => {
   } catch (err) {
     res.status(200).json({
       success: true,
-      count: 0,
-      data: []
+      count: (cachedProducts || []).length,
+      data: cachedProducts || []
     });
   }
 };

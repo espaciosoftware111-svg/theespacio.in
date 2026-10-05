@@ -228,9 +228,9 @@ const teamProjectsData = [
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
     projectImgMobile: "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/801e0ea0-440b-4a88-964a-278514967e9e.png",
     memberImg: "/reviews/imtiyaz_shaik.png",
-    name: "Modular Specialist",
-    role: "High-Gloss Modular Kitchens",
-    projectLabel: "Modern Modular Kitchen & Island Bar"
+    name: "Living Space Specialist",
+    role: "Luxury Living Spaces",
+    projectLabel: "Warm Arched Living Lounge"
   },
   {
     projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
@@ -655,6 +655,13 @@ const Home = () => {
           }
           if (!Array.isArray(sanitizedStored.showcase_slides) || sanitizedStored.showcase_slides.length !== 5 || sanitizedStored.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || sanitizedStored.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
             sanitizedStored.showcase_slides = teamProjectsData;
+          } else {
+            sanitizedStored.showcase_slides = sanitizedStored.showcase_slides.map(slide => {
+              if (slide.projectLabel === "Modern Modular Kitchen & Island Bar" || slide.projectLabel === "Modern Quartzite Kitchen" || slide.role === "High-Gloss Modular Kitchens") {
+                return { ...slide, name: "Living Space Specialist", role: "Luxury Living Spaces", projectLabel: "Warm Arched Living Lounge" };
+              }
+              return slide;
+            });
           }
           setHomeSettings((prev) => ({ ...prev, ...sanitizedStored }));
         }
@@ -676,6 +683,13 @@ const Home = () => {
           }
           if (!Array.isArray(apiData.showcase_slides) || apiData.showcase_slides.length !== 5 || apiData.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || apiData.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
             apiData.showcase_slides = teamProjectsData;
+          } else {
+            apiData.showcase_slides = apiData.showcase_slides.map(slide => {
+              if (slide.projectLabel === "Modern Modular Kitchen & Island Bar" || slide.projectLabel === "Modern Quartzite Kitchen" || slide.role === "High-Gloss Modular Kitchens") {
+                return { ...slide, name: "Living Space Specialist", role: "Luxury Living Spaces", projectLabel: "Warm Arched Living Lounge" };
+              }
+              return slide;
+            });
           }
           setHomeSettings((prev) => ({ ...prev, ...apiData }));
           setCMSData(STORAGE_KEYS.SETTINGS, apiData, { silent: true });
@@ -1028,9 +1042,9 @@ const Home = () => {
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
     },
     {
-      title: "Modern Modular Kitchen & Island Bar",
-      category: "Modular Kitchen",
-      link: "/spaces/modular-kitchen",
+      title: "Warm Arched Living Lounge",
+      category: "Living Room",
+      link: "/spaces/living-room",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
     },
     {

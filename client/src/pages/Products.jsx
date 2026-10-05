@@ -35,7 +35,8 @@ export const CANONICAL_MATERIALS = [
     badge: 'ACRYLIC & FINISHES',
     materialCode: 'MAT-ACR-01',
     description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
-    heroImage: '/images/materials/fluted_acrylic_azzurro.webp',
+    heroImage: '/images/materials/acrylic_thumb.webp',
+    heroImageFallback: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
   },
   {
     order: 2,
@@ -45,7 +46,8 @@ export const CANONICAL_MATERIALS = [
     badge: 'NATURAL STONE',
     materialCode: 'MAT-GNT-02',
     description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
-    heroImage: '/images/materials/fluted_acrylic_gracia.jpg',
+    heroImage: '/images/materials/polygranite_thumb.webp',
+    heroImageFallback: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
   },
   {
     order: 3,
@@ -55,8 +57,9 @@ export const CANONICAL_MATERIALS = [
     badge: 'ACOUSTIC PANELS',
     materialCode: 'MAT-CHR-03',
     description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
-    heroImage: '/images/materials/charcoal_luxe_4018_4017_4016.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
   },
+
   {
     order: 4,
     title: 'Fluted PVC Luxe Collection',
@@ -65,7 +68,7 @@ export const CANONICAL_MATERIALS = [
     badge: 'ARCHITECTURAL PANELS',
     materialCode: 'MAT-PVC-04',
     description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
-    heroImage: '/images/materials/irish.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
   },
   {
     order: 5,
@@ -75,7 +78,7 @@ export const CANONICAL_MATERIALS = [
     badge: 'WOOD & FLOORING',
     materialCode: 'MAT-FLR-05',
     description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
-    heroImage: '/images/materials/fluted_acrylic_giallo_dining.jpg',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
   },
   {
     order: 6,
@@ -85,7 +88,7 @@ export const CANONICAL_MATERIALS = [
     badge: 'ACRYLIC & FINISHES',
     materialCode: 'MAT-ACR-06',
     description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.',
-    heroImage: '/images/materials/fluted_acrylic_florida.jpg',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
   },
   {
     order: 7,
@@ -95,7 +98,7 @@ export const CANONICAL_MATERIALS = [
     badge: 'ARCHITECTURAL PANELS',
     materialCode: 'MAT-PVC-07',
     description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
-    heroImage: '/images/materials/pvc_luxe_5003_5004.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
   },
   {
     order: 8,
@@ -105,7 +108,7 @@ export const CANONICAL_MATERIALS = [
     badge: 'COMPOSITE PANELS',
     materialCode: 'MAT-WPC-08',
     description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
-    heroImage: '/images/materials/wpc_luxe_1701_1606.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
   },
   {
     order: 9,
@@ -115,7 +118,7 @@ export const CANONICAL_MATERIALS = [
     badge: 'ACOUSTIC PANELS',
     materialCode: 'MAT-CHR-09',
     description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-    heroImage: '/images/materials/charcoal_luxe_1_6015.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png',
   }
 ];
 
@@ -135,13 +138,13 @@ const Products = () => {
   const heroVideoUrl = cmsSettings.materials_hero_video || 'https://res.cloudinary.com/r3jwfy0y/video/upload/v1790935342/thronetegelslaminaat_pindown.io_1790935254.mp4';
   const heroImageUrl = cmsSettings.materials_hero_image || DEFAULT_MATERIALS_HERO_IMAGE;
 
-  // Desktop subtle parallax scroll motion
+  // Desktop subtle parallax scroll motion — negative Y lifts content UP as user scrolls down, preventing bottom text clipping
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const desktopBgY = useTransform(scrollYProgress, [0, 1], ['0px', '28px']);
-  const desktopBgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.025]);
+  const desktopBgY = useTransform(scrollYProgress, [0, 1], ['0px', '-20px']);
+  const desktopBgScale = useTransform(scrollYProgress, [0, 1], [1.0, 0.99]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -192,6 +195,19 @@ const Products = () => {
 
   // Merge live CMS or API edits if available, but strictly preserve the 9 curated materials
   const sourceData = useMemo(() => {
+    // Slugs where the canonical heroImage must ALWAYS win (never overridden by DB/localStorage)
+    const LOCKED_HERO_SLUGS = new Set([
+      'acrylic-luxe-collection',
+      'digital-korean-poly-granite',
+      'charcoal-panels-luxe',
+      'fluted-pvc-luxe',
+      'lvt-luxe-flooring',
+      'fluted-acrylic-luxe',
+      'pvc-luxe-collection',
+      'wpc-luxe-collection',
+      'charcoal-panels-luxe-1',
+    ]);
+
     const liveList = Array.isArray(products) && products.length > 0 ? products : [];
     return CANONICAL_MATERIALS.map((canon) => {
       const match = liveList.find(
@@ -202,13 +218,15 @@ const Products = () => {
         ...canon,
         title: match.title || canon.title,
         description: match.description || canon.description,
-        heroImage: match.heroImage || canon.heroImage,
+        // Lock heroImage for featured materials so old DB/localStorage values never win
+        heroImage: LOCKED_HERO_SLUGS.has(canon.slug) ? canon.heroImage : (match.heroImage || canon.heroImage),
         category: match.category || canon.category,
-        badge: match.badge || canon.badge,
+        badge: canon.badge, // Force canon badge so section names show up instead of "Premium Finish"
         materialCode: match.materialCode || canon.materialCode,
       };
     });
   }, [products]);
+
 
   const query = searchQuery.trim().toLowerCase();
   const filteredProducts = useMemo(() => {
@@ -284,16 +302,16 @@ const Products = () => {
             <ScrollDownIndicator light={false} />
           </div>
 
-          {/* Desktop View: 90% Screen Size Showcase Graphic (No Black Fade, Full Visibility) */}
-          <div className="hidden md:flex w-full h-full items-center justify-center relative overflow-hidden bg-[#ded4c5]">
+          {/* Desktop View: 90% Screen Size Showcase Graphic (Full Visibility without Bottom Clipping) */}
+          <div className="hidden md:flex w-full h-full items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#ded4c5] via-[#ede3d4] to-[#f2ebe0]">
             <motion.div
               style={{ y: desktopBgY, scale: desktopBgScale }}
-              className="w-full h-full flex items-center justify-center will-change-transform origin-center"
+              className="w-full h-full flex items-center justify-center will-change-transform origin-center pb-3 sm:pb-4 lg:pb-6 px-1 sm:px-2"
             >
               <img
                 src={heroImageUrl}
                 alt="Materials That Shape Home — ESPACIO"
-                className="w-full h-full object-cover object-center select-none pointer-events-none"
+                className="w-full h-full object-cover object-[center_88%] select-none pointer-events-none"
                 loading="eager"
                 fetchPriority="high"
                 style={{ imageRendering: 'high-quality' }}
@@ -344,6 +362,12 @@ const Products = () => {
                     alt={product.title}
                     loading="lazy"
                     decoding="async"
+                    onError={(e) => {
+                      const fallback = product.heroImageFallback;
+                      if (fallback && e.target.src !== fallback) {
+                        e.target.src = fallback;
+                      }
+                    }}
                     className="w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform"
                   />
 

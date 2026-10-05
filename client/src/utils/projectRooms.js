@@ -533,27 +533,259 @@ const EXACT_PROJECT_ROOMS = {
     '199e3414-0530-4337-bcb8-d51bd14409ef': 'Balcony Garden Lounge & Foyer'
   },
 
-  // 8. Kachiguda Fusion Duplex Villa
+    // 8. Kachiguda Fusion Duplex Villa (K. Subba Rao - Exquisite Fusion of Modern & Desi in a 4BHK)
   'kachiguda-fusion-duplex-villa': {
-    'b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png': 'Boys Bedroom & Airplane Mural',
-    'b1b4c729-d7f1-4216-ab32-7df78a0b6e34': 'Boys Bedroom & Airplane Mural',
-    '92d8cde3-623f-4811-907d-7267962255ac.png': 'Vintage Airplane Blueprint Mural',
-    '92d8cde3-623f-4811-907d-7267962255ac': 'Vintage Airplane Blueprint Mural',
-    '3f8f1874-d2b3-4b6c-9e5c-fb3333c11311.png': 'Creative Accent Wall & Grid Organizer',
-    '3f8f1874-d2b3-4b6c-9e5c-fb3333c11311': 'Creative Accent Wall & Grid Organizer',
-    '39876fee-140f-4c0f-bc16-01cdca3f2f76.png': 'Modular Wardrobe & Storage Console',
-    '39876fee-140f-4c0f-bc16-01cdca3f2f76': 'Modular Wardrobe & Storage Console',
-    '8005ea3b-7d7a-4643-ac48-599d0cf0710e.png': 'Grand Living Lounge & Fireplace Wall',
-    '8005ea3b-7d7a-4643-ac48-599d0cf0710e': 'Grand Living Lounge & Fireplace Wall',
-    '919d61b3-2f89-40e4-9e8d-17af115b4a9f.png': 'Formal Dining Lounge & Chandelier',
-    '919d61b3-2f89-40e4-9e8d-17af115b4a9f': 'Formal Dining Lounge & Chandelier',
-    '445827f3-df4c-41c9-bd9c-da11399a47ff.png': 'Wood Panelled Dining Counter',
-    '445827f3-df4c-41c9-bd9c-da11399a47ff': 'Wood Panelled Dining Counter',
-    'd6fa4de6-3f43-414a-a4d6-158eba4349ef.png': 'Parents Bedroom Suite & Lounge',
-    'd6fa4de6-3f43-414a-a4d6-158eba4349ef': 'Parents Bedroom Suite & Lounge'
+    // Hero & Transformation
+    'subbarao_hero.webp': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'subbarao_hero': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'bqtmsst1w8jjit2drtmq.jpg': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'bqtmsst1w8jjit2drtmq': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'subbarao_after.webp': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'subbarao_after': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'unbmruocdxxhcb4wvn7e.jpg': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'unbmruocdxxhcb4wvn7e': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'subbarao_before.webp': 'Raw Site Shell & Structural Framing',
+    'subbarao_before': 'Raw Site Shell & Structural Framing',
+    'blohvaxle28zo18l7lug.jpg': 'Raw Site Shell & Structural Framing',
+    'blohvaxle28zo18l7lug': 'Raw Site Shell & Structural Framing',
+
+    // 1. Grand Duplex Living Hall & Architectural Staircase Vista
+    'subbarao_gallery_1.webp': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'subbarao_gallery_1': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'fjoq7ss31x85vjccgr5a.jpg': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'fjoq7ss31x85vjccgr5a': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'img_20_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_26-20260813-110616.jpg': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'img_20_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_26-20260813-110616': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+    'img_20_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_26-20260813-110616': 'Grand Duplex Living Hall & Architectural Staircase Vista',
+
+    // 2. Living Lounge, Roaring Linear Fireplace & Media Tower
+    'subbarao_gallery_2.webp': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+    'subbarao_gallery_2': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+    'u3jboyp6o3tqjy1zffvf.jpg': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+    'u3jboyp6o3tqjy1zffvf': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+    'img_14_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_15-20260813-110616.jpg': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+    'img_14_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_15-20260813-110616': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+    'img_14_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_15-20260813-110616': 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+
+    // 3. Open-Concept Duplex Living & Dining Transition
+    'subbarao_gallery_3.webp': 'Open-Concept Duplex Living & Dining Transition',
+    'subbarao_gallery_3': 'Open-Concept Duplex Living & Dining Transition',
+    'yhbdhtzvtts6lbjcyvhb.jpg': 'Open-Concept Duplex Living & Dining Transition',
+    'yhbdhtzvtts6lbjcyvhb': 'Open-Concept Duplex Living & Dining Transition',
+    'img_18_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_23-20260813-110616.jpg': 'Open-Concept Duplex Living & Dining Transition',
+    'img_18_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_23-20260813-110616': 'Open-Concept Duplex Living & Dining Transition',
+    'img_18_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_23-20260813-110616': 'Open-Concept Duplex Living & Dining Transition',
+
+    // 4. Living Lounge & KAWS Art Sculpture Nook
+    'subbarao_gallery_4.webp': 'Living Lounge & KAWS Art Sculpture Nook',
+    'subbarao_gallery_4': 'Living Lounge & KAWS Art Sculpture Nook',
+    'lppkuofoaxacxbxjinf3.jpg': 'Living Lounge & KAWS Art Sculpture Nook',
+    'lppkuofoaxacxbxjinf3': 'Living Lounge & KAWS Art Sculpture Nook',
+    'img_16_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_21-20260813-110616.jpg': 'Living Lounge & KAWS Art Sculpture Nook',
+    'img_16_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_21-20260813-110616': 'Living Lounge & KAWS Art Sculpture Nook',
+    'img_16_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_21-20260813-110616': 'Living Lounge & KAWS Art Sculpture Nook',
+
+    // 5. Living Lounge & Courtyard Picture Window
+    'subbarao_gallery_5.webp': 'Living Lounge & Courtyard Picture Window',
+    'subbarao_gallery_5': 'Living Lounge & Courtyard Picture Window',
+    'ykmradholvjphbaimyso.jpg': 'Living Lounge & Courtyard Picture Window',
+    'ykmradholvjphbaimyso': 'Living Lounge & Courtyard Picture Window',
+    'img_17_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617.jpg': 'Living Lounge & Courtyard Picture Window',
+    'img_17_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617': 'Living Lounge & Courtyard Picture Window',
+    'img_17_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_22-20260813-110617': 'Living Lounge & Courtyard Picture Window',
+
+    // 6. Dining Bar Island, Duplex Staircase & Kitchen Vista
+    'subbarao_gallery_6.webp': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+    'subbarao_gallery_6': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+    'eaniagfydwjdgbo0esqn.jpg': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+    'eaniagfydwjdgbo0esqn': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+    'img_11_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_10-20260813-110615.jpg': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+    'img_11_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_10-20260813-110615': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+    'img_11_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_10-20260813-110615': 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+
+    // 7. Parents Master Suite & Traditional Ink Mandala Crest
+    'subbarao_gallery_7.webp': 'Parents Master Suite & Traditional Ink Mandala Crest',
+    'subbarao_gallery_7': 'Parents Master Suite & Traditional Ink Mandala Crest',
+    'k21ayumhuuy0tmqj7rfg.jpg': 'Parents Master Suite & Traditional Ink Mandala Crest',
+    'k21ayumhuuy0tmqj7rfg': 'Parents Master Suite & Traditional Ink Mandala Crest',
+    'img_23_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_7-20260813-110614.jpg': 'Parents Master Suite & Traditional Ink Mandala Crest',
+    'img_23_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_7-20260813-110614': 'Parents Master Suite & Traditional Ink Mandala Crest',
+    'img_23_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_7-20260813-110614': 'Parents Master Suite & Traditional Ink Mandala Crest',
+
+    // 8. Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural
+    'subbarao_gallery_8.webp': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+    'subbarao_gallery_8': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+    'ral5g7qhiphwuacdhvs6.jpg': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+    'ral5g7qhiphwuacdhvs6': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+    'img_1_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_4-20260813-110616.jpg': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+    'img_1_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_4-20260813-110616': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+    'img_1_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_4-20260813-110616': 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+
+    // 9. Formal Dining Suite & Amber Globe Chandelier
+    'subbarao_gallery_9.webp': 'Formal Dining Suite & Amber Globe Chandelier',
+    'subbarao_gallery_9': 'Formal Dining Suite & Amber Globe Chandelier',
+    'wrazj2wmluws0ue1pddo.jpg': 'Formal Dining Suite & Amber Globe Chandelier',
+    'wrazj2wmluws0ue1pddo': 'Formal Dining Suite & Amber Globe Chandelier',
+    'img_13_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_12-20260813-110614.jpg': 'Formal Dining Suite & Amber Globe Chandelier',
+    'img_13_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_12-20260813-110614': 'Formal Dining Suite & Amber Globe Chandelier',
+    'img_13_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_12-20260813-110614': 'Formal Dining Suite & Amber Globe Chandelier',
+
+    // 10. Dining Pavilion & Integrated Smart Refrigerator
+    'subbarao_gallery_10.webp': 'Dining Pavilion & Integrated Smart Refrigerator',
+    'subbarao_gallery_10': 'Dining Pavilion & Integrated Smart Refrigerator',
+    'qhbbsh8imivcxs2imtzg.jpg': 'Dining Pavilion & Integrated Smart Refrigerator',
+    'qhbbsh8imivcxs2imtzg': 'Dining Pavilion & Integrated Smart Refrigerator',
+    'img_15_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_17-20260813-110614.jpg': 'Dining Pavilion & Integrated Smart Refrigerator',
+    'img_15_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_17-20260813-110614': 'Dining Pavilion & Integrated Smart Refrigerator',
+    'img_15_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_17-20260813-110614': 'Dining Pavilion & Integrated Smart Refrigerator',
+
+    // 11. Chef's Modular Kitchen & Quartz Countertops
+    'subbarao_gallery_11.webp': 'Chef\'s Modular Kitchen & Quartz Countertops',
+    'subbarao_gallery_11': 'Chef\'s Modular Kitchen & Quartz Countertops',
+    'mg21x4oyxpuhrbaitw6l.jpg': 'Chef\'s Modular Kitchen & Quartz Countertops',
+    'mg21x4oyxpuhrbaitw6l': 'Chef\'s Modular Kitchen & Quartz Countertops',
+    'img_12_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_11-20260813-110612.jpg': 'Chef\'s Modular Kitchen & Quartz Countertops',
+    'img_12_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_11-20260813-110612': 'Chef\'s Modular Kitchen & Quartz Countertops',
+    'img_12_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_11-20260813-110612': 'Chef\'s Modular Kitchen & Quartz Countertops',
+
+    // 12. Parents Suite Perspective & Bedside Lanterns
+    'subbarao_gallery_12.webp': 'Parents Suite Perspective & Bedside Lanterns',
+    'subbarao_gallery_12': 'Parents Suite Perspective & Bedside Lanterns',
+    'a6wykpal9jlyprn3zgfj.jpg': 'Parents Suite Perspective & Bedside Lanterns',
+    'a6wykpal9jlyprn3zgfj': 'Parents Suite Perspective & Bedside Lanterns',
+    'img_21_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_1-20260813-110616.jpg': 'Parents Suite Perspective & Bedside Lanterns',
+    'img_21_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_1-20260813-110616': 'Parents Suite Perspective & Bedside Lanterns',
+    'img_21_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_1-20260813-110616': 'Parents Suite Perspective & Bedside Lanterns',
+
+    // 13. Parents Suite Wardrobes & Twilight Garden Vista
+    'subbarao_gallery_13.webp': 'Parents Suite Wardrobes & Twilight Garden Vista',
+    'subbarao_gallery_13': 'Parents Suite Wardrobes & Twilight Garden Vista',
+    'ya5s3s0zzfjvhnbsjqck.jpg': 'Parents Suite Wardrobes & Twilight Garden Vista',
+    'ya5s3s0zzfjvhnbsjqck': 'Parents Suite Wardrobes & Twilight Garden Vista',
+    'img_22_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_3-20260813-110615.jpg': 'Parents Suite Wardrobes & Twilight Garden Vista',
+    'img_22_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_3-20260813-110615': 'Parents Suite Wardrobes & Twilight Garden Vista',
+    'img_22_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_3-20260813-110615': 'Parents Suite Wardrobes & Twilight Garden Vista',
+
+    // 14. Parents Suite Fluted TV Media Wall & Marble Inlay
+    'subbarao_gallery_14.webp': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+    'subbarao_gallery_14': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+    'biocek0jbgeuvaqjoq5q.jpg': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+    'biocek0jbgeuvaqjoq5q': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+    'img_24_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_13-20260813-110614.jpg': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+    'img_24_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_13-20260813-110614': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+    'img_24_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_13-20260813-110614': 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+
+    // 15. Parents Suite Walk-In Dressing Wardrobe
+    'subbarao_gallery_15.webp': 'Parents Suite Walk-In Dressing Wardrobe',
+    'subbarao_gallery_15': 'Parents Suite Walk-In Dressing Wardrobe',
+    'yddjmwdvaqsjuwtsbf5u.jpg': 'Parents Suite Walk-In Dressing Wardrobe',
+    'yddjmwdvaqsjuwtsbf5u': 'Parents Suite Walk-In Dressing Wardrobe',
+    'img_26_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_25-20260813-110614.jpg': 'Parents Suite Walk-In Dressing Wardrobe',
+    'img_26_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_25-20260813-110614': 'Parents Suite Walk-In Dressing Wardrobe',
+    'img_26_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_25-20260813-110614': 'Parents Suite Walk-In Dressing Wardrobe',
+
+    // 16. Boys Suite Bed, Nightstands & Blueprint Feature Wall
+    'subbarao_gallery_16.webp': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+    'subbarao_gallery_16': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+    'u58mq18dbeuqf5coc1jg.jpg': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+    'u58mq18dbeuqf5coc1jg': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+    'img_2_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_9-20260813-110616.jpg': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+    'img_2_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_9-20260813-110616': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+    'img_2_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_9-20260813-110616': 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+
+    // 17. Aeronautical Biplane Technical Blueprint Detail
+    'subbarao_gallery_17.webp': 'Aeronautical Biplane Technical Blueprint Detail',
+    'subbarao_gallery_17': 'Aeronautical Biplane Technical Blueprint Detail',
+    'zmie8c1jua6jc26kbf4g.jpg': 'Aeronautical Biplane Technical Blueprint Detail',
+    'zmie8c1jua6jc26kbf4g': 'Aeronautical Biplane Technical Blueprint Detail',
+    'img_3_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_14-20260813-110617.jpg': 'Aeronautical Biplane Technical Blueprint Detail',
+    'img_3_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_14-20260813-110617': 'Aeronautical Biplane Technical Blueprint Detail',
+    'img_3_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_14-20260813-110617': 'Aeronautical Biplane Technical Blueprint Detail',
+
+    // 18. Boys Suite Modular Wardrobe & Walnut Display Niche
+    'subbarao_gallery_18.webp': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+    'subbarao_gallery_18': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+    'gkszz4hoaguhsvcvahva.jpg': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+    'gkszz4hoaguhsvcvahva': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+    'img_5_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_18-20260813-110611.jpg': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+    'img_5_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_18-20260813-110611': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+    'img_5_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_18-20260813-110611': 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+
+    // 19. Dining Bar Counter & Houndstooth Seating
+    'subbarao_gallery_19.webp': 'Dining Bar Counter & Houndstooth Seating',
+    'subbarao_gallery_19': 'Dining Bar Counter & Houndstooth Seating',
+    'ytniqcfxfpv8vmdngn7o.jpg': 'Dining Bar Counter & Houndstooth Seating',
+    'ytniqcfxfpv8vmdngn7o': 'Dining Bar Counter & Houndstooth Seating',
+    'img_7_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_2-20260813-110615.jpg': 'Dining Bar Counter & Houndstooth Seating',
+    'img_7_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_2-20260813-110615': 'Dining Bar Counter & Houndstooth Seating',
+    'img_7_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_2-20260813-110615': 'Dining Bar Counter & Houndstooth Seating',
+
+    // 20. Living Room Sofa & Marble Coffee Table Detail
+    'subbarao_gallery_20.webp': 'Living Room Sofa & Marble Coffee Table Detail',
+    'subbarao_gallery_20': 'Living Room Sofa & Marble Coffee Table Detail',
+    'csltktkkly4u9k9lzwzy.jpg': 'Living Room Sofa & Marble Coffee Table Detail',
+    'csltktkkly4u9k9lzwzy': 'Living Room Sofa & Marble Coffee Table Detail',
+    'img_9_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_6-20260813-110617.jpg': 'Living Room Sofa & Marble Coffee Table Detail',
+    'img_9_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_6-20260813-110617': 'Living Room Sofa & Marble Coffee Table Detail',
+    'img_9_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_6-20260813-110617': 'Living Room Sofa & Marble Coffee Table Detail',
+
+    // 21. Living Lounge Seating Vignette
+    'subbarao_gallery_21.webp': 'Living Lounge Seating Vignette',
+    'subbarao_gallery_21': 'Living Lounge Seating Vignette',
+    'axj2hwzys16jwa3znfsy.jpg': 'Living Lounge Seating Vignette',
+    'axj2hwzys16jwa3znfsy': 'Living Lounge Seating Vignette',
+    'img_10_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_8-20260813-110617.jpg': 'Living Lounge Seating Vignette',
+    'img_10_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_8-20260813-110617': 'Living Lounge Seating Vignette',
+    'img_10_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_8-20260813-110617': 'Living Lounge Seating Vignette',
+
+    // 22. Living Lounge Centered Perspective
+    'subbarao_gallery_22.webp': 'Living Lounge Centered Perspective',
+    'subbarao_gallery_22': 'Living Lounge Centered Perspective',
+    'ijfi1nbiejxe9ksgxaod.jpg': 'Living Lounge Centered Perspective',
+    'ijfi1nbiejxe9ksgxaod': 'Living Lounge Centered Perspective',
+    'img_19_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_24-20260813-110617.jpg': 'Living Lounge Centered Perspective',
+    'img_19_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_24-20260813-110617': 'Living Lounge Centered Perspective',
+    'img_19_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_24-20260813-110617': 'Living Lounge Centered Perspective',
+
+    // 23. Integrated Smart Refrigerator & Fluted Portal Detail
+    'subbarao_gallery_23.webp': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+    'subbarao_gallery_23': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+    'dhwdwmpgjlopbwvwq42z.jpg': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+    'dhwdwmpgjlopbwvwq42z': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+    'img_8_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+    'img_8_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+    'img_8_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615': 'Integrated Smart Refrigerator & Fluted Portal Detail',
+
+    // 24. Boys Suite Study Wall & Grid Memory Board
+    'subbarao_gallery_24.webp': 'Boys Suite Study Wall & Grid Memory Board',
+    'subbarao_gallery_24': 'Boys Suite Study Wall & Grid Memory Board',
+    'ku1jtnpv0osjknwzr9aj.jpg': 'Boys Suite Study Wall & Grid Memory Board',
+    'ku1jtnpv0osjknwzr9aj': 'Boys Suite Study Wall & Grid Memory Board',
+    'img_4_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_16-20260813-110611.jpg': 'Boys Suite Study Wall & Grid Memory Board',
+    'img_4_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_16-20260813-110611': 'Boys Suite Study Wall & Grid Memory Board',
+    'img_4_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_16-20260813-110611': 'Boys Suite Study Wall & Grid Memory Board',
+
+    // 25. Parents Suite Floor Vista & Entertainment Wall
+    'subbarao_gallery_25.webp': 'Parents Suite Floor Vista & Entertainment Wall',
+    'subbarao_gallery_25': 'Parents Suite Floor Vista & Entertainment Wall',
+    'qasnmvvaklm6a14yslao.jpg': 'Parents Suite Floor Vista & Entertainment Wall',
+    'qasnmvvaklm6a14yslao': 'Parents Suite Floor Vista & Entertainment Wall',
+    'img_25_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_20-20260813-110612.jpg': 'Parents Suite Floor Vista & Entertainment Wall',
+    'img_25_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_20-20260813-110612': 'Parents Suite Floor Vista & Entertainment Wall',
+    'img_25_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Parents_Room_20-20260813-110612': 'Parents Suite Floor Vista & Entertainment Wall',
+
+    // 26. Boys Suite Architectural Shell & Curtains
+    'subbarao_gallery_26.webp': 'Boys Suite Architectural Shell & Curtains',
+    'subbarao_gallery_26': 'Boys Suite Architectural Shell & Curtains',
+    'adeg00wsepmxhkdsovzx.jpg': 'Boys Suite Architectural Shell & Curtains',
+    'adeg00wsepmxhkdsovzx': 'Boys Suite Architectural Shell & Curtains',
+    'img_6_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_19-20260813-110616.jpg': 'Boys Suite Architectural Shell & Curtains',
+    'img_6_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_19-20260813-110616': 'Boys Suite Architectural Shell & Curtains',
+    'img_6_Exquisite_Fusion_of_Modern___Desi_in_a_4BHK-Boys_Room_19-20260813-110616': 'Boys Suite Architectural Shell & Curtains',
+
   },
 
-  // 9. The Celestial Curve Villa (Dimmu Chachu Luxury Villa)
+// 9. The Celestial Curve Villa (Dimmu Chachu Luxury Villa)
   'dimmu-chachu-luxury-villa': {
     'dimmu_05.webp': 'Double-Height Foyer & Grand Staircase',
     'dimmu_01.webp': 'Living Lounge & TV Media Wall',
@@ -745,7 +977,39 @@ function detectRoomFromFilename(filename) {
     if (lower.includes('kokapet_guest')) return 'Guest Bedroom Suite & Rest Nook';
   }
 
-  // 4. Specific Dimmu Chachu Villa image mapping
+    // 5. Specific Subbarao Kachiguda Duplex image mapping (26 4K images)
+  if (lower.includes('subbarao') || lower.includes('kachiguda')) {
+    if (lower.includes('hero') || lower.includes('bqtmsst1w8jjit2drtmq') || lower.includes('after') || lower.includes('unbmruocdxxhcb4wvn7e')) return 'Grand Duplex Living Hall & Architectural Staircase Vista';
+    if (lower.includes('before') || lower.includes('blohvaxle28zo18l7lug')) return 'Raw Site Shell & Structural Framing';
+    if (lower.includes('gallery_1') || lower.includes('fjoq7ss31x85vjccgr5a')) return 'Grand Duplex Living Hall & Architectural Staircase Vista';
+    if (lower.includes('gallery_2') || lower.includes('u3jboyp6o3tqjy1zffvf')) return 'Living Lounge, Roaring Linear Fireplace & Media Tower';
+    if (lower.includes('gallery_3') || lower.includes('yhbdhtzvtts6lbjcyvhb')) return 'Open-Concept Duplex Living & Dining Transition';
+    if (lower.includes('gallery_4') || lower.includes('lppkuofoaxacxbxjinf3')) return 'Living Lounge & KAWS Art Sculpture Nook';
+    if (lower.includes('gallery_5') || lower.includes('ykmradholvjphbaimyso')) return 'Living Lounge & Courtyard Picture Window';
+    if (lower.includes('gallery_6') || lower.includes('eaniagfydwjdgbo0esqn')) return 'Dining Bar Island, Duplex Staircase & Kitchen Vista';
+    if (lower.includes('gallery_7') || lower.includes('k21ayumhuuy0tmqj7rfg')) return 'Parents Master Suite & Traditional Ink Mandala Crest';
+    if (lower.includes('gallery_8') || lower.includes('ral5g7qhiphwuacdhvs6')) return 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural';
+    if (lower.includes('gallery_9') || lower.includes('wrazj2wmluws0ue1pddo')) return 'Formal Dining Suite & Amber Globe Chandelier';
+    if (lower.includes('gallery_10') || lower.includes('qhbbsh8imivcxs2imtzg')) return 'Dining Pavilion & Integrated Smart Refrigerator';
+    if (lower.includes('gallery_11') || lower.includes('mg21x4oyxpuhrbaitw6l')) return 'Chef\'s Modular Kitchen & Quartz Countertops';
+    if (lower.includes('gallery_12') || lower.includes('a6wykpal9jlyprn3zgfj')) return 'Parents Suite Perspective & Bedside Lanterns';
+    if (lower.includes('gallery_13') || lower.includes('ya5s3s0zzfjvhnbsjqck')) return 'Parents Suite Wardrobes & Twilight Garden Vista';
+    if (lower.includes('gallery_14') || lower.includes('biocek0jbgeuvaqjoq5q')) return 'Parents Suite Fluted TV Media Wall & Marble Inlay';
+    if (lower.includes('gallery_15') || lower.includes('yddjmwdvaqsjuwtsbf5u')) return 'Parents Suite Walk-In Dressing Wardrobe';
+    if (lower.includes('gallery_16') || lower.includes('u58mq18dbeuqf5coc1jg')) return 'Boys Suite Bed, Nightstands & Blueprint Feature Wall';
+    if (lower.includes('gallery_17') || lower.includes('zmie8c1jua6jc26kbf4g')) return 'Aeronautical Biplane Technical Blueprint Detail';
+    if (lower.includes('gallery_18') || lower.includes('gkszz4hoaguhsvcvahva')) return 'Boys Suite Modular Wardrobe & Walnut Display Niche';
+    if (lower.includes('gallery_19') || lower.includes('ytniqcfxfpv8vmdngn7o')) return 'Dining Bar Counter & Houndstooth Seating';
+    if (lower.includes('gallery_20') || lower.includes('csltktkkly4u9k9lzwzy')) return 'Living Room Sofa & Marble Coffee Table Detail';
+    if (lower.includes('gallery_21') || lower.includes('axj2hwzys16jwa3znfsy')) return 'Living Lounge Seating Vignette';
+    if (lower.includes('gallery_22') || lower.includes('ijfi1nbiejxe9ksgxaod')) return 'Living Lounge Centered Perspective';
+    if (lower.includes('gallery_23') || lower.includes('dhwdwmpgjlopbwvwq42z')) return 'Integrated Smart Refrigerator & Fluted Portal Detail';
+    if (lower.includes('gallery_24') || lower.includes('ku1jtnpv0osjknwzr9aj')) return 'Boys Suite Study Wall & Grid Memory Board';
+    if (lower.includes('gallery_25') || lower.includes('qasnmvvaklm6a14yslao')) return 'Parents Suite Floor Vista & Entertainment Wall';
+    if (lower.includes('gallery_26') || lower.includes('adeg00wsepmxhkdsovzx')) return 'Boys Suite Architectural Shell & Curtains';
+  }
+
+// 4. Specific Dimmu Chachu Villa image mapping
   if (lower.includes('dimmu_')) {
     if (lower.includes('dimmu_05')) return 'Double-Height Foyer & Grand Staircase';
     if (lower.includes('dimmu_01')) return 'Living Lounge & TV Media Wall';

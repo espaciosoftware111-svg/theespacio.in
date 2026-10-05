@@ -37,9 +37,12 @@ const IMAGE_FALLBACK_MAP = {
   'dimmu_07.webp': '/images/projects/dimmu_residence/dimmu_07.webp',
   'dimmu_04.webp': '/images/projects/dimmu_residence/dimmu_04.webp',
   'venkatesh_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
-  'koteswara_gallery_1.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-  'koteswara_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-  'subbarao_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'koteswara_gallery_1.webp': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp',
+  'koteswara_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791139586/espacio_gallery/tmizti0ruxlppnwxwprc.jpg',
+  'koteswara_after.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791139928/espacio_gallery/wsj4bxtbb89ca1kgfavm.jpg',
+  'subbarao_after.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791180272/espacio_gallery/qf4ucqel0y9avnjpxe59.jpg',
+  'subbarao_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791180779/espacio_gallery/gmpajhsewiinq1tqqvqt.jpg',
+  'subbarao_hero.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg',
   'sayuk_after_open_hall.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425297/hf_20260926_121300_6a3eef61-953b-4da3-b308-15aabfa0e9d0.png',
   'kokapet_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
   'rahul_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
@@ -50,8 +53,8 @@ const PROJECT_SLUG_FALLBACKS = {
   'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
   'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png',
   'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
-  'gachibowli-minimalist-beige-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-  'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp',
+  'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg',
   'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp'
 };
 

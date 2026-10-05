@@ -3,6 +3,36 @@ import { ErrorResponse } from '../middleware/errorMiddleware.js';
 import { uploadFile, deleteFile } from '../services/storageService.js';
 import axios from 'axios';
 
+let cachedTestimonials = null;
+let cachedTestimonialsTime = 0;
+let inflightTestimonialsPromise = null;
+const TESTIMONIALS_CACHE_TTL_MS = 300000; // 5 minutes
+
+export const invalidateTestimonialsCache = () => {
+  cachedTestimonials = null;
+  cachedTestimonialsTime = 0;
+};
+
+export const loadTestimonialsFromDB = async () => {
+  if (inflightTestimonialsPromise) return inflightTestimonialsPromise;
+  inflightTestimonialsPromise = (async () => {
+    try {
+      const testimonials = await Testimonial.find({ softDelete: false }).catch(() => []);
+      cachedTestimonials = Array.isArray(testimonials) ? testimonials : [];
+      cachedTestimonialsTime = Date.now();
+      return cachedTestimonials;
+    } catch {
+      return cachedTestimonials || [];
+    } finally {
+      inflightTestimonialsPromise = null;
+    }
+  })();
+  return inflightTestimonialsPromise;
+};
+
+// Pre-warm testimonials cache on boot
+loadTestimonialsFromDB().catch(() => {});
+
 /**
  * @desc    Get all testimonials (Public reviews / ratings list)
  * @route   GET /api/testimonials
@@ -10,17 +40,33 @@ import axios from 'axios';
  */
 export const getTestimonials = async (req, res, next) => {
   try {
-    const queryObj = { softDelete: false };
+    const isFeaturedOnly = req.query.featured === 'true';
 
-    if (req.query.featured) {
-      queryObj.featured = req.query.featured === 'true';
+    if (cachedTestimonials) {
+      res.setHeader('X-Cache', 'HIT');
+      res.setHeader('Cache-Control', 'public, max-age=60');
+      if (Date.now() - cachedTestimonialsTime > TESTIMONIALS_CACHE_TTL_MS) {
+        loadTestimonialsFromDB().catch(() => {});
+      }
+      const data = isFeaturedOnly
+        ? cachedTestimonials.filter(t => t.featured === true)
+        : cachedTestimonials;
+      return res.status(200).json({
+        success: true,
+        data,
+      });
     }
 
-    const testimonials = await Testimonial.find(queryObj);
+    const all = await Promise.race([
+      loadTestimonialsFromDB(),
+      new Promise((resolve) => setTimeout(() => resolve([]), 2000))
+    ]);
 
+    const data = isFeaturedOnly ? (all || []).filter(t => t.featured === true) : (all || []);
+    res.setHeader('X-Cache', 'MISS');
     res.status(200).json({
       success: true,
-      data: testimonials || [],
+      data,
     });
   } catch (err) {
     console.warn('Testimonials GET warning:', err.message);

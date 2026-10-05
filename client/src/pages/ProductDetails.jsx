@@ -5,6 +5,7 @@ import { ArrowLeft, CheckCircle, Lock, ArrowRight, ChevronLeft, ChevronRight as 
 import SEO from '../components/common/SEO';
 import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
+import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -332,7 +333,7 @@ const ProductDetails = () => {
       title: 'Acrylic Luxe Collection',
       category: 'acrylic_luxe',
       description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
-      heroImage: '/images/materials/fluted_acrylic_azzurro.webp',
+      heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
       features: ['Ultra-Gloss Anti-Scratch', 'Concealed Track Fit', 'Zero Fingerprints', 'Class 1 Fire Safe', 'UV Protected'],
       specifications: [
         { label: 'Sheet Size', value: '2440mm × 1220mm × 2mm' },
@@ -343,7 +344,6 @@ const ProductDetails = () => {
       totalShades: 18,
       previewLimit: 6,
       previewPages: [
-        '/images/materials/fluted_acrylic_azzurro.webp',
         '/images/materials/luminous_grid_8313.webp',
         '/images/materials/crema_imperiale_8302.webp',
         '/images/materials/elysian_vein_8303.webp',
@@ -351,7 +351,6 @@ const ProductDetails = () => {
         '/images/materials/crema_radiance_8309.webp'
       ],
       gallery: [
-        '/images/materials/fluted_acrylic_azzurro.webp',
         '/images/materials/luminous_grid_8313.webp',
         '/images/materials/crema_imperiale_8302.webp',
         '/images/materials/elysian_vein_8303.webp',
@@ -364,7 +363,7 @@ const ProductDetails = () => {
       title: 'Digital Korean Poly Granite',
       category: 'poly_granite',
       description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
-      heroImage: '/images/materials/fluted_acrylic_gracia.jpg',
+      heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
       features: ['High-Gloss Stone Overlay', 'Scratch & Heat Resistant', 'Italian Marble Veins', 'Direct Wall Mount', 'Zero Moisture Seepage'],
       specifications: [
         { label: 'Sheet Size', value: '2440mm × 1220mm × 3mm' },
@@ -375,7 +374,6 @@ const ProductDetails = () => {
       totalShades: 16,
       previewLimit: 6,
       previewPages: [
-        '/images/materials/fluted_acrylic_gracia.jpg',
         '/images/materials/crema_imperiale_8302.webp',
         '/images/materials/elysian_vein_8303.webp',
         '/images/materials/crema_radiance_8309.webp',
@@ -383,7 +381,6 @@ const ProductDetails = () => {
         '/images/materials/linia.webp'
       ],
       gallery: [
-        '/images/materials/fluted_acrylic_gracia.jpg',
         '/images/materials/crema_imperiale_8302.webp',
         '/images/materials/elysian_vein_8303.webp',
         '/images/materials/crema_radiance_8309.webp',
@@ -585,7 +582,7 @@ const ProductDetails = () => {
       title: 'Espacio Charcoal Panels Luxe Collection (1)',
       category: 'charcoal_panels_1',
       description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-      heroImage: '/images/materials/charcoal_luxe_1_6015.webp',
+      heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png',
       features: ['Active Charcoal Core', 'Architectural Deep Relief', 'Acoustic Isolation', 'Class A Fire Safety'],
       specifications: [
         { label: 'Dimensions', value: '2900mm × 120mm × 12mm' },
@@ -825,7 +822,7 @@ const ProductDetails = () => {
   const storedProduct = (cmsProducts || []).find(m => m.slug === slug || m.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
   const localProduct = categoryDict[slug] || mockProductsList.find(m => m.slug === slug);
   const fallbackProduct = localProduct || mockProduct;
-  const p = storedProduct ? { ...fallbackProduct, ...storedProduct } : fallbackProduct;
+  const p = storedProduct ? { ...fallbackProduct, ...storedProduct, badge: fallbackProduct.badge || storedProduct.badge } : fallbackProduct;
   const previewLimit = p.previewLimit || 6;
 
   // Safe Array Normalizations
@@ -904,41 +901,38 @@ const ProductDetails = () => {
     }
   });
 
-  // If fewer than 6 unlocked pages, fill up to 6 from catalog pool
-  let unlockPoolIdx = 0;
-  while (finalUnlocked.length < 6) {
-    const fallbackImg = fullCatalogPool[unlockPoolIdx % fullCatalogPool.length];
-    finalUnlocked.push({ pageImg: fallbackImg, originalIdx: finalUnlocked.length, isLocked: false, hideOnMobile: false });
-    unlockPoolIdx++;
-  }
+  // We no longer backfill unlocked pages if there are fewer than 6, as requested by user.
 
-  // 2. Guaranteed exactly 6 locked pages on desktop (Pages 7 to 12), with only 4 visible on mobile
+  const targetTotalPages = 12;
+  const targetLockedCount = targetTotalPages - finalUnlocked.length;
+
+  // 2. Add explicit locked pages from sourcePages (if any)
   const finalLocked = [];
   sourcePages.forEach((pageImg, idx) => {
     const isExplicitlyLocked = typeof pageImg === 'object' && pageImg.isLocked !== undefined 
       ? pageImg.isLocked 
       : null;
-    const isLocked = isExplicitlyLocked !== null ? isExplicitlyLocked : (idx >= 6);
-    if (isLocked && finalLocked.length < 6) {
-      const lockedPos = finalLocked.length; // 0, 1, 2, 3, 4, 5
+    const isLocked = isExplicitlyLocked !== null ? isExplicitlyLocked : (idx >= finalUnlocked.length);
+    if (isLocked && finalLocked.length < targetLockedCount) {
+      const lockedPos = finalLocked.length; // 0, 1, 2...
       finalLocked.push({
         pageImg,
-        originalIdx: 6 + lockedPos,
+        originalIdx: finalUnlocked.length + lockedPos,
         isLocked: true,
-        hideOnMobile: lockedPos >= 4 // 5th and 6th locked item only visible on desktop (sm: and up)
+        hideOnMobile: lockedPos >= (targetLockedCount - 2) // Hide the last 2 locked items on mobile
       });
     }
   });
 
-  // If fewer than 6 locked pages, fill up to 6 from catalog pool with diverse teaser textures
-  while (finalLocked.length < 6) {
-    const lockedPos = finalLocked.length; // 0, 1, 2, 3, 4, 5
-    const fallbackImg = fullCatalogPool[(6 + lockedPos) % fullCatalogPool.length];
+  // If fewer than target locked pages, fill from catalog pool with diverse teaser textures
+  while (finalLocked.length < targetLockedCount) {
+    const lockedPos = finalLocked.length; // 0, 1, 2...
+    const fallbackImg = fullCatalogPool[(finalUnlocked.length + lockedPos) % fullCatalogPool.length];
     finalLocked.push({
       pageImg: fallbackImg,
-      originalIdx: 6 + lockedPos,
+      originalIdx: finalUnlocked.length + lockedPos,
       isLocked: true,
-      hideOnMobile: lockedPos >= 4 // 5th and 6th locked item only visible on desktop (sm: and up)
+      hideOnMobile: lockedPos >= (targetLockedCount - 2) // Hide the last 2 locked items on mobile
     });
   }
 
@@ -953,32 +947,170 @@ const ProductDetails = () => {
     });
   }, [unlockedPages]);
 
+  const isAcrylicLuxe = p.slug === 'acrylic-luxe-collection' || (p.heroImage && p.heroImage.includes('acrylic_idoycj'));
+  const isPolyGranite = p.slug === 'digital-korean-poly-granite' || (p.heroImage && p.heroImage.includes('polygranite_ujh0zb'));
+  const isCharcoalLuxe = p.slug === 'charcoal-panels-luxe' || (p.heroImage && (p.heroImage.includes('charcoal_qpelt9') || p.heroImage.includes('charcoal_thumb')));
+  const isFlutedPVC   = p.slug === 'fluted-pvc-luxe'        || (p.heroImage && p.heroImage.includes('pvc_fluted_1_o1ixyc'));
+  const isLVTFlooring = p.slug === 'lvt-luxe-flooring'      || (p.heroImage && p.heroImage.includes('lvt_io0all'));
+  const isFlutedAcrylic = p.slug === 'fluted-acrylic-luxe'  || (p.heroImage && p.heroImage.includes('fluted_acrylic_gmwqr4'));
+  const isPVCLuxe = p.slug === 'pvc-luxe-collection'        || (p.heroImage && p.heroImage.includes('pvc_1_qoe62b'));
+  const isWPCLuxe = p.slug === 'wpc-luxe-collection'        || (p.heroImage && p.heroImage.includes('wpc_irucfj'));
+  const isCharcoalLuxe1 = p.slug === 'charcoal-panels-luxe-1' || (p.heroImage && p.heroImage.includes('additional_img_dgrs53'));
+
+  // Hero image sources with true 4K resolution support (Widescreen 95% cover + Original fallback)
+  const hero4kSrc = useMemo(() => {
+    if (isAcrylicLuxe)   return '/images/materials/acrylic_4k_widescreen.webp';
+    if (isPolyGranite)   return '/images/materials/polygranite_4k_widescreen.webp';
+    if (isCharcoalLuxe)  return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png';
+    if (isFlutedPVC)     return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png';
+    if (isLVTFlooring)   return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png';
+    if (isFlutedAcrylic) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png';
+    if (isPVCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png';
+    if (isWPCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png';
+    if (isCharcoalLuxe1) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png';
+    return p.heroImage;
+  }, [isAcrylicLuxe, isPolyGranite, isCharcoalLuxe, isFlutedPVC, isLVTFlooring, isFlutedAcrylic, isPVCLuxe, isWPCLuxe, isCharcoalLuxe1, p.heroImage]);
+
+  const heroFallbackPng = useMemo(() => {
+    if (isAcrylicLuxe)   return 'https://res.cloudinary.com/or5e9kak/image/upload/c_pad,w_3840,h_2160,b_gen_fill/v1791196089/acrylic_idoycj.png';
+    if (isPolyGranite)   return 'https://res.cloudinary.com/or5e9kak/image/upload/c_pad,w_3840,h_2160,b_gen_fill/v1791196088/polygranite_ujh0zb.png';
+    if (isCharcoalLuxe)  return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png';
+    if (isFlutedPVC)     return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png';
+    if (isLVTFlooring)   return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png';
+    if (isFlutedAcrylic) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png';
+    if (isPVCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png';
+    if (isWPCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png';
+    if (isCharcoalLuxe1) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png';
+    return p.heroImage;
+  }, [isAcrylicLuxe, isPolyGranite, isCharcoalLuxe, isFlutedPVC, isLVTFlooring, isFlutedAcrylic, isPVCLuxe, isWPCLuxe, isCharcoalLuxe1, p.heroImage]);
+
   return (
     <div className="bg-cream min-h-screen pb-24">
       <SEO title={`${p.title} — Material Details`} description={p.description ? p.description.substring(0, 150) : 'Material details...'} image={p.heroImage} url={`/materials/${p.slug}`} />
-      {/* Hero */}
-      <section className="relative h-[90dvh] sm:h-[65vh] min-h-[480px] sm:min-h-0 bg-black mb-0 pt-24 sm:pt-28">
-        <img src={p.heroImage} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-65" />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent pointer-events-none" />
-        
-        {/* Back */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pb-4">
-          <Link to="/materials" className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors drop-shadow-sm">
-            <ArrowLeft size={14} />
-            <span>Back to Material Library</span>
-          </Link>
-        </div>
+      {/* ── 1. MATERIAL HERO: Floating Luxury Rounded Card (95% Screen Width, Edge-to-Edge 4K Cover) ── */}
+      <section className="pt-20 sm:pt-24 px-2 sm:px-4 lg:px-[2.5%] w-full max-w-[1720px] mx-auto">
+        <div 
+          className="relative w-full h-[80vh] sm:h-[84vh] lg:h-[88vh] min-h-[520px] max-h-[860px] rounded-2xl md:rounded-3xl lg:rounded-[32px] overflow-hidden shadow-2xl bg-[#0f0e0d] isolate flex items-center justify-center mx-auto"
+        >
 
-        <div className="absolute bottom-12 left-0 w-full z-10">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12 space-y-2">
-            <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">Premium Material</span>
-            <h1 className="text-white text-4xl md:text-5xl font-editorial font-bold">{p.title}</h1>
+          {/* Foreground Ultra-Sharp Widescreen True Cover Image (Fast Responsive WebP) */}
+          <picture className="w-full h-full flex items-center justify-center relative z-0">
+            {isAcrylicLuxe && (
+              <source
+                type="image/webp"
+                srcSet="/images/materials/acrylic_widescreen_1080.webp 1080w, /images/materials/acrylic_widescreen_1920.webp 1920w, /images/materials/acrylic_4k_widescreen.webp 3840w"
+                sizes="(max-width: 768px) 100vw, 95vw"
+              />
+            )}
+            {isPolyGranite && (
+              <source
+                type="image/webp"
+                srcSet="/images/materials/polygranite_widescreen_1080.webp 1080w, /images/materials/polygranite_widescreen_1920.webp 1920w, /images/materials/polygranite_4k_widescreen.webp 3840w"
+                sizes="(max-width: 768px) 100vw, 95vw"
+              />
+            )}
+            {isCharcoalLuxe && (
+              <>
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791201655/charcoal_mobile_tfqigr.png" />
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png" />
+              </>
+            )}
+            {isFlutedPVC && (
+              <>
+                {/* Mobile: portrait PVC image */}
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791204063/pvc_fluted_mobile_2_ztnaxo.png" />
+                {/* Desktop: landscape PVC room scene */}
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png" />
+              </>
+            )}
+            {isLVTFlooring && (
+              <>
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791204062/lvt_mobile_2_x6sjxm.png" />
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png" />
+              </>
+            )}
+            {isFlutedAcrylic && (
+              <>
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791201656/fluted_acrylic_mobile_kdiumo.png" />
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png" />
+              </>
+            )}
+            {isPVCLuxe && (
+              <>
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791204063/pvc_mobile_2_hy18uu.png" />
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png" />
+              </>
+            )}
+            {isWPCLuxe && (
+              <>
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791201655/wpc_mobile_vjdcta.png" />
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png" />
+              </>
+            )}
+            {isCharcoalLuxe1 && (
+              <>
+                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_mobi_kmjh3g.png" />
+                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png" />
+              </>
+            )}
+            <img
+              src={hero4kSrc}
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              alt={p.title}
+              onError={(e) => {
+                if (e.target.src !== heroFallbackPng) {
+                  e.target.src = heroFallbackPng;
+                }
+              }}
+              style={{
+                imageRendering: 'auto',
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)'
+              }}
+              className="w-full h-full object-cover object-center select-none will-change-transform"
+            />
+          </picture>
+
+          {/* Top Ambient Vignette for Back Button contrast without dimming top swatch */}
+          <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none z-10" />
+
+          {/* Bottom Ambient Vignette focused only at the lower edge behind title */}
+          <div className="absolute inset-x-0 bottom-0 h-28 sm:h-36 md:h-44 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none z-10" />
+
+          {/* Back button */}
+          <div className="absolute top-0 left-0 z-20 p-5 sm:p-6 md:p-8">
+            <Link 
+              to="/materials" 
+              className="inline-flex items-center space-x-2 text-xs font-sans uppercase tracking-widest text-cream hover:text-gold font-bold transition-colors bg-black/50 backdrop-blur-md px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/10 shadow-md"
+            >
+              <ArrowLeft size={14} />
+              <span>Back</span>
+            </Link>
           </div>
-        </div>
 
-        {/* Scroll Down Indicator */}
-        <ScrollDownIndicator />
+          {/* Material Details Bottom Left Header */}
+          <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-0 w-full z-20 px-5 sm:px-8 md:px-12 pointer-events-none">
+            <div className="flex flex-col space-y-1 sm:space-y-1.5 md:space-y-2 max-w-xl md:max-w-2xl text-left">
+              <span className="font-sans text-[11px] sm:text-xs md:text-sm uppercase tracking-widest text-gold font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                {p.badge || (p.category ? p.category.replace(/_/g, ' ').toUpperCase() : 'PREMIUM MATERIAL')}
+              </span>
+              <h1 className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-editorial font-bold leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+                {p.title}
+              </h1>
+              {p.materialCode && (
+                <p className="font-sans text-xs sm:text-sm text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] flex items-center gap-1.5 pt-0.5">
+                  <span className="text-gold font-semibold">Code:</span>
+                  <span>{p.materialCode}</span>
+                </p>
+              )}
+            </div>
+          </div>
+
+          <ScrollDownIndicator className="hidden sm:flex scale-85 sm:scale-100 bottom-3.5 sm:bottom-4 md:bottom-5 z-20" />
+        </div>
       </section>
       {(p.showOverviewSection !== false || p.showFinishesSection !== false || p.showSpecificationsSection !== false || p.showApplicationsSection !== false) && (
         <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-12 md:pt-16 pb-12 md:pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -1066,7 +1198,7 @@ const ProductDetails = () => {
               <h2 className="font-editorial text-3xl font-bold text-charcoal">{p.catalogueTitle || 'Catalogue Preview'}</h2>
             </div>
             <span className="bg-charcoal text-cream font-sans text-[11px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full">
-              6 Unlocked / 12 Total Shades
+              {finalUnlocked.length} Unlocked / {p.totalShades || (finalUnlocked.length + finalLocked.length)} Total Shades
             </span>
           </div>
 

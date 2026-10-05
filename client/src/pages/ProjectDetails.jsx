@@ -19,10 +19,17 @@ const IMAGE_FALLBACK_MAP = {
   'dimmu_02.webp': '/images/projects/dimmu_residence/dimmu_02.webp',
   'dimmu_07.webp': '/images/projects/dimmu_residence/dimmu_07.webp',
   'dimmu_04.webp': '/images/projects/dimmu_residence/dimmu_04.webp',
+  'dimmu_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg',
+  'casa_alta_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg',
+  'tellapur_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg',
+  'tellapur_after.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg',
   'venkatesh_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
-  'koteswara_gallery_1.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-  'koteswara_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
-  'subbarao_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425174/hf_20260926_121514_93ebd25a-dafd-4368-a9e6-7698e84fbc57.png',
+  'koteswara_gallery_1.webp': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp',
+  'koteswara_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791139586/espacio_gallery/tmizti0ruxlppnwxwprc.jpg',
+  'koteswara_after.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791139928/espacio_gallery/wsj4bxtbb89ca1kgfavm.jpg',
+  'subbarao_after.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791180272/espacio_gallery/qf4ucqel0y9avnjpxe59.jpg',
+  'subbarao_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791180779/espacio_gallery/gmpajhsewiinq1tqqvqt.jpg',
+  'subbarao_hero.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg',
   'sayuk_after_open_hall.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425297/hf_20260926_121300_6a3eef61-953b-4da3-b308-15aabfa0e9d0.png',
   'kokapet_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
   'rahul_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
@@ -116,10 +123,10 @@ const SLUG_CLIENT_TESTIMONIALS = {
     rating: 5
   },
   'kachiguda-fusion-duplex-villa': {
-    name: 'Sunita Agarwal',
-    profession: 'Industrialist & Philanthropist',
-    mobile: '+91 93939 11223',
-    text: 'Extremely professional team. Their custom modular kitchen, walk-in wardrobe executions, and seamless fusion of contemporary and traditional accents are unmatched in Hyderabad.',
+    name: 'K. Subba Rao',
+    profession: 'Homeowner, Kachiguda',
+    mobile: '+91 98490 22334',
+    text: 'ESPACIO transformed our Kachiguda duplex into an architectural masterpiece. From the breathtaking living lounge and the divine pooja mandir to the emerald master bedroom and custom wardrobes, their craftsmanship, attention to detail, and turnkey delivery were exceptional.',
     rating: 5
   },
   'dimmu-chachu-luxury-villa': {
@@ -468,9 +475,9 @@ const ProjectDetails = () => {
       item.category = 'apartment';
       item.title = 'Casa Alta Residence';
       item.heroImage = CASA_ALTA_PHOTOS[0];
-      item.beforeImage = CASA_ALTA_PHOTOS[0];
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg';
       item.afterImage = CASA_ALTA_PHOTOS[0];
-      item.beforeImages = [CASA_ALTA_PHOTOS[0]];
+      item.beforeImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg'];
       item.afterImages = [CASA_ALTA_PHOTOS[0]];
       item.story = {
         vision: "The family wanted a home that feels calm and open, modern in its restraint but warm the way traditional homes are. Light, timber and stone were meant to tie the rooms together, so the house feels like one story from the front door to the bedroom.",
@@ -526,10 +533,10 @@ const ProjectDetails = () => {
       item.category = 'apartment';
       item.title = 'The Restful Home';
       item.heroImage = RESTFUL_HOME_PHOTOS[0];
-      item.beforeImage = RESTFUL_HOME_PHOTOS[0];
-      item.afterImage = RESTFUL_HOME_PHOTOS[0];
-      item.beforeImages = [RESTFUL_HOME_PHOTOS[0]];
-      item.afterImages = [RESTFUL_HOME_PHOTOS[0]];
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg';
+      item.beforeImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg'];
+      item.afterImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg'];
       item.story = {
         vision: "After a long day at work, this young family wanted to come home and finally exhale. They asked for a simple, peaceful home with enough storage that nothing ever feels crowded, and a layout that can grow with their children.",
         challenges: "In a compact 2BHK layout, every inch matters. The challenge was ensuring every wall quietly carries its share of storage while keeping the rooms open, light, and uncluttered, preventing any feeling of confinement.",
@@ -611,7 +618,7 @@ const ProjectDetails = () => {
       item.configuration = 'Luxury Duplex Villa';
       item.category = 'villa';
       item.title = 'The Celestial Curve Villa';
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg';
       item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png';
       item.heroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png';
       item.beforeImages = [item.beforeImage];
@@ -635,8 +642,10 @@ const ProjectDetails = () => {
       cleanSlug === 'kachiguda' ||
       resolvedSlug === 'kachiguda-fusion-duplex-villa'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png';
-      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png';
+      item.title = 'A Duplex Residence, Kachiguda';
+      item.heroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg';
+      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
     }
@@ -652,8 +661,9 @@ const ProjectDetails = () => {
       cleanSlug === 'gachibowli' || 
       resolvedSlug === 'gachibowli-minimalist-beige-2bhk'
     ) {
-      item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png';
-      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png';
+      item.heroImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp';
+      item.beforeImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp';
+      item.afterImage = '/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
     }
@@ -1040,43 +1050,41 @@ const ProjectDetails = () => {
         let beforeImg = p.beforeImage || (Array.isArray(p.before_after) && p.before_after[0]?.before) || (Array.isArray(p.beforeImages) && p.beforeImages[0]) || '/images/spaces/spaces_hero_before.webp';
         let afterImg = p.afterImage || (Array.isArray(p.before_after) && p.before_after[0]?.after) || (Array.isArray(p.afterImages) && p.afterImages[0]) || p.heroImage || (Array.isArray(p.gallery) && p.gallery[0]) || '/images/company/3bhk_lux/open_hall.png';
 
-        if (p.slug === 'dimmu-chachu-luxury-villa' || p._id === 'proj_9_dimmu_chachu_residence' || p.order === 9 || cleanSlug === 'dimmu-chachu-luxury-villa' || cleanSlug === 'dimmu-chachu' || cleanSlug === 'dimmu' || resolvedSlug === 'dimmu-chachu-luxury-villa') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png';
+        if (cleanSlug === 'dimmu-chachu-luxury-villa' || resolvedSlug === 'dimmu-chachu-luxury-villa' || p.slug === 'dimmu-chachu-luxury-villa' || p._id === 'proj_9_dimmu_chachu_residence') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png';
-        }
-        if (p.slug === 'kachiguda-fusion-duplex-villa' || p._id === 'proj_8_kachiguda_subbarao' || p.order === 8 || cleanSlug === 'kachiguda-fusion-duplex-villa' || cleanSlug === 'kachiguda-duplex' || cleanSlug === 'kachiguda' || resolvedSlug === 'kachiguda-fusion-duplex-villa') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png';
-          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png';
-        }
-        if (p.slug === 'gachibowli-minimalist-beige-2bhk' || p._id === 'proj_7_gachibowli_koteswara' || p.order === 7 || cleanSlug === 'gachibowli-minimalist-beige-2bhk' || cleanSlug === 'gachibowli-minimalist' || cleanSlug === 'gachibowli' || resolvedSlug === 'gachibowli-minimalist-beige-2bhk') {
-          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png';
-          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png';
-        }
-        if (p.slug === 'kondapur-minimalist-2bhk' || p._id === 'proj_6_kondapur_venkatesh' || p.order === 6 || cleanSlug === 'kondapur-minimalist-2bhk' || cleanSlug === 'kondapur-minimalist' || cleanSlug === 'kondapur' || resolvedSlug === 'kondapur-minimalist-2bhk') {
+        } else if (cleanSlug === 'kachiguda-fusion-duplex-villa' || resolvedSlug === 'kachiguda-fusion-duplex-villa' || p.slug === 'kachiguda-fusion-duplex-villa' || p._id === 'proj_8_kachiguda_subbarao') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791180779/espacio_gallery/gmpajhsewiinq1tqqvqt.jpg';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791180272/espacio_gallery/qf4ucqel0y9avnjpxe59.jpg';
+        } else if (cleanSlug === 'gachibowli-minimalist-beige-2bhk' || cleanSlug === 'gachibowli-minimalist' || cleanSlug === 'gachibowli' || resolvedSlug === 'gachibowli-minimalist-beige-2bhk' || p.slug === 'gachibowli-minimalist-beige-2bhk' || p._id === 'proj_7_gachibowli_koteswara') {
+          beforeImg = '/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp';
+          afterImg = '/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp';
+        } else if (cleanSlug === 'kondapur-minimalist-2bhk' || cleanSlug === 'kondapur-minimalist' || cleanSlug === 'kondapur' || resolvedSlug === 'kondapur-minimalist-2bhk' || p.slug === 'kondapur-minimalist-2bhk' || p._id === 'proj_6_kondapur_venkatesh') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png';
-        }
-        if (p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran' || p.title?.includes('Panelled') || p.title?.includes('Kiran') || cleanSlug === 'gandipet-modern-retro-2bhk' || cleanSlug === 'gandipet-modern-retro' || cleanSlug === 'gandipet' || cleanSlug === 'the-panelled-muse' || cleanSlug === 'kiran' || resolvedSlug === 'gandipet-modern-retro-2bhk') {
+        } else if (cleanSlug === 'gandipet-modern-retro-2bhk' || cleanSlug === 'gandipet' || cleanSlug === 'the-panelled-muse' || resolvedSlug === 'gandipet-modern-retro-2bhk' || p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791132839/espacio_gallery/mysq2iymi1lwd2lgk5v0.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png';
-        }
-        if (p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul' || p.title?.includes('Ivory') || p.title?.includes('Rahul') || cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'kokapet-urban' || cleanSlug === 'the-ivory-retreat' || cleanSlug === 'rahul' || resolvedSlug === 'kokapet-urban-2bhk') {
+        } else if (cleanSlug === 'kokapet-urban-2bhk' || cleanSlug === 'the-ivory-retreat' || resolvedSlug === 'kokapet-urban-2bhk' || p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg';
-        }
-        if (p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh' || p.title?.includes('Boucle') || p.title?.includes('Nagesh') || cleanSlug === 'kokapet-2bhk' || cleanSlug === 'kokapet' || cleanSlug === 'the-boucle-residence' || resolvedSlug === 'kokapet-2bhk') {
+        } else if (cleanSlug === 'kokapet-2bhk' || cleanSlug === 'the-boucle-residence' || resolvedSlug === 'kokapet-2bhk' || p.slug === 'kokapet-2bhk' || p._id === 'proj_3_kokapet_nagesh') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/2f97ea5d-7652-4139-99a5-942bcf46f977.png';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791769/7f7c35f2-81e3-44c2-8b70-41a3c2930942.png';
-        }
-        if (p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk' || p.order === 2 || cleanSlug === 'my-home-sayuk-3bhk' || cleanSlug === 'my-home-sayuk' || cleanSlug === 'sayuk' || resolvedSlug === 'my-home-sayuk-3bhk') {
+        } else if (cleanSlug === 'my-home-sayuk-3bhk' || cleanSlug === 'sayuk' || resolvedSlug === 'my-home-sayuk-3bhk' || p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png';
-        }
-        if (p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia' || p.order === 1 || cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'rajapushpa' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || cleanSlug === 'the-arcstone-residence-narsingi' || cleanSlug === 'narsingi-3bhk' || resolvedSlug === 'rajapushpa-provincia-3bhk') {
+        } else if (cleanSlug === 'rajapushpa-provincia-3bhk' || cleanSlug === 'provincia' || cleanSlug === 'the-arcstone-residence' || resolvedSlug === 'rajapushpa-provincia-3bhk' || p.slug === 'rajapushpa-provincia-3bhk' || p._id === 'proj_1_rajapushpa_provincia') {
           beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg';
           afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg';
+        } else if (cleanSlug === 'the-restful-home-tellapur' || cleanSlug === 'the-restful-home' || cleanSlug === 'tellapur' || resolvedSlug === 'the-restful-home-tellapur' || p.slug === 'the-restful-home-tellapur' || p._id === 'proj_10_the_restful_home_tellapur') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg';
+        } else if (cleanSlug === 'casa-alta-residence-kali-mandir' || cleanSlug === 'casa-alta-residence' || cleanSlug === 'casa-alta' || cleanSlug === 'kali-mandir' || resolvedSlug === 'casa-alta-residence-kali-mandir' || p.slug === 'casa-alta-residence-kali-mandir' || p._id === 'proj_11_casa_alta_residence_kali_mandir') {
+          beforeImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg';
+          afterImg = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png';
         }
-        if (afterImg?.includes('master_bedroom') || beforeImg?.includes('Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0')) {
+        if (afterImg?.includes('master_bedroom') && !afterImg?.includes('koteswara')) {
           beforeImg = '/images/spaces/master_bedroom_before.webp';
           afterImg = '/images/spaces/master_bedroom_after.webp';
         }

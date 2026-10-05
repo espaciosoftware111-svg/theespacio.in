@@ -4,12 +4,107 @@ import { ErrorResponse } from '../middleware/errorMiddleware.js';
 
 let cachedSettings = null;
 let cachedSettingsTime = 0;
-const SETTINGS_CACHE_TTL_MS = 60000;
+let inflightPromise = null;
+const SETTINGS_CACHE_TTL_MS = 300000; // 5 minutes
 
 export const invalidateSettingsCache = () => {
   cachedSettings = null;
   cachedSettingsTime = 0;
 };
+
+export const loadSettingsFromDB = async () => {
+  if (inflightPromise) return inflightPromise;
+  inflightPromise = (async () => {
+    try {
+      const settingsList = await Settings.find();
+      const settingsMap = {};
+      let siteSettingsVal = null;
+
+      if (Array.isArray(settingsList)) {
+        settingsList.forEach((item) => {
+          if ((item.key === 'site_settings' || item.id === 'site_settings' || item.id === 'global_cms_settings')) {
+            const valObj = (item.value && typeof item.value === 'object')
+              ? item.value
+              : (item.data && typeof item.data === 'object')
+                ? item.data
+                : {};
+            siteSettingsVal = { ...(siteSettingsVal || {}), ...valObj };
+          } else if (item.key && item.key !== 'site_settings') {
+            settingsMap[item.key] = item.value ?? item.data;
+          }
+        });
+      }
+
+      // Individual updated settings keys take priority over master site_settings object
+      const finalMap = { ...(siteSettingsVal || {}), ...settingsMap };
+
+      // Default 5 curated luxury company images
+      const defaultHeroImages = [
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
+      ];
+
+      // Synchronize hero_bg_images and hero_images array references
+      let heroBgImgs = (Array.isArray(finalMap.hero_bg_images) && finalMap.hero_bg_images.length > 0)
+        ? finalMap.hero_bg_images
+        : (Array.isArray(finalMap.hero_images) && finalMap.hero_images.length > 0)
+          ? finalMap.hero_images
+          : defaultHeroImages;
+
+      finalMap.hero_bg_images = heroBgImgs;
+      finalMap.hero_images = heroBgImgs;
+
+      const defaultServicesHeroImages = [
+        'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+        'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
+      ];
+
+      if (!Array.isArray(finalMap.services_hero_images) || finalMap.services_hero_images.length !== 5 || finalMap.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
+        finalMap.services_hero_images = defaultServicesHeroImages;
+      }
+
+      if (Array.isArray(finalMap.services_list) && finalMap.services_list.length >= 5) {
+        defaultServicesHeroImages.forEach((imgUrl, idx) => {
+          if (finalMap.services_list[idx] && (!finalMap.services_list[idx].img || !finalMap.services_list[idx].img.includes('res.cloudinary.com'))) {
+            finalMap.services_list[idx].img = imgUrl;
+          }
+        });
+      }
+
+      finalMap.projects_cta_visible = true;
+      if (!finalMap.cta_projects || finalMap.cta_projects.enabled === false) {
+        finalMap.cta_projects = {
+          ...(finalMap.cta_projects || {}),
+          enabled: true,
+          heading: finalMap.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
+          description: finalMap.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
+          buttonText: finalMap.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
+          buttonHoverText: finalMap.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
+          buttonLink: finalMap.cta_projects?.buttonLink || "/contact"
+        };
+      }
+
+      cachedSettings = finalMap;
+      cachedSettingsTime = Date.now();
+      return finalMap;
+    } catch (e) {
+      console.warn('loadSettingsFromDB warning:', e.message);
+      return cachedSettings || {};
+    } finally {
+      inflightPromise = null;
+    }
+  })();
+  return inflightPromise;
+};
+
+// Immediately pre-warm cache on boot
+loadSettingsFromDB().catch(() => {});
 
 /**
  * @desc    Get all system settings as a key-value object
@@ -18,104 +113,35 @@ export const invalidateSettingsCache = () => {
  */
 export const getAllSettings = async (req, res, next) => {
   try {
-    if (cachedSettings && (Date.now() - cachedSettingsTime < SETTINGS_CACHE_TTL_MS)) {
+    if (cachedSettings) {
       res.setHeader('X-Cache', 'HIT');
-      res.setHeader('Cache-Control', 'public, max-age=30');
+      res.setHeader('Cache-Control', 'public, max-age=60');
+      // If cache is older than TTL, re-fetch in background without stalling client
+      if (Date.now() - cachedSettingsTime > SETTINGS_CACHE_TTL_MS) {
+        loadSettingsFromDB().catch(() => {});
+      }
       return res.status(200).json({
         success: true,
         data: cachedSettings,
       });
     }
 
-    const settingsList = await Settings.find();
-    const settingsMap = {};
-    let siteSettingsVal = null;
+    // No cache yet: race against a 2500ms safety timeout to prevent hanging
+    const data = await Promise.race([
+      loadSettingsFromDB(),
+      new Promise((resolve) => setTimeout(() => resolve(cachedSettings || {}), 2500))
+    ]);
 
-    if (Array.isArray(settingsList)) {
-      settingsList.forEach((item) => {
-        if ((item.key === 'site_settings' || item.id === 'site_settings' || item.id === 'global_cms_settings')) {
-          const valObj = (item.value && typeof item.value === 'object')
-            ? item.value
-            : (item.data && typeof item.data === 'object')
-              ? item.data
-              : {};
-          siteSettingsVal = { ...(siteSettingsVal || {}), ...valObj };
-        } else if (item.key && item.key !== 'site_settings') {
-          settingsMap[item.key] = item.value ?? item.data;
-        }
-      });
-    }
-
-    // Individual updated settings keys take priority over master site_settings object
-    const finalMap = { ...(siteSettingsVal || {}), ...settingsMap };
-
-    // Default 5 curated luxury company images
-    const defaultHeroImages = [
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
-    ];
-
-    // Synchronize hero_bg_images and hero_images array references
-    let heroBgImgs = (Array.isArray(finalMap.hero_bg_images) && finalMap.hero_bg_images.length > 0)
-      ? finalMap.hero_bg_images
-      : (Array.isArray(finalMap.hero_images) && finalMap.hero_images.length > 0)
-        ? finalMap.hero_images
-        : defaultHeroImages;
-
-    finalMap.hero_bg_images = heroBgImgs;
-    finalMap.hero_images = heroBgImgs;
-
-    const defaultServicesHeroImages = [
-      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
-      'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
-    ];
-
-    if (!Array.isArray(finalMap.services_hero_images) || finalMap.services_hero_images.length !== 5 || finalMap.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
-      finalMap.services_hero_images = defaultServicesHeroImages;
-    }
-
-    if (Array.isArray(finalMap.services_list) && finalMap.services_list.length >= 5) {
-      defaultServicesHeroImages.forEach((imgUrl, idx) => {
-        if (finalMap.services_list[idx] && (!finalMap.services_list[idx].img || !finalMap.services_list[idx].img.includes('res.cloudinary.com'))) {
-          finalMap.services_list[idx].img = imgUrl;
-        }
-      });
-    }
-
-    finalMap.projects_cta_visible = true;
-    if (!finalMap.cta_projects || finalMap.cta_projects.enabled === false) {
-      finalMap.cta_projects = {
-        ...(finalMap.cta_projects || {}),
-        enabled: true,
-        heading: finalMap.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
-        description: finalMap.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
-        buttonText: finalMap.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
-        buttonHoverText: finalMap.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
-        buttonLink: finalMap.cta_projects?.buttonLink || "/contact"
-      };
-    }
-
-    cachedSettings = finalMap;
-    cachedSettingsTime = Date.now();
-
-    res.setHeader('Cache-Control', 'public, max-age=30');
-    res.setHeader('X-Cache', 'MISS');
-
-    res.status(200).json({
+    res.setHeader('Cache-Control', 'public, max-age=60');
+    return res.status(200).json({
       success: true,
-      data: finalMap,
+      data: data || {},
     });
   } catch (err) {
-    console.warn('Settings getAll warning:', err.message);
+    console.warn('Settings getAll error:', err.message);
     res.status(200).json({
       success: true,
-      data: {},
+      data: cachedSettings || {},
     });
   }
 };

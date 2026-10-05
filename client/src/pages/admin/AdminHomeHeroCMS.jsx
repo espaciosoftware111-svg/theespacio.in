@@ -98,11 +98,11 @@ const AdminHomeHeroCMS = () => {
         projectLabel: "Warm Contemporary Living Lounge"
       },
       {
-        name: "Modular Specialist",
-        role: "High-Gloss Modular Kitchens",
+        name: "Living Space Specialist",
+        role: "Luxury Living Spaces",
         memberImg: "/reviews/imtiyaz_shaik.png",
         projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
-        projectLabel: "Modern Modular Kitchen & Island Bar"
+        projectLabel: "Warm Arched Living Lounge"
       },
       {
         name: "Principal Architect",

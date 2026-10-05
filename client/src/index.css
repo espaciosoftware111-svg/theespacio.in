@@ -31,6 +31,12 @@
   scrollbar-color: #C9A96E #101014;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 :root {
   --logo-kerning: -2px;
 }

@@ -2,6 +2,39 @@ import Category from '../models/Category.js';
 import { ErrorResponse } from '../middleware/errorMiddleware.js';
 import { uploadFile, deleteFile } from '../services/storageService.js';
 
+let cachedCategories = null;
+let cachedCategoriesTime = 0;
+let inflightCategoriesPromise = null;
+const CATEGORIES_CACHE_TTL_MS = 300000; // 5 minutes
+
+export const invalidateCategoriesCache = () => {
+  cachedCategories = null;
+  cachedCategoriesTime = 0;
+};
+
+export const loadCategoriesFromDB = async () => {
+  if (inflightCategoriesPromise) return inflightCategoriesPromise;
+  inflightCategoriesPromise = (async () => {
+    try {
+      const categories = await Category.find({
+        softDelete: false,
+        status: 'active',
+      }).sort('displayOrder').catch(() => []);
+      cachedCategories = Array.isArray(categories) ? categories : [];
+      cachedCategoriesTime = Date.now();
+      return cachedCategories;
+    } catch {
+      return cachedCategories || [];
+    } finally {
+      inflightCategoriesPromise = null;
+    }
+  })();
+  return inflightCategoriesPromise;
+};
+
+// Pre-warm categories cache on boot
+loadCategoriesFromDB().catch(() => {});
+
 /**
  * @desc    Get all space categories (What We Do list)
  * @route   GET /api/categories
@@ -9,11 +42,24 @@ import { uploadFile, deleteFile } from '../services/storageService.js';
  */
 export const getCategories = async (req, res, next) => {
   try {
-    const categories = await Category.find({
-      softDelete: false,
-      status: 'active',
-    }).sort('displayOrder');
+    if (cachedCategories) {
+      res.setHeader('X-Cache', 'HIT');
+      res.setHeader('Cache-Control', 'public, max-age=60');
+      if (Date.now() - cachedCategoriesTime > CATEGORIES_CACHE_TTL_MS) {
+        loadCategoriesFromDB().catch(() => {});
+      }
+      return res.status(200).json({
+        success: true,
+        data: cachedCategories,
+      });
+    }
 
+    const categories = await Promise.race([
+      loadCategoriesFromDB(),
+      new Promise((resolve) => setTimeout(() => resolve([]), 2000))
+    ]);
+
+    res.setHeader('X-Cache', 'MISS');
     res.status(200).json({
       success: true,
       data: categories,

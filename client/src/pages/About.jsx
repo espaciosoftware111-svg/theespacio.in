@@ -32,7 +32,7 @@ const defaultGenerations = [
     gen: 'Generation III',
     title: 'Mastana Infra',
     company: 'Iconic Private Estates & Infrastructure',
-    desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds — including the estate chosen as a primary filming location in Guntur Kaaram, and many more.',
+    desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds, including the estate chosen as a primary filming location in Guntur Kaaram, and many more.',
     image: '/images/company/velak_lake_view_residency.jpg'
   },
   {
@@ -183,13 +183,13 @@ const getValidGenerations = (val) => {
     if (item?.gen === 'Generation III') {
       return {
         ...item,
-        desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds — including the estate chosen as a primary filming location in Guntur Kaaram, and many more.'
+        desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds, including the estate chosen as a primary filming location in Guntur Kaaram, and many more.'
       };
     }
     if (item?.desc && typeof item.desc === 'string') {
       return {
         ...item,
-        desc: item.desc.replace(/spaces\s*[—–-]\s*we/gi, 'spaces, we')
+        desc: item.desc.replace(/spaces\s*[—–-]\s*we/gi, 'spaces, we').replace(/ponds\s*[—–-]\s*including/gi, 'ponds, including')
       };
     }
     return item;
@@ -424,6 +424,7 @@ const About = () => {
                   alt="ESPACIO Luxury Background"
                   decoding="async"
                   loading="eager"
+                  fetchPriority="high"
                   className="w-full h-full object-cover object-center rounded-[inherit]"
                 />
               </picture>

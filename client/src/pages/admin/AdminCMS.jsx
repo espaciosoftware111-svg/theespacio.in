@@ -278,7 +278,7 @@ export const AdminSettings = () => {
     tagline: 'Elegance. Experience. Espacio.',
     adminEmail: 'tarunuttupulusu@gmail.com',
     instagram: 'https://www.instagram.com/theespacio.in',
-    facebook: 'https://www.facebook.com/share/1YCa9RnM8a/',
+    facebook: 'https://www.facebook.com/share/1DkG2m4Ra7/',
     youtube: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL',
     pinterest: '',
     enableChat: false,
@@ -355,7 +355,7 @@ export const AdminSettings = () => {
           <h2 className="font-editorial text-lg font-bold text-white pt-4 border-t border-white/10">Social Links</h2>
           {[
             { label: 'Instagram URL', key: 'instagram', placeholder: 'https://instagram.com/theespacio.in' },
-            { label: 'Facebook URL', key: 'facebook', placeholder: 'https://www.facebook.com/share/1YCa9RnM8a/' },
+            { label: 'Facebook URL', key: 'facebook', placeholder: 'https://www.facebook.com/share/1DkG2m4Ra7/' },
             { label: 'YouTube URL', key: 'youtube', placeholder: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL' },
             { label: 'Pinterest URL', key: 'pinterest', placeholder: 'https://pinterest.com/...' },
           ].map(({ label, key, placeholder }) => (

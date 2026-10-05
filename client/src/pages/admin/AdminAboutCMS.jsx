@@ -33,7 +33,7 @@ const defaultGenerations = [
     gen: 'Generation III',
     title: 'Mastana Infra',
     company: 'Iconic Private Estates & Infrastructure',
-    desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds — including the estate chosen as a primary filming location in Guntur Kaaram, and many more.',
+    desc: 'Pioneered luxury architectural builds and bespoke private residences featuring private ponds, including the estate chosen as a primary filming location in Guntur Kaaram, and many more.',
     image: '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_15-20260813-110616.jpg'
   },
   {
@@ -162,7 +162,10 @@ const AdminAboutCMS = () => {
           about_gen_title: getNonEmpty(storedSettings.about_gen_title, 'Four Generations of Mastery'),
           about_gen_subtitle: getNonEmpty(storedSettings.about_gen_subtitle, 'Four Decades of Heritage'),
           about_generations: (Array.isArray(storedSettings.about_generations) && storedSettings.about_generations.length > 0 && !storedSettings.about_generations.some(g => g.image && g.image.includes('open_hall.png')))
-            ? storedSettings.about_generations
+            ? storedSettings.about_generations.map(g => ({
+                ...g,
+                desc: typeof g.desc === 'string' ? g.desc.replace(/ponds\s*[—–-]\s*including/gi, 'ponds, including') : g.desc
+              }))
             : defaultGenerations,
 
           about_mission_quote: getNonEmpty(storedSettings.about_mission_quote, '"We design spaces with intention — engineered first, styled second — so every home we touch is as functional as it is beautiful."'),

@@ -271,7 +271,6 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/qozg8gen0pnh1k9kxryr.jpg",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051302/espacio_gallery/b2hyi3o44yobnzzynbfa.jpg",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051304/espacio_gallery/gt8aknxvw1e9v2dywgzi.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051305/espacio_gallery/yocbcbuycsysstbt8j6k.jpg",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051308/espacio_gallery/pkitdbjvwmh506kgt7r3.jpg",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051309/espacio_gallery/kxktcafgsng7vp2ktavy.jpg",
@@ -377,7 +376,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_6_kondapur_venkatesh",
-    "order": 5,
+    "order": 6,
     "title": "The Dusk Lounge",
     "slug": "kondapur-minimalist-2bhk",
     "category": "apartment",
@@ -428,7 +427,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_7_gachibowli_koteswara",
-    "order": 6,
+    "order": 7,
     "title": "A 2BHK Residence, Gachibowli",
     "slug": "gachibowli-minimalist-beige-2bhk",
     "category": "apartment",
@@ -444,23 +443,44 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Ceiling channels were built in to house warm, high quality LED lighting that softly washes across the textured walls, bringing out the natural grain without ever feeling harsh. Even the entryway got the same attention to detail, with a striking gold console table and framed wall accents that turn a simple hallway into a proper welcome home moment.",
       "outcome": "A tranquil, sophisticated 2BHK haven delivering five-star hotel comfort with pristine finishes on schedule."
     },
-    "heroImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
+    "heroImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/26395709-3031-4b0e-974d-ec96241c7e27.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ad10b728-5797-4eb0-b810-032e828af858.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5a5b00bd-316f-45a5-a0ff-d716a9e1b759.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/50716894-d043-454b-a8f9-1731f81f12f1.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/075adc06-587f-4855-a645-588aafff2720",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/199e3414-0530-4337-bcb8-d51bd14409ef.png"
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_28.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_14.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_15.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_20.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_22.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_5.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_10.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_23.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_24.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_27.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_13.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_21.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_6.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_8.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_11.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_25.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_18.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_17.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_16.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_19.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_3.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_12.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_7.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_9.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png",
+    "beforeImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp",
+    "afterImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ca30e926-7250-474f-a0f2-5cd29c6abbf8.png"
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1bed362-eace-4f68-afde-49b823bc5480.png"
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp"
     ],
     "testimonialName": "Koteswara Rao",
     "testimonialProfession": "Homeowner, Gachibowli",
@@ -477,55 +497,283 @@ export const DEFAULT_PROJECTS = [
     "status": "published"
   },
   {
-    "_id": "proj_8_kachiguda_subbarao",
-    "order": 7,
-    "title": "A Duplex Residence, Kachiguda",
-    "slug": "kachiguda-fusion-duplex-villa",
-    "category": "duplex",
-    "area": "3,800 sq.ft.",
-    "location": "Kachiguda, Hyderabad",
-    "year": 2025,
-    "style": "Modern & Traditional Fusion",
-    "description": "A grand duplex built for a multi generational family, blending modern comfort with the warmth of traditional Indian design. From a striking staircase to a kids room wrapped in a vintage airplane blueprint mural, every level tells its own story while still feeling like one connected home.",
-    "story": {
-      "vision": "K Subbarao wanted a duplex that could hold the whole family comfortably, parents and children, while still feeling like one cohesive home rather than two separate floors stitched together. The plan blended modern luxury with rich touches of Indian design heritage, so the home would feel current without losing its cultural warmth. For the boys' room, the idea was to give them something entirely their own, a space with personality and imagination built right into the walls.",
-      "challenges": "With multiple ceiling levels and a double height space to design around, keeping a consistent look across both the parents' and the boys' suites took real care. Every material and color choice had to feel connected across floors, so the home reads as one story from top to bottom instead of feeling like two different houses stacked together. In the boys' room specifically, we wanted a bold vintage airplane blueprint mural to feel like a natural extension of the room, not just wallpaper slapped on, so the furniture, lighting, and colors all had to work around it rather than against it.",
-      "solutions": "Bespoke fluted wood paneling, premium PU lacquer detailing, high-durability acrylic storage systems, and ambient architectural cove lighting.",
-      "engineering": "Wiring was routed carefully through the multi level ceilings so nothing was ever left exposed, and lighting was layered at different heights to bring warmth into every corner, including the dramatic double height areas. The plywood used throughout was specially treated to resist warping over time, so the home holds its shape and finish for years, not just for the first few seasons. Even the statement mural in the boys' room was planned around the lighting fixtures above it, so the pendant lights complement the artwork instead of casting awkward shadows across it.",
-      "outcome": "A magnificent, warm duplex masterpiece celebrated for its craftsmanship and delivered with turnkey precision."
-    },
-    "heroImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
-    "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/92d8cde3-623f-4811-907d-7267962255ac.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/3f8f1874-d2b3-4b6c-9e5c-fb3333c11311.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/39876fee-140f-4c0f-bc16-01cdca3f2f76.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/8005ea3b-7d7a-4643-ac48-599d0cf0710e.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/919d61b3-2f89-40e4-9e8d-17af115b4a9f.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/445827f3-df4c-41c9-bd9c-da11399a47ff.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d6fa4de6-3f43-414a-a4d6-158eba4349ef.png"
-    ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png",
-    "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/66df1458-877e-4204-b6d3-0a1c5b199ad0.png"
-    ],
-    "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b1b4c729-d7f1-4216-ab32-7df78a0b6e34.png"
-    ],
-    "testimonialName": "K Subbarao",
-    "testimonialProfession": "Homeowner, Kachiguda",
-    "testimonialText": "ESPACIO created an absolute masterpiece with our Duplex home in Kachiguda. The modern fusion living area, boys bedrooms, and parents suite are designed with immaculate craftsmanship and attention to detail. Truly a five-star experience from start to finish!",
-    "testimonialRating": 5,
-    "testimonial": {
-      "name": "K Subbarao",
-      "profession": "Homeowner, Kachiguda",
-      "role": "Homeowner, Kachiguda, Hyderabad",
-      "text": "ESPACIO created an absolute masterpiece with our Duplex home in Kachiguda. The modern fusion living area, boys bedrooms, and parents suite are designed with immaculate craftsmanship and attention to detail. Truly a five-star experience from start to finish!",
-      "rating": 5
-    },
-    "featured": true,
-    "status": "published"
+      "_id": "proj_8_kachiguda_subbarao",
+      "order": 7,
+      "title": "A Duplex Residence, Kachiguda",
+      "slug": "kachiguda-fusion-duplex-villa",
+      "category": "duplex",
+      "area": "3,800 sq.ft.",
+      "location": "Kachiguda, Hyderabad",
+      "year": 2025,
+      "style": "Modern & Desi 4BHK Fusion",
+      "description": "An exquisite fusion of contemporary luxury and Desi soul across a sprawling 4BHK duplex in Kachiguda, Hyderabad. Featuring a grand living hall with a floating linear fireplace and sculptural marble staircase, an open-concept dining pavilion with smart integrated appliances, a bespoke modular chef's kitchen, a serene parents' suite with traditional circular ink art and walk-in dressing lounge, and an aviation-themed boys' bedroom with a custom vintage aeronautical biplane blueprint mural.",
+      "story": {
+          "vision": "To craft a multi-generational 4BHK duplex residence in Kachiguda where modern European minimalist aesthetics coalesce with Indian domestic warmth. The design centers around an expansive ground-floor living and entertainment zone, interconnected by a sweeping marble staircase with glass balustrades, creating seamless sightlines between the lounge, dining island, and culinary spaces.",
+          "challenges": "Unifying the open-concept ground floor without acoustic reverberation between the entertainment lounge and culinary zones, while crafting deeply tailored atmospheres for each generation: an elegant, serene retreat for the parents with heritage 'Desi' artwork and rich walnut joinery, and an aspirational bedroom for the boys featuring authentic vintage technical illustrations.",
+          "solutions": "Engineered acoustic fluted wall paneling, perimeter architectural coves, and recessed magnetic track lighting to softly define functional zones. Anchored the living hall with a floating media wall, roaring linear fireplace, and sculptural staircase. Commissioned a custom full-scale vintage French Nieuport biplane technical blueprint mural in the boys' suite, and designed a tranquil parents' sanctuary with solid walnut furniture, traditional circular ink mandala art, and a fluted walk-in dressing wardrobe.",
+          "engineering": "Precision-engineered carpentry with PU and champagne gloss finishes, custom glass-and-brass stair balustrades, concealed ducted HVAC raceways, and smart digital integration across modular kitchen and wardrobe systems.",
+          "outcome": "A tour-de-force of turnkey residential architecture. Flawless zero-tolerance millwork, imported Calacatta marble accents, integrated smart refrigeration, and bespoke lighting fixtures coalesce into an opulent, warm home delivered on schedule for K. Subba Rao and family."
+      },
+      "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg",
+      "gallery": [
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg",
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg"
+      ],
+      "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg",
+      "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg",
+      "beforeImages": [
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg"
+      ],
+      "afterImages": [
+          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg"
+      ],
+      "testimonialName": "K. Subba Rao",
+      "testimonialProfession": "Homeowner, Kachiguda",
+      "testimonialText": "ESPACIO brought our vision of a modern yet deeply comfortable 4BHK duplex to life. From the breathtaking ground-floor living hall with its linear fireplace and marble staircase to the aviation blueprint bedroom our sons adore and our own peaceful parents suite, every inch is engineered with supreme craftsmanship. The turnkey execution was flawless!",
+      "testimonialRating": 5,
+      "testimonial": {
+          "name": "K. Subba Rao",
+          "profession": "Homeowner, Kachiguda",
+          "role": "Homeowner, Kachiguda, Hyderabad",
+          "text": "ESPACIO brought our vision of a modern yet deeply comfortable 4BHK duplex to life. From the breathtaking ground-floor living hall with its linear fireplace and marble staircase to the aviation blueprint bedroom our sons adore and our own peaceful parents suite, every inch is engineered with supreme craftsmanship. The turnkey execution was flawless!",
+          "rating": 5
+      },
+      "rooms": [
+          {
+              "name": "Grand Duplex Living Hall & Architectural Staircase Vista",
+              "room": "Grand Duplex Living Hall & Architectural Staircase Vista",
+              "title": "Grand Duplex Living Hall & Architectural Staircase Vista",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
+              "description": "Showstopper panoramic wide-angle perspective of the ground floor duplex living hall, showcasing the floating linear fireplace, marble staircase with glass railings, modular kitchen, and formal dining suite."
+          },
+          {
+              "name": "Living Lounge, Roaring Linear Fireplace & Media Tower",
+              "room": "Living Lounge, Roaring Linear Fireplace & Media Tower",
+              "title": "Living Lounge, Roaring Linear Fireplace & Media Tower",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_2.webp",
+              "description": "Bespoke entertainment wall with integrated glowing linear fireplace, open oak bookcase tower, sculptural white ribbon armchair, KAWS collector art sculpture, and twilight courtyard window."
+          },
+          {
+              "name": "Open-Concept Duplex Living & Dining Transition",
+              "room": "Open-Concept Duplex Living & Dining Transition",
+              "title": "Open-Concept Duplex Living & Dining Transition",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_3.webp",
+              "description": "Dynamic perspective from the plush modular sofa across the Calacatta marble coffee table toward the white spun chair, duplex marble stairs, and illuminated dining pavilion."
+          },
+          {
+              "name": "Living Lounge & KAWS Art Sculpture Nook",
+              "room": "Living Lounge & KAWS Art Sculpture Nook",
+              "title": "Living Lounge & KAWS Art Sculpture Nook",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_4.webp",
+              "description": "Expansive lounge view displaying the heather-grey modular sectional sofa, houndstooth ottoman, life-sized KAWS sculpture, and floor-to-ceiling picture window."
+          },
+          {
+              "name": "Living Lounge & Courtyard Picture Window",
+              "room": "Living Lounge & Courtyard Picture Window",
+              "title": "Living Lounge & Courtyard Picture Window",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_5.webp",
+              "description": "Corner lounge perspective highlighting the expansive picture window looking out onto landscaped gardens, paired with acoustic wood paneling and marble entry portals."
+          },
+          {
+              "name": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
+              "room": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
+              "title": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_6.webp",
+              "description": "Architectural vista from the natural oak breakfast counter past the white stag sculpture on the stair landing toward the floating marble staircase and open kitchen."
+          },
+          {
+              "name": "Parents Master Suite & Traditional Ink Mandala Crest",
+              "room": "Parents Master Suite & Traditional Ink Mandala Crest",
+              "title": "Parents Master Suite & Traditional Ink Mandala Crest",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_7.webp",
+              "description": "Symmetrical luxury master bedroom featuring a solid walnut king bed, fluted acoustic headboard wall with rose-gold metallic inlays, framed circular ink artwork, and lantern pendant lights."
+          },
+          {
+              "name": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
+              "room": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
+              "title": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_8.webp",
+              "description": "Signature bedroom suite boasting a custom full-wall vintage biplane technical blueprint mural, upholstered king bed with houndstooth cushions, and suspended brass pill capsule pendants."
+          },
+          {
+              "name": "Formal Dining Suite & Amber Globe Chandelier",
+              "room": "Formal Dining Suite & Amber Globe Chandelier",
+              "title": "Formal Dining Suite & Amber Globe Chandelier",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_9.webp",
+              "description": "Luxury marble dining table with brushed brass pedestal base, six cream leather chairs, designer branching amber glass chandelier, and bronze glass sliding partitions."
+          },
+          {
+              "name": "Dining Pavilion & Integrated Smart Refrigerator",
+              "room": "Dining Pavilion & Integrated Smart Refrigerator",
+              "title": "Dining Pavilion & Integrated Smart Refrigerator",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_10.webp",
+              "description": "Seamless integration of culinary luxury and entertainment dining, featuring the built-in smart refrigerator with digital panel flush within the cabinetry."
+          },
+          {
+              "name": "Chef's Modular Kitchen & Quartz Countertops",
+              "room": "Chef's Modular Kitchen & Quartz Countertops",
+              "title": "Chef's Modular Kitchen & Quartz Countertops",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_11.webp",
+              "description": "High-gloss acrylic white modular kitchen with seamless quartz countertops, undermount double sink, integrated gas hob, and black glass chimney hood."
+          },
+          {
+              "name": "Parents Suite Perspective & Bedside Lanterns",
+              "room": "Parents Suite Perspective & Bedside Lanterns",
+              "title": "Parents Suite Perspective & Bedside Lanterns",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_12.webp",
+              "description": "Angled perspective of the parents bedroom suite with dark walnut nightstands, marble bedside lamps, textured area rug, and sheer curtain backdrop."
+          },
+          {
+              "name": "Parents Suite Wardrobes & Twilight Garden Vista",
+              "room": "Parents Suite Wardrobes & Twilight Garden Vista",
+              "title": "Parents Suite Wardrobes & Twilight Garden Vista",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_13.webp",
+              "description": "Floor-to-ceiling handleless champagne gloss wardrobes, modern geometric ceiling chandelier, and expansive picture window framing the landscaped exterior."
+          },
+          {
+              "name": "Parents Suite Fluted TV Media Wall & Marble Inlay",
+              "room": "Parents Suite Fluted TV Media Wall & Marble Inlay",
+              "title": "Parents Suite Fluted TV Media Wall & Marble Inlay",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_14.webp",
+              "description": "Light oak fluted entertainment wall accented with a vertical Calacatta marble strip in brass framing, floating Scandinavian media console, and wall-mounted TV."
+          },
+          {
+              "name": "Parents Suite Walk-In Dressing Wardrobe",
+              "room": "Parents Suite Walk-In Dressing Wardrobe",
+              "title": "Parents Suite Walk-In Dressing Wardrobe",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_15.webp",
+              "description": "Custom walk-in closet flanked by fluted wood partitions, illuminated open organizers, hanging wardrobe bays, trouser racks, and brass Sputnik wall sconce."
+          },
+          {
+              "name": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
+              "room": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
+              "title": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_16.webp",
+              "description": "Angled perspective of the boys room featuring the contemporary leatherette platform bed, dual-tone nightstands, warm bedside reading lamp, and graphic carpet."
+          },
+          {
+              "name": "Aeronautical Biplane Technical Blueprint Detail",
+              "room": "Aeronautical Biplane Technical Blueprint Detail",
+              "title": "Aeronautical Biplane Technical Blueprint Detail",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_17.webp",
+              "description": "High-resolution architectural detail of the vintage French Nieuport biplane technical blueprint mural and dual gold pendant globes."
+          },
+          {
+              "name": "Boys Suite Modular Wardrobe & Walnut Display Niche",
+              "room": "Boys Suite Modular Wardrobe & Walnut Display Niche",
+              "title": "Boys Suite Modular Wardrobe & Walnut Display Niche",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_18.webp",
+              "description": "Clean-lined white floor-to-ceiling wardrobe bank with horizontal open walnut display niche for books and collectables, fitted with matte black edge pulls."
+          },
+          {
+              "name": "Dining Bar Counter & Houndstooth Seating",
+              "room": "Dining Bar Counter & Houndstooth Seating",
+              "title": "Dining Bar Counter & Houndstooth Seating",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_19.webp",
+              "description": "Cantilevered oak breakfast bar integrated into white low credenza, accompanied by houndstooth bar stools with brass legs, minimalist wire clock, and fluted paneling."
+          },
+          {
+              "name": "Living Room Sofa & Marble Coffee Table Detail",
+              "room": "Living Room Sofa & Marble Coffee Table Detail",
+              "title": "Living Room Sofa & Marble Coffee Table Detail",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_20.webp",
+              "description": "Detailed front perspective of the heather-grey sectional sofa, ceramic vases with golden branches on marble table, and dining transition."
+          },
+          {
+              "name": "Living Lounge Seating Vignette",
+              "room": "Living Lounge Seating Vignette",
+              "title": "Living Lounge Seating Vignette",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_21.webp",
+              "description": "Intimate lounge vignette showcasing layered cushion textures, minimalist desk lamp, and full-height sheer drapery."
+          },
+          {
+              "name": "Living Lounge Centered Perspective",
+              "room": "Living Lounge Centered Perspective",
+              "title": "Living Lounge Centered Perspective",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_22.webp",
+              "description": "Centered elevation of the living sofa with golden block end-table, brass accents, and seamless Italian marble floor tiles."
+          },
+          {
+              "name": "Integrated Smart Refrigerator & Fluted Portal Detail",
+              "room": "Integrated Smart Refrigerator & Fluted Portal Detail",
+              "title": "Integrated Smart Refrigerator & Fluted Portal Detail",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_23.webp",
+              "description": "Bespoke joinery housing the double-door smart refrigerator alongside bronze-tinted glass sliding doors and white panelled interior door."
+          },
+          {
+              "name": "Boys Suite Study Wall & Grid Memory Board",
+              "room": "Boys Suite Study Wall & Grid Memory Board",
+              "title": "Boys Suite Study Wall & Grid Memory Board",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_24.webp",
+              "description": "Vibrant study wall with yellow accent paint, charcoal grey contrast, black metal wire grid photo organizer, and graphic framed prints."
+          },
+          {
+              "name": "Parents Suite Floor Vista & Entertainment Wall",
+              "room": "Parents Suite Floor Vista & Entertainment Wall",
+              "title": "Parents Suite Floor Vista & Entertainment Wall",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_25.webp",
+              "description": "Wide architectural perspective showing the spatial flow of the parents bedroom suite, light oak flooring, and media entertainment wall."
+          },
+          {
+              "name": "Boys Suite Architectural Shell & Curtains",
+              "room": "Boys Suite Architectural Shell & Curtains",
+              "title": "Boys Suite Architectural Shell & Curtains",
+              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg",
+              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_26.webp",
+              "description": "Spatial layout showing the floor carpet, double-height window curtains with terracotta orange accents, and sunshine yellow feature wall."
+          }
+      ],
+      "featured": true,
+      "status": "published"
   },
   {
     "_id": "proj_9_dimmu_chachu_residence",
@@ -558,10 +806,10 @@ export const DEFAULT_PROJECTS = [
       "/images/projects/dimmu_residence/dimmu_07.webp",
       "/images/projects/dimmu_residence/dimmu_04.webp"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/d49a2e39-fbc1-4976-ab8d-4f2a806f1919.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg"
     ],
     "afterImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png"
@@ -614,13 +862,13 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039616/espacio_gallery/jmbconw0wz7rrzqqaiub.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg"
     ],
     "testimonialName": "Dinesh & Sarvani",
     "testimonialProfession": "Homeowners, Tellapur",
@@ -667,10 +915,10 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040150/espacio_gallery/gctshkszvbpfjlegttqp.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg"
     ],
     "afterImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
@@ -699,7 +947,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-ACR-01',
     badge: 'ACRYLIC & FINISHES',
     description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
-    heroImage: '/images/materials/fluted_acrylic_azzurro.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
     features: ['High-Gloss', 'Anti-Scratch', 'Concealed Track'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -714,7 +962,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-GNT-02',
     badge: 'NATURAL STONE',
     description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
-    heroImage: '/images/materials/fluted_acrylic_gracia.jpg',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
     features: ['Scratch-Proof', 'Marble Finish', 'Heat Resistant'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -729,7 +977,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-CHR-03',
     badge: 'ACOUSTIC PANELS',
     description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
-    heroImage: '/images/materials/charcoal_luxe_4018_4017_4016.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
     features: ['Air Purifying', 'Premium Texture', 'Acoustic Dampening'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -737,6 +985,7 @@ export const DEFAULT_PRODUCTS = [
     showInHero: true,
     showInCard: true
   },
+
   {
     title: 'Fluted PVC Luxe Collection',
     slug: 'fluted-pvc-luxe',
@@ -744,7 +993,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-PVC-04',
     badge: 'ARCHITECTURAL PANELS',
     description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
-    heroImage: '/images/materials/irish.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
     features: ['Waterproof', 'Easy Install', 'Flame Retardant'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -759,7 +1008,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-FLR-05',
     badge: 'WOOD & FLOORING',
     description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
-    heroImage: '/images/materials/fluted_acrylic_giallo_dining.jpg',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
     features: ['Durable', 'Water-Resistant', 'Soft Acoustic Tread'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -774,7 +1023,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-ACR-06',
     badge: 'ACRYLIC & FINISHES',
     description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.',
-    heroImage: '/images/materials/fluted_acrylic_florida.jpg',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
     features: ['3D Relief', 'High-Gloss', 'Backlit Ready'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -789,7 +1038,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-PVC-07',
     badge: 'ARCHITECTURAL PANELS',
     description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
-    heroImage: '/images/materials/pvc_luxe_5003_5004.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
     features: ['Lightweight', 'Fire Retardant', 'Moisture Proof'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -804,7 +1053,7 @@ export const DEFAULT_PRODUCTS = [
     materialCode: 'MAT-WPC-08',
     badge: 'COMPOSITE PANELS',
     description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
-    heroImage: '/images/materials/wpc_luxe_1701_1606.webp',
+    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
     features: ['100% Waterproof', 'Termite Proof', 'Zero Swelling'],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -1584,7 +1833,7 @@ export const DEFAULT_SETTINGS = {
   ],
   footer_social_items: [
     { name: 'Instagram', label: 'Instagram', href: 'https://www.instagram.com/theespacio.in', icon: 'instagram', color: '#E4405F', beamColor: 'rgba(228, 64, 95, 0.4)' },
-    { name: 'Facebook', label: 'Facebook', href: 'https://www.facebook.com/share/1YCa9RnM8a/', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
+    { name: 'Facebook', label: 'Facebook', href: 'https://www.facebook.com/share/1DkG2m4Ra7/', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
     { name: 'YouTube', label: 'YouTube', href: 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL', icon: 'youtube', color: '#FF0000', beamColor: 'rgba(255, 0, 0, 0.4)' },
     { name: 'WhatsApp', label: 'WhatsApp', href: 'https://wa.me/919505151116', icon: 'whatsapp', color: '#25D366', beamColor: 'rgba(37, 211, 102, 0.4)' }
   ]
@@ -1750,7 +1999,7 @@ export const getCMSData = (key, fallback = null) => {
                 data[p7Idx].heroImage !== DEFAULT_PROJECTS[5].heroImage ||
                 !Array.isArray(data[p7Idx].gallery) ||
                 data[p7Idx].gallery.length !== DEFAULT_PROJECTS[5].gallery.length ||
-                data[p7Idx].gallery.some(img => typeof img === 'string' && img.includes('koteswara_gallery'))
+                data[p7Idx].gallery[0] !== DEFAULT_PROJECTS[5].gallery[0]
               ) {
                 data[p7Idx].beforeImage = DEFAULT_PROJECTS[5].beforeImage;
                 data[p7Idx].afterImage = DEFAULT_PROJECTS[5].afterImage;
@@ -1766,28 +2015,32 @@ export const getCMSData = (key, fallback = null) => {
           if (!hasKachigudaSubbarao) {
             const idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
             if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[6];
+              data[idx] = DEFAULT_PROJECTS[7];
             } else {
-              data.splice(6, 0, DEFAULT_PROJECTS[6]);
+              data.splice(7, 0, DEFAULT_PROJECTS[7]);
             }
             updated = true;
           } else {
             const p8Idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
             if (p8Idx !== -1) {
               if (
-                data[p8Idx].beforeImage !== DEFAULT_PROJECTS[6].beforeImage ||
-                data[p8Idx].afterImage !== DEFAULT_PROJECTS[6].afterImage ||
-                data[p8Idx].heroImage !== DEFAULT_PROJECTS[6].heroImage ||
+                data[p8Idx].beforeImage !== DEFAULT_PROJECTS[7].beforeImage ||
+                data[p8Idx].afterImage !== DEFAULT_PROJECTS[7].afterImage ||
+                data[p8Idx].heroImage !== DEFAULT_PROJECTS[7].heroImage ||
                 !Array.isArray(data[p8Idx].gallery) ||
-                data[p8Idx].gallery.length !== DEFAULT_PROJECTS[6].gallery.length ||
-                data[p8Idx].gallery.some(img => typeof img === 'string' && img.includes('subbarao_gallery'))
+                data[p8Idx].gallery.length !== DEFAULT_PROJECTS[7].gallery.length ||
+                data[p8Idx].description !== DEFAULT_PROJECTS[7].description
               ) {
-                data[p8Idx].beforeImage = DEFAULT_PROJECTS[6].beforeImage;
-                data[p8Idx].afterImage = DEFAULT_PROJECTS[6].afterImage;
-                data[p8Idx].beforeImages = DEFAULT_PROJECTS[6].beforeImages;
-                data[p8Idx].afterImages = DEFAULT_PROJECTS[6].afterImages;
-                data[p8Idx].heroImage = DEFAULT_PROJECTS[6].heroImage;
-                data[p8Idx].gallery = DEFAULT_PROJECTS[6].gallery;
+                data[p8Idx].title = DEFAULT_PROJECTS[7].title;
+                data[p8Idx].beforeImage = DEFAULT_PROJECTS[7].beforeImage;
+                data[p8Idx].afterImage = DEFAULT_PROJECTS[7].afterImage;
+                data[p8Idx].beforeImages = DEFAULT_PROJECTS[7].beforeImages;
+                data[p8Idx].afterImages = DEFAULT_PROJECTS[7].afterImages;
+                data[p8Idx].heroImage = DEFAULT_PROJECTS[7].heroImage;
+                data[p8Idx].gallery = DEFAULT_PROJECTS[7].gallery;
+                data[p8Idx].description = DEFAULT_PROJECTS[7].description;
+                data[p8Idx].story = DEFAULT_PROJECTS[7].story;
+                data[p8Idx].testimonial = DEFAULT_PROJECTS[7].testimonial;
                 updated = true;
               }
             }
@@ -1926,6 +2179,32 @@ export const getCMSData = (key, fallback = null) => {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
         }
+        // ── PRODUCTS hero image auto-migration ──────────────────────────────
+        if (key === STORAGE_KEYS.PRODUCTS && Array.isArray(data)) {
+          let updated = false;
+          const PRODUCT_HERO_MAP = {
+            'acrylic-luxe-collection':        'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
+            'digital-korean-poly-granite':    'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
+            'charcoal-panels-luxe':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
+            'fluted-pvc-luxe':               'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
+            'lvt-luxe-flooring':             'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
+            'fluted-acrylic-luxe':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
+            'pvc-luxe-collection':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
+            'wpc-luxe-collection':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
+            'charcoal-panels-luxe-1':        'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png',
+          };
+          data.forEach(product => {
+            if (product && PRODUCT_HERO_MAP[product.slug]) {
+              if (product.heroImage !== PRODUCT_HERO_MAP[product.slug]) {
+                product.heroImage = PRODUCT_HERO_MAP[product.slug];
+                updated = true;
+              }
+            }
+          });
+          if (updated) {
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          }
+        }
         if (Array.isArray(data.hero_bg_images) && (data.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || data.hero_bg_images.length !== 5)) {
           data.hero_bg_images = [
             'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
@@ -1963,9 +2242,9 @@ export const getCMSData = (key, fallback = null) => {
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
               memberImg: "/reviews/imtiyaz_shaik.png",
-              name: "Modular Specialist",
-              role: "High-Gloss Modular Kitchens",
-              projectLabel: "Modern Modular Kitchen & Island Bar"
+              name: "Living Space Specialist",
+              role: "Luxury Living Spaces",
+              projectLabel: "Warm Arched Living Lounge"
             },
             {
               projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
@@ -1976,6 +2255,19 @@ export const getCMSData = (key, fallback = null) => {
             }
           ];
           try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+        } else if (Array.isArray(data.showcase_slides)) {
+          let updatedSlides = false;
+          data.showcase_slides.forEach(slide => {
+            if (slide && (slide.projectLabel === "Modern Modular Kitchen & Island Bar" || slide.projectLabel === "Modern Quartzite Kitchen" || slide.role === "High-Gloss Modular Kitchens")) {
+              slide.name = "Living Space Specialist";
+              slide.role = "Luxury Living Spaces";
+              slide.projectLabel = "Warm Arched Living Lounge";
+              updatedSlides = true;
+            }
+          });
+          if (updatedSlides) {
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          }
         }
         if (key === STORAGE_KEYS.SETTINGS && data) {
           let modified = false;
@@ -2050,6 +2342,10 @@ export const getCMSData = (key, fallback = null) => {
             data.about_generations.forEach(g => {
               if (g && typeof g.title === 'string' && g.title.includes('Mantana')) {
                 g.title = g.title.replace(/Mantana/g, 'Mastana');
+                modified = true;
+              }
+              if (g && typeof g.desc === 'string' && /ponds\s*[—–-]\s*including/i.test(g.desc)) {
+                g.desc = g.desc.replace(/ponds\s*[—–-]\s*including/gi, 'ponds, including');
                 modified = true;
               }
             });
@@ -3279,6 +3575,10 @@ export const getCMSData = (key, fallback = null) => {
                 p4.title = dpRahul.title;
                 changed4 = true;
               }
+              if (!Array.isArray(p4.gallery) || p4.gallery.length !== dpRahul.gallery.length || p4.gallery.some(img => typeof img === 'string' && img.includes('yocbcbuycsysstbt8j6k'))) {
+                p4.gallery = dpRahul.gallery;
+                changed4 = true;
+              }
               if (p4.description !== dpRahul.description) {
                 p4.description = dpRahul.description;
                 changed4 = true;
@@ -3345,36 +3645,41 @@ export const getCMSData = (key, fallback = null) => {
               }
             }
             const p7 = data.find(p => p.slug === 'gachibowli-minimalist-beige-2bhk');
-            if (p7) {
+            const dp7 = DEFAULT_PROJECTS.find(dp => dp.slug === 'gachibowli-minimalist-beige-2bhk') || DEFAULT_PROJECTS[5];
+            if (p7 && dp7) {
               let changed7 = false;
-              if (p7.heroImage !== DEFAULT_PROJECTS[6].heroImage) {
-                p7.heroImage = DEFAULT_PROJECTS[6].heroImage;
+              if (p7.heroImage !== dp7.heroImage) {
+                p7.heroImage = dp7.heroImage;
                 changed7 = true;
               }
-              if (p7.beforeImage !== DEFAULT_PROJECTS[6].beforeImage || p7.afterImage !== DEFAULT_PROJECTS[6].afterImage) {
-                p7.beforeImage = DEFAULT_PROJECTS[6].beforeImage;
-                p7.afterImage = DEFAULT_PROJECTS[6].afterImage;
-                p7.beforeImages = DEFAULT_PROJECTS[6].beforeImages;
-                p7.afterImages = DEFAULT_PROJECTS[6].afterImages;
+              if (p7.beforeImage !== dp7.beforeImage || p7.afterImage !== dp7.afterImage) {
+                p7.beforeImage = dp7.beforeImage;
+                p7.afterImage = dp7.afterImage;
+                p7.beforeImages = dp7.beforeImages;
+                p7.afterImages = dp7.afterImages;
+                changed7 = true;
+              }
+              if (!Array.isArray(p7.gallery) || p7.gallery.length !== dp7.gallery.length || p7.gallery[0] !== dp7.gallery[0]) {
+                p7.gallery = dp7.gallery;
                 changed7 = true;
               }
               if (p7.title !== 'A 2BHK Residence, Gachibowli') {
                 p7.title = 'A 2BHK Residence, Gachibowli';
                 changed7 = true;
               }
-              if (p7.description !== DEFAULT_PROJECTS[6].description) {
-                p7.description = DEFAULT_PROJECTS[6].description;
+              if (p7.description !== dp7.description) {
+                p7.description = dp7.description;
                 changed7 = true;
               }
               if (!p7.story || !p7.story.vision || p7.story.vision.includes('Koteswara Rao, wanted')) {
-                p7.story = DEFAULT_PROJECTS[6].story;
+                p7.story = dp7.story;
                 changed7 = true;
               }
               if (changed7) {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
-            const p8 = data.find(p => p.slug === 'kachiguda-fusion-duplex-villa');
+            const p8 = data.find(p => p.slug === 'kachiguda-fusion-duplex-villa' || p._id === 'proj_8_kachiguda_subbarao');
             if (p8) {
               let changed8 = false;
               if (p8.heroImage !== DEFAULT_PROJECTS[7].heroImage) {
@@ -3388,6 +3693,10 @@ export const getCMSData = (key, fallback = null) => {
                 p8.afterImages = DEFAULT_PROJECTS[7].afterImages;
                 changed8 = true;
               }
+              if (!Array.isArray(p8.gallery) || p8.gallery.length !== DEFAULT_PROJECTS[7].gallery.length || p8.gallery[0] !== DEFAULT_PROJECTS[7].gallery[0]) {
+                p8.gallery = DEFAULT_PROJECTS[7].gallery;
+                changed8 = true;
+              }
               if (p8.title !== 'A Duplex Residence, Kachiguda') {
                 p8.title = 'A Duplex Residence, Kachiguda';
                 changed8 = true;
@@ -3396,7 +3705,7 @@ export const getCMSData = (key, fallback = null) => {
                 p8.description = DEFAULT_PROJECTS[7].description;
                 changed8 = true;
               }
-              if (!p8.story || !p8.story.vision || p8.story.vision.includes('envisioned a grand duplex')) {
+              if (!p8.story || !p8.story.vision || p8.story.vision !== DEFAULT_PROJECTS[7].story.vision) {
                 p8.story = DEFAULT_PROJECTS[7].story;
                 changed8 = true;
               }
@@ -3464,6 +3773,27 @@ export const getCMSData = (key, fallback = null) => {
           if (!Array.isArray(data) || data.length === 0 || data.some(p => typeof p.heroImage === 'string' && p.heroImage.includes('unsplash.com'))) {
             data = DEFAULT_PRODUCTS;
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          } else {
+            let updatedProd = false;
+            data.forEach(p => {
+              if (p && (p.slug === 'acrylic-luxe-collection' || p.materialCode === 'MAT-ACR-01')) {
+                if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png') {
+                  p.heroImage = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png';
+                  p.image = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png';
+                  updatedProd = true;
+                }
+              }
+              if (p && (p.slug === 'digital-korean-poly-granite' || p.materialCode === 'MAT-GNT-02')) {
+                if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png') {
+                  p.heroImage = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png';
+                  p.image = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png';
+                  updatedProd = true;
+                }
+              }
+            });
+            if (updatedProd) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+            }
           }
         }
         if (key === STORAGE_KEYS.TESTIMONIALS) {
@@ -3512,8 +3842,8 @@ export const getCMSData = (key, fallback = null) => {
           if (Array.isArray(data.footer_social_items)) {
             data.footer_social_items.forEach(item => {
               if (item.name === 'Facebook' || item.icon === 'facebook' || item.label === 'Facebook') {
-                if (item.href === 'https://facebook.com' || item.href === 'https://www.facebook.com' || !item.href?.includes('1YCa9RnM8a')) {
-                  item.href = 'https://www.facebook.com/share/1YCa9RnM8a/';
+                if (item.href === 'https://facebook.com' || item.href === 'https://www.facebook.com' || !item.href?.includes('1DkG2m4Ra7')) {
+                  item.href = 'https://www.facebook.com/share/1DkG2m4Ra7/';
                   modified = true;
                 }
               }

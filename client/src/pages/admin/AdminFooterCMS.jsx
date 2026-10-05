@@ -42,7 +42,7 @@ const defaultFooterData = {
     {
       name: 'Facebook',
       label: 'Facebook',
-      href: 'https://www.facebook.com/share/1YCa9RnM8a/',
+      href: 'https://www.facebook.com/share/1DkG2m4Ra7/',
       icon: 'facebook',
       color: '#1877F2',
       beamColor: 'rgba(24, 119, 242, 0.4)'
