@@ -380,7 +380,7 @@ const Footer = () => {
 
       {/* 4. Giant Cinematic Typography Wordmark */}
       <div 
-        ref={brandRef} 
+        ref={espRef} 
         className="w-full flex flex-col items-center justify-center overflow-hidden py-6 md:py-8 select-none relative z-10 px-4"
       >
         <div 

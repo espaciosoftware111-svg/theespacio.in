@@ -1210,9 +1210,9 @@ const Home = () => {
                     <motion.div 
                       className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
                       style={{ 
-                        background: 'rgba(16, 16, 20, 0.72)',
-                        backdropFilter: 'blur(8px)',
-                        WebkitBackdropFilter: 'blur(8px)',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        backdropFilter: 'blur(20px)',
+                        WebkitBackdropFilter: 'blur(20px)',
                       }}
                       variants={{
                         hidden: { opacity: 0, y: 35 },
