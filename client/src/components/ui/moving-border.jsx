@@ -1,66 +1,23 @@
-import React, { useRef, useState, useEffect } from "react";
-import {
-  motion,
-  useAnimationFrame,
-  useMotionTemplate,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import React from "react";
 
 export const MovingBorder = ({
   children,
-  duration = 2000,
+  duration = 3000,
   rx = "20",
   ry = "20",
   ...otherProps
 }) => {
-  const pathRef = useRef(null);
-  const progress = useMotionValue(0);
-
-  useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
-    if (length) {
-      const pxPerMillisecond = length / duration;
-      progress.set((time * pxPerMillisecond) % length);
-    }
-  });
-
-  const x = useTransform(progress, (val) => pathRef.current?.getPointAtLength(val).x);
-  const y = useTransform(progress, (val) => pathRef.current?.getPointAtLength(val).y);
-
-  const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
-
   return (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        className="absolute h-full w-full"
-        width="100%"
-        height="100%"
-        {...otherProps}
-      >
-        <rect
-          fill="none"
-          width="100%"
-          height="100%"
-          rx={rx}
-          ry={ry}
-          ref={pathRef}
-        />
-      </svg>
-      <motion.div
+    <div className="absolute -inset-[100%] pointer-events-none flex items-center justify-center overflow-hidden">
+      <div
+        className="w-[200%] h-[200%] pointer-events-none"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          display: "inline-block",
-          transform,
+          animation: `goldBorderSpin ${duration}ms linear infinite`,
+          background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 270deg, #c5a572 320deg, #dfc28d 360deg)',
+          willChange: 'transform',
         }}
-      >
-        {children}
-      </motion.div>
-    </>
+      />
+    </div>
   );
 };
 

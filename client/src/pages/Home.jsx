@@ -17,12 +17,13 @@ const Testimonials = React.lazy(() => import('../components/ui/Testimonials'));
 
 const Reveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '60px 0px -20px 0px' });
   return (
     <motion.div ref={ref} className={className}
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 18 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}>
+      transition={{ duration: 0.38, delay: Math.min(delay, 0.15), ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'transform, opacity' }}>
       {children}
     </motion.div>
   );
@@ -30,77 +31,37 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
 
 /* ── Magnetic Item for FAQ ──────────────────────────────────────────────── */
 const MagneticItem = ({ children, className, onClick, isOpen }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { stiffness: 200, damping: 25 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 200, damping: 25 });
-  const ref = useRef(null);
-
-  const handleMouse = (e) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1000 }}
-      className={className}
-      whileHover={{ scale: isOpen ? 1.02 : 1.015 }}
+    <div
+      className={`${className} transition-transform duration-200 hover:scale-[1.015]`}
       onClick={onClick}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 
 /* ── Glowing number badge for FAQ ────────────────────────────────────────── */
 const Badge = ({ num, isOpen }) => (
-  <motion.span
-    className="shrink-0 font-sans text-[10px] font-bold tracking-widest uppercase rounded-full px-2.5 py-1 mt-0.5"
-    animate={{
-      background: isOpen
-        ? 'linear-gradient(135deg, #c5a572 0%, #a07845 100%)'
-        : 'rgba(0,0,0,0.06)',
-      color: isOpen ? '#fff' : '#4b5563',
-      boxShadow: isOpen
-        ? '0 0 12px rgba(197,165,114,0.6), 0 0 24px rgba(197,165,114,0.3)'
-        : '0 0 0 transparent',
-    }}
-    transition={{ duration: 0.4 }}
+  <span
+    className={`shrink-0 font-sans text-[10px] font-bold tracking-widest uppercase rounded-full px-2.5 py-1 mt-0.5 transition-all duration-300 ${
+      isOpen
+        ? 'bg-gradient-to-r from-[#c5a572] to-[#a07845] text-white shadow-[0_0_12px_rgba(197,165,114,0.6)]'
+        : 'bg-black/[0.06] text-[#4b5563]'
+    }`}
   >
     {String(num + 1).padStart(2, '0')}
-  </motion.span>
+  </span>
 );
 
 const TiltCard = ({ children, className }) => {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 });
-
-  const handleMouse = useCallback((e) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [x, y]);
-
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1000 }}
-      className={className}
+    <div
+      className={`${className} transition-transform duration-300 hover:scale-[1.01]`}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 
@@ -420,16 +381,15 @@ const TeamProjectsShowcase = ({ customSlides }) => {
 };
 
 
-const AnimatedCounter = ({ value, duration = 0.8 }) => {
+const AnimatedCounter = ({ value, duration = 0.5 }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const inView = useInView(ref, { once: false, amount: 0.1 });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
 
   const hasNumbers = /[0-9]/.test(value);
 
   useEffect(() => {
     if (!inView) {
-      setCount(0);
       return;
     }
     if (!hasNumbers) {
@@ -599,8 +559,8 @@ const Home = () => {
     hero_stat3_order: 3,
 
     intro_visible: true,
-    intro_heading: 'From Concept to Handover — ESPACIO Delivers Complete Interiors.',
-    intro_description: "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.",
+    intro_heading: 'From First Idea to Final Touch, We Make It Effortless.',
+    intro_description: "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.",
     intro_cta_text1: 'Our Story ↗',
     intro_cta_text2: 'Read More ↗',
     intro_cta_link: '/about',
@@ -643,11 +603,11 @@ const Home = () => {
         const stored = getCMSData(STORAGE_KEYS.SETTINGS);
         if (stored && Object.keys(stored).length > 0) {
           const sanitizedStored = { ...stored };
-          if (sanitizedStored.intro_heading === 'Turnkey interiors, done properly.' || !sanitizedStored.intro_heading) {
-            sanitizedStored.intro_heading = 'From Concept to Handover — ESPACIO Delivers Complete Interiors.';
+          if (sanitizedStored.intro_heading === 'Turnkey interiors, done properly.' || sanitizedStored.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !sanitizedStored.intro_heading) {
+            sanitizedStored.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
           }
-          if (sanitizedStored.intro_description && sanitizedStored.intro_description.includes('We bring 40+ years of family construction heritage')) {
-            sanitizedStored.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+          if (!sanitizedStored.intro_description || sanitizedStored.intro_description.includes('We bring 40+ years of family construction heritage') || sanitizedStored.intro_description.includes('chase a contractor')) {
+            sanitizedStored.intro_description = "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.";
           }
           if (Array.isArray(sanitizedStored.hero_bg_images) && (sanitizedStored.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || sanitizedStored.hero_bg_images.length !== 5)) {
             sanitizedStored.hero_bg_images = HERO_IMAGES;
@@ -671,11 +631,11 @@ const Home = () => {
         const res = await axios.get('/settings');
         if (res.data && res.data.success && res.data.data && Object.keys(res.data.data).length > 0) {
           const apiData = { ...res.data.data };
-          if (apiData.intro_heading === 'Turnkey interiors, done properly.' || !apiData.intro_heading) {
-            apiData.intro_heading = 'From Concept to Handover — ESPACIO Delivers Complete Interiors.';
+          if (apiData.intro_heading === 'Turnkey interiors, done properly.' || apiData.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !apiData.intro_heading) {
+            apiData.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
           }
-          if (apiData.intro_description && apiData.intro_description.includes('We bring 40+ years of family construction heritage')) {
-            apiData.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+          if (!apiData.intro_description || apiData.intro_description.includes('We bring 40+ years of family construction heritage') || apiData.intro_description.includes('chase a contractor')) {
+            apiData.intro_description = "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.";
           }
           if (Array.isArray(apiData.hero_bg_images) && (apiData.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || apiData.hero_bg_images.length !== 5)) {
             apiData.hero_bg_images = HERO_IMAGES;
@@ -884,21 +844,31 @@ const Home = () => {
 
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
-  // Hero exit scroll animation (scales down and fades as user scrolls past it)
+  // Hero subtle parallax scroll (pure hardware-accelerated translate)
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  const heroExitScale = useTransform(heroScroll, [0, 1], [1, 0.85]);
-  const heroExitOpacity = useTransform(heroScroll, [0, 0.15, 1], [1, 1, 0]);
-  const heroExitY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
+  const heroExitY = useTransform(heroScroll, [0, 1], ["0px", "40px"]);
+
+  const HOME_CANONICAL_ORDER = {
+    'dimmu-chachu-luxury-villa': 1,
+    'casa-alta-residence-kali-mandir': 2,
+    'gandipet-modern-retro-2bhk': 3,
+    'kondapur-minimalist-2bhk': 4,
+    'gachibowli-minimalist-beige-2bhk': 5,
+    'kachiguda-fusion-duplex-villa': 6,
+    'the-restful-home-tellapur': 7
+  };
 
   useEffect(() => {
     const readProjectsFromStorage = () => {
       try {
         const storedProjects = getCMSData(STORAGE_KEYS.PROJECTS);
         if (storedProjects && Array.isArray(storedProjects) && storedProjects.length > 0) {
-          const sorted = [...storedProjects].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+          const sorted = [...storedProjects]
+            .filter(p => p && HOME_CANONICAL_ORDER[p.slug] !== undefined)
+            .sort((a, b) => (HOME_CANONICAL_ORDER[a.slug] ?? Number(a.order) ?? 999) - (HOME_CANONICAL_ORDER[b.slug] ?? Number(b.order) ?? 999));
           setProjects(sorted);
         }
       } catch {}
@@ -908,8 +878,10 @@ const Home = () => {
       readProjectsFromStorage();
       try {
         const r = await axios.get('/api/projects?limit=50', { timeout: 4000 }).catch(() => null);
-        if (r?.data?.success && Array.isArray(r?.data?.data) && r.data.data.length >= 8) {
-          const sorted = [...r.data.data].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+        if (r?.data?.success && Array.isArray(r?.data?.data) && r.data.data.length > 0) {
+          const sorted = [...r.data.data]
+            .filter(p => p && HOME_CANONICAL_ORDER[p.slug] !== undefined)
+            .sort((a, b) => (HOME_CANONICAL_ORDER[a.slug] ?? Number(a.order) ?? 999) - (HOME_CANONICAL_ORDER[b.slug] ?? Number(b.order) ?? 999));
           setProjects(sorted);
         }
       } catch {}
@@ -926,34 +898,31 @@ const Home = () => {
   }, []);
 
   const PROJECT_DISPLAY_NAMES = {
-    'rajapushpa-provincia-3bhk': 'The Arcstone Residence, Narsingi',
-    'my-home-sayuk-3bhk': 'The Lattice Retreat',
-    'kokapet-2bhk': 'The Boucle Residence',
-    'kokapet-urban-2bhk': 'The Ivory Retreat',
+    'dimmu-chachu-luxury-villa': 'The Celestial Curve Villa',
+    'casa-alta-residence-kali-mandir': 'Casa Alta Residence',
     'gandipet-modern-retro-2bhk': 'The Panelled Muse',
     'kondapur-minimalist-2bhk': 'The Dusk Lounge',
-    'the-restful-home-tellapur': 'The Restful Home',
-    'casa-alta-residence-kali-mandir': 'Casa Alta Residence'
+    'gachibowli-minimalist-beige-2bhk': 'A 2BHK Residence, Gachibowli',
+    'kachiguda-fusion-duplex-villa': 'A Duplex Residence, Kachiguda',
+    'the-restful-home-tellapur': 'The Restful Home'
   };
 
   // Authentic canonical thumbnails matching the Project Section catalog exactly
   const CANONICAL_PROJECT_IMAGES = {
-    'rajapushpa-provincia-3bhk': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg',
-    'my-home-sayuk-3bhk': '/images/projects/my_home_sayuk/sayuk_4.webp',
-    'kokapet-2bhk': '/images/projects/kokapet_nagesh_2bhk/kokapet_master_bedroom.webp',
-    'kokapet-urban-2bhk': '/images/projects/kokapet_rahul_2bhk/rahul_gallery_1.webp',
-    'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
-    'kondapur-minimalist-2bhk': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp',
-    'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp',
-    'kachiguda-fusion-duplex-villa': '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
     'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp',
-    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png',
-    'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png'
+    'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
+    'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
+    'kondapur-minimalist-2bhk': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp',
+    'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp',
+    'kachiguda-fusion-duplex-villa': '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
+    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png'
   };
 
   const displayProjects = useMemo(() => {
     const source = (projects && Array.isArray(projects) && projects.length > 0) ? projects : DEFAULT_PROJECTS;
-    return [...source].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+    return [...source]
+      .filter(p => p && HOME_CANONICAL_ORDER[p.slug] !== undefined)
+      .sort((a, b) => (HOME_CANONICAL_ORDER[a.slug] ?? Number(a.order) ?? 999) - (HOME_CANONICAL_ORDER[b.slug] ?? Number(b.order) ?? 999));
   }, [projects]);
 
   const stickyContent = useMemo(() => {
@@ -962,7 +931,7 @@ const Home = () => {
     return displayProjects.map((p, idx) => {
       const title = PROJECT_DISPLAY_NAMES[p.slug] || p.title || 'ESPACIO Project';
       const category = p.category ? String(p.category).toUpperCase() : 'LUXURY RESIDENCE';
-      const location = p.location || 'Hyderabad';
+      const location = p.slug === 'dimmu-chachu-luxury-villa' ? 'Kukatpally, Hyderabad' : (p.location || 'Hyderabad');
       const description = p.description || `A bespoke luxury ${category.toLowerCase()} interior design in ${location}, showcasing custom spatial architecture and premium materials.`;
       
       // Match the exact project section thumbnail: prioritize project.heroImage, then canonical map
@@ -978,23 +947,23 @@ const Home = () => {
       return {
         title,
         description: (
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-3">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span className="font-sans text-[12px] lg:text-[13px] font-bold uppercase tracking-widest text-gold">{category}</span>
               <span className="text-ink-soft/40">•</span>
               <span className="font-sans text-[13px] lg:text-[14px] text-ink-soft font-medium">{location}</span>
             </div>
-            <p className="font-sans text-[15px] lg:text-[17px] text-ink-soft leading-relaxed font-normal">
+            <p className="font-sans text-[14px] sm:text-[15px] lg:text-[17px] text-ink-soft leading-relaxed font-normal line-clamp-3 sm:line-clamp-4 lg:line-clamp-none">
               {description}
             </p>
-            <div className="pt-2 pb-0">
+            <div className="pt-2 pb-1 sm:pt-4 sm:pb-2 lg:pt-2.5 lg:pb-0">
               <Link 
                 to={`/projects/${p.slug}`}
                 aria-label={`View Case Study: ${title}`}
-                className="inline-flex items-center gap-2 font-sans text-[13px] lg:text-[14px] font-bold uppercase tracking-wider text-gold hover:text-gold/80 transition-colors pt-1"
+                className="inline-flex items-center gap-2 font-sans text-[13px] lg:text-[14px] font-bold uppercase tracking-wider text-gold hover:text-gold/80 transition-colors py-1 group/cta"
               >
                 <span>View Case Study</span>
-                <ArrowUpRight size={15} />
+                <ArrowUpRight size={15} className="group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
           </div>
@@ -1026,7 +995,7 @@ const Home = () => {
     {
       title: "Duplex Mezzanine & Sculpted Wall Mural",
       category: "Mezzanine & Murals",
-      link: "/projects/exquisite-duplex-fusion-4bhk",
+      link: "/projects/kachiguda-fusion-duplex-villa",
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
     },
     {
@@ -1054,15 +1023,15 @@ const Home = () => {
       thumbnail: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
     },
     {
-      title: "Bespoke Mandir & Pooja Unit",
+      title: "Bespoke Mandir & Sacred Pooja Shrine",
       category: "Pooja Room & Mandir",
-      link: "/projects/aparna-zicon-high-rise-2bhk",
-      thumbnail: "/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Living_room_1-20260810-122238.jpg",
+      link: "/spaces/pooja-room",
+      thumbnail: "/images/spaces/pooja/pooja_drive_12.webp",
     },
     {
-      title: "Marble TV Media Unit",
+      title: "Marble TV Media Unit & Floating Console",
       category: "TV & Media Unit",
-      link: "/materials",
+      link: "/spaces/living-room",
       thumbnail: "/images/company/2bhk_lux/tv_unit_2_1.png",
     },
     {
@@ -1072,9 +1041,9 @@ const Home = () => {
       thumbnail: "/images/company/indo_classical_elegance_3bhk/3BHK-Master_Bedroom_0-20260810-164320.jpg",
     },
     {
-      title: "Illuminated Crockery & Bar",
-      category: "Crockery & Bar",
-      link: "/materials",
+      title: "Illuminated Crockery & Bar Console",
+      category: "Crockery & Dining",
+      link: "/spaces/crockery-units",
       thumbnail: "/images/company/2bhk_lux/crockery1_1.png",
     },
     {
@@ -1090,69 +1059,69 @@ const Home = () => {
       thumbnail: "/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_0-20260810-124909.jpg",
     },
     {
-      title: "Thematic Kids Bedroom",
+      title: "Thematic Kids Bedroom Suite",
       category: "Kids Bedroom",
-      link: "/projects/exquisite-duplex-fusion-4bhk",
+      link: "/spaces/kids-bedroom",
       thumbnail: "/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Boys_Room_4-20260813-110616.jpg",
     },
     {
       title: "High-Gloss Modular Kitchen",
       category: "Modular Kitchen",
       link: "/spaces/modular-kitchen",
-      thumbnail: "/images/company/2bhk_aparna_zicon/Mr.Deepak-Aparna_Zicon-Detail_Drawing-04-03-2025-Kitchen_17-20260810-122232.jpg",
+      thumbnail: "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
     },
     {
       title: "Minimalist Beige Living Lounge",
       category: "Living Room",
-      link: "/projects/minimalist-beige-2bhk",
-      thumbnail: "/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_27-20260810-124917.jpg",
+      link: "/projects/gachibowli-minimalist-beige-2bhk",
+      thumbnail: "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp",
     },
     {
-      title: "Foyer Wall Panelling & Console",
-      category: "Foyer & Panelling",
-      link: "/materials",
+      title: "Ambient Dining Suite & Feature Wall",
+      category: "Dining Room",
+      link: "/spaces/dining-room",
       thumbnail: "/images/company/2bhk_mordern_retro/dining_2.jpg",
     },
     {
       title: "Executive Open Living Hall",
       category: "Living Room",
-      link: "/projects/executive-2bhk-residence",
+      link: "/spaces/living-room",
       thumbnail: "/images/company/2bhk_lux/hall1_1.png",
     },
     {
-      title: "Parallel Modular Kitchen",
+      title: "Parallel Modular Kitchen & Quartz Counter",
       category: "Modular Kitchen",
       link: "/spaces/modular-kitchen",
       thumbnail: "/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-kitchen_4-20260810-120431.jpg",
     },
     {
-      title: "Penthouse Master Bedroom",
+      title: "Penthouse Master Bedroom Suite",
       category: "Master Bedroom",
-      link: "/projects/grand-3bhk-penthouse-luxe",
+      link: "/spaces/master-bedroom",
       thumbnail: "/images/company/3bhk_lux/bedroom_1.png",
     },
     {
-      title: "Sliding Mirror Wardrobe",
+      title: "Sliding Mirror Wardrobe & Vanity",
       category: "Wardrobes",
       link: "/spaces/wardrobes",
       thumbnail: "/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Bedroom_13-20260810-124909.jpg",
     },
     {
       title: "Fluted Accent Wall Panelling",
-      category: "Wall Panelling",
-      link: "/materials",
+      category: "Wall Panelling & Living",
+      link: "/spaces/living-room",
       thumbnail: "/images/company/2bhk_mordern_retro/hall_paneling.jpg",
     },
     {
       title: "Green Balcony & Outdoor Deck",
       category: "Balcony & Deck",
-      link: "/projects/indo-classical-elegance-3bhk",
+      link: "/spaces/balcony",
       thumbnail: "/images/company/indo_classical_elegance_3bhk/Indo-Classical_Elegance__A_Soothing_Blend_of_Mode-balcony_1-20260810-120429.jpg",
     },
     {
       title: "Urban Contemporary Living Lounge",
       category: "Living Room",
-      link: "/projects/urban-contemporary-flat-2bhk",
+      link: "/spaces/living-room",
       thumbnail: "/images/company/2bhk_urban/Ideas_2_2-_0-20260810-173541.jpg",
     }
   ];
@@ -1201,11 +1170,10 @@ const Home = () => {
         <section ref={heroRef} className="relative h-[90dvh] sm:h-[90vh] lg:h-[96vh] min-h-[480px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-5 pt-2 sm:pt-2.5 lg:pt-3 pb-2 lg:px-12 z-0">
           <motion.div
             style={{ 
-              scale: heroExitScale, 
-              opacity: heroExitOpacity, 
               y: heroExitY,
+              willChange: 'transform',
             }}
-            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] origin-top shadow-2xl bg-bg-card isolate hero-card-clipped"
+            className="relative w-full h-full overflow-hidden rounded-[24px] lg:rounded-[40px] shadow-2xl bg-bg-card isolate hero-card-clipped"
           >
             {/* Background Image Layer */}
             <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
@@ -1242,9 +1210,9 @@ const Home = () => {
                     <motion.div 
                       className="relative rounded-[18px] sm:rounded-[22px] md:rounded-[26px] overflow-hidden border border-white/15 shadow-2xl"
                       style={{ 
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        backdropFilter: 'blur(20px)',
-                        WebkitBackdropFilter: 'blur(20px)',
+                        background: 'rgba(16, 16, 20, 0.72)',
+                        backdropFilter: 'blur(8px)',
+                        WebkitBackdropFilter: 'blur(8px)',
                       }}
                       variants={{
                         hidden: { opacity: 0, y: 35 },
@@ -1456,13 +1424,13 @@ const Home = () => {
               <div className="lg:col-span-6 space-y-8 text-left">
                 <Reveal delay={0.1}>
                   <h2 className="font-display text-[clamp(34px,4.2vw,56px)] font-medium leading-[1.1] tracking-tight text-ink">
-                    {homeSettings.intro_heading || 'From Concept to Handover — ESPACIO Delivers Complete Interiors.'}
+                    {homeSettings.intro_heading || 'From First Idea to Final Touch, We Make It Effortless.'}
                   </h2>
                 </Reveal>
                 
                 <Reveal delay={0.2}>
                   <p className="font-sans text-[15.5px] text-ink-soft leading-relaxed max-w-[520px]">
-                    {homeSettings.intro_description || "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site."}
+                    {homeSettings.intro_description || "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours."}
                   </p>
                 </Reveal>
                 
@@ -1550,7 +1518,7 @@ const Home = () => {
 
       {/* ── 4. PROJECTS GRID ── */}
       {homeSettings.projects_visible !== false && (
-        <section className="pt-8 pb-4 sm:pt-12 sm:pb-8 lg:py-16 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto">
+        <section className="pt-8 pb-4 sm:pt-12 sm:pb-8 lg:py-16 px-4 md:px-8 lg:px-12 max-w-[1720px] mx-auto content-visibility-auto">
           {/* Section Header: Title on Left, All Projects CTA on Right */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-4">
             <Reveal>
@@ -1582,7 +1550,7 @@ const Home = () => {
 
       {/* ── 5. SERVICES PARALLAX ── */}
       {homeSettings.parallax_visible !== false && (
-        <section className="bg-bg">
+        <section className="bg-bg content-visibility-auto">
           <React.Suspense fallback={<div className="min-h-[400px]" />}>
             <HeroParallax products={parallaxProducts} />
           </React.Suspense>
@@ -1593,7 +1561,7 @@ const Home = () => {
       {homeSettings.faq_visible !== false && (
         <section
           ref={faqSectionRef}
-          className="pt-6 pb-6 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative"
+          className="pt-6 pb-6 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative content-visibility-auto"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start relative">
             <div className="lg:col-span-5 sticky top-[72px] sm:top-20 lg:top-24 xl:top-28 self-start z-20 bg-bg/95 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none pt-4 pb-4 lg:pt-0 lg:pb-0">
@@ -1715,9 +1683,11 @@ const Home = () => {
 
       {/* ── 7. TESTIMONIALS ── */}
       {homeSettings.testimonials_visible !== false && (
-        <React.Suspense fallback={<div className="min-h-[200px]" />}>
-          <Testimonials />
-        </React.Suspense>
+        <div className="content-visibility-auto">
+          <React.Suspense fallback={<div className="min-h-[200px]" />}>
+            <Testimonials />
+          </React.Suspense>
+        </div>
       )}
 
     </div>

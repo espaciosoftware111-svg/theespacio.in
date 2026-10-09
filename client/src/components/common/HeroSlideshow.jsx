@@ -155,7 +155,7 @@ const HeroSlideshow = memo(({
               fetchPriority={idx === 0 ? "high" : "auto"}
               className="w-full h-full object-cover object-center select-none pointer-events-none rounded-[inherit]"
               style={{
-                imageRendering: 'high-quality',
+                imageRendering: 'auto',
               }}
             />
           </motion.picture>

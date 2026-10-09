@@ -31,46 +31,27 @@ export const GooeyInput = ({
         isExpanded ? "cursor-text" : "hover:shadow-sm"
       } ${className || ""}`}
     >
-      {/* SVG Gooey Filter */}
-      <svg className="absolute w-0 h-0 hidden" aria-hidden="true">
-        <defs>
-          <filter id="gooey-search-filter">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-              result="goo"
-            />
-            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* Background layer applying gooey filter */}
-      <div
-        className="w-full h-full relative"
-        style={{ filter: "url(#gooey-search-filter)" }}
-      >
+      {/* Background layer with hardware-accelerated expansion */}
+      <div className="w-full h-full relative">
         {/* Main stretching background pill */}
         <motion.div
-          className="absolute inset-y-0 left-0 border border-ink-border/20 rounded-full"
+          className="absolute inset-y-0 left-0 border border-ink-border/30 rounded-full shadow-sm"
           animate={{
             width: isExpanded ? "100%" : collapsedWidth,
             backgroundColor: isFocused ? "#ffffff" : "#f4f4f6",
           }}
-          transition={{ type: "spring", stiffness: 85, damping: 18 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        {/* Black gooey bubble that covers the entire pill when collapsed, then shrinks and melts away */}
+        {/* Dark pill button indicator that shrinks and melts away on expand */}
         <motion.div
-          className="absolute inset-y-0 left-0 rounded-full bg-black"
+          className="absolute inset-y-0 left-0 rounded-full bg-black/90"
           animate={{
-            width: isExpanded ? "44px" : collapsedWidth,
+            width: isExpanded ? "40px" : collapsedWidth,
             opacity: isExpanded ? 0 : 1,
-            scale: isExpanded ? 0.8 : 1,
+            scale: isExpanded ? 0.85 : 1,
           }}
-          transition={{ type: "spring", stiffness: 80, damping: 16 }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
 

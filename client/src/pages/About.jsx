@@ -146,14 +146,15 @@ const Counter = ({ value, duration = 2 }) => {
 /* ── Scroll Reveal Wrapper ─────────────────────────────────────────── */
 const Reveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true, margin: '50px 0px -20px 0px' });
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 18 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.35, delay: Math.min(delay, 0.15), ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'opacity, transform' }}
     >
       {children}
     </motion.div>

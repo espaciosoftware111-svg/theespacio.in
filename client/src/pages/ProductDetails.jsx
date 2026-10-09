@@ -7,6 +7,114 @@ import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
+// ─── Curated, Mixed & Locked Color Options per Material Collection ──────────
+export const LOCKED_MATERIAL_COLORS = {
+  'acrylic-luxe-collection': [
+    { name: 'Azzurro Sky', hex: '#87B5C8' },
+    { name: 'Crema Imperiale', hex: '#F0ECE1' },
+    { name: 'Luminous Gold', hex: '#D4AF37' },
+    { name: 'Blanco Pure', hex: '#FFFFFF' },
+    { name: 'Obsidian Mirror', hex: '#1C1C1E' },
+    { name: 'Elysian Vein', hex: '#E6DFD5' },
+    { name: 'Menta Sage', hex: '#A2C2B3' },
+    { name: 'Vector Champagne', hex: '#DFD3BF' },
+  ],
+  'digital-korean-poly-granite': [
+    { name: 'Carrara Statuario', hex: '#F4F4F4' },
+    { name: 'Crema Marfil', hex: '#E8DEC8' },
+    { name: 'Nero Marquina', hex: '#232323' },
+    { name: 'Gracia Vein', hex: '#D9D2C7' },
+    { name: 'Elysian Gold Vein', hex: '#DFD6C3' },
+    { name: 'Silver Travertine', hex: '#AFA99E' },
+    { name: 'Calacatta Borghini', hex: '#EDE7DC' },
+    { name: 'Emerald Laurent', hex: '#2E4338' },
+  ],
+  'charcoal-panels-luxe': [
+    { name: 'Obsidian Noir', hex: '#1A1A1A' },
+    { name: 'Anthracite Slat', hex: '#2B2D2F' },
+    { name: 'Dual-Tone Carbon', hex: '#383838' },
+    { name: 'Metallic Bronze', hex: '#5A4A3B' },
+    { name: 'Sculptural Pewter', hex: '#4D5054' },
+    { name: 'Smoked Umber', hex: '#44352C' },
+    { name: 'Deep Steel Grey', hex: '#3A4146' },
+    { name: 'Oxidized Brass', hex: '#6B5D43' },
+  ],
+  'fluted-pvc-luxe': [
+    { name: 'Irish Off-White', hex: '#EAE6DF' },
+    { name: 'Nordic Ash', hex: '#C4BCB1' },
+    { name: 'Marbo Sand Beige', hex: '#D5C5B2' },
+    { name: 'Azzurro Fluted', hex: '#8FAEB9' },
+    { name: 'Giallo Slate', hex: '#94928D' },
+    { name: 'Caramel Teak', hex: '#A87C4F' },
+    { name: 'Menta Whisper', hex: '#BACCC3' },
+    { name: 'Graphite Matte', hex: '#3D3F43' },
+  ],
+  'lvt-luxe-flooring': [
+    { name: 'Scandinavian Oak', hex: '#D5B895' },
+    { name: 'Smoked Walnut', hex: '#4A3528' },
+    { name: 'Bleached Driftwood', hex: '#D8D2C5' },
+    { name: 'Ashen Grey Oak', hex: '#8C877D' },
+    { name: 'Honey Chestnut', hex: '#B77E46' },
+    { name: 'Slate Limestone', hex: '#33373B' },
+    { name: 'Limed White Oak', hex: '#E5DCCB' },
+    { name: 'Espresso Timber', hex: '#2F241F' },
+  ],
+  'fluted-acrylic-luxe': [
+    { name: 'Florida Gold', hex: '#DFCE9F' },
+    { name: 'Gracia Frosted', hex: '#F2EFE9' },
+    { name: 'Azzurro Marine', hex: '#7CA4B5' },
+    { name: 'Giallo Amber', hex: '#D6B57E' },
+    { name: 'Menta Mint', hex: '#96BAA9' },
+    { name: 'Smoky Quartz', hex: '#6E6258' },
+    { name: 'Blanco Crystal', hex: '#FCFCFC' },
+    { name: 'Rose Champagne', hex: '#DDBFB5' },
+  ],
+  'pvc-luxe-collection': [
+    { name: 'Carrara Wave', hex: '#EDECE8' },
+    { name: 'Beige Marble', hex: '#DFD5C4' },
+    { name: 'Nordic Ash', hex: '#B5AEA4' },
+    { name: 'Royal Teak', hex: '#99693D' },
+    { name: 'Pearl White', hex: '#F7F5F0' },
+    { name: 'Classic Rosewood', hex: '#663828' },
+    { name: 'Slate Cloud', hex: '#7A8086' },
+    { name: 'Golden Oak', hex: '#C99B5C' },
+  ],
+  'wpc-luxe-collection': [
+    { name: 'Ipe Ironwood', hex: '#543826' },
+    { name: 'Burmese Teak', hex: '#9E6E3D' },
+    { name: 'Smoked Cedar', hex: '#7D553A' },
+    { name: 'Weathered Oak', hex: '#968E82' },
+    { name: 'Obsidian Charcoal', hex: '#29292A' },
+    { name: 'Warm Chestnut', hex: '#B0683A' },
+    { name: 'Driftwood Taupe', hex: '#B8AFA2' },
+    { name: 'Dark Walnut', hex: '#3E2C22' },
+  ],
+  '3d-panels': [
+    { name: 'Sculptural White', hex: '#F5F5F5' },
+    { name: 'Matte Alabaster', hex: '#ECE7DF' },
+    { name: 'Urban Slate', hex: '#7D8489' },
+    { name: 'Midnight Charcoal', hex: '#252729' },
+    { name: 'Champagne Shimmer', hex: '#D8CBB6' },
+    { name: 'Sage Relief', hex: '#9FB5A6' },
+  ],
+  'decorative-louvers': [
+    { name: 'Walnut Grain', hex: '#5C4033' },
+    { name: 'Smoked Ash', hex: '#4A4D52' },
+    { name: 'Natural Teak', hex: '#9E6E3D' },
+    { name: 'Deep Charcoal', hex: '#26282A' },
+    { name: 'Bleached Birch', hex: '#E0D8CB' },
+    { name: 'Caramel Amber', hex: '#BA8759' },
+  ],
+  'mosaic-tiles': [
+    { name: 'Onyx Pearl', hex: '#F3F3F5' },
+    { name: 'Venetian Bronze', hex: '#5C4C3E' },
+    { name: 'Seafoam Glass', hex: '#8FAFA5' },
+    { name: 'Obsidian Tessera', hex: '#1D1E20' },
+    { name: 'Iridescent Gold', hex: '#D1B46A' },
+    { name: 'Azure Lagoon', hex: '#5B8CA3' },
+  ]
+};
+
 const ProductDetails = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -397,7 +505,7 @@ const ProductDetails = () => {
       features: ['Active Charcoal Core', 'VOC Air Purification', 'Matte Deep Texture', 'Zero Warping', 'Acoustic Isolation'],
       specifications: [
         { label: 'Dimensions', value: '2900mm × 120mm × 12mm' },
-        { label: 'Finishes', value: 'Tone 4018/4017/4016, Edition 4015, Tone 4009/4011, Tone 4001/4003, Edition 6015, Tone 6083/6082/6081' },
+        { label: 'Finishes', value: 'Tone 4018/4017/4016, Edition 4015, Tone 4009/4011, Tone 4001/4003, Tone 6083/6082/6081, Tone 6085/4009' },
         { label: 'Material Code', value: 'MAT-CHR-03' }
       ],
       totalShades: 18,
@@ -407,7 +515,7 @@ const ProductDetails = () => {
         '/images/materials/charcoal_luxe_4015.webp',
         '/images/materials/charcoal_luxe_4009_4011.webp',
         '/images/materials/charcoal_luxe_4001_4003.webp',
-        '/images/materials/charcoal_luxe_6015.webp',
+        '/images/materials/charcoal_luxe_1_6085_4009.webp',
         '/images/materials/charcoal_luxe_6083_6082_6081.webp'
       ],
       gallery: [
@@ -415,7 +523,7 @@ const ProductDetails = () => {
         '/images/materials/charcoal_luxe_4015.webp',
         '/images/materials/charcoal_luxe_4009_4011.webp',
         '/images/materials/charcoal_luxe_4001_4003.webp',
-        '/images/materials/charcoal_luxe_6015.webp',
+        '/images/materials/charcoal_luxe_1_6085_4009.webp',
         '/images/materials/charcoal_luxe_6083_6082_6081.webp'
       ],
       applications: ['Home Theatre Acoustic Wall', 'Master Bedroom Headboard', 'Executive Lounge Focus Wall', 'Conference Room Cladding']
@@ -577,37 +685,6 @@ const ProductDetails = () => {
         '/images/materials/wpc_panels.webp'
       ],
       applications: ['Kitchen Shutters', 'Living Room Walls', 'Bedroom Headboards', 'Balcony Feature Walls']
-    },
-    'charcoal-panels-luxe-1': {
-      title: 'Espacio Charcoal Panels Luxe Collection (1)',
-      category: 'charcoal_panels_1',
-      description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-      heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png',
-      features: ['Active Charcoal Core', 'Architectural Deep Relief', 'Acoustic Isolation', 'Class A Fire Safety'],
-      specifications: [
-        { label: 'Dimensions', value: '2900mm × 120mm × 12mm' },
-        { label: 'Finishes', value: 'LUXE Edition 6015, Tone 6085/4009, Tone 5005/5006/5002, Tone 6049/6052/6050/6051, Tone 4001/4003' },
-        { label: 'Material Code', value: 'MAT-CHR-09' }
-      ],
-      totalShades: 16,
-      previewLimit: 6,
-      previewPages: [
-        '/images/materials/charcoal_luxe_1_6015.webp',
-        '/images/materials/charcoal_luxe_1_6085_4009.webp',
-        '/images/materials/charcoal_luxe_1_5005_5006_5002.webp',
-        '/images/materials/charcoal_luxe_1_6049_6052_6050_6051.webp',
-        '/images/materials/charcoal_luxe_1_4001_4003.webp',
-        '/images/materials/charcoal_luxe_4018_4017_4016.webp'
-      ],
-      gallery: [
-        '/images/materials/charcoal_luxe_1_6015.webp',
-        '/images/materials/charcoal_luxe_1_6085_4009.webp',
-        '/images/materials/charcoal_luxe_1_5005_5006_5002.webp',
-        '/images/materials/charcoal_luxe_1_6049_6052_6050_6051.webp',
-        '/images/materials/charcoal_luxe_1_4001_4003.webp',
-        '/images/materials/charcoal_luxe_4018_4017_4016.webp'
-      ],
-      applications: ['Master Bedroom Headboard', 'Living Room Accent Feature', 'Executive Lounge', 'Study Wall']
     },
     '3d-panels': {
       title: '3D Wall Panels',
@@ -803,6 +880,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setActiveColor(0);
     const syncCMS = () => {
       const stored = getCMSData(STORAGE_KEYS.PRODUCTS);
       if (Array.isArray(stored)) {
@@ -841,10 +919,14 @@ const ProductDetails = () => {
   }, [p.applications, fallbackProduct]);
 
   const safeColors = useMemo(() => {
+    const currentSlug = slug || p.slug;
+    if (currentSlug && LOCKED_MATERIAL_COLORS[currentSlug]) {
+      return LOCKED_MATERIAL_COLORS[currentSlug];
+    }
     if (Array.isArray(p.colors) && p.colors.length > 0) return p.colors;
     if (Array.isArray(fallbackProduct?.colors) && fallbackProduct.colors.length > 0) return fallbackProduct.colors;
     return mockProduct.colors;
-  }, [p.colors, fallbackProduct]);
+  }, [slug, p.slug, p.colors, fallbackProduct]);
 
   const safeSpecifications = useMemo(() => {
     let raw = p.specifications;
@@ -955,7 +1037,6 @@ const ProductDetails = () => {
   const isFlutedAcrylic = p.slug === 'fluted-acrylic-luxe'  || (p.heroImage && p.heroImage.includes('fluted_acrylic_gmwqr4'));
   const isPVCLuxe = p.slug === 'pvc-luxe-collection'        || (p.heroImage && p.heroImage.includes('pvc_1_qoe62b'));
   const isWPCLuxe = p.slug === 'wpc-luxe-collection'        || (p.heroImage && p.heroImage.includes('wpc_irucfj'));
-  const isCharcoalLuxe1 = p.slug === 'charcoal-panels-luxe-1' || (p.heroImage && p.heroImage.includes('additional_img_dgrs53'));
 
   // Hero image sources with true 4K resolution support (Widescreen 95% cover + Original fallback)
   const hero4kSrc = useMemo(() => {
@@ -967,9 +1048,8 @@ const ProductDetails = () => {
     if (isFlutedAcrylic) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png';
     if (isPVCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png';
     if (isWPCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png';
-    if (isCharcoalLuxe1) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png';
     return p.heroImage;
-  }, [isAcrylicLuxe, isPolyGranite, isCharcoalLuxe, isFlutedPVC, isLVTFlooring, isFlutedAcrylic, isPVCLuxe, isWPCLuxe, isCharcoalLuxe1, p.heroImage]);
+  }, [isAcrylicLuxe, isPolyGranite, isCharcoalLuxe, isFlutedPVC, isLVTFlooring, isFlutedAcrylic, isPVCLuxe, isWPCLuxe, p.heroImage]);
 
   const heroFallbackPng = useMemo(() => {
     if (isAcrylicLuxe)   return 'https://res.cloudinary.com/or5e9kak/image/upload/c_pad,w_3840,h_2160,b_gen_fill/v1791196089/acrylic_idoycj.png';
@@ -980,9 +1060,8 @@ const ProductDetails = () => {
     if (isFlutedAcrylic) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png';
     if (isPVCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png';
     if (isWPCLuxe)       return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png';
-    if (isCharcoalLuxe1) return 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png';
     return p.heroImage;
-  }, [isAcrylicLuxe, isPolyGranite, isCharcoalLuxe, isFlutedPVC, isLVTFlooring, isFlutedAcrylic, isPVCLuxe, isWPCLuxe, isCharcoalLuxe1, p.heroImage]);
+  }, [isAcrylicLuxe, isPolyGranite, isCharcoalLuxe, isFlutedPVC, isLVTFlooring, isFlutedAcrylic, isPVCLuxe, isWPCLuxe, p.heroImage]);
 
   return (
     <div className="bg-cream min-h-screen pb-24">
@@ -1045,12 +1124,6 @@ const ProductDetails = () => {
               <>
                 <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791201655/wpc_mobile_vjdcta.png" />
                 <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png" />
-              </>
-            )}
-            {isCharcoalLuxe1 && (
-              <>
-                <source media="(max-width: 767px)" srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_mobi_kmjh3g.png" />
-                <source media="(min-width: 768px)"  srcSet="https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png" />
               </>
             )}
             <img
@@ -1155,16 +1228,23 @@ const ProductDetails = () => {
           <div className="space-y-6">
             {p.showFinishesSection !== false && safeColors.length > 0 && (
               <div className="space-y-4">
-                <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.finishesSectionTitle || 'Available Finishes'}</h3>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-sans text-xs uppercase tracking-widest text-charcoal font-bold">{p.finishesSectionTitle || 'Available Finishes'}</h3>
+                  <span className="font-sans text-[11px] text-[#A67C52] font-semibold tracking-wide">
+                    {safeColors[activeColor]?.name || ''} ({safeColors.length} Locked Shades)
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-3.5 sm:gap-4">
                   {safeColors.map((color, idx) => (
                     <button key={idx} onClick={() => setActiveColor(idx)}
-                      className={`flex flex-col items-center space-y-2 group transition-all duration-200 ${activeColor === idx ? 'scale-105' : ''}`}>
+                      className={`flex flex-col items-center space-y-2 group transition-all duration-200 cursor-pointer ${activeColor === idx ? 'scale-105' : ''}`}>
                       <div
-                        className={`w-12 h-12 rounded-full border-2 shadow-sm transition-all ${activeColor === idx ? 'border-gold scale-110 shadow-md' : 'border-walnut/20 group-hover:border-walnut/50'}`}
+                        className={`w-12 h-12 rounded-full border-2 shadow-sm transition-all ${activeColor === idx ? 'border-gold scale-110 shadow-md ring-2 ring-gold/40' : 'border-walnut/20 group-hover:border-walnut/50'}`}
                         style={{ backgroundColor: color.hex }}
                       />
-                      <span className="font-sans text-[9px] text-walnut uppercase tracking-wide text-center max-w-[60px]">{color.name}</span>
+                      <span className={`font-sans text-[9px] uppercase tracking-wide text-center max-w-[65px] transition-colors leading-tight ${activeColor === idx ? 'text-[#8C6D37] font-bold' : 'text-walnut'}`}>
+                        {color.name}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -1192,14 +1272,11 @@ const ProductDetails = () => {
       {/* ── CATALOGUE PREVIEW GATE ──────────────────────────────────────────── */}
       {p.showCataloguePreviewSection !== false && (
         <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 md:pt-12 pb-16 md:pb-20 border-t border-walnut/15">
-          <div className="flex items-center justify-between mb-8">
+          <div className="mb-8">
             <div>
               <span className="font-sans text-xs uppercase tracking-widest text-gold font-bold">{p.catalogueEyebrow || 'Catalog & Shades'}</span>
               <h2 className="font-editorial text-3xl font-bold text-charcoal">{p.catalogueTitle || 'Catalogue Preview'}</h2>
             </div>
-            <span className="bg-charcoal text-cream font-sans text-[11px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full">
-              {finalUnlocked.length} Unlocked / {p.totalShades || (finalUnlocked.length + finalLocked.length)} Total Shades
-            </span>
           </div>
 
           <div className="relative overflow-hidden rounded-card border border-walnut/10 bg-offwhite shadow-sm">

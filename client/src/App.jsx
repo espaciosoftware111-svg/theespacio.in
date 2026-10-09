@@ -209,10 +209,9 @@ const MainLayout = () => {
         const res = await axios.get('/settings');
         if (res.data?.success && res.data?.data && Object.keys(res.data.data).length > 0) {
           const apiData = res.data.data;
-          const { setCMSData, notifyCMSUpdate } = await import('./utils/cmsStore');
+          const { setCMSData } = await import('./utils/cmsStore');
           setCMSData(STORAGE_KEYS.SETTINGS, apiData, { silent: true });
           setSettings(apiData);
-          notifyCMSUpdate();
         }
       } catch (err) {}
     };
@@ -272,12 +271,12 @@ function App() {
     }
 
     const lenis = new Lenis({
-      duration: 0.75,
+      duration: 0.42,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
+      wheelMultiplier: 1.08,
       touchMultiplier: 0, // NEVER hijack touch events
       syncTouch: false,
       infinite: false,
@@ -314,9 +313,9 @@ function App() {
     };
     if (typeof window !== 'undefined') {
       if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(prefetchRoutes, { timeout: 2500 });
+        window.requestIdleCallback(prefetchRoutes, { timeout: 8000 });
       } else {
-        setTimeout(prefetchRoutes, 1500);
+        setTimeout(prefetchRoutes, 5000);
       }
     }
   }, []);

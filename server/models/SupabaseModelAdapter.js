@@ -48,6 +48,7 @@ const COLUMN_ALIASES = {
   beforeAfter: 'before_after',
   homeOrder: 'home_order',
   faqPageOrder: 'faq_page_order',
+  colors: 'finishes',
   displayOrder: 'order',
   fileName: 'file_name',
   originalName: 'original_name',
@@ -136,6 +137,8 @@ export class SupabaseModelAdapter {
     }
     if (doc.home_order !== undefined && doc.homeOrder === undefined) doc.homeOrder = doc.home_order;
     if (doc.faq_page_order !== undefined && doc.faqPageOrder === undefined) doc.faqPageOrder = doc.faq_page_order;
+    if (!doc.colors && doc.finishes) doc.colors = doc.finishes;
+    if (!doc.finishes && doc.colors) doc.finishes = doc.colors;
 
     const self = this;
     doc.save = async function () {

@@ -48,18 +48,22 @@ const AdminSpacesCMS = () => {
     trust_stat1_suffix: '+',
     trust_stat1_label: 'Projects',
     trust_stat1_sublabel: 'Completed Turnkey Residences',
+    trust_stat1_badge: 'Homes Delivered',
+    trust_stat2_badge: 'Our Heritage',
+    trust_stat3_badge: 'Space Crafted',
+    trust_stat4_badge: 'Our Promise',
     trust_stat2_val: '40',
     trust_stat2_suffix: '+',
     trust_stat2_label: 'Years',
     trust_stat2_sublabel: 'Combined Construction Legacy',
-    trust_stat3_val: '50000',
+    trust_stat3_val: '40000',
     trust_stat3_suffix: '+',
     trust_stat3_label: 'Sq.Ft',
     trust_stat3_sublabel: 'Designed & Executed',
     trust_stat4_val: '10',
     trust_stat4_suffix: '-Year',
     trust_stat4_label: 'Warranty',
-    trust_stat4_sublabel: 'Comprehensive Hardware Warranty',
+    trust_stat4_sublabel: 'Comprehensive Warranty*',
     space_intro_visible: true,
     space_gallery_visible: true,
     space_materials_visible: true,
@@ -102,6 +106,10 @@ const AdminSpacesCMS = () => {
           trust_stat1_suffix: storedSettings.trust_stat1_suffix || prev.trust_stat1_suffix,
           trust_stat1_label: storedSettings.trust_stat1_label || prev.trust_stat1_label,
           trust_stat1_sublabel: storedSettings.trust_stat1_sublabel || prev.trust_stat1_sublabel,
+          trust_stat1_badge: storedSettings.trust_stat1_badge || prev.trust_stat1_badge,
+          trust_stat2_badge: storedSettings.trust_stat2_badge || prev.trust_stat2_badge,
+          trust_stat3_badge: storedSettings.trust_stat3_badge || prev.trust_stat3_badge,
+          trust_stat4_badge: storedSettings.trust_stat4_badge || prev.trust_stat4_badge,
           trust_stat2_val: storedSettings.trust_stat2_val || prev.trust_stat2_val,
           trust_stat2_suffix: storedSettings.trust_stat2_suffix || prev.trust_stat2_suffix,
           trust_stat2_label: storedSettings.trust_stat2_label || prev.trust_stat2_label,
@@ -433,7 +441,7 @@ const AdminSpacesCMS = () => {
       num: '04',
       badge: 'Inner Detail',
       name: 'Trust & Engineering Stats Strip',
-      desc: '4 metric counters: 25+ Projects, 40+ Years, 50,000+ Sq.Ft, 10-Year Warranty.',
+      desc: '4 metric counters: 25+ Projects, 40+ Years, 40,000+ Sq.Ft, 10-Year Warranty.',
       isVisible: spacesSettingsState.spaces_trust_visible !== false,
       visibleKey: 'spaces_trust_visible',
       targetTab: 'trust',
@@ -1559,7 +1567,7 @@ const AdminSpacesCMS = () => {
                     value={spacesSettingsState.trust_stat3_val}
                     onChange={(e) => handleSettingChange('trust_stat3_val', e.target.value)}
                     className={inpClass}
-                    placeholder="50000"
+                    placeholder="40000"
                   />
                   <input
                     type="text"
@@ -1634,7 +1642,7 @@ const AdminSpacesCMS = () => {
                   value={spacesSettingsState.trust_stat4_sublabel}
                   onChange={(e) => handleSettingChange('trust_stat4_sublabel', e.target.value)}
                   className={inpClass}
-                  placeholder="Comprehensive Hardware Warranty"
+                  placeholder="Comprehensive Warranty*"
                 />
               </div>
             </div>

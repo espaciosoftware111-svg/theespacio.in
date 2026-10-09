@@ -20,33 +20,43 @@ export const StickyScroll = ({ content = [], className = "" }) => {
     [0, -(cardLength - 1) * CARD_HEIGHT]
   );
 
-  // Synchronize scroll progress directly from viewport measurements & Lenis
-  const updateScrollProgress = useCallback(() => {
+  // Cached layout metrics ref to avoid getBoundingClientRect() forced reflow on scroll frames
+  const metricsRef = useRef({ top: 0, height: 0, winHeight: 800 });
+
+  const measureLayout = useCallback(() => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight || 800;
-    const stickyTop = 80;
-    const scrollableDistance = ref.current.offsetHeight - windowHeight;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    metricsRef.current = {
+      top: rect.top + scrollY,
+      height: ref.current.offsetHeight,
+      winHeight: window.innerHeight || 800,
+    };
+  }, []);
+
+  // Synchronize scroll progress without triggering DOM layout recalculation
+  const updateScrollProgress = useCallback(() => {
+    const { top, height, winHeight } = metricsRef.current;
+    const scrollableDistance = height - winHeight;
     if (scrollableDistance <= 0) return;
 
-    // How far we have scrolled past the sticky start point:
-    const scrolledPastStart = -rect.top + stickyTop;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const stickyTop = 80;
+    const scrolledPastStart = scrollY - top + stickyTop;
     const rawProgress = scrolledPastStart / scrollableDistance;
     const clampedProgress = Math.max(0, Math.min(1, rawProgress));
 
     scrollProgress.set(clampedProgress);
 
-    // Active card calculation with generous deadband hysteresis to eliminate shuttering/flicker
+    // Active card calculation with deadband hysteresis to eliminate flicker
     if (cardLength > 1) {
       const continuousIdx = clampedProgress * (cardLength - 1);
       const current = activeCardRef.current;
       
       let nextIdx = current;
-      // Generous deadband hysteresis (0.65 threshold):
-      // Must cross current + 0.65 to advance to next card, or drop below current - 0.65 to retreat
-      if (continuousIdx > current + 0.65) {
+      if (continuousIdx > current + 0.6) {
         nextIdx = Math.min(cardLength - 1, Math.round(continuousIdx));
-      } else if (continuousIdx < current - 0.65) {
+      } else if (continuousIdx < current - 0.6) {
         nextIdx = Math.max(0, Math.round(continuousIdx));
       }
 
@@ -62,57 +72,60 @@ export const StickyScroll = ({ content = [], className = "" }) => {
     }
   }, [cardLength, scrollProgress]);
 
+  const isInViewRef = useRef(true);
+
   useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          measureLayout();
           updateScrollProgress();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+        }
+      },
+      { rootMargin: "400px 0px 400px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [measureLayout, updateScrollProgress]);
 
-    // Immediate initial sync
+  useEffect(() => {
+    measureLayout();
     updateScrollProgress();
 
-    // Listen to Lenis smooth scroll if present and window scroll as fallback
-    let lenisListenerAttached = false;
-    if (window.lenis) {
-      window.lenis.on("scroll", handleScroll);
-      lenisListenerAttached = true;
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-
-    // Catch late Lenis attachment if App mounts after
-    const checkLenis = setInterval(() => {
-      if (!lenisListenerAttached && window.lenis) {
-        window.lenis.on("scroll", handleScroll);
-        lenisListenerAttached = true;
-        clearInterval(checkLenis);
+    let rafId = null;
+    const onScrollOrWheel = () => {
+      if (!isInViewRef.current) return;
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          updateScrollProgress();
+          rafId = null;
+        });
       }
-    }, 200);
+    };
 
-    // Catch late DOM layout shifts from preceding image loads
-    const t1 = setTimeout(updateScrollProgress, 100);
-    const t2 = setTimeout(updateScrollProgress, 400);
-    const t3 = setTimeout(updateScrollProgress, 1000);
+    const onResize = () => {
+      measureLayout();
+      onScrollOrWheel();
+    };
+
+    window.addEventListener("scroll", onScrollOrWheel, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+
+    // Catch late layout shifts from image rendering
+    const t1 = setTimeout(measureLayout, 150);
+    const t2 = setTimeout(measureLayout, 600);
 
     return () => {
-      clearInterval(checkLenis);
       clearTimeout(t1);
       clearTimeout(t2);
-      clearTimeout(t3);
-      if (window.lenis) {
-        window.lenis.off("scroll", handleScroll);
-      }
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScrollOrWheel);
+      window.removeEventListener("resize", onResize);
     };
-  }, [updateScrollProgress]);
+  }, [measureLayout, updateScrollProgress]);
 
   // Preload project images for instantaneous, flicker-free cross-fades
   useEffect(() => {
@@ -252,16 +265,16 @@ export const StickyScroll = ({ content = [], className = "" }) => {
               key={item.title + index} 
               index={index}
               totalItems={content.length}
-              itemClassName="bg-[#FAF8F5] border border-ink-border/25 flex flex-col gap-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.1)] p-4 sm:p-5 pb-5 sm:pb-6 rounded-[24px] mb-12 sm:mb-16"
+              itemClassName="bg-[#FAF8F5] border border-ink-border/25 flex flex-col gap-2.5 sm:gap-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.1)] p-3.5 sm:p-5 pb-6 sm:pb-8 rounded-[24px] mb-12 sm:mb-16"
             >
               {/* Project Image Card */}
-              <div className="w-full aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm bg-neutral-900">
+              <div className="w-full aspect-[16/10] sm:aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm bg-neutral-900">
                 {item.content}
               </div>
               {/* Description */}
-              <div className="px-1.5 sm:px-2 text-left pt-1 pb-1">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display text-[22px] sm:text-2xl font-bold text-ink leading-snug">{item.title}</h3>
+              <div className="px-1 sm:px-2 text-left pt-0.5 pb-1 sm:pb-2">
+                <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                  <h3 className="font-display text-[19px] sm:text-2xl font-bold text-ink leading-snug">{item.title}</h3>
                   <span className="font-sans text-[11px] font-bold text-gold bg-bg px-2.5 py-0.5 rounded-full border border-ink-border/20 shrink-0">
                     {String(index + 1).padStart(2, '0')} / {String(content.length).padStart(2, '0')}
                   </span>

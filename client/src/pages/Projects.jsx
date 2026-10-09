@@ -13,12 +13,13 @@ import { prefetchProject } from '../utils/projectPrefetch';
 // ─── Reveal animation (stable, no re-render on parent updates) ───────────────
 const Reveal = memo(({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true, margin: '50px 0px -20px 0px' });
   return (
     <motion.div ref={ref} className={className}
-      initial={{ opacity: 0, y: 22 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}>
+      transition={{ duration: 0.35, delay: Math.min(delay, 0.15), ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'opacity, transform' }}>
       {children}
     </motion.div>
   );
@@ -36,7 +37,7 @@ const IMAGE_FALLBACK_MAP = {
   'dimmu_02.webp': '/images/projects/dimmu_residence/dimmu_02.webp',
   'dimmu_07.webp': '/images/projects/dimmu_residence/dimmu_07.webp',
   'dimmu_04.webp': '/images/projects/dimmu_residence/dimmu_04.webp',
-  'venkatesh_after.webp': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
+  'venkatesh_after.webp': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp',
   'koteswara_gallery_1.webp': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp',
   'koteswara_before.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791139586/espacio_gallery/tmizti0ruxlppnwxwprc.jpg',
   'koteswara_after.webp': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791139928/espacio_gallery/wsj4bxtbb89ca1kgfavm.jpg',
@@ -51,11 +52,12 @@ const IMAGE_FALLBACK_MAP = {
 
 const PROJECT_SLUG_FALLBACKS = {
   'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
-  'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png',
-  'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425192/hf_20260926_121454_777edafb-9d5a-4009-bc04-3c5d0de0e534.png',
-  'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp',
-  'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg',
-  'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp'
+  'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png',
+  'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp',
+  'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd',
+  'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp',
+  'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg',
+  'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_02.webp'
 };
 
 const GENERAL_FALLBACK = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png';
@@ -96,29 +98,24 @@ export const PROJECTS_MOBILE_IMAGES = [
 ];
 
 const CANONICAL_ORDER = {
-  'rajapushpa-provincia-3bhk': 1,
-  'my-home-sayuk-3bhk': 2,
-  'kokapet-2bhk': 3,
-  'kokapet-urban-2bhk': 4,
-  'gandipet-modern-retro-2bhk': 5,
-  'kondapur-minimalist-2bhk': 6,
-  'gachibowli-minimalist-beige-2bhk': 7,
-  'kachiguda-fusion-duplex-villa': 8,
-  'dimmu-chachu-luxury-villa': 9,
-  'the-restful-home-tellapur': 10,
-  'casa-alta-residence-kali-mandir': 11
+  'dimmu-chachu-luxury-villa': 1,
+  'casa-alta-residence-kali-mandir': 2,
+  'gandipet-modern-retro-2bhk': 3,
+  'kondapur-minimalist-2bhk': 4,
+  'gachibowli-minimalist-beige-2bhk': 5,
+  'kachiguda-fusion-duplex-villa': 6,
+  'the-restful-home-tellapur': 7
 };
 
 // Display name override map (stable, outside component)
 const DISPLAY_NAMES = {
-  'rajapushpa-provincia-3bhk': 'The Arcstone Residence, Narsingi',
-  'my-home-sayuk-3bhk': 'The Lattice Retreat',
-  'kokapet-2bhk': 'The Boucle Residence',
-  'kokapet-urban-2bhk': 'The Ivory Retreat',
+  'dimmu-chachu-luxury-villa': 'The Celestial Curve Villa',
+  'casa-alta-residence-kali-mandir': 'Casa Alta Residence',
   'gandipet-modern-retro-2bhk': 'The Panelled Muse',
   'kondapur-minimalist-2bhk': 'The Dusk Lounge',
-  'the-restful-home-tellapur': 'The Restful Home',
-  'casa-alta-residence-kali-mandir': 'Casa Alta Residence'
+  'gachibowli-minimalist-beige-2bhk': 'A 2BHK Residence, Gachibowli',
+  'kachiguda-fusion-duplex-villa': 'A Duplex Residence, Kachiguda',
+  'the-restful-home-tellapur': 'The Restful Home'
 };
 
 const getDisplayName = (project) =>
@@ -127,14 +124,14 @@ const getDisplayName = (project) =>
 // ─── Project Card (memoized to avoid re-renders on filter/sort changes) ───────
 const ProjectCard = memo(({ project, idx, priority }) => {
   const imgSrc = useMemo(() => {
-    let raw = project.heroImage;
+    let raw = project.heroImage || (Array.isArray(project.gallery) && project.gallery[0]) || PROJECT_SLUG_FALLBACKS[project.slug];
     if (raw && typeof raw === 'string' && raw.startsWith('/images/projects/')) {
       // Append cache-buster so any browser session with cached 404 bypasses it immediately
       const sep = raw.includes('?') ? '&' : '?';
       raw = `${raw}${sep}v=20260928_4`;
     }
     return getOptimizedImageUrl(raw, priority ? 900 : 700, 85);
-  }, [project.heroImage, priority]);
+  }, [project.heroImage, project.gallery, project.slug, priority]);
 
   return (
     <Reveal delay={(idx % 3) * 0.07}>
@@ -154,7 +151,7 @@ const ProjectCard = memo(({ project, idx, priority }) => {
             alt={getDisplayName(project)}
             width="700"
             height="525"
-            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+            style={{ imageRendering: 'auto' }}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-expo-out"
           />
           {/* Hover overlay */}
@@ -305,8 +302,13 @@ const Projects = () => {
   // Memoized canonical projects list (shows all active portfolio case studies)
   const canonicalProjects = useMemo(() => {
     return (projects && projects.length > 0 ? projects : DEFAULT_PROJECTS)
-      .filter(p => p && (CANONICAL_ORDER[p.slug] !== undefined || DEFAULT_PROJECTS.some(dp => dp._id === p._id || dp.slug === p.slug)))
-      .map(p => ({ ...p, order: CANONICAL_ORDER[p.slug] || Number(p.order) || 999 }))
+      .filter(p => p && CANONICAL_ORDER[p.slug] !== undefined)
+      .map(p => ({
+        ...p,
+        title: DISPLAY_NAMES[p.slug] || p.title,
+        location: p.slug === 'dimmu-chachu-luxury-villa' ? 'Kukatpally, Hyderabad' : (p.location || 'Hyderabad'),
+        order: CANONICAL_ORDER[p.slug] ?? Number(p.order) ?? 999
+      }))
       .sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
   }, [projects]);
 

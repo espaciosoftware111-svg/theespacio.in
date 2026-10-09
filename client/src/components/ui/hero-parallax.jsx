@@ -32,106 +32,28 @@ export const HeroParallax = ({ products = [] }) => {
   );
 };
 
-const MarqueeRow = ({ products, direction = "left", speed = 1.248, rowId }) => {
-  const outerRef = useRef(null);
+const MarqueeRow = ({ products, direction = "left", rowId }) => {
+  const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef(null);
-  const isInView = useInView(outerRef, { margin: "200px" });
-  const x = useMotionValue(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStartX = useRef(0);
-  const dragStartMotionX = useRef(0);
-  const singleSetWidth = useRef(0);
-
-  const measure = useCallback(() => {
-    if (containerRef.current) {
-      const totalWidth = containerRef.current.scrollWidth;
-      // products has 3 duplicate sets
-      singleSetWidth.current = totalWidth / 3;
-    }
-  }, []);
-
-  useEffect(() => {
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [products, measure]);
-
-  useAnimationFrame((_, delta) => {
-    if (isDragging || !isInView) return;
-
-    // Smooth auto-scroll delta
-    const currentSpeed = isHovered ? speed * 0.35 : speed;
-    const move = currentSpeed * (delta / 16.67);
-
-    let currentX = x.get();
-    if (direction === "left") {
-      currentX -= move;
-      if (singleSetWidth.current > 0 && Math.abs(currentX) >= singleSetWidth.current) {
-        currentX += singleSetWidth.current;
-      }
-    } else {
-      currentX += move;
-      if (singleSetWidth.current > 0 && currentX >= 0) {
-        currentX -= singleSetWidth.current;
-      }
-    }
-    x.set(currentX);
-  });
-
-  const onPointerDown = (e) => {
-    setIsDragging(true);
-    dragStartX.current = e.clientX ?? (e.touches && e.touches[0]?.clientX) ?? 0;
-    dragStartMotionX.current = x.get();
-  };
-
-  const onPointerMove = (e) => {
-    if (!isDragging) return;
-    const clientX = e.clientX ?? (e.touches && e.touches[0]?.clientX) ?? 0;
-    const diff = clientX - dragStartX.current;
-    let newX = dragStartMotionX.current + diff;
-
-    if (singleSetWidth.current > 0) {
-      if (newX > 0) newX -= singleSetWidth.current;
-      if (newX < -singleSetWidth.current * 2) newX += singleSetWidth.current;
-    }
-    x.set(newX);
-  };
-
-  const onPointerUp = () => {
-    setIsDragging(false);
-  };
-
-  const onWheel = (e) => {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      let newX = x.get() - e.deltaX * 0.8;
-      if (singleSetWidth.current > 0) {
-        if (newX > 0) newX -= singleSetWidth.current;
-        if (newX < -singleSetWidth.current * 2) newX += singleSetWidth.current;
-      }
-      x.set(newX);
-    }
-  };
+  const isInView = useInView(containerRef, { margin: "250px" });
 
   return (
     <div
-      ref={outerRef}
-      className="w-full overflow-hidden select-none cursor-grab active:cursor-grabbing touch-pan-y"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        setIsDragging(false);
-      }}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      onWheel={onWheel}
+      ref={containerRef}
+      className="w-full overflow-hidden select-none py-1"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
     >
-      <motion.div
-        ref={containerRef}
-        style={{ x }}
-        className="flex flex-nowrap space-x-3.5 sm:space-x-6 md:space-x-8 w-max will-change-transform py-1"
+      <div
+        className={`flex flex-nowrap space-x-3.5 sm:space-x-6 md:space-x-8 w-max will-change-transform ${
+          direction === "left" ? "animate-marquee-row1" : "animate-marquee-row2"
+        }`}
+        style={{
+          animationPlayState: isInView ? (isPaused ? "paused" : "running") : "paused",
+          transform: "translateZ(0)",
+        }}
       >
         {products.map((product, idx) => (
           <ProductCard
@@ -139,7 +61,7 @@ const MarqueeRow = ({ products, direction = "left", speed = 1.248, rowId }) => {
             key={`${product.title}-${rowId}-${idx}`}
           />
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };

@@ -24,7 +24,7 @@ const DIMMU_DRIVE_MAP = {
   '1smFAVnKujLD_imWl--XMcNFas-faQXc-': '/images/projects/dimmu_residence/dimmu_04.webp'
 };
 
-export const getOptimizedImageUrl = (url, width = 1600, quality = 88) => {
+export const getOptimizedImageUrl = (url, width = 1600, quality = 95) => {
   if (!url || typeof url !== 'string') return url;
 
   for (const [id, localPath] of Object.entries(DIMMU_DRIVE_MAP)) {
@@ -34,21 +34,20 @@ export const getOptimizedImageUrl = (url, width = 1600, quality = 88) => {
   // Already optimal — skip transformations
   if (url.startsWith('data:') || url.endsWith('.svg')) return url;
 
-  const w = Math.max(width || 1400, 200);
-  const q = Math.max(quality || 88, 60);
-
-  const cacheKey = `${url}|${w}|${q}`;
+  const cacheKey = `${url}|${width}|${quality}`;
   if (_cache.has(cacheKey)) return _cache.get(cacheKey);
 
   let result = url;
 
   // ── 1. Cloudinary ──────────────────────────────────────────────────────────
+  // Preserve normal maximum quality without lossy compression grain (avoid q_auto:good / q_auto:low)
   if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
-    if (!url.includes('f_auto')) {
-      // f_auto → WebP/AVIF automatically; q_auto:good = best quality/size ratio
-      result = url.replace('/upload/', `/upload/f_auto,q_auto:good,w_${w},c_limit,dpr_auto/`);
+    if (!url.includes('f_auto') && !url.includes('q_auto')) {
+      // Use q_auto:best to prevent compression noise, grain, and blockiness
+      result = url.replace('/upload/', '/upload/f_auto,q_auto:best/');
     } else {
-      result = url;
+      // Replace any aggressive low-quality flags with high-fidelity normal quality
+      result = url.replace('q_auto:good', 'q_auto:best').replace('q_auto:low', 'q_auto:best').replace('q_auto:eco', 'q_auto:best');
     }
   }
 
@@ -59,30 +58,25 @@ export const getOptimizedImageUrl = (url, width = 1600, quality = 88) => {
       .replace(/([?&])q=\d+/g, '')
       .replace(/([?&])fm=[a-zA-Z0-9]+/g, '');
     const sep = clean.includes('?') ? '&' : '?';
-    result = `${clean}${sep}fm=webp&q=${q}&w=${w}&auto=format&fit=crop`;
+    result = `${clean}${sep}auto=format&fit=crop&q=95`;
   }
 
   // ── 3. Google Drive / GoogleUserContent ────────────────────────────────────
   else if (url.includes('googleusercontent.com/d/')) {
-    result = `${url.split('=')[0]}=w${w}`;
+    result = `${url.split('=')[0]}=w2560`;
   }
 
   // ── 4. Google Lens / lh3.googleusercontent.com ────────────────────────────
   else if (url.includes('lh3.googleusercontent.com')) {
-    // Append =wNNN size hint if not already present
     if (!url.includes('=w')) {
-      result = `${url}=w${w}`;
+      result = `${url}=w2560`;
     } else {
-      result = url.replace(/=w\d+/, `=w${w}`);
+      result = url.replace(/=w\d+/, '=w2560');
     }
   }
 
-  // ── 5. Local static assets → prefer .webp ─────────────────────────────────
-  else if (url.startsWith('/') && /\.(jpe?g|png)$/i.test(url)) {
-    result = url.replace(/\.(jpe?g|png)$/i, '.webp');
-  }
-
-  // ── 6. All others — return as-is ──────────────────────────────────────────
+  // ── 5. Local static assets & all others ───────────────────────────────────
+  // Preserve normal original image format (.jpg/.png/.webp) without forced downgrade
   else {
     result = url;
   }

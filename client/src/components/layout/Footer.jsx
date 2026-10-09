@@ -61,8 +61,7 @@ const Footer = () => {
   const location = useLocation();
   const year = new Date().getFullYear();
   const espRef = useRef(null);
-  const brandRef = espRef;
-  const inView = useInView(espRef, { once: false, margin: '-60px' });
+  const inView = useInView(espRef, { once: true, margin: '-40px' });
 
   // Get current page key for page-specific CTA
   const getPageKey = () => {
@@ -141,14 +140,8 @@ const Footer = () => {
     offset: ["start 95%", "center center"]
   });
 
-  const clipPath = useTransform(
-    scrollYProgress, 
-    [0, 1], 
-    ["inset(15% 10% 15% 10% round 40px)", "inset(0% 0% 0% 0% round 0px)"]
-  );
-  
-  const contentY = useTransform(scrollYProgress, [0, 1], [50, 0]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0, 1]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [24, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.9, 1]);
 
   // Dynamic CMS fields with defaults (checking Footer, Contact, and Studio Card keys)
   const locationTitle = cmsSettings.footer_location_title || cmsSettings.contact_location_title || cmsSettings.exp_eyebrow || 'LOCATION';
@@ -240,10 +233,9 @@ const Footer = () => {
     <footer className="bg-bg-dark text-bg min-h-[45vh] flex flex-col justify-between pt-0 pb-28 sm:pb-32 lg:pb-8">
       {/* 1. Center CTA Banner with Dusk Architectural Background */}
       {ctaEnabled && (
-        <motion.div 
+        <div 
           ref={ctaRef}
-          style={{ clipPath }}
-          className="relative pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-20 px-5 sm:px-6 md:px-12 text-center mb-4 sm:mb-6 lg:mb-8 overflow-hidden bg-cover bg-center"
+          className="relative pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-20 px-5 sm:px-6 md:px-12 text-center mb-4 sm:mb-6 lg:mb-8 overflow-hidden rounded-[24px] sm:rounded-[32px] mx-3 sm:mx-6 lg:mx-12 bg-cover bg-center shadow-xl"
         >
           {/* Background Image Layer */}
           <div 
@@ -277,7 +269,7 @@ const Footer = () => {
               <span className="btn-sliding-cta-text-two">{ctaHoverText}</span>
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
       )}
 
       {/* 2. Combined Footer Info Row */}

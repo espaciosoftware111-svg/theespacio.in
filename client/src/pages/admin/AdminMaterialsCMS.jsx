@@ -15,6 +15,7 @@ import {
   publishAllCMSChanges
 } from '../../utils/cmsStore';
 import CTASectionEditor from '../../components/admin/CTASectionEditor';
+import { LOCKED_MATERIAL_COLORS } from '../ProductDetails';
 
 const defaultMaterialsHeroSlides = [
   {
@@ -154,6 +155,8 @@ export const normalizeMaterial = (m, idx = 0) => {
       if (typeof f === 'string') return { name: f, hex: '#C9A96E' };
       return { name: String(f.name || 'Finish'), hex: String(f.hex || '#C9A96E') };
     });
+  } else if (m.slug && LOCKED_MATERIAL_COLORS[m.slug]) {
+    cols = LOCKED_MATERIAL_COLORS[m.slug];
   } else {
     cols = defaultColors;
   }

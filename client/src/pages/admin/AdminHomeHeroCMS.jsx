@@ -56,8 +56,8 @@ const AdminHomeHeroCMS = () => {
 
     // Section 2: Turnkey Intro & Heritage Story
     intro_visible: true,
-    intro_heading: 'Turnkey interiors, done properly.',
-    intro_description: "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.",
+    intro_heading: 'From First Idea to Final Touch, We Make It Effortless.',
+    intro_description: "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.",
     intro_cta_text1: 'Our Story ↗',
     intro_cta_text2: 'Read More ↗',
     intro_cta_link: '/about',
@@ -145,6 +145,12 @@ const AdminHomeHeroCMS = () => {
           const apiData = res.data.data;
           setHeroState((prev) => {
             const merged = { ...prev, ...apiData };
+            if (merged.intro_heading === 'Turnkey interiors, done properly.' || merged.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !merged.intro_heading) {
+              merged.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
+            }
+            if (!merged.intro_description || merged.intro_description.includes('We bring 40+ years of family construction heritage') || merged.intro_description.includes('chase a contractor')) {
+              merged.intro_description = "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.";
+            }
             const bgImgs = (Array.isArray(apiData.hero_bg_images) && apiData.hero_bg_images.length > 0)
               ? apiData.hero_bg_images
               : (Array.isArray(apiData.hero_images) && apiData.hero_images.length > 0)
@@ -977,7 +983,7 @@ const AdminHomeHeroCMS = () => {
                   value={heroState.intro_heading}
                   onChange={(e) => handleFieldChange('intro_heading', e.target.value)}
                   className={`${inpClass} resize-none`}
-                  placeholder="Turnkey interiors, done properly."
+                  placeholder="From First Idea to Final Touch, We Make It Effortless."
                 />
               </div>
 
@@ -988,7 +994,7 @@ const AdminHomeHeroCMS = () => {
                   value={heroState.intro_description}
                   onChange={(e) => handleFieldChange('intro_description', e.target.value)}
                   className={`${inpClass} resize-none`}
-                  placeholder="ESPACIO brings together thoughtful design..."
+                  placeholder="ESPACIO brings together considered design, exceptional materials, and master craftsmanship..."
                 />
               </div>
 

@@ -157,15 +157,15 @@ export const TWENTY_FOUR_MATERIAL_CATALOGS = [
   },
   {
     order: 9,
-    title: 'Charcoal Luxe (1) - Bronze',
-    slug: 'charcoal-panels-luxe-1',
+    title: 'Charcoal Panels - Bronze',
+    slug: 'charcoal-panels-luxe',
     category: 'Acoustic Panels',
     materialCode: 'MAT-CHR-09',
     badge: 'ACOUSTIC PANELS',
     description: 'Warm metallic bronze undertones layered on an active charcoal acoustic matrix.',
-    heroImage: '/images/materials/clean_charcoal_luxe_1_6015.webp',
-    fallbackImage: '/images/materials/charcoal_luxe_1_6015.webp',
-    swatches: [{ name: 'Metallic Bronze', code: '6015', color: '#6B533E' }],
+    heroImage: '/images/materials/charcoal_luxe_1_6085_4009.webp',
+    fallbackImage: '/images/materials/charcoal_luxe_1_6085_4009.webp',
+    swatches: [{ name: 'Metallic Bronze', code: '6085', color: '#6B533E' }],
     specs: ['Architectural Deep Relief', 'Zero Warping']
   },
   {
@@ -183,8 +183,8 @@ export const TWENTY_FOUR_MATERIAL_CATALOGS = [
   },
   {
     order: 11,
-    title: 'Charcoal Luxe (1) - Sculptural',
-    slug: 'charcoal-panels-luxe-1',
+    title: 'Charcoal Panels - Sculptural',
+    slug: 'charcoal-panels-luxe',
     category: 'Acoustic Panels',
     materialCode: 'MAT-CHR-11',
     badge: 'ACOUSTIC PANELS',

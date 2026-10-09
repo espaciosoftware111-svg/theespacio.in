@@ -20,13 +20,13 @@ export const ScrollStackItem = ({
   // Scale down subtly from 1.0 to 0.94 as it is covered by the next card
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
   // Subtle brightness dimming as card is stacked beneath
-  const filter = useTransform(scrollYProgress, [0, 0.8], ["brightness(1)", "brightness(0.92)"]);
+  const dimOpacity = useTransform(scrollYProgress, [0, 0.8], [0, 0.1]);
   // Soft fade out when fully covered by the next card
   const opacity = useTransform(scrollYProgress, [0, 0.92, 1], [1, 1, 0]);
 
   // Use a clean unified sticky top below the fixed navbar
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
-  const stickyTop = isMobile ? 84 : 110;
+  const stickyTop = isMobile ? 68 : 110;
 
   return (
     <motion.div
@@ -36,14 +36,17 @@ export const ScrollStackItem = ({
         top: `${stickyTop}px`,
         scale,
         opacity,
-        filter,
-        willChange: "transform, opacity, filter",
+        willChange: "transform, opacity",
         transformOrigin: "top center",
         zIndex: index + 1
       }}
-      className={`scroll-stack-card ${itemClassName}`.trim()}
+      className={`scroll-stack-card relative ${itemClassName}`.trim()}
     >
       {children}
+      <motion.div
+        style={{ opacity: dimOpacity }}
+        className="absolute inset-0 bg-black pointer-events-none rounded-[inherit]"
+      />
     </motion.div>
   );
 };

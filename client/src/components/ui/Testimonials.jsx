@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const StarRating = ({ rating = 5 }) => (
   <div className="flex items-center gap-0.5">
@@ -44,14 +44,6 @@ const topTestimonials = [
     name: "MIVA ESSENTIALS",
     role: "Kismatpur · Retail Brand Store",
     date: "2 months ago"
-  },
-  {
-    rating: 5,
-    title: "Largest Variety of Laminates, Veneers & Plywood",
-    body: "As an interior designer, I have found the largest variety of laminates, vineers, and plywood with all ranges of economy, premium and super premium as required by different customer segments at the best competitive rates. My suggestion for all to visit this place once before you buy.",
-    name: "Khaleel Shaik",
-    role: "Jubilee Hills · Commercial Studio",
-    date: "5 months ago"
   },
   {
     rating: 5,
@@ -187,27 +179,27 @@ const bottomTestimonials = [
 ];
 
 const TestimonialCard = ({ t }) => {
-  const quoteText = (t.body || '').replace(/^["'“\s]+|["'”\s]+$/g, '');
+  const quoteText = (t.body || '').replace(/^[\"'“\s]+|[\"'”\s]+$/g, '');
   const subtitle = t.role || (t.location && t.projectType ? `${t.location} · ${t.projectType}` : 'Hyderabad · Verified Client');
 
   return (
-    <div className="relative group w-[310px] sm:w-[380px] md:w-[430px] shrink-0 bg-white rounded-[20px] p-4.5 sm:p-5 md:p-6 mx-2 sm:mx-2.5 md:mx-3 flex flex-col justify-between h-[165px] sm:h-[180px] md:h-[195px] shadow-[0_4px_24px_rgba(20,15,10,0.06)] hover:shadow-[0_14px_32px_rgba(20,15,10,0.12)] border border-[#E2DDD5] hover:border-[#C5A265]/60 transition-all duration-300 hover:-translate-y-1 select-none text-left overflow-hidden">
+    <div className="relative group w-[320px] sm:w-[410px] md:w-[460px] shrink-0 bg-white rounded-[20px] p-5 sm:p-5.5 md:p-6 mx-2 sm:mx-2.5 md:mx-3 flex flex-col justify-between min-h-[220px] sm:min-h-[240px] md:min-h-[260px] h-full shadow-[0_4px_24px_rgba(20,15,10,0.06)] hover:shadow-[0_14px_32px_rgba(20,15,10,0.12)] border border-[#E2DDD5] hover:border-[#C5A265]/60 transition-all duration-300 hover:-translate-y-1 select-none text-left">
       {/* 1. Star Rating Header */}
-      <div className="flex items-center">
+      <div className="flex items-center shrink-0 mb-2.5 sm:mb-3">
         <StarRating rating={t.rating} />
       </div>
 
-      {/* 2. Review Quote Body */}
-      <p className="font-sans italic font-normal text-[13px] sm:text-[13.5px] md:text-[14px] text-[#36332E] leading-[1.5] my-auto line-clamp-2 sm:line-clamp-3">
+      {/* 2. Review Quote Body - Fully Visible without any truncation */}
+      <p className="font-sans italic font-normal text-[13px] sm:text-[13.5px] md:text-[14px] text-[#36332E] leading-[1.6] my-auto py-1 sm:py-2 select-text">
         “{quoteText}”
       </p>
 
       {/* 3. Divider Line & Author Section */}
-      <div className="w-full pt-2.5 sm:pt-3 border-t border-[#E8E1D5]">
+      <div className="w-full pt-3 sm:pt-3.5 mt-auto border-t border-[#E8E1D5] shrink-0">
         <h4 className="font-sans font-bold text-[13.5px] sm:text-[14.5px] text-[#181512] leading-tight m-0">
           {t.name}
         </h4>
-        <p className="font-sans font-normal text-[11.5px] sm:text-[12px] text-[#706B64] leading-tight mt-0.5 m-0">
+        <p className="font-sans font-normal text-[11.5px] sm:text-[12px] text-[#706B64] leading-tight mt-1 m-0">
           {subtitle}
         </p>
       </div>
@@ -217,6 +209,8 @@ const TestimonialCard = ({ t }) => {
 
 const MarqueeRow = ({ items, reverse = false }) => {
   const [isPaused, setIsPaused] = React.useState(false);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { margin: "250px" });
 
   if (!items || items.length === 0) return null;
 
@@ -226,17 +220,18 @@ const MarqueeRow = ({ items, reverse = false }) => {
 
   return (
     <div
+      ref={containerRef}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
-      className="overflow-hidden select-none flex w-full max-w-full relative py-1 cursor-grab"
+      className="overflow-hidden select-none flex w-full max-w-full relative py-3 sm:py-4 cursor-grab"
     >
       <div
-        className={`flex w-max shrink-0 ${reverse ? 'animate-testimonials-right' : 'animate-testimonials-left'}`}
+        className={`flex w-max shrink-0 items-stretch ${reverse ? 'animate-testimonials-right' : 'animate-testimonials-left'}`}
         style={{
           animationDuration: `${durationSec}s`,
-          animationPlayState: isPaused ? 'paused' : 'running',
+          animationPlayState: isInView ? (isPaused ? 'paused' : 'running') : 'paused',
           willChange: 'transform',
         }}
       >
@@ -294,6 +289,10 @@ const Testimonials = () => {
           stored = DEFAULT_TESTIMONIALS;
         } else if (DEFAULT_TESTIMONIALS && DEFAULT_TESTIMONIALS.length > 0 && !stored.some(item => (item.name || '').includes('Siddharth Mehta'))) {
           stored = [DEFAULT_TESTIMONIALS[0], ...stored];
+        }
+
+        if (Array.isArray(stored)) {
+          stored = stored.filter(item => item.id !== 'g_rev_03' && !(item.name || '').toLowerCase().includes('khaleel'));
           try {
             localStorage.setItem(STORAGE_KEYS.TESTIMONIALS, JSON.stringify(stored));
           } catch {}

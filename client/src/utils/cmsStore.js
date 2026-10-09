@@ -136,183 +136,106 @@ export const publishAllCMSChanges = async () => {
 
 export const DEFAULT_PROJECTS = [
   {
-    "_id": "proj_1_rajapushpa_provincia",
+    "_id": "proj_9_dimmu_chachu_residence",
     "order": 1,
-    "title": "The Arcstone Residence, Narsingi",
-    "slug": "rajapushpa-provincia-3bhk",
-    "category": "apartment",
-    "area": "2,850 sq.ft.",
-    "location": "Narsingi, Hyderabad",
-    "year": 2025,
-    "style": "Contemporary Warm Minimalist",
-    "description": "Warm wood tones, sculpted feature walls, and hidden lighting that transforms the mood room to room — this 3BHK in Narsingi turns every corner into something worth showing off. Every finish built to stay flawless for years, not just on move-in day.",
+    "title": "The Celestial Curve Villa",
+    "slug": "dimmu-chachu-luxury-villa",
+    "category": "villa",
+    "area": "4,200 sq.ft.",
+    "location": "Kukatpally, Hyderabad",
+    "year": 2026,
+    "style": "Contemporary Luxury Duplex Villa",
+    "description": "A grand multi-level luxury villa characterized by an iconic double-height curved marble staircase with a crystal chandelier, custom Yin-Yang sculpted cove ceilings, high-gloss powder blue modular kitchen, and personalized themed suites including a Virat Kohli cricket room.",
     "story": {
-      "vision": "The brief was clear from day one: give Dharma Teja a living room that feels warm and welcoming the moment you walk in — never stiff, never showroom-y. We planned to bring in wood paneling with a soft vertical texture, pair it with a marble-look backdrop behind the TV, and layer the ceiling with gentle cove lighting that could shift the whole mood of the room after sunset. A statement chandelier ties the space together — designed to work just as well for a quiet evening in as it does when guests are over.",
-      "challenges": "The trickiest part was the feature wall with arched niches in Narsingi. Getting that wall to look like one flowing design, instead of separate shapes stuck together, took careful planning. Every arch had to line up, every light strip had to sit exactly right, and the wall itself was not flat to begin with — requiring precision backer leveling while keeping the final look completely smooth.",
-      "solutions": "Engineered custom lightweight composite backer structures with laser-guided leveling and integrated concealed magnetic shadowline profiles across the living and dining spaces.",
-      "engineering": "None of that effortless look happens by accident. Behind that wall is hidden wiring, precisely cut stone panels, and layered plasterwork — all planned out before installation, so nothing pokes through and nothing looks patched together later. Built to remain flawless for years to come.",
-      "outcome": "An impeccably detailed residential benchmark in Narsingi with zero visible hardware, ambient mood scenes, and seamless spatial flow delivered on schedule for Dharma Teja."
+      "vision": "The homeowners envisioned a contemporary architectural statement villa that balances grand entertainment spaces with deeply personalized private family suites. The central design element was an open, light-filled double-height foyer with a sweeping curved staircase that connects the levels seamlessly, accented with bespoke lighting and custom textured wall finishes.",
+      "challenges": "Executing the double-height staircase required extreme structural precision for the curved safety glass balustrade and stainless steel handrails, aligning them accurately across both levels. Creating the fluid, sculpted S-curve cove lighting in the formal living ceiling also required specialized laser-cut framing and high-grade gypsum contouring without visible joints.",
+      "solutions": "Custom radius structural glass templates with concealed base shoes, precision CNC-milled ceiling ribs, and dimmable 3000K warm architectural cove profiles to deliver soft, ambient illumination across all ceiling levels.",
+      "engineering": "All electrical conduits, HVAC feeds, and structural anchor points were integrated prior to framing. Heavy-duty concealed brackets support the floating TV console against full-height vertical timber fluted wall paneling, and acoustic isolation dampens ambient noise between the living lounge and private bedroom wings.",
+      "outcome": "A breathtaking residential showcase combining opulent architectural features, turnkey precision joinery, and tailored spaces that reflect the family’s passions and everyday lifestyle."
     },
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg",
+    "heroImage": "/images/projects/dimmu_residence/dimmu_02.webp",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047576/espacio_gallery/zvqkqqkpa6fdfojtaxxb.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047578/espacio_gallery/neljy4tkjufc3e2qm7oq.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047579/espacio_gallery/loml95jqkz3mzvbr3z5g.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047582/espacio_gallery/boddxdbbkc3vvz1sccmn.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047584/espacio_gallery/koiive2gy5yw5rysfwcx.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047585/espacio_gallery/rublks3kk1u3skfbhbsb.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047588/espacio_gallery/uwnpmsvmh5atr54ma5ds.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047589/espacio_gallery/z4irutpzt2hw5qabd9cg.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047591/espacio_gallery/bnyefgrrc9mpjjen20tq.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047592/espacio_gallery/kuunw858ws3n2t4l88xa.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047594/espacio_gallery/l0l52jndy37r67ld9dfl.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047595/espacio_gallery/nbvmn4dsrozpqpoaslf0.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047596/espacio_gallery/vavkk9wt57fqv5uu1du1.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047598/espacio_gallery/sidf1hbm5mcum6plj4lc.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047599/espacio_gallery/cldydk0ev0l4qejfq9on.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047601/espacio_gallery/ivclestyrevc8fsj3adp.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047602/espacio_gallery/jcm4du0ewbdu1mdnhzgv.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047603/espacio_gallery/p4gnc1zdgif0gngtqtro.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047605/espacio_gallery/xq85mtynhjvlp1tpvtld.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791047606/espacio_gallery/oofymnichjtynx4yrhzk.jpg"
+      "/images/projects/dimmu_residence/dimmu_02.webp",
+      "/images/projects/dimmu_residence/dimmu_07.webp",
+      "/images/projects/dimmu_residence/dimmu_09.webp",
+      "/images/projects/dimmu_residence/dimmu_08.webp",
+      "/images/projects/dimmu_residence/dimmu_04.webp",
+      "/images/projects/dimmu_residence/dimmu_10.webp",
+      "/images/projects/dimmu_residence/dimmu_01.webp",
+      "/images/projects/dimmu_residence/dimmu_06.webp",
+      "/images/projects/dimmu_residence/dimmu_05.webp",
+      "/images/projects/dimmu_residence/dimmu_03.webp"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049378/espacio_gallery/zcpjoiltra0js8hgh0om.jpg"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791049381/espacio_gallery/r3g4jtdojchqkqvmlmgm.jpg"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png"
     ],
-    "testimonialName": "Dharma Teja",
-    "testimonialProfession": "Homeowner, Narsingi",
-    "testimonialText": "Working with ESPACIO for our 3BHK flat at Narsingi was an effortless experience from day one. Their attention to engineering tolerances, clean wood joinery, and on-time project handover exceeded our expectations. The house feels like an editorial luxury home.",
+    "testimonialName": "Hussain",
+    "testimonialProfession": "Homeowner, Hyderabad",
+    "testimonialText": "ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.",
     "testimonialRating": 5,
     "testimonial": {
-      "name": "Dharma Teja",
-      "profession": "Homeowner, Narsingi",
-      "role": "Homeowner, Narsingi, Hyderabad",
-      "text": "Working with ESPACIO for our 3BHK flat at Narsingi was an effortless experience from day one. Their attention to engineering tolerances, clean wood joinery, and on-time project handover exceeded our expectations. The house feels like an editorial luxury home.",
+      "name": "Hussain",
+      "profession": "Homeowner, Hyderabad",
+      "role": "Homeowner, Hyderabad",
+      "text": "ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.",
       "rating": 5
     },
     "featured": true,
     "status": "published"
   },
   {
-    "_id": "proj_2_my_home_sayuk",
+    "_id": "proj_11_casa_alta_residence_kali_mandir",
     "order": 2,
-    "title": "The Lattice Retreat",
-    "slug": "my-home-sayuk-3bhk",
+    "title": "Casa Alta Residence",
+    "slug": "casa-alta-residence-kali-mandir",
     "category": "apartment",
-    "area": "2,750 sq.ft.",
-    "location": "Tellapur, Hyderabad",
-    "year": 2025,
-    "style": "Japandi Contemporary Luxury",
-    "description": "A calm, nature inspired home with raised wooden lounge platforms, delicate latticework screens, soft layered lighting throughout, and bedrooms designed to stay peaceful and quiet. Every corner was built to slow you down after a long day.",
+    "area": "2,400 sq.ft.",
+    "location": "Kali Mandir, Hyderabad",
+    "year": 2026,
+    "style": "Contemporary Warm Minimalist & Timber Elegance",
+    "description": "A calm, well-balanced 3BHK home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule with warm timber, stone accents, and seamless cove lighting.",
     "story": {
-      "vision": "Ganesh wanted a home that felt calm the second he walked in. Natural wood tones, low relaxed seating, and plenty of daylight pouring into the main living area were all part of the plan. The idea was to create a space that could do two things at once. Give the family a quiet corner to unwind, and still open up easily when it was time to host friends and family.",
-      "challenges": "One of the toughest parts was the raised wooden platform near the balcony. It had to sit perfectly flush against the floor to ceiling glass, with no gaps or awkward edges anywhere. At the same time, we needed to hide all the AC ducting inside slim ceiling drops running around the room, without making the ceiling feel low or boxed in.",
-      "solutions": "Fabricated precision sub-frame floor joists with acoustic underlay buffers, combined with laser-cut geometric wooden screen dividers and flush-mounted indirect warm LED profiles.",
-      "engineering": "To make that wooden platform work, we had to calculate exactly how much weight it could hold without any sagging or shifting over time. In the bedrooms, we also built in extra wall paneling designed to soften sound, so the rooms feel calmer and more private even in a busy household. It's the kind of detail you don't see, but you definitely feel every time you walk in.",
-      "outcome": "An architectural masterpiece characterized by harmonious natural textures, zero visual clutter, and serene atmosphere."
+      "vision": "The family wanted a home that feels calm and open, modern in its restraint but warm the way traditional homes are. Light, timber and stone were meant to tie the rooms together, so the house feels like one story from the front door to the bedroom.",
+      "challenges": "With open living and dining areas, the home needed one design language running through it. Fluted panels, veneer and stone had to meet cleanly from room to room, and the false ceiling had to carry into the wall treatments so nothing felt like a separate space.",
+      "solutions": "It starts in the living room, where a fluted feature wall sets the tone and grain-matched veneer carries on into the dining area. The double-height staircase is the heart of the home, with a Jesus mural rising along its wall. A backlit stone-and-timber pooja unit and a calm master suite with a walk-in wardrobe follow the same palette. Recessed warm-white coves tie every space together.",
+      "engineering": "Cove lighting needs ventilation gaps and safe clearances from the finishes, so we planned both in from the start. That keeps the veneer from warping or fading over time. The wardrobes and pooja unit are built on moisture-resistant boards with heavy-duty hardware made for daily use. None of this is visible once the home is finished, but it is why the home looks as good years later as it did on handover day.",
+      "outcome": "A calm, well-balanced home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule."
     },
-    "heroImage": "/images/projects/my_home_sayuk/sayuk_4.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791050/004778f3-7240-4c73-837d-bf3dd2805420.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791058/64ae0ac4-810b-4913-9750-b6721d1cd256.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791066/48b80877-0de3-44bc-9167-b5c8b7887193.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791074/84661d49-bc93-47c9-85cb-c79b74fcdc9b.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791081/2969ce08-c39c-48bc-b63c-638f116e5ceb.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040124/espacio_gallery/z54sqdn0rxz5uvvz6vde.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040145/espacio_gallery/dn73ubo6rocp6ptcxqzy.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040150/espacio_gallery/gctshkszvbpfjlegttqp.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040137/espacio_gallery/alkqwzmvoiitkbzqxci7.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040107/espacio_gallery/duhzjiu5foyimwshxgqx.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040142/espacio_gallery/zoelg4rucvrxaeuxuqkx.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040101/espacio_gallery/gn1gylu6rnd1jvpobceu.png"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791050292/espacio_gallery/fohyf3imky5zqajkkzv5.jpg"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/v1790791043/2557add0-0cc5-4a63-9062-4f49eff9978a.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
     ],
-    "testimonialName": "Ganesh",
-    "testimonialProfession": "Homeowner, My Home Sayuk",
-    "testimonialText": "ESPACIO transformed our 3BHK flat at My Home Sayuk into a serene, five-star retreat. The craftsmanship on the wood paneling, raised deck lounge, and bedroom wardrobes is world-class. The team's transparency and adherence to timelines made the entire journey hassle-free.",
+    "testimonialName": "Prakash",
+    "testimonialProfession": "Homeowner, Kali Mandir",
+    "testimonialText": "Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.",
     "testimonialRating": 5,
     "testimonial": {
-      "name": "Ganesh",
-      "profession": "Homeowner, My Home Sayuk",
-      "role": "Homeowner, My Home Sayuk, Tellapur",
-      "text": "ESPACIO transformed our 3BHK flat at My Home Sayuk into a serene, five-star retreat. The craftsmanship on the wood paneling, raised deck lounge, and bedroom wardrobes is world-class. The team's transparency and adherence to timelines made the entire journey hassle-free.",
-      "rating": 5
-    },
-    "featured": true,
-    "status": "published"
-  },
-  {
-    "_id": "proj_4_kokapet_rahul",
-    "order": 3,
-    "title": "The Ivory Retreat",
-    "slug": "kokapet-urban-2bhk",
-    "category": "apartment",
-    "area": "1,450 sq.ft.",
-    "location": "Kokapet, Hyderabad",
-    "year": 2025,
-    "style": "Clean Contemporary Luxury",
-    "description": "A bright, airy 2BHK with high gloss finishes, a bookmatched marble bedroom wall, sleek floating consoles, and calm bedroom retreats bathed in soft lighting. Every room was planned around comfort and light, giving Rahul a home that feels fresh from the moment he steps in.",
-    "story": {
-      "vision": "Rahul wanted his 2BHK to feel clean, luminous, and contemporary, with nothing crowding the space. Smooth spatial flow, high-gloss ivory surfaces, and generous modular storage were part of the vision, alongside serene private retreats. In the main bedroom, the centerpiece was a full-height bookmatched Italian marble wall behind the bed, softly illuminated to create a restful luxury retreat. For the living area, a seamless flow connects the lounge, the bespoke marble Ganesha pooja mandir, and a modern modular kitchen with breakfast counter.",
-      "challenges": "With an urban high-rise layout, every wardrobe shutter, floating console, and wall panel had to align with millimeter precision. We integrated recessed cove lighting along the ceilings to wash the rooms in warm illumination without lowering headroom. The marble wall in the master bedroom required custom perimeter halo channels so the natural grey veining glows elegantly after dusk.",
-      "solutions": "Engineered moisture-resistant HDHMR substrates, concealed heavy-load steel anchors for the floating TV credenza, seamless bookmatched marble cladding, and laser-aligned acoustic wall panelling with German Häfele soft-close hardware.",
-      "engineering": "The floating TV media console required specialized internal cantilever steel bracketing to bear the load invisibly. The master bedroom marble slabs were dry-laid and laser-leveled before mounting to ensure unbroken vein continuity across panels. For the kids' bedroom, acoustic underlays were installed behind custom celestial wallpaper to maintain a peaceful environment throughout the home.",
-      "outcome": "A luminous 2BHK sanctuary delivered turnkey and on schedule, celebrated for its flawless ivory finishes, bookmatched marble craftsmanship, and tailored modular storage."
-    },
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/jydtlxt9xagokmv8cnuu.jpg",
-    "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/jydtlxt9xagokmv8cnuu.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051301/espacio_gallery/qozg8gen0pnh1k9kxryr.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051302/espacio_gallery/b2hyi3o44yobnzzynbfa.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051304/espacio_gallery/gt8aknxvw1e9v2dywgzi.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051308/espacio_gallery/pkitdbjvwmh506kgt7r3.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051309/espacio_gallery/kxktcafgsng7vp2ktavy.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051311/espacio_gallery/pimunyc8yfinkwkojz4h.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051312/espacio_gallery/etchqkf6qf76ppnikq27.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051313/espacio_gallery/tg1eyyafstazwm617ogh.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051314/espacio_gallery/q1tagfvgfazx3db03snx.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051315/espacio_gallery/z8fr3mynv9jd6whbpjnc.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051316/espacio_gallery/ymnore8wmb7pt2w8qfet.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051317/espacio_gallery/kkpzlguouw2l79qjvrw1.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051318/espacio_gallery/vkggyxdeedvs9pyzcaua.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051318/espacio_gallery/bi1scw8zgrgpzlogtocr.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051319/espacio_gallery/y5gm9gljg6z3irlqthuh.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051320/espacio_gallery/dljfie9qrl2k7tpoapwx.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051321/espacio_gallery/zpltgvn9y49gwqrqszd1.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051322/espacio_gallery/ihpleevkslgfnwpu68qf.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051323/espacio_gallery/s7kdga1oz9ptcsowg8ob.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051323/espacio_gallery/jqb3agmc0quwlkygvb91.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051325/espacio_gallery/rnpccbj0xacfbynmutqe.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051326/espacio_gallery/im530k1ngrx02dhuqtt8.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051326/espacio_gallery/i97d2c0pof4szdboir1x.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051327/espacio_gallery/dnrxn0epxezkfcby4zz1.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051328/espacio_gallery/nrpnwjy0usmclyfcvcvl.jpg",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051330/espacio_gallery/re3wfqbpnwhdgs1934kk.jpg"
-    ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg",
-    "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791117122/espacio_gallery/zjc83xwzwjrijgnbto2z.jpg"
-    ],
-    "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791051307/espacio_gallery/xeip5cg3agnlqw7rtymo.jpg"
-    ],
-    "testimonialName": "Rahul",
-    "testimonialProfession": "Homeowner, Kokapet",
-    "testimonialText": "ESPACIO did a phenomenal job on our 2BHK home in Kokapet. The entire turnkey execution was seamless—from 3D drawings to final handover. The modular kitchen and bedroom wardrobes turned out stunning with impeccable build quality. Truly grateful to the ESPACIO team!",
-    "testimonialRating": 5,
-    "testimonial": {
-      "name": "Rahul",
-      "profession": "Homeowner, Kokapet",
-      "role": "Homeowner, Kokapet, Hyderabad",
-      "text": "ESPACIO did a phenomenal job on our 2BHK home in Kokapet. The entire turnkey execution was seamless—from 3D drawings to final handover. The modular kitchen and bedroom wardrobes turned out stunning with impeccable build quality. Truly grateful to the ESPACIO team!",
+      "name": "Prakash",
+      "profession": "Homeowner, Kali Mandir",
+      "role": "Homeowner, Kali Mandir",
+      "text": "Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.",
       "rating": 5
     },
     "featured": true,
@@ -320,7 +243,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_5_gandipet_kiran",
-    "order": 4,
+    "order": 3,
     "title": "The Panelled Muse",
     "slug": "gandipet-modern-retro-2bhk",
     "category": "apartment",
@@ -336,21 +259,21 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Running LED lighting inside the timber framework meant working out proper heat management first, so the wood stays safe and doesn't warp or discolor over time. The TV wall also needed reinforced joinery underneath to carry its weight safely for years. It's the kind of planning that never shows on the surface, but it's exactly what keeps a home looking as good on day one thousand as it did on day one.",
       "outcome": "A warm, tactile, character-filled 2BHK residence with editorial-grade craftsmanship delivered turnkey on schedule."
     },
-    "heroImage": "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp",
+    "heroImage": "/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp",
     "gallery": [
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp",
       "/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp",
       "/images/projects/gandipet_kiran_2bhk/kiran_gallery_5.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_7.webp",
       "/images/projects/gandipet_kiran_2bhk/kiran_gallery_9.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_12.webp",
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_24.webp",
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp",
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_18.webp",
       "/images/projects/gandipet_kiran_2bhk/kiran_gallery_14.webp",
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_17.webp",
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_7.webp",
       "/images/projects/gandipet_kiran_2bhk/kiran_gallery_15.webp",
       "/images/projects/gandipet_kiran_2bhk/kiran_gallery_16.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_17.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_18.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_21.webp",
-      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_24.webp"
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_12.webp",
+      "/images/projects/gandipet_kiran_2bhk/kiran_gallery_21.webp"
     ],
     "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791132839/espacio_gallery/mysq2iymi1lwd2lgk5v0.jpg",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/5d678d57-3ff6-4ce4-87fb-29b692a0cf84.png",
@@ -376,7 +299,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_6_kondapur_venkatesh",
-    "order": 6,
+    "order": 4,
     "title": "The Dusk Lounge",
     "slug": "kondapur-minimalist-2bhk",
     "category": "apartment",
@@ -392,15 +315,15 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Every cabinet and wardrobe was built using moisture resistant boards paired with premium soft close hardware, so the doors stay smooth and quiet for years, even in Hyderabad's humidity. Cable routing was also planned and hidden from the start, so the entertainment wall stays clean and clutter free, with nothing dangling or exposed to spoil the look.",
       "outcome": "A sleek, modern 2BHK residence with pristine geometric alignment, maximum storage utility, and timeless contemporary luxury."
     },
-    "heroImage": "/images/projects/kondapur_venkatesh_2bhk/venkatesh_gallery_1.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ad891782-7131-4b54-8b7d-73dda3d5eea0.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c951f195-af50-4d89-8ad7-f1daed330a75.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b438c830-9b61-45c5-96b5-d2ba352b7fc5.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/773a222b-ce2f-4f40-a2d6-f2e91199aec5.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/429bec7e-a053-4465-a821-74744ea494ae",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c951f195-af50-4d89-8ad7-f1daed330a75.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ad891782-7131-4b54-8b7d-73dda3d5eea0.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c90d8da8-3e5d-42aa-8a2e-f9cfa28af410.png"
     ],
     "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a76b15e5-e59b-4f54-aeb9-c0055b37350a.png",
@@ -427,7 +350,7 @@ export const DEFAULT_PROJECTS = [
   },
   {
     "_id": "proj_7_gachibowli_koteswara",
-    "order": 7,
+    "order": 5,
     "title": "A 2BHK Residence, Gachibowli",
     "slug": "gachibowli-minimalist-beige-2bhk",
     "category": "apartment",
@@ -443,36 +366,36 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Ceiling channels were built in to house warm, high quality LED lighting that softly washes across the textured walls, bringing out the natural grain without ever feeling harsh. Even the entryway got the same attention to detail, with a striking gold console table and framed wall accents that turn a simple hallway into a proper welcome home moment.",
       "outcome": "A tranquil, sophisticated 2BHK haven delivering five-star hotel comfort with pristine finishes on schedule."
     },
-    "heroImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp",
+    "heroImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp",
     "gallery": [
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_28.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_14.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_15.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_20.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_22.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_5.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_7.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_6.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_3.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_8.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_9.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_10.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_11.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_12.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_13.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_16.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_22.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_27.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_28.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_23.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_24.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_27.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_13.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_21.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_6.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_8.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_11.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_25.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_14.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_18.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_21.webp",
       "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_17.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_16.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_19.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_3.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_12.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_7.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_9.webp",
-      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp"
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_20.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_15.webp",
+      "/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_19.webp"
     ],
     "beforeImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_before.webp",
     "afterImage": "/images/projects/gachibowli_koteswara_2bhk/koteswara_after.webp",
@@ -497,340 +420,292 @@ export const DEFAULT_PROJECTS = [
     "status": "published"
   },
   {
-      "_id": "proj_8_kachiguda_subbarao",
-      "order": 7,
-      "title": "A Duplex Residence, Kachiguda",
-      "slug": "kachiguda-fusion-duplex-villa",
-      "category": "duplex",
-      "area": "3,800 sq.ft.",
-      "location": "Kachiguda, Hyderabad",
-      "year": 2025,
-      "style": "Modern & Desi 4BHK Fusion",
-      "description": "An exquisite fusion of contemporary luxury and Desi soul across a sprawling 4BHK duplex in Kachiguda, Hyderabad. Featuring a grand living hall with a floating linear fireplace and sculptural marble staircase, an open-concept dining pavilion with smart integrated appliances, a bespoke modular chef's kitchen, a serene parents' suite with traditional circular ink art and walk-in dressing lounge, and an aviation-themed boys' bedroom with a custom vintage aeronautical biplane blueprint mural.",
-      "story": {
-          "vision": "To craft a multi-generational 4BHK duplex residence in Kachiguda where modern European minimalist aesthetics coalesce with Indian domestic warmth. The design centers around an expansive ground-floor living and entertainment zone, interconnected by a sweeping marble staircase with glass balustrades, creating seamless sightlines between the lounge, dining island, and culinary spaces.",
-          "challenges": "Unifying the open-concept ground floor without acoustic reverberation between the entertainment lounge and culinary zones, while crafting deeply tailored atmospheres for each generation: an elegant, serene retreat for the parents with heritage 'Desi' artwork and rich walnut joinery, and an aspirational bedroom for the boys featuring authentic vintage technical illustrations.",
-          "solutions": "Engineered acoustic fluted wall paneling, perimeter architectural coves, and recessed magnetic track lighting to softly define functional zones. Anchored the living hall with a floating media wall, roaring linear fireplace, and sculptural staircase. Commissioned a custom full-scale vintage French Nieuport biplane technical blueprint mural in the boys' suite, and designed a tranquil parents' sanctuary with solid walnut furniture, traditional circular ink mandala art, and a fluted walk-in dressing wardrobe.",
-          "engineering": "Precision-engineered carpentry with PU and champagne gloss finishes, custom glass-and-brass stair balustrades, concealed ducted HVAC raceways, and smart digital integration across modular kitchen and wardrobe systems.",
-          "outcome": "A tour-de-force of turnkey residential architecture. Flawless zero-tolerance millwork, imported Calacatta marble accents, integrated smart refrigeration, and bespoke lighting fixtures coalesce into an opulent, warm home delivered on schedule for K. Subba Rao and family."
-      },
-      "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178175/espacio_gallery/bqtmsst1w8jjit2drtmq.jpg",
-      "gallery": [
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg",
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg"
-      ],
-      "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg",
-      "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg",
-      "beforeImages": [
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg"
-      ],
-      "afterImages": [
-          "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg"
-      ],
-      "testimonialName": "K. Subba Rao",
-      "testimonialProfession": "Homeowner, Kachiguda",
-      "testimonialText": "ESPACIO brought our vision of a modern yet deeply comfortable 4BHK duplex to life. From the breathtaking ground-floor living hall with its linear fireplace and marble staircase to the aviation blueprint bedroom our sons adore and our own peaceful parents suite, every inch is engineered with supreme craftsmanship. The turnkey execution was flawless!",
-      "testimonialRating": 5,
-      "testimonial": {
-          "name": "K. Subba Rao",
-          "profession": "Homeowner, Kachiguda",
-          "role": "Homeowner, Kachiguda, Hyderabad",
-          "text": "ESPACIO brought our vision of a modern yet deeply comfortable 4BHK duplex to life. From the breathtaking ground-floor living hall with its linear fireplace and marble staircase to the aviation blueprint bedroom our sons adore and our own peaceful parents suite, every inch is engineered with supreme craftsmanship. The turnkey execution was flawless!",
-          "rating": 5
-      },
-      "rooms": [
-          {
-              "name": "Grand Duplex Living Hall & Architectural Staircase Vista",
-              "room": "Grand Duplex Living Hall & Architectural Staircase Vista",
-              "title": "Grand Duplex Living Hall & Architectural Staircase Vista",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
-              "description": "Showstopper panoramic wide-angle perspective of the ground floor duplex living hall, showcasing the floating linear fireplace, marble staircase with glass railings, modular kitchen, and formal dining suite."
-          },
-          {
-              "name": "Living Lounge, Roaring Linear Fireplace & Media Tower",
-              "room": "Living Lounge, Roaring Linear Fireplace & Media Tower",
-              "title": "Living Lounge, Roaring Linear Fireplace & Media Tower",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_2.webp",
-              "description": "Bespoke entertainment wall with integrated glowing linear fireplace, open oak bookcase tower, sculptural white ribbon armchair, KAWS collector art sculpture, and twilight courtyard window."
-          },
-          {
-              "name": "Open-Concept Duplex Living & Dining Transition",
-              "room": "Open-Concept Duplex Living & Dining Transition",
-              "title": "Open-Concept Duplex Living & Dining Transition",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_3.webp",
-              "description": "Dynamic perspective from the plush modular sofa across the Calacatta marble coffee table toward the white spun chair, duplex marble stairs, and illuminated dining pavilion."
-          },
-          {
-              "name": "Living Lounge & KAWS Art Sculpture Nook",
-              "room": "Living Lounge & KAWS Art Sculpture Nook",
-              "title": "Living Lounge & KAWS Art Sculpture Nook",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_4.webp",
-              "description": "Expansive lounge view displaying the heather-grey modular sectional sofa, houndstooth ottoman, life-sized KAWS sculpture, and floor-to-ceiling picture window."
-          },
-          {
-              "name": "Living Lounge & Courtyard Picture Window",
-              "room": "Living Lounge & Courtyard Picture Window",
-              "title": "Living Lounge & Courtyard Picture Window",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_5.webp",
-              "description": "Corner lounge perspective highlighting the expansive picture window looking out onto landscaped gardens, paired with acoustic wood paneling and marble entry portals."
-          },
-          {
-              "name": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
-              "room": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
-              "title": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_6.webp",
-              "description": "Architectural vista from the natural oak breakfast counter past the white stag sculpture on the stair landing toward the floating marble staircase and open kitchen."
-          },
-          {
-              "name": "Parents Master Suite & Traditional Ink Mandala Crest",
-              "room": "Parents Master Suite & Traditional Ink Mandala Crest",
-              "title": "Parents Master Suite & Traditional Ink Mandala Crest",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_7.webp",
-              "description": "Symmetrical luxury master bedroom featuring a solid walnut king bed, fluted acoustic headboard wall with rose-gold metallic inlays, framed circular ink artwork, and lantern pendant lights."
-          },
-          {
-              "name": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
-              "room": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
-              "title": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_8.webp",
-              "description": "Signature bedroom suite boasting a custom full-wall vintage biplane technical blueprint mural, upholstered king bed with houndstooth cushions, and suspended brass pill capsule pendants."
-          },
-          {
-              "name": "Formal Dining Suite & Amber Globe Chandelier",
-              "room": "Formal Dining Suite & Amber Globe Chandelier",
-              "title": "Formal Dining Suite & Amber Globe Chandelier",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_9.webp",
-              "description": "Luxury marble dining table with brushed brass pedestal base, six cream leather chairs, designer branching amber glass chandelier, and bronze glass sliding partitions."
-          },
-          {
-              "name": "Dining Pavilion & Integrated Smart Refrigerator",
-              "room": "Dining Pavilion & Integrated Smart Refrigerator",
-              "title": "Dining Pavilion & Integrated Smart Refrigerator",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_10.webp",
-              "description": "Seamless integration of culinary luxury and entertainment dining, featuring the built-in smart refrigerator with digital panel flush within the cabinetry."
-          },
-          {
-              "name": "Chef's Modular Kitchen & Quartz Countertops",
-              "room": "Chef's Modular Kitchen & Quartz Countertops",
-              "title": "Chef's Modular Kitchen & Quartz Countertops",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_11.webp",
-              "description": "High-gloss acrylic white modular kitchen with seamless quartz countertops, undermount double sink, integrated gas hob, and black glass chimney hood."
-          },
-          {
-              "name": "Parents Suite Perspective & Bedside Lanterns",
-              "room": "Parents Suite Perspective & Bedside Lanterns",
-              "title": "Parents Suite Perspective & Bedside Lanterns",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_12.webp",
-              "description": "Angled perspective of the parents bedroom suite with dark walnut nightstands, marble bedside lamps, textured area rug, and sheer curtain backdrop."
-          },
-          {
-              "name": "Parents Suite Wardrobes & Twilight Garden Vista",
-              "room": "Parents Suite Wardrobes & Twilight Garden Vista",
-              "title": "Parents Suite Wardrobes & Twilight Garden Vista",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_13.webp",
-              "description": "Floor-to-ceiling handleless champagne gloss wardrobes, modern geometric ceiling chandelier, and expansive picture window framing the landscaped exterior."
-          },
-          {
-              "name": "Parents Suite Fluted TV Media Wall & Marble Inlay",
-              "room": "Parents Suite Fluted TV Media Wall & Marble Inlay",
-              "title": "Parents Suite Fluted TV Media Wall & Marble Inlay",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_14.webp",
-              "description": "Light oak fluted entertainment wall accented with a vertical Calacatta marble strip in brass framing, floating Scandinavian media console, and wall-mounted TV."
-          },
-          {
-              "name": "Parents Suite Walk-In Dressing Wardrobe",
-              "room": "Parents Suite Walk-In Dressing Wardrobe",
-              "title": "Parents Suite Walk-In Dressing Wardrobe",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_15.webp",
-              "description": "Custom walk-in closet flanked by fluted wood partitions, illuminated open organizers, hanging wardrobe bays, trouser racks, and brass Sputnik wall sconce."
-          },
-          {
-              "name": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
-              "room": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
-              "title": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_16.webp",
-              "description": "Angled perspective of the boys room featuring the contemporary leatherette platform bed, dual-tone nightstands, warm bedside reading lamp, and graphic carpet."
-          },
-          {
-              "name": "Aeronautical Biplane Technical Blueprint Detail",
-              "room": "Aeronautical Biplane Technical Blueprint Detail",
-              "title": "Aeronautical Biplane Technical Blueprint Detail",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_17.webp",
-              "description": "High-resolution architectural detail of the vintage French Nieuport biplane technical blueprint mural and dual gold pendant globes."
-          },
-          {
-              "name": "Boys Suite Modular Wardrobe & Walnut Display Niche",
-              "room": "Boys Suite Modular Wardrobe & Walnut Display Niche",
-              "title": "Boys Suite Modular Wardrobe & Walnut Display Niche",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_18.webp",
-              "description": "Clean-lined white floor-to-ceiling wardrobe bank with horizontal open walnut display niche for books and collectables, fitted with matte black edge pulls."
-          },
-          {
-              "name": "Dining Bar Counter & Houndstooth Seating",
-              "room": "Dining Bar Counter & Houndstooth Seating",
-              "title": "Dining Bar Counter & Houndstooth Seating",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_19.webp",
-              "description": "Cantilevered oak breakfast bar integrated into white low credenza, accompanied by houndstooth bar stools with brass legs, minimalist wire clock, and fluted paneling."
-          },
-          {
-              "name": "Living Room Sofa & Marble Coffee Table Detail",
-              "room": "Living Room Sofa & Marble Coffee Table Detail",
-              "title": "Living Room Sofa & Marble Coffee Table Detail",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_20.webp",
-              "description": "Detailed front perspective of the heather-grey sectional sofa, ceramic vases with golden branches on marble table, and dining transition."
-          },
-          {
-              "name": "Living Lounge Seating Vignette",
-              "room": "Living Lounge Seating Vignette",
-              "title": "Living Lounge Seating Vignette",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_21.webp",
-              "description": "Intimate lounge vignette showcasing layered cushion textures, minimalist desk lamp, and full-height sheer drapery."
-          },
-          {
-              "name": "Living Lounge Centered Perspective",
-              "room": "Living Lounge Centered Perspective",
-              "title": "Living Lounge Centered Perspective",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_22.webp",
-              "description": "Centered elevation of the living sofa with golden block end-table, brass accents, and seamless Italian marble floor tiles."
-          },
-          {
-              "name": "Integrated Smart Refrigerator & Fluted Portal Detail",
-              "room": "Integrated Smart Refrigerator & Fluted Portal Detail",
-              "title": "Integrated Smart Refrigerator & Fluted Portal Detail",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_23.webp",
-              "description": "Bespoke joinery housing the double-door smart refrigerator alongside bronze-tinted glass sliding doors and white panelled interior door."
-          },
-          {
-              "name": "Boys Suite Study Wall & Grid Memory Board",
-              "room": "Boys Suite Study Wall & Grid Memory Board",
-              "title": "Boys Suite Study Wall & Grid Memory Board",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_24.webp",
-              "description": "Vibrant study wall with yellow accent paint, charcoal grey contrast, black metal wire grid photo organizer, and graphic framed prints."
-          },
-          {
-              "name": "Parents Suite Floor Vista & Entertainment Wall",
-              "room": "Parents Suite Floor Vista & Entertainment Wall",
-              "title": "Parents Suite Floor Vista & Entertainment Wall",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_25.webp",
-              "description": "Wide architectural perspective showing the spatial flow of the parents bedroom suite, light oak flooring, and media entertainment wall."
-          },
-          {
-              "name": "Boys Suite Architectural Shell & Curtains",
-              "room": "Boys Suite Architectural Shell & Curtains",
-              "title": "Boys Suite Architectural Shell & Curtains",
-              "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg",
-              "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_26.webp",
-              "description": "Spatial layout showing the floor carpet, double-height window curtains with terracotta orange accents, and sunshine yellow feature wall."
-          }
-      ],
-      "featured": true,
-      "status": "published"
-  },
-  {
-    "_id": "proj_9_dimmu_chachu_residence",
-    "order": 8,
-    "title": "The Celestial Curve Villa",
-    "slug": "dimmu-chachu-luxury-villa",
-    "category": "villa",
-    "area": "4,200 sq.ft.",
-    "location": "Banjara Hills, Hyderabad",
-    "year": 2026,
-    "style": "Contemporary Luxury Duplex Villa",
-    "description": "A grand multi-level luxury villa characterized by an iconic double-height curved marble staircase with a crystal chandelier, custom Yin-Yang sculpted cove ceilings, high-gloss powder blue modular kitchen, and personalized themed suites including a Virat Kohli cricket room.",
+    "_id": "proj_8_kachiguda_subbarao",
+    "order": 6,
+    "title": "A Duplex Residence, Kachiguda",
+    "slug": "kachiguda-fusion-duplex-villa",
+    "category": "duplex",
+    "area": "3,800 sq.ft.",
+    "location": "Kachiguda, Hyderabad",
+    "year": 2025,
+    "style": "Modern & Desi 4BHK Fusion",
+    "description": "An exquisite fusion of contemporary luxury and Desi soul across a sprawling 4BHK duplex in Kachiguda. Featuring a grand living hall, sculptural marble staircase, and bespoke modular chef's kitchen.",
     "story": {
-      "vision": "The homeowners envisioned a contemporary architectural statement villa that balances grand entertainment spaces with deeply personalized private family suites. The central design element was an open, light-filled double-height foyer with a sweeping curved staircase that connects the levels seamlessly, accented with bespoke lighting and custom textured wall finishes.",
-      "challenges": "Executing the double-height staircase required extreme structural precision for the curved safety glass balustrade and stainless steel handrails, aligning them accurately across both levels. Creating the fluid, sculpted S-curve cove lighting in the formal living ceiling also required specialized laser-cut framing and high-grade gypsum contouring without visible joints.",
-      "solutions": "Custom radius structural glass templates with concealed base shoes, precision CNC-milled ceiling ribs, and dimmable 3000K warm architectural cove profiles to deliver soft, ambient illumination across all ceiling levels.",
-      "engineering": "All electrical conduits, HVAC feeds, and structural anchor points were integrated prior to framing. Heavy-duty concealed brackets support the floating TV console against full-height vertical timber fluted wall paneling, and acoustic isolation dampens ambient noise between the living lounge and private bedroom wings.",
-      "outcome": "A breathtaking residential showcase combining opulent architectural features, turnkey precision joinery, and tailored spaces that reflect the family’s passions and everyday lifestyle."
+      "vision": "To craft a multi-generational 4BHK duplex residence in Kachiguda where modern European minimalist aesthetics coalesce with Indian domestic warmth. The design centers around an expansive ground-floor living and entertainment zone, interconnected by a sweeping marble staircase with glass balustrades, creating seamless sightlines between the lounge, dining island, and culinary spaces.",
+      "challenges": "Unifying the open-concept ground floor without acoustic reverberation between the entertainment lounge and culinary zones, while crafting deeply tailored atmospheres for each generation: an elegant, serene retreat for the parents with heritage 'Desi' artwork and rich walnut joinery, and an aspirational bedroom for the boys featuring authentic vintage technical illustrations.",
+      "solutions": "Engineered acoustic fluted wall paneling, perimeter architectural coves, and recessed magnetic track lighting to softly define functional zones. Anchored the living hall with a floating media wall, roaring linear fireplace, and sculptural staircase. Commissioned a custom full-scale vintage French Nieuport biplane technical blueprint mural in the boys' suite, and designed a tranquil parents' sanctuary with solid walnut furniture, traditional circular ink mandala art, and a fluted walk-in dressing wardrobe.",
+      "engineering": "Precision-engineered carpentry with PU and champagne gloss finishes, custom glass-and-brass stair balustrades, concealed ducted HVAC raceways, and smart digital integration across modular kitchen and wardrobe systems.",
+      "outcome": "A tour-de-force of turnkey residential architecture. Flawless zero-tolerance millwork, imported Calacatta marble accents, integrated smart refrigeration, and bespoke lighting fixtures coalesce into an opulent, warm home delivered on schedule for K. Subba Rao and family."
     },
-    "heroImage": "/images/projects/dimmu_residence/dimmu_05.webp",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
     "gallery": [
-      "/images/projects/dimmu_residence/dimmu_05.webp",
-      "/images/projects/dimmu_residence/dimmu_01.webp",
-      "/images/projects/dimmu_residence/dimmu_06.webp",
-      "/images/projects/dimmu_residence/dimmu_03.webp",
-      "/images/projects/dimmu_residence/dimmu_10.webp",
-      "/images/projects/dimmu_residence/dimmu_09.webp",
-      "/images/projects/dimmu_residence/dimmu_08.webp",
-      "/images/projects/dimmu_residence/dimmu_02.webp",
-      "/images/projects/dimmu_residence/dimmu_07.webp",
-      "/images/projects/dimmu_residence/dimmu_04.webp"
+      // Bedrooms: Parents Master Suite (1–6)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg",
+      // Bedrooms: Boys Bedroom Suite (7–12)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg",
+      // Hall / Living Lounge (13–20)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg",
+      // Modular Kitchen (21–22)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg",
+      // Dining Suite & Island (23–26)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg"
     ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png",
+    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg",
     "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791176785/espacio_gallery/blohvaxle28zo18l7lug.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_05_43_06_PM.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178176/espacio_gallery/unbmruocdxxhcb4wvn7e.jpg"
     ],
-    "testimonialName": "Hussain",
-    "testimonialProfession": "Homeowner, Hyderabad",
-    "testimonialText": "ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.",
+    "testimonialName": "K. Subba Rao",
+    "testimonialProfession": "Homeowner, Kachiguda",
+    "testimonialText": "ESPACIO brought our vision of a modern yet deeply comfortable 4BHK duplex to life. From the breathtaking ground-floor living hall with its linear fireplace and marble staircase to the aviation blueprint bedroom our sons adore and our own peaceful parents suite, every inch is engineered with supreme craftsmanship. The turnkey execution was flawless!",
     "testimonialRating": 5,
     "testimonial": {
-      "name": "Hussain",
-      "profession": "Homeowner, Hyderabad",
-      "role": "Homeowner, Hyderabad",
-      "text": "ESPACIO turned our dream villa into reality! The grand double-height staircase with the chandelier and the custom cricket tribute bedroom for our boys are the highlights of our new home. Their craftsmanship, materials, and execution were truly top tier.",
+      "name": "K. Subba Rao",
+      "profession": "Homeowner, Kachiguda",
+      "role": "Homeowner, Kachiguda, Hyderabad",
+      "text": "ESPACIO brought our vision of a modern yet deeply comfortable 4BHK duplex to life. From the breathtaking ground-floor living hall with its linear fireplace and marble staircase to the aviation blueprint bedroom our sons adore and our own peaceful parents suite, every inch is engineered with supreme craftsmanship. The turnkey execution was flawless!",
       "rating": 5
     },
+    "rooms": [
+      {
+        "name": "Grand Duplex Living Hall & Architectural Staircase Vista",
+        "room": "Grand Duplex Living Hall & Architectural Staircase Vista",
+        "title": "Grand Duplex Living Hall & Architectural Staircase Vista",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp",
+        "description": "Showstopper panoramic wide-angle perspective of the ground floor duplex living hall, showcasing the floating linear fireplace, marble staircase with glass railings, modular kitchen, and formal dining suite."
+      },
+      {
+        "name": "Living Lounge, Roaring Linear Fireplace & Media Tower",
+        "room": "Living Lounge, Roaring Linear Fireplace & Media Tower",
+        "title": "Living Lounge, Roaring Linear Fireplace & Media Tower",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_2.webp",
+        "description": "Bespoke entertainment wall with integrated glowing linear fireplace, open oak bookcase tower, sculptural white ribbon armchair, KAWS collector art sculpture, and twilight courtyard window."
+      },
+      {
+        "name": "Open-Concept Duplex Living & Dining Transition",
+        "room": "Open-Concept Duplex Living & Dining Transition",
+        "title": "Open-Concept Duplex Living & Dining Transition",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_3.webp",
+        "description": "Dynamic perspective from the plush modular sofa across the Calacatta marble coffee table toward the white spun chair, duplex marble stairs, and illuminated dining pavilion."
+      },
+      {
+        "name": "Living Lounge & KAWS Art Sculpture Nook",
+        "room": "Living Lounge & KAWS Art Sculpture Nook",
+        "title": "Living Lounge & KAWS Art Sculpture Nook",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_4.webp",
+        "description": "Expansive lounge view displaying the heather-grey modular sectional sofa, houndstooth ottoman, life-sized KAWS sculpture, and floor-to-ceiling picture window."
+      },
+      {
+        "name": "Living Lounge & Courtyard Picture Window",
+        "room": "Living Lounge & Courtyard Picture Window",
+        "title": "Living Lounge & Courtyard Picture Window",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_5.webp",
+        "description": "Corner lounge perspective highlighting the expansive picture window looking out onto landscaped gardens, paired with acoustic wood paneling and marble entry portals."
+      },
+      {
+        "name": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
+        "room": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
+        "title": "Dining Bar Island, Duplex Staircase & Kitchen Vista",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_6.webp",
+        "description": "Architectural vista from the natural oak breakfast counter past the white stag sculpture on the stair landing toward the floating marble staircase and open kitchen."
+      },
+      {
+        "name": "Parents Master Suite & Traditional Ink Mandala Crest",
+        "room": "Parents Master Suite & Traditional Ink Mandala Crest",
+        "title": "Parents Master Suite & Traditional Ink Mandala Crest",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_7.webp",
+        "description": "Symmetrical luxury master bedroom featuring a solid walnut king bed, fluted acoustic headboard wall with rose-gold metallic inlays, framed circular ink artwork, and lantern pendant lights."
+      },
+      {
+        "name": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
+        "room": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
+        "title": "Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_8.webp",
+        "description": "Signature bedroom suite boasting a custom full-wall vintage biplane technical blueprint mural, upholstered king bed with houndstooth cushions, and suspended brass pill capsule pendants."
+      },
+      {
+        "name": "Formal Dining Suite & Amber Globe Chandelier",
+        "room": "Formal Dining Suite & Amber Globe Chandelier",
+        "title": "Formal Dining Suite & Amber Globe Chandelier",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_9.webp",
+        "description": "Luxury marble dining table with brushed brass pedestal base, six cream leather chairs, designer branching amber glass chandelier, and bronze glass sliding partitions."
+      },
+      {
+        "name": "Dining Pavilion & Integrated Smart Refrigerator",
+        "room": "Dining Pavilion & Integrated Smart Refrigerator",
+        "title": "Dining Pavilion & Integrated Smart Refrigerator",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_10.webp",
+        "description": "Seamless integration of culinary luxury and entertainment dining, featuring the built-in smart refrigerator with digital panel flush within the cabinetry."
+      },
+      {
+        "name": "Chef's Modular Kitchen & Quartz Countertops",
+        "room": "Chef's Modular Kitchen & Quartz Countertops",
+        "title": "Chef's Modular Kitchen & Quartz Countertops",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_11.webp",
+        "description": "High-gloss acrylic white modular kitchen with seamless quartz countertops, undermount double sink, integrated gas hob, and black glass chimney hood."
+      },
+      {
+        "name": "Parents Suite Perspective & Bedside Lanterns",
+        "room": "Parents Suite Perspective & Bedside Lanterns",
+        "title": "Parents Suite Perspective & Bedside Lanterns",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_12.webp",
+        "description": "Angled perspective of the parents bedroom suite with dark walnut nightstands, marble bedside lamps, textured area rug, and sheer curtain backdrop."
+      },
+      {
+        "name": "Parents Suite Wardrobes & Twilight Garden Vista",
+        "room": "Parents Suite Wardrobes & Twilight Garden Vista",
+        "title": "Parents Suite Wardrobes & Twilight Garden Vista",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_13.webp",
+        "description": "Floor-to-ceiling handleless champagne gloss wardrobes, modern geometric ceiling chandelier, and expansive picture window framing the landscaped exterior."
+      },
+      {
+        "name": "Parents Suite Fluted TV Media Wall & Marble Inlay",
+        "room": "Parents Suite Fluted TV Media Wall & Marble Inlay",
+        "title": "Parents Suite Fluted TV Media Wall & Marble Inlay",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_14.webp",
+        "description": "Light oak fluted entertainment wall accented with a vertical Calacatta marble strip in brass framing, floating Scandinavian media console, and wall-mounted TV."
+      },
+      {
+        "name": "Parents Suite Walk-In Dressing Wardrobe",
+        "room": "Parents Suite Walk-In Dressing Wardrobe",
+        "title": "Parents Suite Walk-In Dressing Wardrobe",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_15.webp",
+        "description": "Custom walk-in closet flanked by fluted wood partitions, illuminated open organizers, hanging wardrobe bays, trouser racks, and brass Sputnik wall sconce."
+      },
+      {
+        "name": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
+        "room": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
+        "title": "Boys Suite Bed, Nightstands & Blueprint Feature Wall",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_16.webp",
+        "description": "Angled perspective of the boys room featuring the contemporary leatherette platform bed, dual-tone nightstands, warm bedside reading lamp, and graphic carpet."
+      },
+      {
+        "name": "Aeronautical Biplane Technical Blueprint Detail",
+        "room": "Aeronautical Biplane Technical Blueprint Detail",
+        "title": "Aeronautical Biplane Technical Blueprint Detail",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_17.webp",
+        "description": "High-resolution architectural detail of the vintage French Nieuport biplane technical blueprint mural and dual gold pendant globes."
+      },
+      {
+        "name": "Boys Suite Modular Wardrobe & Walnut Display Niche",
+        "room": "Boys Suite Modular Wardrobe & Walnut Display Niche",
+        "title": "Boys Suite Modular Wardrobe & Walnut Display Niche",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_18.webp",
+        "description": "Clean-lined white floor-to-ceiling wardrobe bank with horizontal open walnut display niche for books and collectables, fitted with matte black edge pulls."
+      },
+      {
+        "name": "Dining Bar Counter & Houndstooth Seating",
+        "room": "Dining Bar Counter & Houndstooth Seating",
+        "title": "Dining Bar Counter & Houndstooth Seating",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_19.webp",
+        "description": "Cantilevered oak breakfast bar integrated into white low credenza, accompanied by houndstooth bar stools with brass legs, minimalist wire clock, and fluted paneling."
+      },
+      {
+        "name": "Living Room Sofa & Marble Coffee Table Detail",
+        "room": "Living Room Sofa & Marble Coffee Table Detail",
+        "title": "Living Room Sofa & Marble Coffee Table Detail",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_20.webp",
+        "description": "Detailed front perspective of the heather-grey sectional sofa, ceramic vases with golden branches on marble table, and dining transition."
+      },
+      {
+        "name": "Living Lounge Seating Vignette",
+        "room": "Living Lounge Seating Vignette",
+        "title": "Living Lounge Seating Vignette",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_21.webp",
+        "description": "Intimate lounge vignette showcasing layered cushion textures, minimalist desk lamp, and full-height sheer drapery."
+      },
+      {
+        "name": "Living Lounge Centered Perspective",
+        "room": "Living Lounge Centered Perspective",
+        "title": "Living Lounge Centered Perspective",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_22.webp",
+        "description": "Centered elevation of the living sofa with golden block end-table, brass accents, and seamless Italian marble floor tiles."
+      },
+      {
+        "name": "Integrated Smart Refrigerator & Fluted Portal Detail",
+        "room": "Integrated Smart Refrigerator & Fluted Portal Detail",
+        "title": "Integrated Smart Refrigerator & Fluted Portal Detail",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_23.webp",
+        "description": "Bespoke joinery housing the double-door smart refrigerator alongside bronze-tinted glass sliding doors and white panelled interior door."
+      },
+      {
+        "name": "Boys Suite Study Wall & Grid Memory Board",
+        "room": "Boys Suite Study Wall & Grid Memory Board",
+        "title": "Boys Suite Study Wall & Grid Memory Board",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_24.webp",
+        "description": "Vibrant study wall with yellow accent paint, charcoal grey contrast, black metal wire grid photo organizer, and graphic framed prints."
+      },
+      {
+        "name": "Parents Suite Floor Vista & Entertainment Wall",
+        "room": "Parents Suite Floor Vista & Entertainment Wall",
+        "title": "Parents Suite Floor Vista & Entertainment Wall",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_25.webp",
+        "description": "Wide architectural perspective showing the spatial flow of the parents bedroom suite, light oak flooring, and media entertainment wall."
+      },
+      {
+        "name": "Boys Suite Architectural Shell & Curtains",
+        "room": "Boys Suite Architectural Shell & Curtains",
+        "title": "Boys Suite Architectural Shell & Curtains",
+        "image": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg",
+        "localImage": "/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_26.webp",
+        "description": "Spatial layout showing the floor carpet, double-height window curtains with terracotta orange accents, and sunshine yellow feature wall."
+      }
+    ],
     "featured": true,
     "status": "published"
   },
   {
     "_id": "proj_10_the_restful_home_tellapur",
-    "order": 10,
+    "order": 7,
     "title": "The Restful Home",
     "slug": "the-restful-home-tellapur",
     "category": "apartment",
@@ -846,21 +721,25 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Doors close softly with premium German soft-close mechanisms, finishes are curated to withstand daily family life with ease, and every bespoke millwork piece was dry-fitted precisely before final installation. Soft, warm lighting circuits were planned to take over in the evening to settle the atmosphere.",
       "outcome": "A bright, serene 2BHK that feels more spacious than it is, and a home that welcomes the family back at the end of every day. Delivered turnkey and handed over on the committed date."
     },
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png",
     "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039570/espacio_gallery/dntcpbg0dg78vu5hktwt.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039573/espacio_gallery/xehnw42t41tcxvtc60ml.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039583/espacio_gallery/wazorsezkcaayd5bmrc1.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039588/espacio_gallery/s6vvkmvqz8h2aqbtwcam.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039591/espacio_gallery/zmsezgqkrwiqdgyno9oi.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039595/espacio_gallery/hexutd4jmmolynp91e28.png",
+      // Bedrooms (1–4)
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039600/espacio_gallery/ixrrcgxxhf1pytdjjhga.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039616/espacio_gallery/jmbconw0wz7rrzqqaiub.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png",
+      // Hall / Living Lounge (5–7)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png",
+      // Modular Kitchen & Dining (8–10)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039570/espacio_gallery/dntcpbg0dg78vu5hktwt.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039583/espacio_gallery/wazorsezkcaayd5bmrc1.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039573/espacio_gallery/xehnw42t41tcxvtc60ml.png",
+      // Pooja Mandir (11–13)
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039588/espacio_gallery/s6vvkmvqz8h2aqbtwcam.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039591/espacio_gallery/zmsezgqkrwiqdgyno9oi.png",
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039595/espacio_gallery/hexutd4jmmolynp91e28.png"
     ],
     "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg",
     "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg",
@@ -883,59 +762,6 @@ export const DEFAULT_PROJECTS = [
     },
     "featured": true,
     "status": "published"
-  },
-  {
-    "_id": "proj_11_casa_alta_residence_kali_mandir",
-    "order": 11,
-    "title": "Casa Alta Residence",
-    "slug": "casa-alta-residence-kali-mandir",
-    "category": "apartment",
-    "area": "2,400 sq.ft.",
-    "location": "Kali Mandir, Hyderabad",
-    "year": 2026,
-    "style": "Contemporary Warm Minimalist & Timber Elegance",
-    "description": "A calm, well-balanced 3BHK home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule with warm timber, stone accents, and seamless cove lighting.",
-    "story": {
-      "vision": "The family wanted a home that feels calm and open, modern in its restraint but warm the way traditional homes are. Light, timber and stone were meant to tie the rooms together, so the house feels like one story from the front door to the bedroom.",
-      "challenges": "With open living and dining areas, the home needed one design language running through it. Fluted panels, veneer and stone had to meet cleanly from room to room, and the false ceiling had to carry into the wall treatments so nothing felt like a separate space.",
-      "solutions": "It starts in the living room, where a fluted feature wall sets the tone and grain-matched veneer carries on into the dining area. The double-height staircase is the heart of the home, with a Jesus mural rising along its wall. A backlit stone-and-timber pooja unit and a calm master suite with a walk-in wardrobe follow the same palette. Recessed warm-white coves tie every space together.",
-      "engineering": "Cove lighting needs ventilation gaps and safe clearances from the finishes, so we planned both in from the start. That keeps the veneer from warping or fading over time. The wardrobes and pooja unit are built on moisture-resistant boards with heavy-duty hardware made for daily use. None of this is visible once the home is finished, but it is why the home looks as good years later as it did on handover day.",
-      "outcome": "A calm, well-balanced home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule."
-    },
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
-    "gallery": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040101/espacio_gallery/gn1gylu6rnd1jvpobceu.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040107/espacio_gallery/duhzjiu5foyimwshxgqx.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040124/espacio_gallery/z54sqdn0rxz5uvvz6vde.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040137/espacio_gallery/alkqwzmvoiitkbzqxci7.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040142/espacio_gallery/zoelg4rucvrxaeuxuqkx.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040145/espacio_gallery/dn73ubo6rocp6ptcxqzy.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040150/espacio_gallery/gctshkszvbpfjlegttqp.png",
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png"
-    ],
-    "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
-    "beforeImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg"
-    ],
-    "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
-    ],
-    "testimonialName": "Prakash",
-    "testimonialProfession": "Homeowner, Kali Mandir",
-    "testimonialText": "Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.",
-    "testimonialRating": 5,
-    "testimonial": {
-      "name": "Prakash",
-      "profession": "Homeowner, Kali Mandir",
-      "role": "Homeowner, Kali Mandir",
-      "text": "Espacio delivered our 3BHK with exceptional precision. The fluted paneling, timber finishes and cove lighting make every room feel connected and calm. They were transparent on costs and handed over exactly on the promised date.",
-      "rating": 5
-    },
-    "featured": true,
-    "status": "published"
   }
 ];
 
@@ -945,10 +771,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'acrylic-luxe-collection',
     category: 'Acrylic & Finishes',
     materialCode: 'MAT-ACR-01',
-    badge: 'ACRYLIC & FINISHES',
+    badge: 'Acrylic Luxe Collection',
     description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
     features: ['High-Gloss', 'Anti-Scratch', 'Concealed Track'],
+    colors: [
+          {
+                "name": "Azzurro Sky",
+                "hex": "#87B5C8"
+          },
+          {
+                "name": "Crema Imperiale",
+                "hex": "#F0ECE1"
+          },
+          {
+                "name": "Luminous Gold",
+                "hex": "#D4AF37"
+          },
+          {
+                "name": "Blanco Pure",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Obsidian Mirror",
+                "hex": "#1C1C1E"
+          },
+          {
+                "name": "Elysian Vein",
+                "hex": "#E6DFD5"
+          },
+          {
+                "name": "Menta Sage",
+                "hex": "#A2C2B3"
+          },
+          {
+                "name": "Vector Champagne",
+                "hex": "#DFD3BF"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -960,10 +820,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'digital-korean-poly-granite',
     category: 'Natural Stone',
     materialCode: 'MAT-GNT-02',
-    badge: 'NATURAL STONE',
+    badge: 'Digital Korean Poly Granite',
     description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
     features: ['Scratch-Proof', 'Marble Finish', 'Heat Resistant'],
+    colors: [
+          {
+                "name": "Carrara Statuario",
+                "hex": "#F4F4F4"
+          },
+          {
+                "name": "Crema Marfil",
+                "hex": "#E8DEC8"
+          },
+          {
+                "name": "Nero Marquina",
+                "hex": "#232323"
+          },
+          {
+                "name": "Gracia Vein",
+                "hex": "#D9D2C7"
+          },
+          {
+                "name": "Elysian Gold Vein",
+                "hex": "#DFD6C3"
+          },
+          {
+                "name": "Silver Travertine",
+                "hex": "#AFA99E"
+          },
+          {
+                "name": "Calacatta Borghini",
+                "hex": "#EDE7DC"
+          },
+          {
+                "name": "Emerald Laurent",
+                "hex": "#2E4338"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -975,10 +869,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'charcoal-panels-luxe',
     category: 'Acoustic Panels',
     materialCode: 'MAT-CHR-03',
-    badge: 'ACOUSTIC PANELS',
+    badge: 'Charcoal Panels Luxe Collection',
     description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
     features: ['Air Purifying', 'Premium Texture', 'Acoustic Dampening'],
+    colors: [
+          {
+                "name": "Obsidian Noir",
+                "hex": "#1A1A1A"
+          },
+          {
+                "name": "Anthracite Slat",
+                "hex": "#2B2D2F"
+          },
+          {
+                "name": "Dual-Tone Carbon",
+                "hex": "#383838"
+          },
+          {
+                "name": "Metallic Bronze",
+                "hex": "#5A4A3B"
+          },
+          {
+                "name": "Sculptural Pewter",
+                "hex": "#4D5054"
+          },
+          {
+                "name": "Smoked Umber",
+                "hex": "#44352C"
+          },
+          {
+                "name": "Deep Steel Grey",
+                "hex": "#3A4146"
+          },
+          {
+                "name": "Oxidized Brass",
+                "hex": "#6B5D43"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -991,10 +919,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'fluted-pvc-luxe',
     category: 'Architectural Panels',
     materialCode: 'MAT-PVC-04',
-    badge: 'ARCHITECTURAL PANELS',
+    badge: 'Fluted PVC Luxe Collection',
     description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
     features: ['Waterproof', 'Easy Install', 'Flame Retardant'],
+    colors: [
+          {
+                "name": "Irish Off-White",
+                "hex": "#EAE6DF"
+          },
+          {
+                "name": "Nordic Ash",
+                "hex": "#C4BCB1"
+          },
+          {
+                "name": "Marbo Sand Beige",
+                "hex": "#D5C5B2"
+          },
+          {
+                "name": "Azzurro Fluted",
+                "hex": "#8FAEB9"
+          },
+          {
+                "name": "Giallo Slate",
+                "hex": "#94928D"
+          },
+          {
+                "name": "Caramel Teak",
+                "hex": "#A87C4F"
+          },
+          {
+                "name": "Menta Whisper",
+                "hex": "#BACCC3"
+          },
+          {
+                "name": "Graphite Matte",
+                "hex": "#3D3F43"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -1006,10 +968,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'lvt-luxe-flooring',
     category: 'Wood & Flooring',
     materialCode: 'MAT-FLR-05',
-    badge: 'WOOD & FLOORING',
+    badge: 'LVT Luxe Flooring',
     description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
     features: ['Durable', 'Water-Resistant', 'Soft Acoustic Tread'],
+    colors: [
+          {
+                "name": "Scandinavian Oak",
+                "hex": "#D5B895"
+          },
+          {
+                "name": "Smoked Walnut",
+                "hex": "#4A3528"
+          },
+          {
+                "name": "Bleached Driftwood",
+                "hex": "#D8D2C5"
+          },
+          {
+                "name": "Ashen Grey Oak",
+                "hex": "#8C877D"
+          },
+          {
+                "name": "Honey Chestnut",
+                "hex": "#B77E46"
+          },
+          {
+                "name": "Slate Limestone",
+                "hex": "#33373B"
+          },
+          {
+                "name": "Limed White Oak",
+                "hex": "#E5DCCB"
+          },
+          {
+                "name": "Espresso Timber",
+                "hex": "#2F241F"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -1021,10 +1017,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'fluted-acrylic-luxe',
     category: 'Acrylic & Finishes',
     materialCode: 'MAT-ACR-06',
-    badge: 'ACRYLIC & FINISHES',
+    badge: 'Fluted Acrylic Luxe Collection',
     description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
     features: ['3D Relief', 'High-Gloss', 'Backlit Ready'],
+    colors: [
+          {
+                "name": "Florida Gold",
+                "hex": "#DFCE9F"
+          },
+          {
+                "name": "Gracia Frosted",
+                "hex": "#F2EFE9"
+          },
+          {
+                "name": "Azzurro Marine",
+                "hex": "#7CA4B5"
+          },
+          {
+                "name": "Giallo Amber",
+                "hex": "#D6B57E"
+          },
+          {
+                "name": "Menta Mint",
+                "hex": "#96BAA9"
+          },
+          {
+                "name": "Smoky Quartz",
+                "hex": "#6E6258"
+          },
+          {
+                "name": "Blanco Crystal",
+                "hex": "#FCFCFC"
+          },
+          {
+                "name": "Rose Champagne",
+                "hex": "#DDBFB5"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -1036,10 +1066,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'pvc-luxe-collection',
     category: 'Architectural Panels',
     materialCode: 'MAT-PVC-07',
-    badge: 'ARCHITECTURAL PANELS',
+    badge: 'PVC Luxe Collection',
     description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
     features: ['Lightweight', 'Fire Retardant', 'Moisture Proof'],
+    colors: [
+          {
+                "name": "Carrara Wave",
+                "hex": "#EDECE8"
+          },
+          {
+                "name": "Beige Marble",
+                "hex": "#DFD5C4"
+          },
+          {
+                "name": "Nordic Ash",
+                "hex": "#B5AEA4"
+          },
+          {
+                "name": "Royal Teak",
+                "hex": "#99693D"
+          },
+          {
+                "name": "Pearl White",
+                "hex": "#F7F5F0"
+          },
+          {
+                "name": "Classic Rosewood",
+                "hex": "#663828"
+          },
+          {
+                "name": "Slate Cloud",
+                "hex": "#7A8086"
+          },
+          {
+                "name": "Golden Oak",
+                "hex": "#C99B5C"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -1051,25 +1115,44 @@ export const DEFAULT_PRODUCTS = [
     slug: 'wpc-luxe-collection',
     category: 'Composite Panels',
     materialCode: 'MAT-WPC-08',
-    badge: 'COMPOSITE PANELS',
+    badge: 'WPC Luxe Collection',
     description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
     features: ['100% Waterproof', 'Termite Proof', 'Zero Swelling'],
-    status: 'published',
-    ctaText: 'Enquire About Material',
-    ctaLink: '/contact',
-    showInHero: false,
-    showInCard: true
-  },
-  {
-    title: 'Espacio Charcoal Panels Luxe Collection (1)',
-    slug: 'charcoal-panels-luxe-1',
-    category: 'Acoustic Panels',
-    materialCode: 'MAT-CHR-09',
-    badge: 'ACOUSTIC PANELS',
-    description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-    heroImage: '/images/materials/charcoal_luxe_1_6015.webp',
-    features: ['Premium Texture', 'Acoustic Relief', 'Modern Aesthetic'],
+    colors: [
+          {
+                "name": "Ipe Ironwood",
+                "hex": "#543826"
+          },
+          {
+                "name": "Burmese Teak",
+                "hex": "#9E6E3D"
+          },
+          {
+                "name": "Smoked Cedar",
+                "hex": "#7D553A"
+          },
+          {
+                "name": "Weathered Oak",
+                "hex": "#968E82"
+          },
+          {
+                "name": "Obsidian Charcoal",
+                "hex": "#29292A"
+          },
+          {
+                "name": "Warm Chestnut",
+                "hex": "#B0683A"
+          },
+          {
+                "name": "Driftwood Taupe",
+                "hex": "#B8AFA2"
+          },
+          {
+                "name": "Dark Walnut",
+                "hex": "#3E2C22"
+          }
+    ],
     status: 'published',
     ctaText: 'Enquire About Material',
     ctaLink: '/contact',
@@ -1426,24 +1509,7 @@ export const DEFAULT_TESTIMONIALS = [
     featured: true,
     order: 3
   },
-  // 4. Existing - Khaleel Shaik
-  {
-    id: 'g_rev_03',
-    googleReviewId: 'g_rev_03',
-    source: 'GOOGLE',
-    name: 'Khaleel Shaik',
-    designation: 'Jubilee Hills · Commercial Studio',
-    title: 'Largest Variety of Laminates, Veneers & Plywood',
-    body: 'As an interior designer, I have found the largest variety of laminates, vineers, and plywood with all ranges of economy, premium and super premium as required by different customer segments at the best competitive rates. My suggestion for all to visit this place once before you buy.',
-    rating: 5,
-    avatar: '/reviews/khaleel_shaik.png',
-    date: '5 months ago',
-    visible: true,
-    featured: true,
-    order: 4,
-    response: 'Thank you so much for your valuable feedback, look forward to assisting you again in your future projects!'
-  },
-  // 5. ✏️ Residential
+  // 4. ✏️ Residential
   {
     id: 'rev_srinivas_madhuri',
     source: 'GOOGLE',
@@ -1748,8 +1814,8 @@ export const DEFAULT_SETTINGS = {
   hero_stat2_label: 'Happy Clients',
   hero_stat3_value: '40+',
   hero_stat3_label: 'Years Combined Legacy',
-  intro_heading: 'From Concept to Handover — ESPACIO Delivers Complete Interiors.',
-  intro_description: 'ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don\'t just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what\'s happening on site.',
+  intro_heading: 'From First Idea to Final Touch, We Make It Effortless.',
+  intro_description: 'ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.',
   intro_cta_text1: 'Our Story ↗',
   intro_cta_text2: 'Read More ↗',
   intro_cta_link: '/about',
@@ -1831,6 +1897,12 @@ export const DEFAULT_SETTINGS = {
     { label: 'Materials', path: '/materials' },
     { label: 'About', path: '/about' }
   ],
+  trust_stat1_badge: 'Homes Delivered',
+  trust_stat2_badge: 'Our Heritage',
+  trust_stat3_val: '40000',
+  trust_stat3_badge: 'Space Crafted',
+  trust_stat4_sublabel: 'Comprehensive Warranty*',
+  trust_stat4_badge: 'Our Promise',
   footer_social_items: [
     { name: 'Instagram', label: 'Instagram', href: 'https://www.instagram.com/theespacio.in', icon: 'instagram', color: '#E4405F', beamColor: 'rgba(228, 64, 95, 0.4)' },
     { name: 'Facebook', label: 'Facebook', href: 'https://www.facebook.com/share/1DkG2m4Ra7/', icon: 'facebook', color: '#1877F2', beamColor: 'rgba(24, 119, 242, 0.4)' },
@@ -1848,296 +1920,79 @@ export const getCMSData = (key, fallback = null) => {
                 if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
           let updated = false;
 
-          // Strip any deleted or legacy Kokapet Nagesh project
-          if (data.some(p => p && (p._id === 'proj_3_kokapet_nagesh' || p.slug === 'kokapet-2bhk' || (p.title && p.title.includes('Boucle'))))) {
-            data = data.filter(p => p && p._id !== 'proj_3_kokapet_nagesh' && p.slug !== 'kokapet-2bhk' && !(p.title && p.title.includes('Boucle')));
+          const REMOVED_SLUGS = ['rajapushpa-provincia-3bhk', 'my-home-sayuk-3bhk', 'kokapet-2bhk', 'kokapet-urban-2bhk'];
+          const REMOVED_IDS = ['proj_1_rajapushpa_provincia', 'proj_2_my_home_sayuk', 'proj_3_kokapet_nagesh', 'proj_4_kokapet_rahul'];
+
+          // Strip removed projects
+          if (data.some(p => p && (REMOVED_IDS.includes(p._id || p.id) || REMOVED_SLUGS.includes(p.slug) || (p.title && (p.title.includes('Boucle') || p.title.includes('Arcstone') || p.title.includes('Lattice') || p.title.includes('Ivory')))))) {
+            data = data.filter(p => p && !REMOVED_IDS.includes(p._id || p.id) && !REMOVED_SLUGS.includes(p.slug) && !(p.title && (p.title.includes('Boucle') || p.title.includes('Arcstone') || p.title.includes('Lattice') || p.title.includes('Ivory'))));
             updated = true;
           }
 
-          const p1Idx = data.findIndex(p => p._id === 'proj_1_rajapushpa_provincia' || p.slug === 'rajapushpa-provincia-3bhk');
-          if (p1Idx !== -1) {
-            if (
-              data[p1Idx].beforeImage !== DEFAULT_PROJECTS[0].beforeImage ||
-              data[p1Idx].afterImage !== DEFAULT_PROJECTS[0].afterImage ||
-              data[p1Idx].heroImage !== DEFAULT_PROJECTS[0].heroImage ||
-              !Array.isArray(data[p1Idx].gallery) ||
-              data[p1Idx].gallery.length !== DEFAULT_PROJECTS[0].gallery.length ||
-              data[p1Idx].gallery.some(img => typeof img === 'string' && (img.includes('rajapushpa_') || img.includes('dd97aa33') || img.includes('0f540e8d') || img.includes('9d302a93')))
-            ) {
-              data[p1Idx].beforeImage = DEFAULT_PROJECTS[0].beforeImage;
-              data[p1Idx].afterImage = DEFAULT_PROJECTS[0].afterImage;
-              data[p1Idx].beforeImages = DEFAULT_PROJECTS[0].beforeImages;
-              data[p1Idx].afterImages = DEFAULT_PROJECTS[0].afterImages;
-              data[p1Idx].heroImage = DEFAULT_PROJECTS[0].heroImage;
-              data[p1Idx].gallery = DEFAULT_PROJECTS[0].gallery;
+          const CANONICAL_ORDER_MAP = {
+            'dimmu-chachu-luxury-villa': 1,
+            'proj_9_dimmu_chachu_residence': 1,
+            'casa-alta-residence-kali-mandir': 2,
+            'proj_11_casa_alta_residence_kali_mandir': 2,
+            'gandipet-modern-retro-2bhk': 3,
+            'proj_5_gandipet_kiran': 3,
+            'kondapur-minimalist-2bhk': 4,
+            'proj_6_kondapur_venkatesh': 4,
+            'gachibowli-minimalist-beige-2bhk': 5,
+            'proj_7_gachibowli_koteswara': 5,
+            'kachiguda-fusion-duplex-villa': 6,
+            'proj_8_kachiguda_subbarao': 6,
+            'the-restful-home-tellapur': 7,
+            'proj_10_the_restful_home_tellapur': 7
+          };
+
+          // Ensure all 7 canonical projects exist and have correct order, gallery, and details
+          for (const dp of DEFAULT_PROJECTS) {
+            const existingIdx = data.findIndex(p => p && (p.slug === dp.slug || p._id === dp._id || p.id === dp._id));
+            if (existingIdx === -1) {
+              data.push(dp);
               updated = true;
-            }
-          }
-          const p2Idx = data.findIndex(p => p._id === 'proj_2_my_home_sayuk' || p.slug === 'my-home-sayuk-3bhk');
-          if (p2Idx !== -1) {
-            if (
-              data[p2Idx].beforeImage !== DEFAULT_PROJECTS[1].beforeImage ||
-              data[p2Idx].afterImage !== DEFAULT_PROJECTS[1].afterImage ||
-              data[p2Idx].heroImage !== DEFAULT_PROJECTS[1].heroImage ||
-              !Array.isArray(data[p2Idx].gallery) ||
-              data[p2Idx].gallery.length !== DEFAULT_PROJECTS[1].gallery.length ||
-              data[p2Idx].gallery.some(img => typeof img === 'string' && img.includes('sayuk_'))
-            ) {
-              data[p2Idx].beforeImage = DEFAULT_PROJECTS[1].beforeImage;
-              data[p2Idx].afterImage = DEFAULT_PROJECTS[1].afterImage;
-              data[p2Idx].beforeImages = DEFAULT_PROJECTS[1].beforeImages;
-              data[p2Idx].afterImages = DEFAULT_PROJECTS[1].afterImages;
-              data[p2Idx].heroImage = DEFAULT_PROJECTS[1].heroImage;
-              data[p2Idx].gallery = DEFAULT_PROJECTS[1].gallery;
-              updated = true;
-            }
-          }
-          const p4Idx = data.findIndex(p => p._id === 'proj_4_kokapet_rahul' || p.slug === 'kokapet-urban-2bhk');
-          if (p4Idx !== -1) {
-            if (
-              data[p4Idx].beforeImage !== DEFAULT_PROJECTS[2].beforeImage ||
-              data[p4Idx].afterImage !== DEFAULT_PROJECTS[2].afterImage ||
-              data[p4Idx].heroImage !== DEFAULT_PROJECTS[2].heroImage ||
-              !Array.isArray(data[p4Idx].gallery) ||
-              data[p4Idx].gallery.length !== DEFAULT_PROJECTS[2].gallery.length ||
-              data[p4Idx].gallery.some(img => typeof img === 'string' && img.includes('rahul_gallery'))
-            ) {
-              data[p4Idx].beforeImage = DEFAULT_PROJECTS[2].beforeImage;
-              data[p4Idx].afterImage = DEFAULT_PROJECTS[2].afterImage;
-              data[p4Idx].beforeImages = DEFAULT_PROJECTS[2].beforeImages;
-              data[p4Idx].afterImages = DEFAULT_PROJECTS[2].afterImages;
-              data[p4Idx].before_after = [{ before: DEFAULT_PROJECTS[2].beforeImage, after: DEFAULT_PROJECTS[2].afterImage }];
-              data[p4Idx].heroImage = DEFAULT_PROJECTS[2].heroImage;
-              data[p4Idx].gallery = DEFAULT_PROJECTS[2].gallery;
-              updated = true;
-            }
-          }
-          const p5Idx = data.findIndex(p => p._id === 'proj_5_gandipet_kiran' || p.slug === 'gandipet-modern-retro-2bhk');
-          if (p5Idx !== -1) {
-            if (
-              data[p5Idx].beforeImage !== DEFAULT_PROJECTS[3].beforeImage ||
-              data[p5Idx].afterImage !== DEFAULT_PROJECTS[3].afterImage ||
-              data[p5Idx].heroImage !== DEFAULT_PROJECTS[3].heroImage ||
-              !Array.isArray(data[p5Idx].gallery) ||
-              data[p5Idx].gallery.length !== DEFAULT_PROJECTS[3].gallery.length ||
-              data[p5Idx].gallery.some(img => typeof img === 'string' && img.includes('kiran_gallery'))
-            ) {
-              data[p5Idx].beforeImage = DEFAULT_PROJECTS[3].beforeImage;
-              data[p5Idx].afterImage = DEFAULT_PROJECTS[3].afterImage;
-              data[p5Idx].beforeImages = DEFAULT_PROJECTS[3].beforeImages;
-              data[p5Idx].afterImages = DEFAULT_PROJECTS[3].afterImages;
-              data[p5Idx].heroImage = DEFAULT_PROJECTS[3].heroImage;
-              data[p5Idx].gallery = DEFAULT_PROJECTS[3].gallery;
-              updated = true;
-            }
-          }
-          const hasKokapetRahul = data.some(p => p._id === 'proj_4_kokapet_rahul' || p.slug === 'kokapet-urban-2bhk');
-          if (!hasKokapetRahul) {
-            const idx = data.findIndex(p => p._id === 'proj_4_aparna_zicon' || p.slug === 'aparna-zicon-high-rise');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[2];
             } else {
-              data.splice(2, 0, DEFAULT_PROJECTS[2]);
-            }
-            updated = true;
-          }
-          const hasGandipetKiran = data.some(p => p._id === 'proj_5_gandipet_kiran' || p.slug === 'gandipet-modern-retro-2bhk');
-          if (!hasGandipetKiran) {
-            const idx = data.findIndex(p => p._id === 'proj_5_modern_retro' || p.slug === 'modern-retro-timber-residence');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[3];
-            } else {
-              data.splice(3, 0, DEFAULT_PROJECTS[3]);
-            }
-            updated = true;
-          }
-          const hasKondapurVenkatesh = data.some(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
-          if (!hasKondapurVenkatesh) {
-            const idx = data.findIndex(p => p._id === 'proj_6_glasshouse_suite' || p.slug === 'the-glasshouse-executive-suite');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[4];
-            } else {
-              data.splice(4, 0, DEFAULT_PROJECTS[4]);
-            }
-            updated = true;
-          } else {
-            const p6Idx = data.findIndex(p => p._id === 'proj_6_kondapur_venkatesh' || p.slug === 'kondapur-minimalist-2bhk');
-            if (p6Idx !== -1) {
-              if (
-                data[p6Idx].beforeImage !== DEFAULT_PROJECTS[4].beforeImage ||
-                data[p6Idx].afterImage !== DEFAULT_PROJECTS[4].afterImage ||
-                data[p6Idx].heroImage !== DEFAULT_PROJECTS[4].heroImage ||
-                !Array.isArray(data[p6Idx].gallery) ||
-                data[p6Idx].gallery.length !== DEFAULT_PROJECTS[4].gallery.length ||
-                data[p6Idx].gallery.some(img => typeof img === 'string' && img.includes('venkatesh_gallery'))
-              ) {
-                data[p6Idx].beforeImage = DEFAULT_PROJECTS[4].beforeImage;
-                data[p6Idx].afterImage = DEFAULT_PROJECTS[4].afterImage;
-                data[p6Idx].beforeImages = DEFAULT_PROJECTS[4].beforeImages;
-                data[p6Idx].afterImages = DEFAULT_PROJECTS[4].afterImages;
-                data[p6Idx].heroImage = DEFAULT_PROJECTS[4].heroImage;
-                data[p6Idx].gallery = DEFAULT_PROJECTS[4].gallery;
+              const cur = data[existingIdx];
+              const expectedOrder = CANONICAL_ORDER_MAP[dp.slug] || dp.order;
+              if (cur.order !== expectedOrder) {
+                cur.order = expectedOrder;
                 updated = true;
               }
-            }
-          }
-          const hasGachibowliKoteswara = data.some(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
-          if (!hasGachibowliKoteswara) {
-            const idx = data.findIndex(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[5];
-            } else {
-              data.splice(5, 0, DEFAULT_PROJECTS[5]);
-            }
-            updated = true;
-          } else {
-            const p7Idx = data.findIndex(p => p._id === 'proj_7_gachibowli_koteswara' || p.slug === 'gachibowli-minimalist-beige-2bhk');
-            if (p7Idx !== -1) {
-              if (
-                data[p7Idx].beforeImage !== DEFAULT_PROJECTS[5].beforeImage ||
-                data[p7Idx].afterImage !== DEFAULT_PROJECTS[5].afterImage ||
-                data[p7Idx].heroImage !== DEFAULT_PROJECTS[5].heroImage ||
-                !Array.isArray(data[p7Idx].gallery) ||
-                data[p7Idx].gallery.length !== DEFAULT_PROJECTS[5].gallery.length ||
-                data[p7Idx].gallery[0] !== DEFAULT_PROJECTS[5].gallery[0]
-              ) {
-                data[p7Idx].beforeImage = DEFAULT_PROJECTS[5].beforeImage;
-                data[p7Idx].afterImage = DEFAULT_PROJECTS[5].afterImage;
-                data[p7Idx].beforeImages = DEFAULT_PROJECTS[5].beforeImages;
-                data[p7Idx].afterImages = DEFAULT_PROJECTS[5].afterImages;
-                data[p7Idx].heroImage = DEFAULT_PROJECTS[5].heroImage;
-                data[p7Idx].gallery = DEFAULT_PROJECTS[5].gallery;
+              if (dp.slug === 'dimmu-chachu-luxury-villa' && cur.location !== 'Kukatpally, Hyderabad') {
+                cur.location = 'Kukatpally, Hyderabad';
                 updated = true;
               }
-            }
-          }
-          const hasKachigudaSubbarao = data.some(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
-          if (!hasKachigudaSubbarao) {
-            const idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[7];
-            } else {
-              data.splice(7, 0, DEFAULT_PROJECTS[7]);
-            }
-            updated = true;
-          } else {
-            const p8Idx = data.findIndex(p => p._id === 'proj_8_kachiguda_subbarao' || p.slug === 'kachiguda-fusion-duplex-villa');
-            if (p8Idx !== -1) {
-              if (
-                data[p8Idx].beforeImage !== DEFAULT_PROJECTS[7].beforeImage ||
-                data[p8Idx].afterImage !== DEFAULT_PROJECTS[7].afterImage ||
-                data[p8Idx].heroImage !== DEFAULT_PROJECTS[7].heroImage ||
-                !Array.isArray(data[p8Idx].gallery) ||
-                data[p8Idx].gallery.length !== DEFAULT_PROJECTS[7].gallery.length ||
-                data[p8Idx].description !== DEFAULT_PROJECTS[7].description
-              ) {
-                data[p8Idx].title = DEFAULT_PROJECTS[7].title;
-                data[p8Idx].beforeImage = DEFAULT_PROJECTS[7].beforeImage;
-                data[p8Idx].afterImage = DEFAULT_PROJECTS[7].afterImage;
-                data[p8Idx].beforeImages = DEFAULT_PROJECTS[7].beforeImages;
-                data[p8Idx].afterImages = DEFAULT_PROJECTS[7].afterImages;
-                data[p8Idx].heroImage = DEFAULT_PROJECTS[7].heroImage;
-                data[p8Idx].gallery = DEFAULT_PROJECTS[7].gallery;
-                data[p8Idx].description = DEFAULT_PROJECTS[7].description;
-                data[p8Idx].story = DEFAULT_PROJECTS[7].story;
-                data[p8Idx].testimonial = DEFAULT_PROJECTS[7].testimonial;
+              if (cur.title !== dp.title) {
+                cur.title = dp.title;
                 updated = true;
               }
-            }
-          }
-          const hasDimmuChachu = data.some(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-          if (!hasDimmuChachu) {
-            const idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-            if (idx !== -1) {
-              data[idx] = DEFAULT_PROJECTS[7];
-            } else {
-              data.splice(7, 0, DEFAULT_PROJECTS[7]);
-            }
-            updated = true;
-          } else {
-            const p9Idx = data.findIndex(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-            if (p9Idx !== -1) {
-              if (data[p9Idx].beforeImage !== DEFAULT_PROJECTS[7].beforeImage || data[p9Idx].afterImage !== DEFAULT_PROJECTS[7].afterImage) {
-                data[p9Idx].beforeImage = DEFAULT_PROJECTS[7].beforeImage;
-                data[p9Idx].afterImage = DEFAULT_PROJECTS[7].afterImage;
-                data[p9Idx].beforeImages = DEFAULT_PROJECTS[7].beforeImages;
-                data[p9Idx].afterImages = DEFAULT_PROJECTS[7].afterImages;
-                updated = true;
-              }
-              if (data[p9Idx].heroImage?.includes('googleusercontent')) {
-                data[p9Idx].heroImage = DEFAULT_PROJECTS[7].heroImage;
-                updated = true;
-              }
-              if (!Array.isArray(data[p9Idx].gallery) || data[p9Idx].gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || data[p9Idx].gallery.length !== DEFAULT_PROJECTS[7].gallery.length) {
-                data[p9Idx].gallery = DEFAULT_PROJECTS[7].gallery;
-                updated = true;
-              }
-              if (data[p9Idx].testimonialName !== 'Hussain' || data[p9Idx].testimonial?.name !== 'Hussain') {
-                data[p9Idx].testimonialName = 'Hussain';
-                data[p9Idx].testimonial = { ...(data[p9Idx].testimonial || {}), name: 'Hussain' };
-                updated = true;
-              }
-            }
-          }
-          const hasTheRestfulHome = data.some(p => p && (p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur'));
-          if (!hasTheRestfulHome) {
-            const dp10 = DEFAULT_PROJECTS.find(p => p.slug === 'the-restful-home-tellapur');
-            if (dp10) {
-              data.push(dp10);
-              updated = true;
-            }
-          } else {
-            const p10Idx = data.findIndex(p => p && (p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur'));
-            const dp10 = DEFAULT_PROJECTS.find(p => p.slug === 'the-restful-home-tellapur');
-            if (p10Idx !== -1 && dp10) {
-              if (!Array.isArray(data[p10Idx].gallery) || data[p10Idx].gallery.length !== dp10.gallery.length) {
-                data[p10Idx].gallery = dp10.gallery;
-                data[p10Idx].heroImage = dp10.heroImage;
+              if (Array.isArray(dp.gallery) && JSON.stringify(cur.gallery) !== JSON.stringify(dp.gallery)) {
+                cur.gallery = [...dp.gallery];
+                cur.heroImage = dp.heroImage;
+                cur.hero_image = dp.heroImage;
+                cur.afterImage = dp.heroImage;
                 updated = true;
               }
             }
           }
 
-          const hasCasaAlta = data.some(p => p && (p._id === 'proj_11_casa_alta_residence_kali_mandir' || p.slug === 'casa-alta-residence-kali-mandir'));
-          if (!hasCasaAlta) {
-            const dp11 = DEFAULT_PROJECTS.find(p => p.slug === 'casa-alta-residence-kali-mandir');
-            if (dp11) {
-              data.push(dp11);
-              updated = true;
-            }
-          } else {
-            const p11Idx = data.findIndex(p => p && (p._id === 'proj_11_casa_alta_residence_kali_mandir' || p.slug === 'casa-alta-residence-kali-mandir'));
-            const dp11 = DEFAULT_PROJECTS.find(p => p.slug === 'casa-alta-residence-kali-mandir');
-            if (p11Idx !== -1 && dp11) {
-              if (!Array.isArray(data[p11Idx].gallery) || data[p11Idx].gallery.length !== dp11.gallery.length) {
-                data[p11Idx].gallery = dp11.gallery;
-                data[p11Idx].heroImage = dp11.heroImage;
-                updated = true;
-              }
-            }
-          }
-
-          // Sanitize gallery images and remove duplicates
-          data.forEach(p => {
-            if (p && Array.isArray(p.gallery)) {
-              const origLen = p.gallery.length;
-              p.gallery = p.gallery.filter((img, idx, arr) => !img.includes('venkatesh_gallery_22.webp') && arr.indexOf(img) === idx);
-              if (p.gallery.length !== origLen) updated = true;
-            }
+          // Sort data by canonical sequence
+          data.sort((a, b) => {
+            const ordA = CANONICAL_ORDER_MAP[a.slug] || CANONICAL_ORDER_MAP[a._id] || Number(a.order) || 999;
+            const ordB = CANONICAL_ORDER_MAP[b.slug] || CANONICAL_ORDER_MAP[b._id] || Number(b.order) || 999;
+            return ordA - ordB;
           });
 
-          // Retain canonical projects in sequence order
+          // Retain canonical active projects in sequence order
           const canonicalSlugs = [
-            'rajapushpa-provincia-3bhk',
-            'my-home-sayuk-3bhk',
-            'kokapet-urban-2bhk',
+            'dimmu-chachu-luxury-villa',
+            'casa-alta-residence-kali-mandir',
             'gandipet-modern-retro-2bhk',
             'kondapur-minimalist-2bhk',
             'gachibowli-minimalist-beige-2bhk',
             'kachiguda-fusion-duplex-villa',
-            'dimmu-chachu-luxury-villa',
-            'the-restful-home-tellapur',
-            'casa-alta-residence-kali-mandir'
+            'the-restful-home-tellapur'
           ];
           const origLen = data.length;
           data = data.filter(p => p && (canonicalSlugs.includes(p.slug) || DEFAULT_PROJECTS.some(dp => dp._id === p._id || dp.slug === p.slug)));
@@ -2191,7 +2046,6 @@ export const getCMSData = (key, fallback = null) => {
             'fluted-acrylic-luxe':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
             'pvc-luxe-collection':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
             'wpc-luxe-collection':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
-            'charcoal-panels-luxe-1':        'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png',
           };
           data.forEach(product => {
             if (product && PRODUCT_HERO_MAP[product.slug]) {
@@ -2322,12 +2176,12 @@ export const getCMSData = (key, fallback = null) => {
             data.projects_hero_images = cloudProjectsHero;
             modified = true;
           }
-          if (data.intro_heading === 'Turnkey interiors, done properly.' || !data.intro_heading) {
-            data.intro_heading = 'From Concept to Handover — ESPACIO Delivers Complete Interiors.';
+          if (data.intro_heading === 'Turnkey interiors, done properly.' || data.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !data.intro_heading) {
+            data.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
             modified = true;
           }
-          if (data.intro_description && data.intro_description.includes('We bring 40+ years of family construction heritage')) {
-            data.intro_description = "ESPACIO brings together thoughtful design, solid materials, and honest craftsmanship to build spaces that work for real life. Backed by forty years of family construction heritage in Hyderabad, we don't just decorate rooms, we plan, build, and deliver them completely, so you never have to chase a contractor or worry about what's happening on site.";
+          if (!data.intro_description || data.intro_description.includes('We bring 40+ years of family construction heritage') || data.intro_description.includes('chase a contractor')) {
+            data.intro_description = "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.";
             modified = true;
           }
           if (typeof data.about_hero_subtitle === 'string' && data.about_hero_subtitle.includes('Mantana')) {
@@ -2527,896 +2381,258 @@ export const getCMSData = (key, fallback = null) => {
               'walk-in-wardrobe': ["Central Island Suite", "Tinted Bronze Glass Wardrobe", "Velvet Boutique Salon", "Minimalist Open Dressing", "360-Degree Illuminated Vanity"]
             };
 
-            const BEDROOM_DRIVE_IMAGES = [
-              "/images/spaces/bedroom/bedroom_drive_1.webp",
-              "/images/spaces/bedroom/bedroom_drive_2.webp",
-              "/images/spaces/bedroom/bedroom_drive_3.webp",
-              "/images/spaces/bedroom/bedroom_drive_4.webp",
-              "/images/spaces/bedroom/bedroom_drive_5.webp",
-              "/images/spaces/bedroom/bedroom_drive_6.webp",
-              "/images/spaces/bedroom/bedroom_drive_7.webp",
-              "/images/spaces/bedroom/bedroom_drive_8.webp",
-              "/images/spaces/bedroom/bedroom_drive_9.webp",
-              "/images/spaces/bedroom/bedroom_drive_10.webp",
-              "/images/spaces/bedroom/bedroom_drive_11.webp",
-              "/images/spaces/bedroom/bedroom_drive_12.webp",
-              "/images/spaces/bedroom/bedroom_drive_13.webp",
-              "/images/spaces/bedroom/bedroom_drive_14.webp",
-              "/images/spaces/bedroom/bedroom_drive_15.webp",
-              "/images/spaces/bedroom/bedroom_drive_16.webp",
-              "/images/spaces/bedroom/bedroom_drive_17.webp",
-              "/images/spaces/bedroom/bedroom_drive_18.webp",
-              "/images/spaces/bedroom/bedroom_drive_19.webp",
-              "/images/spaces/bedroom/bedroom_drive_20.webp",
-              "/images/spaces/bedroom/bedroom_drive_21.webp",
-              "/images/spaces/bedroom/bedroom_drive_22.webp",
-              "/images/spaces/bedroom/bedroom_drive_23.webp",
-              "/images/spaces/bedroom/bedroom_drive_24.webp",
-              "/images/spaces/bedroom/bedroom_drive_25.webp",
-              "/images/spaces/bedroom/bedroom_drive_26.webp",
-              "/images/spaces/bedroom/bedroom_drive_27.webp",
-              "/images/spaces/bedroom/bedroom_drive_28.webp",
-              "/images/spaces/bedroom/bedroom_drive_29.webp"
-            ];
-
-            const OFFICE_DRIVE_IMAGES = [
-              "/images/spaces/office/office_drive_1.webp",
-              "/images/spaces/office/office_drive_2.webp",
-              "/images/spaces/office/office_drive_3.webp",
-              "/images/spaces/office/office_drive_4.webp",
-              "/images/spaces/office/office_drive_5.webp",
-              "/images/spaces/office/office_drive_6.webp",
-              "/images/spaces/office/office_drive_7.webp",
-              "/images/spaces/office/office_drive_8.webp",
-              "/images/spaces/office/office_drive_9.webp",
-              "/images/spaces/office/office_drive_10.webp",
-              "/images/spaces/office/office_drive_11.webp",
-              "/images/spaces/office/office_drive_12.webp",
-              "/images/spaces/office/office_drive_13.webp",
-              "/images/spaces/office/office_drive_14.webp",
-              "/images/spaces/office/office_drive_15.webp",
-              "/images/spaces/office/office_drive_16.webp",
-              "/images/spaces/office/office_drive_17.webp",
-              "/images/spaces/office/office_drive_18.webp",
-              "/images/spaces/office/office_drive_19.webp",
-              "/images/spaces/office/office_drive_20.webp",
-              "/images/spaces/office/office_drive_21.webp",
-              "/images/spaces/office/office_drive_22.webp",
-              "/images/spaces/office/office_drive_23.webp",
-              "/images/spaces/office/office_drive_24.webp",
-              "/images/spaces/office/office_drive_25.webp",
-              "/images/spaces/office/office_drive_26.webp",
-              "/images/spaces/office/office_drive_27.webp",
-              "/images/spaces/office/office_drive_28.webp",
-              "/images/spaces/office/office_drive_29.webp",
-              "/images/spaces/office/office_drive_30.webp",
-              "/images/spaces/office/office_drive_31.webp",
-              "/images/spaces/office/office_drive_32.webp",
-              "/images/spaces/office/office_drive_33.webp",
-              "/images/spaces/office/office_drive_34.webp",
-              "/images/spaces/office/office_drive_35.webp",
-              "/images/spaces/office/office_drive_36.webp",
-              "/images/spaces/office/office_drive_37.webp"
-            ];
-
-            const DINING_DRIVE_IMAGES = [
-              "/images/spaces/dining/dining_drive_1.webp",
-              "/images/spaces/dining/dining_drive_2.webp",
-              "/images/spaces/dining/dining_drive_3.webp",
-              "/images/spaces/dining/dining_drive_4.webp",
-              "/images/spaces/dining/dining_drive_5.webp",
-              "/images/spaces/dining/dining_drive_6.webp",
-              "/images/spaces/dining/dining_drive_7.webp",
-              "/images/spaces/dining/dining_drive_8.webp",
-              "/images/spaces/dining/dining_drive_9.webp",
-              "/images/spaces/dining/dining_drive_10.webp",
-              "/images/spaces/dining/dining_drive_11.webp",
-              "/images/spaces/dining/dining_drive_12.webp",
-              "/images/spaces/dining/dining_drive_13.webp",
-              "/images/spaces/dining/dining_drive_14.webp",
-              "/images/spaces/dining/dining_drive_15.webp",
-              "/images/spaces/dining/dining_drive_16.webp",
-              "/images/spaces/dining/dining_drive_17.webp",
-              "/images/spaces/dining/dining_drive_18.webp",
-              "/images/spaces/dining/dining_drive_19.webp",
-              "/images/spaces/dining/dining_drive_20.webp",
-              "/images/spaces/dining/dining_drive_21.webp",
-              "/images/spaces/dining/dining_drive_22.webp",
-              "/images/spaces/dining/dining_drive_23.webp",
-              "/images/spaces/dining/dining_drive_24.webp",
-              "/images/spaces/dining/dining_drive_25.webp",
-              "/images/spaces/dining/dining_drive_26.webp",
-              "/images/spaces/dining/dining_drive_27.webp",
-              "/images/spaces/dining/dining_drive_28.webp",
-              "/images/spaces/dining/dining_drive_29.webp",
-              "/images/spaces/dining/dining_drive_30.webp",
-              "/images/spaces/dining/dining_drive_31.webp",
-              "/images/spaces/dining/dining_drive_32.webp",
-              "/images/spaces/dining/dining_drive_33.webp",
-              "/images/spaces/dining/dining_drive_35.webp",
-              "/images/spaces/dining/dining_drive_36.webp",
-              "/images/spaces/dining/dining_drive_37.webp",
-              "/images/spaces/dining/dining_drive_38.webp",
-              "/images/spaces/dining/dining_drive_39.webp",
-              "/images/spaces/dining/dining_drive_40.webp",
-              "/images/spaces/dining/dining_drive_41.webp",
-              "/images/spaces/dining/dining_drive_42.webp",
-              "/images/spaces/dining/dining_drive_43.webp",
-              "/images/spaces/dining/dining_drive_44.webp",
-              "/images/spaces/dining/dining_drive_45.webp",
-              "/images/spaces/dining/dining_drive_46.webp",
-              "/images/spaces/dining/dining_drive_47.webp",
-              "/images/spaces/dining/dining_drive_48.webp",
-              "/images/spaces/dining/dining_drive_49.webp",
-              "/images/spaces/dining/dining_drive_50.webp"
-            ];
-
-            const CEILING_DRIVE_IMAGES = [
-              "/images/spaces/ceiling/ceiling_drive_1.webp",
-              "/images/spaces/ceiling/ceiling_drive_2.webp",
-              "/images/spaces/ceiling/ceiling_drive_3.webp",
-              "/images/spaces/ceiling/ceiling_drive_4.webp",
-              "/images/spaces/ceiling/ceiling_drive_5.webp",
-              "/images/spaces/ceiling/ceiling_drive_6.webp",
-              "/images/spaces/ceiling/ceiling_drive_7.webp",
-              "/images/spaces/ceiling/ceiling_drive_8.webp",
-              "/images/spaces/ceiling/ceiling_drive_9.webp",
-              "/images/spaces/ceiling/ceiling_drive_10.webp",
-              "/images/spaces/ceiling/ceiling_drive_11.webp",
-              "/images/spaces/ceiling/ceiling_drive_12.webp",
-              "/images/spaces/ceiling/ceiling_drive_13.webp",
-              "/images/spaces/ceiling/ceiling_drive_14.webp",
-              "/images/spaces/ceiling/ceiling_drive_15.webp",
-              "/images/spaces/ceiling/ceiling_drive_16.webp",
-              "/images/spaces/ceiling/ceiling_drive_17.webp",
-              "/images/spaces/ceiling/ceiling_drive_18.webp",
-              "/images/spaces/ceiling/ceiling_drive_19.webp",
-              "/images/spaces/ceiling/ceiling_drive_20.webp",
-              "/images/spaces/ceiling/ceiling_drive_21.webp",
-              "/images/spaces/ceiling/ceiling_drive_22.webp",
-              "/images/spaces/ceiling/ceiling_drive_23.webp",
-              "/images/spaces/ceiling/ceiling_drive_24.webp",
-              "/images/spaces/ceiling/ceiling_drive_25.webp",
-              "/images/spaces/ceiling/ceiling_drive_26.webp",
-              "/images/spaces/ceiling/ceiling_drive_27.webp",
-              "/images/spaces/ceiling/ceiling_drive_28.webp",
-              "/images/spaces/ceiling/ceiling_drive_29.webp",
-              "/images/spaces/ceiling/ceiling_drive_30.webp",
-              "/images/spaces/ceiling/ceiling_drive_31.webp",
-              "/images/spaces/ceiling/ceiling_drive_32.webp",
-              "/images/spaces/ceiling/ceiling_drive_33.webp",
-              "/images/spaces/ceiling/ceiling_drive_34.webp",
-              "/images/spaces/ceiling/ceiling_drive_35.webp",
-              "/images/spaces/ceiling/ceiling_drive_36.webp",
-              "/images/spaces/ceiling/ceiling_drive_37.webp",
-              "/images/spaces/ceiling/ceiling_drive_38.webp",
-              "/images/spaces/ceiling/ceiling_drive_39.webp",
-              "/images/spaces/ceiling/ceiling_drive_40.webp",
-              "/images/spaces/ceiling/ceiling_drive_41.webp",
-              "/images/spaces/ceiling/ceiling_drive_42.webp",
-              "/images/spaces/ceiling/ceiling_drive_43.webp",
-              "/images/spaces/ceiling/ceiling_drive_44.webp",
-              "/images/spaces/ceiling/ceiling_drive_45.webp",
-              "/images/spaces/ceiling/ceiling_drive_46.webp"
-            ];
-
-            const WARDROBE_DRIVE_IMAGES = [
-              "/images/spaces/wardrobes/wardrobe_drive_1.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_2.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_3.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_4.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_5.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_6.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_7.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_8.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_9.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_10.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_11.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_12.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_13.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_14.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_15.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_16.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_17.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_18.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_19.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_21.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_22.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_23.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_24.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_25.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_26.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_27.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_29.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_30.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_31.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_32.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_33.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_34.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_37.webp",
-              "/images/spaces/wardrobes/wardrobe_drive_38.webp"
-            ];
-
-            const APARTMENT_DRIVE_IMAGES = [
-              "/images/spaces/apartments/apartment_drive_1.webp",
-              "/images/spaces/apartments/apartment_drive_2.webp",
-              "/images/spaces/apartments/apartment_drive_3.webp",
-              "/images/spaces/apartments/apartment_drive_4.webp",
-              "/images/spaces/apartments/apartment_drive_5.webp",
-              "/images/spaces/apartments/apartment_drive_6.webp",
-              "/images/spaces/apartments/apartment_drive_7.webp",
-              "/images/spaces/apartments/apartment_drive_8.webp",
-              "/images/spaces/apartments/apartment_drive_9.webp",
-              "/images/spaces/apartments/apartment_drive_10.webp",
-              "/images/spaces/apartments/apartment_drive_11.webp",
-              "/images/spaces/apartments/apartment_drive_12.webp",
-              "/images/spaces/apartments/apartment_drive_13.webp",
-              "/images/spaces/apartments/apartment_drive_14.webp",
-              "/images/spaces/apartments/apartment_drive_15.webp",
-              "/images/spaces/apartments/apartment_drive_16.webp",
-              "/images/spaces/apartments/apartment_drive_17.webp",
-              "/images/spaces/apartments/apartment_drive_18.webp",
-              "/images/spaces/apartments/apartment_drive_19.webp",
-              "/images/spaces/apartments/apartment_drive_20.webp",
-              "/images/spaces/apartments/apartment_drive_21.webp",
-              "/images/spaces/apartments/apartment_drive_22.webp",
-              "/images/spaces/apartments/apartment_drive_23.webp",
-              "/images/spaces/apartments/apartment_drive_24.webp",
-              "/images/spaces/apartments/apartment_drive_25.webp",
-              "/images/spaces/apartments/apartment_drive_26.webp",
-              "/images/spaces/apartments/apartment_drive_27.webp",
-              "/images/spaces/apartments/apartment_drive_28.webp",
-              "/images/spaces/apartments/apartment_drive_29.webp",
-              "/images/spaces/apartments/apartment_drive_30.webp",
-              "/images/spaces/apartments/apartment_drive_31.webp",
-              "/images/spaces/apartments/apartment_drive_32.webp",
-              "/images/spaces/apartments/apartment_drive_33.webp",
-              "/images/spaces/apartments/apartment_drive_34.webp",
-              "/images/spaces/apartments/apartment_drive_35.webp",
-              "/images/spaces/apartments/apartment_drive_36.webp",
-              "/images/spaces/apartments/apartment_drive_37.webp",
-              "/images/spaces/apartments/apartment_drive_38.webp",
-              "/images/spaces/apartments/apartment_drive_39.webp",
-              "/images/spaces/apartments/apartment_drive_40.webp",
-              "/images/spaces/apartments/apartment_drive_41.webp",
-              "/images/spaces/apartments/apartment_drive_42.webp",
-              "/images/spaces/apartments/apartment_drive_43.webp",
-              "/images/spaces/apartments/apartment_drive_44.webp",
-              "/images/spaces/apartments/apartment_drive_45.webp",
-              "/images/spaces/apartments/apartment_drive_46.webp",
-              "/images/spaces/apartments/apartment_drive_47.webp",
-              "/images/spaces/apartments/apartment_drive_48.webp",
-              "/images/spaces/apartments/apartment_drive_49.webp",
-              "/images/spaces/apartments/apartment_drive_50.webp",
-              "/images/spaces/apartments/apartment_drive_51.webp",
-              "/images/spaces/apartments/apartment_drive_52.webp",
-              "/images/spaces/apartments/apartment_drive_53.webp",
-              "/images/spaces/apartments/apartment_drive_54.webp",
-              "/images/spaces/apartments/apartment_drive_55.webp",
-              "/images/spaces/apartments/apartment_drive_56.webp",
-              "/images/spaces/apartments/apartment_drive_57.webp",
-              "/images/spaces/apartments/apartment_drive_58.webp",
-              "/images/spaces/apartments/apartment_drive_59.webp",
-              "/images/spaces/apartments/apartment_drive_60.webp",
-              "/images/spaces/apartments/apartment_drive_61.webp",
-              "/images/spaces/apartments/apartment_drive_62.webp",
-              "/images/spaces/apartments/apartment_drive_63.webp",
-              "/images/spaces/apartments/apartment_drive_64.webp",
-              "/images/spaces/apartments/apartment_drive_65.webp",
-              "/images/spaces/apartments/apartment_drive_66.webp",
-              "/images/spaces/apartments/apartment_drive_67.webp",
-              "/images/spaces/apartments/apartment_drive_68.webp",
-              "/images/spaces/apartments/apartment_drive_69.webp",
-              "/images/spaces/apartments/apartment_drive_70.webp",
-              "/images/spaces/apartments/apartment_drive_71.webp",
-              "/images/spaces/apartments/apartment_drive_72.webp",
-              "/images/spaces/apartments/apartment_drive_73.webp",
-              "/images/spaces/apartments/apartment_drive_74.webp",
-              "/images/spaces/apartments/apartment_drive_75.webp",
-              "/images/spaces/apartments/apartment_drive_76.webp",
-              "/images/spaces/apartments/apartment_drive_77.webp",
-              "/images/spaces/apartments/apartment_drive_78.webp",
-              "/images/spaces/apartments/apartment_drive_79.webp",
-              "/images/spaces/apartments/apartment_drive_80.webp",
-              "/images/spaces/apartments/apartment_drive_81.webp",
-              "/images/spaces/apartments/apartment_drive_82.webp",
-              "/images/spaces/apartments/apartment_drive_83.webp",
-              "/images/spaces/apartments/apartment_drive_84.webp",
-              "/images/spaces/apartments/apartment_drive_85.webp",
-              "/images/spaces/apartments/apartment_drive_86.webp",
-              "/images/spaces/apartments/apartment_drive_87.webp",
-              "/images/spaces/apartments/apartment_drive_88.webp"
-            ];
-
-            const COMMERCIAL_INTERIORS_DRIVE_IMAGES = [
-              "/images/spaces/commercial/commercial_drive_1.webp",
-              "/images/spaces/commercial/commercial_drive_2.webp",
-              "/images/spaces/commercial/commercial_drive_3.webp",
-              "/images/spaces/commercial/commercial_drive_4.webp",
-              "/images/spaces/commercial/commercial_drive_5.webp",
-              "/images/spaces/commercial/commercial_drive_6.webp",
-              "/images/spaces/commercial/commercial_drive_7.webp",
-              "/images/spaces/commercial/commercial_drive_8.webp",
-              "/images/spaces/commercial/commercial_drive_9.webp",
-              "/images/spaces/commercial/commercial_drive_10.webp",
-              "/images/spaces/commercial/commercial_drive_11.webp",
-              "/images/spaces/commercial/commercial_drive_12.webp",
-              "/images/spaces/commercial/commercial_drive_13.webp",
-              "/images/spaces/commercial/commercial_drive_14.webp",
-              "/images/spaces/commercial/commercial_drive_15.webp",
-              "/images/spaces/commercial/commercial_drive_16.webp",
-              "/images/spaces/commercial/commercial_drive_17.webp",
-              "/images/spaces/commercial/commercial_drive_18.webp",
-              "/images/spaces/commercial/commercial_drive_19.webp",
-              "/images/spaces/commercial/commercial_drive_20.webp",
-              "/images/spaces/commercial/commercial_drive_21.webp",
-              "/images/spaces/commercial/commercial_drive_22.webp",
-              "/images/spaces/commercial/commercial_drive_23.webp",
-              "/images/spaces/commercial/commercial_drive_24.webp",
-              "/images/spaces/commercial/commercial_drive_25.webp",
-              "/images/spaces/commercial/commercial_drive_26.webp",
-              "/images/spaces/commercial/commercial_drive_27.webp",
-              "/images/spaces/commercial/commercial_drive_28.webp",
-              "/images/spaces/commercial/commercial_drive_29.webp",
-              "/images/spaces/commercial/commercial_drive_30.webp",
-              "/images/spaces/commercial/commercial_drive_31.webp",
-              "/images/spaces/commercial/commercial_drive_32.webp",
-              "/images/spaces/commercial/commercial_drive_33.webp",
-              "/images/spaces/commercial/commercial_drive_34.webp",
-              "/images/spaces/commercial/commercial_drive_35.webp",
-              "/images/spaces/commercial/commercial_drive_36.webp",
-              "/images/spaces/commercial/commercial_drive_37.webp",
-              "/images/spaces/commercial/commercial_drive_38.webp",
-              "/images/spaces/commercial/commercial_drive_39.webp",
-              "/images/spaces/commercial/commercial_drive_40.webp",
-              "/images/spaces/commercial/commercial_drive_41.webp"
-            ];
-
-            const RECEPTION_AREAS_DRIVE_IMAGES = [
-              "/images/spaces/reception/reception_drive_1.webp",
-              "/images/spaces/reception/reception_drive_2.webp",
-              "/images/spaces/reception/reception_drive_3.webp",
-              "/images/spaces/reception/reception_drive_4.webp",
-              "/images/spaces/reception/reception_drive_5.webp",
-              "/images/spaces/reception/reception_drive_6.webp",
-              "/images/spaces/reception/reception_drive_7.webp",
-              "/images/spaces/reception/reception_drive_8.webp",
-              "/images/spaces/reception/reception_drive_9.webp",
-              "/images/spaces/reception/reception_drive_10.webp",
-              "/images/spaces/reception/reception_drive_11.webp",
-              "/images/spaces/reception/reception_drive_12.webp",
-              "/images/spaces/reception/reception_drive_13.webp",
-              "/images/spaces/reception/reception_drive_14.webp",
-              "/images/spaces/reception/reception_drive_15.webp",
-              "/images/spaces/reception/reception_drive_16.webp",
-              "/images/spaces/reception/reception_drive_17.webp",
-              "/images/spaces/reception/reception_drive_18.webp",
-              "/images/spaces/reception/reception_drive_19.webp",
-              "/images/spaces/reception/reception_drive_20.webp",
-              "/images/spaces/reception/reception_drive_21.webp",
-              "/images/spaces/reception/reception_drive_22.webp",
-              "/images/spaces/reception/reception_drive_23.webp",
-              "/images/spaces/reception/reception_drive_24.webp",
-              "/images/spaces/reception/reception_drive_25.webp",
-              "/images/spaces/reception/reception_drive_26.webp",
-              "/images/spaces/reception/reception_drive_27.webp",
-              "/images/spaces/reception/reception_drive_28.webp",
-              "/images/spaces/reception/reception_drive_30.webp",
-              "/images/spaces/reception/reception_drive_31.webp",
-              "/images/spaces/reception/reception_drive_32.webp",
-              "/images/spaces/reception/reception_drive_33.webp",
-              "/images/spaces/reception/reception_drive_34.webp",
-              "/images/spaces/reception/reception_drive_35.webp"
-            ];
-
-            const CAFES_RESTAURANTS_DRIVE_IMAGES = [
-              "/images/spaces/cafes/cafe_drive_1.webp",
-              "/images/spaces/cafes/cafe_drive_2.webp",
-              "/images/spaces/cafes/cafe_drive_3.webp",
-              "/images/spaces/cafes/cafe_drive_4.webp",
-              "/images/spaces/cafes/cafe_drive_5.webp",
-              "/images/spaces/cafes/cafe_drive_6.webp",
-              "/images/spaces/cafes/cafe_drive_7.webp",
-              "/images/spaces/cafes/cafe_drive_8.webp",
-              "/images/spaces/cafes/cafe_drive_9.webp",
-              "/images/spaces/cafes/cafe_drive_10.webp",
-              "/images/spaces/cafes/cafe_drive_11.webp",
-              "/images/spaces/cafes/cafe_drive_12.webp",
-              "/images/spaces/cafes/cafe_drive_13.webp",
-              "/images/spaces/cafes/cafe_drive_14.webp",
-              "/images/spaces/cafes/cafe_drive_15.webp",
-              "/images/spaces/cafes/cafe_drive_16.webp",
-              "/images/spaces/cafes/cafe_drive_17.webp",
-              "/images/spaces/cafes/cafe_drive_18.webp",
-              "/images/spaces/cafes/cafe_drive_19.webp",
-              "/images/spaces/cafes/cafe_drive_20.webp",
-              "/images/spaces/cafes/cafe_drive_21.webp",
-              "/images/spaces/cafes/cafe_drive_22.webp",
-              "/images/spaces/cafes/cafe_drive_23.webp",
-              "/images/spaces/cafes/cafe_drive_24.webp",
-              "/images/spaces/cafes/cafe_drive_25.webp",
-              "/images/spaces/cafes/cafe_drive_26.webp",
-              "/images/spaces/cafes/cafe_drive_27.webp",
-              "/images/spaces/cafes/cafe_drive_28.webp",
-              "/images/spaces/cafes/cafe_drive_29.webp",
-              "/images/spaces/cafes/cafe_drive_30.webp",
-              "/images/spaces/cafes/cafe_drive_31.webp",
-              "/images/spaces/cafes/cafe_drive_32.webp",
-              "/images/spaces/cafes/cafe_drive_33.webp",
-              "/images/spaces/cafes/cafe_drive_34.webp",
-              "/images/spaces/cafes/cafe_drive_35.webp",
-              "/images/spaces/cafes/cafe_drive_36.webp",
-              "/images/spaces/cafes/cafe_drive_37.webp",
-              "/images/spaces/cafes/cafe_drive_38.webp",
-              "/images/spaces/cafes/cafe_drive_39.webp",
-              "/images/spaces/cafes/cafe_drive_40.webp",
-              "/images/spaces/cafes/cafe_drive_41.webp",
-              "/images/spaces/cafes/cafe_drive_42.webp"
-            ];
-
-            const FOYER_DRIVE_IMAGES = [
-              "/images/spaces/foyer/foyer_drive_1.webp",
-              "/images/spaces/foyer/foyer_drive_2.webp",
-              "/images/spaces/foyer/foyer_drive_3.webp",
-              "/images/spaces/foyer/foyer_drive_4.webp",
-              "/images/spaces/foyer/foyer_drive_5.webp",
-              "/images/spaces/foyer/foyer_drive_6.webp",
-              "/images/spaces/foyer/foyer_drive_7.webp",
-              "/images/spaces/foyer/foyer_drive_8.webp",
-              "/images/spaces/foyer/foyer_drive_9.webp",
-              "/images/spaces/foyer/foyer_drive_10.webp",
-              "/images/spaces/foyer/foyer_drive_11.webp",
-              "/images/spaces/foyer/foyer_drive_12.webp",
-              "/images/spaces/foyer/foyer_drive_13.webp",
-              "/images/spaces/foyer/foyer_drive_14.webp",
-              "/images/spaces/foyer/foyer_drive_15.webp",
-              "/images/spaces/foyer/foyer_drive_16.webp",
-              "/images/spaces/foyer/foyer_drive_17.webp",
-              "/images/spaces/foyer/foyer_drive_18.webp",
-              "/images/spaces/foyer/foyer_drive_19.webp",
-              "/images/spaces/foyer/foyer_drive_20.webp",
-              "/images/spaces/foyer/foyer_drive_21.webp",
-              "/images/spaces/foyer/foyer_drive_22.webp",
-              "/images/spaces/foyer/foyer_drive_23.webp",
-              "/images/spaces/foyer/foyer_drive_24.webp",
-              "/images/spaces/foyer/foyer_drive_25.webp",
-              "/images/spaces/foyer/foyer_drive_26.webp",
-              "/images/spaces/foyer/foyer_drive_27.webp",
-              "/images/spaces/foyer/foyer_drive_28.webp",
-              "/images/spaces/foyer/foyer_drive_29.webp",
-              "/images/spaces/foyer/foyer_drive_30.webp"
-            ];
-
-            const BAR_DRIVE_IMAGES = [
-              "/images/spaces/bar/bar_drive_1.webp",
-              "/images/spaces/bar/bar_drive_2.webp",
-              "/images/spaces/bar/bar_drive_3.webp",
-              "/images/spaces/bar/bar_drive_4.webp",
-              "/images/spaces/bar/bar_drive_5.webp",
-              "/images/spaces/bar/bar_drive_6.webp",
-              "/images/spaces/bar/bar_drive_7.webp",
-              "/images/spaces/bar/bar_drive_8.webp",
-              "/images/spaces/bar/bar_drive_9.webp",
-              "/images/spaces/bar/bar_drive_10.webp",
-              "/images/spaces/bar/bar_drive_11.webp",
-              "/images/spaces/bar/bar_drive_12.webp",
-              "/images/spaces/bar/bar_drive_13.webp",
-              "/images/spaces/bar/bar_drive_14.webp",
-              "/images/spaces/bar/bar_drive_15.webp",
-              "/images/spaces/bar/bar_drive_16.webp",
-              "/images/spaces/bar/bar_drive_17.webp",
-              "/images/spaces/bar/bar_drive_18.webp",
-              "/images/spaces/bar/bar_drive_19.webp",
-              "/images/spaces/bar/bar_drive_20.webp",
-              "/images/spaces/bar/bar_drive_21.webp",
-              "/images/spaces/bar/bar_drive_22.webp",
-              "/images/spaces/bar/bar_drive_23.webp",
-              "/images/spaces/bar/bar_drive_24.webp",
-              "/images/spaces/bar/bar_drive_25.webp",
-              "/images/spaces/bar/bar_drive_26.webp",
-              "/images/spaces/bar/bar_drive_27.webp",
-              "/images/spaces/bar/bar_drive_28.webp",
-              "/images/spaces/bar/bar_drive_29.webp",
-              "/images/spaces/bar/bar_drive_30.webp",
-              "/images/spaces/bar/bar_drive_31.webp",
-              "/images/spaces/bar/bar_drive_32.webp",
-              "/images/spaces/bar/bar_drive_33.webp",
-              "/images/spaces/bar/bar_drive_34.webp",
-              "/images/spaces/bar/bar_drive_35.webp",
-              "/images/spaces/bar/bar_drive_36.webp",
-              "/images/spaces/bar/bar_drive_37.webp",
-              "/images/spaces/bar/bar_drive_38.webp"
-            ];
-
-            const WALK_IN_WARDROBE_DRIVE_IMAGES = [
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_5.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_6.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_9.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_10.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_12.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_18.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_19.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_22.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_23.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
-              "/images/spaces/wardrobes/walk_in_wardrobe_drive_25.webp"
-            ];
-
-            const VILLAS_DRIVE_IMAGES = [
-              "/images/spaces/villas/villa_drive_30.webp",
-              "/images/spaces/villas/villa_drive_1.webp",
-              "/images/spaces/villas/villa_drive_2.webp",
-              "/images/spaces/villas/villa_drive_3.webp",
-              "/images/spaces/villas/villa_drive_4.webp",
-              "/images/spaces/villas/villa_drive_5.webp",
-              "/images/spaces/villas/villa_drive_6.webp",
-              "/images/spaces/villas/villa_drive_7.webp",
-              "/images/spaces/villas/villa_drive_8.webp",
-              "/images/spaces/villas/villa_drive_9.webp",
-              "/images/spaces/villas/villa_drive_10.webp",
-              "/images/spaces/villas/villa_drive_11.webp",
-              "/images/spaces/villas/villa_drive_12.webp",
-              "/images/spaces/villas/villa_drive_13.webp",
-              "/images/spaces/villas/villa_drive_14.webp",
-              "/images/spaces/villas/villa_drive_15.webp",
-              "/images/spaces/villas/villa_drive_16.webp",
-              "/images/spaces/villas/villa_drive_17.webp",
-              "/images/spaces/villas/villa_drive_18.webp",
-              "/images/spaces/villas/villa_drive_19.webp",
-              "/images/spaces/villas/villa_drive_20.webp",
-              "/images/spaces/villas/villa_drive_21.webp",
-              "/images/spaces/villas/villa_drive_22.webp",
-              "/images/spaces/villas/villa_drive_23.webp",
-              "/images/spaces/villas/villa_drive_24.webp",
-              "/images/spaces/villas/villa_drive_25.webp",
-              "/images/spaces/villas/villa_drive_26.webp",
-              "/images/spaces/villas/villa_drive_27.webp",
-              "/images/spaces/villas/villa_drive_28.webp",
-              "/images/spaces/villas/villa_drive_29.webp",
-              "/images/spaces/villas/villa_drive_31.webp",
-              "/images/spaces/villas/villa_drive_32.webp",
-              "/images/spaces/villas/villa_drive_33.webp",
-              "/images/spaces/villas/villa_drive_34.webp",
-              "/images/spaces/villas/villa_drive_35.webp"
-            ];
-
-            const HOME_OFFICE_DRIVE_IMAGES = [
-              "/images/spaces/home_office/home_office_drive_1.webp",
-              "/images/spaces/home_office/home_office_drive_2.webp",
-              "/images/spaces/home_office/home_office_drive_3.webp",
-              "/images/spaces/home_office/home_office_drive_4.webp",
-              "/images/spaces/home_office/home_office_drive_5.webp",
-              "/images/spaces/home_office/home_office_drive_6.webp",
-              "/images/spaces/home_office/home_office_drive_7.webp",
-              "/images/spaces/home_office/home_office_drive_8.webp",
-              "/images/spaces/home_office/home_office_drive_9.webp",
-              "/images/spaces/home_office/home_office_drive_10.webp",
-              "/images/spaces/home_office/home_office_drive_11.webp",
-              "/images/spaces/home_office/home_office_drive_12.webp",
-              "/images/spaces/home_office/home_office_drive_13.webp",
-              "/images/spaces/home_office/home_office_drive_14.webp",
-              "/images/spaces/home_office/home_office_drive_15.webp",
-              "/images/spaces/home_office/home_office_drive_16.webp",
-              "/images/spaces/home_office/home_office_drive_17.webp",
-              "/images/spaces/home_office/home_office_drive_18.webp",
-              "/images/spaces/home_office/home_office_drive_19.webp",
-              "/images/spaces/home_office/home_office_drive_20.webp",
-              "/images/spaces/home_office/home_office_drive_21.webp",
-              "/images/spaces/home_office/home_office_drive_22.webp",
-              "/images/spaces/home_office/home_office_drive_23.webp",
-              "/images/spaces/home_office/home_office_drive_24.webp",
-              "/images/spaces/home_office/home_office_drive_25.webp",
-              "/images/spaces/home_office/home_office_drive_26.webp",
-              "/images/spaces/home_office/home_office_drive_27.webp",
-              "/images/spaces/home_office/home_office_drive_28.webp",
-              "/images/spaces/home_office/home_office_drive_30.webp",
-              "/images/spaces/home_office/home_office_drive_31.webp",
-              "/images/spaces/home_office/home_office_drive_32.webp",
-              "/images/spaces/home_office/home_office_drive_33.webp",
-              "/images/spaces/home_office/home_office_drive_34.webp",
-              "/images/spaces/home_office/home_office_drive_35.webp",
-              "/images/spaces/home_office/home_office_drive_36.webp",
-              "/images/spaces/home_office/home_office_drive_37.webp",
-              "/images/spaces/home_office/home_office_drive_38.webp",
-              "/images/spaces/home_office/home_office_drive_39.webp",
-              "/images/spaces/home_office/home_office_drive_40.webp",
-              "/images/spaces/home_office/home_office_drive_41.webp",
-              "/images/spaces/home_office/home_office_drive_42.webp",
-              "/images/spaces/home_office/home_office_drive_43.webp",
-              "/images/spaces/home_office/home_office_drive_44.webp"
-            ];
-
-            const LIVING_DRIVE_IMAGES = [
-              "/images/spaces/living/living_drive_1.webp",
-              "/images/spaces/living/living_drive_2.webp",
-              "/images/spaces/living/living_drive_3.webp",
-              "/images/spaces/living/living_drive_4.webp",
-              "/images/spaces/living/living_drive_6.webp",
-              "/images/spaces/living/living_drive_7.webp",
-              "/images/spaces/living/living_drive_8.webp",
-              "/images/spaces/living/living_drive_9.webp",
-              "/images/spaces/living/living_drive_10.webp",
-              "/images/spaces/living/living_drive_11.webp",
-              "/images/spaces/living/living_drive_12.webp",
-              "/images/spaces/living/living_drive_13.webp",
-              "/images/spaces/living/living_drive_14.webp",
-              "/images/spaces/living/living_drive_15.webp",
-              "/images/spaces/living/living_drive_16.webp",
-              "/images/spaces/living/living_drive_17.webp",
-              "/images/spaces/living/living_drive_18.webp",
-              "/images/spaces/living/living_drive_19.webp",
-              "/images/spaces/living/living_drive_20.webp",
-              "/images/spaces/living/living_drive_21.webp",
-              "/images/spaces/living/living_drive_22.webp",
-              "/images/spaces/living/living_drive_23.webp",
-              "/images/spaces/living/living_drive_24.webp",
-              "/images/spaces/living/living_drive_25.webp",
-              "/images/spaces/living/living_drive_26.webp",
-              "/images/spaces/living/living_drive_27.webp",
-              "/images/spaces/living/living_drive_28.webp",
-              "/images/spaces/living/living_drive_29.webp",
-              "/images/spaces/living/living_drive_30.webp",
-              "/images/spaces/living/living_drive_31.webp",
-              "/images/spaces/living/living_drive_32.webp",
-              "/images/spaces/living/living_drive_33.webp",
-              "/images/spaces/living/living_drive_34.webp",
-              "/images/spaces/living/living_drive_36.webp",
-              "/images/spaces/living/living_drive_37.webp",
-              "/images/spaces/living/living_drive_38.webp",
-              "/images/spaces/living/living_drive_39.webp",
-              "/images/spaces/living/living_drive_40.webp"
-            ];
-
-            const POOJA_DRIVE_IMAGES = [
-              "/images/spaces/pooja/pooja_drive_1.webp",
-              "/images/spaces/pooja/pooja_drive_2.webp",
-              "/images/spaces/pooja/pooja_drive_3.webp",
-              "/images/spaces/pooja/pooja_drive_4.webp",
-              "/images/spaces/pooja/pooja_drive_5.webp",
-              "/images/spaces/pooja/pooja_drive_6.webp",
-              "/images/spaces/pooja/pooja_drive_7.webp",
-              "/images/spaces/pooja/pooja_drive_8.webp",
-              "/images/spaces/pooja/pooja_drive_9.webp",
-              "/images/spaces/pooja/pooja_drive_10.webp",
-              "/images/spaces/pooja/pooja_drive_11.webp",
-              "/images/spaces/pooja/pooja_drive_12.webp",
-              "/images/spaces/pooja/pooja_drive_13.webp",
-              "/images/spaces/pooja/pooja_drive_14.webp",
-              "/images/spaces/pooja/pooja_drive_15.webp",
-              "/images/spaces/pooja/pooja_drive_16.webp",
-              "/images/spaces/pooja/pooja_drive_17.webp",
-              "/images/spaces/pooja/pooja_drive_18.webp",
-              "/images/spaces/pooja/pooja_drive_19.webp",
-              "/images/spaces/pooja/pooja_drive_20.webp",
-              "/images/spaces/pooja/pooja_drive_21.webp",
-              "/images/spaces/pooja/pooja_drive_22.webp",
-              "/images/spaces/pooja/pooja_drive_23.webp",
-              "/images/spaces/pooja/pooja_drive_25.webp",
-              "/images/spaces/pooja/pooja_drive_26.webp",
-              "/images/spaces/pooja/pooja_drive_27.webp",
-              "/images/spaces/pooja/pooja_drive_28.webp",
-              "/images/spaces/pooja/pooja_drive_29.webp"
-            ];
-
-            const TV_DRIVE_IMAGES = [
-              "/images/spaces/tv_units/tv_drive_1.webp",
-              "/images/spaces/tv_units/tv_drive_2.webp",
-              "/images/spaces/tv_units/tv_drive_3.webp",
-              "/images/spaces/tv_units/tv_drive_4.webp",
-              "/images/spaces/tv_units/tv_drive_5.webp",
-              "/images/spaces/tv_units/tv_drive_6.webp",
-              "/images/spaces/tv_units/tv_drive_7.webp",
-              "/images/spaces/tv_units/tv_drive_8.webp",
-              "/images/spaces/tv_units/tv_drive_9.webp",
-              "/images/spaces/tv_units/tv_drive_10.webp",
-              "/images/spaces/tv_units/tv_drive_11.webp",
-              "/images/spaces/tv_units/tv_drive_12.webp",
-              "/images/spaces/tv_units/tv_drive_13.webp",
-              "/images/spaces/tv_units/tv_drive_14.webp",
-              "/images/spaces/tv_units/tv_drive_15.webp",
-              "/images/spaces/tv_units/tv_drive_16.webp",
-              "/images/spaces/tv_units/tv_drive_17.webp",
-              "/images/spaces/tv_units/tv_drive_18.webp",
-              "/images/spaces/tv_units/tv_drive_19.webp",
-              "/images/spaces/tv_units/tv_drive_20.webp",
-              "/images/spaces/tv_units/tv_drive_21.webp",
-              "/images/spaces/tv_units/tv_drive_22.webp",
-              "/images/spaces/tv_units/tv_drive_23.webp",
-              "/images/spaces/tv_units/tv_drive_24.webp",
-              "/images/spaces/tv_units/tv_drive_25.webp",
-              "/images/spaces/tv_units/tv_drive_26.webp",
-              "/images/spaces/tv_units/tv_drive_27.webp",
-              "/images/spaces/tv_units/tv_drive_28.webp",
-              "/images/spaces/tv_units/tv_drive_29.webp",
-              "/images/spaces/tv_units/tv_drive_30.webp",
-              "/images/spaces/tv_units/tv_drive_31.webp",
-              "/images/spaces/tv_units/tv_drive_32.webp",
-              "/images/spaces/tv_units/tv_drive_33.webp",
-              "/images/spaces/tv_units/tv_drive_34.webp",
-              "/images/spaces/tv_units/tv_drive_35.webp",
-              "/images/spaces/tv_units/tv_drive_36.webp",
-              "/images/spaces/tv_units/tv_drive_37.webp"
-            ];
-
-            const MODULAR_KITCHEN_DRIVE_IMAGES = [
-              "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_2.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_3.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_6.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_10.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_11.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_12.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_15.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_16.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_17.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_20.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_21.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_22.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_25.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_27.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_30.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_31.webp",
-              "/images/spaces/modular_kitchen/kitchen_drive_32.webp"
-            ];
+            const CURATED_SPACES_IMAGES = {
+  "modular-kitchen": [
+    "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_30.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
+    "/images/spaces/modular_kitchen/kitchen_drive_12.webp"
+  ],
+  "master-bedroom": [
+    "/images/spaces/bedroom/bedroom_drive_24.webp",
+    "/images/spaces/bedroom/bedroom_drive_15.webp",
+    "/images/spaces/bedroom/bedroom_drive_6.webp",
+    "/images/spaces/bedroom/bedroom_drive_3.webp",
+    "/images/spaces/bedroom/bedroom_drive_5.webp",
+    "/images/spaces/bedroom/bedroom_drive_11.webp",
+    "/images/spaces/bedroom/bedroom_drive_29.webp",
+    "/images/spaces/bedroom/bedroom_drive_25.webp",
+    "/images/spaces/bedroom/bedroom_drive_12.webp",
+    "/images/spaces/bedroom/bedroom_drive_9.webp",
+    "/images/spaces/bedroom/bedroom_drive_1.webp",
+    "/images/spaces/bedroom/bedroom_drive_27.webp"
+  ],
+  "living-room": [
+    "/images/spaces/living/living_drive_1.webp",
+    "/images/spaces/living/living_drive_38.webp",
+    "/images/spaces/living/living_drive_29.webp",
+    "/images/spaces/living/living_drive_13.webp",
+    "/images/spaces/living/living_drive_6.webp",
+    "/images/spaces/living/living_drive_31.webp",
+    "/images/spaces/living/living_drive_21.webp",
+    "/images/spaces/living/living_drive_8.webp",
+    "/images/spaces/living/living_drive_30.webp",
+    "/images/spaces/living/living_drive_4.webp",
+    "/images/spaces/living/living_drive_20.webp",
+    "/images/spaces/living/living_drive_33.webp"
+  ],
+  "wardrobes": [
+    "/images/spaces/wardrobes/wardrobe_drive_25.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_23.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_14.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_27.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_29.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_11.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_32.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_24.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_21.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_5.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_38.webp",
+    "/images/spaces/wardrobes/wardrobe_drive_22.webp"
+  ],
+  "home-office": [
+    "/images/spaces/home_office/home_office_drive_25.webp",
+    "/images/spaces/home_office/home_office_drive_33.webp",
+    "/images/spaces/home_office/home_office_drive_12.webp",
+    "/images/spaces/home_office/home_office_drive_19.webp",
+    "/images/spaces/home_office/home_office_drive_27.webp",
+    "/images/spaces/home_office/home_office_drive_22.webp",
+    "/images/spaces/home_office/home_office_drive_32.webp",
+    "/images/spaces/home_office/home_office_drive_20.webp",
+    "/images/spaces/home_office/home_office_drive_42.webp",
+    "/images/spaces/home_office/home_office_drive_23.webp",
+    "/images/spaces/home_office/home_office_drive_35.webp",
+    "/images/spaces/home_office/home_office_drive_34.webp"
+  ],
+  "commercial-office": [
+    "/images/spaces/office/office_drive_20.webp",
+    "/images/spaces/office/office_drive_33.webp",
+    "/images/spaces/office/office_drive_29.webp",
+    "/images/spaces/office/office_drive_37.webp",
+    "/images/spaces/office/office_drive_4.webp",
+    "/images/spaces/office/office_drive_12.webp",
+    "/images/spaces/office/office_drive_13.webp",
+    "/images/spaces/office/office_drive_6.webp",
+    "/images/spaces/office/office_drive_31.webp",
+    "/images/spaces/office/office_drive_16.webp",
+    "/images/spaces/office/office_drive_17.webp",
+    "/images/spaces/office/office_drive_18.webp"
+  ],
+  "pooja-room": [
+    "/images/spaces/pooja/pooja_drive_12.webp",
+    "/images/spaces/pooja/pooja_drive_14.webp",
+    "/images/spaces/pooja/pooja_drive_9.webp",
+    "/images/spaces/pooja/pooja_drive_3.webp",
+    "/images/spaces/pooja/pooja_drive_22.webp",
+    "/images/spaces/pooja/pooja_drive_1.webp",
+    "/images/spaces/pooja/pooja_drive_4.webp",
+    "/images/spaces/pooja/pooja_drive_11.webp",
+    "/images/spaces/pooja/pooja_drive_17.webp",
+    "/images/spaces/pooja/pooja_drive_15.webp",
+    "/images/spaces/pooja/pooja_drive_20.webp",
+    "/images/spaces/pooja/pooja_drive_25.webp"
+  ],
+  "dining-room": [
+    "/images/spaces/dining/dining_drive_27.webp",
+    "/images/spaces/dining/dining_drive_15.webp",
+    "/images/spaces/dining/dining_drive_26.webp",
+    "/images/spaces/dining/dining_drive_40.webp",
+    "/images/spaces/dining/dining_drive_38.webp",
+    "/images/spaces/dining/dining_drive_19.webp",
+    "/images/spaces/dining/dining_drive_32.webp",
+    "/images/spaces/dining/dining_drive_3.webp",
+    "/images/spaces/dining/dining_drive_49.webp",
+    "/images/spaces/dining/dining_drive_31.webp",
+    "/images/spaces/dining/dining_drive_42.webp",
+    "/images/spaces/dining/dining_drive_28.webp"
+  ],
+  "tv-units": [
+    "/images/spaces/tv_units/tv_drive_13.webp",
+    "/images/spaces/tv_units/tv_drive_3.webp",
+    "/images/spaces/tv_units/tv_drive_8.webp",
+    "/images/spaces/tv_units/tv_drive_25.webp",
+    "/images/spaces/tv_units/tv_drive_12.webp",
+    "/images/spaces/tv_units/tv_drive_21.webp",
+    "/images/spaces/tv_units/tv_drive_11.webp",
+    "/images/spaces/tv_units/tv_drive_4.webp",
+    "/images/spaces/tv_units/tv_drive_37.webp",
+    "/images/spaces/tv_units/tv_drive_30.webp",
+    "/images/spaces/tv_units/tv_drive_18.webp",
+    "/images/spaces/tv_units/tv_drive_16.webp"
+  ],
+  "false-ceilings": [
+    "/images/spaces/ceiling/ceiling_drive_46.webp",
+    "/images/spaces/ceiling/ceiling_drive_3.webp",
+    "/images/spaces/ceiling/ceiling_drive_7.webp",
+    "/images/spaces/ceiling/ceiling_drive_42.webp",
+    "/images/spaces/ceiling/ceiling_drive_14.webp",
+    "/images/spaces/ceiling/ceiling_drive_39.webp",
+    "/images/spaces/ceiling/ceiling_drive_28.webp",
+    "/images/spaces/ceiling/ceiling_drive_17.webp",
+    "/images/spaces/ceiling/ceiling_drive_35.webp",
+    "/images/spaces/ceiling/ceiling_drive_27.webp",
+    "/images/spaces/ceiling/ceiling_drive_30.webp",
+    "/images/spaces/ceiling/ceiling_drive_16.webp"
+  ],
+  "commercial-interiors": [
+    "/images/spaces/commercial/commercial_drive_18.webp",
+    "/images/spaces/commercial/commercial_drive_9.webp",
+    "/images/spaces/commercial/commercial_drive_29.webp",
+    "/images/spaces/commercial/commercial_drive_41.webp",
+    "/images/spaces/commercial/commercial_drive_11.webp",
+    "/images/spaces/commercial/commercial_drive_16.webp",
+    "/images/spaces/commercial/commercial_drive_28.webp",
+    "/images/spaces/commercial/commercial_drive_32.webp",
+    "/images/spaces/commercial/commercial_drive_23.webp",
+    "/images/spaces/commercial/commercial_drive_3.webp",
+    "/images/spaces/commercial/commercial_drive_6.webp",
+    "/images/spaces/commercial/commercial_drive_21.webp"
+  ],
+  "reception-areas": [
+    "/images/spaces/reception/reception_drive_21.webp",
+    "/images/spaces/reception/reception_drive_30.webp",
+    "/images/spaces/reception/reception_drive_31.webp",
+    "/images/spaces/reception/reception_drive_28.webp",
+    "/images/spaces/reception/reception_drive_15.webp",
+    "/images/spaces/reception/reception_drive_34.webp",
+    "/images/spaces/reception/reception_drive_33.webp",
+    "/images/spaces/reception/reception_drive_22.webp",
+    "/images/spaces/reception/reception_drive_16.webp",
+    "/images/spaces/reception/reception_drive_19.webp",
+    "/images/spaces/reception/reception_drive_17.webp",
+    "/images/spaces/reception/reception_drive_1.webp"
+  ],
+  "cafes-restaurants": [
+    "/images/spaces/cafes/cafe_drive_15.webp",
+    "/images/spaces/cafes/cafe_drive_29.webp",
+    "/images/spaces/cafes/cafe_drive_27.webp",
+    "/images/spaces/cafes/cafe_drive_11.webp",
+    "/images/spaces/cafes/cafe_drive_14.webp",
+    "/images/spaces/cafes/cafe_drive_22.webp",
+    "/images/spaces/cafes/cafe_drive_16.webp",
+    "/images/spaces/cafes/cafe_drive_41.webp",
+    "/images/spaces/cafes/cafe_drive_32.webp",
+    "/images/spaces/cafes/cafe_drive_4.webp",
+    "/images/spaces/cafes/cafe_drive_24.webp",
+    "/images/spaces/cafes/cafe_drive_13.webp"
+  ],
+  "foyer": [
+    "/images/spaces/foyer/foyer_drive_22.webp",
+    "/images/spaces/foyer/foyer_drive_18.webp",
+    "/images/spaces/foyer/foyer_drive_24.webp",
+    "/images/spaces/foyer/foyer_drive_23.webp",
+    "/images/spaces/foyer/foyer_drive_2.webp",
+    "/images/spaces/foyer/foyer_drive_19.webp",
+    "/images/spaces/foyer/foyer_drive_1.webp",
+    "/images/spaces/foyer/foyer_drive_14.webp",
+    "/images/spaces/foyer/foyer_drive_4.webp",
+    "/images/spaces/foyer/foyer_drive_13.webp",
+    "/images/spaces/foyer/foyer_drive_5.webp",
+    "/images/spaces/foyer/foyer_drive_8.webp"
+  ],
+  "bar": [
+    "/images/spaces/bar/bar_drive_21.webp",
+    "/images/spaces/bar/bar_drive_14.webp",
+    "/images/spaces/bar/bar_drive_11.webp",
+    "/images/spaces/bar/bar_drive_2.webp",
+    "/images/spaces/bar/bar_drive_13.webp",
+    "/images/spaces/bar/bar_drive_18.webp",
+    "/images/spaces/bar/bar_drive_31.webp",
+    "/images/spaces/bar/bar_drive_30.webp",
+    "/images/spaces/bar/bar_drive_4.webp",
+    "/images/spaces/bar/bar_drive_24.webp",
+    "/images/spaces/bar/bar_drive_16.webp",
+    "/images/spaces/bar/bar_drive_37.webp"
+  ],
+  "walk-in-wardrobe": [
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_19.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_23.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_22.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
+    "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp"
+  ]
+};
 
             if (Array.isArray(data.spaces_list)) {
               const origCount = data.spaces_list.length;
               data.spaces_list = data.spaces_list.filter(cat => cat.slug !== 'luxury-homes' && cat.slug !== 'apartments' && cat.slug !== 'villas');
               if (data.spaces_list.length !== origCount) modified = true;
-            }
 
-            data.spaces_list.forEach(cat => {
-              if (Array.isArray(cat.galleryImages)) {
-                const prevL = cat.galleryImages.length;
-                cat.galleryImages = cat.galleryImages.filter(img => !img.includes('walk_in_wardrobe_drive_6.webp'));
-                if (cat.galleryImages.length !== prevL) modified = true;
-              }
-              if (SPACES_FILTERS_MAP[cat.slug] && (!cat.filters || cat.filters.length !== 5 || cat.filters.includes('Japandi Minimal'))) {
-                cat.filters = SPACES_FILTERS_MAP[cat.slug];
-                modified = true;
-              }
-              if (cat.slug === 'modular-kitchen' && (!cat.galleryImages || cat.galleryImages.length !== 31 || cat.galleryImages.includes('/images/spaces/modular_kitchen/kitchen_drive_26.webp') || !cat.galleryImages[0]?.includes('modular_kitchen'))) {
-                cat.galleryImages = MODULAR_KITCHEN_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/modular_kitchen/kitchen_drive_24.webp";
-                modified = true;
-              }
-              if (cat.slug === 'master-bedroom' && (!cat.galleryImages || cat.galleryImages.length !== 29 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = BEDROOM_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/bedroom/bedroom_drive_24.webp";
-                modified = true;
-              }
-              if (cat.slug === 'living-room' && (!cat.galleryImages || cat.galleryImages.length !== 38 || cat.galleryImages.includes('/images/spaces/living/living_drive_5.webp') || cat.galleryImages.includes('/images/spaces/living/living_drive_35.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = LIVING_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/living/living_drive_1.webp";
-                modified = true;
-              }
-              if (cat.slug === 'home-office' && (!cat.galleryImages || cat.galleryImages.length !== 43 || cat.galleryImages.includes('/images/spaces/home_office/home_office_drive_29.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = HOME_OFFICE_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/home_office/home_office_drive_1.webp";
-                modified = true;
-              }
-              if (cat.slug === 'commercial-office' && (!cat.galleryImages || cat.galleryImages.length !== 37 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = OFFICE_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/office/office_drive_4.webp";
-                modified = true;
-              }
-              if (cat.slug === 'pooja-room' && (!cat.galleryImages || cat.galleryImages.length !== 28 || cat.galleryImages.includes('/images/spaces/pooja/pooja_drive_24.webp') || !cat.galleryImages[0]?.includes('.webp') || cat.heroImage?.includes('pooja_drive_1.webp'))) {
-                cat.galleryImages = POOJA_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/pooja/pooja_drive_12.webp";
-                modified = true;
-              }
-              if (cat.slug === 'dining-room' && (!cat.galleryImages || cat.galleryImages.length !== 49 || cat.galleryImages.includes('/images/spaces/dining/dining_drive_34.webp') || !cat.galleryImages[0]?.includes('.webp') || cat.heroImage?.includes('dining_drive_1.webp'))) {
-                cat.galleryImages = DINING_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/dining/dining_drive_27.webp";
-                modified = true;
-              }
-              if (cat.slug === 'tv-units') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png",
-                    ...TV_DRIVE_IMAGES
-                  ];
+              data.spaces_list.forEach(cat => {
+                if (SPACES_FILTERS_MAP[cat.slug] && (!cat.filters || cat.filters.length !== 5 || cat.filters.includes('Japandi Minimal'))) {
+                  cat.filters = SPACES_FILTERS_MAP[cat.slug];
                   modified = true;
                 }
-              }
-              if (cat.slug === 'false-ceilings' && (!cat.galleryImages || cat.galleryImages.length !== 46 || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = CEILING_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/ceiling/ceiling_drive_1.webp";
-                modified = true;
-              }
-              if (cat.slug === 'wardrobes' && (!cat.galleryImages || cat.galleryImages.length !== 34 || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_20.webp') || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_28.webp') || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_35.webp') || cat.galleryImages.includes('/images/spaces/wardrobes/wardrobe_drive_36.webp') || !cat.galleryImages[0]?.includes('.webp'))) {
-                cat.galleryImages = WARDROBE_DRIVE_IMAGES;
-                cat.heroImage = "/images/spaces/wardrobes/wardrobe_drive_1.webp";
-                modified = true;
-              }
-              if (cat.slug === 'commercial-interiors' || cat.slug === 'commercial-office') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png",
-                    ...COMMERCIAL_INTERIORS_DRIVE_IMAGES
-                  ];
-                  modified = true;
+                if (CURATED_SPACES_IMAGES[cat.slug]) {
+                  const curatedList = CURATED_SPACES_IMAGES[cat.slug];
+                  const hero = curatedList[0];
+                  const isMatch = Array.isArray(cat.galleryImages) &&
+                    cat.galleryImages.length === 12 &&
+                    cat.galleryImages[0] === hero &&
+                    cat.galleryImages[11] === curatedList[11];
+                  if (!isMatch || cat.heroImage !== hero) {
+                    cat.galleryImages = [...curatedList];
+                    cat.heroImage = hero;
+                    modified = true;
+                  }
                 }
-              }
-              if (cat.slug === 'cafes-restaurants') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png",
-                    ...CAFES_RESTAURANTS_DRIVE_IMAGES
-                  ];
-                  modified = true;
-                }
-              }
-              if (cat.slug === 'foyer') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png",
-                    ...FOYER_DRIVE_IMAGES
-                  ];
-                  modified = true;
-                }
-              }
-              if (cat.slug === 'bar') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png",
-                    ...BAR_DRIVE_IMAGES
-                  ];
-                  modified = true;
-                }
-              }
-              if (cat.slug === 'walk-in-wardrobe') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png",
-                    ...WALK_IN_WARDROBE_DRIVE_IMAGES.filter(img => !img.includes('walk_in_wardrobe_drive_2.webp'))
-                  ];
-                  modified = true;
-                }
-              }
-              if (cat.slug === 'reception-areas') {
-                if (cat.heroImage !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png" || !cat.galleryImages || cat.galleryImages[0] !== "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png") {
-                  cat.heroImage = "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png";
-                  cat.galleryImages = [
-                    "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png",
-                    ...RECEPTION_AREAS_DRIVE_IMAGES.filter(img => !img.includes('reception_drive_29'))
-                  ];
-                  modified = true;
-                }
-              }
-            });
+              });
+            }
           }
           if (Array.isArray(data.spaces_before_after_slides) && data.spaces_before_after_slides.length > 0) {
             if (!data.spaces_before_after_slides[0]?.before?.includes('spaces_hero_before')) {
@@ -3619,8 +2835,11 @@ export const getCMSData = (key, fallback = null) => {
             const p6 = data.find(p => p.slug === 'kondapur-minimalist-2bhk');
             if (p6) {
               let changed6 = false;
-              if (p6.heroImage !== DEFAULT_PROJECTS[5].heroImage) {
-                p6.heroImage = DEFAULT_PROJECTS[5].heroImage;
+              const dpVenk = DEFAULT_PROJECTS.find(dp => dp.slug === 'kondapur-minimalist-2bhk');
+              if (dpVenk && (p6.heroImage !== dpVenk.heroImage || p6.afterImage !== dpVenk.heroImage)) {
+                p6.heroImage = dpVenk.heroImage;
+                p6.hero_image = dpVenk.heroImage;
+                p6.afterImage = dpVenk.heroImage;
                 changed6 = true;
               }
               if (p6.beforeImage !== DEFAULT_PROJECTS[5].beforeImage) {
@@ -3693,7 +2912,7 @@ export const getCMSData = (key, fallback = null) => {
                 p8.afterImages = DEFAULT_PROJECTS[7].afterImages;
                 changed8 = true;
               }
-              if (!Array.isArray(p8.gallery) || p8.gallery.length !== DEFAULT_PROJECTS[7].gallery.length || p8.gallery[0] !== DEFAULT_PROJECTS[7].gallery[0]) {
+              if (!Array.isArray(p8.gallery) || p8.gallery.length !== DEFAULT_PROJECTS[7].gallery.length || JSON.stringify(p8.gallery) !== JSON.stringify(DEFAULT_PROJECTS[7].gallery)) {
                 p8.gallery = DEFAULT_PROJECTS[7].gallery;
                 changed8 = true;
               }
@@ -3743,6 +2962,17 @@ export const getCMSData = (key, fallback = null) => {
                 try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
               }
             }
+            const p10 = data.find(p => p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur');
+            if (p10 && DEFAULT_PROJECTS[6]) {
+              let changed10 = false;
+              if (!Array.isArray(p10.gallery) || p10.gallery.length !== DEFAULT_PROJECTS[6].gallery.length || JSON.stringify(p10.gallery) !== JSON.stringify(DEFAULT_PROJECTS[6].gallery)) {
+                p10.gallery = DEFAULT_PROJECTS[6].gallery;
+                changed10 = true;
+              }
+              if (changed10) {
+                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+              }
+            }
             const canonicalOrder = {
               'rajapushpa-provincia-3bhk': 1,
               'my-home-sayuk-3bhk': 2,
@@ -3775,6 +3005,10 @@ export const getCMSData = (key, fallback = null) => {
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           } else {
             let updatedProd = false;
+            if (Array.isArray(data) && data.some(p => p && p.slug === 'charcoal-panels-luxe-1')) {
+              data = data.filter(p => p && p.slug !== 'charcoal-panels-luxe-1');
+              updatedProd = true;
+            }
             data.forEach(p => {
               if (p && (p.slug === 'acrylic-luxe-collection' || p.materialCode === 'MAT-ACR-01')) {
                 if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png') {
@@ -3800,8 +3034,9 @@ export const getCMSData = (key, fallback = null) => {
           if (!Array.isArray(data) || data.length === 0 || !data.some(t => (t.name || '').includes('MANOJ & KRIPA')) || data.some(t => /karagani|naidu poola|Shiak Ayub|Amresh kumar/i.test(t.name || ''))) {
             data = DEFAULT_TESTIMONIALS;
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          } else if (data.some(t => t.id === 'g_rev_07' || /abdul\s*sattar/i.test(t.name || ''))) {
-            data = data.filter(t => t.id !== 'g_rev_07' && !/abdul\s*sattar/i.test(t.name || ''));
+          }
+          if (Array.isArray(data) && data.some(t => t.id === 'g_rev_07' || t.id === 'g_rev_03' || /abdul\s*sattar|khaleel/i.test(t.name || ''))) {
+            data = data.filter(t => t.id !== 'g_rev_07' && t.id !== 'g_rev_03' && !/abdul\s*sattar|khaleel/i.test(t.name || ''));
             try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
           }
         }
@@ -3839,6 +3074,14 @@ export const getCMSData = (key, fallback = null) => {
             data.hero_bg_images = DEFAULT_SETTINGS.hero_bg_images;
             modified = true;
           }
+          if (data.trust_stat3_val === '50000' || !data.trust_stat3_val) {
+            data.trust_stat3_val = '40000';
+            modified = true;
+          }
+          if (data.trust_stat4_sublabel === 'Comprehensive Hardware Warranty' || !data.trust_stat4_sublabel) {
+            data.trust_stat4_sublabel = 'Comprehensive Warranty*';
+            modified = true;
+          }
           if (Array.isArray(data.footer_social_items)) {
             data.footer_social_items.forEach(item => {
               if (item.name === 'Facebook' || item.icon === 'facebook' || item.label === 'Facebook') {
@@ -3874,17 +3117,7 @@ export const getCMSData = (key, fallback = null) => {
             'foyer': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png'
           };
 
-          if (Array.isArray(data.spaces_list)) {
-            data.spaces_list.forEach(cat => {
-              if (SPACES_IMG_MAP[cat.slug] && cat.heroImage !== SPACES_IMG_MAP[cat.slug]) {
-                cat.heroImage = SPACES_IMG_MAP[cat.slug];
-                if (Array.isArray(cat.galleryImages)) {
-                  cat.galleryImages = [SPACES_IMG_MAP[cat.slug], ...cat.galleryImages.filter(img => img !== SPACES_IMG_MAP[cat.slug])];
-                }
-                modified = true;
-              }
-            });
-          }
+          // spaces_list curated images preserved
 
           const HERO_AFTER_ROOM = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png';
           if (Array.isArray(data.spaces_before_after_slides)) {

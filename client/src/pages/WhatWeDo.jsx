@@ -52,14 +52,15 @@ const Reveal = ({ children, delay = 0, className = '' }) => {
     <motion.div ref={ref} className={className}
       initial={{ opacity: 0, y: 18 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: Math.min(delay, 0.2), ease: [0.16, 1, 0.3, 1] }}>
+      transition={{ duration: 0.35, delay: Math.min(delay, 0.15), ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'opacity, transform' }}>
       {children}
     </motion.div>
   );
 };
 
 // ── LUXURY ANIMATED STAT CARD WITH NUMBER COUNT-UP ───────────────────────────
-const AnimatedStatCard = ({ icon: Icon, value, suffix = '', label = '', sublabel = '', index = 0 }) => {
+const AnimatedStatCard = ({ icon: Icon, value, suffix = '', label = '', sublabel = '', badge = '', index = 0 }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-40px' });
   const [count, setCount] = useState(0);
@@ -104,8 +105,8 @@ const AnimatedStatCard = ({ icon: Icon, value, suffix = '', label = '', sublabel
         <div className="w-10 h-10 rounded-xl bg-gold/10 text-gold border border-gold/25 flex items-center justify-center group-hover:scale-110 group-hover:bg-gold group-hover:text-charcoal transition-all duration-300 shadow-sm">
           <Icon size={19} strokeWidth={1.8} />
         </div>
-        <span className="font-sans text-[9.5px] font-bold uppercase tracking-widest text-gold bg-gold/10 px-2.5 py-0.5 rounded-full border border-gold/20">
-          ESPACIO
+        <span className="font-sans text-[9px] sm:text-[9.5px] font-bold uppercase tracking-wider text-gold bg-gold/10 px-2.5 py-0.5 rounded-full border border-gold/20">
+          {badge || 'Bespoke'}
         </span>
       </div>
 
@@ -157,7 +158,7 @@ const mockCategories = [
     "name": "Modular Kitchen",
     "slug": "modular-kitchen",
     "description": "Precision-engineered kitchens with high-gloss acrylic, polygranite surfaces, and concealed lighting tracks.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/f5ba100a-b7b4-4c3d-abd4-09fc76c02a1a.png",
+    "heroImage": "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
     "visible": true,
     "details": {
       "tag": "Culinary Architecture",
@@ -176,29 +177,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_25.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_27.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_11.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
+      "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
       "/images/spaces/modular_kitchen/kitchen_drive_32.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_30.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_12.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_10.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_16.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
-      "/images/spaces/modular_kitchen/kitchen_drive_15.webp"
+      "/images/spaces/modular_kitchen/kitchen_drive_24.webp"
     ],
     "filters": [
       "Island Kitchen",
@@ -212,7 +202,7 @@ const mockCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "/images/spaces/master_bedroom_after.webp",
+    "heroImage": "/images/spaces/bedroom/bedroom_drive_24.webp",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
@@ -230,29 +220,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/bedroom/bedroom_drive_24.webp",
-      "/images/spaces/bedroom/bedroom_drive_12.webp",
-      "/images/spaces/bedroom/bedroom_drive_26.webp",
       "/images/spaces/bedroom/bedroom_drive_29.webp",
-      "/images/spaces/bedroom/bedroom_drive_4.webp",
-      "/images/spaces/bedroom/bedroom_drive_20.webp",
-      "/images/spaces/bedroom/bedroom_drive_15.webp",
-      "/images/spaces/bedroom/bedroom_drive_11.webp",
-      "/images/spaces/bedroom/bedroom_drive_6.webp",
-      "/images/spaces/bedroom/bedroom_drive_1.webp",
-      "/images/spaces/bedroom/bedroom_drive_3.webp",
-      "/images/spaces/bedroom/bedroom_drive_5.webp",
-      "/images/spaces/bedroom/bedroom_drive_22.webp",
-      "/images/spaces/bedroom/bedroom_drive_27.webp",
-      "/images/spaces/bedroom/bedroom_drive_9.webp",
-      "/images/spaces/bedroom/bedroom_drive_19.webp",
+      "/images/spaces/bedroom/bedroom_drive_8.webp",
       "/images/spaces/bedroom/bedroom_drive_25.webp",
-      "/images/spaces/bedroom/bedroom_drive_28.webp",
+      "/images/spaces/bedroom/bedroom_drive_11.webp",
       "/images/spaces/bedroom/bedroom_drive_2.webp",
-      "/images/spaces/bedroom/bedroom_drive_16.webp",
+      "/images/spaces/bedroom/bedroom_drive_27.webp",
+      "/images/spaces/bedroom/bedroom_drive_1.webp",
+      "/images/spaces/bedroom/bedroom_drive_28.webp",
       "/images/spaces/bedroom/bedroom_drive_13.webp",
-      "/images/spaces/bedroom/bedroom_drive_21.webp",
-      "/images/spaces/bedroom/bedroom_drive_8.webp"
+      "/images/spaces/bedroom/bedroom_drive_19.webp",
+      "/images/spaces/bedroom/bedroom_drive_3.webp",
+      "/images/spaces/bedroom/bedroom_drive_6.webp"
     ],
     "filters": [
       "Luxury Master Suite",
@@ -266,7 +245,7 @@ const mockCategories = [
     "name": "Living Room",
     "slug": "living-room",
     "description": "Editorial living zones crafted around natural light, marble accents, and low-profile custom furniture.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/fe4a004a-0264-4c56-bcec-87bf02aa6292.png",
+    "heroImage": "/images/spaces/living/living_drive_1.webp",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -284,29 +263,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/living/living_drive_1.webp",
-      "/images/spaces/living/living_drive_29.webp",
       "/images/spaces/living/living_drive_30.webp",
-      "/images/spaces/living/living_drive_6.webp",
-      "/images/spaces/living/living_drive_8.webp",
-      "/images/spaces/living/living_drive_13.webp",
-      "/images/spaces/living/living_drive_14.webp",
-      "/images/spaces/living/living_drive_7.webp",
-      "/images/spaces/living/living_drive_23.webp",
-      "/images/spaces/living/living_drive_28.webp",
-      "/images/spaces/living/living_drive_25.webp",
-      "/images/spaces/living/living_drive_20.webp",
-      "/images/spaces/living/living_drive_24.webp",
-      "/images/spaces/living/living_drive_38.webp",
-      "/images/spaces/living/living_drive_31.webp",
-      "/images/spaces/living/living_drive_21.webp",
-      "/images/spaces/living/living_drive_34.webp",
-      "/images/spaces/living/living_drive_4.webp",
-      "/images/spaces/living/living_drive_33.webp",
-      "/images/spaces/living/living_drive_36.webp",
-      "/images/spaces/living/living_drive_16.webp",
       "/images/spaces/living/living_drive_15.webp",
-      "/images/spaces/living/living_drive_3.webp"
+      "/images/spaces/living/living_drive_34.webp",
+      "/images/spaces/living/living_drive_1.webp",
+      "/images/spaces/living/living_drive_13.webp",
+      "/images/spaces/living/living_drive_16.webp",
+      "/images/spaces/living/living_drive_6.webp",
+      "/images/spaces/living/living_drive_23.webp",
+      "/images/spaces/living/living_drive_38.webp",
+      "/images/spaces/living/living_drive_29.webp",
+      "/images/spaces/living/living_drive_31.webp",
+      "/images/spaces/living/living_drive_33.webp"
     ],
     "filters": [
       "Minimalist Lounge",
@@ -320,7 +288,7 @@ const mockCategories = [
     "name": "Wardrobe Systems",
     "slug": "wardrobes",
     "description": "Bespoke floor-to-ceiling storage with velvet drawer linings, mirror panels, and hidden pull-out trays.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6cf77808-04b5-41c1-afd4-601eea5bd274.png",
+    "heroImage": "/images/spaces/wardrobes/wardrobe_drive_25.webp",
     "visible": true,
     "details": {
       "tag": "Bespoke Storage",
@@ -339,28 +307,17 @@ const mockCategories = [
     },
     "galleryImages": [
       "/images/spaces/wardrobes/wardrobe_drive_11.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_21.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_29.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_22.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_6.webp",
       "/images/spaces/wardrobes/wardrobe_drive_1.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_5.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_32.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_25.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_14.webp",
       "/images/spaces/wardrobes/wardrobe_drive_23.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_10.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_27.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_24.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_30.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_18.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_21.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_5.webp",
       "/images/spaces/wardrobes/wardrobe_drive_16.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_17.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_38.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_12.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_15.webp",
       "/images/spaces/wardrobes/wardrobe_drive_9.webp",
-      "/images/spaces/wardrobes/wardrobe_drive_7.webp"
+      "/images/spaces/wardrobes/wardrobe_drive_27.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_7.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_32.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_12.webp",
+      "/images/spaces/wardrobes/wardrobe_drive_38.webp"
     ],
     "filters": [
       "Floor-to-Ceiling Sliding",
@@ -374,7 +331,7 @@ const mockCategories = [
     "name": "Home Office",
     "slug": "home-office",
     "description": "Focus zones with sound-dampening fluted panels, ergonomic wall shelving and concealed cable management.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/453968f9-cf57-4d07-8ec8-a5556159ae46.png",
+    "heroImage": "/images/spaces/home_office/home_office_drive_25.webp",
     "visible": true,
     "details": {
       "tag": "Focus First",
@@ -392,29 +349,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/home_office/home_office_drive_33.webp",
+      "/images/spaces/home_office/home_office_drive_18.webp",
+      "/images/spaces/home_office/home_office_drive_17.webp",
+      "/images/spaces/home_office/home_office_drive_31.webp",
       "/images/spaces/home_office/home_office_drive_25.webp",
+      "/images/spaces/home_office/home_office_drive_14.webp",
+      "/images/spaces/home_office/home_office_drive_34.webp",
       "/images/spaces/home_office/home_office_drive_22.webp",
       "/images/spaces/home_office/home_office_drive_12.webp",
-      "/images/spaces/home_office/home_office_drive_32.webp",
-      "/images/spaces/home_office/home_office_drive_18.webp",
-      "/images/spaces/home_office/home_office_drive_14.webp",
-      "/images/spaces/home_office/home_office_drive_16.webp",
       "/images/spaces/home_office/home_office_drive_24.webp",
-      "/images/spaces/home_office/home_office_drive_43.webp",
-      "/images/spaces/home_office/home_office_drive_20.webp",
-      "/images/spaces/home_office/home_office_drive_19.webp",
-      "/images/spaces/home_office/home_office_drive_23.webp",
       "/images/spaces/home_office/home_office_drive_27.webp",
-      "/images/spaces/home_office/home_office_drive_42.webp",
-      "/images/spaces/home_office/home_office_drive_17.webp",
-      "/images/spaces/home_office/home_office_drive_34.webp",
-      "/images/spaces/home_office/home_office_drive_2.webp",
-      "/images/spaces/home_office/home_office_drive_1.webp",
       "/images/spaces/home_office/home_office_drive_3.webp",
-      "/images/spaces/home_office/home_office_drive_31.webp",
-      "/images/spaces/home_office/home_office_drive_35.webp",
-      "/images/spaces/home_office/home_office_drive_39.webp"
+      "/images/spaces/home_office/home_office_drive_42.webp"
     ],
     "filters": [
       "Executive Study",
@@ -428,7 +374,7 @@ const mockCategories = [
     "name": "Commercial Office",
     "slug": "commercial-office",
     "description": "Turnkey executive workspaces designed for efficient traffic flows, acoustic panels, and brand-aligned finishes.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a3aab549-4f2b-40b3-99fb-2115b13c6c12.png",
+    "heroImage": "/images/spaces/office/office_drive_20.webp",
     "visible": true,
     "details": {
       "tag": "Productivity-First",
@@ -447,28 +393,17 @@ const mockCategories = [
     },
     "galleryImages": [
       "/images/spaces/office/office_drive_20.webp",
-      "/images/spaces/office/office_drive_4.webp",
-      "/images/spaces/office/office_drive_29.webp",
-      "/images/spaces/office/office_drive_32.webp",
-      "/images/spaces/office/office_drive_33.webp",
-      "/images/spaces/office/office_drive_37.webp",
-      "/images/spaces/office/office_drive_36.webp",
-      "/images/spaces/office/office_drive_10.webp",
-      "/images/spaces/office/office_drive_6.webp",
-      "/images/spaces/office/office_drive_31.webp",
-      "/images/spaces/office/office_drive_27.webp",
-      "/images/spaces/office/office_drive_17.webp",
-      "/images/spaces/office/office_drive_19.webp",
-      "/images/spaces/office/office_drive_13.webp",
-      "/images/spaces/office/office_drive_16.webp",
       "/images/spaces/office/office_drive_7.webp",
-      "/images/spaces/office/office_drive_12.webp",
-      "/images/spaces/office/office_drive_35.webp",
-      "/images/spaces/office/office_drive_14.webp",
-      "/images/spaces/office/office_drive_23.webp",
       "/images/spaces/office/office_drive_24.webp",
-      "/images/spaces/office/office_drive_18.webp",
-      "/images/spaces/office/office_drive_34.webp"
+      "/images/spaces/office/office_drive_4.webp",
+      "/images/spaces/office/office_drive_36.webp",
+      "/images/spaces/office/office_drive_12.webp",
+      "/images/spaces/office/office_drive_29.webp",
+      "/images/spaces/office/office_drive_19.webp",
+      "/images/spaces/office/office_drive_34.webp",
+      "/images/spaces/office/office_drive_6.webp",
+      "/images/spaces/office/office_drive_13.webp",
+      "/images/spaces/office/office_drive_33.webp"
     ],
     "filters": [
       "Executive Boardroom",
@@ -482,7 +417,7 @@ const mockCategories = [
     "name": "Pooja Room",
     "slug": "pooja-room",
     "description": "Sacred sanctuaries merging ancestral stone textures with sleek back-lit marble panels and warm lighting.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9ff3ef5a-a5a0-4fc6-9b59-23803b283bc3.png",
+    "heroImage": "/images/spaces/pooja/pooja_drive_12.webp",
     "visible": true,
     "details": {
       "tag": "Sacred Spaces",
@@ -500,29 +435,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/pooja/pooja_drive_11.webp",
-      "/images/spaces/pooja/pooja_drive_12.webp",
-      "/images/spaces/pooja/pooja_drive_17.webp",
-      "/images/spaces/pooja/pooja_drive_18.webp",
-      "/images/spaces/pooja/pooja_drive_22.webp",
-      "/images/spaces/pooja/pooja_drive_13.webp",
-      "/images/spaces/pooja/pooja_drive_20.webp",
-      "/images/spaces/pooja/pooja_drive_16.webp",
-      "/images/spaces/pooja/pooja_drive_8.webp",
-      "/images/spaces/pooja/pooja_drive_15.webp",
       "/images/spaces/pooja/pooja_drive_28.webp",
-      "/images/spaces/pooja/pooja_drive_4.webp",
-      "/images/spaces/pooja/pooja_drive_25.webp",
-      "/images/spaces/pooja/pooja_drive_9.webp",
-      "/images/spaces/pooja/pooja_drive_14.webp",
-      "/images/spaces/pooja/pooja_drive_23.webp",
-      "/images/spaces/pooja/pooja_drive_6.webp",
-      "/images/spaces/pooja/pooja_drive_7.webp",
-      "/images/spaces/pooja/pooja_drive_3.webp",
-      "/images/spaces/pooja/pooja_drive_1.webp",
       "/images/spaces/pooja/pooja_drive_21.webp",
+      "/images/spaces/pooja/pooja_drive_12.webp",
+      "/images/spaces/pooja/pooja_drive_4.webp",
+      "/images/spaces/pooja/pooja_drive_20.webp",
+      "/images/spaces/pooja/pooja_drive_6.webp",
       "/images/spaces/pooja/pooja_drive_2.webp",
-      "/images/spaces/pooja/pooja_drive_10.webp"
+      "/images/spaces/pooja/pooja_drive_16.webp",
+      "/images/spaces/pooja/pooja_drive_15.webp",
+      "/images/spaces/pooja/pooja_drive_9.webp",
+      "/images/spaces/pooja/pooja_drive_3.webp",
+      "/images/spaces/pooja/pooja_drive_14.webp"
     ],
     "filters": [
       "Dedicated Mandir Room",
@@ -536,7 +460,7 @@ const mockCategories = [
     "name": "Dining Room",
     "slug": "dining-room",
     "description": "Refined gathering spaces with custom hardwood dining tables, feature pendant lighting, and plaster wall finishes.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b88b5c55-d357-46b8-b4ee-4843e9909190.png",
+    "heroImage": "/images/spaces/dining/dining_drive_27.webp",
     "visible": true,
     "details": {
       "tag": "Gather & Dine",
@@ -555,28 +479,17 @@ const mockCategories = [
     },
     "galleryImages": [
       "/images/spaces/dining/dining_drive_27.webp",
-      "/images/spaces/dining/dining_drive_42.webp",
-      "/images/spaces/dining/dining_drive_12.webp",
-      "/images/spaces/dining/dining_drive_26.webp",
-      "/images/spaces/dining/dining_drive_38.webp",
-      "/images/spaces/dining/dining_drive_40.webp",
       "/images/spaces/dining/dining_drive_15.webp",
-      "/images/spaces/dining/dining_drive_3.webp",
-      "/images/spaces/dining/dining_drive_49.webp",
-      "/images/spaces/dining/dining_drive_1.webp",
       "/images/spaces/dining/dining_drive_11.webp",
+      "/images/spaces/dining/dining_drive_42.webp",
       "/images/spaces/dining/dining_drive_35.webp",
-      "/images/spaces/dining/dining_drive_10.webp",
-      "/images/spaces/dining/dining_drive_24.webp",
-      "/images/spaces/dining/dining_drive_28.webp",
-      "/images/spaces/dining/dining_drive_2.webp",
       "/images/spaces/dining/dining_drive_44.webp",
-      "/images/spaces/dining/dining_drive_21.webp",
-      "/images/spaces/dining/dining_drive_31.webp",
-      "/images/spaces/dining/dining_drive_32.webp",
-      "/images/spaces/dining/dining_drive_9.webp",
       "/images/spaces/dining/dining_drive_36.webp",
-      "/images/spaces/dining/dining_drive_19.webp"
+      "/images/spaces/dining/dining_drive_49.webp",
+      "/images/spaces/dining/dining_drive_21.webp",
+      "/images/spaces/dining/dining_drive_19.webp",
+      "/images/spaces/dining/dining_drive_1.webp",
+      "/images/spaces/dining/dining_drive_28.webp"
     ],
     "filters": [
       "8-Seater Formal Dining",
@@ -590,7 +503,7 @@ const mockCategories = [
     "name": "TV Units",
     "slug": "tv-units",
     "description": "Custom TV walls and entertainment units that serve as the centrepiece of your living space — built-in storage, LED niches, and seamless cable management.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png",
+    "heroImage": "/images/spaces/tv_units/tv_drive_2.webp",
     "visible": true,
     "details": {
       "tag": "Focal Point",
@@ -608,29 +521,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/tv_units/tv_drive_25.webp",
-      "/images/spaces/tv_units/tv_drive_30.webp",
-      "/images/spaces/tv_units/tv_drive_15.webp",
-      "/images/spaces/tv_units/tv_drive_31.webp",
-      "/images/spaces/tv_units/tv_drive_12.webp",
-      "/images/spaces/tv_units/tv_drive_11.webp",
-      "/images/spaces/tv_units/tv_drive_4.webp",
-      "/images/spaces/tv_units/tv_drive_3.webp",
-      "/images/spaces/tv_units/tv_drive_21.webp",
-      "/images/spaces/tv_units/tv_drive_37.webp",
-      "/images/spaces/tv_units/tv_drive_20.webp",
-      "/images/spaces/tv_units/tv_drive_8.webp",
-      "/images/spaces/tv_units/tv_drive_16.webp",
-      "/images/spaces/tv_units/tv_drive_18.webp",
       "/images/spaces/tv_units/tv_drive_2.webp",
-      "/images/spaces/tv_units/tv_drive_5.webp",
-      "/images/spaces/tv_units/tv_drive_36.webp",
-      "/images/spaces/tv_units/tv_drive_6.webp",
+      "/images/spaces/tv_units/tv_drive_21.webp",
       "/images/spaces/tv_units/tv_drive_34.webp",
-      "/images/spaces/tv_units/tv_drive_13.webp",
-      "/images/spaces/tv_units/tv_drive_10.webp",
+      "/images/spaces/tv_units/tv_drive_28.webp",
+      "/images/spaces/tv_units/tv_drive_6.webp",
+      "/images/spaces/tv_units/tv_drive_16.webp",
+      "/images/spaces/tv_units/tv_drive_12.webp",
       "/images/spaces/tv_units/tv_drive_19.webp",
-      "/images/spaces/tv_units/tv_drive_28.webp"
+      "/images/spaces/tv_units/tv_drive_20.webp",
+      "/images/spaces/tv_units/tv_drive_10.webp",
+      "/images/spaces/tv_units/tv_drive_15.webp",
+      "/images/spaces/tv_units/tv_drive_36.webp"
     ],
     "filters": [
       "Full-Wall Marble Console",
@@ -644,7 +546,7 @@ const mockCategories = [
     "name": "False Ceilings",
     "slug": "false-ceilings",
     "description": "Architectural false ceilings that transform the fifth wall — gypsum coffers, cove lighting strips, and acoustic panels for every interior.",
-    "heroImage": "/images/spaces/ceiling/ceiling_drive_1.webp",
+    "heroImage": "/images/spaces/ceiling/ceiling_drive_46.webp",
     "visible": true,
     "details": {
       "tag": "Overhead Drama",
@@ -662,29 +564,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/ceiling/ceiling_drive_28.webp",
-      "/images/spaces/ceiling/ceiling_drive_17.webp",
-      "/images/spaces/ceiling/ceiling_drive_42.webp",
-      "/images/spaces/ceiling/ceiling_drive_16.webp",
-      "/images/spaces/ceiling/ceiling_drive_30.webp",
       "/images/spaces/ceiling/ceiling_drive_23.webp",
-      "/images/spaces/ceiling/ceiling_drive_41.webp",
-      "/images/spaces/ceiling/ceiling_drive_14.webp",
-      "/images/spaces/ceiling/ceiling_drive_7.webp",
-      "/images/spaces/ceiling/ceiling_drive_3.webp",
       "/images/spaces/ceiling/ceiling_drive_27.webp",
-      "/images/spaces/ceiling/ceiling_drive_19.webp",
-      "/images/spaces/ceiling/ceiling_drive_37.webp",
-      "/images/spaces/ceiling/ceiling_drive_9.webp",
-      "/images/spaces/ceiling/ceiling_drive_36.webp",
-      "/images/spaces/ceiling/ceiling_drive_38.webp",
-      "/images/spaces/ceiling/ceiling_drive_24.webp",
-      "/images/spaces/ceiling/ceiling_drive_46.webp",
-      "/images/spaces/ceiling/ceiling_drive_35.webp",
-      "/images/spaces/ceiling/ceiling_drive_1.webp",
       "/images/spaces/ceiling/ceiling_drive_11.webp",
+      "/images/spaces/ceiling/ceiling_drive_17.webp",
+      "/images/spaces/ceiling/ceiling_drive_41.webp",
       "/images/spaces/ceiling/ceiling_drive_39.webp",
-      "/images/spaces/ceiling/ceiling_drive_32.webp"
+      "/images/spaces/ceiling/ceiling_drive_42.webp",
+      "/images/spaces/ceiling/ceiling_drive_37.webp",
+      "/images/spaces/ceiling/ceiling_drive_46.webp",
+      "/images/spaces/ceiling/ceiling_drive_9.webp",
+      "/images/spaces/ceiling/ceiling_drive_35.webp",
+      "/images/spaces/ceiling/ceiling_drive_30.webp"
     ],
     "filters": [
       "Magnetic Track & Warm Coves",
@@ -698,7 +589,7 @@ const mockCategories = [
     "name": "Commercial Interiors",
     "slug": "commercial-interiors",
     "description": "Retail showrooms, clinics, salons, and brand spaces designed to communicate identity while maximising customer experience.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png",
+    "heroImage": "/images/spaces/commercial/commercial_drive_16.webp",
     "visible": true,
     "details": {
       "tag": "Brand Experience",
@@ -716,29 +607,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/commercial/commercial_drive_41.webp",
-      "/images/spaces/commercial/commercial_drive_18.webp",
-      "/images/spaces/commercial/commercial_drive_11.webp",
-      "/images/spaces/commercial/commercial_drive_29.webp",
-      "/images/spaces/commercial/commercial_drive_6.webp",
-      "/images/spaces/commercial/commercial_drive_35.webp",
-      "/images/spaces/commercial/commercial_drive_9.webp",
-      "/images/spaces/commercial/commercial_drive_14.webp",
-      "/images/spaces/commercial/commercial_drive_23.webp",
-      "/images/spaces/commercial/commercial_drive_17.webp",
-      "/images/spaces/commercial/commercial_drive_33.webp",
       "/images/spaces/commercial/commercial_drive_16.webp",
-      "/images/spaces/commercial/commercial_drive_21.webp",
-      "/images/spaces/commercial/commercial_drive_3.webp",
-      "/images/spaces/commercial/commercial_drive_22.webp",
-      "/images/spaces/commercial/commercial_drive_28.webp",
       "/images/spaces/commercial/commercial_drive_12.webp",
-      "/images/spaces/commercial/commercial_drive_10.webp",
+      "/images/spaces/commercial/commercial_drive_11.webp",
+      "/images/spaces/commercial/commercial_drive_21.webp",
+      "/images/spaces/commercial/commercial_drive_20.webp",
+      "/images/spaces/commercial/commercial_drive_3.webp",
+      "/images/spaces/commercial/commercial_drive_6.webp",
       "/images/spaces/commercial/commercial_drive_5.webp",
-      "/images/spaces/commercial/commercial_drive_26.webp",
-      "/images/spaces/commercial/commercial_drive_32.webp",
-      "/images/spaces/commercial/commercial_drive_7.webp",
-      "/images/spaces/commercial/commercial_drive_20.webp"
+      "/images/spaces/commercial/commercial_drive_22.webp",
+      "/images/spaces/commercial/commercial_drive_29.webp",
+      "/images/spaces/commercial/commercial_drive_14.webp",
+      "/images/spaces/commercial/commercial_drive_35.webp"
     ],
     "filters": [
       "Corporate Headquarters",
@@ -752,7 +632,7 @@ const mockCategories = [
     "name": "Reception Areas",
     "slug": "reception-areas",
     "description": "Striking lobby and reception spaces that communicate professionalism and set the tone for the entire building experience.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png",
+    "heroImage": "/images/spaces/reception/reception_drive_21.webp",
     "visible": true,
     "details": {
       "tag": "First Impressions",
@@ -771,28 +651,17 @@ const mockCategories = [
     },
     "galleryImages": [
       "/images/spaces/reception/reception_drive_28.webp",
-      "/images/spaces/reception/reception_drive_15.webp",
-      "/images/spaces/reception/reception_drive_34.webp",
-      "/images/spaces/reception/reception_drive_30.webp",
-      "/images/spaces/reception/reception_drive_33.webp",
       "/images/spaces/reception/reception_drive_16.webp",
-      "/images/spaces/reception/reception_drive_31.webp",
-      "/images/spaces/reception/reception_drive_21.webp",
-      "/images/spaces/reception/reception_drive_17.webp",
-      "/images/spaces/reception/reception_drive_22.webp",
       "/images/spaces/reception/reception_drive_19.webp",
-      "/images/spaces/reception/reception_drive_1.webp",
-      "/images/spaces/reception/reception_drive_24.webp",
+      "/images/spaces/reception/reception_drive_15.webp",
+      "/images/spaces/reception/reception_drive_31.webp",
+      "/images/spaces/reception/reception_drive_7.webp",
+      "/images/spaces/reception/reception_drive_34.webp",
+      "/images/spaces/reception/reception_drive_21.webp",
+      "/images/spaces/reception/reception_drive_9.webp",
       "/images/spaces/reception/reception_drive_4.webp",
       "/images/spaces/reception/reception_drive_8.webp",
-      "/images/spaces/reception/reception_drive_23.webp",
-      "/images/spaces/reception/reception_drive_7.webp",
-      "/images/spaces/reception/reception_drive_9.webp",
-      "/images/spaces/reception/reception_drive_20.webp",
-      "/images/spaces/reception/reception_drive_35.webp",
-      "/images/spaces/reception/reception_drive_6.webp",
-      "/images/spaces/reception/reception_drive_11.webp",
-      "/images/spaces/reception/reception_drive_18.webp"
+      "/images/spaces/reception/reception_drive_35.webp"
     ],
     "filters": [
       "Monolithic Stone Reception Desk",
@@ -806,7 +675,7 @@ const mockCategories = [
     "name": "Cafes & Restaurants",
     "slug": "cafes-restaurants",
     "description": "Atmospheric F&B spaces built for dwell time — bespoke seating zones, bar counters, acoustic treatment, and curated ambient lighting.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png",
+    "heroImage": "/images/spaces/cafes/cafe_drive_36.webp",
     "visible": true,
     "details": {
       "tag": "Hospitality Design",
@@ -824,29 +693,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/cafes/cafe_drive_16.webp",
-      "/images/spaces/cafes/cafe_drive_4.webp",
-      "/images/spaces/cafes/cafe_drive_41.webp",
-      "/images/spaces/cafes/cafe_drive_22.webp",
-      "/images/spaces/cafes/cafe_drive_5.webp",
-      "/images/spaces/cafes/cafe_drive_40.webp",
-      "/images/spaces/cafes/cafe_drive_30.webp",
-      "/images/spaces/cafes/cafe_drive_29.webp",
-      "/images/spaces/cafes/cafe_drive_27.webp",
-      "/images/spaces/cafes/cafe_drive_13.webp",
-      "/images/spaces/cafes/cafe_drive_14.webp",
-      "/images/spaces/cafes/cafe_drive_28.webp",
-      "/images/spaces/cafes/cafe_drive_15.webp",
-      "/images/spaces/cafes/cafe_drive_11.webp",
-      "/images/spaces/cafes/cafe_drive_32.webp",
-      "/images/spaces/cafes/cafe_drive_31.webp",
-      "/images/spaces/cafes/cafe_drive_34.webp",
-      "/images/spaces/cafes/cafe_drive_3.webp",
-      "/images/spaces/cafes/cafe_drive_37.webp",
       "/images/spaces/cafes/cafe_drive_36.webp",
-      "/images/spaces/cafes/cafe_drive_2.webp",
+      "/images/spaces/cafes/cafe_drive_13.webp",
+      "/images/spaces/cafes/cafe_drive_5.webp",
+      "/images/spaces/cafes/cafe_drive_11.webp",
+      "/images/spaces/cafes/cafe_drive_27.webp",
+      "/images/spaces/cafes/cafe_drive_22.webp",
+      "/images/spaces/cafes/cafe_drive_3.webp",
+      "/images/spaces/cafes/cafe_drive_26.webp",
       "/images/spaces/cafes/cafe_drive_24.webp",
-      "/images/spaces/cafes/cafe_drive_26.webp"
+      "/images/spaces/cafes/cafe_drive_4.webp",
+      "/images/spaces/cafes/cafe_drive_40.webp",
+      "/images/spaces/cafes/cafe_drive_16.webp"
     ],
     "filters": [
       "Specialty Coffee Bistro",
@@ -860,7 +718,7 @@ const mockCategories = [
     "name": "Foyer",
     "slug": "foyer",
     "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png",
+    "heroImage": "/images/spaces/foyer/foyer_drive_22.webp",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -878,29 +736,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/foyer/foyer_drive_23.webp",
-      "/images/spaces/foyer/foyer_drive_6.webp",
-      "/images/spaces/foyer/foyer_drive_12.webp",
-      "/images/spaces/foyer/foyer_drive_7.webp",
-      "/images/spaces/foyer/foyer_drive_5.webp",
+      "/images/spaces/foyer/foyer_drive_16.webp",
+      "/images/spaces/foyer/foyer_drive_17.webp",
       "/images/spaces/foyer/foyer_drive_4.webp",
       "/images/spaces/foyer/foyer_drive_19.webp",
+      "/images/spaces/foyer/foyer_drive_18.webp",
+      "/images/spaces/foyer/foyer_drive_24.webp",
+      "/images/spaces/foyer/foyer_drive_12.webp",
       "/images/spaces/foyer/foyer_drive_8.webp",
+      "/images/spaces/foyer/foyer_drive_7.webp",
       "/images/spaces/foyer/foyer_drive_9.webp",
       "/images/spaces/foyer/foyer_drive_26.webp",
-      "/images/spaces/foyer/foyer_drive_16.webp",
-      "/images/spaces/foyer/foyer_drive_15.webp",
-      "/images/spaces/foyer/foyer_drive_13.webp",
-      "/images/spaces/foyer/foyer_drive_30.webp",
-      "/images/spaces/foyer/foyer_drive_3.webp",
-      "/images/spaces/foyer/foyer_drive_17.webp",
-      "/images/spaces/foyer/foyer_drive_18.webp",
-      "/images/spaces/foyer/foyer_drive_22.webp",
-      "/images/spaces/foyer/foyer_drive_11.webp",
-      "/images/spaces/foyer/foyer_drive_2.webp",
-      "/images/spaces/foyer/foyer_drive_14.webp",
-      "/images/spaces/foyer/foyer_drive_24.webp",
-      "/images/spaces/foyer/foyer_drive_1.webp"
+      "/images/spaces/foyer/foyer_drive_3.webp"
     ],
     "filters": [
       "Modern Floating Console",
@@ -914,7 +761,7 @@ const mockCategories = [
     "name": "Bar",
     "slug": "bar",
     "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png",
+    "heroImage": "/images/spaces/bar/bar_drive_33.webp",
     "visible": true,
     "details": {
       "tag": "Hospitality & Entertaining",
@@ -932,29 +779,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/bar/bar_drive_4.webp",
+      "/images/spaces/bar/bar_drive_33.webp",
+      "/images/spaces/bar/bar_drive_9.webp",
       "/images/spaces/bar/bar_drive_14.webp",
-      "/images/spaces/bar/bar_drive_2.webp",
-      "/images/spaces/bar/bar_drive_11.webp",
-      "/images/spaces/bar/bar_drive_37.webp",
-      "/images/spaces/bar/bar_drive_18.webp",
       "/images/spaces/bar/bar_drive_12.webp",
+      "/images/spaces/bar/bar_drive_23.webp",
+      "/images/spaces/bar/bar_drive_13.webp",
+      "/images/spaces/bar/bar_drive_29.webp",
       "/images/spaces/bar/bar_drive_5.webp",
       "/images/spaces/bar/bar_drive_3.webp",
-      "/images/spaces/bar/bar_drive_21.webp",
-      "/images/spaces/bar/bar_drive_33.webp",
-      "/images/spaces/bar/bar_drive_23.webp",
-      "/images/spaces/bar/bar_drive_36.webp",
-      "/images/spaces/bar/bar_drive_28.webp",
-      "/images/spaces/bar/bar_drive_16.webp",
-      "/images/spaces/bar/bar_drive_7.webp",
-      "/images/spaces/bar/bar_drive_13.webp",
-      "/images/spaces/bar/bar_drive_24.webp",
-      "/images/spaces/bar/bar_drive_1.webp",
-      "/images/spaces/bar/bar_drive_31.webp",
-      "/images/spaces/bar/bar_drive_9.webp",
-      "/images/spaces/bar/bar_drive_29.webp",
-      "/images/spaces/bar/bar_drive_30.webp"
+      "/images/spaces/bar/bar_drive_11.webp",
+      "/images/spaces/bar/bar_drive_30.webp",
+      "/images/spaces/bar/bar_drive_24.webp"
     ],
     "filters": [
       "Backlit Onyx Counter",
@@ -968,7 +804,7 @@ const mockCategories = [
     "name": "Walk-in Wardrobe",
     "slug": "walk-in-wardrobe",
     "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png",
+    "heroImage": "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
     "visible": true,
     "details": {
       "tag": "Boutique Dressing Suites",
@@ -986,29 +822,18 @@ const mockCategories = [
       ]
     },
     "galleryImages": [
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_19.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_22.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_23.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_18.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_25.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
       "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_9.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_12.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_10.webp",
-      "/images/spaces/wardrobes/walk_in_wardrobe_drive_5.webp"
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
+      "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp"
     ],
     "filters": [
       "Central Island Suite",
@@ -1020,14 +845,13 @@ const mockCategories = [
   }
 ];
 
-// ── HIGH-RESOLUTION BEFORE/AFTER SCENARIOS ──────────────────────────────────
 const transformationSlides = [
   {
     title: 'Living Rooms',
     tag: 'Panoramic Sunken Lounge & Terrace',
     location: 'Financial District, Hyderabad',
     scope: 'Sunken Living Seating, Warm Cove Ceiling & Seamless Coastal Flow',
-    before: '/images/spaces/spaces_hero_before.webp',
+    before: '/images/spaces/spaces_hero_before.jpg',
     after: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png',
   },
   {
@@ -2577,18 +2401,22 @@ const WhatWeDo = () => {
       trust_stat1_suffix: s.trust_stat1_suffix || '+',
       trust_stat1_label: s.trust_stat1_label || 'Projects',
       trust_stat1_sublabel: s.trust_stat1_sublabel || 'Completed Turnkey Residences',
+      trust_stat1_badge: s.trust_stat1_badge || 'Homes Delivered',
+      trust_stat2_badge: s.trust_stat2_badge || 'Our Heritage',
+      trust_stat3_badge: s.trust_stat3_badge || 'Space Crafted',
+      trust_stat4_badge: s.trust_stat4_badge || 'Our Promise',
       trust_stat2_val: s.trust_stat2_val || '40',
       trust_stat2_suffix: s.trust_stat2_suffix || '+',
       trust_stat2_label: s.trust_stat2_label || 'Years',
       trust_stat2_sublabel: s.trust_stat2_sublabel || 'Combined Construction Legacy',
-      trust_stat3_val: s.trust_stat3_val || '50000',
+      trust_stat3_val: (s.trust_stat3_val === '50000' || !s.trust_stat3_val) ? '40000' : s.trust_stat3_val,
       trust_stat3_suffix: s.trust_stat3_suffix || '+',
       trust_stat3_label: s.trust_stat3_label || 'Sq.Ft',
       trust_stat3_sublabel: s.trust_stat3_sublabel || 'Designed & Executed',
       trust_stat4_val: s.trust_stat4_val || '10',
       trust_stat4_suffix: s.trust_stat4_suffix || '-Year',
       trust_stat4_label: s.trust_stat4_label || 'Warranty',
-      trust_stat4_sublabel: s.trust_stat4_sublabel || 'Comprehensive Hardware Warranty',
+      trust_stat4_sublabel: (s.trust_stat4_sublabel === 'Comprehensive Hardware Warranty' || !s.trust_stat4_sublabel) ? 'Comprehensive Warranty*' : s.trust_stat4_sublabel,
       space_detail_hero_visible: s.space_detail_hero_visible !== false,
       space_intro_visible: s.space_intro_visible !== false,
       space_gallery_visible: s.space_gallery_visible !== false,
@@ -2912,7 +2740,7 @@ const WhatWeDo = () => {
                   95
                 )} 
                 alt={activeCategory.name} 
-                style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                style={{ imageRendering: 'auto' }}
                 className="absolute inset-0 w-full h-full object-cover object-center opacity-85 scale-100 transition-transform duration-1000" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/95 via-bg-dark/45 to-black/25" />
@@ -2951,6 +2779,7 @@ const WhatWeDo = () => {
                   suffix={spacesSettings.trust_stat1_suffix || "+"}
                   label={spacesSettings.trust_stat1_label || "Projects"}
                   sublabel={spacesSettings.trust_stat1_sublabel || "Completed Turnkey Residences"}
+                  badge={spacesSettings.trust_stat1_badge || "Homes Delivered"}
                   index={0}
                 />
                 <AnimatedStatCard
@@ -2959,14 +2788,16 @@ const WhatWeDo = () => {
                   suffix={spacesSettings.trust_stat2_suffix || "+"}
                   label={spacesSettings.trust_stat2_label || "Years"}
                   sublabel={spacesSettings.trust_stat2_sublabel || "Combined Construction Legacy"}
+                  badge={spacesSettings.trust_stat2_badge || "Our Heritage"}
                   index={1}
                 />
                 <AnimatedStatCard
                   icon={Maximize2}
-                  value={Number(spacesSettings.trust_stat3_val) || 50000}
+                  value={Number(spacesSettings.trust_stat3_val) || 40000}
                   suffix={spacesSettings.trust_stat3_suffix || "+"}
                   label={spacesSettings.trust_stat3_label || "Sq.Ft"}
                   sublabel={spacesSettings.trust_stat3_sublabel || "Designed & Executed"}
+                  badge={spacesSettings.trust_stat3_badge || "Space Crafted"}
                   index={2}
                 />
                 <AnimatedStatCard
@@ -2974,7 +2805,8 @@ const WhatWeDo = () => {
                   value={Number(spacesSettings.trust_stat4_val) || 10}
                   suffix={spacesSettings.trust_stat4_suffix || "-Year"}
                   label={spacesSettings.trust_stat4_label || "Warranty"}
-                  sublabel={spacesSettings.trust_stat4_sublabel || "Comprehensive Hardware Warranty"}
+                  sublabel={spacesSettings.trust_stat4_sublabel || "Comprehensive Warranty*"}
+                  badge={spacesSettings.trust_stat4_badge || "Our Promise"}
                   index={3}
                 />
               </div>
@@ -3041,7 +2873,7 @@ const WhatWeDo = () => {
                           alt={`${item.title} — ${activeCategory.name}`} 
                           loading="lazy" 
                           decoding="async" 
-                          style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                          style={{ imageRendering: 'auto' }}
                           className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -3634,11 +3466,11 @@ const WhatWeDo = () => {
       {spacesHeroState.visible !== false && (
         <section
           ref={heroRef}
-          data-lenis-prevent
-          className="relative h-[90dvh] sm:h-[80vh] lg:h-[96vh] min-h-[500px] sm:min-h-[520px] lg:min-h-0 px-3 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none touch-none"
-          style={{ touchAction: 'none' }}
+          /* Touch pan enabled */
+          className="relative h-[36vh] sm:h-[50vh] lg:h-[96vh] min-h-[240px] max-h-[310px] sm:max-h-none sm:min-h-[440px] lg:min-h-0 px-2.5 sm:px-6 pt-1.5 sm:pt-2.5 lg:pt-3 pb-2 sm:pb-3 lg:px-12 z-0 select-none"
+          style={{ touchAction: 'pan-y' }}
           onMouseDown={onStart}
-          onTouchStart={onStart}
+          /* onTouchStart handled by drag thumb */
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => {
             if (!isDragging.current) setIsPaused(false);
@@ -3650,9 +3482,9 @@ const WhatWeDo = () => {
               scale: heroExitScale, 
               opacity: heroExitOpacity, 
               y: heroExitY, 
-              touchAction: 'none',
+              touchAction: 'pan-y',
             }}
-            className="relative w-full h-full overflow-hidden rounded-[18px] sm:rounded-[24px] lg:rounded-[40px] origin-top cursor-ew-resize bg-bg-card shadow-2xl touch-none select-none isolate hero-card-clipped"
+            className="relative w-full h-full overflow-hidden rounded-[18px] sm:rounded-[24px] lg:rounded-[40px] origin-top cursor-ew-resize bg-bg-card shadow-2xl select-none isolate hero-card-clipped"
           >
             {/* AFTER Image Layer */}
             <motion.div
@@ -3662,8 +3494,8 @@ const WhatWeDo = () => {
               <img
                 src={getOptimizedImageUrl(currentSlide.after || '/images/spaces/spaces_hero_after.webp', 1920, 90)}
                 alt="After Transformation"
-                style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-                className="absolute inset-0 w-full h-full object-cover object-center transform-gpu"
+                style={{ imageRendering: 'auto' }}
+                className="absolute inset-0 w-full h-full object-cover object-[center_60%] sm:object-center"
               />
             </motion.div>
 
@@ -3672,9 +3504,9 @@ const WhatWeDo = () => {
               className="absolute inset-0 pointer-events-none z-20 overflow-hidden"
               style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, WebkitClipPath: `inset(0 0 0 ${sliderPos}%)` }}
             >
-              <div className="absolute right-3.5 bottom-3.5 sm:right-6 sm:bottom-6 md:right-8 md:bottom-8">
-                <div className="inline-flex items-center px-2.5 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 whitespace-nowrap">
-                  <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-white/90">
+              <div className="absolute right-2.5 bottom-2.5 sm:right-6 sm:bottom-6 md:right-8 md:bottom-8">
+                <div className="inline-flex items-center px-2 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 whitespace-nowrap">
+                  <span className="font-sans text-[9px] sm:text-xs font-semibold tracking-wider uppercase text-white/90">
                     After
                   </span>
                 </div>
@@ -3694,17 +3526,17 @@ const WhatWeDo = () => {
                 className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
               >
                 <img
-                  src={getOptimizedImageUrl(currentSlide.before || '/images/spaces/spaces_hero_before.webp', 1920, 90)}
+                  src={getOptimizedImageUrl(currentSlide.before || '/images/spaces/spaces_hero_before.jpg', 1920, 90)}
                   alt="Before Transformation"
-                  style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-                  className="absolute inset-0 w-full h-full object-cover object-center transform-gpu"
+                  style={{ imageRendering: 'auto' }}
+                  className="absolute inset-0 w-full h-full object-cover object-[center_60%] sm:object-center"
                 />
               </motion.div>
 
               {/* BEFORE Label (Bottom Left, inside clipped layer) */}
-              <div className="absolute left-3.5 bottom-3.5 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 z-20 pointer-events-none">
-                <div className="inline-flex items-center px-2.5 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 whitespace-nowrap">
-                  <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-white/90">
+              <div className="absolute left-2.5 bottom-2.5 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 z-20 pointer-events-none">
+                <div className="inline-flex items-center px-2 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 whitespace-nowrap">
+                  <span className="font-sans text-[9px] sm:text-xs font-semibold tracking-wider uppercase text-white/90">
                     Before
                   </span>
                 </div>
@@ -3720,7 +3552,7 @@ const WhatWeDo = () => {
             {/* Slider Drag Thumb Handle (with ergonomic touch hit area) */}
             <div
               className="absolute inset-y-0 -translate-x-1/2 w-12 sm:w-16 z-30 flex items-center justify-center cursor-ew-resize select-none"
-              style={{ left: `${sliderPos}%`, touchAction: 'pan-y' }}
+              style={{ left: `${sliderPos}%`, touchAction: 'none' }}
               onMouseDown={(e) => {
                 e.stopPropagation();
                 onStart(e);
@@ -3730,8 +3562,8 @@ const WhatWeDo = () => {
                 onStart(e);
               }}
             >
-              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gold text-charcoal hover:scale-110 active:scale-95 transition-transform flex items-center justify-center shadow-[0_0_20px_rgba(201,169,110,0.6)] border-2 border-white/80 pointer-events-auto">
-                <svg className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-gold text-charcoal hover:scale-110 active:scale-95 transition-transform flex items-center justify-center shadow-[0_0_20px_rgba(201,169,110,0.6)] border-2 border-white/80 pointer-events-auto">
+                <svg className="w-3 h-3 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="8 17 3 12 8 7" />
                   <polyline points="16 7 21 12 16 17" />
                   <line x1="3" y1="12" x2="21" y2="12" />
@@ -3739,7 +3571,10 @@ const WhatWeDo = () => {
               </div>
             </div>
 
-            <ScrollDownIndicator className="scale-85 sm:scale-100 bottom-2.5 sm:bottom-4" />
+            {/* Ambient Top Vignette for Mobile Navbar Legibility */}
+            <div className="absolute inset-x-0 top-0 h-16 sm:h-20 bg-gradient-to-b from-black/50 via-black/20 to-transparent z-20 pointer-events-none rounded-t-[inherit]" />
+
+            <ScrollDownIndicator className="hidden sm:flex scale-85 sm:scale-100 bottom-2.5 sm:bottom-4" />
           </motion.div>
         </section>
       )}
@@ -3784,7 +3619,7 @@ const WhatWeDo = () => {
         const rightCategories = remainingCategories.filter((_, idx) => idx % 2 !== 0);
 
         return (
-          <section className="w-full bg-white py-12 sm:py-16 lg:py-20 px-2 sm:px-3 lg:px-4 border-y border-ink-border/20">
+          <section className="w-full bg-white pt-8 pb-12 sm:py-16 lg:py-20 px-2 sm:px-3 lg:px-4 border-y border-ink-border/20">
             <div className="max-w-[1720px] mx-auto">
               
               {/* Section Header */}
@@ -3821,7 +3656,7 @@ const WhatWeDo = () => {
                               : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
-                          style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                          style={{ imageRendering: 'auto' }}
                           className="absolute inset-0 w-full h-full object-cover object-center opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
                         <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3.5 sm:left-3.5 sm:right-3.5 flex items-end justify-between gap-2 pointer-events-none">
@@ -3830,7 +3665,7 @@ const WhatWeDo = () => {
                             style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
                           >
                             <span className="font-sans text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
-                              ESPACIO Space
+                              {cat.details?.tag || 'Signature Space'}
                             </span>
                             <h3 className="font-display text-base sm:text-lg font-bold text-white mb-0.5 sm:mb-1 group-hover:text-gold transition-colors duration-300 truncate [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                               {cat.name}
@@ -3874,7 +3709,7 @@ const WhatWeDo = () => {
                                 : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
-                            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                            style={{ imageRendering: 'auto' }}
                             className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                           />
                           <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between gap-3 pointer-events-none">
@@ -3883,7 +3718,7 @@ const WhatWeDo = () => {
                               style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
                             >
                               <span className="font-sans text-[9px] sm:text-[9.5px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
-                                ESPACIO Space
+                                {cat.details?.tag || 'Signature Space'}
                               </span>
                               <h3 className="font-display text-lg sm:text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                                 {cat.name}
@@ -3923,7 +3758,7 @@ const WhatWeDo = () => {
                               : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                             if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                           }}
-                          style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                          style={{ imageRendering: 'auto' }}
                           className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                         />
                         
@@ -3939,7 +3774,7 @@ const WhatWeDo = () => {
                             style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
                           >
                             <span className="font-sans text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
-                              ESPACIO Space
+                              {cat.details?.tag || 'Signature Space'}
                             </span>
                             <h3 className="font-display text-base sm:text-lg xl:text-xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-snug truncate [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                               {cat.name}
@@ -3978,7 +3813,7 @@ const WhatWeDo = () => {
                                 : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
-                            style={{ imageRendering: 'high-quality', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+                            style={{ imageRendering: 'auto' }}
                             className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" 
                           />
                           <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between gap-3 pointer-events-none">
@@ -3987,7 +3822,7 @@ const WhatWeDo = () => {
                               style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
                             >
                               <span className="font-sans text-[9px] sm:text-[9.5px] font-bold uppercase tracking-widest text-[#E6C687] block mb-0.5 [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
-                                ESPACIO Space
+                                {cat.details?.tag || 'Signature Space'}
                               </span>
                               <h3 className="font-display text-lg sm:text-xl xl:text-2xl font-bold text-white group-hover:text-gold transition-colors duration-300 leading-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                                 {cat.name}

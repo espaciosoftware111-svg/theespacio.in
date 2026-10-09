@@ -29,9 +29,14 @@ const Navbar = () => {
 
   useEffect(() => {
     let ticking = false;
+    let lastScrolled = false;
     const updateScroll = () => {
       const threshold = (hasDarkHero || isMaterials) ? Math.min(window.innerHeight * 0.35, 250) : 20;
-      setScrolled(window.scrollY > threshold);
+      const nextScrolled = window.scrollY > threshold;
+      if (nextScrolled !== lastScrolled) {
+        lastScrolled = nextScrolled;
+        setScrolled(nextScrolled);
+      }
       ticking = false;
     };
 
@@ -124,7 +129,7 @@ const Navbar = () => {
 
   // isNavLight = true means white bg + dark text (post-hero or non-hero pages)
   const isNavLight = scrolled || !hasDarkHero || location.search.includes('success=true');
-  const isBgTransparent = (!scrolled && (hasDarkHero || isMaterials)) || location.search.includes('success=true');
+  const isBgTransparent = (!scrolled && (hasDarkHero || (isMaterials && isMobile))) || location.search.includes('success=true');
   const isContact = location.pathname.startsWith('/contact');
   const navPosition = isContact ? 'absolute' : 'fixed';
 
@@ -150,7 +155,7 @@ const Navbar = () => {
       <nav className={`${navPosition} top-0 left-0 w-full z-50 transition-all duration-500 ${
         isBgTransparent
           ? 'bg-transparent px-5 pt-[6px] lg:px-12 lg:pt-[3px] pointer-events-none'
-          : 'bg-bg/95 backdrop-blur-md shadow-sm px-0 pt-0 pointer-events-auto'
+          : `bg-bg/95 backdrop-blur-md ${isMaterials && !scrolled ? 'shadow-none border-b border-black/[0.03]' : 'shadow-sm'} px-0 pt-0 pointer-events-auto`
       }`}
       >
         <div className={`max-w-[1440px] mx-auto pl-6 pr-10 flex items-center justify-between transition-all duration-500 pointer-events-auto ${
@@ -271,17 +276,13 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Sticky Bottom Tab Bar (D'LIFE inspired) */}
+      {/* Mobile Fixed Bottom Tab Bar (Stable height, no expansion on scroll) */}
       <div 
-        className="lg:hidden fixed bottom-0 left-0 w-full z-40 bg-bg/95 backdrop-blur-md border-t border-ink-border/30 flex items-center justify-around px-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transform-gpu will-change-transform"
+        className="lg:hidden fixed bottom-0 left-0 right-0 w-full z-40 bg-bg/95 backdrop-blur-md border-t border-ink-border/30 flex items-center justify-around px-2 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
         style={{
-          WebkitTransform: 'translate3d(0, 0, 0)',
-          transform: 'translate3d(0, 0, 0)',
-          WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden',
-          height: 'calc(62px + env(safe-area-inset-bottom, 0px))',
-          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          boxSizing: 'content-box',
+          height: '62px',
+          maxHeight: '62px',
+          boxSizing: 'border-box',
           touchAction: 'manipulation'
         }}
       >
@@ -289,9 +290,9 @@ const Navbar = () => {
         <Link 
           to="/services" 
           onClick={() => resetScroll(true, '/services')}
-          className="flex flex-col items-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 py-2"
+          className="flex flex-col items-center justify-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 h-full py-1"
         >
-          <Briefcase size={22} className="text-ink-soft" />
+          <Briefcase size={20} className="text-ink-soft" />
           <span className="font-sans text-[10px] uppercase tracking-wider font-bold text-ink-soft">Services</span>
         </Link>
 
@@ -299,9 +300,9 @@ const Navbar = () => {
         <Link 
           to="/projects" 
           onClick={() => resetScroll(true, '/projects')}
-          className="flex flex-col items-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 py-2"
+          className="flex flex-col items-center justify-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 h-full py-1"
         >
-          <FolderKanban size={22} className="text-ink-soft" />
+          <FolderKanban size={20} className="text-ink-soft" />
           <span className="font-sans text-[10px] uppercase tracking-wider font-bold text-ink-soft">Projects</span>
         </Link>
 
@@ -309,14 +310,14 @@ const Navbar = () => {
         <Link 
           to="/" 
           onClick={() => resetScroll(true, '/')}
-          className="flex flex-col items-center justify-end relative h-full flex-1 pb-2 text-ink-soft hover:text-ink transition-colors group"
+          className="flex flex-col items-center justify-center relative flex-1 h-full py-1 text-ink-soft hover:text-ink transition-colors group"
         >
           {/* House Shape Wrapper Container */}
-          <div className="w-[60px] h-[60px] absolute -top-4 left-1/2 -translate-x-1/2 transition-transform duration-300 group-hover:scale-105 group-active:scale-95 flex items-center justify-center">
+          <div className="w-[54px] h-[54px] absolute -top-4 left-1/2 -translate-x-1/2 transition-transform duration-300 group-hover:scale-105 group-active:scale-95 flex items-center justify-center pointer-events-none">
             {/* House Silhouette SVG Background */}
             <svg 
-              width="60" 
-              height="60" 
+              width="54" 
+              height="54" 
               viewBox="0 0 64 64" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
@@ -344,26 +345,30 @@ const Navbar = () => {
             </svg>
 
             {/* Logo Emblem centered inside the house body */}
-            <div className="relative z-10 scale-[0.8] translate-y-[5px]">
+            <div className="relative z-10 scale-[0.75] translate-y-[4px]">
               <Logo showText={false} scrolled={false} />
             </div>
           </div>
-          <span className="font-sans text-[10px] uppercase tracking-wider font-bold text-ink-soft group-hover:text-ink transition-colors">Home</span>
+          <span className="font-sans text-[10px] uppercase tracking-wider font-bold text-ink-soft group-hover:text-ink transition-colors mt-[20px]">Home</span>
         </Link>
 
         {/* Tab: Materials */}
         <Link 
           to="/materials" 
           onClick={() => resetScroll(true, '/materials')}
-          className="flex flex-col items-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 py-2"
+          className="flex flex-col items-center justify-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 h-full py-1"
         >
-          <Package size={22} className="text-ink-soft" />
+          <Package size={20} className="text-ink-soft" />
           <span className="font-sans text-[10px] uppercase tracking-wider font-bold text-ink-soft">Materials</span>
         </Link>
 
         {/* Tab: Menu Toggle */}
-        <button aria-label="Open navigation menu" onClick={() => setMobileMenuOpen(true)} className="flex flex-col items-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 py-2 bg-transparent border-0 cursor-pointer">
-          <Menu size={22} className="text-ink-soft" />
+        <button 
+          aria-label="Open navigation menu" 
+          onClick={() => setMobileMenuOpen(true)} 
+          className="flex flex-col items-center justify-center gap-1 text-ink-soft hover:text-ink transition-colors flex-1 h-full py-1 bg-transparent border-0 cursor-pointer"
+        >
+          <Menu size={20} className="text-ink-soft" />
           <span className="font-sans text-[10px] uppercase tracking-wider font-bold text-ink-soft">Menu</span>
         </button>
       </div>

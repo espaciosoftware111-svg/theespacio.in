@@ -8,17 +8,19 @@ import ScrollDownIndicator from '../components/common/ScrollDownIndicator';
 import GooeyInput from '../components/ui/gooey-input';
 import { getCMSData, STORAGE_KEYS, DEFAULT_PRODUCTS } from '../utils/cmsStore';
 import { getOptimizedImageUrl } from '../utils/imageOptimizer';
+import { LOCKED_MATERIAL_COLORS } from './ProductDetails';
 
 const Reveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '60px 0px -20px 0px' });
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 18 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.38, delay: Math.min(delay, 0.15), ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>
@@ -32,7 +34,7 @@ export const CANONICAL_MATERIALS = [
     title: 'Acrylic Luxe Collection',
     slug: 'acrylic-luxe-collection',
     category: 'Acrylic & Finishes',
-    badge: 'ACRYLIC & FINISHES',
+    badge: 'Acrylic Luxe Collection',
     materialCode: 'MAT-ACR-01',
     description: 'Ultra-gloss anti-scratch cabinet overlays creating glass-like modern kitchen cabinet fronts.',
     heroImage: '/images/materials/acrylic_thumb.webp',
@@ -43,7 +45,7 @@ export const CANONICAL_MATERIALS = [
     title: 'Digital Korean Poly Granite',
     slug: 'digital-korean-poly-granite',
     category: 'Natural Stone',
-    badge: 'NATURAL STONE',
+    badge: 'Digital Korean Poly Granite',
     materialCode: 'MAT-GNT-02',
     description: 'High-gloss stone surface overlays offering scratch-proof marble elevations.',
     heroImage: '/images/materials/polygranite_thumb.webp',
@@ -54,7 +56,7 @@ export const CANONICAL_MATERIALS = [
     title: 'Charcoal Panels Luxe Collection',
     slug: 'charcoal-panels-luxe',
     category: 'Acoustic Panels',
-    badge: 'ACOUSTIC PANELS',
+    badge: 'Charcoal Panels Luxe Collection',
     materialCode: 'MAT-CHR-03',
     description: 'Richly textured wall panels infused with active charcoal for unique luxury accent walls.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
@@ -65,7 +67,7 @@ export const CANONICAL_MATERIALS = [
     title: 'Fluted PVC Luxe Collection',
     slug: 'fluted-pvc-luxe',
     category: 'Architectural Panels',
-    badge: 'ARCHITECTURAL PANELS',
+    badge: 'Fluted PVC Luxe Collection',
     materialCode: 'MAT-PVC-04',
     description: 'Premium fluted PVC wall panels with rich relief lines and contemporary finishes.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
@@ -75,7 +77,7 @@ export const CANONICAL_MATERIALS = [
     title: 'LVT Luxe Flooring',
     slug: 'lvt-luxe-flooring',
     category: 'Wood & Flooring',
-    badge: 'WOOD & FLOORING',
+    badge: 'LVT Luxe Flooring',
     materialCode: 'MAT-FLR-05',
     description: 'Premium luxury vinyl flooring offering durability with authentic wood and stone textures.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
@@ -85,7 +87,7 @@ export const CANONICAL_MATERIALS = [
     title: 'Fluted Acrylic Luxe Collection',
     slug: 'fluted-acrylic-luxe',
     category: 'Acrylic & Finishes',
-    badge: 'ACRYLIC & FINISHES',
+    badge: 'Fluted Acrylic Luxe Collection',
     materialCode: 'MAT-ACR-06',
     description: 'Dynamic fluted acrylic panels creating sophisticated shadow play for luxury interiors.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
@@ -95,7 +97,7 @@ export const CANONICAL_MATERIALS = [
     title: 'PVC Luxe Collection',
     slug: 'pvc-luxe-collection',
     category: 'Architectural Panels',
-    badge: 'ARCHITECTURAL PANELS',
+    badge: 'PVC Luxe Collection',
     materialCode: 'MAT-PVC-07',
     description: 'Lightweight, versatile PVC panels for ceiling and wall applications with rich wood and textured finishes.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
@@ -105,20 +107,10 @@ export const CANONICAL_MATERIALS = [
     title: 'WPC Luxe Collection',
     slug: 'wpc-luxe-collection',
     category: 'Composite Panels',
-    badge: 'COMPOSITE PANELS',
+    badge: 'WPC Luxe Collection',
     materialCode: 'MAT-WPC-08',
     description: 'Co-extruded composite panels offering absolute water resistance and rich wood grain textures.',
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
-  },
-  {
-    order: 9,
-    title: 'Espacio Charcoal Panels Luxe Collection (1)',
-    slug: 'charcoal-panels-luxe-1',
-    category: 'Acoustic Panels',
-    badge: 'ACOUSTIC PANELS',
-    materialCode: 'MAT-CHR-09',
-    description: 'Additional selection of richly textured wall panels infused with active charcoal.',
-    heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791205613/additional_img_dgrs53.png',
   }
 ];
 
@@ -144,7 +136,6 @@ const Products = () => {
     offset: ['start start', 'end start'],
   });
   const desktopBgY = useTransform(scrollYProgress, [0, 1], ['0px', '-20px']);
-  const desktopBgScale = useTransform(scrollYProgress, [0, 1], [1.0, 0.99]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -205,7 +196,6 @@ const Products = () => {
       'fluted-acrylic-luxe',
       'pvc-luxe-collection',
       'wpc-luxe-collection',
-      'charcoal-panels-luxe-1',
     ]);
 
     const liveList = Array.isArray(products) && products.length > 0 ? products : [];
@@ -213,7 +203,7 @@ const Products = () => {
       const match = liveList.find(
         (p) => p && (p.slug === canon.slug || p.title === canon.title)
       );
-      if (!match) return canon;
+      if (!match) return { ...canon, badge: canon.title };
       return {
         ...canon,
         title: match.title || canon.title,
@@ -221,8 +211,9 @@ const Products = () => {
         // Lock heroImage for featured materials so old DB/localStorage values never win
         heroImage: LOCKED_HERO_SLUGS.has(canon.slug) ? canon.heroImage : (match.heroImage || canon.heroImage),
         category: match.category || canon.category,
-        badge: canon.badge, // Force canon badge so section names show up instead of "Premium Finish"
+        badge: match.title || canon.title, // Synchronize badge with title so both names match
         materialCode: match.materialCode || canon.materialCode,
+        colors: LOCKED_MATERIAL_COLORS[canon.slug] || match.colors || canon.colors,
       };
     });
   }, [products]);
@@ -264,13 +255,13 @@ const Products = () => {
         url="/materials"
       />
 
-      {/* Hero Landing Section: 96% Screen Size Hero Banner */}
+      {/* Hero Landing Section */}
       <section 
         ref={heroRef} 
-        className="relative w-full z-0 h-[96dvh] sm:h-[96vh] min-h-[500px] sm:min-h-[540px] px-2 sm:px-4 lg:px-[2%] pt-1 sm:pt-1.5 lg:pt-1.5 pb-1 sm:pb-1.5"
+        className="relative w-full z-0 h-[96dvh] sm:h-[96vh] md:h-auto min-h-[520px] sm:min-h-[580px] md:min-h-0 px-2 sm:px-4 lg:px-[2%] pt-1 sm:pt-1.5 md:pt-[78px] lg:pt-[84px] pb-1 sm:pb-2 lg:pb-3"
       >
         <div 
-          className="relative w-full h-full overflow-hidden rounded-[20px] sm:rounded-[24px] lg:rounded-[36px] bg-[#ded4c5] shadow-lg border border-black/5 hero-card-clipped isolate flex items-center justify-center"
+          className="relative w-full h-full md:h-auto md:aspect-[1672/940] overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[44px] lg:rounded-[52px] bg-[#ded4c5] shadow-lg border border-black/5 hero-card-clipped isolate flex items-center justify-center"
         >
           {/* Mobile View: Autoplay Cinematic Video (strictly on mobile) */}
           <div className="md:hidden w-full h-full relative overflow-hidden">
@@ -302,19 +293,19 @@ const Products = () => {
             <ScrollDownIndicator light={false} />
           </div>
 
-          {/* Desktop View: 90% Screen Size Showcase Graphic (Full Visibility without Bottom Clipping) */}
-          <div className="hidden md:flex w-full h-full items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#ded4c5] via-[#ede3d4] to-[#f2ebe0]">
+          {/* Desktop View: Full-Fidelity Showcase Graphic in Grid with Total Width & Total Height */}
+          <div className="hidden md:grid w-full h-full place-items-center relative overflow-hidden bg-gradient-to-b from-[#ded4c5] via-[#ede3d4] to-[#f2ebe0]">
             <motion.div
-              style={{ y: desktopBgY, scale: desktopBgScale }}
-              className="w-full h-full flex items-center justify-center will-change-transform origin-center pb-3 sm:pb-4 lg:pb-6 px-1 sm:px-2"
+              style={{ y: desktopBgY }}
+              className="w-full h-full flex items-center justify-center will-change-transform origin-center"
             >
               <img
                 src={heroImageUrl}
                 alt="Materials That Shape Home — ESPACIO"
-                className="w-full h-full object-cover object-[center_88%] select-none pointer-events-none"
+                className="w-full h-full object-cover select-none pointer-events-none"
                 loading="eager"
                 fetchPriority="high"
-                style={{ imageRendering: 'high-quality' }}
+                style={{ imageRendering: 'auto' }}
               />
             </motion.div>
           </div>
@@ -368,14 +359,14 @@ const Products = () => {
                         e.target.src = fallback;
                       }
                     }}
-                    className="w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
 
                   {/* Category Badge Pill on Top-Left (Gold Luxury Pill) */}
-                  {product.badge && (
+                  {(product.title || product.badge) && (
                     <div className="absolute top-2.5 left-2.5 z-10">
                       <span className="px-3 py-1 rounded-full bg-gold text-charcoal backdrop-blur-md text-[9px] font-sans font-bold uppercase tracking-wider border border-gold/40 shadow-xs">
-                        {product.badge}
+                        {product.title || product.badge}
                       </span>
                     </div>
                   )}
@@ -391,6 +382,25 @@ const Products = () => {
                       {product.description}
                     </p>
                   </div>
+
+                  {/* Curated Color Swatches Preview */}
+                  {Array.isArray(product.colors || LOCKED_MATERIAL_COLORS[product.slug]) && (
+                    <div className="pt-3 flex items-center gap-1.5">
+                      {(product.colors || LOCKED_MATERIAL_COLORS[product.slug]).slice(0, 5).map((col, cIdx) => (
+                        <div
+                          key={cIdx}
+                          className="w-3.5 h-3.5 rounded-full border border-black/15 shadow-xs"
+                          style={{ backgroundColor: col.hex }}
+                          title={col.name}
+                        />
+                      ))}
+                      {(product.colors || LOCKED_MATERIAL_COLORS[product.slug]).length > 5 && (
+                        <span className="font-sans text-[10px] text-ink-soft font-semibold pl-0.5">
+                          +{(product.colors || LOCKED_MATERIAL_COLORS[product.slug]).length - 5}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}

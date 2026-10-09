@@ -12,20 +12,20 @@ import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
 const Reveal = ({ children, delay = 0, className = '', direction = 'up' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const inView = useInView(ref, { once: true, margin: '50px 0px -20px 0px' });
   const getInitial = () => {
-    if (direction === 'left') return { opacity: 0, x: -35 };
-    if (direction === 'right') return { opacity: 0, x: 35 };
-    return { opacity: 0, y: 24 };
+    if (direction === 'left') return { opacity: 0, x: -24 };
+    if (direction === 'right') return { opacity: 0, x: 24 };
+    return { opacity: 0, y: 18 };
   };
   return (
     <motion.div ref={ref} className={className}
       initial={getInitial()} 
       animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ 
-        duration: 0.7,
+        duration: 0.38,
         ease: [0.16, 1, 0.3, 1],
-        delay: Math.min(delay, 0.2)
+        delay: Math.min(delay, 0.15)
       }}
       style={{ willChange: 'opacity, transform' }}
     >
@@ -325,7 +325,7 @@ const Services = () => {
                         alt={s.title}
                         loading="lazy"
                         decoding="async"
-                        style={{ imageRendering: 'high-quality' }}
+                        style={{ imageRendering: 'auto' }}
                         className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
                       />
                     </picture>

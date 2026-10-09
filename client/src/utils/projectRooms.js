@@ -497,26 +497,105 @@ const EXACT_PROJECT_ROOMS = {
 
   // 6. The Dusk Lounge (Kondapur Minimalist 2BHK)
   'kondapur-minimalist-2bhk': {
-    '6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png': 'Contemporary Living Lounge & Media Wall',
-    '6f7bce1d-d140-45ee-a08b-ecb09433bdb7': 'Contemporary Living Lounge & Media Wall',
-    'ad891782-7131-4b54-8b7d-73dda3d5eea0.png': 'Charcoal Gray Modular Kitchen & Island',
-    'ad891782-7131-4b54-8b7d-73dda3d5eea0': 'Charcoal Gray Modular Kitchen & Island',
-    'c951f195-af50-4d89-8ad7-f1daed330a75.png': 'Dining Area & Custom Crockery Unit',
-    'c951f195-af50-4d89-8ad7-f1daed330a75': 'Dining Area & Custom Crockery Unit',
-    '71b2e914-cfd2-49fc-9d5a-47faa39b4bdd': 'Master Bedroom Suite & Acoustic Wall',
-    '71b2e914-cfd2-49fc-9d5a-47faa39b4bdd.png': 'Master Bedroom Suite & Acoustic Wall',
-    'b438c830-9b61-45c5-96b5-d2ba352b7fc5.png': 'Seamless Floor-to-Ceiling Wardrobes',
-    'b438c830-9b61-45c5-96b5-d2ba352b7fc5': 'Seamless Floor-to-Ceiling Wardrobes',
-    '773a222b-ce2f-4f40-a2d6-f2e91199aec5.png': 'Minimalist Guest Bedroom & Study Desk',
-    '773a222b-ce2f-4f40-a2d6-f2e91199aec5': 'Minimalist Guest Bedroom & Study Desk',
-    '429bec7e-a053-4465-a821-74744ea494ae': 'Entrance Foyer & Shoe Console',
-    '429bec7e-a053-4465-a821-74744ea494ae.png': 'Entrance Foyer & Shoe Console',
-    'c90d8da8-3e5d-42aa-8a2e-f9cfa28af410.png': 'Balcony Deck & Ambient Lighting',
-    'c90d8da8-3e5d-42aa-8a2e-f9cfa28af410': 'Balcony Deck & Ambient Lighting'
+    // 1. Master Bedroom Suite (Bed, nightstands, paneling, halo light)
+    'b438c830-9b61-45c5-96b5-d2ba352b7fc5.png': 'Master Bedroom Suite & Accent Panelling',
+    'b438c830-9b61-45c5-96b5-d2ba352b7fc5': 'Master Bedroom Suite & Accent Panelling',
+    // 2. Wardrobes (Tinted glass wardrobe with gold handles)
+    '773a222b-ce2f-4f40-a2d6-f2e91199aec5.png': 'Seamless Floor-to-Ceiling Wardrobes',
+    '773a222b-ce2f-4f40-a2d6-f2e91199aec5': 'Seamless Floor-to-Ceiling Wardrobes',
+    // 3. Kitchen (Modular kitchen, blinds, grocery bag, open illuminated pantry shelf)
+    '6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png': 'Modular Kitchen & Illuminated Pantry',
+    '6f7bce1d-d140-45ee-a08b-ecb09433bdb7': 'Modular Kitchen & Illuminated Pantry',
+    // 4. Hall / TV Media Wall (Bookmatched marble wall, TV, console)
+    '429bec7e-a053-4465-a821-74744ea494ae': 'Contemporary Living Lounge & Media Wall',
+    '429bec7e-a053-4465-a821-74744ea494ae.png': 'Contemporary Living Lounge & Media Wall',
+    // 5. Hall / Living Lounge Seating (Terracotta sofa, armchair, coffee table, panoramic windows)
+    '71b2e914-cfd2-49fc-9d5a-47faa39b4bdd': 'Formal Living Lounge & Terracotta Seating',
+    '71b2e914-cfd2-49fc-9d5a-47faa39b4bdd.png': 'Formal Living Lounge & Terracotta Seating',
+    // 6. Hall / Living Room Panorama (Wide perspective of living room showing dining transition)
+    'c951f195-af50-4d89-8ad7-f1daed330a75.png': 'Living Room Panorama & Open-Plan Transition',
+    'c951f195-af50-4d89-8ad7-f1daed330a75': 'Living Room Panorama & Open-Plan Transition',
+    // 7. Dining Area (Dining table, 2-tone chairs, linear brass chandelier, illuminated ring sculpture)
+    'ad891782-7131-4b54-8b7d-73dda3d5eea0.png': 'Dining Suite & Ambient Ring Wall Feature',
+    'ad891782-7131-4b54-8b7d-73dda3d5eea0': 'Dining Suite & Ambient Ring Wall Feature',
+    // 8. Dining Pavilion (Centered perspective of dining area with ceiling cove lighting)
+    'c90d8da8-3e5d-42aa-8a2e-f9cfa28af410.png': 'Dining Pavilion & Architectural Lighting',
+    'c90d8da8-3e5d-42aa-8a2e-f9cfa28af410': 'Dining Pavilion & Architectural Lighting'
   },
 
   // 7. Gachibowli Minimalist Beige 2BHK
   'gachibowli-minimalist-beige-2bhk': {
+    // ── 1. Master Bedroom Suite ──
+    'koteswara_gallery_4.webp': 'Master Bedroom Suite & Upholstered Bed',
+    'koteswara_gallery_4': 'Master Bedroom Suite & Upholstered Bed',
+    'koteswara_gallery_5.webp': 'Master Bedroom Suite & Balcony Skyline Vistas',
+    'koteswara_gallery_5': 'Master Bedroom Suite & Balcony Skyline Vistas',
+    'koteswara_gallery_7.webp': 'Master Bedroom Balcony Window & Vanity Suite',
+    'koteswara_gallery_7': 'Master Bedroom Balcony Window & Vanity Suite',
+    'koteswara_gallery_6.webp': 'Master Bedroom Integrated Vanity Perspective',
+    'koteswara_gallery_6': 'Master Bedroom Integrated Vanity Perspective',
+    'koteswara_gallery_2.webp': 'Master Bedroom Pill Dressing Mirror & Vanity',
+    'koteswara_gallery_2': 'Master Bedroom Pill Dressing Mirror & Vanity',
+    'koteswara_gallery_3.webp': 'Master Suite Wardrobe with Open Display Niche',
+    'koteswara_gallery_3': 'Master Suite Wardrobe with Open Display Niche',
+    'koteswara_gallery_1.webp': 'Master Bedroom Wood-Grain Wardrobe',
+    'koteswara_gallery_1': 'Master Bedroom Wood-Grain Wardrobe',
+
+    // ── 2. Guest Bedroom Suite ──
+    'koteswara_gallery_8.webp': 'Guest Bedroom Suite & Balcony Garden Nook',
+    'koteswara_gallery_8': 'Guest Bedroom Suite & Balcony Garden Nook',
+    'koteswara_gallery_9.webp': 'Guest Bedroom Headboard & Artwork Elevation',
+    'koteswara_gallery_9': 'Guest Bedroom Headboard & Artwork Elevation',
+    'koteswara_gallery_10.webp': 'Guest Bedroom Full Perspective & Geometric Rug',
+    'koteswara_gallery_10': 'Guest Bedroom Full Perspective & Geometric Rug',
+    'koteswara_gallery_11.webp': 'Guest Bedroom Wardrobe & Vanity Transition',
+    'koteswara_gallery_11': 'Guest Bedroom Wardrobe & Vanity Transition',
+    'koteswara_gallery_12.webp': 'Guest Bedroom Dressing Vanity & Balcony Vistas',
+    'koteswara_gallery_12': 'Guest Bedroom Dressing Vanity & Balcony Vistas',
+
+    // ── 3. Modular Kitchen ──
+    'koteswara_gallery_13.webp': 'L-Shaped Modular Kitchen & Moroccan Backsplash Tiles',
+    'koteswara_gallery_13': 'L-Shaped Modular Kitchen & Moroccan Backsplash Tiles',
+    'koteswara_gallery_16.webp': 'Modular Kitchen Cooktop & Washbasin Niche',
+    'koteswara_gallery_16': 'Modular Kitchen Cooktop & Washbasin Niche',
+    'koteswara_gallery_22.webp': 'Modular Kitchen & Rolling Shutter Pantry Unit',
+    'koteswara_gallery_22': 'Modular Kitchen & Rolling Shutter Pantry Unit',
+
+    // ── 4. Hall / Living Lounge ──
+    'koteswara_gallery_26.webp': 'Grand Living Lounge & Panoramic Windows',
+    'koteswara_gallery_26': 'Grand Living Lounge & Panoramic Windows',
+    'koteswara_gallery_27.webp': 'Living Hall & TV Wall Full Perspective',
+    'koteswara_gallery_27': 'Living Hall & TV Wall Full Perspective',
+    'koteswara_gallery_28.webp': 'Living Lounge Seating & Media Wall Perspective',
+    'koteswara_gallery_28': 'Living Lounge Seating & Media Wall Perspective',
+    'koteswara_gallery_23.webp': 'Minimalist Beige Living Lounge & Seating',
+    'koteswara_gallery_23': 'Minimalist Beige Living Lounge & Seating',
+    'koteswara_gallery_24.webp': 'Living Room Panorama & Natural Light Vistas',
+    'koteswara_gallery_24': 'Living Room Panorama & Natural Light Vistas',
+    'koteswara_gallery_25.webp': 'Living Room Sofa & Wainscot Wall Elevation',
+    'koteswara_gallery_25': 'Living Room Sofa & Wainscot Wall Elevation',
+    'koteswara_gallery_14.webp': 'Contemporary TV Media Wall & Fluted Feature Panelling',
+    'koteswara_gallery_14': 'Contemporary TV Media Wall & Fluted Feature Panelling',
+    'koteswara_gallery_18.webp': 'TV Media Unit & Floating Console Detail',
+    'koteswara_gallery_18': 'TV Media Unit & Floating Console Detail',
+
+    // ── 5. Remaining (Dining & Entrance Foyer) ──
+    'koteswara_gallery_21.webp': 'Formal Dining Suite & Linear Chandelier',
+    'koteswara_gallery_21': 'Formal Dining Suite & Linear Chandelier',
+    'koteswara_gallery_17.webp': 'Dining Suite & Sculptural Seating',
+    'koteswara_gallery_17': 'Dining Suite & Sculptural Seating',
+    'koteswara_gallery_20.webp': 'Dining Area & Open Living Transition',
+    'koteswara_gallery_20': 'Dining Area & Open Living Transition',
+    'koteswara_gallery_15.webp': 'Entrance Foyer & Gold Ribbon Console',
+    'koteswara_gallery_15': 'Entrance Foyer & Gold Ribbon Console',
+    'koteswara_gallery_19.webp': 'Entrance Foyer Elevation & Wall Panelling',
+    'koteswara_gallery_19': 'Entrance Foyer Elevation & Wall Panelling',
+
+    // Legacy Cloudinary & Before/After
+    'koteswara_after.webp': 'Minimalist Beige Living Lounge',
+    'koteswara_after': 'Minimalist Beige Living Lounge',
+    'koteswara_before.webp': 'Raw Site Shell & Structural Framing',
+    'koteswara_before': 'Raw Site Shell & Structural Framing',
     'b1bed362-eace-4f68-afde-49b823bc5480.png': 'Minimalist Beige Living Lounge',
     'b1bed362-eace-4f68-afde-49b823bc5480': 'Minimalist Beige Living Lounge',
     '26395709-3031-4b0e-974d-ec96241c7e27.png': 'Living Room & TV Media Wall',
@@ -811,81 +890,95 @@ const EXACT_PROJECT_ROOMS = {
 
   // 10. The Restful Home (Tellapur 2BHK - Dinesh & Sarvani)
   'the-restful-home-tellapur': {
-    'exseh5lm0mz9sfni4lkv.png': 'Living Lounge & Walnut Partition',
-    'exseh5lm0mz9sfni4lkv': 'Living Lounge & Walnut Partition',
-    'modern_living_space_walnut_partition': 'Living Lounge & Walnut Partition',
-    'xivp043sbxsjdntmyeji.png': 'Slatted Dining Partition & Ambient Marble',
-    'xivp043sbxsjdntmyeji': 'Slatted Dining Partition & Ambient Marble',
-    'walnut_slats_and_marble_glow': 'Slatted Dining Partition & Ambient Marble',
-    'flfizkibqnyv1ktude6t.png': 'Open-Concept Living & Kitchen Transition',
-    'flfizkibqnyv1ktude6t': 'Open-Concept Living & Kitchen Transition',
-    'polished_modern_living_kitchen': 'Open-Concept Living & Kitchen Transition',
-    'dntcpbg0dg78vu5hktwt.png': 'Bright L-Shaped Modular Kitchen',
-    'dntcpbg0dg78vu5hktwt': 'Bright L-Shaped Modular Kitchen',
-    'bright_modern_l_shaped_kitchen': 'Bright L-Shaped Modular Kitchen',
-    'xehnw42t41tcxvtc60ml.png': 'Modular Kitchen Cabinetry with Warm Wood Accents',
-    'xehnw42t41tcxvtc60ml': 'Modular Kitchen Cabinetry with Warm Wood Accents',
-    'modern_kitchen_wood_accents': 'Modular Kitchen Cabinetry with Warm Wood Accents',
-    'wazorsezkcaayd5bmrc1.png': 'Teal & Marble Accent Galley Kitchen',
-    'wazorsezkcaayd5bmrc1': 'Teal & Marble Accent Galley Kitchen',
-    'modern_teal_marble_kitchen': 'Teal & Marble Accent Galley Kitchen',
-    's6vvkmvqz8h2aqbtwcam.png': 'Warmly Lit Modern Home Shrine',
-    's6vvkmvqz8h2aqbtwcam': 'Warmly Lit Modern Home Shrine',
-    'warmly_lit_modern_home_shrine': 'Warmly Lit Modern Home Shrine',
-    'zmsezgqkrwiqdgyno9oi.png': 'Pooja Mandir with Glowing Om Feature',
-    'zmsezgqkrwiqdgyno9oi': 'Pooja Mandir with Glowing Om Feature',
-    'ornate_white_panels_glowing_om': 'Pooja Mandir with Glowing Om Feature',
-    'c3z7b0m8xrq56mvdq7b4.png': 'Integrated Pooja Mandir & Kitchen',
-    'c3z7b0m8xrq56mvdq7b4': 'Integrated Pooja Mandir & Kitchen',
-    'hexutd4jmmolynp91e28.png': 'Integrated Pooja Mandir & Kitchen',
-    'hexutd4jmmolynp91e28': 'Integrated Pooja Mandir & Kitchen',
-    'modern_pooja_cabinet_kitchen': 'Integrated Pooja Mandir & Kitchen',
-    'gl4os8hhxhsy9vke0cx1.png': 'Master Bedroom Suite & Geometric Lighting',
-    'gl4os8hhxhsy9vke0cx1': 'Master Bedroom Suite & Geometric Lighting',
-    'lavender_room_geometric_lighting': 'Master Bedroom Suite & Geometric Lighting',
-    'ixrrcgxxhf1pytdjjhga.png': 'Master Bedroom Built-In Wardrobes',
-    'ixrrcgxxhf1pytdjjhga': 'Master Bedroom Built-In Wardrobes',
-    'lavender_wall_sleek_wardrobe': 'Master Bedroom Built-In Wardrobes',
-    'jmbconw0wz7rrzqqaiub.png': 'Minimalist Greige Full-Height Wardrobes',
-    'jmbconw0wz7rrzqqaiub': 'Minimalist Greige Full-Height Wardrobes',
-    'minimalist_greige_wardrobe': 'Minimalist Greige Full-Height Wardrobes',
-    'b9negjore9wp71j24l8t.png': 'Kids / Guest Bedroom & Study Storage',
-    'b9negjore9wp71j24l8t': 'Kids / Guest Bedroom & Study Storage',
-    'modern_minimalist_room_storage': 'Kids / Guest Bedroom & Study Storage'
+    // ── Bedrooms ──
+    'gl4os8hhxhsy9vke0cx1.png': 'Master Bedroom Suite & Geometric Profile Lighting',
+    'gl4os8hhxhsy9vke0cx1': 'Master Bedroom Suite & Geometric Profile Lighting',
+    'lavender_room_geometric_lighting': 'Master Bedroom Suite & Geometric Profile Lighting',
+    'ixrrcgxxhf1pytdjjhga.png': 'Master Bedroom Sliding Wardrobes & Open Shelving',
+    'ixrrcgxxhf1pytdjjhga': 'Master Bedroom Sliding Wardrobes & Open Shelving',
+    'lavender_wall_sleek_wardrobe': 'Master Bedroom Sliding Wardrobes & Open Shelving',
+    'jmbconw0wz7rrzqqaiub.png': 'Guest Bedroom Greige & Slate Sliding Wardrobes',
+    'jmbconw0wz7rrzqqaiub': 'Guest Bedroom Greige & Slate Sliding Wardrobes',
+    'minimalist_greige_wardrobe': 'Guest Bedroom Greige & Slate Sliding Wardrobes',
+    'b9negjore9wp71j24l8t.png': 'Guest Bedroom Suite & Integrated Study Workstation',
+    'b9negjore9wp71j24l8t': 'Guest Bedroom Suite & Integrated Study Workstation',
+    'modern_minimalist_room_storage': 'Guest Bedroom Suite & Integrated Study Workstation',
+
+    // ── Hall / Living Lounge ──
+    'exseh5lm0mz9sfni4lkv.png': 'Living Hall Lounge & Architectural Walnut Partition',
+    'exseh5lm0mz9sfni4lkv': 'Living Hall Lounge & Architectural Walnut Partition',
+    'modern_living_space_walnut_partition': 'Living Hall Lounge & Architectural Walnut Partition',
+    'flfizkibqnyv1ktude6t.png': 'Living Room Fluted TV Feature Wall & Backlit Marble',
+    'flfizkibqnyv1ktude6t': 'Living Room Fluted TV Feature Wall & Backlit Marble',
+    'polished_modern_living_kitchen': 'Living Room Fluted TV Feature Wall & Backlit Marble',
+    'xivp043sbxsjdntmyeji.png': 'Living Hall TV Unit & Curved Calacatta Marble Backlit Panel',
+    'xivp043sbxsjdntmyeji': 'Living Hall TV Unit & Curved Calacatta Marble Backlit Panel',
+    'walnut_slats_and_marble_glow': 'Living Hall TV Unit & Curved Calacatta Marble Backlit Panel',
+
+    // ── Modular Kitchen & Dining Crockery ──
+    'dntcpbg0dg78vu5hktwt.png': 'Modular Kitchen Cooktop & Tinted Glass Cabinets',
+    'dntcpbg0dg78vu5hktwt': 'Modular Kitchen Cooktop & Tinted Glass Cabinets',
+    'bright_modern_l_shaped_kitchen': 'Modular Kitchen Cooktop & Tinted Glass Cabinets',
+    'wazorsezkcaayd5bmrc1.png': 'Modular Kitchen Galley Counter & Tall Pantry Unit',
+    'wazorsezkcaayd5bmrc1': 'Modular Kitchen Galley Counter & Tall Pantry Unit',
+    'modern_teal_marble_kitchen': 'Modular Kitchen Galley Counter & Tall Pantry Unit',
+    'xehnw42t41tcxvtc60ml.png': 'Dining Area Crockery Console & Gold Mosaic Backsplash',
+    'xehnw42t41tcxvtc60ml': 'Dining Area Crockery Console & Gold Mosaic Backsplash',
+    'modern_kitchen_wood_accents': 'Dining Area Crockery Console & Gold Mosaic Backsplash',
+
+    // ── Pooja Mandir ──
+    's6vvkmvqz8h2aqbtwcam.png': 'Pooja Mandir with Glowing Ganesha Om & Jali Doors',
+    's6vvkmvqz8h2aqbtwcam': 'Pooja Mandir with Glowing Ganesha Om & Jali Doors',
+    'warmly_lit_modern_home_shrine': 'Pooja Mandir with Glowing Ganesha Om & Jali Doors',
+    'zmsezgqkrwiqdgyno9oi.png': 'Pooja Mandir Intricate Jali Shutters & Brass Handle',
+    'zmsezgqkrwiqdgyno9oi': 'Pooja Mandir Intricate Jali Shutters & Brass Handle',
+    'ornate_white_panels_glowing_om': 'Pooja Mandir Intricate Jali Shutters & Brass Handle',
+    'c3z7b0m8xrq56mvdq7b4.png': 'Integrated Pooja Mandir & Kitchen Transition',
+    'c3z7b0m8xrq56mvdq7b4': 'Integrated Pooja Mandir & Kitchen Transition',
+    'hexutd4jmmolynp91e28.png': 'Integrated Pooja Mandir & Kitchen Transition',
+    'hexutd4jmmolynp91e28': 'Integrated Pooja Mandir & Kitchen Transition',
+    'modern_pooja_cabinet_kitchen': 'Integrated Pooja Mandir & Kitchen Transition'
   },
 
   // 11. Casa Alta Residence (Kali Mandir 3BHK - Prakash)
   'casa-alta-residence-kali-mandir': {
-    'ues8rn6ddd052rkmlesl.png': 'Grand Living Lounge & Fluted Feature Wall',
-    'ues8rn6ddd052rkmlesl': 'Grand Living Lounge & Fluted Feature Wall',
-    'living_room_fluted_feature_wall': 'Grand Living Lounge & Fluted Feature Wall',
-    'gn1gylu6rnd1jvpobceu.png': 'Modern Wood-Panelled Entrance Porch',
-    'gn1gylu6rnd1jvpobceu': 'Modern Wood-Panelled Entrance Porch',
-    'modern_wood_panelled_entrance_porch': 'Modern Wood-Panelled Entrance Porch',
-    'duhzjiu5foyimwshxgqx.png': 'Warm Foyer & Architectural Hallway',
-    'duhzjiu5foyimwshxgqx': 'Warm Foyer & Architectural Hallway',
-    'warm_modern_hallway_festive_garlands': 'Warm Foyer & Architectural Hallway',
-    'z54sqdn0rxz5uvvz6vde.png': 'Grain-Matched Veneer Dining Suite',
-    'z54sqdn0rxz5uvvz6vde': 'Grain-Matched Veneer Dining Suite',
-    'grain_matched_dining_area': 'Grain-Matched Veneer Dining Suite',
-    's3eem08ug6sagt9hj2tz.png': 'Double-Height Staircase & Sacred Art Mural',
-    's3eem08ug6sagt9hj2tz': 'Double-Height Staircase & Sacred Art Mural',
-    'double_height_staircase_jesus_mural': 'Double-Height Staircase & Sacred Art Mural',
-    'alkqwzmvoiitkbzqxci7.png': 'Backlit Stone & Timber Pooja Unit',
-    'alkqwzmvoiitkbzqxci7': 'Backlit Stone & Timber Pooja Unit',
-    'backlit_stone_timber_pooja_shrine': 'Backlit Stone & Timber Pooja Unit',
-    'zoelg4rucvrxaeuxuqkx.png': 'Master Bedroom Suite & Acoustic Headboard',
-    'zoelg4rucvrxaeuxuqkx': 'Master Bedroom Suite & Acoustic Headboard',
-    'calm_master_bedroom_suite': 'Master Bedroom Suite & Acoustic Headboard',
+    // Master Bedroom & Guest Bedroom Suites
+    'ues8rn6ddd052rkmlesl.png': 'Master Bedroom Suite & Acoustic Panelling',
+    'ues8rn6ddd052rkmlesl': 'Master Bedroom Suite & Acoustic Panelling',
+    'living_room_fluted_feature_wall': 'Master Bedroom Suite & Acoustic Panelling',
+    'dnligxpinxfkkzbwdesc.png': 'Guest Bedroom Suite & Moon Wall Art',
+    'dnligxpinxfkkzbwdesc': 'Guest Bedroom Suite & Moon Wall Art',
+    'modern_modular_kitchen_cove': 'Guest Bedroom Suite & Moon Wall Art',
+    'z54sqdn0rxz5uvvz6vde.png': 'Master Suite Tinted-Glass Wardrobes',
+    'z54sqdn0rxz5uvvz6vde': 'Master Suite Tinted-Glass Wardrobes',
+    'grain_matched_dining_area': 'Master Suite Tinted-Glass Wardrobes',
     'dn73ubo6rocp6ptcxqzy.png': 'Master Walk-In Wardrobe & Dressing Vanity',
     'dn73ubo6rocp6ptcxqzy': 'Master Walk-In Wardrobe & Dressing Vanity',
     'master_walk_in_wardrobe': 'Master Walk-In Wardrobe & Dressing Vanity',
-    'gctshkszvbpfjlegttqp.png': 'Guest Bedroom Suite & Fluted Storage',
-    'gctshkszvbpfjlegttqp': 'Guest Bedroom Suite & Fluted Storage',
-    'guest_bedroom_suite': 'Guest Bedroom Suite & Fluted Storage',
-    'dnligxpinxfkkzbwdesc.png': 'Modern Modular Kitchen & Ambient Coves',
-    'dnligxpinxfkkzbwdesc': 'Modern Modular Kitchen & Ambient Coves',
-    'modern_modular_kitchen_cove': 'Modern Modular Kitchen & Ambient Coves'
+
+    // Modular Kitchen
+    'gctshkszvbpfjlegttqp.png': 'Sage Green Modular Kitchen & Overhead Cabinetry',
+    'gctshkszvbpfjlegttqp': 'Sage Green Modular Kitchen & Overhead Cabinetry',
+    'guest_bedroom_suite': 'Sage Green Modular Kitchen & Overhead Cabinetry',
+
+    // Living Lounge & Hall
+    'alkqwzmvoiitkbzqxci7.png': 'Grand Living Hall & Marble TV Feature Wall',
+    'alkqwzmvoiitkbzqxci7': 'Grand Living Hall & Marble TV Feature Wall',
+    'backlit_stone_timber_pooja_shrine': 'Grand Living Hall & Marble TV Feature Wall',
+    's3eem08ug6sagt9hj2tz.png': 'Double-Height Living Mezzanine & Sacred Art Mural',
+    's3eem08ug6sagt9hj2tz': 'Double-Height Living Mezzanine & Sacred Art Mural',
+    'double_height_staircase_jesus_mural': 'Double-Height Living Mezzanine & Sacred Art Mural',
+
+    // Remaining (Foyer, Staircase, Entrance Porch)
+    'duhzjiu5foyimwshxgqx.png': 'Warm Foyer & Architectural Hallway Console',
+    'duhzjiu5foyimwshxgqx': 'Warm Foyer & Architectural Hallway Console',
+    'warm_modern_hallway_festive_garlands': 'Warm Foyer & Architectural Hallway Console',
+    'zoelg4rucvrxaeuxuqkx.png': 'Architectural Timber Staircase & Slatted Ceiling',
+    'zoelg4rucvrxaeuxuqkx': 'Architectural Timber Staircase & Slatted Ceiling',
+    'calm_master_bedroom_suite': 'Architectural Timber Staircase & Slatted Ceiling',
+    'gn1gylu6rnd1jvpobceu.png': 'Modern Wood-Panelled Entrance Porch',
+    'gn1gylu6rnd1jvpobceu': 'Modern Wood-Panelled Entrance Porch',
+    'modern_wood_panelled_entrance_porch': 'Modern Wood-Panelled Entrance Porch'
   }
 };
 
@@ -977,39 +1070,83 @@ function detectRoomFromFilename(filename) {
     if (lower.includes('kokapet_guest')) return 'Guest Bedroom Suite & Rest Nook';
   }
 
-    // 5. Specific Subbarao Kachiguda Duplex image mapping (26 4K images)
+  // 4. Specific Gachibowli Minimalist Beige 2BHK (Koteswara) image mapping
+  if (lower.includes('koteswara')) {
+    if (lower.includes('after')) return 'Minimalist Beige Living Lounge';
+    if (lower.includes('before')) return 'Raw Site Shell & Structural Framing';
+    const koteswaraMatch = lower.match(/(?:gallery_|_|\b)(\d+)(?:\.|$)/);
+    const num = koteswaraMatch ? parseInt(koteswaraMatch[1], 10) : null;
+    const KOTESWARA_MAP = {
+      1: 'Master Bedroom Wood-Grain Wardrobe',
+      2: 'Master Bedroom Pill Dressing Mirror & Vanity',
+      3: 'Master Suite Wardrobe with Open Display Niche',
+      4: 'Master Bedroom Suite & Upholstered Bed',
+      5: 'Master Bedroom Suite & Balcony Skyline Vistas',
+      6: 'Master Bedroom Integrated Vanity Perspective',
+      7: 'Master Bedroom Balcony Window & Vanity Suite',
+      8: 'Guest Bedroom Suite & Balcony Garden Nook',
+      9: 'Guest Bedroom Headboard & Artwork Elevation',
+      10: 'Guest Bedroom Full Perspective & Geometric Rug',
+      11: 'Guest Bedroom Wardrobe & Vanity Transition',
+      12: 'Guest Bedroom Dressing Vanity & Balcony Vistas',
+      13: 'L-Shaped Modular Kitchen & Moroccan Backsplash Tiles',
+      14: 'Contemporary TV Media Wall & Fluted Feature Panelling',
+      15: 'Entrance Foyer & Gold Ribbon Console',
+      16: 'Modular Kitchen Cooktop & Washbasin Niche',
+      17: 'Dining Suite & Sculptural Seating',
+      18: 'TV Media Unit & Floating Console Detail',
+      19: 'Entrance Foyer Elevation & Wall Panelling',
+      20: 'Dining Area & Open Living Transition',
+      21: 'Formal Dining Suite & Linear Chandelier',
+      22: 'Modular Kitchen & Rolling Shutter Pantry Unit',
+      23: 'Minimalist Beige Living Lounge & Seating',
+      24: 'Living Room Panorama & Natural Light Vistas',
+      25: 'Living Room Sofa & Wainscot Wall Elevation',
+      26: 'Grand Living Lounge & Panoramic Windows',
+      27: 'Living Hall & TV Wall Full Perspective',
+      28: 'Living Lounge Seating & Media Wall Perspective'
+    };
+    if (num && KOTESWARA_MAP[num]) return KOTESWARA_MAP[num];
+  }
+
+  // 5. Specific Subbarao Kachiguda Duplex image mapping (26 4K images)
   if (lower.includes('subbarao') || lower.includes('kachiguda')) {
     if (lower.includes('hero') || lower.includes('bqtmsst1w8jjit2drtmq') || lower.includes('after') || lower.includes('unbmruocdxxhcb4wvn7e')) return 'Grand Duplex Living Hall & Architectural Staircase Vista';
     if (lower.includes('before') || lower.includes('blohvaxle28zo18l7lug')) return 'Raw Site Shell & Structural Framing';
-    if (lower.includes('gallery_1') || lower.includes('fjoq7ss31x85vjccgr5a')) return 'Grand Duplex Living Hall & Architectural Staircase Vista';
-    if (lower.includes('gallery_2') || lower.includes('u3jboyp6o3tqjy1zffvf')) return 'Living Lounge, Roaring Linear Fireplace & Media Tower';
-    if (lower.includes('gallery_3') || lower.includes('yhbdhtzvtts6lbjcyvhb')) return 'Open-Concept Duplex Living & Dining Transition';
-    if (lower.includes('gallery_4') || lower.includes('lppkuofoaxacxbxjinf3')) return 'Living Lounge & KAWS Art Sculpture Nook';
-    if (lower.includes('gallery_5') || lower.includes('ykmradholvjphbaimyso')) return 'Living Lounge & Courtyard Picture Window';
-    if (lower.includes('gallery_6') || lower.includes('eaniagfydwjdgbo0esqn')) return 'Dining Bar Island, Duplex Staircase & Kitchen Vista';
-    if (lower.includes('gallery_7') || lower.includes('k21ayumhuuy0tmqj7rfg')) return 'Parents Master Suite & Traditional Ink Mandala Crest';
-    if (lower.includes('gallery_8') || lower.includes('ral5g7qhiphwuacdhvs6')) return 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural';
-    if (lower.includes('gallery_9') || lower.includes('wrazj2wmluws0ue1pddo')) return 'Formal Dining Suite & Amber Globe Chandelier';
-    if (lower.includes('gallery_10') || lower.includes('qhbbsh8imivcxs2imtzg')) return 'Dining Pavilion & Integrated Smart Refrigerator';
-    if (lower.includes('gallery_11') || lower.includes('mg21x4oyxpuhrbaitw6l')) return 'Chef\'s Modular Kitchen & Quartz Countertops';
-    if (lower.includes('gallery_12') || lower.includes('a6wykpal9jlyprn3zgfj')) return 'Parents Suite Perspective & Bedside Lanterns';
-    if (lower.includes('gallery_13') || lower.includes('ya5s3s0zzfjvhnbsjqck')) return 'Parents Suite Wardrobes & Twilight Garden Vista';
-    if (lower.includes('gallery_14') || lower.includes('biocek0jbgeuvaqjoq5q')) return 'Parents Suite Fluted TV Media Wall & Marble Inlay';
-    if (lower.includes('gallery_15') || lower.includes('yddjmwdvaqsjuwtsbf5u')) return 'Parents Suite Walk-In Dressing Wardrobe';
-    if (lower.includes('gallery_16') || lower.includes('u58mq18dbeuqf5coc1jg')) return 'Boys Suite Bed, Nightstands & Blueprint Feature Wall';
-    if (lower.includes('gallery_17') || lower.includes('zmie8c1jua6jc26kbf4g')) return 'Aeronautical Biplane Technical Blueprint Detail';
-    if (lower.includes('gallery_18') || lower.includes('gkszz4hoaguhsvcvahva')) return 'Boys Suite Modular Wardrobe & Walnut Display Niche';
-    if (lower.includes('gallery_19') || lower.includes('ytniqcfxfpv8vmdngn7o')) return 'Dining Bar Counter & Houndstooth Seating';
-    if (lower.includes('gallery_20') || lower.includes('csltktkkly4u9k9lzwzy')) return 'Living Room Sofa & Marble Coffee Table Detail';
-    if (lower.includes('gallery_21') || lower.includes('axj2hwzys16jwa3znfsy')) return 'Living Lounge Seating Vignette';
-    if (lower.includes('gallery_22') || lower.includes('ijfi1nbiejxe9ksgxaod')) return 'Living Lounge Centered Perspective';
-    if (lower.includes('gallery_23') || lower.includes('dhwdwmpgjlopbwvwq42z')) return 'Integrated Smart Refrigerator & Fluted Portal Detail';
-    if (lower.includes('gallery_24') || lower.includes('ku1jtnpv0osjknwzr9aj')) return 'Boys Suite Study Wall & Grid Memory Board';
-    if (lower.includes('gallery_25') || lower.includes('qasnmvvaklm6a14yslao')) return 'Parents Suite Floor Vista & Entertainment Wall';
-    if (lower.includes('gallery_26') || lower.includes('adeg00wsepmxhkdsovzx')) return 'Boys Suite Architectural Shell & Curtains';
+    const subbaraoMatch = lower.match(/(?:gallery_|_|\b)(\d+)(?:\.|$)/);
+    const num = subbaraoMatch ? parseInt(subbaraoMatch[1], 10) : null;
+    const SUBBARAO_MAP = {
+      1: 'Grand Duplex Living Hall & Architectural Staircase Vista',
+      2: 'Living Lounge, Roaring Linear Fireplace & Media Tower',
+      3: 'Open-Concept Duplex Living & Dining Transition',
+      4: 'Living Lounge & KAWS Art Sculpture Nook',
+      5: 'Living Lounge & Courtyard Picture Window',
+      6: 'Dining Bar Island, Duplex Staircase & Kitchen Vista',
+      7: 'Parents Master Suite & Traditional Ink Mandala Crest',
+      8: 'Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural',
+      9: 'Formal Dining Suite & Amber Globe Chandelier',
+      10: 'Dining Pavilion & Integrated Smart Refrigerator',
+      11: "Chef's Modular Kitchen & Quartz Countertops",
+      12: 'Parents Suite Perspective & Bedside Lanterns',
+      13: 'Parents Suite Wardrobes & Twilight Garden Vista',
+      14: 'Parents Suite Fluted TV Media Wall & Marble Inlay',
+      15: 'Parents Suite Walk-In Dressing Wardrobe',
+      16: 'Boys Suite Bed, Nightstands & Blueprint Feature Wall',
+      17: 'Aeronautical Biplane Technical Blueprint Detail',
+      18: 'Boys Suite Modular Wardrobe & Walnut Display Niche',
+      19: 'Dining Bar Counter & Houndstooth Seating',
+      20: 'Living Room Sofa & Marble Coffee Table Detail',
+      21: 'Living Lounge Seating Vignette',
+      22: 'Living Lounge Centered Perspective',
+      23: 'Integrated Smart Refrigerator & Fluted Portal Detail',
+      24: 'Boys Suite Study Wall & Grid Memory Board',
+      25: 'Parents Suite Floor Vista & Entertainment Wall',
+      26: 'Boys Suite Architectural Shell & Curtains'
+    };
+    if (num && SUBBARAO_MAP[num]) return SUBBARAO_MAP[num];
   }
 
-// 4. Specific Dimmu Chachu Villa image mapping
+  // 6. Specific Dimmu Chachu Villa image mapping
   if (lower.includes('dimmu_')) {
     if (lower.includes('dimmu_05')) return 'Double-Height Foyer & Grand Staircase';
     if (lower.includes('dimmu_01')) return 'Living Lounge & TV Media Wall';
@@ -1021,6 +1158,61 @@ function detectRoomFromFilename(filename) {
     if (lower.includes('dimmu_02')) return 'Teal Master Suite & Bay Window Seating';
     if (lower.includes('dimmu_07')) return 'Teal Master Bedroom Daybed Nook';
     if (lower.includes('dimmu_04')) return 'Terracotta Guest Suite & Study Desk';
+  }
+
+  // 7. Specific Gandipet Modern Retro 2BHK (Kiran) image mapping
+  if (lower.includes('kiran_') || lower.includes('gandipet')) {
+    if (lower.includes('after')) return 'Designer Living Suite & Halo Chandelier';
+    if (lower.includes('before')) return 'Raw Site Shell & Framing';
+    const kiranMatch = lower.match(/(?:gallery_|_|\b)(\d+)(?:\.|$)/);
+    const num = kiranMatch ? parseInt(kiranMatch[1], 10) : null;
+    const KIRAN_MAP = {
+      2: 'Living Room TV Feature Wall & Panelling',
+      4: 'Master Bedroom Suite & Accent Panelling',
+      5: 'Master Bedroom Headboard Elevation',
+      7: 'Living Room Media Console & Accent Chair',
+      9: 'Master Suite & Built-In Wardrobes',
+      12: 'Dining Suite & Illuminated Vitrine',
+      14: 'Formal Living Lounge & Terracotta Sofa',
+      15: 'Living Lounge & Foyer Transition',
+      16: 'Living Room Panorama & Balcony Vistas',
+      17: 'Classic Boiserie Panelled Feature Wall',
+      18: 'Designer Living Suite & Halo Chandelier',
+      21: 'Executive Home Office & Library',
+      24: 'Bay Window Daybed & Reading Bench'
+    };
+    if (num && KIRAN_MAP[num]) return KIRAN_MAP[num];
+  }
+
+  // 8. Specific Casa Alta Kali Mandir image mapping
+  if (lower.includes('casa_alta') || lower.includes('ues8rn6ddd052rkmlesl') || lower.includes('dnligxpinxfkkzbwdesc') || lower.includes('z54sqdn0rxz5uvvz6vde') || lower.includes('dn73ubo6rocp6ptcxqzy') || lower.includes('gctshkszvbpfjlegttqp') || lower.includes('alkqwzmvoiitkbzqxci7') || lower.includes('s3eem08ug6sagt9hj2tz') || lower.includes('duhzjiu5foyimwshxgqx') || lower.includes('zoelg4rucvrxaeuxuqkx') || lower.includes('gn1gylu6rnd1jvpobceu')) {
+    if (lower.includes('ues8rn6ddd052rkmlesl')) return 'Master Bedroom Suite & Acoustic Panelling';
+    if (lower.includes('dnligxpinxfkkzbwdesc')) return 'Guest Bedroom Suite & Moon Wall Art';
+    if (lower.includes('z54sqdn0rxz5uvvz6vde')) return 'Master Suite Tinted-Glass Wardrobes';
+    if (lower.includes('dn73ubo6rocp6ptcxqzy')) return 'Master Walk-In Wardrobe & Dressing Vanity';
+    if (lower.includes('gctshkszvbpfjlegttqp')) return 'Sage Green Modular Kitchen & Overhead Cabinetry';
+    if (lower.includes('alkqwzmvoiitkbzqxci7')) return 'Grand Living Hall & Marble TV Feature Wall';
+    if (lower.includes('s3eem08ug6sagt9hj2tz')) return 'Double-Height Living Mezzanine & Sacred Art Mural';
+    if (lower.includes('duhzjiu5foyimwshxgqx')) return 'Warm Foyer & Architectural Hallway Console';
+    if (lower.includes('zoelg4rucvrxaeuxuqkx')) return 'Architectural Timber Staircase & Slatted Ceiling';
+    if (lower.includes('gn1gylu6rnd1jvpobceu')) return 'Modern Wood-Panelled Entrance Porch';
+  }
+
+  // 9. Specific Tellapur Restful Home image mapping
+  if (lower.includes('tellapur') || lower.includes('restful_home') || lower.includes('gl4os8hhxhsy9vke0cx1') || lower.includes('ixrrcgxxhf1pytdjjhga') || lower.includes('jmbconw0wz7rrzqqaiub') || lower.includes('b9negjore9wp71j24l8t') || lower.includes('exseh5lm0mz9sfni4lkv') || lower.includes('flfizkibqnyv1ktude6t') || lower.includes('xivp043sbxsjdntmyeji') || lower.includes('dntcpbg0dg78vu5hktwt') || lower.includes('wazorsezkcaayd5bmrc1') || lower.includes('xehnw42t41tcxvtc60ml') || lower.includes('s6vvkmvqz8h2aqbtwcam') || lower.includes('zmsezgqkrwiqdgyno9oi') || lower.includes('hexutd4jmmolynp91e28')) {
+    if (lower.includes('gl4os8hhxhsy9vke0cx1')) return 'Master Bedroom Suite & Geometric Profile Lighting';
+    if (lower.includes('ixrrcgxxhf1pytdjjhga')) return 'Master Bedroom Sliding Wardrobes & Open Shelving';
+    if (lower.includes('jmbconw0wz7rrzqqaiub')) return 'Guest Bedroom Greige & Slate Sliding Wardrobes';
+    if (lower.includes('b9negjore9wp71j24l8t')) return 'Guest Bedroom Suite & Integrated Study Workstation';
+    if (lower.includes('exseh5lm0mz9sfni4lkv')) return 'Living Hall Lounge & Architectural Walnut Partition';
+    if (lower.includes('flfizkibqnyv1ktude6t')) return 'Living Room Fluted TV Feature Wall & Backlit Marble';
+    if (lower.includes('xivp043sbxsjdntmyeji')) return 'Living Hall TV Unit & Curved Calacatta Marble Backlit Panel';
+    if (lower.includes('dntcpbg0dg78vu5hktwt')) return 'Modular Kitchen Cooktop & Tinted Glass Cabinets';
+    if (lower.includes('wazorsezkcaayd5bmrc1')) return 'Modular Kitchen Galley Counter & Tall Pantry Unit';
+    if (lower.includes('xehnw42t41tcxvtc60ml')) return 'Dining Area Crockery Console & Gold Mosaic Backsplash';
+    if (lower.includes('s6vvkmvqz8h2aqbtwcam')) return 'Pooja Mandir with Glowing Ganesha Om & Jali Doors';
+    if (lower.includes('zmsezgqkrwiqdgyno9oi')) return 'Pooja Mandir Intricate Jali Shutters & Brass Handle';
+    if (lower.includes('hexutd4jmmolynp91e28')) return 'Integrated Pooja Mandir & Kitchen Transition';
   }
 
   // General room keyword matches
@@ -1045,19 +1237,20 @@ function detectRoomFromFilename(filename) {
   return null;
 }
 
+// Safe, elegant architectural descriptors that never mislabel rooms
 const DEFAULT_ROOM_CYCLE = [
   'Living Room Lounge',
   'Master Bedroom Suite',
-  'Modular Kitchen',
+  'Bespoke Interior Perspective',
   'Dining Lounge',
-  'Guest Bedroom',
-  'TV Entertainment Wall',
-  'Kids Bedroom Suite',
-  'Master Wardrobe & Vanity',
+  'Guest Bedroom Suite',
+  'Feature Wall & Media Panelling',
+  'Architectural Residence Detail',
+  'Walk-In Wardrobe & Dressing Suite',
   'Balcony Lounge',
-  'Pooja Mandir',
-  'Entrance Foyer',
-  'Utility & Laundry'
+  'Sanctuary Detail',
+  'Entrance Foyer & Gallery',
+  'Utility & Craftsmanship Detail'
 ];
 
 /**
@@ -1112,4 +1305,255 @@ export function getProjectRoomName(project, imgUrl, index = 0) {
   return DEFAULT_ROOM_CYCLE[cycleIndex];
 }
 
+export const CANONICAL_ROOM_WISE_GALLERIES = {
+  // 1. The Celestial Curve Villa (Kukatpally)
+  // Bedroom -> Kitchen -> Hall -> Remaining (Foyer, Mezzanine)
+  'dimmu-chachu-luxury-villa': [
+    '/images/projects/dimmu_residence/dimmu_02.webp', // Teal Master Suite & Bay Window Seating
+    '/images/projects/dimmu_residence/dimmu_07.webp', // Teal Master Bedroom Daybed Nook
+    '/images/projects/dimmu_residence/dimmu_09.webp', // Cricket Tribute Suite (Wide View)
+    '/images/projects/dimmu_residence/dimmu_08.webp', // Cricket Tribute Suite & Custom Wardrobes
+    '/images/projects/dimmu_residence/dimmu_04.webp', // Terracotta Guest Suite & Study Desk
+    '/images/projects/dimmu_residence/dimmu_10.webp', // High-Gloss Modular Kitchen
+    '/images/projects/dimmu_residence/dimmu_01.webp', // Living Lounge & TV Media Wall
+    '/images/projects/dimmu_residence/dimmu_06.webp', // Formal Lounge & Sculpted Wave Ceiling
+    '/images/projects/dimmu_residence/dimmu_05.webp', // Double-Height Foyer & Grand Staircase
+    '/images/projects/dimmu_residence/dimmu_03.webp'  // Upper Level Mezzanine & Chandelier
+  ],
+
+  // 2. Casa Alta Residence (Kali Mandir)
+  // Bedroom -> Kitchen -> Hall -> Remaining (Foyer, Staircase, Entrance Porch)
+  'casa-alta-residence-kali-mandir': [
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png', // Master Bedroom Suite & Acoustic Panelling
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png', // Guest Bedroom Suite & Moon Wall Art
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040124/espacio_gallery/z54sqdn0rxz5uvvz6vde.png', // Master Suite Tinted-Glass Wardrobes
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040145/espacio_gallery/dn73ubo6rocp6ptcxqzy.png', // Master Walk-In Wardrobe & Dressing Vanity
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040150/espacio_gallery/gctshkszvbpfjlegttqp.png', // Sage Green Modular Kitchen & Overhead Cabinetry
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040137/espacio_gallery/alkqwzmvoiitkbzqxci7.png', // Grand Living Hall & Marble TV Feature Wall
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png', // Double-Height Living Mezzanine & Sacred Art Mural
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040107/espacio_gallery/duhzjiu5foyimwshxgqx.png', // Warm Foyer & Architectural Hallway Console
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040142/espacio_gallery/zoelg4rucvrxaeuxuqkx.png', // Architectural Timber Staircase & Slatted Ceiling
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040101/espacio_gallery/gn1gylu6rnd1jvpobceu.png'  // Modern Wood-Panelled Entrance Porch
+  ],
+
+  // 3. The Panelled Muse (Gandipet)
+  // Bedroom -> Hall -> Remaining (Dining, Office)
+  'gandipet-modern-retro-2bhk': [
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp',  // Master Bedroom Suite & Accent Panelling
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_5.webp',  // Master Bedroom Headboard Elevation
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_9.webp',  // Master Suite & Built-In Wardrobes
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_24.webp', // Bay Window Daybed & Reading Bench
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',  // Living Room TV Feature Wall & Panelling
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_18.webp', // Designer Living Suite & Halo Chandelier
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_14.webp', // Formal Living Lounge & Terracotta Sofa
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_17.webp', // Classic Boiserie Panelled Feature Wall
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_7.webp',  // Living Room Media Console & Accent Chair
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_15.webp', // Living Lounge & Foyer Transition
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_16.webp', // Living Room Panorama & Balcony Vistas
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_12.webp', // Dining Suite & Illuminated Vitrine
+    '/images/projects/gandipet_kiran_2bhk/kiran_gallery_21.webp'  // Executive Home Office & Library
+  ],
+
+  // 4. The Dusk Lounge (Kondapur)
+  // Bedroom -> Kitchen -> Hall -> Remaining (Foyer, Dining, Balcony)
+  'kondapur-minimalist-2bhk': [
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b438c830-9b61-45c5-96b5-d2ba352b7fc5.png',  // Master Bedroom Suite & Accent Panelling
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/773a222b-ce2f-4f40-a2d6-f2e91199aec5.png',  // Seamless Floor-to-Ceiling Wardrobes
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6f7bce1d-d140-45ee-a08b-ecb09433bdb7.png',  // Modular Kitchen & Illuminated Pantry
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/429bec7e-a053-4465-a821-74744ea494ae',      // Contemporary Living Lounge & Media Wall
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd',      // Formal Living Lounge & Terracotta Seating
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c951f195-af50-4d89-8ad7-f1daed330a75.png',  // Living Room Panorama & Open-Plan Transition
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/ad891782-7131-4b54-8b7d-73dda3d5eea0.png',  // Dining Suite & Ambient Ring Wall Feature
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/c90d8da8-3e5d-42aa-8a2e-f9cfa28af410.png'   // Dining Pavilion & Architectural Lighting
+  ],
+
+  // 5. A 2BHK Residence, Gachibowli
+  // Bedroom (4, 5, 7, 6, 2, 3, 1, 8..12) -> Kitchen (13, 16, 22) -> Hall (26, 27, 28, 23, 24, 25, 14, 18) -> Dining & Foyer (21, 17, 20, 15, 19)
+  'gachibowli-minimalist-beige-2bhk': [
+    // ── Bedrooms (Master Bedroom & Guest Bedroom) ──
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp',  // Master Bedroom Suite & Upholstered Bed
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_5.webp',  // Master Bedroom Suite & Balcony Skyline Vistas
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_7.webp',  // Master Bedroom Balcony Window & Vanity Suite
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_6.webp',  // Master Bedroom Integrated Vanity Perspective
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_2.webp',  // Master Bedroom Pill Dressing Mirror & Vanity
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_3.webp',  // Master Suite Wardrobe with Open Display Niche
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp',  // Master Bedroom Wood-Grain Wardrobe
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_8.webp',  // Guest Bedroom Suite & Balcony Garden Nook
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_9.webp',  // Guest Bedroom Headboard & Artwork Elevation
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_10.webp', // Guest Bedroom Full Perspective & Geometric Rug
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_11.webp', // Guest Bedroom Wardrobe & Vanity Transition
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_12.webp', // Guest Bedroom Dressing Vanity & Balcony Vistas
+
+    // ── Modular Kitchen ──
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_13.webp', // L-Shaped Modular Kitchen & Moroccan Backsplash Tiles
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_16.webp', // Modular Kitchen Cooktop & Washbasin Niche
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_22.webp', // Modular Kitchen & Rolling Shutter Pantry Unit
+
+    // ── Hall / Living Lounge ──
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp', // Grand Living Lounge & Panoramic Windows
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_27.webp', // Living Hall & TV Wall Full Perspective
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_28.webp', // Living Lounge Seating & Media Wall Perspective
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_23.webp', // Minimalist Beige Living Lounge & Seating
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_24.webp', // Living Room Panorama & Natural Light Vistas
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_25.webp', // Living Room Sofa & Wainscot Wall Elevation
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_14.webp', // Contemporary TV Media Wall & Fluted Feature Panelling
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_18.webp', // TV Media Unit & Floating Console Detail
+
+    // ── Remaining (Dining Suite & Entrance Foyer) ──
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_21.webp', // Formal Dining Suite & Linear Chandelier
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_17.webp', // Dining Suite & Sculptural Seating
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_20.webp', // Dining Area & Open Living Transition
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_15.webp', // Entrance Foyer & Gold Ribbon Console
+    '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_19.webp'  // Entrance Foyer Elevation & Wall Panelling
+  ],
+
+  // 6. A Duplex Residence, Kachiguda
+  // Bedroom (1–12) -> Hall / Living Lounge (13–20) -> Modular Kitchen (21–22) -> Dining Suite & Island (23–26)
+  'kachiguda-fusion-duplex-villa': [
+    // ── Bedrooms: Parents Master Suite (1–6) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg', // Parents Master Suite & Traditional Ink Mandala Crest
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178153/espacio_gallery/a6wykpal9jlyprn3zgfj.jpg', // Parents Suite Perspective & Bedside Lanterns
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178155/espacio_gallery/ya5s3s0zzfjvhnbsjqck.jpg', // Parents Suite Wardrobes & Twilight Garden Vista
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178156/espacio_gallery/biocek0jbgeuvaqjoq5q.jpg', // Parents Suite Fluted TV Media Wall & Marble Inlay
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178157/espacio_gallery/yddjmwdvaqsjuwtsbf5u.jpg', // Parents Suite Walk-In Dressing Wardrobe
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178171/espacio_gallery/qasnmvvaklm6a14yslao.jpg', // Parents Suite Floor Vista & Entertainment Wall
+
+    // ── Bedrooms: Boys Bedroom Suite (7–12) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178149/espacio_gallery/ral5g7qhiphwuacdhvs6.jpg', // Boys Bedroom Suite & Vintage Aeronautical Blueprint Mural
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178159/espacio_gallery/u58mq18dbeuqf5coc1jg.jpg', // Boys Suite Bed, Nightstands & Blueprint Feature Wall
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178160/espacio_gallery/zmie8c1jua6jc26kbf4g.jpg', // Aeronautical Biplane Technical Blueprint Detail
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178161/espacio_gallery/gkszz4hoaguhsvcvahva.jpg', // Boys Suite Modular Wardrobe & Walnut Display Niche
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178170/espacio_gallery/ku1jtnpv0osjknwzr9aj.jpg', // Boys Suite Study Wall & Grid Memory Board
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178173/espacio_gallery/adeg00wsepmxhkdsovzx.jpg', // Boys Suite Architectural Shell & Curtains
+
+    // ── Hall / Living Lounge (13–20) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178139/espacio_gallery/fjoq7ss31x85vjccgr5a.jpg', // Grand Duplex Living Hall & Architectural Staircase Vista
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178141/espacio_gallery/u3jboyp6o3tqjy1zffvf.jpg', // Living Lounge, Roaring Linear Fireplace & Media Tower
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178142/espacio_gallery/yhbdhtzvtts6lbjcyvhb.jpg', // Open-Concept Duplex Living & Dining Transition
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178144/espacio_gallery/lppkuofoaxacxbxjinf3.jpg', // Living Lounge & KAWS Art Sculpture Nook
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178145/espacio_gallery/ykmradholvjphbaimyso.jpg', // Living Lounge & Courtyard Picture Window
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178165/espacio_gallery/csltktkkly4u9k9lzwzy.jpg', // Living Room Sofa & Marble Coffee Table Detail
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178166/espacio_gallery/axj2hwzys16jwa3znfsy.jpg', // Living Lounge Seating Vignette
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178167/espacio_gallery/ijfi1nbiejxe9ksgxaod.jpg', // Living Lounge Centered Perspective
+
+    // ── Modular Kitchen (21–22) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178152/espacio_gallery/mg21x4oyxpuhrbaitw6l.jpg', // Chef's Modular Kitchen & Quartz Countertops
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178169/espacio_gallery/dhwdwmpgjlopbwvwq42z.jpg', // Integrated Smart Refrigerator & Fluted Portal Detail
+
+    // ── Dining Suite & Island (23–26) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178146/espacio_gallery/eaniagfydwjdgbo0esqn.jpg', // Dining Bar Island, Duplex Staircase & Kitchen Vista
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178150/espacio_gallery/wrazj2wmluws0ue1pddo.jpg', // Formal Dining Suite & Amber Globe Chandelier
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178163/espacio_gallery/ytniqcfxfpv8vmdngn7o.jpg', // Dining Bar Counter & Houndstooth Seating
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178151/espacio_gallery/qhbbsh8imivcxs2imtzg.jpg'  // Dining Pavilion & Integrated Smart Refrigerator
+  ],
+
+  // 7. The Restful Home (Tellapur)
+  // Bedroom (1–4) -> Hall / Living Lounge (5–7) -> Modular Kitchen & Dining (8–10) -> Pooja Mandir (11–13)
+  'the-restful-home-tellapur': [
+    // ── Bedrooms (1–4) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png', // Master Bedroom Suite & Geometric Profile Lighting
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039600/espacio_gallery/ixrrcgxxhf1pytdjjhga.png', // Master Bedroom Sliding Wardrobes & Open Shelving
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039616/espacio_gallery/jmbconw0wz7rrzqqaiub.png', // Guest Bedroom Greige & Slate Sliding Wardrobes
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png', // Guest Bedroom Suite & Integrated Study Workstation
+
+    // ── Hall / Living Lounge (5–7) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png', // Living Hall Lounge & Architectural Walnut Partition
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png', // Living Room Fluted TV Feature Wall & Backlit Marble
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png', // Living Hall TV Unit & Curved Calacatta Marble Backlit Panel
+
+    // ── Modular Kitchen & Dining (8–10) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039570/espacio_gallery/dntcpbg0dg78vu5hktwt.png', // Modular Kitchen Cooktop & Tinted Glass Cabinets
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039583/espacio_gallery/wazorsezkcaayd5bmrc1.png', // Modular Kitchen Galley Counter & Tall Pantry Unit
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039573/espacio_gallery/xehnw42t41tcxvtc60ml.png', // Dining Area Crockery Console & Gold Mosaic Backsplash
+
+    // ── Pooja Mandir (11–13) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039588/espacio_gallery/s6vvkmvqz8h2aqbtwcam.png', // Pooja Mandir with Glowing Ganesha Om & Jali Doors
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039591/espacio_gallery/zmsezgqkrwiqdgyno9oi.png', // Pooja Mandir Intricate Jali Shutters & Brass Handle
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039595/espacio_gallery/hexutd4jmmolynp91e28.png'  // Integrated Pooja Mandir & Kitchen Transition
+  ]
+};
+
+// Aliases for canonical room-wise galleries
+CANONICAL_ROOM_WISE_GALLERIES['proj_9_dimmu_chachu_residence'] = CANONICAL_ROOM_WISE_GALLERIES['dimmu-chachu-luxury-villa'];
+CANONICAL_ROOM_WISE_GALLERIES['proj_11_casa_alta_residence_kali_mandir'] = CANONICAL_ROOM_WISE_GALLERIES['casa-alta-residence-kali-mandir'];
+CANONICAL_ROOM_WISE_GALLERIES['proj_5_gandipet_kiran'] = CANONICAL_ROOM_WISE_GALLERIES['gandipet-modern-retro-2bhk'];
+CANONICAL_ROOM_WISE_GALLERIES['proj_6_kondapur_venkatesh'] = CANONICAL_ROOM_WISE_GALLERIES['kondapur-minimalist-2bhk'];
+CANONICAL_ROOM_WISE_GALLERIES['proj_7_gachibowli_koteswara'] = CANONICAL_ROOM_WISE_GALLERIES['gachibowli-minimalist-beige-2bhk'];
+CANONICAL_ROOM_WISE_GALLERIES['proj_8_kachiguda_subbarao'] = CANONICAL_ROOM_WISE_GALLERIES['kachiguda-fusion-duplex-villa'];
+CANONICAL_ROOM_WISE_GALLERIES['proj_10_the_restful_home_tellapur'] = CANONICAL_ROOM_WISE_GALLERIES['the-restful-home-tellapur'];
+
+/**
+ * Orders any project's gallery images room-wise:
+ * 1. First: Bedroom images (Master, Guest, Kids, Wardrobes, Vanity)
+ * 2. After: Kitchen images (Modular Kitchen, Island, Pantry)
+ * 3. After: Hall images (Living Lounge, TV Media Wall, Living Mezzanine)
+ * 4. After: Remaining images (Dining, Pooja, Foyer, Staircase, Balcony/Utility)
+ */
+export function orderProjectGalleryRoomWise(project, gallery) {
+  if (!Array.isArray(gallery) || gallery.length === 0) return [];
+  const projectKey = project?.slug || project?._id || project?.id;
+  const canonicalCandidates = [
+    projectKey,
+    projectKey?.toLowerCase(),
+    CANONICAL_ROOM_WISE_GALLERIES[projectKey] ? projectKey : null,
+    project?.title ? project.title.toLowerCase().replace(/[^a-z0-9]/g, '-') : null
+  ].filter(Boolean);
+
+  let templateOrder = null;
+  for (const key of canonicalCandidates) {
+    if (CANONICAL_ROOM_WISE_GALLERIES[key]) {
+      templateOrder = CANONICAL_ROOM_WISE_GALLERIES[key];
+      break;
+    }
+  }
+
+  if (templateOrder) {
+    const remaining = [...gallery];
+    const ordered = [];
+    const getCleanName = (u) => String(u || '').split('/').pop().split('?')[0];
+
+    for (const tImg of templateOrder) {
+      const tName = getCleanName(tImg);
+      const matchIdx = remaining.findIndex(img => img === tImg || getCleanName(img) === tName);
+      if (matchIdx !== -1) {
+        ordered.push(remaining[matchIdx]);
+        remaining.splice(matchIdx, 1);
+      }
+    }
+
+    return [...ordered, ...remaining];
+  }
+
+  // Fallback priority: 1. Bedroom -> 2. Kitchen -> 3. Hall -> 4. Remaining
+  const ROOM_PRIORITY = {
+    // 1. Bedroom
+    master: 10, wic: 12, wardrobe: 12, vanity: 14, dressing: 14, daybed: 15,
+    kids: 16, boy: 16, children: 16, cricket: 16,
+    guest: 18, parent: 18, bed: 19,
+    // 2. Kitchen
+    kitchen: 20, pantry: 22, island: 24, cook: 25, appliance: 25,
+    // 3. Hall / Living
+    hall: 30, living: 32, lounge: 34, tv: 36, media: 36, fireplace: 38,
+    // 4. Remaining
+    dining: 40, crockery: 42, bar: 44,
+    pooja: 50, mandir: 52, shrine: 54,
+    foyer: 60, entrance: 62, porch: 64,
+    stair: 70, mezzanine: 72,
+    office: 80, study: 82, library: 84,
+    balcony: 90, deck: 92, garden: 94,
+    utility: 100, laundry: 102
+  };
+
+  const getPriority = (imgUrl, idx) => {
+    const room = (getProjectRoomName(project, imgUrl, idx) || '').toLowerCase();
+    for (const [key, score] of Object.entries(ROOM_PRIORITY)) {
+      if (room.includes(key)) return score;
+    }
+    return 100;
+  };
+
+  return [...gallery].sort((a, b) => getPriority(a, 0) - getPriority(b, 0));
+}
+
+export { EXACT_PROJECT_ROOMS };
 export default getProjectRoomName;
