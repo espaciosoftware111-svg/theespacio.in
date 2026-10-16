@@ -114,6 +114,13 @@ export default defineConfig({
     // PERF: Suppress false-positive warnings for intentionally large vendor bundles
     chunkSizeWarningLimit: 1000,
 
+    // PERF: Drop console.log and debugger in production builds to unblock UI thread
+    esbuild: {
+      drop: ['debugger'],
+      pure: ['console.log', 'console.debug'],
+      legalComments: 'none',
+    },
+
     rollupOptions: {
       output: {
         // PERF: Content-hash filenames ensure 1-year immutable caching never serves stale assets
@@ -122,42 +129,66 @@ export default defineConfig({
         assetFileNames: 'assets/[name]-[hash].[ext]',
 
         manualChunks(id) {
-          // ── VENDOR CHUNK STRATEGY ─────────────────────────────────────────
-          // Separate vendor code from app code so app updates don't bust cached vendors
+          // PERF: Normalize Windows path separators for consistent chunking
+          const nid = id.replace(/\\/g, '/');
 
-          if (!id.includes('node_modules')) return; // App code stays in main chunk
+          // CHUNK: CMS data store & catalogs (isolated so initial index bundle is featherlight)
+          if (!id.includes('node_modules')) {
+            if (nid.includes('/src/utils/cmsStore') || nid.includes('/src/data/spacesCatalog')) {
+              return 'store-cms';
+            }
+            return;
+          }
 
           // CHUNK: Core React runtime — cached across all page navigations
           if (
-            id.includes('/react/') ||
-            id.includes('/react-dom/') ||
-            id.includes('/react-router-dom/') ||
-            id.includes('/react-helmet-async/')
+            nid.includes('/react/') ||
+            nid.includes('/react-dom/') ||
+            nid.includes('/react-router-dom/') ||
+            nid.includes('/react-helmet-async/')
           ) {
             return 'vendor-react';
           }
 
-          // CHUNK: Animation libraries — loaded together, deferred when possible
-          if (id.includes('/framer-motion/') || id.includes('/lenis/')) {
+          // CHUNK: Animation libraries (Framer Motion, Lenis, GSAP)
+          if (
+            nid.includes('/framer-motion/') ||
+            nid.includes('/lenis/') ||
+            nid.includes('/gsap/')
+          ) {
             return 'vendor-motion';
           }
 
-          // CHUNK: Icon library — tree-shaken separately for optimal splitting
-          if (id.includes('/lucide-react/')) {
+          // CHUNK: Icon library — tree-shaken separately
+          if (nid.includes('/lucide-react/')) {
             return 'vendor-icons';
           }
 
-          // CHUNK: Firebase SDK — huge, only needed for admin auth, defer aggressively
-          if (id.includes('/firebase/')) {
+          // CHUNK: Supabase SDK — isolated completely so public visits never load it
+          if (nid.includes('/@supabase/')) {
+            return 'vendor-supabase';
+          }
+
+          // CHUNK: Firebase SDK — isolated completely for non-blocking submissions
+          if (nid.includes('/firebase/') || nid.includes('/@firebase/')) {
             return 'vendor-firebase';
           }
 
-          // CHUNK: Data fetching utilities — small, but separate from UI for clarity
-          if (id.includes('/axios/') || id.includes('/@tanstack/react-query/')) {
+          // CHUNK: Form libraries & schema validation (Zod, React Hook Form)
+          if (
+            nid.includes('/react-hook-form/') ||
+            nid.includes('/@hookform/') ||
+            nid.includes('/zod/')
+          ) {
+            return 'vendor-forms';
+          }
+
+          // CHUNK: Data fetching utilities
+          if (nid.includes('/axios/') || nid.includes('/@tanstack/react-query/')) {
             return 'vendor-query';
           }
 
-          // CHUNK: Catch-all vendor chunk for remaining third-party code
+          // CHUNK: Remaining third-party utilities
           return 'vendor';
         }
       }

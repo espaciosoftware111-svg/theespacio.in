@@ -20,7 +20,7 @@ const AdminPagesCMS = () => {
   const [settings, setSettings] = useState({
     hero_title: 'Elegance. Experience. Espacio.',
     hero_subtitle: 'Bespoke Luxury Interiors & Turned-Key Executions in Hyderabad',
-    hero_cta_text: 'Get Estimate',
+    hero_cta_text: 'Book a Complimentary Design Consultation',
     hero_cta_link: '/contact',
     hero_visible: true,
     hero_images: [
@@ -368,7 +368,7 @@ const AdminPagesCMS = () => {
                     value={settings.hero_cta_text}
                     onChange={(e) => updateSetting('hero_cta_text', e.target.value)}
                     className={inpClass}
-                    placeholder="Get Estimate"
+                    placeholder="Book a Complimentary Design Consultation"
                   />
                 </div>
                 <div>

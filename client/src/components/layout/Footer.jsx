@@ -60,8 +60,6 @@ const renderSocialIcon = (iconName) => {
 const Footer = () => {
   const location = useLocation();
   const year = new Date().getFullYear();
-  const espRef = useRef(null);
-  const inView = useInView(espRef, { once: true, margin: '-40px' });
 
   // Get current page key for page-specific CTA
   const getPageKey = () => {
@@ -84,26 +82,30 @@ const Footer = () => {
   });
 
   React.useEffect(() => {
-    const fetchFooterSettings = async () => {
+    const syncStored = () => {
       const stored = getCMSData(STORAGE_KEYS.SETTINGS);
       if (stored && Object.keys(stored).length > 0) {
         setCmsSettings(stored);
       }
+    };
 
+    const fetchFooterSettings = async () => {
+      syncStored();
       try {
         const { default: axios } = await import('axios');
         const res = await axios.get('/settings');
-        if (res.data.success && res.data.data) {
+        if (res.data?.success && res.data?.data) {
+          const stored = getCMSData(STORAGE_KEYS.SETTINGS);
           const merged = { ...(stored || {}), ...res.data.data };
           setCmsSettings(merged);
-          setCMSData(STORAGE_KEYS.SETTINGS, merged);
+          setCMSData(STORAGE_KEYS.SETTINGS, merged, { silent: true });
         }
       } catch {}
     };
 
     fetchFooterSettings();
 
-    const handleSync = () => fetchFooterSettings();
+    const handleSync = () => syncStored();
     window.addEventListener('espacio_cms_update', handleSync);
     window.addEventListener('storage', handleSync);
     return () => {
@@ -140,8 +142,14 @@ const Footer = () => {
     offset: ["start 95%", "center center"]
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [24, 0]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.9, 1]);
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["inset(15% 10% 15% 10% round 40px)", "inset(0% 0% 0% 0% round 0px)"]
+  );
+
+  const contentY = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1]);
 
   // Dynamic CMS fields with defaults (checking Footer, Contact, and Studio Card keys)
   const locationTitle = cmsSettings.footer_location_title || cmsSettings.contact_location_title || cmsSettings.exp_eyebrow || 'LOCATION';
@@ -231,11 +239,18 @@ const Footer = () => {
 
   return (
     <footer className="bg-bg-dark text-bg min-h-[45vh] flex flex-col justify-between pt-0 pb-28 sm:pb-32 lg:pb-8">
-      {/* 1. Center CTA Banner with Dusk Architectural Background */}
+      {/* 1. Center CTA Banner with Dusk Architectural Background & Expanding Scroll Transition */}
       {ctaEnabled && (
-        <div 
+        <motion.div 
           ref={ctaRef}
-          className="relative pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-20 px-5 sm:px-6 md:px-12 text-center mb-4 sm:mb-6 lg:mb-8 overflow-hidden rounded-[24px] sm:rounded-[32px] mx-3 sm:mx-6 lg:mx-12 bg-cover bg-center shadow-xl"
+          style={{ 
+            clipPath,
+            WebkitClipPath: clipPath,
+            willChange: 'clip-path, transform',
+            transform: 'translateZ(0)',
+            WebkitTransform: 'translateZ(0)'
+          }}
+          className="relative pt-20 pb-28 sm:pt-24 sm:pb-32 lg:pt-28 lg:pb-36 px-6 md:px-12 text-center mb-8 sm:mb-12 lg:mb-16 overflow-hidden bg-cover bg-center"
         >
           {/* Background Image Layer */}
           <div 
@@ -252,7 +267,7 @@ const Footer = () => {
             className="relative z-10 max-w-[1440px] mx-auto flex flex-col items-center justify-center"
             style={{ y: contentY, opacity: contentOpacity }}
           >
-            <h2 className="font-display text-[clamp(24px,5.8vw,60px)] font-medium leading-[1.12] tracking-tight text-bg mb-4 sm:mb-6 whitespace-pre-line text-center">
+            <h2 className="font-display text-[clamp(28px,5.8vw,60px)] font-medium leading-[1.12] tracking-tight text-bg mb-4 sm:mb-6 whitespace-pre-line text-center">
               {ctaHeadline}
             </h2>
             <p className="font-sans text-[13.5px] sm:text-[15px] text-bg/60 max-w-[480px] mx-auto leading-relaxed mb-6 sm:mb-10">
@@ -269,7 +284,7 @@ const Footer = () => {
               <span className="btn-sliding-cta-text-two">{ctaHoverText}</span>
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
       )}
 
       {/* 2. Combined Footer Info Row */}
@@ -379,9 +394,12 @@ const Footer = () => {
       </div>
 
       {/* 4. Giant Cinematic Typography Wordmark */}
-      <div 
-        ref={espRef} 
+      <motion.div 
+        key={location.pathname}
         className="w-full flex flex-col items-center justify-center overflow-hidden py-6 md:py-8 select-none relative z-10 px-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.15 }}
       >
         <div 
           className="font-sans tracking-[-0.04em] uppercase text-white leading-[0.8] whitespace-nowrap text-center select-none"
@@ -390,21 +408,23 @@ const Footer = () => {
             fontFamily: 'Montserrat, sans-serif',
             fontWeight: brandWeight || 800,
             color: '#FFFFFF',
-            opacity: brandOpacity || 1
+            opacity: brandOpacity
           }}
         >
           {/* LEFT HALF */}
           <motion.span
-            className="inline-block"
-            initial={{ x: '-85%', opacity: 0, scale: 0.95 }}
-            animate={inView ? { 
-              x: 0, 
-              opacity: 1, 
-              scale: 1 
-            } : { x: '-85%', opacity: 0, scale: 0.95 }}
-            transition={{ 
-              duration: 2.0, 
-              ease: [0.16, 1, 0.3, 1] 
+            className="inline-block will-change-transform"
+            variants={{
+              hidden: { x: '-75%', opacity: 0, scale: 0.95, transition: { duration: 0.25 } },
+              visible: { 
+                x: '0%', 
+                opacity: 1, 
+                scale: 1,
+                transition: { 
+                  duration: 1.35, 
+                  ease: [0.16, 1, 0.3, 1] 
+                }
+              }
             }}
           >
             {brandLeft}
@@ -412,16 +432,18 @@ const Footer = () => {
 
           {/* RIGHT HALF */}
           <motion.span
-            className="inline-block"
-            initial={{ x: '85%', opacity: 0, scale: 0.95 }}
-            animate={inView ? { 
-              x: 0, 
-              opacity: 1, 
-              scale: 1 
-            } : { x: '85%', opacity: 0, scale: 0.95 }}
-            transition={{ 
-              duration: 2.0, 
-              ease: [0.16, 1, 0.3, 1] 
+            className="inline-block will-change-transform"
+            variants={{
+              hidden: { x: '75%', opacity: 0, scale: 0.95, transition: { duration: 0.25 } },
+              visible: { 
+                x: '0%', 
+                opacity: 1, 
+                scale: 1,
+                transition: { 
+                  duration: 1.35, 
+                  ease: [0.16, 1, 0.3, 1] 
+                }
+              }
             }}
           >
             {brandRight}
@@ -431,15 +453,24 @@ const Footer = () => {
         {/* Sub-Brand Tagline */}
         {brandSubtitle && (
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 16, transition: { duration: 0.2 } },
+              visible: { 
+                opacity: 1, 
+                y: 0,
+                transition: { 
+                  duration: 1.0, 
+                  delay: 0.25, 
+                  ease: [0.16, 1, 0.3, 1] 
+                }
+              }
+            }}
             className="font-sans text-[clamp(11px,1.4vw,20px)] font-bold text-white/80 tracking-[0.25em] sm:tracking-[0.38em] uppercase text-center mt-3 sm:mt-4 md:mt-5 m-0"
           >
             {brandSubtitle}
           </motion.p>
         )}
-      </div>
+      </motion.div>
 
       {/* 5. Copyright Strip */}
       <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-12 flex flex-col items-center justify-center gap-2 pt-6 pb-4 text-center relative z-10">

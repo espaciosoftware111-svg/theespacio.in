@@ -202,7 +202,7 @@ const mockCategories = [
     "name": "Master Bedroom",
     "slug": "master-bedroom",
     "description": "Sanctuary bedroom suites designed with fluted walnut headboards, ambient cove illumination zones, and bespoke bedside consoles.",
-    "heroImage": "/images/spaces/bedroom/bedroom_drive_24.webp",
+    "heroImage": "/images/spaces/bedroom/bedroom_drive_29.webp",
     "visible": true,
     "details": {
       "tag": "Restful Sanctuary",
@@ -288,7 +288,7 @@ const mockCategories = [
     "name": "Wardrobe Systems",
     "slug": "wardrobes",
     "description": "Bespoke floor-to-ceiling storage with velvet drawer linings, mirror panels, and hidden pull-out trays.",
-    "heroImage": "/images/spaces/wardrobes/wardrobe_drive_25.webp",
+    "heroImage": "/images/spaces/wardrobes/wardrobe_drive_23.webp",
     "visible": true,
     "details": {
       "tag": "Bespoke Storage",
@@ -718,7 +718,7 @@ const mockCategories = [
     "name": "Foyer",
     "slug": "foyer",
     "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
-    "heroImage": "/images/spaces/foyer/foyer_drive_22.webp",
+    "heroImage": "/images/spaces/foyer/foyer_drive_18.webp",
     "visible": true,
     "details": {
       "tag": "Grand First Impressions",
@@ -2308,6 +2308,10 @@ const WhatWeDo = () => {
         phone2: cleanPhone2,
         location: catalogForm.location.trim() || 'Hyderabad',
         projectType: 'Spaces Estimate Request',
+        isMaterials: false,
+        targetSheet: 'Leads',
+        sheetName: 'Leads',
+        leadId: `ESP-${Math.floor(100000 + Math.random() * 900000)}`,
         serviceType: spaceTitle,
         requirement: spaceTitle,
         spaces: spaceTitle,
@@ -2324,6 +2328,10 @@ const WhatWeDo = () => {
           spaces: spaceTitle,
           stage: 'Immediate (0-1 Month)',
           source: `Spaces Gallery (${spaceTitle} - Unlock Designs)`,
+              targetSheet: 'Leads',
+              sheetName: 'Leads',
+              isMaterials: false,
+              leadId: `ESP-${Math.floor(100000 + Math.random() * 900000)}`,
           notes: `Lead captured via "Fill Details to Unlock More Designs" modal for ${spaceTitle}. Location: ${catalogForm.location.trim() || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`
         }
       };
@@ -2523,8 +2531,19 @@ const WhatWeDo = () => {
           slides: settings.spaces_before_after_slides,
           beforeLabel: getNonEmpty(settings.spaces_before_label, prev.beforeLabel),
           afterLabel: getNonEmpty(settings.spaces_after_label, prev.afterLabel),
+          visible: settings.spaces_hero_visible !== false
+        }));
+      } else {
+        setSpacesHeroState((prev) => ({
+          ...prev,
+          visible: settings.spaces_hero_visible !== false
         }));
       }
+      setSpacesSettings((prev) => ({
+        ...prev,
+        spaces_hero_visible: settings.spaces_hero_visible !== false,
+        spaces_grid_visible: settings.spaces_grid_visible !== false,
+      }));
     };
 
     window.addEventListener('espacio_cms_update', handleSync);
@@ -2547,6 +2566,55 @@ const WhatWeDo = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [slug]);
+
+  // ── High-Speed In-Memory Image Pre-Decoder & Asset Warmer ─────────────────
+  useEffect(() => {
+    // 1. Warm up flagship spaces heroes off-main-thread for instant opening
+    const priorityHeroes = [
+      '/images/spaces/foyer/foyer_drive_18.webp',
+      '/images/spaces/bedroom/bedroom_drive_29.webp',
+      '/images/spaces/wardrobes/wardrobe_drive_23.webp',
+      '/images/spaces/modular_kitchen/kitchen_drive_24.webp',
+      '/images/spaces/living/living_drive_1.webp',
+      '/images/spaces/tv_units/tv_drive_2.webp',
+      '/images/spaces/pooja/pooja_drive_12.webp',
+      '/images/spaces/dining/dining_drive_27.webp'
+    ];
+
+    priorityHeroes.forEach(url => {
+      const img = new Image();
+      img.src = url;
+      if (img.decode) img.decode().catch(() => {});
+    });
+
+    // 2. If viewing a space detail page, pre-decode its hero and gallery images immediately
+    if (slug) {
+      const currentCat = mockCategories.find(c => c.slug === slug);
+      if (currentCat) {
+        const toWarm = [
+          currentCat.heroImage,
+          ...(currentCat.galleryImages || []).slice(0, 8)
+        ].filter(Boolean);
+        toWarm.forEach(url => {
+          const img = new Image();
+          img.src = url;
+          if (img.decode) img.decode().catch(() => {});
+        });
+      }
+    }
+  }, [slug]);
+
+  const prefetchSpaceImages = (category) => {
+    if (!category) return;
+    const hero = category.heroImage || category.galleryImages?.[0];
+    const gallery = (category.galleryImages || []).slice(0, 6);
+    const toPreload = [hero, ...gallery].filter(Boolean);
+    toPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      if (img.decode) img.decode().catch(() => {});
+    });
+  };
 
   // Global Escape key listener to close zoomed image lightbox or catalog modal
   useEffect(() => {
@@ -2715,12 +2783,31 @@ const WhatWeDo = () => {
       .filter(c => c.slug !== activeCategory.slug)
       .slice(0, 3);
 
+    const detailHeroSrc = getOptimizedImageUrl(
+      (activeCategory.slug === 'modular-kitchen' && (!activeCategory.heroImage || activeCategory.heroImage.includes('user_luxury_kitchen') || activeCategory.heroImage.includes('2bhk_urban') || activeCategory.heroImage.includes('3bhk_lux')))
+        ? '/images/spaces/modular_kitchen/kitchen_drive_24.webp'
+        : (activeCategory.slug === 'pooja-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('pooja_drive_1.webp')))
+        ? '/images/spaces/pooja/pooja_drive_12.webp'
+        : (activeCategory.slug === 'dining-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('dining_drive_1.webp')))
+        ? '/images/spaces/dining/dining_drive_27.webp'
+        : (activeCategory.slug === 'master-bedroom' && (!activeCategory.heroImage || activeCategory.heroImage.includes('master_bedroom_after') || activeCategory.heroImage.includes('bedroom_drive_24')))
+        ? '/images/spaces/bedroom/bedroom_drive_29.webp'
+        : (activeCategory.slug === 'wardrobes' && (!activeCategory.heroImage || activeCategory.heroImage.includes('wardrobe_drive_25')))
+        ? '/images/spaces/wardrobes/wardrobe_drive_23.webp'
+        : (activeCategory.slug === 'foyer' && (!activeCategory.heroImage || activeCategory.heroImage.includes('foyer_drive_22')))
+        ? '/images/spaces/foyer/foyer_drive_18.webp'
+        : (activeCategory.heroImage || (activeCategory.slug === 'master-bedroom' ? '/images/spaces/bedroom/bedroom_drive_29.webp' : (activeCategory.slug === 'wardrobes' ? '/images/spaces/wardrobes/wardrobe_drive_23.webp' : (activeCategory.slug === 'foyer' ? '/images/spaces/foyer/foyer_drive_18.webp' : '/images/spaces/modular_kitchen/kitchen_drive_24.webp')))),
+      1920,
+      90
+    );
+
     return (
       <div className="bg-bg min-h-screen">
         <SEO 
           title={`${activeCategory.name} Interiors — ESPACIO Hyderabad`} 
           description={activeCategory.description} 
           url={`/spaces/${activeCategory.slug}`} 
+          preloadImage={detailHeroSrc}
         />
 
         {/* ── 1. CINEMATIC DETAIL HERO ────────────────────────────────────────── */}
@@ -2728,18 +2815,25 @@ const WhatWeDo = () => {
           <section className="relative pt-2 sm:pt-3 pb-2.5 sm:pb-3.5 px-3 sm:px-4 md:px-5 lg:px-6 w-full h-[90dvh] sm:h-[80vh] lg:h-[90vh] min-h-[500px] sm:min-h-[500px] lg:min-h-[580px] bg-bg flex flex-col justify-end">
             <div className="relative w-full h-full rounded-[18px] sm:rounded-[26px] lg:rounded-[32px] overflow-hidden bg-bg-dark shadow-[0_16px_40px_rgba(0,0,0,0.22)] border border-white/10 flex items-end">
               <img 
-                src={getOptimizedImageUrl(
-                  (activeCategory.slug === 'modular-kitchen' && (!activeCategory.heroImage || activeCategory.heroImage.includes('user_luxury_kitchen') || activeCategory.heroImage.includes('2bhk_urban') || activeCategory.heroImage.includes('3bhk_lux')))
-                    ? '/images/spaces/modular_kitchen/kitchen_drive_24.webp'
-                    : (activeCategory.slug === 'pooja-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('pooja_drive_1.webp')))
-                    ? '/images/spaces/pooja/pooja_drive_12.webp'
-                    : (activeCategory.slug === 'dining-room' && (!activeCategory.heroImage || activeCategory.heroImage.includes('dining_drive_1.webp')))
-                    ? '/images/spaces/dining/dining_drive_27.webp'
-                    : activeCategory.heroImage,
-                  2560,
-                  95
-                )} 
+                src={detailHeroSrc} 
                 alt={activeCategory.name} 
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                onError={(e) => {
+                  const fb = activeCategory.slug === 'master-bedroom'
+                    ? '/images/spaces/bedroom/bedroom_drive_29.webp'
+                    : activeCategory.slug === 'wardrobes'
+                    ? '/images/spaces/wardrobes/wardrobe_drive_23.webp'
+                    : activeCategory.slug === 'foyer'
+                    ? '/images/spaces/foyer/foyer_drive_18.webp'
+                    : activeCategory.slug === 'modular-kitchen'
+                    ? '/images/spaces/modular_kitchen/kitchen_drive_24.webp'
+                    : (activeCategory.galleryImages?.[0] || '/images/hero/hero_bedroom_4k.webp');
+                  if (e.currentTarget.src !== fb) {
+                    e.currentTarget.src = fb;
+                  }
+                }}
                 style={{ imageRendering: 'auto' }}
                 className="absolute inset-0 w-full h-full object-cover object-center opacity-85 scale-100 transition-transform duration-1000" 
               />
@@ -2869,9 +2963,10 @@ const WhatWeDo = () => {
                       {/* Photo Container */}
                       <div className="relative aspect-[16/10] sm:aspect-[4/3] overflow-hidden bg-bg-dark">
                         <img 
-                          src={getOptimizedImageUrl(item.img, 1400, 92)} 
+                          src={getOptimizedImageUrl(item.img, 1200, 88)} 
                           alt={`${item.title} — ${activeCategory.name}`} 
-                          loading="lazy" 
+                          loading={i < 3 ? "eager" : "lazy"} 
+                          fetchPriority={i < 2 ? "high" : "auto"}
                           decoding="async" 
                           style={{ imageRendering: 'auto' }}
                           className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out" 
@@ -3432,10 +3527,10 @@ const WhatWeDo = () => {
                       <CheckCircle2 size={36} />
                     </div>
                     <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">
-                      Estimate Request Received!
+                      Consultation Request Received!
                     </h3>
                     <p className="font-sans text-sm text-ink-soft max-w-[380px] mx-auto leading-relaxed">
-                      Thank you, <strong>{catalogForm.name || 'valued client'}</strong>. Your request for <strong className="text-ink font-semibold">{activeCategory.name}</strong> has been logged. Our principal design team will share your personalized estimate range and design catalog with you shortly.
+                      Thank you, <strong>{catalogForm.name || 'valued client'}</strong>. Your request for <strong className="text-ink font-semibold">{activeCategory.name}</strong> has been logged. Our principal design team will share your design catalog and connect with you shortly for your complimentary design consultation.
                     </p>
                     <button
                       onClick={handleCloseCatalogModal}
@@ -3460,6 +3555,7 @@ const WhatWeDo = () => {
         title="Bespoke Interior Spaces & Room Transformation Explorer — ESPACIO" 
         description="Explore luxury room categories by ESPACIO Hyderabad: Modular Kitchens, Master Bedrooms, Living Lounges, Wardrobes, Pooja Sanctuaries, and Dining Suites with interactive Before & After transformation comparisons." 
         url="/spaces" 
+        preloadImage={getOptimizedImageUrl(currentSlide.after || '/images/spaces/spaces_hero_after.webp', 1920, 90)}
       />
 
       {/* ── 1. ROUNDED CARD HERO (Interactive Multi-Scenario Before/After Slider) ── */}
@@ -3587,7 +3683,16 @@ const WhatWeDo = () => {
         const getCategoryHero = (cat) => {
           if (!cat) return '/images/spaces/modular_kitchen/kitchen_drive_24.webp';
           if (cat.slug === 'commercial-office' || cat.slug === 'commercial-interiors') {
-            return cat.heroImage || 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png';
+            return (cat.heroImage && !cat.heroImage.includes('commercial_drive_41')) ? cat.heroImage : '/images/spaces/commercial/commercial_drive_16.webp';
+          }
+          if (cat.slug === 'master-bedroom') {
+            return (cat.heroImage && !cat.heroImage.includes('drive_24') && !cat.heroImage.includes('master_bedroom_after')) ? cat.heroImage : '/images/spaces/bedroom/bedroom_drive_29.webp';
+          }
+          if (cat.slug === 'wardrobes') {
+            return (cat.heroImage && !cat.heroImage.includes('drive_25')) ? cat.heroImage : '/images/spaces/wardrobes/wardrobe_drive_23.webp';
+          }
+          if (cat.slug === 'foyer') {
+            return (cat.heroImage && !cat.heroImage.includes('foyer_drive_22')) ? cat.heroImage : '/images/spaces/foyer/foyer_drive_18.webp';
           }
           const img = cat.heroImage || cat.galleryImages?.[0];
           if (!img || img.includes('drive.google.com') || img.includes('undefined')) {
@@ -3643,12 +3748,15 @@ const WhatWeDo = () => {
                     <Reveal key={cat.slug || idx} delay={Math.min((idx % 2) * 0.05, 0.1)}>
                       <Link 
                         to={`/spaces/${cat.slug}`}
+                        onMouseEnter={() => prefetchSpaceImages(cat)}
+                        onTouchStart={() => prefetchSpaceImages(cat)}
                         className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                       >
                         <img 
                           src={heroSrc} 
                           alt={cat.name} 
-                          loading="lazy" 
+                          loading={idx < 2 ? "eager" : "lazy"} 
+                          fetchPriority={idx === 0 ? "high" : "auto"}
                           decoding="async"
                           onError={(e) => {
                             const fb = cat.slug === 'commercial-office' 
@@ -3696,16 +3804,19 @@ const WhatWeDo = () => {
                       <Reveal key={cat.slug || `left-${idx}`} delay={Math.min((idx % 3) * 0.05, 0.12)}>
                         <Link 
                           to={`/spaces/${cat.slug}`}
+                          onMouseEnter={() => prefetchSpaceImages(cat)}
+                          onTouchStart={() => prefetchSpaceImages(cat)}
                           className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                         >
                           <img 
                             src={heroSrc} 
                             alt={cat.name} 
-                            loading="lazy" 
+                            loading={idx === 0 ? "eager" : "lazy"} 
+                            fetchPriority={idx === 0 ? "high" : "auto"}
                             decoding="async"
                             onError={(e) => {
                               const fb = cat.slug === 'commercial-office' 
-                                ? '/images/spaces/commercial/commercial_drive_41.webp' 
+                                ? '/images/spaces/commercial/commercial_drive_16.webp' 
                                 : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}
@@ -3745,12 +3856,15 @@ const WhatWeDo = () => {
                       <Link 
                         key={cat.slug || `center-${idx}`}
                         to={`/spaces/${cat.slug}`}
+                        onMouseEnter={() => prefetchSpaceImages(cat)}
+                        onTouchStart={() => prefetchSpaceImages(cat)}
                         className="group relative rounded-xl sm:rounded-2xl overflow-hidden h-full w-full bg-neutral-900 block shadow-md hover:shadow-2xl border border-white/10 hover:border-gold/40 transition-all duration-500"
                       >
                         <img 
                           src={heroSrc} 
                           alt={cat.name} 
-                          loading="lazy" 
+                          loading="eager" 
+                          fetchPriority="high"
                           decoding="async"
                           onError={(e) => {
                             const fb = cat.slug === 'commercial-office' 
@@ -3800,16 +3914,19 @@ const WhatWeDo = () => {
                       <Reveal key={cat.slug || `right-${idx}`} delay={Math.min((idx % 3) * 0.05, 0.12)}>
                         <Link 
                           to={`/spaces/${cat.slug}`}
+                          onMouseEnter={() => prefetchSpaceImages(cat)}
+                          onTouchStart={() => prefetchSpaceImages(cat)}
                           className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 block shadow-sm hover:shadow-xl border border-ink-border/30 hover:border-gold/60 transition-all duration-500"
                         >
                           <img 
                             src={heroSrc} 
                             alt={cat.name} 
-                            loading="lazy" 
+                            loading={idx === 0 ? "eager" : "lazy"} 
+                            fetchPriority={idx === 0 ? "high" : "auto"}
                             decoding="async"
                             onError={(e) => {
                               const fb = cat.slug === 'commercial-office' 
-                                ? '/images/spaces/commercial/commercial_drive_41.webp' 
+                                ? '/images/spaces/commercial/commercial_drive_16.webp' 
                                 : (mockCategories.find(m => m.slug === cat.slug)?.heroImage || '/images/spaces/modular_kitchen/kitchen_drive_24.webp');
                               if (e.currentTarget.src !== fb) e.currentTarget.src = fb;
                             }}

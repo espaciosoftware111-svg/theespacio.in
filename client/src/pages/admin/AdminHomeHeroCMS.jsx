@@ -115,7 +115,7 @@ const AdminHomeHeroCMS = () => {
 
     // Section 5: Selected Work / Our Projects
     projects_visible: true,
-    projects_heading: 'Our Projects',
+    projects_heading: 'Our Featured Projects',
     projects_subtitle: 'Selected Work',
     projects_cta_text: 'All Projects ↗',
     projects_cta_link: '/projects',
@@ -350,7 +350,7 @@ const AdminHomeHeroCMS = () => {
       id: 'section-cta',
       num: '09',
       title: 'Bottom Consultation CTA',
-      desc: 'Direct estimate callout & lead generation trigger',
+      desc: 'Direct consultation callout & lead generation trigger',
       visibleKey: null,
       isVisible: true,
       badge: 'Lead Magnet'

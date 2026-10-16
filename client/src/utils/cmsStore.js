@@ -57,7 +57,7 @@ export const notifyCMSUpdate = () => {
     if (syncChannel) {
       try {
         syncChannel.postMessage({ type: 'CMS_UPDATED', timestamp: Date.now() });
-      } catch {}
+      } catch { }
     }
   }, 100);
 };
@@ -72,41 +72,41 @@ export const publishAllCMSChanges = async () => {
     try {
       const settings = getCMSData(STORAGE_KEYS.SETTINGS);
       if (settings && Object.keys(settings).length > 0) {
-        await axios.put('/settings', settings).catch(() => {});
+        await axios.put('/settings', settings).catch(() => { });
       }
-    } catch {}
+    } catch { }
 
     // 2. Sync projects to backend API
     try {
       const projects = getCMSData(STORAGE_KEYS.PROJECTS);
       if (Array.isArray(projects) && projects.length > 0) {
-        await axios.put('/projects/bulk', { projects }).catch(() => {});
+        await axios.put('/projects/bulk', { projects }).catch(() => { });
       }
-    } catch {}
+    } catch { }
 
     // 3. Sync products/materials to backend API
     try {
       const products = getCMSData(STORAGE_KEYS.PRODUCTS);
       if (Array.isArray(products) && products.length > 0) {
-        await axios.put('/products/bulk', { products }).catch(() => {});
+        await axios.put('/products/bulk', { products }).catch(() => { });
       }
-    } catch {}
+    } catch { }
 
     // 4. Sync FAQs to backend API
     try {
       const faqs = getCMSData(STORAGE_KEYS.FAQS);
       if (Array.isArray(faqs) && faqs.length > 0) {
-        await axios.put('/faqs/bulk', { faqs }).catch(() => {});
+        await axios.put('/faqs/bulk', { faqs }).catch(() => { });
       }
-    } catch {}
+    } catch { }
 
     // 5. Sync Testimonials to backend API
     try {
       const testimonials = getCMSData(STORAGE_KEYS.TESTIMONIALS);
       if (Array.isArray(testimonials) && testimonials.length > 0) {
-        await axios.put('/testimonials/bulk', { testimonials }).catch(() => {});
+        await axios.put('/testimonials/bulk', { testimonials }).catch(() => { });
       }
-    } catch {}
+    } catch { }
 
     // 6. Direct Supabase backup if available
     try {
@@ -118,10 +118,10 @@ export const publishAllCMSChanges = async () => {
             id: 'global_cms_settings',
             data: settings,
             updated_at: timestamp
-          }).catch(() => {});
+          }).catch(() => { });
         }
       }
-    } catch {}
+    } catch { }
 
     // Broadcast live event across all active tabs
     notifyCMSUpdate();
@@ -206,7 +206,7 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Cove lighting needs ventilation gaps and safe clearances from the finishes, so we planned both in from the start. That keeps the veneer from warping or fading over time. The wardrobes and pooja unit are built on moisture-resistant boards with heavy-duty hardware made for daily use. None of this is visible once the home is finished, but it is why the home looks as good years later as it did on handover day.",
       "outcome": "A calm, well-balanced home where every room feels connected to the next, from the fluted wall in the living room to the mural on the staircase. Delivered turnkey and on schedule."
     },
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png",
     "gallery": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040153/espacio_gallery/dnligxpinxfkkzbwdesc.png",
@@ -220,12 +220,12 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040101/espacio_gallery/gn1gylu6rnd1jvpobceu.png"
     ],
     "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png",
     "beforeImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png"
     ],
     "testimonialName": "Prakash",
     "testimonialProfession": "Homeowner, Kali Mandir",
@@ -721,7 +721,7 @@ export const DEFAULT_PROJECTS = [
       "engineering": "Doors close softly with premium German soft-close mechanisms, finishes are curated to withstand daily family life with ease, and every bespoke millwork piece was dry-fitted precisely before final installation. Soft, warm lighting circuits were planned to take over in the evening to settle the atmosphere.",
       "outcome": "A bright, serene 2BHK that feels more spacious than it is, and a home that welcomes the family back at the end of every day. Delivered turnkey and handed over on the committed date."
     },
-    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png",
+    "heroImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png",
     "gallery": [
       // Bedrooms (1–4)
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png",
@@ -742,12 +742,12 @@ export const DEFAULT_PROJECTS = [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039595/espacio_gallery/hexutd4jmmolynp91e28.png"
     ],
     "beforeImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg",
-    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg",
+    "afterImage": "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png",
     "beforeImages": [
       "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg"
     ],
     "afterImages": [
-      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg"
+      "https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png"
     ],
     "testimonialName": "Dinesh & Sarvani",
     "testimonialProfession": "Homeowners, Tellapur",
@@ -776,38 +776,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
     features: ['High-Gloss', 'Anti-Scratch', 'Concealed Track'],
     colors: [
-          {
-                "name": "Azzurro Sky",
-                "hex": "#87B5C8"
-          },
-          {
-                "name": "Crema Imperiale",
-                "hex": "#F0ECE1"
-          },
-          {
-                "name": "Luminous Gold",
-                "hex": "#D4AF37"
-          },
-          {
-                "name": "Blanco Pure",
-                "hex": "#FFFFFF"
-          },
-          {
-                "name": "Obsidian Mirror",
-                "hex": "#1C1C1E"
-          },
-          {
-                "name": "Elysian Vein",
-                "hex": "#E6DFD5"
-          },
-          {
-                "name": "Menta Sage",
-                "hex": "#A2C2B3"
-          },
-          {
-                "name": "Vector Champagne",
-                "hex": "#DFD3BF"
-          }
+      {
+        "name": "Azzurro Sky",
+        "hex": "#87B5C8"
+      },
+      {
+        "name": "Crema Imperiale",
+        "hex": "#F0ECE1"
+      },
+      {
+        "name": "Luminous Gold",
+        "hex": "#D4AF37"
+      },
+      {
+        "name": "Blanco Pure",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Obsidian Mirror",
+        "hex": "#1C1C1E"
+      },
+      {
+        "name": "Elysian Vein",
+        "hex": "#E6DFD5"
+      },
+      {
+        "name": "Menta Sage",
+        "hex": "#A2C2B3"
+      },
+      {
+        "name": "Vector Champagne",
+        "hex": "#DFD3BF"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -825,38 +825,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
     features: ['Scratch-Proof', 'Marble Finish', 'Heat Resistant'],
     colors: [
-          {
-                "name": "Carrara Statuario",
-                "hex": "#F4F4F4"
-          },
-          {
-                "name": "Crema Marfil",
-                "hex": "#E8DEC8"
-          },
-          {
-                "name": "Nero Marquina",
-                "hex": "#232323"
-          },
-          {
-                "name": "Gracia Vein",
-                "hex": "#D9D2C7"
-          },
-          {
-                "name": "Elysian Gold Vein",
-                "hex": "#DFD6C3"
-          },
-          {
-                "name": "Silver Travertine",
-                "hex": "#AFA99E"
-          },
-          {
-                "name": "Calacatta Borghini",
-                "hex": "#EDE7DC"
-          },
-          {
-                "name": "Emerald Laurent",
-                "hex": "#2E4338"
-          }
+      {
+        "name": "Carrara Statuario",
+        "hex": "#F4F4F4"
+      },
+      {
+        "name": "Crema Marfil",
+        "hex": "#E8DEC8"
+      },
+      {
+        "name": "Nero Marquina",
+        "hex": "#232323"
+      },
+      {
+        "name": "Gracia Vein",
+        "hex": "#D9D2C7"
+      },
+      {
+        "name": "Elysian Gold Vein",
+        "hex": "#DFD6C3"
+      },
+      {
+        "name": "Silver Travertine",
+        "hex": "#AFA99E"
+      },
+      {
+        "name": "Calacatta Borghini",
+        "hex": "#EDE7DC"
+      },
+      {
+        "name": "Emerald Laurent",
+        "hex": "#2E4338"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -874,38 +874,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
     features: ['Air Purifying', 'Premium Texture', 'Acoustic Dampening'],
     colors: [
-          {
-                "name": "Obsidian Noir",
-                "hex": "#1A1A1A"
-          },
-          {
-                "name": "Anthracite Slat",
-                "hex": "#2B2D2F"
-          },
-          {
-                "name": "Dual-Tone Carbon",
-                "hex": "#383838"
-          },
-          {
-                "name": "Metallic Bronze",
-                "hex": "#5A4A3B"
-          },
-          {
-                "name": "Sculptural Pewter",
-                "hex": "#4D5054"
-          },
-          {
-                "name": "Smoked Umber",
-                "hex": "#44352C"
-          },
-          {
-                "name": "Deep Steel Grey",
-                "hex": "#3A4146"
-          },
-          {
-                "name": "Oxidized Brass",
-                "hex": "#6B5D43"
-          }
+      {
+        "name": "Obsidian Noir",
+        "hex": "#1A1A1A"
+      },
+      {
+        "name": "Anthracite Slat",
+        "hex": "#2B2D2F"
+      },
+      {
+        "name": "Dual-Tone Carbon",
+        "hex": "#383838"
+      },
+      {
+        "name": "Metallic Bronze",
+        "hex": "#5A4A3B"
+      },
+      {
+        "name": "Sculptural Pewter",
+        "hex": "#4D5054"
+      },
+      {
+        "name": "Smoked Umber",
+        "hex": "#44352C"
+      },
+      {
+        "name": "Deep Steel Grey",
+        "hex": "#3A4146"
+      },
+      {
+        "name": "Oxidized Brass",
+        "hex": "#6B5D43"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -924,38 +924,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
     features: ['Waterproof', 'Easy Install', 'Flame Retardant'],
     colors: [
-          {
-                "name": "Irish Off-White",
-                "hex": "#EAE6DF"
-          },
-          {
-                "name": "Nordic Ash",
-                "hex": "#C4BCB1"
-          },
-          {
-                "name": "Marbo Sand Beige",
-                "hex": "#D5C5B2"
-          },
-          {
-                "name": "Azzurro Fluted",
-                "hex": "#8FAEB9"
-          },
-          {
-                "name": "Giallo Slate",
-                "hex": "#94928D"
-          },
-          {
-                "name": "Caramel Teak",
-                "hex": "#A87C4F"
-          },
-          {
-                "name": "Menta Whisper",
-                "hex": "#BACCC3"
-          },
-          {
-                "name": "Graphite Matte",
-                "hex": "#3D3F43"
-          }
+      {
+        "name": "Irish Off-White",
+        "hex": "#EAE6DF"
+      },
+      {
+        "name": "Nordic Ash",
+        "hex": "#C4BCB1"
+      },
+      {
+        "name": "Marbo Sand Beige",
+        "hex": "#D5C5B2"
+      },
+      {
+        "name": "Azzurro Fluted",
+        "hex": "#8FAEB9"
+      },
+      {
+        "name": "Giallo Slate",
+        "hex": "#94928D"
+      },
+      {
+        "name": "Caramel Teak",
+        "hex": "#A87C4F"
+      },
+      {
+        "name": "Menta Whisper",
+        "hex": "#BACCC3"
+      },
+      {
+        "name": "Graphite Matte",
+        "hex": "#3D3F43"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -973,38 +973,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
     features: ['Durable', 'Water-Resistant', 'Soft Acoustic Tread'],
     colors: [
-          {
-                "name": "Scandinavian Oak",
-                "hex": "#D5B895"
-          },
-          {
-                "name": "Smoked Walnut",
-                "hex": "#4A3528"
-          },
-          {
-                "name": "Bleached Driftwood",
-                "hex": "#D8D2C5"
-          },
-          {
-                "name": "Ashen Grey Oak",
-                "hex": "#8C877D"
-          },
-          {
-                "name": "Honey Chestnut",
-                "hex": "#B77E46"
-          },
-          {
-                "name": "Slate Limestone",
-                "hex": "#33373B"
-          },
-          {
-                "name": "Limed White Oak",
-                "hex": "#E5DCCB"
-          },
-          {
-                "name": "Espresso Timber",
-                "hex": "#2F241F"
-          }
+      {
+        "name": "Scandinavian Oak",
+        "hex": "#D5B895"
+      },
+      {
+        "name": "Smoked Walnut",
+        "hex": "#4A3528"
+      },
+      {
+        "name": "Bleached Driftwood",
+        "hex": "#D8D2C5"
+      },
+      {
+        "name": "Ashen Grey Oak",
+        "hex": "#8C877D"
+      },
+      {
+        "name": "Honey Chestnut",
+        "hex": "#B77E46"
+      },
+      {
+        "name": "Slate Limestone",
+        "hex": "#33373B"
+      },
+      {
+        "name": "Limed White Oak",
+        "hex": "#E5DCCB"
+      },
+      {
+        "name": "Espresso Timber",
+        "hex": "#2F241F"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -1022,38 +1022,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
     features: ['3D Relief', 'High-Gloss', 'Backlit Ready'],
     colors: [
-          {
-                "name": "Florida Gold",
-                "hex": "#DFCE9F"
-          },
-          {
-                "name": "Gracia Frosted",
-                "hex": "#F2EFE9"
-          },
-          {
-                "name": "Azzurro Marine",
-                "hex": "#7CA4B5"
-          },
-          {
-                "name": "Giallo Amber",
-                "hex": "#D6B57E"
-          },
-          {
-                "name": "Menta Mint",
-                "hex": "#96BAA9"
-          },
-          {
-                "name": "Smoky Quartz",
-                "hex": "#6E6258"
-          },
-          {
-                "name": "Blanco Crystal",
-                "hex": "#FCFCFC"
-          },
-          {
-                "name": "Rose Champagne",
-                "hex": "#DDBFB5"
-          }
+      {
+        "name": "Florida Gold",
+        "hex": "#DFCE9F"
+      },
+      {
+        "name": "Gracia Frosted",
+        "hex": "#F2EFE9"
+      },
+      {
+        "name": "Azzurro Marine",
+        "hex": "#7CA4B5"
+      },
+      {
+        "name": "Giallo Amber",
+        "hex": "#D6B57E"
+      },
+      {
+        "name": "Menta Mint",
+        "hex": "#96BAA9"
+      },
+      {
+        "name": "Smoky Quartz",
+        "hex": "#6E6258"
+      },
+      {
+        "name": "Blanco Crystal",
+        "hex": "#FCFCFC"
+      },
+      {
+        "name": "Rose Champagne",
+        "hex": "#DDBFB5"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -1071,38 +1071,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
     features: ['Lightweight', 'Fire Retardant', 'Moisture Proof'],
     colors: [
-          {
-                "name": "Carrara Wave",
-                "hex": "#EDECE8"
-          },
-          {
-                "name": "Beige Marble",
-                "hex": "#DFD5C4"
-          },
-          {
-                "name": "Nordic Ash",
-                "hex": "#B5AEA4"
-          },
-          {
-                "name": "Royal Teak",
-                "hex": "#99693D"
-          },
-          {
-                "name": "Pearl White",
-                "hex": "#F7F5F0"
-          },
-          {
-                "name": "Classic Rosewood",
-                "hex": "#663828"
-          },
-          {
-                "name": "Slate Cloud",
-                "hex": "#7A8086"
-          },
-          {
-                "name": "Golden Oak",
-                "hex": "#C99B5C"
-          }
+      {
+        "name": "Carrara Wave",
+        "hex": "#EDECE8"
+      },
+      {
+        "name": "Beige Marble",
+        "hex": "#DFD5C4"
+      },
+      {
+        "name": "Nordic Ash",
+        "hex": "#B5AEA4"
+      },
+      {
+        "name": "Royal Teak",
+        "hex": "#99693D"
+      },
+      {
+        "name": "Pearl White",
+        "hex": "#F7F5F0"
+      },
+      {
+        "name": "Classic Rosewood",
+        "hex": "#663828"
+      },
+      {
+        "name": "Slate Cloud",
+        "hex": "#7A8086"
+      },
+      {
+        "name": "Golden Oak",
+        "hex": "#C99B5C"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -1120,38 +1120,38 @@ export const DEFAULT_PRODUCTS = [
     heroImage: 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
     features: ['100% Waterproof', 'Termite Proof', 'Zero Swelling'],
     colors: [
-          {
-                "name": "Ipe Ironwood",
-                "hex": "#543826"
-          },
-          {
-                "name": "Burmese Teak",
-                "hex": "#9E6E3D"
-          },
-          {
-                "name": "Smoked Cedar",
-                "hex": "#7D553A"
-          },
-          {
-                "name": "Weathered Oak",
-                "hex": "#968E82"
-          },
-          {
-                "name": "Obsidian Charcoal",
-                "hex": "#29292A"
-          },
-          {
-                "name": "Warm Chestnut",
-                "hex": "#B0683A"
-          },
-          {
-                "name": "Driftwood Taupe",
-                "hex": "#B8AFA2"
-          },
-          {
-                "name": "Dark Walnut",
-                "hex": "#3E2C22"
-          }
+      {
+        "name": "Ipe Ironwood",
+        "hex": "#543826"
+      },
+      {
+        "name": "Burmese Teak",
+        "hex": "#9E6E3D"
+      },
+      {
+        "name": "Smoked Cedar",
+        "hex": "#7D553A"
+      },
+      {
+        "name": "Weathered Oak",
+        "hex": "#968E82"
+      },
+      {
+        "name": "Obsidian Charcoal",
+        "hex": "#29292A"
+      },
+      {
+        "name": "Warm Chestnut",
+        "hex": "#B0683A"
+      },
+      {
+        "name": "Driftwood Taupe",
+        "hex": "#B8AFA2"
+      },
+      {
+        "name": "Dark Walnut",
+        "hex": "#3E2C22"
+      }
     ],
     status: 'published',
     ctaText: 'Enquire About Material',
@@ -1357,11 +1357,11 @@ export const DEFAULT_FAQS = [
 
 // ─── DEFAULT SERVICES ─────────────────────────────────────────────────────────
 export const DEFAULT_SERVICES = [
-  { 
-    num: '01', 
-    title: 'Full Home Interior Design and Execution', 
-    tag: 'Turnkey Design & Build', 
-    desc: 'A complete home interior, planned and built by our team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.', 
+  {
+    num: '01',
+    title: 'Full Home Interior Design and Execution',
+    tag: 'Turnkey Design & Build',
+    desc: 'A complete home interior, planned and built by our team from the very first idea to the day you move in. We bring together custom joinery, thoughtful lighting, and premium finishes, so every room feels like part of one cohesive home rather than a set of separate decisions.',
     includes: [
       'Living & Dining Layouts Built Around You',
       'Kitchens Designed for Real Everyday Use',
@@ -1369,7 +1369,7 @@ export const DEFAULT_SERVICES = [
       'Wardrobes Tailored to How You Store',
       'Lighting That Sets the Mood, Room by Room',
       'Full Execution, Managed Start to Finish'
-    ], 
+    ],
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
     ctaText: 'Enquire About Residential Interiors',
     ctaLink: '/contact',
@@ -1377,11 +1377,11 @@ export const DEFAULT_SERVICES = [
     visible: true,
     order: 1
   },
-  { 
-    num: '02', 
-    title: 'Commercial and Office Interiors', 
-    tag: 'Workspaces & Retail', 
-    desc: 'A space that works as hard as your business does. For retail and experience stores, we design around your product, using layout, lighting, and material choices that make what you sell the hero of the room and turn browsing into buying. For offices, we build spaces that reflect how your brand wants to be seen, while keeping the day to day workflow smooth, quiet, and genuinely comfortable for the people working in it.', 
+  {
+    num: '02',
+    title: 'Commercial and Office Interiors',
+    tag: 'Workspaces & Retail',
+    desc: 'A space that works as hard as your business does. For retail and experience stores, we design around your product, using layout, lighting, and material choices that make what you sell the hero of the room and turn browsing into buying. For offices, we build spaces that reflect how your brand wants to be seen, while keeping the day to day workflow smooth, quiet, and genuinely comfortable for the people working in it.',
     includes: [
       'Store Layouts That Highlight Your Product',
       'Retail Flow Designed to Guide the Customer',
@@ -1389,7 +1389,7 @@ export const DEFAULT_SERVICES = [
       'Quiet, Distraction Free Meeting Spaces',
       'Clean Tech and Cabling, Nothing on Show',
       'Full Commercial Buildout, Start to Finish'
-    ], 
+    ],
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
     ctaText: 'Enquire About Commercial Interiors',
     ctaLink: '/contact',
@@ -1397,11 +1397,11 @@ export const DEFAULT_SERVICES = [
     visible: true,
     order: 2
   },
-  { 
-    num: '03', 
-    title: 'Styling and Decor', 
-    tag: 'Curated Styling', 
-    desc: 'The finishing touches that turn a finished space into a home you actually feel something in. This works as its own standalone service, or as the final layer we add to wrap up any full Espacio project.', 
+  {
+    num: '03',
+    title: 'Styling and Decor',
+    tag: 'Curated Styling',
+    desc: 'The finishing touches that turn a finished space into a home you actually feel something in. This works as its own standalone service, or as the final layer we add to wrap up any full Espacio project.',
     includes: [
       'Art and Wall Decor, Chosen With Intent',
       'Lighting and Accessories That Set the Mood',
@@ -1409,7 +1409,7 @@ export const DEFAULT_SERVICES = [
       'Soft Furnishings Made to Match Your Space',
       'Greenery Picked to Suit the Light and Layout',
       'A Styling Review for Homes Already Done'
-    ], 
+    ],
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
     ctaText: 'Enquire About Styling Services',
     ctaLink: '/contact',
@@ -1417,11 +1417,11 @@ export const DEFAULT_SERVICES = [
     visible: true,
     order: 3
   },
-  { 
-    num: '04', 
-    title: 'Renovation', 
-    tag: 'Upgrade Existing Spaces', 
-    desc: "Your space already has good bones, it just needs the right hands on it. Whether it's a home that's grown tired over the years or a commercial space ready for a refresh, we take what's already there and rebuild it into something that actually feels new. No need to move out, start from scratch, or manage the process yourself, our team handles the design, materials, and execution from beginning to end.", 
+  {
+    num: '04',
+    title: 'Renovation',
+    tag: 'Upgrade Existing Spaces',
+    desc: "Your space already has good bones, it just needs the right hands on it. Whether it's a home that's grown tired over the years or a commercial space ready for a refresh, we take what's already there and rebuild it into something that actually feels new. No need to move out, start from scratch, or manage the process yourself, our team handles the design, materials, and execution from beginning to end.",
     includes: [
       'Outdated Kitchens and Bathrooms, Modernized',
       'Living Spaces Reworked to Feel New Again',
@@ -1429,7 +1429,7 @@ export const DEFAULT_SERVICES = [
       'Old Flooring Replaced With Finishes Built to Last',
       'Electrical and Plumbing Re-Laid the Right Way',
       'A Fully Managed Renovation, Start to Finish'
-    ], 
+    ],
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
     ctaText: 'Enquire About Renovation',
     ctaLink: '/contact',
@@ -1437,11 +1437,11 @@ export const DEFAULT_SERVICES = [
     visible: true,
     order: 4
   },
-  { 
-    num: '05', 
-    title: 'Materials Supply (Standalone Purchase)', 
-    tag: 'Direct Warehouse Sourcing', 
-    desc: "Need premium materials without a full design project attached? Our warehouse across Andhra Pradesh and Telangana carries a wide range of WPC wall and ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware, all available to purchase directly, whether you're a homeowner, a contractor, or a fellow designer.", 
+  {
+    num: '05',
+    title: 'Materials Supply (Standalone Purchase)',
+    tag: 'Direct Warehouse Sourcing',
+    desc: "Need premium materials without a full design project attached? Our warehouse across Andhra Pradesh and Telangana carries a wide range of WPC wall and ceiling panels, polygranite sheets, acrylic fluted louvers, and hardware, all available to purchase directly, whether you're a homeowner, a contractor, or a fellow designer.",
     includes: [
       'Wall and Exterior Cladding Panels',
       'Fluted Louvers in Charcoal and Wood Grain Finishes',
@@ -1449,7 +1449,7 @@ export const DEFAULT_SERVICES = [
       'Trim and Edge Hardware for a Clean Finish',
       'Wholesale and Retail Purchase Available',
       'Fast Delivery Straight From Our Hyderabad Warehouse'
-    ], 
+    ],
     img: 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png',
     ctaText: 'Enquire About Materials',
     ctaLink: '/materials',
@@ -1852,6 +1852,7 @@ export const DEFAULT_SETTINGS = {
     '/images/projects/gandipet_kiran_2bhk/kiran_after.webp'
   ],
   projects_hero_visible: true,
+  projects_heading: 'Our Featured Projects',
   projects_cta_visible: true,
   cta_projects: {
     enabled: true,
@@ -1917,1240 +1918,1287 @@ export const getCMSData = (key, fallback = null) => {
     const raw = localStorage.getItem(key);
     if (raw) {
       let data = JSON.parse(raw);
-                if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
-          let updated = false;
+      if (key === STORAGE_KEYS.PROJECTS && Array.isArray(data)) {
+        let updated = false;
 
-          const REMOVED_SLUGS = ['rajapushpa-provincia-3bhk', 'my-home-sayuk-3bhk', 'kokapet-2bhk', 'kokapet-urban-2bhk'];
-          const REMOVED_IDS = ['proj_1_rajapushpa_provincia', 'proj_2_my_home_sayuk', 'proj_3_kokapet_nagesh', 'proj_4_kokapet_rahul'];
+        const REMOVED_SLUGS = ['rajapushpa-provincia-3bhk', 'my-home-sayuk-3bhk', 'kokapet-2bhk', 'kokapet-urban-2bhk'];
+        const REMOVED_IDS = ['proj_1_rajapushpa_provincia', 'proj_2_my_home_sayuk', 'proj_3_kokapet_nagesh', 'proj_4_kokapet_rahul'];
 
-          // Strip removed projects
-          if (data.some(p => p && (REMOVED_IDS.includes(p._id || p.id) || REMOVED_SLUGS.includes(p.slug) || (p.title && (p.title.includes('Boucle') || p.title.includes('Arcstone') || p.title.includes('Lattice') || p.title.includes('Ivory')))))) {
-            data = data.filter(p => p && !REMOVED_IDS.includes(p._id || p.id) && !REMOVED_SLUGS.includes(p.slug) && !(p.title && (p.title.includes('Boucle') || p.title.includes('Arcstone') || p.title.includes('Lattice') || p.title.includes('Ivory'))));
+        // Strip removed projects
+        if (data.some(p => p && (REMOVED_IDS.includes(p._id || p.id) || REMOVED_SLUGS.includes(p.slug) || (p.title && (p.title.includes('Boucle') || p.title.includes('Arcstone') || p.title.includes('Lattice') || p.title.includes('Ivory')))))) {
+          data = data.filter(p => p && !REMOVED_IDS.includes(p._id || p.id) && !REMOVED_SLUGS.includes(p.slug) && !(p.title && (p.title.includes('Boucle') || p.title.includes('Arcstone') || p.title.includes('Lattice') || p.title.includes('Ivory'))));
+          updated = true;
+        }
+
+        const CANONICAL_ORDER_MAP = {
+          'dimmu-chachu-luxury-villa': 1,
+          'proj_9_dimmu_chachu_residence': 1,
+          'casa-alta-residence-kali-mandir': 2,
+          'proj_11_casa_alta_residence_kali_mandir': 2,
+          'gandipet-modern-retro-2bhk': 3,
+          'proj_5_gandipet_kiran': 3,
+          'kondapur-minimalist-2bhk': 4,
+          'proj_6_kondapur_venkatesh': 4,
+          'gachibowli-minimalist-beige-2bhk': 5,
+          'proj_7_gachibowli_koteswara': 5,
+          'kachiguda-fusion-duplex-villa': 6,
+          'proj_8_kachiguda_subbarao': 6,
+          'the-restful-home-tellapur': 7,
+          'proj_10_the_restful_home_tellapur': 7
+        };
+
+        // Ensure all 7 canonical projects exist and have correct order, gallery, and details
+        for (const dp of DEFAULT_PROJECTS) {
+          const existingIdx = data.findIndex(p => p && (p.slug === dp.slug || p._id === dp._id || p.id === dp._id));
+          if (existingIdx === -1) {
+            data.push(dp);
             updated = true;
-          }
-
-          const CANONICAL_ORDER_MAP = {
-            'dimmu-chachu-luxury-villa': 1,
-            'proj_9_dimmu_chachu_residence': 1,
-            'casa-alta-residence-kali-mandir': 2,
-            'proj_11_casa_alta_residence_kali_mandir': 2,
-            'gandipet-modern-retro-2bhk': 3,
-            'proj_5_gandipet_kiran': 3,
-            'kondapur-minimalist-2bhk': 4,
-            'proj_6_kondapur_venkatesh': 4,
-            'gachibowli-minimalist-beige-2bhk': 5,
-            'proj_7_gachibowli_koteswara': 5,
-            'kachiguda-fusion-duplex-villa': 6,
-            'proj_8_kachiguda_subbarao': 6,
-            'the-restful-home-tellapur': 7,
-            'proj_10_the_restful_home_tellapur': 7
-          };
-
-          // Ensure all 7 canonical projects exist and have correct order, gallery, and details
-          for (const dp of DEFAULT_PROJECTS) {
-            const existingIdx = data.findIndex(p => p && (p.slug === dp.slug || p._id === dp._id || p.id === dp._id));
-            if (existingIdx === -1) {
-              data.push(dp);
+          } else {
+            const cur = data[existingIdx];
+            const expectedOrder = CANONICAL_ORDER_MAP[dp.slug] || dp.order;
+            if (cur.order !== expectedOrder) {
+              cur.order = expectedOrder;
               updated = true;
-            } else {
-              const cur = data[existingIdx];
-              const expectedOrder = CANONICAL_ORDER_MAP[dp.slug] || dp.order;
-              if (cur.order !== expectedOrder) {
-                cur.order = expectedOrder;
-                updated = true;
-              }
-              if (dp.slug === 'dimmu-chachu-luxury-villa' && cur.location !== 'Kukatpally, Hyderabad') {
+            }
+            if (dp.slug === 'dimmu-chachu-luxury-villa') {
+              if (cur.location !== 'Kukatpally, Hyderabad') {
                 cur.location = 'Kukatpally, Hyderabad';
                 updated = true;
               }
-              if (cur.title !== dp.title) {
-                cur.title = dp.title;
-                updated = true;
-              }
-              if (Array.isArray(dp.gallery) && JSON.stringify(cur.gallery) !== JSON.stringify(dp.gallery)) {
-                cur.gallery = [...dp.gallery];
+              if (cur.heroImage !== dp.heroImage) {
                 cur.heroImage = dp.heroImage;
                 cur.hero_image = dp.heroImage;
                 cur.afterImage = dp.heroImage;
                 updated = true;
               }
             }
-          }
-
-          // Sort data by canonical sequence
-          data.sort((a, b) => {
-            const ordA = CANONICAL_ORDER_MAP[a.slug] || CANONICAL_ORDER_MAP[a._id] || Number(a.order) || 999;
-            const ordB = CANONICAL_ORDER_MAP[b.slug] || CANONICAL_ORDER_MAP[b._id] || Number(b.order) || 999;
-            return ordA - ordB;
-          });
-
-          // Retain canonical active projects in sequence order
-          const canonicalSlugs = [
-            'dimmu-chachu-luxury-villa',
-            'casa-alta-residence-kali-mandir',
-            'gandipet-modern-retro-2bhk',
-            'kondapur-minimalist-2bhk',
-            'gachibowli-minimalist-beige-2bhk',
-            'kachiguda-fusion-duplex-villa',
-            'the-restful-home-tellapur'
-          ];
-          const origLen = data.length;
-          data = data.filter(p => p && (canonicalSlugs.includes(p.slug) || DEFAULT_PROJECTS.some(dp => dp._id === p._id || dp.slug === p.slug)));
-          if (data.length !== origLen) updated = true;
-
-          data.forEach(p => {
-            const canonicalIdx = canonicalSlugs.indexOf(p.slug);
-            if (canonicalIdx !== -1) {
-              if (p.order !== canonicalIdx + 1) {
-                p.order = canonicalIdx + 1;
+            if (dp.slug === 'casa-alta-residence-kali-mandir') {
+              if (cur.heroImage !== dp.heroImage) {
+                cur.heroImage = dp.heroImage;
+                cur.hero_image = dp.heroImage;
+                cur.afterImage = dp.heroImage;
                 updated = true;
               }
+            }
+            if (dp.slug === 'the-restful-home-tellapur') {
+              if (cur.heroImage !== dp.heroImage) {
+                cur.heroImage = dp.heroImage;
+                cur.hero_image = dp.heroImage;
+                cur.afterImage = dp.heroImage;
+                updated = true;
+              }
+            }
+            if (cur.title !== dp.title) {
+              cur.title = dp.title;
+              updated = true;
+            }
+            if (Array.isArray(dp.gallery) && JSON.stringify(cur.gallery) !== JSON.stringify(dp.gallery)) {
+              cur.gallery = [...dp.gallery];
+              cur.heroImage = dp.heroImage;
+              cur.hero_image = dp.heroImage;
+              cur.afterImage = dp.heroImage;
+              updated = true;
+            }
+          }
+        }
+
+        // Sort data by canonical sequence
+        data.sort((a, b) => {
+          const ordA = CANONICAL_ORDER_MAP[a.slug] || CANONICAL_ORDER_MAP[a._id] || Number(a.order) || 999;
+          const ordB = CANONICAL_ORDER_MAP[b.slug] || CANONICAL_ORDER_MAP[b._id] || Number(b.order) || 999;
+          return ordA - ordB;
+        });
+
+        // Retain canonical active projects in sequence order
+        const canonicalSlugs = [
+          'dimmu-chachu-luxury-villa',
+          'casa-alta-residence-kali-mandir',
+          'gandipet-modern-retro-2bhk',
+          'kondapur-minimalist-2bhk',
+          'gachibowli-minimalist-beige-2bhk',
+          'kachiguda-fusion-duplex-villa',
+          'the-restful-home-tellapur'
+        ];
+        const origLen = data.length;
+        data = data.filter(p => p && (canonicalSlugs.includes(p.slug) || DEFAULT_PROJECTS.some(dp => dp._id === p._id || dp.slug === p.slug)));
+        if (data.length !== origLen) updated = true;
+
+        data.forEach(p => {
+          const canonicalIdx = canonicalSlugs.indexOf(p.slug);
+          if (canonicalIdx !== -1) {
+            if (p.order !== canonicalIdx + 1) {
+              p.order = canonicalIdx + 1;
+              updated = true;
+            }
+          }
+        });
+        data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
+
+        if (updated) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (key === STORAGE_KEYS.TESTIMONIALS && Array.isArray(data)) {
+        let updated = false;
+        if (
+          data.some(t => t.name === 'Ganesh Nayak' || t.name === 'Ganesh Nayak143' || t.name === 'Juttiga Vaishnavi' || t.name === 'Nani Varma' || t.name === 'Rafi Shaik' || t.name === 'G Rakesh') ||
+          !data.some(t => t.name === 'Shiak Ayub') ||
+          !data.some(t => t.name === 'Madhusudhan Vanam') ||
+          !data.some(t => t.name === 'LEGAL AMICUS') ||
+          !data.some(t => t.name === 'Reddy') ||
+          !data.some(t => t.name === 'Venkatesh mudhiraj') ||
+          !data.some(t => t.name === 'A Sk') ||
+          !data.some(t => t.name === 'Abdul Gaffar') ||
+          data[0]?.name !== 'Dharma Teja' ||
+          data[10]?.name !== 'Shiak Ayub'
+        ) {
+          data = DEFAULT_TESTIMONIALS;
+          updated = true;
+        }
+        if (updated) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      // ── PRODUCTS hero image auto-migration ──────────────────────────────
+      if (key === STORAGE_KEYS.PRODUCTS && Array.isArray(data)) {
+        let updated = false;
+        const PRODUCT_HERO_MAP = {
+          'acrylic-luxe-collection': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
+          'digital-korean-poly-granite': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
+          'charcoal-panels-luxe': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
+          'fluted-pvc-luxe': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
+          'lvt-luxe-flooring': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
+          'fluted-acrylic-luxe': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
+          'pvc-luxe-collection': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
+          'wpc-luxe-collection': 'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
+        };
+        data.forEach(product => {
+          if (product && PRODUCT_HERO_MAP[product.slug]) {
+            if (product.heroImage !== PRODUCT_HERO_MAP[product.slug]) {
+              product.heroImage = PRODUCT_HERO_MAP[product.slug];
+              updated = true;
+            }
+          }
+        });
+        if (updated) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (Array.isArray(data.hero_bg_images) && (data.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || data.hero_bg_images.length !== 5)) {
+        data.hero_bg_images = [
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
+        ];
+        data.hero_card_image = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png';
+        try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+      }
+      if (!Array.isArray(data.showcase_slides) || data.showcase_slides.length !== 5 || data.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || data.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
+        data.showcase_slides = [
+          {
+            projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
+            memberImg: "/reviews/paladugu_raju.png",
+            name: "Architectural Lead",
+            role: "Duplex Mezzanine & Murals",
+            projectLabel: "Duplex Mezzanine & Sculpted Wall Mural"
+          },
+          {
+            projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
+            memberImg: "/reviews/kishor_kumar.png",
+            name: "Spatial Architecture Specialist",
+            role: "Double-Height Atrium Architecture",
+            projectLabel: "Double-Height Atrium & Living Mezzanine"
+          },
+          {
+            projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
+            memberImg: "/reviews/amresh_kumar.png",
+            name: "Joinery & Detailing Lead",
+            role: "Warm Contemporary Joinery",
+            projectLabel: "Warm Contemporary Living Lounge"
+          },
+          {
+            projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
+            memberImg: "/reviews/imtiyaz_shaik.png",
+            name: "Living Space Specialist",
+            role: "Luxury Living Spaces",
+            projectLabel: "Warm Arched Living Lounge"
+          },
+          {
+            projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
+            memberImg: "/reviews/kishor_kumar.png",
+            name: "Principal Architect",
+            role: "Japandi Spatial Refinement",
+            projectLabel: "Japandi Living Lounge & Tea Deck"
+          }
+        ];
+        try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+      } else if (Array.isArray(data.showcase_slides)) {
+        let updatedSlides = false;
+        data.showcase_slides.forEach(slide => {
+          if (slide && (slide.projectLabel === "Modern Modular Kitchen & Island Bar" || slide.projectLabel === "Modern Quartzite Kitchen" || slide.role === "High-Gloss Modular Kitchens")) {
+            slide.name = "Living Space Specialist";
+            slide.role = "Luxury Living Spaces";
+            slide.projectLabel = "Warm Arched Living Lounge";
+            updatedSlides = true;
+          }
+        });
+        if (updatedSlides) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (key === STORAGE_KEYS.SETTINGS && data) {
+        let modified = false;
+        if (!data.projects_heading || data.projects_heading === 'Our Projects') {
+          data.projects_heading = 'Our Featured Projects';
+          modified = true;
+        }
+        if (data.projects_cta_visible !== true) {
+          data.projects_cta_visible = true;
+          modified = true;
+        }
+        if (data.footer_brand_subtitle === undefined || data.footer_brand_subtitle === 'INTERIORS AND MODULARS' || data.footer_brand_subtitle === 'Designing spaces. Defining life styles') {
+          data.footer_brand_subtitle = 'Designing spaces. Defining life styles.';
+          modified = true;
+        }
+        if (!data.cta_projects || data.cta_projects.enabled !== true) {
+          data.cta_projects = {
+            ...(data.cta_projects || {}),
+            enabled: true,
+            heading: data.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
+            description: data.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
+            buttonText: data.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
+            buttonHoverText: data.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
+            buttonLink: data.cta_projects?.buttonLink || "/contact"
+          };
+          modified = true;
+        }
+        const cloudServicesHero = [
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
+        ];
+        if (!Array.isArray(data.services_hero_images) || data.services_hero_images.length !== 5 || data.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
+          data.services_hero_images = cloudServicesHero;
+          modified = true;
+        }
+        if (Array.isArray(data.services_list) && data.services_list.length >= 5) {
+          cloudServicesHero.forEach((cUrl, idx) => {
+            if (data.services_list[idx] && data.services_list[idx].img !== cUrl) {
+              data.services_list[idx].img = cUrl;
+              modified = true;
+            }
+          });
+        }
+
+        const cloudProjectsHero = [
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425351/hf_20260926_121205_b316b4e3-2daa-4fa2-9be5-d6a0ee716587.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425297/hf_20260926_121300_6a3eef61-953b-4da3-b308-15aabfa0e9d0.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
+          'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425214/hf_20260926_121425_c188d1e6-1db5-4729-b2a9-ad90bbddbf3a.png'
+        ];
+        if (!Array.isArray(data.projects_hero_images) || data.projects_hero_images.length !== 5 || data.projects_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
+          data.projects_hero_images = cloudProjectsHero;
+          modified = true;
+        }
+        if (data.intro_heading === 'Turnkey interiors, done properly.' || data.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !data.intro_heading) {
+          data.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
+          modified = true;
+        }
+        if (!data.intro_description || data.intro_description.includes('We bring 40+ years of family construction heritage') || data.intro_description.includes('chase a contractor')) {
+          data.intro_description = "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.";
+          modified = true;
+        }
+        if (typeof data.about_hero_subtitle === 'string' && data.about_hero_subtitle.includes('Mantana')) {
+          data.about_hero_subtitle = data.about_hero_subtitle.replace(/Mantana/g, 'Mastana');
+          modified = true;
+        }
+        if (typeof data.about_story_p1 === 'string' && data.about_story_p1.includes('Mantana')) {
+          data.about_story_p1 = data.about_story_p1.replace(/Mantana/g, 'Mastana');
+          modified = true;
+        }
+        if (Array.isArray(data.about_generations)) {
+          data.about_generations.forEach(g => {
+            if (g && typeof g.title === 'string' && g.title.includes('Mantana')) {
+              g.title = g.title.replace(/Mantana/g, 'Mastana');
+              modified = true;
+            }
+            if (g && typeof g.desc === 'string' && /ponds\s*[—–-]\s*including/i.test(g.desc)) {
+              g.desc = g.desc.replace(/ponds\s*[—–-]\s*including/gi, 'ponds, including');
+              modified = true;
+            }
+          });
+        }
+        if (Array.isArray(data.nav_items)) {
+          data.nav_items.forEach(item => {
+            if (item.path === '/what-we-do' || item.path?.startsWith('/what-we-do/')) {
+              item.path = item.path.replace('/what-we-do', '/spaces');
+              if (item.label === 'What We Do') item.label = 'Spaces';
+              modified = true;
+            }
+            if (item.path === '/products' || item.path?.startsWith('/products/')) {
+              item.path = item.path.replace('/products', '/materials');
+              if (item.label === 'Products' || item.label === 'Materials Library') item.label = 'Materials';
+              modified = true;
+            }
+          });
+        }
+        if (Array.isArray(data.footer_nav_items)) {
+          data.footer_nav_items.forEach(item => {
+            if (item.path === '/what-we-do' || item.path?.startsWith('/what-we-do/')) {
+              item.path = item.path.replace('/what-we-do', '/spaces');
+              if (item.label === 'What We Do') item.label = 'Spaces';
+              modified = true;
+            }
+            if (item.path === '/products' || item.path?.startsWith('/products/')) {
+              item.path = item.path.replace('/products', '/materials');
+              if (item.label === 'Products' || item.label === 'Materials Library') item.label = 'Materials';
+              modified = true;
+            }
+          });
+        }
+        if (Array.isArray(data.spaces_list)) {
+          const existingSlugs = new Set(data.spaces_list.map(s => s.slug));
+          const newCategories = [
+            {
+              "name": "Foyer",
+              "slug": "foyer",
+              "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
+              "heroImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+              "visible": true,
+              "details": {
+                "tag": "Grand First Impressions",
+                "headline": "Entrance Foyers Crafted to Welcome and Impress",
+                "body": "The foyer sets the emotional tone of the entire home. We design architectural transition zones featuring bespoke shoe storage credenzas, floating consoles, decorative stone accents, acoustic fluted wall cladding, and motion-sensor warm cove illumination.",
+                "includes": [
+                  "Custom Floating Console & Concealed Shoe Storage",
+                  "Acoustic Fluted Timber & Metal Inlay Panelling",
+                  "Backlit Onyx & Polygranite Statement Wall",
+                  "Full-Height Dressing Mirror with Ambient Backlight",
+                  "Motion-Sensor Warm Glow & Recessed Spotlights",
+                  "Architectural Partition Screens & CNC Jali Elements",
+                  "Integrated Key, Bag & Drop-Zone Niches",
+                  "Upholstered Seating & Entryway Benches"
+                ]
+              },
+              "galleryImages": [
+                "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+                "/images/company/2bhk_mordern_retro/dining_2.jpg",
+                "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+              ],
+              "filters": [
+                "Modern",
+                "Luxury",
+                "Minimal",
+                "Contemporary",
+                "Traditional",
+                "Statement"
+              ]
+            },
+            {
+              "name": "Bar",
+              "slug": "bar",
+              "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
+              "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+              "visible": true,
+              "details": {
+                "tag": "Hospitality & Entertaining",
+                "headline": "Sophisticated Home Bars for Connoisseurs and Hosts",
+                "body": "Transform entertaining at home with bespoke bar counters featuring temperature-controlled wine displays, illuminated fluted glass cabinets, integrated ice and cocktail prep sinks, and dramatic backlit translucent stone surfaces.",
+                "includes": [
+                  "Custom Backlit Onyx & Sintered Stone Bar Counters",
+                  "Integrated Temperature-Controlled Wine Chillers",
+                  "Fluted Bronze Glass Stemware & Bottle Shelving",
+                  "Concealed Prep Sink & Speed Rail Integration",
+                  "Multi-Circuit Mood & Shelf Backlighting",
+                  "Acoustic Wall Panelling & High Bar Seating",
+                  "Lockable Spirits & Decanter Cabinetry",
+                  "Under-Counter Refrigeration & Ice Maker Provisions"
+                ]
+              },
+              "galleryImages": [
+                "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80",
+                "/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg",
+                "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+              ],
+              "filters": [
+                "Home Bar",
+                "Luxury",
+                "Modern",
+                "Contemporary",
+                "Compact",
+                "Classic"
+              ]
+            },
+            {
+              "name": "Walk-in Wardrobe",
+              "slug": "walk-in-wardrobe",
+              "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
+              "heroImage": "https://images.unsplash.com/photo-1558882224-dda166733079?auto=format&fit=crop&w=1200&q=80",
+              "visible": true,
+              "details": {
+                "tag": "Boutique Dressing Suites",
+                "headline": "Walk-In Closets Designed Like Haute Couture Salons",
+                "body": "Experience the luxury of a personalized dressing boutique. Our walk-in wardrobe suites feature central accessory islands with glass display tops, custom velvet-lined watch and jewelry drawers, floor-to-ceiling tinted glass partitions, and 360-degree vanity lighting.",
+                "includes": [
+                  "Central Accessory & Jewelry Island with Glass Top",
+                  "Floor-to-Ceiling Tinted Bronze Glass Shutters",
+                  "Velvet-Lined Watch, Belt & Sunglass Organizers",
+                  "Integrated LED Sensor Rail & Shelf Lighting",
+                  "Full-Height Backlit Vanity Dressing Mirror",
+                  "Tiered Pull-Out Shoe & Handbag Galleries",
+                  "Hidden Safe & Lockable Valuables Vault",
+                  "Dedicated Seasonal Loft Storage Sections"
+                ]
+              },
+              "galleryImages": [
+                "https://images.unsplash.com/photo-1558882224-dda166733079?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+                "/images/materials/bedroom_3.webp",
+                "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+              ],
+              "filters": [
+                "Central Island Suite",
+                "Tinted Bronze Glass Wardrobe",
+                "Velvet Boutique Salon",
+                "Minimalist Open Dressing",
+                "360-Degree Illuminated Vanity"
+              ]
+            }
+          ];
+          newCategories.forEach(cat => {
+            if (!existingSlugs.has(cat.slug)) {
+              data.spaces_list.push(cat);
+              modified = true;
+            }
+          });
+
+          const SPACES_FILTERS_MAP = {
+            'modular-kitchen': ["Island Kitchen", "Parallel Kitchen", "L-Shaped Kitchen", "U-Shaped Kitchen", "Open Concept Pantry"],
+            'master-bedroom': ["Luxury Master Suite", "Warm Minimalist", "Classical Boiserie", "Modern Contemporary", "Integrated Study Suite"],
+            'living-room': ["Minimalist Lounge", "Double-Height Living", "Luxury Marble Accent", "Open Concept Living", "Contemporary Formal"],
+            'wardrobes': ["Floor-to-Ceiling Sliding", "Tinted Glass Shutters", "Built-In Veneer & Wood", "Open Shelving Systems", "Integrated Vanity Dressing"],
+            'home-office': ["Executive Study", "Minimal Studio Desk", "Dual Workstation", "Acoustic Panelled Office", "Library & Bookshelf Suite"],
+            'commercial-office': ["Executive Boardroom", "Open Workstation Floor", "Private Director Cabin", "Acoustic Conference Room", "Collaboration Lounge"],
+            'pooja-room': ["Dedicated Mandir Room", "CNC Backlit Jali", "Marble & Corian Sanctum", "Compact Wood Mandir", "Traditional Brass & Teak"],
+            'dining-room': ["8-Seater Formal Dining", "Marble Top & Bar Console", "Fluted Glass Partition", "Breakfast Nook & Bistro", "Duplex Dining Lounge"],
+            'tv-units': ["Full-Wall Marble Console", "Floating Acoustic Fluted", "Backlit Onyx Feature Wall", "Minimalist Low-Profile", "Rotatable Partition Unit"],
+            'false-ceilings': ["Magnetic Track & Warm Coves", "Wooden Rafter & Slat Ceiling", "Minimalist Peripheral Drop", "Coffered & Geometric Ceiling", "Stretch Fabric & Backlit Ceiling"],
+            'commercial-interiors': ["Corporate Headquarters", "Retail & Showroom Store", "Clinic & Wellness Center", "Law & Financial Atelier", "Tech Innovation Hub"],
+            'reception-areas': ["Monolithic Stone Reception Desk", "Corporate Brand Identity Wall", "Luxury Client Lounge", "Fluted Wood & Green Wall", "Double-Height Entry Lobby"],
+            'cafes-restaurants': ["Specialty Coffee Bistro", "Fine Dining Hall", "Industrial Rooftop Bar", "Bohemian Lounge", "Quick-Service Gourmet Counter"],
+            'foyer': ["Modern Floating Console", "Luxury Backlit Onyx", "Minimalist Drop-Zone", "Traditional Jali Screen", "Statement Mirror Wall"],
+            'bar': ["Backlit Onyx Counter", "Temperature-Controlled Wine Cellar", "Compact Dry Bar", "Fluted Glass Cocktail Station", "Classic Walnut Lounge"],
+            'walk-in-wardrobe': ["Central Island Suite", "Tinted Bronze Glass Wardrobe", "Velvet Boutique Salon", "Minimalist Open Dressing", "360-Degree Illuminated Vanity"]
+          };
+
+          const CURATED_HERO_MAP = {
+            "modular-kitchen": "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
+            "master-bedroom": "/images/spaces/bedroom/bedroom_drive_29.webp",
+            "living-room": "/images/spaces/living/living_drive_1.webp",
+            "wardrobes": "/images/spaces/wardrobes/wardrobe_drive_23.webp",
+            "home-office": "/images/spaces/home_office/home_office_drive_25.webp",
+            "commercial-office": "/images/spaces/office/office_drive_20.webp",
+            "pooja-room": "/images/spaces/pooja/pooja_drive_12.webp",
+            "dining-room": "/images/spaces/dining/dining_drive_27.webp",
+            "tv-units": "/images/spaces/tv_units/tv_drive_2.webp",
+            "false-ceilings": "/images/spaces/ceiling/ceiling_drive_46.webp",
+            "commercial-interiors": "/images/spaces/commercial/commercial_drive_16.webp",
+            "reception-areas": "/images/spaces/reception/reception_drive_21.webp",
+            "cafes-restaurants": "/images/spaces/cafes/cafe_drive_36.webp",
+            "foyer": "/images/spaces/foyer/foyer_drive_18.webp",
+            "bar": "/images/spaces/bar/bar_drive_33.webp",
+            "walk-in-wardrobe": "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp"
+          };
+
+          const CURATED_SPACES_IMAGES = {
+            "modular-kitchen": [
+              "/images/spaces/modular_kitchen/kitchen_drive_25.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_27.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_11.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_4.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_5.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_18.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_9.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_32.webp",
+              "/images/spaces/modular_kitchen/kitchen_drive_24.webp"
+            ],
+            "master-bedroom": [
+              "/images/spaces/bedroom/bedroom_drive_29.webp",
+              "/images/spaces/bedroom/bedroom_drive_8.webp",
+              "/images/spaces/bedroom/bedroom_drive_25.webp",
+              "/images/spaces/bedroom/bedroom_drive_11.webp",
+              "/images/spaces/bedroom/bedroom_drive_2.webp",
+              "/images/spaces/bedroom/bedroom_drive_27.webp",
+              "/images/spaces/bedroom/bedroom_drive_1.webp",
+              "/images/spaces/bedroom/bedroom_drive_28.webp",
+              "/images/spaces/bedroom/bedroom_drive_13.webp",
+              "/images/spaces/bedroom/bedroom_drive_19.webp",
+              "/images/spaces/bedroom/bedroom_drive_3.webp",
+              "/images/spaces/bedroom/bedroom_drive_6.webp"
+            ],
+            "living-room": [
+              "/images/spaces/living/living_drive_30.webp",
+              "/images/spaces/living/living_drive_15.webp",
+              "/images/spaces/living/living_drive_34.webp",
+              "/images/spaces/living/living_drive_1.webp",
+              "/images/spaces/living/living_drive_13.webp",
+              "/images/spaces/living/living_drive_16.webp",
+              "/images/spaces/living/living_drive_6.webp",
+              "/images/spaces/living/living_drive_23.webp",
+              "/images/spaces/living/living_drive_38.webp",
+              "/images/spaces/living/living_drive_29.webp",
+              "/images/spaces/living/living_drive_31.webp",
+              "/images/spaces/living/living_drive_33.webp"
+            ],
+            "wardrobes": [
+              "/images/spaces/wardrobes/wardrobe_drive_11.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_1.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_23.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_21.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_5.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_16.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_9.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_27.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_7.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_32.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_12.webp",
+              "/images/spaces/wardrobes/wardrobe_drive_38.webp"
+            ],
+            "home-office": [
+              "/images/spaces/home_office/home_office_drive_18.webp",
+              "/images/spaces/home_office/home_office_drive_17.webp",
+              "/images/spaces/home_office/home_office_drive_31.webp",
+              "/images/spaces/home_office/home_office_drive_25.webp",
+              "/images/spaces/home_office/home_office_drive_14.webp",
+              "/images/spaces/home_office/home_office_drive_34.webp",
+              "/images/spaces/home_office/home_office_drive_22.webp",
+              "/images/spaces/home_office/home_office_drive_12.webp",
+              "/images/spaces/home_office/home_office_drive_24.webp",
+              "/images/spaces/home_office/home_office_drive_27.webp",
+              "/images/spaces/home_office/home_office_drive_3.webp",
+              "/images/spaces/home_office/home_office_drive_42.webp"
+            ],
+            "commercial-office": [
+              "/images/spaces/office/office_drive_20.webp",
+              "/images/spaces/office/office_drive_7.webp",
+              "/images/spaces/office/office_drive_24.webp",
+              "/images/spaces/office/office_drive_4.webp",
+              "/images/spaces/office/office_drive_36.webp",
+              "/images/spaces/office/office_drive_12.webp",
+              "/images/spaces/office/office_drive_29.webp",
+              "/images/spaces/office/office_drive_19.webp",
+              "/images/spaces/office/office_drive_34.webp",
+              "/images/spaces/office/office_drive_6.webp",
+              "/images/spaces/office/office_drive_13.webp",
+              "/images/spaces/office/office_drive_33.webp"
+            ],
+            "pooja-room": [
+              "/images/spaces/pooja/pooja_drive_28.webp",
+              "/images/spaces/pooja/pooja_drive_21.webp",
+              "/images/spaces/pooja/pooja_drive_12.webp",
+              "/images/spaces/pooja/pooja_drive_4.webp",
+              "/images/spaces/pooja/pooja_drive_20.webp",
+              "/images/spaces/pooja/pooja_drive_6.webp",
+              "/images/spaces/pooja/pooja_drive_2.webp",
+              "/images/spaces/pooja/pooja_drive_16.webp",
+              "/images/spaces/pooja/pooja_drive_15.webp",
+              "/images/spaces/pooja/pooja_drive_9.webp",
+              "/images/spaces/pooja/pooja_drive_3.webp",
+              "/images/spaces/pooja/pooja_drive_14.webp"
+            ],
+            "dining-room": [
+              "/images/spaces/dining/dining_drive_27.webp",
+              "/images/spaces/dining/dining_drive_15.webp",
+              "/images/spaces/dining/dining_drive_11.webp",
+              "/images/spaces/dining/dining_drive_42.webp",
+              "/images/spaces/dining/dining_drive_35.webp",
+              "/images/spaces/dining/dining_drive_44.webp",
+              "/images/spaces/dining/dining_drive_36.webp",
+              "/images/spaces/dining/dining_drive_49.webp",
+              "/images/spaces/dining/dining_drive_21.webp",
+              "/images/spaces/dining/dining_drive_19.webp",
+              "/images/spaces/dining/dining_drive_1.webp",
+              "/images/spaces/dining/dining_drive_28.webp"
+            ],
+            "tv-units": [
+              "/images/spaces/tv_units/tv_drive_2.webp",
+              "/images/spaces/tv_units/tv_drive_21.webp",
+              "/images/spaces/tv_units/tv_drive_34.webp",
+              "/images/spaces/tv_units/tv_drive_28.webp",
+              "/images/spaces/tv_units/tv_drive_6.webp",
+              "/images/spaces/tv_units/tv_drive_16.webp",
+              "/images/spaces/tv_units/tv_drive_12.webp",
+              "/images/spaces/tv_units/tv_drive_19.webp",
+              "/images/spaces/tv_units/tv_drive_20.webp",
+              "/images/spaces/tv_units/tv_drive_10.webp",
+              "/images/spaces/tv_units/tv_drive_15.webp",
+              "/images/spaces/tv_units/tv_drive_36.webp"
+            ],
+            "false-ceilings": [
+              "/images/spaces/ceiling/ceiling_drive_23.webp",
+              "/images/spaces/ceiling/ceiling_drive_27.webp",
+              "/images/spaces/ceiling/ceiling_drive_11.webp",
+              "/images/spaces/ceiling/ceiling_drive_17.webp",
+              "/images/spaces/ceiling/ceiling_drive_41.webp",
+              "/images/spaces/ceiling/ceiling_drive_39.webp",
+              "/images/spaces/ceiling/ceiling_drive_42.webp",
+              "/images/spaces/ceiling/ceiling_drive_37.webp",
+              "/images/spaces/ceiling/ceiling_drive_46.webp",
+              "/images/spaces/ceiling/ceiling_drive_9.webp",
+              "/images/spaces/ceiling/ceiling_drive_35.webp",
+              "/images/spaces/ceiling/ceiling_drive_30.webp"
+            ],
+            "commercial-interiors": [
+              "/images/spaces/commercial/commercial_drive_16.webp",
+              "/images/spaces/commercial/commercial_drive_12.webp",
+              "/images/spaces/commercial/commercial_drive_11.webp",
+              "/images/spaces/commercial/commercial_drive_21.webp",
+              "/images/spaces/commercial/commercial_drive_20.webp",
+              "/images/spaces/commercial/commercial_drive_3.webp",
+              "/images/spaces/commercial/commercial_drive_6.webp",
+              "/images/spaces/commercial/commercial_drive_5.webp",
+              "/images/spaces/commercial/commercial_drive_22.webp",
+              "/images/spaces/commercial/commercial_drive_29.webp",
+              "/images/spaces/commercial/commercial_drive_14.webp",
+              "/images/spaces/commercial/commercial_drive_35.webp"
+            ],
+            "reception-areas": [
+              "/images/spaces/reception/reception_drive_28.webp",
+              "/images/spaces/reception/reception_drive_16.webp",
+              "/images/spaces/reception/reception_drive_19.webp",
+              "/images/spaces/reception/reception_drive_15.webp",
+              "/images/spaces/reception/reception_drive_31.webp",
+              "/images/spaces/reception/reception_drive_7.webp",
+              "/images/spaces/reception/reception_drive_34.webp",
+              "/images/spaces/reception/reception_drive_21.webp",
+              "/images/spaces/reception/reception_drive_9.webp",
+              "/images/spaces/reception/reception_drive_4.webp",
+              "/images/spaces/reception/reception_drive_8.webp",
+              "/images/spaces/reception/reception_drive_35.webp"
+            ],
+            "cafes-restaurants": [
+              "/images/spaces/cafes/cafe_drive_36.webp",
+              "/images/spaces/cafes/cafe_drive_13.webp",
+              "/images/spaces/cafes/cafe_drive_5.webp",
+              "/images/spaces/cafes/cafe_drive_11.webp",
+              "/images/spaces/cafes/cafe_drive_27.webp",
+              "/images/spaces/cafes/cafe_drive_22.webp",
+              "/images/spaces/cafes/cafe_drive_3.webp",
+              "/images/spaces/cafes/cafe_drive_26.webp",
+              "/images/spaces/cafes/cafe_drive_24.webp",
+              "/images/spaces/cafes/cafe_drive_4.webp",
+              "/images/spaces/cafes/cafe_drive_40.webp",
+              "/images/spaces/cafes/cafe_drive_16.webp"
+            ],
+            "foyer": [
+              "/images/spaces/foyer/foyer_drive_16.webp",
+              "/images/spaces/foyer/foyer_drive_17.webp",
+              "/images/spaces/foyer/foyer_drive_4.webp",
+              "/images/spaces/foyer/foyer_drive_19.webp",
+              "/images/spaces/foyer/foyer_drive_18.webp",
+              "/images/spaces/foyer/foyer_drive_24.webp",
+              "/images/spaces/foyer/foyer_drive_12.webp",
+              "/images/spaces/foyer/foyer_drive_8.webp",
+              "/images/spaces/foyer/foyer_drive_7.webp",
+              "/images/spaces/foyer/foyer_drive_9.webp",
+              "/images/spaces/foyer/foyer_drive_26.webp",
+              "/images/spaces/foyer/foyer_drive_3.webp"
+            ],
+            "bar": [
+              "/images/spaces/bar/bar_drive_33.webp",
+              "/images/spaces/bar/bar_drive_9.webp",
+              "/images/spaces/bar/bar_drive_14.webp",
+              "/images/spaces/bar/bar_drive_12.webp",
+              "/images/spaces/bar/bar_drive_23.webp",
+              "/images/spaces/bar/bar_drive_13.webp",
+              "/images/spaces/bar/bar_drive_29.webp",
+              "/images/spaces/bar/bar_drive_5.webp",
+              "/images/spaces/bar/bar_drive_3.webp",
+              "/images/spaces/bar/bar_drive_11.webp",
+              "/images/spaces/bar/bar_drive_30.webp",
+              "/images/spaces/bar/bar_drive_24.webp"
+            ],
+            "walk-in-wardrobe": [
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_11.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_21.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_17.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_3.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_20.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
+              "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp"
+            ]
+          };
+
+          if (Array.isArray(data.spaces_list)) {
+            const origCount = data.spaces_list.length;
+            data.spaces_list = data.spaces_list.filter(cat => cat.slug !== 'luxury-homes' && cat.slug !== 'apartments' && cat.slug !== 'villas');
+            if (data.spaces_list.length !== origCount) modified = true;
+
+            data.spaces_list.forEach(cat => {
+              if (SPACES_FILTERS_MAP[cat.slug] && (!cat.filters || cat.filters.length !== 5 || cat.filters.includes('Japandi Minimal'))) {
+                cat.filters = SPACES_FILTERS_MAP[cat.slug];
+                modified = true;
+              }
+              if (CURATED_SPACES_IMAGES[cat.slug]) {
+                const curatedList = CURATED_SPACES_IMAGES[cat.slug];
+                const hero = (CURATED_HERO_MAP && CURATED_HERO_MAP[cat.slug]) || curatedList[0];
+                const isMatch = Array.isArray(cat.galleryImages) &&
+                  cat.galleryImages.length === 12 &&
+                  cat.galleryImages[0] === hero &&
+                  cat.galleryImages[11] === curatedList[11];
+                if (!isMatch || cat.heroImage !== hero) {
+                  cat.galleryImages = [...curatedList];
+                  cat.heroImage = hero;
+                  modified = true;
+                }
+              }
+            });
+          }
+        }
+        if (Array.isArray(data.spaces_before_after_slides) && data.spaces_before_after_slides.length > 0) {
+          if (!data.spaces_before_after_slides[0]?.before?.includes('spaces_hero_before')) {
+            data.spaces_before_after_slides[0].before = '/images/spaces/spaces_hero_before.webp';
+            data.spaces_before_after_slides[0].after = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png';
+            modified = true;
+          }
+        }
+        if (Array.isArray(data.projects_hero_images)) {
+          data.projects_hero_images = data.projects_hero_images.map(img => {
+            if (typeof img === 'string' && (img.includes('Ideas_2_2-_5') || img.includes('unsplash.com'))) {
+              modified = true;
+              return '/images/company/3bhk_lux/open_hall2.png';
+            }
+            return img;
+          });
+        }
+        if (data.commit_card4_title === 'Free 3D Render') {
+          data.commit_card4_title = 'Complimentary 3D Design';
+          modified = true;
+        }
+        if (data.projects_cta_visible === false || !data.cta_projects || data.cta_projects.enabled === false) {
+          data.projects_cta_visible = true;
+          data.cta_projects = {
+            ...(data.cta_projects || {}),
+            enabled: true,
+            heading: data.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
+            description: data.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
+            buttonText: data.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
+            buttonHoverText: data.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
+            buttonLink: data.cta_projects?.buttonLink || "/contact"
+          };
+          modified = true;
+        }
+        if (modified) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (key === STORAGE_KEYS.FAQS && Array.isArray(data)) {
+        let modified = false;
+        if (data.some(item => (item.question && item.question.includes('remotely')) || (item.q && item.q.includes('remotely'))) || data.length < 10) {
+          data = DEFAULT_FAQS;
+          modified = true;
+        } else {
+          DEFAULT_FAQS.forEach(def => {
+            const match = data.find(item => item.id === def.id || item._id === def.id);
+            if (match) {
+              if (match.question !== def.question || match.answer !== def.answer || match.q !== def.q || match.a !== def.a || match.imageCaption !== def.imageCaption) {
+                match.question = def.question;
+                match.q = def.q;
+                match.answer = def.answer;
+                match.a = def.a;
+                match.imageCaption = def.imageCaption;
+                modified = true;
+              }
+            }
+          });
+          data.forEach(item => {
+            if (typeof item.image === 'string' && item.image.includes('Guest_restaurant_18')) {
+              item.image = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg';
+              modified = true;
+            }
+          });
+        }
+        if (modified) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (key === STORAGE_KEYS.PROJECTS) {
+        if (!Array.isArray(data) || data.length === 0 || !data.some(p => p.slug === 'rajapushpa-provincia-3bhk') || !data.some(p => p.slug === 'my-home-sayuk-3bhk') || data.some((p, idx) => Array.isArray(DEFAULT_PROJECTS[idx]?.gallery) && (!p.gallery || p.gallery.length < DEFAULT_PROJECTS[idx].gallery.length))) {
+          data = DEFAULT_PROJECTS;
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        } else {
+          const p1 = data.find(p => p.slug === 'rajapushpa-provincia-3bhk');
+          if (p1) {
+            if (p1.title !== DEFAULT_PROJECTS[0].title) {
+              p1.title = DEFAULT_PROJECTS[0].title;
+              changed = true;
+            }
+            if (p1.heroImage !== DEFAULT_PROJECTS[0].heroImage) {
+              p1.heroImage = DEFAULT_PROJECTS[0].heroImage;
+              p1.hero_image = DEFAULT_PROJECTS[0].heroImage;
+              changed = true;
+            }
+            if (p1.beforeImage !== DEFAULT_PROJECTS[0].beforeImage) {
+              p1.beforeImage = DEFAULT_PROJECTS[0].beforeImage;
+              p1.beforeImages = DEFAULT_PROJECTS[0].beforeImages;
+              p1.afterImage = DEFAULT_PROJECTS[0].afterImage;
+              p1.afterImages = DEFAULT_PROJECTS[0].afterImages;
+              changed = true;
+            }
+            if (p1.description !== DEFAULT_PROJECTS[0].description) {
+              p1.description = DEFAULT_PROJECTS[0].description;
+              changed = true;
+            }
+            if (p1.story !== DEFAULT_PROJECTS[0].story) {
+              p1.story = DEFAULT_PROJECTS[0].story;
+              changed = true;
+            }
+            if (!Array.isArray(p1.gallery) || p1.gallery.length !== DEFAULT_PROJECTS[0].gallery.length || p1.gallery[0] !== DEFAULT_PROJECTS[0].gallery[0]) {
+              p1.gallery = DEFAULT_PROJECTS[0].gallery;
+              changed = true;
+            }
+            if (p1.testimonial !== DEFAULT_PROJECTS[0].testimonial) {
+              p1.testimonial = DEFAULT_PROJECTS[0].testimonial;
+              p1.testimonialName = DEFAULT_PROJECTS[0].testimonialName;
+              p1.testimonialProfession = DEFAULT_PROJECTS[0].testimonialProfession;
+              p1.testimonialText = DEFAULT_PROJECTS[0].testimonialText;
+              changed = true;
+            }
+            if (changed) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const p2 = data.find(p => p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk');
+          if (p2) {
+            let changed2 = false;
+            if (p2.beforeImage !== DEFAULT_PROJECTS[1].beforeImage) {
+              p2.beforeImage = DEFAULT_PROJECTS[1].beforeImage;
+              p2.beforeImages = DEFAULT_PROJECTS[1].beforeImages;
+              changed2 = true;
+            }
+            if (p2.title !== 'The Lattice Retreat') {
+              p2.title = 'The Lattice Retreat';
+              changed2 = true;
+            }
+            if (p2.description !== DEFAULT_PROJECTS[1].description) {
+              p2.description = DEFAULT_PROJECTS[1].description;
+              changed2 = true;
+            }
+            if (!p2.story || !p2.story.vision || p2.story.vision.includes('Japandi-infused')) {
+              p2.story = DEFAULT_PROJECTS[1].story;
+              changed2 = true;
+            }
+            if (changed2) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const dpRahul = DEFAULT_PROJECTS.find(dp => dp._id === 'proj_4_kokapet_rahul' || dp.slug === 'kokapet-urban-2bhk');
+          const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul');
+          if (p4 && dpRahul) {
+            let changed4 = false;
+            if (p4.beforeImage !== dpRahul.beforeImage || p4.afterImage !== dpRahul.afterImage) {
+              p4.beforeImage = dpRahul.beforeImage;
+              p4.afterImage = dpRahul.afterImage;
+              p4.beforeImages = dpRahul.beforeImages;
+              p4.afterImages = dpRahul.afterImages;
+              p4.before_after = [{ before: dpRahul.beforeImage, after: dpRahul.afterImage }];
+              changed4 = true;
+            }
+            if (p4.heroImage !== dpRahul.heroImage) {
+              p4.heroImage = dpRahul.heroImage;
+              changed4 = true;
+            }
+            if (p4.title !== dpRahul.title) {
+              p4.title = dpRahul.title;
+              changed4 = true;
+            }
+            if (!Array.isArray(p4.gallery) || p4.gallery.length !== dpRahul.gallery.length || p4.gallery.some(img => typeof img === 'string' && img.includes('yocbcbuycsysstbt8j6k'))) {
+              p4.gallery = dpRahul.gallery;
+              changed4 = true;
+            }
+            if (p4.description !== dpRahul.description) {
+              p4.description = dpRahul.description;
+              changed4 = true;
+            }
+            if (!p4.story || !p4.story.vision || p4.story.vision !== dpRahul.story?.vision) {
+              p4.story = dpRahul.story;
+              changed4 = true;
+            }
+            if (changed4) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const dpKiran = DEFAULT_PROJECTS.find(dp => dp._id === 'proj_5_gandipet_kiran' || dp.slug === 'gandipet-modern-retro-2bhk');
+          const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran');
+          if (p5 && dpKiran) {
+            let changed5 = false;
+            if (p5.beforeImage !== dpKiran.beforeImage) {
+              p5.beforeImage = dpKiran.beforeImage;
+              p5.beforeImages = dpKiran.beforeImages;
+              changed5 = true;
+            }
+            if (p5.title !== dpKiran.title) {
+              p5.title = dpKiran.title;
+              changed5 = true;
+            }
+            if (p5.description !== dpKiran.description) {
+              p5.description = dpKiran.description;
+              changed5 = true;
+            }
+            if (!p5.story || !p5.story.vision || p5.story.vision !== dpKiran.story?.vision) {
+              p5.story = dpKiran.story;
+              changed5 = true;
+            }
+            if (changed5) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const p6 = data.find(p => p.slug === 'kondapur-minimalist-2bhk');
+          if (p6) {
+            let changed6 = false;
+            const dpVenk = DEFAULT_PROJECTS.find(dp => dp.slug === 'kondapur-minimalist-2bhk');
+            if (dpVenk && (p6.heroImage !== dpVenk.heroImage || p6.afterImage !== dpVenk.heroImage)) {
+              p6.heroImage = dpVenk.heroImage;
+              p6.hero_image = dpVenk.heroImage;
+              p6.afterImage = dpVenk.heroImage;
+              changed6 = true;
+            }
+            if (p6.beforeImage !== DEFAULT_PROJECTS[5].beforeImage) {
+              p6.beforeImage = DEFAULT_PROJECTS[5].beforeImage;
+              p6.beforeImages = DEFAULT_PROJECTS[5].beforeImages;
+              changed6 = true;
+            }
+            if (p6.title !== 'The Dusk Lounge') {
+              p6.title = 'The Dusk Lounge';
+              changed6 = true;
+            }
+            if (p6.description !== DEFAULT_PROJECTS[5].description) {
+              p6.description = DEFAULT_PROJECTS[5].description;
+              changed6 = true;
+            }
+            if (!p6.story || !p6.story.vision || p6.story.vision.includes('Venkatesh, envisioned')) {
+              p6.story = DEFAULT_PROJECTS[5].story;
+              changed6 = true;
+            }
+            if (changed6) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const p7 = data.find(p => p.slug === 'gachibowli-minimalist-beige-2bhk');
+          const dp7 = DEFAULT_PROJECTS.find(dp => dp.slug === 'gachibowli-minimalist-beige-2bhk') || DEFAULT_PROJECTS[5];
+          if (p7 && dp7) {
+            let changed7 = false;
+            if (p7.heroImage !== dp7.heroImage) {
+              p7.heroImage = dp7.heroImage;
+              changed7 = true;
+            }
+            if (p7.beforeImage !== dp7.beforeImage || p7.afterImage !== dp7.afterImage) {
+              p7.beforeImage = dp7.beforeImage;
+              p7.afterImage = dp7.afterImage;
+              p7.beforeImages = dp7.beforeImages;
+              p7.afterImages = dp7.afterImages;
+              changed7 = true;
+            }
+            if (!Array.isArray(p7.gallery) || p7.gallery.length !== dp7.gallery.length || p7.gallery[0] !== dp7.gallery[0]) {
+              p7.gallery = dp7.gallery;
+              changed7 = true;
+            }
+            if (p7.title !== 'A 2BHK Residence, Gachibowli') {
+              p7.title = 'A 2BHK Residence, Gachibowli';
+              changed7 = true;
+            }
+            if (p7.description !== dp7.description) {
+              p7.description = dp7.description;
+              changed7 = true;
+            }
+            if (!p7.story || !p7.story.vision || p7.story.vision.includes('Koteswara Rao, wanted')) {
+              p7.story = dp7.story;
+              changed7 = true;
+            }
+            if (changed7) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const p8 = data.find(p => p.slug === 'kachiguda-fusion-duplex-villa' || p._id === 'proj_8_kachiguda_subbarao');
+          if (p8) {
+            let changed8 = false;
+            if (p8.heroImage !== DEFAULT_PROJECTS[7].heroImage) {
+              p8.heroImage = DEFAULT_PROJECTS[7].heroImage;
+              changed8 = true;
+            }
+            if (p8.beforeImage !== DEFAULT_PROJECTS[7].beforeImage || p8.afterImage !== DEFAULT_PROJECTS[7].afterImage) {
+              p8.beforeImage = DEFAULT_PROJECTS[7].beforeImage;
+              p8.afterImage = DEFAULT_PROJECTS[7].afterImage;
+              p8.beforeImages = DEFAULT_PROJECTS[7].beforeImages;
+              p8.afterImages = DEFAULT_PROJECTS[7].afterImages;
+              changed8 = true;
+            }
+            if (!Array.isArray(p8.gallery) || p8.gallery.length !== DEFAULT_PROJECTS[7].gallery.length || JSON.stringify(p8.gallery) !== JSON.stringify(DEFAULT_PROJECTS[7].gallery)) {
+              p8.gallery = DEFAULT_PROJECTS[7].gallery;
+              changed8 = true;
+            }
+            if (p8.title !== 'A Duplex Residence, Kachiguda') {
+              p8.title = 'A Duplex Residence, Kachiguda';
+              changed8 = true;
+            }
+            if (p8.description !== DEFAULT_PROJECTS[7].description) {
+              p8.description = DEFAULT_PROJECTS[7].description;
+              changed8 = true;
+            }
+            if (!p8.story || !p8.story.vision || p8.story.vision !== DEFAULT_PROJECTS[7].story.vision) {
+              p8.story = DEFAULT_PROJECTS[7].story;
+              changed8 = true;
+            }
+            if (changed8) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const p9 = data.find(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
+          if (!p9 && DEFAULT_PROJECTS[8]) {
+            data.push(DEFAULT_PROJECTS[8]);
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+          } else if (p9 && DEFAULT_PROJECTS[8]) {
+            let changed9 = false;
+            if (p9.heroImage !== DEFAULT_PROJECTS[8].heroImage) {
+              p9.heroImage = DEFAULT_PROJECTS[8].heroImage;
+              changed9 = true;
+            }
+            if (!Array.isArray(p9.gallery) || p9.gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || p9.gallery.length !== DEFAULT_PROJECTS[8].gallery.length) {
+              p9.gallery = DEFAULT_PROJECTS[8].gallery;
+              changed9 = true;
+            }
+            if (p9.beforeImage !== DEFAULT_PROJECTS[8].beforeImage || p9.afterImage !== DEFAULT_PROJECTS[8].afterImage) {
+              p9.beforeImage = DEFAULT_PROJECTS[8].beforeImage;
+              p9.afterImage = DEFAULT_PROJECTS[8].afterImage;
+              p9.beforeImages = DEFAULT_PROJECTS[8].beforeImages;
+              p9.afterImages = DEFAULT_PROJECTS[8].afterImages;
+              changed9 = true;
+            }
+            if (p9.testimonialName !== 'Hussain' || p9.testimonial?.name !== 'Hussain') {
+              p9.testimonialName = 'Hussain';
+              p9.testimonial = { ...(p9.testimonial || {}), name: 'Hussain' };
+              changed9 = true;
+            }
+            if (changed9) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const p10 = data.find(p => p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur');
+          if (p10 && DEFAULT_PROJECTS[6]) {
+            let changed10 = false;
+            if (!Array.isArray(p10.gallery) || p10.gallery.length !== DEFAULT_PROJECTS[6].gallery.length || JSON.stringify(p10.gallery) !== JSON.stringify(DEFAULT_PROJECTS[6].gallery)) {
+              p10.gallery = DEFAULT_PROJECTS[6].gallery;
+              changed10 = true;
+            }
+            if (changed10) {
+              try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+            }
+          }
+          const canonicalOrder = {
+            'rajapushpa-provincia-3bhk': 1,
+            'my-home-sayuk-3bhk': 2,
+            'kokapet-2bhk': 3,
+            'kokapet-urban-2bhk': 4,
+            'gandipet-modern-retro-2bhk': 5,
+            'kondapur-minimalist-2bhk': 6,
+            'gachibowli-minimalist-beige-2bhk': 7,
+            'kachiguda-fusion-duplex-villa': 8,
+            'dimmu-chachu-luxury-villa': 9
+          };
+          data = data.filter(p => p && (canonicalOrder[p.slug] !== undefined || DEFAULT_PROJECTS.some(dp => dp._id === p._id)));
+          data.forEach((p, idx) => {
+            if (canonicalOrder[p.slug]) {
+              p.order = canonicalOrder[p.slug];
+            } else if (!p.order) {
+              p.order = idx + 1;
             }
           });
           data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-
-          if (updated) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          if (data.length > 9) {
+            data = data.slice(0, 9);
           }
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
         }
-        if (key === STORAGE_KEYS.TESTIMONIALS && Array.isArray(data)) {
-          let updated = false;
-          if (
-            data.some(t => t.name === 'Ganesh Nayak' || t.name === 'Ganesh Nayak143' || t.name === 'Juttiga Vaishnavi' || t.name === 'Nani Varma' || t.name === 'Rafi Shaik' || t.name === 'G Rakesh') ||
-            !data.some(t => t.name === 'Shiak Ayub') ||
-            !data.some(t => t.name === 'Madhusudhan Vanam') ||
-            !data.some(t => t.name === 'LEGAL AMICUS') ||
-            !data.some(t => t.name === 'Reddy') ||
-            !data.some(t => t.name === 'Venkatesh mudhiraj') ||
-            !data.some(t => t.name === 'A Sk') ||
-            !data.some(t => t.name === 'Abdul Gaffar') ||
-            data[0]?.name !== 'Dharma Teja' ||
-            data[10]?.name !== 'Shiak Ayub'
-          ) {
-            data = DEFAULT_TESTIMONIALS;
-            updated = true;
+      }
+      if (key === STORAGE_KEYS.PRODUCTS) {
+        if (!Array.isArray(data) || data.length === 0 || data.some(p => typeof p.heroImage === 'string' && p.heroImage.includes('unsplash.com'))) {
+          data = DEFAULT_PRODUCTS;
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        } else {
+          let updatedProd = false;
+          if (Array.isArray(data) && data.some(p => p && p.slug === 'charcoal-panels-luxe-1')) {
+            data = data.filter(p => p && p.slug !== 'charcoal-panels-luxe-1');
+            updatedProd = true;
           }
-          if (updated) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-        }
-        // ── PRODUCTS hero image auto-migration ──────────────────────────────
-        if (key === STORAGE_KEYS.PRODUCTS && Array.isArray(data)) {
-          let updated = false;
-          const PRODUCT_HERO_MAP = {
-            'acrylic-luxe-collection':        'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png',
-            'digital-korean-poly-granite':    'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png',
-            'charcoal-panels-luxe':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/charcoal_qpelt9.png',
-            'fluted-pvc-luxe':               'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_fluted_1_o1ixyc.png',
-            'lvt-luxe-flooring':             'https://res.cloudinary.com/or5e9kak/image/upload/v1791196087/lvt_io0all.png',
-            'fluted-acrylic-luxe':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/fluted_acrylic_gmwqr4.png',
-            'pvc-luxe-collection':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/pvc_1_qoe62b.png',
-            'wpc-luxe-collection':           'https://res.cloudinary.com/or5e9kak/image/upload/v1791195586/wpc_irucfj.png',
-          };
-          data.forEach(product => {
-            if (product && PRODUCT_HERO_MAP[product.slug]) {
-              if (product.heroImage !== PRODUCT_HERO_MAP[product.slug]) {
-                product.heroImage = PRODUCT_HERO_MAP[product.slug];
-                updated = true;
+          data.forEach(p => {
+            if (p && (p.slug === 'acrylic-luxe-collection' || p.materialCode === 'MAT-ACR-01')) {
+              if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png') {
+                p.heroImage = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png';
+                p.image = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png';
+                updatedProd = true;
+              }
+            }
+            if (p && (p.slug === 'digital-korean-poly-granite' || p.materialCode === 'MAT-GNT-02')) {
+              if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png') {
+                p.heroImage = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png';
+                p.image = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png';
+                updatedProd = true;
               }
             }
           });
-          if (updated) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+          if (updatedProd) {
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
           }
         }
-        if (Array.isArray(data.hero_bg_images) && (data.hero_bg_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com')) || data.hero_bg_images.length !== 5)) {
-          data.hero_bg_images = [
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png'
-          ];
-          data.hero_card_image = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png';
-          try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+      }
+      if (key === STORAGE_KEYS.TESTIMONIALS) {
+        if (!Array.isArray(data) || data.length === 0 || !data.some(t => (t.name || '').includes('MANOJ & KRIPA')) || data.some(t => /karagani|naidu poola|Shiak Ayub|Amresh kumar/i.test(t.name || ''))) {
+          data = DEFAULT_TESTIMONIALS;
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
         }
-        if (!Array.isArray(data.showcase_slides) || data.showcase_slides.length !== 5 || data.showcase_slides.some(s => typeof s.projectImg === 'string' && !s.projectImg.includes('res.cloudinary.com')) || data.showcase_slides.some(s => s.projectLabel?.includes('Cosmic Odyssey') || s.projectLabel?.includes('Classical Lounge') || s.projectLabel?.includes('Executive Study'))) {
-          data.showcase_slides = [
-            {
-              projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png",
-              memberImg: "/reviews/paladugu_raju.png",
-              name: "Architectural Lead",
-              role: "Duplex Mezzanine & Murals",
-              projectLabel: "Duplex Mezzanine & Sculpted Wall Mural"
-            },
-            {
-              projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_17_2026_06_59_28_PM_1.png",
-              memberImg: "/reviews/kishor_kumar.png",
-              name: "Spatial Architecture Specialist",
-              role: "Double-Height Atrium Architecture",
-              projectLabel: "Double-Height Atrium & Living Mezzanine"
-            },
-            {
-              projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/ChatGPT_Image_Sep_16_2026_03_37_12_PM_1.png",
-              memberImg: "/reviews/amresh_kumar.png",
-              name: "Joinery & Detailing Lead",
-              role: "Warm Contemporary Joinery",
-              projectLabel: "Warm Contemporary Living Lounge"
-            },
-            {
-              projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png",
-              memberImg: "/reviews/imtiyaz_shaik.png",
-              name: "Living Space Specialist",
-              role: "Luxury Living Spaces",
-              projectLabel: "Warm Arched Living Lounge"
-            },
-            {
-              projectImg: "https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_111522_5d9cc288-51e5-41b7-ac4c-a4303ed6ae9c.png",
-              memberImg: "/reviews/kishor_kumar.png",
-              name: "Principal Architect",
-              role: "Japandi Spatial Refinement",
-              projectLabel: "Japandi Living Lounge & Tea Deck"
+        if (Array.isArray(data) && data.some(t => t.id === 'g_rev_07' || t.id === 'g_rev_03' || /abdul\s*sattar|khaleel/i.test(t.name || ''))) {
+          data = data.filter(t => t.id !== 'g_rev_07' && t.id !== 'g_rev_03' && !/abdul\s*sattar|khaleel/i.test(t.name || ''));
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (key === STORAGE_KEYS.ADMIN_USERS) {
+        if (!Array.isArray(data) || data.length === 0 || !data.some(u => u.email === 'admin@espacio.com')) {
+          data = DEFAULT_ADMIN_USERS;
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
+      if (key === STORAGE_KEYS.SETTINGS && data) {
+        let modified = false;
+        if (!Array.isArray(data.services_list) || data.services_list.length === 0 || data.services_list.some(s => typeof s.img === 'string' && s.img.includes('unsplash.com')) || !data.services_list.some(s => s.title === 'Full Home Interior Design and Execution')) {
+          data.services_list = DEFAULT_SERVICES;
+          modified = true;
+        } else {
+          data.services_list.forEach(s => {
+            if (s && typeof s.desc === 'string' && s.desc.includes('planned and built by one team')) {
+              s.desc = s.desc.replace('planned and built by one team', 'planned and built by our team');
+              modified = true;
             }
-          ];
-          try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-        } else if (Array.isArray(data.showcase_slides)) {
-          let updatedSlides = false;
-          data.showcase_slides.forEach(slide => {
-            if (slide && (slide.projectLabel === "Modern Modular Kitchen & Island Bar" || slide.projectLabel === "Modern Quartzite Kitchen" || slide.role === "High-Gloss Modular Kitchens")) {
-              slide.name = "Living Space Specialist";
-              slide.role = "Luxury Living Spaces";
-              slide.projectLabel = "Warm Arched Living Lounge";
-              updatedSlides = true;
+            if (s && typeof s.ctaText === 'string' && s.ctaText.includes('Fit-Outs')) {
+              s.ctaText = s.ctaText.replace('Fit-Outs', 'Interiors');
+              modified = true;
             }
           });
-          if (updatedSlides) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
+        }
+        if (data.about_hero_title && typeof data.about_hero_title === 'string') {
+          const updatedTitle = data.about_hero_title.replace(/\b([a-z])/g, (_, l) => l.toUpperCase());
+          if (updatedTitle !== data.about_hero_title) {
+            data.about_hero_title = updatedTitle;
+            modified = true;
           }
         }
-        if (key === STORAGE_KEYS.SETTINGS && data) {
-          let modified = false;
-          if (data.projects_cta_visible !== true) {
-            data.projects_cta_visible = true;
-            modified = true;
-          }
-          if (data.footer_brand_subtitle === undefined || data.footer_brand_subtitle === 'INTERIORS AND MODULARS' || data.footer_brand_subtitle === 'Designing spaces. Defining life styles') {
-            data.footer_brand_subtitle = 'Designing spaces. Defining life styles.';
-            modified = true;
-          }
-          if (!data.cta_projects || data.cta_projects.enabled !== true) {
-            data.cta_projects = {
-              ...(data.cta_projects || {}),
-              enabled: true,
-              heading: data.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
-              description: data.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
-              buttonText: data.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
-              buttonHoverText: data.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
-              buttonLink: data.cta_projects?.buttonLink || "/contact"
-            };
-            modified = true;
-          }
-          const cloudServicesHero = [
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423769/hf_20260926_115135_689f37bb-4556-4b0c-825e-0586da0f2ddb.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_103008_456328d7-a078-498c-9e00-4d73fd070599.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423722/hf_20260926_115046_7312df3a-c42b-4bab-831c-c61f1a4c559a.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790423697/hf_20260926_114746_45849102-0d71-4193-bf7f-41a775d147e3.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260928_104300_ea2f5c95-951a-49c1-b200-388396d23801.png'
-          ];
-          if (!Array.isArray(data.services_hero_images) || data.services_hero_images.length !== 5 || data.services_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
-            data.services_hero_images = cloudServicesHero;
-            modified = true;
-          }
-          if (Array.isArray(data.services_list) && data.services_list.length >= 5) {
-            cloudServicesHero.forEach((cUrl, idx) => {
-              if (data.services_list[idx] && data.services_list[idx].img !== cUrl) {
-                data.services_list[idx].img = cUrl;
+        if (!Array.isArray(data.hero_bg_images) || data.hero_bg_images.length === 0) {
+          data.hero_bg_images = DEFAULT_SETTINGS.hero_bg_images;
+          modified = true;
+        }
+        if (data.trust_stat3_val === '50000' || !data.trust_stat3_val) {
+          data.trust_stat3_val = '40000';
+          modified = true;
+        }
+        if (data.trust_stat4_sublabel === 'Comprehensive Hardware Warranty' || !data.trust_stat4_sublabel) {
+          data.trust_stat4_sublabel = 'Comprehensive Warranty*';
+          modified = true;
+        }
+        if (Array.isArray(data.footer_social_items)) {
+          data.footer_social_items.forEach(item => {
+            if (item.name === 'Facebook' || item.icon === 'facebook' || item.label === 'Facebook') {
+              if (item.href === 'https://facebook.com' || item.href === 'https://www.facebook.com' || !item.href?.includes('1DkG2m4Ra7')) {
+                item.href = 'https://www.facebook.com/share/1DkG2m4Ra7/';
                 modified = true;
               }
-            });
-          }
-
-          const cloudProjectsHero = [
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425351/hf_20260926_121205_b316b4e3-2daa-4fa2-9be5-d6a0ee716587.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425297/hf_20260926_121300_6a3eef61-953b-4da3-b308-15aabfa0e9d0.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425270/hf_20260926_121337_1396c58b-a42d-4d86-8930-ad80832032c1.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425243/hf_20260926_121353_fb8cb679-2a98-4c61-a331-b92d2ca6c9da.png',
-            'https://res.cloudinary.com/teg9ndhk/image/upload/v1790425214/hf_20260926_121425_c188d1e6-1db5-4729-b2a9-ad90bbddbf3a.png'
-          ];
-          if (!Array.isArray(data.projects_hero_images) || data.projects_hero_images.length !== 5 || data.projects_hero_images.some(img => typeof img === 'string' && !img.includes('res.cloudinary.com'))) {
-            data.projects_hero_images = cloudProjectsHero;
-            modified = true;
-          }
-          if (data.intro_heading === 'Turnkey interiors, done properly.' || data.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !data.intro_heading) {
-            data.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
-            modified = true;
-          }
-          if (!data.intro_description || data.intro_description.includes('We bring 40+ years of family construction heritage') || data.intro_description.includes('chase a contractor')) {
-            data.intro_description = "ESPACIO brings together considered design, exceptional materials, and master craftsmanship to create homes of quiet distinction. Rooted in forty years of family construction heritage in Hyderabad, we design, build, and deliver your residence in its entirety, so every detail is handled and every day on site is seamless. You simply arrive to a home that feels unmistakably yours.";
-            modified = true;
-          }
-          if (typeof data.about_hero_subtitle === 'string' && data.about_hero_subtitle.includes('Mantana')) {
-            data.about_hero_subtitle = data.about_hero_subtitle.replace(/Mantana/g, 'Mastana');
-            modified = true;
-          }
-          if (typeof data.about_story_p1 === 'string' && data.about_story_p1.includes('Mantana')) {
-            data.about_story_p1 = data.about_story_p1.replace(/Mantana/g, 'Mastana');
-            modified = true;
-          }
-          if (Array.isArray(data.about_generations)) {
-            data.about_generations.forEach(g => {
-              if (g && typeof g.title === 'string' && g.title.includes('Mantana')) {
-                g.title = g.title.replace(/Mantana/g, 'Mastana');
-                modified = true;
-              }
-              if (g && typeof g.desc === 'string' && /ponds\s*[—–-]\s*including/i.test(g.desc)) {
-                g.desc = g.desc.replace(/ponds\s*[—–-]\s*including/gi, 'ponds, including');
-                modified = true;
-              }
-            });
-          }
-          if (Array.isArray(data.nav_items)) {
-            data.nav_items.forEach(item => {
-              if (item.path === '/what-we-do' || item.path?.startsWith('/what-we-do/')) {
-                item.path = item.path.replace('/what-we-do', '/spaces');
-                if (item.label === 'What We Do') item.label = 'Spaces';
-                modified = true;
-              }
-              if (item.path === '/products' || item.path?.startsWith('/products/')) {
-                item.path = item.path.replace('/products', '/materials');
-                if (item.label === 'Products' || item.label === 'Materials Library') item.label = 'Materials';
-                modified = true;
-              }
-            });
-          }
-          if (Array.isArray(data.footer_nav_items)) {
-            data.footer_nav_items.forEach(item => {
-              if (item.path === '/what-we-do' || item.path?.startsWith('/what-we-do/')) {
-                item.path = item.path.replace('/what-we-do', '/spaces');
-                if (item.label === 'What We Do') item.label = 'Spaces';
-                modified = true;
-              }
-              if (item.path === '/products' || item.path?.startsWith('/products/')) {
-                item.path = item.path.replace('/products', '/materials');
-                if (item.label === 'Products' || item.label === 'Materials Library') item.label = 'Materials';
-                modified = true;
-              }
-            });
-          }
-          if (Array.isArray(data.spaces_list)) {
-            const existingSlugs = new Set(data.spaces_list.map(s => s.slug));
-            const newCategories = [
-              {
-                "name": "Foyer",
-                "slug": "foyer",
-                "description": "First-impression entrance foyers with fluted timber panelling, floating shoe consoles, backlit vanity mirrors, and statement stone accents.",
-                "heroImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-                "visible": true,
-                "details": {
-                  "tag": "Grand First Impressions",
-                  "headline": "Entrance Foyers Crafted to Welcome and Impress",
-                  "body": "The foyer sets the emotional tone of the entire home. We design architectural transition zones featuring bespoke shoe storage credenzas, floating consoles, decorative stone accents, acoustic fluted wall cladding, and motion-sensor warm cove illumination.",
-                  "includes": [
-                    "Custom Floating Console & Concealed Shoe Storage",
-                    "Acoustic Fluted Timber & Metal Inlay Panelling",
-                    "Backlit Onyx & Polygranite Statement Wall",
-                    "Full-Height Dressing Mirror with Ambient Backlight",
-                    "Motion-Sensor Warm Glow & Recessed Spotlights",
-                    "Architectural Partition Screens & CNC Jali Elements",
-                    "Integrated Key, Bag & Drop-Zone Niches",
-                    "Upholstered Seating & Entryway Benches"
-                  ]
-                },
-                "galleryImages": [
-                  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-                  "/images/company/2bhk_mordern_retro/dining_2.jpg",
-                  "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
-                ],
-                "filters": [
-                  "Modern",
-                  "Luxury",
-                  "Minimal",
-                  "Contemporary",
-                  "Traditional",
-                  "Statement"
-                ]
-              },
-              {
-                "name": "Bar",
-                "slug": "bar",
-                "description": "Bespoke residential bar units, wine display cellars, backlit onyx counters, and fluted glass stemware storage.",
-                "heroImage": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
-                "visible": true,
-                "details": {
-                  "tag": "Hospitality & Entertaining",
-                  "headline": "Sophisticated Home Bars for Connoisseurs and Hosts",
-                  "body": "Transform entertaining at home with bespoke bar counters featuring temperature-controlled wine displays, illuminated fluted glass cabinets, integrated ice and cocktail prep sinks, and dramatic backlit translucent stone surfaces.",
-                  "includes": [
-                    "Custom Backlit Onyx & Sintered Stone Bar Counters",
-                    "Integrated Temperature-Controlled Wine Chillers",
-                    "Fluted Bronze Glass Stemware & Bottle Shelving",
-                    "Concealed Prep Sink & Speed Rail Integration",
-                    "Multi-Circuit Mood & Shelf Backlighting",
-                    "Acoustic Wall Panelling & High Bar Seating",
-                    "Lockable Spirits & Decanter Cabinetry",
-                    "Under-Counter Refrigeration & Ice Maker Provisions"
-                  ]
-                },
-                "galleryImages": [
-                  "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80",
-                  "/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg",
-                  "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
-                ],
-                "filters": [
-                  "Home Bar",
-                  "Luxury",
-                  "Modern",
-                  "Contemporary",
-                  "Compact",
-                  "Classic"
-                ]
-              },
-              {
-                "name": "Walk-in Wardrobe",
-                "slug": "walk-in-wardrobe",
-                "description": "Boutique-style walk-in dressing suites with central accessory islands, velvet-lined drawers, and illuminated tinted glass enclosures.",
-                "heroImage": "https://images.unsplash.com/photo-1558882224-dda166733079?auto=format&fit=crop&w=1200&q=80",
-                "visible": true,
-                "details": {
-                  "tag": "Boutique Dressing Suites",
-                  "headline": "Walk-In Closets Designed Like Haute Couture Salons",
-                  "body": "Experience the luxury of a personalized dressing boutique. Our walk-in wardrobe suites feature central accessory islands with glass display tops, custom velvet-lined watch and jewelry drawers, floor-to-ceiling tinted glass partitions, and 360-degree vanity lighting.",
-                  "includes": [
-                    "Central Accessory & Jewelry Island with Glass Top",
-                    "Floor-to-Ceiling Tinted Bronze Glass Shutters",
-                    "Velvet-Lined Watch, Belt & Sunglass Organizers",
-                    "Integrated LED Sensor Rail & Shelf Lighting",
-                    "Full-Height Backlit Vanity Dressing Mirror",
-                    "Tiered Pull-Out Shoe & Handbag Galleries",
-                    "Hidden Safe & Lockable Valuables Vault",
-                    "Dedicated Seasonal Loft Storage Sections"
-                  ]
-                },
-                "galleryImages": [
-                  "https://images.unsplash.com/photo-1558882224-dda166733079?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
-                  "/images/materials/bedroom_3.webp",
-                  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
-                ],
-                "filters": [
-                  "Central Island Suite",
-                  "Tinted Bronze Glass Wardrobe",
-                  "Velvet Boutique Salon",
-                  "Minimalist Open Dressing",
-                  "360-Degree Illuminated Vanity"
-                ]
-              }
-            ];
-            newCategories.forEach(cat => {
-              if (!existingSlugs.has(cat.slug)) {
-                data.spaces_list.push(cat);
-                modified = true;
-              }
-            });
-
-            const SPACES_FILTERS_MAP = {
-              'modular-kitchen': ["Island Kitchen", "Parallel Kitchen", "L-Shaped Kitchen", "U-Shaped Kitchen", "Open Concept Pantry"],
-              'master-bedroom': ["Luxury Master Suite", "Warm Minimalist", "Classical Boiserie", "Modern Contemporary", "Integrated Study Suite"],
-              'living-room': ["Minimalist Lounge", "Double-Height Living", "Luxury Marble Accent", "Open Concept Living", "Contemporary Formal"],
-              'wardrobes': ["Floor-to-Ceiling Sliding", "Tinted Glass Shutters", "Built-In Veneer & Wood", "Open Shelving Systems", "Integrated Vanity Dressing"],
-              'home-office': ["Executive Study", "Minimal Studio Desk", "Dual Workstation", "Acoustic Panelled Office", "Library & Bookshelf Suite"],
-              'commercial-office': ["Executive Boardroom", "Open Workstation Floor", "Private Director Cabin", "Acoustic Conference Room", "Collaboration Lounge"],
-              'pooja-room': ["Dedicated Mandir Room", "CNC Backlit Jali", "Marble & Corian Sanctum", "Compact Wood Mandir", "Traditional Brass & Teak"],
-              'dining-room': ["8-Seater Formal Dining", "Marble Top & Bar Console", "Fluted Glass Partition", "Breakfast Nook & Bistro", "Duplex Dining Lounge"],
-              'tv-units': ["Full-Wall Marble Console", "Floating Acoustic Fluted", "Backlit Onyx Feature Wall", "Minimalist Low-Profile", "Rotatable Partition Unit"],
-              'false-ceilings': ["Magnetic Track & Warm Coves", "Wooden Rafter & Slat Ceiling", "Minimalist Peripheral Drop", "Coffered & Geometric Ceiling", "Stretch Fabric & Backlit Ceiling"],
-              'commercial-interiors': ["Corporate Headquarters", "Retail & Showroom Store", "Clinic & Wellness Center", "Law & Financial Atelier", "Tech Innovation Hub"],
-              'reception-areas': ["Monolithic Stone Reception Desk", "Corporate Brand Identity Wall", "Luxury Client Lounge", "Fluted Wood & Green Wall", "Double-Height Entry Lobby"],
-              'cafes-restaurants': ["Specialty Coffee Bistro", "Fine Dining Hall", "Industrial Rooftop Bar", "Bohemian Lounge", "Quick-Service Gourmet Counter"],
-              'foyer': ["Modern Floating Console", "Luxury Backlit Onyx", "Minimalist Drop-Zone", "Traditional Jali Screen", "Statement Mirror Wall"],
-              'bar': ["Backlit Onyx Counter", "Temperature-Controlled Wine Cellar", "Compact Dry Bar", "Fluted Glass Cocktail Station", "Classic Walnut Lounge"],
-              'walk-in-wardrobe': ["Central Island Suite", "Tinted Bronze Glass Wardrobe", "Velvet Boutique Salon", "Minimalist Open Dressing", "360-Degree Illuminated Vanity"]
-            };
-
-            const CURATED_SPACES_IMAGES = {
-  "modular-kitchen": [
-    "/images/spaces/modular_kitchen/kitchen_drive_24.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_1.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_19.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_29.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_14.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_7.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_30.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_8.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_13.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_28.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_23.webp",
-    "/images/spaces/modular_kitchen/kitchen_drive_12.webp"
-  ],
-  "master-bedroom": [
-    "/images/spaces/bedroom/bedroom_drive_24.webp",
-    "/images/spaces/bedroom/bedroom_drive_15.webp",
-    "/images/spaces/bedroom/bedroom_drive_6.webp",
-    "/images/spaces/bedroom/bedroom_drive_3.webp",
-    "/images/spaces/bedroom/bedroom_drive_5.webp",
-    "/images/spaces/bedroom/bedroom_drive_11.webp",
-    "/images/spaces/bedroom/bedroom_drive_29.webp",
-    "/images/spaces/bedroom/bedroom_drive_25.webp",
-    "/images/spaces/bedroom/bedroom_drive_12.webp",
-    "/images/spaces/bedroom/bedroom_drive_9.webp",
-    "/images/spaces/bedroom/bedroom_drive_1.webp",
-    "/images/spaces/bedroom/bedroom_drive_27.webp"
-  ],
-  "living-room": [
-    "/images/spaces/living/living_drive_1.webp",
-    "/images/spaces/living/living_drive_38.webp",
-    "/images/spaces/living/living_drive_29.webp",
-    "/images/spaces/living/living_drive_13.webp",
-    "/images/spaces/living/living_drive_6.webp",
-    "/images/spaces/living/living_drive_31.webp",
-    "/images/spaces/living/living_drive_21.webp",
-    "/images/spaces/living/living_drive_8.webp",
-    "/images/spaces/living/living_drive_30.webp",
-    "/images/spaces/living/living_drive_4.webp",
-    "/images/spaces/living/living_drive_20.webp",
-    "/images/spaces/living/living_drive_33.webp"
-  ],
-  "wardrobes": [
-    "/images/spaces/wardrobes/wardrobe_drive_25.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_23.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_14.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_27.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_29.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_11.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_32.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_24.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_21.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_5.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_38.webp",
-    "/images/spaces/wardrobes/wardrobe_drive_22.webp"
-  ],
-  "home-office": [
-    "/images/spaces/home_office/home_office_drive_25.webp",
-    "/images/spaces/home_office/home_office_drive_33.webp",
-    "/images/spaces/home_office/home_office_drive_12.webp",
-    "/images/spaces/home_office/home_office_drive_19.webp",
-    "/images/spaces/home_office/home_office_drive_27.webp",
-    "/images/spaces/home_office/home_office_drive_22.webp",
-    "/images/spaces/home_office/home_office_drive_32.webp",
-    "/images/spaces/home_office/home_office_drive_20.webp",
-    "/images/spaces/home_office/home_office_drive_42.webp",
-    "/images/spaces/home_office/home_office_drive_23.webp",
-    "/images/spaces/home_office/home_office_drive_35.webp",
-    "/images/spaces/home_office/home_office_drive_34.webp"
-  ],
-  "commercial-office": [
-    "/images/spaces/office/office_drive_20.webp",
-    "/images/spaces/office/office_drive_33.webp",
-    "/images/spaces/office/office_drive_29.webp",
-    "/images/spaces/office/office_drive_37.webp",
-    "/images/spaces/office/office_drive_4.webp",
-    "/images/spaces/office/office_drive_12.webp",
-    "/images/spaces/office/office_drive_13.webp",
-    "/images/spaces/office/office_drive_6.webp",
-    "/images/spaces/office/office_drive_31.webp",
-    "/images/spaces/office/office_drive_16.webp",
-    "/images/spaces/office/office_drive_17.webp",
-    "/images/spaces/office/office_drive_18.webp"
-  ],
-  "pooja-room": [
-    "/images/spaces/pooja/pooja_drive_12.webp",
-    "/images/spaces/pooja/pooja_drive_14.webp",
-    "/images/spaces/pooja/pooja_drive_9.webp",
-    "/images/spaces/pooja/pooja_drive_3.webp",
-    "/images/spaces/pooja/pooja_drive_22.webp",
-    "/images/spaces/pooja/pooja_drive_1.webp",
-    "/images/spaces/pooja/pooja_drive_4.webp",
-    "/images/spaces/pooja/pooja_drive_11.webp",
-    "/images/spaces/pooja/pooja_drive_17.webp",
-    "/images/spaces/pooja/pooja_drive_15.webp",
-    "/images/spaces/pooja/pooja_drive_20.webp",
-    "/images/spaces/pooja/pooja_drive_25.webp"
-  ],
-  "dining-room": [
-    "/images/spaces/dining/dining_drive_27.webp",
-    "/images/spaces/dining/dining_drive_15.webp",
-    "/images/spaces/dining/dining_drive_26.webp",
-    "/images/spaces/dining/dining_drive_40.webp",
-    "/images/spaces/dining/dining_drive_38.webp",
-    "/images/spaces/dining/dining_drive_19.webp",
-    "/images/spaces/dining/dining_drive_32.webp",
-    "/images/spaces/dining/dining_drive_3.webp",
-    "/images/spaces/dining/dining_drive_49.webp",
-    "/images/spaces/dining/dining_drive_31.webp",
-    "/images/spaces/dining/dining_drive_42.webp",
-    "/images/spaces/dining/dining_drive_28.webp"
-  ],
-  "tv-units": [
-    "/images/spaces/tv_units/tv_drive_13.webp",
-    "/images/spaces/tv_units/tv_drive_3.webp",
-    "/images/spaces/tv_units/tv_drive_8.webp",
-    "/images/spaces/tv_units/tv_drive_25.webp",
-    "/images/spaces/tv_units/tv_drive_12.webp",
-    "/images/spaces/tv_units/tv_drive_21.webp",
-    "/images/spaces/tv_units/tv_drive_11.webp",
-    "/images/spaces/tv_units/tv_drive_4.webp",
-    "/images/spaces/tv_units/tv_drive_37.webp",
-    "/images/spaces/tv_units/tv_drive_30.webp",
-    "/images/spaces/tv_units/tv_drive_18.webp",
-    "/images/spaces/tv_units/tv_drive_16.webp"
-  ],
-  "false-ceilings": [
-    "/images/spaces/ceiling/ceiling_drive_46.webp",
-    "/images/spaces/ceiling/ceiling_drive_3.webp",
-    "/images/spaces/ceiling/ceiling_drive_7.webp",
-    "/images/spaces/ceiling/ceiling_drive_42.webp",
-    "/images/spaces/ceiling/ceiling_drive_14.webp",
-    "/images/spaces/ceiling/ceiling_drive_39.webp",
-    "/images/spaces/ceiling/ceiling_drive_28.webp",
-    "/images/spaces/ceiling/ceiling_drive_17.webp",
-    "/images/spaces/ceiling/ceiling_drive_35.webp",
-    "/images/spaces/ceiling/ceiling_drive_27.webp",
-    "/images/spaces/ceiling/ceiling_drive_30.webp",
-    "/images/spaces/ceiling/ceiling_drive_16.webp"
-  ],
-  "commercial-interiors": [
-    "/images/spaces/commercial/commercial_drive_18.webp",
-    "/images/spaces/commercial/commercial_drive_9.webp",
-    "/images/spaces/commercial/commercial_drive_29.webp",
-    "/images/spaces/commercial/commercial_drive_41.webp",
-    "/images/spaces/commercial/commercial_drive_11.webp",
-    "/images/spaces/commercial/commercial_drive_16.webp",
-    "/images/spaces/commercial/commercial_drive_28.webp",
-    "/images/spaces/commercial/commercial_drive_32.webp",
-    "/images/spaces/commercial/commercial_drive_23.webp",
-    "/images/spaces/commercial/commercial_drive_3.webp",
-    "/images/spaces/commercial/commercial_drive_6.webp",
-    "/images/spaces/commercial/commercial_drive_21.webp"
-  ],
-  "reception-areas": [
-    "/images/spaces/reception/reception_drive_21.webp",
-    "/images/spaces/reception/reception_drive_30.webp",
-    "/images/spaces/reception/reception_drive_31.webp",
-    "/images/spaces/reception/reception_drive_28.webp",
-    "/images/spaces/reception/reception_drive_15.webp",
-    "/images/spaces/reception/reception_drive_34.webp",
-    "/images/spaces/reception/reception_drive_33.webp",
-    "/images/spaces/reception/reception_drive_22.webp",
-    "/images/spaces/reception/reception_drive_16.webp",
-    "/images/spaces/reception/reception_drive_19.webp",
-    "/images/spaces/reception/reception_drive_17.webp",
-    "/images/spaces/reception/reception_drive_1.webp"
-  ],
-  "cafes-restaurants": [
-    "/images/spaces/cafes/cafe_drive_15.webp",
-    "/images/spaces/cafes/cafe_drive_29.webp",
-    "/images/spaces/cafes/cafe_drive_27.webp",
-    "/images/spaces/cafes/cafe_drive_11.webp",
-    "/images/spaces/cafes/cafe_drive_14.webp",
-    "/images/spaces/cafes/cafe_drive_22.webp",
-    "/images/spaces/cafes/cafe_drive_16.webp",
-    "/images/spaces/cafes/cafe_drive_41.webp",
-    "/images/spaces/cafes/cafe_drive_32.webp",
-    "/images/spaces/cafes/cafe_drive_4.webp",
-    "/images/spaces/cafes/cafe_drive_24.webp",
-    "/images/spaces/cafes/cafe_drive_13.webp"
-  ],
-  "foyer": [
-    "/images/spaces/foyer/foyer_drive_22.webp",
-    "/images/spaces/foyer/foyer_drive_18.webp",
-    "/images/spaces/foyer/foyer_drive_24.webp",
-    "/images/spaces/foyer/foyer_drive_23.webp",
-    "/images/spaces/foyer/foyer_drive_2.webp",
-    "/images/spaces/foyer/foyer_drive_19.webp",
-    "/images/spaces/foyer/foyer_drive_1.webp",
-    "/images/spaces/foyer/foyer_drive_14.webp",
-    "/images/spaces/foyer/foyer_drive_4.webp",
-    "/images/spaces/foyer/foyer_drive_13.webp",
-    "/images/spaces/foyer/foyer_drive_5.webp",
-    "/images/spaces/foyer/foyer_drive_8.webp"
-  ],
-  "bar": [
-    "/images/spaces/bar/bar_drive_21.webp",
-    "/images/spaces/bar/bar_drive_14.webp",
-    "/images/spaces/bar/bar_drive_11.webp",
-    "/images/spaces/bar/bar_drive_2.webp",
-    "/images/spaces/bar/bar_drive_13.webp",
-    "/images/spaces/bar/bar_drive_18.webp",
-    "/images/spaces/bar/bar_drive_31.webp",
-    "/images/spaces/bar/bar_drive_30.webp",
-    "/images/spaces/bar/bar_drive_4.webp",
-    "/images/spaces/bar/bar_drive_24.webp",
-    "/images/spaces/bar/bar_drive_16.webp",
-    "/images/spaces/bar/bar_drive_37.webp"
-  ],
-  "walk-in-wardrobe": [
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_8.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_13.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_4.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_7.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_19.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_16.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_15.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_23.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_14.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_22.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_24.webp",
-    "/images/spaces/wardrobes/walk_in_wardrobe_drive_1.webp"
-  ]
-};
-
-            if (Array.isArray(data.spaces_list)) {
-              const origCount = data.spaces_list.length;
-              data.spaces_list = data.spaces_list.filter(cat => cat.slug !== 'luxury-homes' && cat.slug !== 'apartments' && cat.slug !== 'villas');
-              if (data.spaces_list.length !== origCount) modified = true;
-
-              data.spaces_list.forEach(cat => {
-                if (SPACES_FILTERS_MAP[cat.slug] && (!cat.filters || cat.filters.length !== 5 || cat.filters.includes('Japandi Minimal'))) {
-                  cat.filters = SPACES_FILTERS_MAP[cat.slug];
-                  modified = true;
-                }
-                if (CURATED_SPACES_IMAGES[cat.slug]) {
-                  const curatedList = CURATED_SPACES_IMAGES[cat.slug];
-                  const hero = curatedList[0];
-                  const isMatch = Array.isArray(cat.galleryImages) &&
-                    cat.galleryImages.length === 12 &&
-                    cat.galleryImages[0] === hero &&
-                    cat.galleryImages[11] === curatedList[11];
-                  if (!isMatch || cat.heroImage !== hero) {
-                    cat.galleryImages = [...curatedList];
-                    cat.heroImage = hero;
-                    modified = true;
-                  }
-                }
-              });
             }
-          }
-          if (Array.isArray(data.spaces_before_after_slides) && data.spaces_before_after_slides.length > 0) {
-            if (!data.spaces_before_after_slides[0]?.before?.includes('spaces_hero_before')) {
-              data.spaces_before_after_slides[0].before = '/images/spaces/spaces_hero_before.webp';
-              data.spaces_before_after_slides[0].after = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png';
+            if (item.name === 'YouTube' || item.icon === 'youtube' || item.label === 'YouTube') {
+              if (item.href === 'https://youtube.com' || item.href === 'https://www.youtube.com' || !item.href?.includes('@theespacio')) {
+                item.href = 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL';
+                modified = true;
+              }
+            }
+          });
+        }
+
+        const SPACES_IMG_MAP = {
+          'modular-kitchen': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/f5ba100a-b7b4-4c3d-abd4-09fc76c02a1a.png',
+          'pooja-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9ff3ef5a-a5a0-4fc6-9b59-23803b283bc3.png',
+          'walk-in-wardrobe': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png',
+          'wardrobes': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6cf77808-04b5-41c1-afd4-601eea5bd274.png',
+          'master-bedroom': '/images/spaces/master_bedroom_after.webp',
+          'bar': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png',
+          'living-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/fe4a004a-0264-4c56-bcec-87bf02aa6292.png',
+          'dining-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b88b5c55-d357-46b8-b4ee-4843e9909190.png',
+          'tv-units': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png',
+          'commercial-interiors': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png',
+          'reception-areas': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png',
+          'cafes-restaurants': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png',
+          'home-office': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/453968f9-cf57-4d07-8ec8-a5556159ae46.png',
+          'commercial-office': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a3aab549-4f2b-40b3-99fb-2115b13c6c12.png',
+          'foyer': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png'
+        };
+
+        // spaces_list curated images preserved
+
+        const HERO_AFTER_ROOM = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png';
+        if (Array.isArray(data.spaces_before_after_slides)) {
+          data.spaces_before_after_slides.forEach(slide => {
+            if (slide.title === 'Living Rooms' && slide.after !== HERO_AFTER_ROOM) {
+              slide.after = HERO_AFTER_ROOM;
               modified = true;
             }
-          }
-          if (Array.isArray(data.projects_hero_images)) {
-            data.projects_hero_images = data.projects_hero_images.map(img => {
-              if (typeof img === 'string' && (img.includes('Ideas_2_2-_5') || img.includes('unsplash.com'))) {
-                modified = true;
-                return '/images/company/3bhk_lux/open_hall2.png';
-              }
-              return img;
-            });
-          }
-          if (data.commit_card4_title === 'Free 3D Render') {
-            data.commit_card4_title = 'Complimentary 3D Design';
-            modified = true;
-          }
-          if (data.projects_cta_visible === false || !data.cta_projects || data.cta_projects.enabled === false) {
-            data.projects_cta_visible = true;
-            data.cta_projects = {
-              ...(data.cta_projects || {}),
-              enabled: true,
-              heading: data.cta_projects?.heading || "Have a Project Like\nThis in Mind?",
-              description: data.cta_projects?.description || "Whether you need full turnkey execution or bespoke interior design, let's build your dream space together.",
-              buttonText: data.cta_projects?.buttonText || "GET A FORMAL QUOTE ↗",
-              buttonHoverText: data.cta_projects?.buttonHoverText || "REQUEST BOQ ↗",
-              buttonLink: data.cta_projects?.buttonLink || "/contact"
-            };
-            modified = true;
-          }
-          if (modified) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-        }
-        if (key === STORAGE_KEYS.FAQS && Array.isArray(data)) {
-          let modified = false;
-          if (data.some(item => (item.question && item.question.includes('remotely')) || (item.q && item.q.includes('remotely'))) || data.length < 10) {
-            data = DEFAULT_FAQS;
-            modified = true;
-          } else {
-            DEFAULT_FAQS.forEach(def => {
-              const match = data.find(item => item.id === def.id || item._id === def.id);
-              if (match) {
-                if (match.question !== def.question || match.answer !== def.answer || match.q !== def.q || match.a !== def.a || match.imageCaption !== def.imageCaption) {
-                  match.question = def.question;
-                  match.q = def.q;
-                  match.answer = def.answer;
-                  match.a = def.a;
-                  match.imageCaption = def.imageCaption;
-                  modified = true;
-                }
-              }
-            });
-            data.forEach(item => {
-              if (typeof item.image === 'string' && item.image.includes('Guest_restaurant_18')) {
-                item.image = '/images/company/duplex/Exquisite_Fusion_of_Modern__Desi_in_a_4BHK-Guest_restaurant_5-20260813-110615.jpg';
-                modified = true;
-              }
-            });
-          }
-          if (modified) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-        }
-        if (key === STORAGE_KEYS.PROJECTS) {
-          if (!Array.isArray(data) || data.length === 0 || !data.some(p => p.slug === 'rajapushpa-provincia-3bhk') || !data.some(p => p.slug === 'my-home-sayuk-3bhk') || data.some((p, idx) => Array.isArray(DEFAULT_PROJECTS[idx]?.gallery) && (!p.gallery || p.gallery.length < DEFAULT_PROJECTS[idx].gallery.length))) {
-            data = DEFAULT_PROJECTS;
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          } else {
-            const p1 = data.find(p => p.slug === 'rajapushpa-provincia-3bhk');
-            if (p1) {
-              if (p1.title !== DEFAULT_PROJECTS[0].title) {
-                p1.title = DEFAULT_PROJECTS[0].title;
-                changed = true;
-              }
-              if (p1.heroImage !== DEFAULT_PROJECTS[0].heroImage) {
-                p1.heroImage = DEFAULT_PROJECTS[0].heroImage;
-                p1.hero_image = DEFAULT_PROJECTS[0].heroImage;
-                changed = true;
-              }
-              if (p1.beforeImage !== DEFAULT_PROJECTS[0].beforeImage) {
-                p1.beforeImage = DEFAULT_PROJECTS[0].beforeImage;
-                p1.beforeImages = DEFAULT_PROJECTS[0].beforeImages;
-                p1.afterImage = DEFAULT_PROJECTS[0].afterImage;
-                p1.afterImages = DEFAULT_PROJECTS[0].afterImages;
-                changed = true;
-              }
-              if (p1.description !== DEFAULT_PROJECTS[0].description) {
-                p1.description = DEFAULT_PROJECTS[0].description;
-                changed = true;
-              }
-              if (p1.story !== DEFAULT_PROJECTS[0].story) {
-                p1.story = DEFAULT_PROJECTS[0].story;
-                changed = true;
-              }
-              if (!Array.isArray(p1.gallery) || p1.gallery.length !== DEFAULT_PROJECTS[0].gallery.length || p1.gallery[0] !== DEFAULT_PROJECTS[0].gallery[0]) {
-                p1.gallery = DEFAULT_PROJECTS[0].gallery;
-                changed = true;
-              }
-              if (p1.testimonial !== DEFAULT_PROJECTS[0].testimonial) {
-                p1.testimonial = DEFAULT_PROJECTS[0].testimonial;
-                p1.testimonialName = DEFAULT_PROJECTS[0].testimonialName;
-                p1.testimonialProfession = DEFAULT_PROJECTS[0].testimonialProfession;
-                p1.testimonialText = DEFAULT_PROJECTS[0].testimonialText;
-                changed = true;
-              }
-              if (changed) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const p2 = data.find(p => p.slug === 'my-home-sayuk-3bhk' || p._id === 'proj_2_my_home_sayuk');
-            if (p2) {
-              let changed2 = false;
-              if (p2.beforeImage !== DEFAULT_PROJECTS[1].beforeImage) {
-                p2.beforeImage = DEFAULT_PROJECTS[1].beforeImage;
-                p2.beforeImages = DEFAULT_PROJECTS[1].beforeImages;
-                changed2 = true;
-              }
-              if (p2.title !== 'The Lattice Retreat') {
-                p2.title = 'The Lattice Retreat';
-                changed2 = true;
-              }
-              if (p2.description !== DEFAULT_PROJECTS[1].description) {
-                p2.description = DEFAULT_PROJECTS[1].description;
-                changed2 = true;
-              }
-              if (!p2.story || !p2.story.vision || p2.story.vision.includes('Japandi-infused')) {
-                p2.story = DEFAULT_PROJECTS[1].story;
-                changed2 = true;
-              }
-              if (changed2) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const dpRahul = DEFAULT_PROJECTS.find(dp => dp._id === 'proj_4_kokapet_rahul' || dp.slug === 'kokapet-urban-2bhk');
-            const p4 = data.find(p => p.slug === 'kokapet-urban-2bhk' || p._id === 'proj_4_kokapet_rahul');
-            if (p4 && dpRahul) {
-              let changed4 = false;
-              if (p4.beforeImage !== dpRahul.beforeImage || p4.afterImage !== dpRahul.afterImage) {
-                p4.beforeImage = dpRahul.beforeImage;
-                p4.afterImage = dpRahul.afterImage;
-                p4.beforeImages = dpRahul.beforeImages;
-                p4.afterImages = dpRahul.afterImages;
-                p4.before_after = [{ before: dpRahul.beforeImage, after: dpRahul.afterImage }];
-                changed4 = true;
-              }
-              if (p4.heroImage !== dpRahul.heroImage) {
-                p4.heroImage = dpRahul.heroImage;
-                changed4 = true;
-              }
-              if (p4.title !== dpRahul.title) {
-                p4.title = dpRahul.title;
-                changed4 = true;
-              }
-              if (!Array.isArray(p4.gallery) || p4.gallery.length !== dpRahul.gallery.length || p4.gallery.some(img => typeof img === 'string' && img.includes('yocbcbuycsysstbt8j6k'))) {
-                p4.gallery = dpRahul.gallery;
-                changed4 = true;
-              }
-              if (p4.description !== dpRahul.description) {
-                p4.description = dpRahul.description;
-                changed4 = true;
-              }
-              if (!p4.story || !p4.story.vision || p4.story.vision !== dpRahul.story?.vision) {
-                p4.story = dpRahul.story;
-                changed4 = true;
-              }
-              if (changed4) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const dpKiran = DEFAULT_PROJECTS.find(dp => dp._id === 'proj_5_gandipet_kiran' || dp.slug === 'gandipet-modern-retro-2bhk');
-            const p5 = data.find(p => p.slug === 'gandipet-modern-retro-2bhk' || p._id === 'proj_5_gandipet_kiran');
-            if (p5 && dpKiran) {
-              let changed5 = false;
-              if (p5.beforeImage !== dpKiran.beforeImage) {
-                p5.beforeImage = dpKiran.beforeImage;
-                p5.beforeImages = dpKiran.beforeImages;
-                changed5 = true;
-              }
-              if (p5.title !== dpKiran.title) {
-                p5.title = dpKiran.title;
-                changed5 = true;
-              }
-              if (p5.description !== dpKiran.description) {
-                p5.description = dpKiran.description;
-                changed5 = true;
-              }
-              if (!p5.story || !p5.story.vision || p5.story.vision !== dpKiran.story?.vision) {
-                p5.story = dpKiran.story;
-                changed5 = true;
-              }
-              if (changed5) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const p6 = data.find(p => p.slug === 'kondapur-minimalist-2bhk');
-            if (p6) {
-              let changed6 = false;
-              const dpVenk = DEFAULT_PROJECTS.find(dp => dp.slug === 'kondapur-minimalist-2bhk');
-              if (dpVenk && (p6.heroImage !== dpVenk.heroImage || p6.afterImage !== dpVenk.heroImage)) {
-                p6.heroImage = dpVenk.heroImage;
-                p6.hero_image = dpVenk.heroImage;
-                p6.afterImage = dpVenk.heroImage;
-                changed6 = true;
-              }
-              if (p6.beforeImage !== DEFAULT_PROJECTS[5].beforeImage) {
-                p6.beforeImage = DEFAULT_PROJECTS[5].beforeImage;
-                p6.beforeImages = DEFAULT_PROJECTS[5].beforeImages;
-                changed6 = true;
-              }
-              if (p6.title !== 'The Dusk Lounge') {
-                p6.title = 'The Dusk Lounge';
-                changed6 = true;
-              }
-              if (p6.description !== DEFAULT_PROJECTS[5].description) {
-                p6.description = DEFAULT_PROJECTS[5].description;
-                changed6 = true;
-              }
-              if (!p6.story || !p6.story.vision || p6.story.vision.includes('Venkatesh, envisioned')) {
-                p6.story = DEFAULT_PROJECTS[5].story;
-                changed6 = true;
-              }
-              if (changed6) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const p7 = data.find(p => p.slug === 'gachibowli-minimalist-beige-2bhk');
-            const dp7 = DEFAULT_PROJECTS.find(dp => dp.slug === 'gachibowli-minimalist-beige-2bhk') || DEFAULT_PROJECTS[5];
-            if (p7 && dp7) {
-              let changed7 = false;
-              if (p7.heroImage !== dp7.heroImage) {
-                p7.heroImage = dp7.heroImage;
-                changed7 = true;
-              }
-              if (p7.beforeImage !== dp7.beforeImage || p7.afterImage !== dp7.afterImage) {
-                p7.beforeImage = dp7.beforeImage;
-                p7.afterImage = dp7.afterImage;
-                p7.beforeImages = dp7.beforeImages;
-                p7.afterImages = dp7.afterImages;
-                changed7 = true;
-              }
-              if (!Array.isArray(p7.gallery) || p7.gallery.length !== dp7.gallery.length || p7.gallery[0] !== dp7.gallery[0]) {
-                p7.gallery = dp7.gallery;
-                changed7 = true;
-              }
-              if (p7.title !== 'A 2BHK Residence, Gachibowli') {
-                p7.title = 'A 2BHK Residence, Gachibowli';
-                changed7 = true;
-              }
-              if (p7.description !== dp7.description) {
-                p7.description = dp7.description;
-                changed7 = true;
-              }
-              if (!p7.story || !p7.story.vision || p7.story.vision.includes('Koteswara Rao, wanted')) {
-                p7.story = dp7.story;
-                changed7 = true;
-              }
-              if (changed7) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const p8 = data.find(p => p.slug === 'kachiguda-fusion-duplex-villa' || p._id === 'proj_8_kachiguda_subbarao');
-            if (p8) {
-              let changed8 = false;
-              if (p8.heroImage !== DEFAULT_PROJECTS[7].heroImage) {
-                p8.heroImage = DEFAULT_PROJECTS[7].heroImage;
-                changed8 = true;
-              }
-              if (p8.beforeImage !== DEFAULT_PROJECTS[7].beforeImage || p8.afterImage !== DEFAULT_PROJECTS[7].afterImage) {
-                p8.beforeImage = DEFAULT_PROJECTS[7].beforeImage;
-                p8.afterImage = DEFAULT_PROJECTS[7].afterImage;
-                p8.beforeImages = DEFAULT_PROJECTS[7].beforeImages;
-                p8.afterImages = DEFAULT_PROJECTS[7].afterImages;
-                changed8 = true;
-              }
-              if (!Array.isArray(p8.gallery) || p8.gallery.length !== DEFAULT_PROJECTS[7].gallery.length || JSON.stringify(p8.gallery) !== JSON.stringify(DEFAULT_PROJECTS[7].gallery)) {
-                p8.gallery = DEFAULT_PROJECTS[7].gallery;
-                changed8 = true;
-              }
-              if (p8.title !== 'A Duplex Residence, Kachiguda') {
-                p8.title = 'A Duplex Residence, Kachiguda';
-                changed8 = true;
-              }
-              if (p8.description !== DEFAULT_PROJECTS[7].description) {
-                p8.description = DEFAULT_PROJECTS[7].description;
-                changed8 = true;
-              }
-              if (!p8.story || !p8.story.vision || p8.story.vision !== DEFAULT_PROJECTS[7].story.vision) {
-                p8.story = DEFAULT_PROJECTS[7].story;
-                changed8 = true;
-              }
-              if (changed8) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const p9 = data.find(p => p._id === 'proj_9_dimmu_chachu_residence' || p.slug === 'dimmu-chachu-luxury-villa');
-            if (!p9 && DEFAULT_PROJECTS[8]) {
-              data.push(DEFAULT_PROJECTS[8]);
-              try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-            } else if (p9 && DEFAULT_PROJECTS[8]) {
-              let changed9 = false;
-              if (p9.heroImage !== DEFAULT_PROJECTS[8].heroImage) {
-                p9.heroImage = DEFAULT_PROJECTS[8].heroImage;
-                changed9 = true;
-              }
-              if (!Array.isArray(p9.gallery) || p9.gallery.some(img => typeof img === 'string' && img.includes('googleusercontent')) || p9.gallery.length !== DEFAULT_PROJECTS[8].gallery.length) {
-                p9.gallery = DEFAULT_PROJECTS[8].gallery;
-                changed9 = true;
-              }
-              if (p9.beforeImage !== DEFAULT_PROJECTS[8].beforeImage || p9.afterImage !== DEFAULT_PROJECTS[8].afterImage) {
-                p9.beforeImage = DEFAULT_PROJECTS[8].beforeImage;
-                p9.afterImage = DEFAULT_PROJECTS[8].afterImage;
-                p9.beforeImages = DEFAULT_PROJECTS[8].beforeImages;
-                p9.afterImages = DEFAULT_PROJECTS[8].afterImages;
-                changed9 = true;
-              }
-              if (p9.testimonialName !== 'Hussain' || p9.testimonial?.name !== 'Hussain') {
-                p9.testimonialName = 'Hussain';
-                p9.testimonial = { ...(p9.testimonial || {}), name: 'Hussain' };
-                changed9 = true;
-              }
-              if (changed9) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const p10 = data.find(p => p._id === 'proj_10_the_restful_home_tellapur' || p.slug === 'the-restful-home-tellapur');
-            if (p10 && DEFAULT_PROJECTS[6]) {
-              let changed10 = false;
-              if (!Array.isArray(p10.gallery) || p10.gallery.length !== DEFAULT_PROJECTS[6].gallery.length || JSON.stringify(p10.gallery) !== JSON.stringify(DEFAULT_PROJECTS[6].gallery)) {
-                p10.gallery = DEFAULT_PROJECTS[6].gallery;
-                changed10 = true;
-              }
-              if (changed10) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-              }
-            }
-            const canonicalOrder = {
-              'rajapushpa-provincia-3bhk': 1,
-              'my-home-sayuk-3bhk': 2,
-              'kokapet-2bhk': 3,
-              'kokapet-urban-2bhk': 4,
-              'gandipet-modern-retro-2bhk': 5,
-              'kondapur-minimalist-2bhk': 6,
-              'gachibowli-minimalist-beige-2bhk': 7,
-              'kachiguda-fusion-duplex-villa': 8,
-              'dimmu-chachu-luxury-villa': 9
-            };
-            data = data.filter(p => p && (canonicalOrder[p.slug] !== undefined || DEFAULT_PROJECTS.some(dp => dp._id === p._id)));
-            data.forEach((p, idx) => {
-              if (canonicalOrder[p.slug]) {
-                p.order = canonicalOrder[p.slug];
-              } else if (!p.order) {
-                p.order = idx + 1;
-              }
-            });
-            data.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
-            if (data.length > 9) {
-              data = data.slice(0, 9);
-            }
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-        }
-        if (key === STORAGE_KEYS.PRODUCTS) {
-          if (!Array.isArray(data) || data.length === 0 || data.some(p => typeof p.heroImage === 'string' && p.heroImage.includes('unsplash.com'))) {
-            data = DEFAULT_PRODUCTS;
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          } else {
-            let updatedProd = false;
-            if (Array.isArray(data) && data.some(p => p && p.slug === 'charcoal-panels-luxe-1')) {
-              data = data.filter(p => p && p.slug !== 'charcoal-panels-luxe-1');
-              updatedProd = true;
-            }
-            data.forEach(p => {
-              if (p && (p.slug === 'acrylic-luxe-collection' || p.materialCode === 'MAT-ACR-01')) {
-                if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png') {
-                  p.heroImage = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png';
-                  p.image = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196089/acrylic_idoycj.png';
-                  updatedProd = true;
-                }
-              }
-              if (p && (p.slug === 'digital-korean-poly-granite' || p.materialCode === 'MAT-GNT-02')) {
-                if (p.heroImage !== 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png') {
-                  p.heroImage = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png';
-                  p.image = 'https://res.cloudinary.com/or5e9kak/image/upload/v1791196088/polygranite_ujh0zb.png';
-                  updatedProd = true;
-                }
-              }
-            });
-            if (updatedProd) {
-              try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-            }
-          }
-        }
-        if (key === STORAGE_KEYS.TESTIMONIALS) {
-          if (!Array.isArray(data) || data.length === 0 || !data.some(t => (t.name || '').includes('MANOJ & KRIPA')) || data.some(t => /karagani|naidu poola|Shiak Ayub|Amresh kumar/i.test(t.name || ''))) {
-            data = DEFAULT_TESTIMONIALS;
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-          if (Array.isArray(data) && data.some(t => t.id === 'g_rev_07' || t.id === 'g_rev_03' || /abdul\s*sattar|khaleel/i.test(t.name || ''))) {
-            data = data.filter(t => t.id !== 'g_rev_07' && t.id !== 'g_rev_03' && !/abdul\s*sattar|khaleel/i.test(t.name || ''));
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-        }
-        if (key === STORAGE_KEYS.ADMIN_USERS) {
-          if (!Array.isArray(data) || data.length === 0 || !data.some(u => u.email === 'admin@espacio.com')) {
-            data = DEFAULT_ADMIN_USERS;
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
-        }
-        if (key === STORAGE_KEYS.SETTINGS && data) {
-          let modified = false;
-          if (!Array.isArray(data.services_list) || data.services_list.length === 0 || data.services_list.some(s => typeof s.img === 'string' && s.img.includes('unsplash.com')) || !data.services_list.some(s => s.title === 'Full Home Interior Design and Execution')) {
-            data.services_list = DEFAULT_SERVICES;
-            modified = true;
-          } else {
-            data.services_list.forEach(s => {
-              if (s && typeof s.desc === 'string' && s.desc.includes('planned and built by one team')) {
-                s.desc = s.desc.replace('planned and built by one team', 'planned and built by our team');
-                modified = true;
-              }
-              if (s && typeof s.ctaText === 'string' && s.ctaText.includes('Fit-Outs')) {
-                s.ctaText = s.ctaText.replace('Fit-Outs', 'Interiors');
-                modified = true;
-              }
-            });
-          }
-          if (data.about_hero_title && typeof data.about_hero_title === 'string') {
-            const updatedTitle = data.about_hero_title.replace(/\b([a-z])/g, (_, l) => l.toUpperCase());
-            if (updatedTitle !== data.about_hero_title) {
-              data.about_hero_title = updatedTitle;
+            if (slide.title === 'Modular Kitchens' && slide.after !== SPACES_IMG_MAP['modular-kitchen']) {
+              slide.after = SPACES_IMG_MAP['modular-kitchen'];
               modified = true;
             }
-          }
-          if (!Array.isArray(data.hero_bg_images) || data.hero_bg_images.length === 0) {
-            data.hero_bg_images = DEFAULT_SETTINGS.hero_bg_images;
-            modified = true;
-          }
-          if (data.trust_stat3_val === '50000' || !data.trust_stat3_val) {
-            data.trust_stat3_val = '40000';
-            modified = true;
-          }
-          if (data.trust_stat4_sublabel === 'Comprehensive Hardware Warranty' || !data.trust_stat4_sublabel) {
-            data.trust_stat4_sublabel = 'Comprehensive Warranty*';
-            modified = true;
-          }
-          if (Array.isArray(data.footer_social_items)) {
-            data.footer_social_items.forEach(item => {
-              if (item.name === 'Facebook' || item.icon === 'facebook' || item.label === 'Facebook') {
-                if (item.href === 'https://facebook.com' || item.href === 'https://www.facebook.com' || !item.href?.includes('1DkG2m4Ra7')) {
-                  item.href = 'https://www.facebook.com/share/1DkG2m4Ra7/';
-                  modified = true;
-                }
-              }
-              if (item.name === 'YouTube' || item.icon === 'youtube' || item.label === 'YouTube') {
-                if (item.href === 'https://youtube.com' || item.href === 'https://www.youtube.com' || !item.href?.includes('@theespacio')) {
-                  item.href = 'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL';
-                  modified = true;
-                }
-              }
-            });
-          }
-
-          const SPACES_IMG_MAP = {
-            'modular-kitchen': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/f5ba100a-b7b4-4c3d-abd4-09fc76c02a1a.png',
-            'pooja-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/9ff3ef5a-a5a0-4fc6-9b59-23803b283bc3.png',
-            'walk-in-wardrobe': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795527/7c6dc4bb-a837-4d6d-ab8b-5d29326b3d84.png',
-            'wardrobes': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/6cf77808-04b5-41c1-afd4-601eea5bd274.png',
-            'master-bedroom': '/images/spaces/master_bedroom_after.webp',
-            'bar': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795560/22993ac7-806a-45db-89aa-ee933a6b01e4.png',
-            'living-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/fe4a004a-0264-4c56-bcec-87bf02aa6292.png',
-            'dining-room': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/b88b5c55-d357-46b8-b4ee-4843e9909190.png',
-            'tv-units': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795579/0008f2c8-0ba5-442a-aeec-61770fd4fc4c.png',
-            'commercial-interiors': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795589/78d3c5ad-0e9d-442a-b180-3b8b07072939.png',
-            'reception-areas': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795597/d513d85b-c5b0-45de-a8b0-c44f2eca8f5f.png',
-            'cafes-restaurants': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795550/bc102946-53a7-4287-9ce0-20c7f3d42b0e.png',
-            'home-office': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/453968f9-cf57-4d07-8ec8-a5556159ae46.png',
-            'commercial-office': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/a3aab549-4f2b-40b3-99fb-2115b13c6c12.png',
-            'foyer': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1790795538/ca29d16d-a331-4a83-989f-100ff0d623c6.png'
-          };
-
-          // spaces_list curated images preserved
-
-          const HERO_AFTER_ROOM = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/hf_20260926_124351_209dfd6c-1cb8-40a3-9765-1fad3875d811_1.png';
-          if (Array.isArray(data.spaces_before_after_slides)) {
-            data.spaces_before_after_slides.forEach(slide => {
-              if (slide.title === 'Living Rooms' && slide.after !== HERO_AFTER_ROOM) {
-                slide.after = HERO_AFTER_ROOM;
+            if (slide.title === 'Master Bedrooms') {
+              if (slide.after !== SPACES_IMG_MAP['master-bedroom']) {
+                slide.after = SPACES_IMG_MAP['master-bedroom'];
                 modified = true;
               }
-              if (slide.title === 'Modular Kitchens' && slide.after !== SPACES_IMG_MAP['modular-kitchen']) {
-                slide.after = SPACES_IMG_MAP['modular-kitchen'];
+              if (slide.before !== '/images/spaces/master_bedroom_before.webp') {
+                slide.before = '/images/spaces/master_bedroom_before.webp';
                 modified = true;
               }
-              if (slide.title === 'Master Bedrooms') {
-                if (slide.after !== SPACES_IMG_MAP['master-bedroom']) {
-                  slide.after = SPACES_IMG_MAP['master-bedroom'];
-                  modified = true;
-                }
-                if (slide.before !== '/images/spaces/master_bedroom_before.webp') {
-                  slide.before = '/images/spaces/master_bedroom_before.webp';
-                  modified = true;
-                }
-              }
-              if (slide.title === 'Dining & Bars' && slide.after !== SPACES_IMG_MAP['dining-room']) {
-                slide.after = SPACES_IMG_MAP['dining-room'];
-                modified = true;
-              }
-            });
-          }
-
-          if (modified) {
-            try { localStorage.setItem(key, JSON.stringify(data)); } catch {}
-          }
+            }
+            if (slide.title === 'Dining & Bars' && slide.after !== SPACES_IMG_MAP['dining-room']) {
+              slide.after = SPACES_IMG_MAP['dining-room'];
+              modified = true;
+            }
+          });
         }
+
+        if (modified) {
+          try { localStorage.setItem(key, JSON.stringify(data)); } catch { }
+        }
+      }
       return data;
     }
   } catch (err) {
@@ -3337,7 +3385,7 @@ const DEFAULT_MEDIA_ITEMS = [
 export const getMediaItems = () => {
   const stored = getCMSData(STORAGE_KEYS.MEDIA);
   const settingsStored = getCMSData(STORAGE_KEYS.SETTINGS);
-  
+
   let items = [];
   if (stored && Array.isArray(stored) && stored.length > 0) {
     items = stored;
@@ -3347,8 +3395,8 @@ export const getMediaItems = () => {
     items = DEFAULT_MEDIA_ITEMS;
   }
 
-  const hasBedroom = items.some(item => 
-    item.imageUrl === '/images/user_uploaded_bedroom.jpg' || 
+  const hasBedroom = items.some(item =>
+    item.imageUrl === '/images/user_uploaded_bedroom.jpg' ||
     item.fileName === 'user_uploaded_bedroom.jpg' ||
     item.originalName === 'media_1787072367913.jpg'
   );
@@ -3379,8 +3427,8 @@ export const saveMediaItems = async (items) => {
 
   try {
     await Promise.all([
-      axios.post('/media', cleanPayload).catch(() => {}),
-      axios.put('/settings', { media_gallery_items: cleanPayload }).catch(() => {})
+      axios.post('/media', cleanPayload).catch(() => { }),
+      axios.put('/settings', { media_gallery_items: cleanPayload }).catch(() => { })
     ]);
   } catch (err) {
     console.warn('Database sync error:', err);
@@ -3454,25 +3502,24 @@ export const getCtaDataForPage = (settings = {}, pageKey = 'home', defaultCta = 
   const ctaObj = settings[`cta_${pk}`] || {};
 
   const pageTitle = settings[`${pk}_cta_title`] || settings[`${pk}_cta_headline`] || settings.cta_headline;
-  const pageDesc  = settings[`${pk}_cta_desc`]  || settings[`${pk}_cta_subtext`]  || settings.cta_subtext;
-  const pageBtn   = settings[`${pk}_cta_btn_text`] || settings[`${pk}_cta_button_text`] || settings.cta_button_text;
-  const pageLink  = settings[`${pk}_cta_btn_link`] || settings[`${pk}_cta_button_link`];
-  const pageBg    = settings[`${pk}_cta_bgImage`] || settings[`${pk}_cta_image`];
-  const pageVis   = settings[`${pk}_cta_visible`];
+  const pageDesc = settings[`${pk}_cta_desc`] || settings[`${pk}_cta_subtext`] || settings.cta_subtext;
+  const pageBtn = settings[`${pk}_cta_btn_text`] || settings[`${pk}_cta_button_text`] || settings.cta_button_text;
+  const pageLink = settings[`${pk}_cta_btn_link`] || settings[`${pk}_cta_button_link`];
+  const pageBg = settings[`${pk}_cta_bgImage`] || settings[`${pk}_cta_image`];
+  const pageVis = settings[`${pk}_cta_visible`];
 
   let headline = ctaObj.heading || pageTitle || defaultCta.headline || defaultCta.heading || 'Ready to Transform Your Space?';
   if (typeof headline === 'string' && /Engineering\.\s*Elegance\.\s*Experience\./i.test(headline)) {
     headline = "Elegance. Experience.\nEspacio.";
   }
-  const subtext  = ctaObj.description || pageDesc || defaultCta.subtext || defaultCta.description || "Every great space starts with a single conversation. Let's talk about your vision and bring it to life together.";
+  const subtext = ctaObj.description || pageDesc || defaultCta.subtext || defaultCta.description || "Every great space starts with a single conversation. Let's talk about your vision and bring it to life together.";
   const rawButtonText = ctaObj.buttonText || pageBtn || defaultCta.buttonText || "LET'S TALK ↗";
   const buttonText = typeof rawButtonText === 'string'
     ? rawButtonText.replace(/Book Free Consultation/gi, 'Book Consultation')
     : rawButtonText;
   const buttonLink = ctaObj.buttonLink || pageLink || defaultCta.path || defaultCta.buttonLink || '/contact';
-  const bgImage    = ctaObj.bgImage || pageBg || defaultCta.bgImage || '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg';
-  const opacity    = ctaObj.opacity !== undefined ? Number(ctaObj.opacity) : (defaultCta.opacity ?? 80);
-
+  const bgImage = ctaObj.bgImage || pageBg || defaultCta.bgImage || '/images/company/minimalist_beige_2bhk/Minimalist_Beige_Bedroom_and_Contemporary_Living_R-Living_room_3-20260810-124909.jpg';
+  const opacity = ctaObj.opacity !== undefined ? Number(ctaObj.opacity) : (defaultCta.opacity ?? 80);
   let enabled = true;
   if (defaultCta.enabled === false) enabled = false;
   if (ctaObj.enabled === false) enabled = false;

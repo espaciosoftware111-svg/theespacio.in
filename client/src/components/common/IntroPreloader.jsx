@@ -11,8 +11,8 @@ export const IntroPreloader = () => {
   const [showIntro, setShowIntro] = useState(() => {
     if (typeof window === 'undefined') return false;
     const pathname = window.location.pathname;
-    const isHomePage = pathname === '/' || pathname === '' || pathname === '/index.html';
-    return isHomePage && !hasIntroPlayedInSession;
+    const isAdmin = pathname.startsWith('/espesp/admin') || pathname.startsWith('/admin');
+    return !isAdmin && !hasIntroPlayedInSession;
   });
 
   const [hasStarted, setHasStarted] = useState(false);

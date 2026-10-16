@@ -51,13 +51,13 @@ const IMAGE_FALLBACK_MAP = {
 };
 
 const PROJECT_SLUG_FALLBACKS = {
-  'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
-  'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png',
+  'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png',
+  'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png',
   'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp',
   'kondapur-minimalist-2bhk': 'https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd',
   'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_1.webp',
   'kachiguda-fusion-duplex-villa': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg',
-  'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_02.webp'
+  'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_03.webp'
 };
 
 const GENERAL_FALLBACK = 'https://res.cloudinary.com/teg9ndhk/image/upload/f_auto/q_auto/IMG_3871_1.png';
@@ -307,6 +307,13 @@ const Projects = () => {
         ...p,
         title: DISPLAY_NAMES[p.slug] || p.title,
         location: p.slug === 'dimmu-chachu-luxury-villa' ? 'Kukatpally, Hyderabad' : (p.location || 'Hyderabad'),
+        heroImage: p.slug === 'dimmu-chachu-luxury-villa'
+          ? '/images/projects/dimmu_residence/dimmu_03.webp'
+          : p.slug === 'casa-alta-residence-kali-mandir'
+          ? 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png'
+          : p.slug === 'the-restful-home-tellapur'
+          ? 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png'
+          : p.heroImage,
         order: CANONICAL_ORDER[p.slug] ?? Number(p.order) ?? 999
       }))
       .sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));

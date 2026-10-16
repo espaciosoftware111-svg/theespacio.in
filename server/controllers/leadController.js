@@ -85,8 +85,26 @@ export const createLead = async (req, res, next) => {
         phone2 = parts[1].trim();
       }
 
+      // Determine whether this submission is regarding materials
+      const isMaterials = Boolean(
+        req.body.isMaterials ||
+        req.body.isMaterial ||
+        req.body.googleSheetData?.isMaterials ||
+        req.body.googleSheetData?.isMaterial ||
+        projectType === 'Materials' ||
+        projectType === 'Catalogue Request' ||
+        req.body.isCatalogue ||
+        req.body.catalogueMaterial ||
+        (serviceType && typeof serviceType === 'string' && serviceType.toLowerCase().includes('material')) ||
+        (req.body.productCategories && Array.isArray(req.body.productCategories) && req.body.productCategories.length > 0) ||
+        (req.body.materialCategories && req.body.materialCategories !== 'N/A' && req.body.materialCategories !== '-') ||
+        (materialDetails && materialDetails !== '-' && materialDetails !== 'N/A' && typeof materialDetails === 'string' && !materialDetails.toLowerCase().includes('none'))
+      );
+
+      const targetSheet = isMaterials ? 'Materials Leads' : 'Leads';
+
       // Determine human-readable source / page type
-      let leadSource = 'Website Lead';
+      let leadSource = isMaterials ? 'Material Catalogue Request' : 'Website Lead';
       if (req.body.googleSheetData?.source) {
         leadSource = req.body.googleSheetData.source;
       } else if (projectType === 'Design Consultation' || projectType === 'Project Estimate' || projectType === 'Instant Project Estimate' || projectType === 'INSTANT_ESTIMATE') {
@@ -95,12 +113,14 @@ export const createLead = async (req, res, next) => {
         leadSource = 'Projects Section (Get More Projects)';
       } else if (projectType === 'Catalogue Request' || req.body.isCatalogue) {
         leadSource = 'Material Catalogue Request';
+      } else if (projectType === 'Materials') {
+        leadSource = 'Contact Us (Materials Inquiry)';
       } else if (projectType === 'Free Estimate Request') {
         leadSource = 'Get More Designs / Free Estimate';
       } else if (projectType === 'Spaces Estimate Request') {
         leadSource = `Spaces Gallery (${serviceType || 'More Designs Unlock'})`;
       } else if (req.body.googleSheetData || serviceType === 'contact_form') {
-        leadSource = 'Contact Us Page';
+        leadSource = isMaterials ? 'Contact Us (Materials Form)' : 'Contact Us Page';
       } else if (projectType) {
         leadSource = `${projectType}`;
       }
@@ -110,7 +130,7 @@ export const createLead = async (req, res, next) => {
         || serviceType
         || projectType
         || (propertyDetails ? `${propertyDetails.propertyType || ''} ${propertyDetails.spaces || ''}`.trim() : '')
-        || 'N/A';
+        || (isMaterials ? 'Materials Inquiry' : 'N/A');
 
       const stageOrTimeline = (req.body.googleSheetData ? req.body.googleSheetData.stage : '')
         || timeline
@@ -118,9 +138,16 @@ export const createLead = async (req, res, next) => {
         || (projectDetails ? `${projectDetails.stage || ''} ${projectDetails.budget || ''}`.trim() : '')
         || '-';
 
-      const materialDetails = req.body.catalogueMaterial
+      const resolvedMaterialDetails = req.body.catalogueMaterial
         || (projectType === 'Catalogue Request' ? message : '')
-        || (req.body.materialDetails ? JSON.stringify(req.body.materialDetails) : '')
+        || req.body.materialCategories
+        || (req.body.productCategories ? req.body.productCategories.join(', ') : '')
+        || (req.body.materialDetails ? (typeof req.body.materialDetails === 'object' ? JSON.stringify(req.body.materialDetails) : req.body.materialDetails) : '')
+        || (isMaterials ? requirement : '-');
+
+      const quantity = req.body.quantity
+        || (req.body.googleSheetData ? req.body.googleSheetData.quantity : '')
+        || leadData.quantity
         || '-';
 
       const clientNotes = (req.body.googleSheetData ? req.body.googleSheetData.notes : '')
@@ -137,9 +164,13 @@ export const createLead = async (req, res, next) => {
         location: location || (req.body.googleSheetData ? req.body.googleSheetData.location : '') || (propertyDetails ? propertyDetails.location : '') || 'N/A',
         requirement,
         stage: stageOrTimeline,
-        materialDetails,
+        materialDetails: resolvedMaterialDetails,
+        quantity,
         notes: clientNotes,
-        ipAddress
+        ipAddress,
+        isMaterials,
+        targetSheet,
+        sheetName: targetSheet
       };
 
       const sheetRes = await appendToGoogleSheet(unifiedPayload);
@@ -152,6 +183,9 @@ export const createLead = async (req, res, next) => {
 
     if (sheetId) {
       normalised.leadId = sheetId;
+    } else {
+      const isMat = Boolean(req.body.isMaterials || projectType === 'Materials' || projectType === 'Catalogue Request' || req.body.isCatalogue);
+      normalised.leadId = (isMat ? 'MAT-' : 'ESP-') + Math.floor(100000 + Math.random() * 900000);
     }
 
     // Save lead (with DB fallback for local / offline mode)
@@ -163,7 +197,7 @@ export const createLead = async (req, res, next) => {
       lead = {
         ...normalised,
         _id: 'local-' + Date.now(),
-        leadId: normalised.leadId || 'ESP-' + Math.floor(1000 + Math.random() * 9000),
+        leadId: normalised.leadId,
         createdAt: new Date(),
       };
     }
@@ -189,7 +223,7 @@ export const createLead = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: 'Consultation request submitted successfully',
-      data: { leadId: lead.leadId, name: lead.name },
+      data: { leadId: lead.leadId, name: lead.name, sheet: req.body.isMaterials || projectType === 'Materials' || projectType === 'Catalogue Request' ? 'Materials Leads' : 'Leads' },
     });
   } catch (err) {
     next(err);

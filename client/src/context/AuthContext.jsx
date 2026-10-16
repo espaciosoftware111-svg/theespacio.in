@@ -1,6 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { supabase } from '../lib/supabaseClient';
+
+// Helper to dynamically get supabase instance without blocking initial page bundle
+const getSupabase = async () => {
+  const { supabase } = await import('../lib/supabaseClient');
+  return supabase;
+};
 
 const AuthContext = createContext(null);
 
@@ -13,15 +18,26 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      // 1. Check Supabase session first
+      // PERF: If no tokens exist, public visitor is not logged in; exit immediately without loading Supabase SDK
+      const token = localStorage.getItem('token') || 
+                    localStorage.getItem('authToken') || 
+                    localStorage.getItem('espacio_token') || 
+                    localStorage.getItem('supabase_auth_token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+
+      // 1. Check Supabase session only when a token is actually stored
       try {
+        const supabase = await getSupabase();
         const { data } = await supabase.auth.getSession();
         if (data?.session?.user) {
           const sUser = data.session.user;
-          const token = data.session.access_token;
-          localStorage.setItem('token', token);
-          localStorage.setItem('espacio_token', token);
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          const sToken = data.session.access_token;
+          localStorage.setItem('token', sToken);
+          localStorage.setItem('espacio_token', sToken);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${sToken}`;
           setUser({
             _id: sUser.id,
             id: sUser.id,
@@ -36,10 +52,6 @@ export const AuthProvider = ({ children }) => {
         // Fallback to local token check
       }
 
-      const token = localStorage.getItem('token') || 
-                    localStorage.getItem('authToken') || 
-                    localStorage.getItem('espacio_token') || 
-                    localStorage.getItem('supabase_auth_token');
       if (token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         try {
@@ -63,6 +75,7 @@ export const AuthProvider = ({ children }) => {
     const sanitizedEmail = email ? email.trim().toLowerCase() : '';
     // 1. Try Supabase Auth first
     try {
+      const supabase = await getSupabase();
       let supaRes = await supabase.auth.signInWithPassword({
         email: sanitizedEmail,
         password,
@@ -119,7 +132,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    supabase.auth.signOut().catch(() => {});
+    getSupabase().then(s => s.auth.signOut().catch(() => {})).catch(() => {});
     localStorage.removeItem('token');
     localStorage.removeItem('espacio_token');
     localStorage.removeItem('supabase_auth_token');

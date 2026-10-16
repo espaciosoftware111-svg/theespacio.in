@@ -9,6 +9,11 @@ import Lenis from 'lenis';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import IntroPreloader from './components/common/IntroPreloader';
+import { getCMSData, setCMSData, STORAGE_KEYS } from './utils/cmsStore';
+import axios from 'axios';
+
+// Lazy-loaded Components for Bundle & Performance Isolation
+const MaintenanceMode = React.lazy(() => import('./components/common/MaintenanceMode'));
 
 // Core Public Pages (Code-split for 10x faster initial page load with idle background prefetching)
 const Home = React.lazy(() => import('./pages/Home'));
@@ -162,7 +167,7 @@ const FloatingLogo = () => {
   };
 
   return (
-    /* Fixed Vertical "GET ESTIMATE" Tab on Right Edge for Mobile & Desktop */
+    /* Fixed Vertical "Book a Complimentary Design Consultation" Tab on Right Edge for Mobile & Desktop */
     <div className="fixed right-0 top-1/2 -translate-y-1/2 z-[9999] pointer-events-auto">
       <motion.button
         onClick={handleOpenModal}
@@ -171,23 +176,20 @@ const FloatingLogo = () => {
         initial={{ opacity: 0, x: 25 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="bg-black/50 hover:bg-black/75 active:bg-black/85 backdrop-blur-md border-l border-t border-b border-white/25 hover:border-gold/60 text-white rounded-l-lg md:rounded-l-xl py-2.5 px-1.5 md:py-3.5 md:px-2 flex flex-col items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_14px_rgba(201,169,110,0.3)] hover:shadow-[0_0_22px_rgba(201,169,110,0.65)] transition-all duration-300 select-none group outline-none"
-        aria-label="Get Estimate"
+        className="bg-black/50 hover:bg-black/75 active:bg-black/85 backdrop-blur-md border-l border-t border-b border-white/25 hover:border-gold/60 text-white rounded-l-lg md:rounded-l-xl py-3 px-1 sm:py-3.5 sm:px-1.5 md:py-4 md:px-2 flex flex-col items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_14px_rgba(201,169,110,0.3)] hover:shadow-[0_0_22px_rgba(201,169,110,0.65)] transition-all duration-300 select-none group outline-none"
+        aria-label="Book a Complimentary Design Consultation"
       >
         <span 
-          className="font-sans text-[8px] md:text-[10px] font-medium tracking-[0.2em] text-white/95 uppercase whitespace-nowrap drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] group-hover:text-gold transition-colors duration-300"
+          className="font-sans text-[7px] sm:text-[8px] md:text-[8.5px] font-semibold tracking-[0.14em] text-white/95 uppercase whitespace-nowrap drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] group-hover:text-gold transition-colors duration-300"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          Get Estimate
+          Book a Complimentary Design Consultation
         </span>
         <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold animate-pulse shadow-[0_0_8px_rgba(201,169,110,1)] mt-0.5" />
       </motion.button>
     </div>
   );
 };
-
-import MaintenanceMode from './components/common/MaintenanceMode';
-import { getCMSData, STORAGE_KEYS } from './utils/cmsStore';
 
 // Shared Layout Wrapper with Page Transitions
 const MainLayout = () => {
@@ -205,11 +207,9 @@ const MainLayout = () => {
     // Fetch master settings from backend on app launch and populate store
     const fetchMasterSettings = async () => {
       try {
-        const { default: axios } = await import('axios');
         const res = await axios.get('/settings');
         if (res.data?.success && res.data?.data && Object.keys(res.data.data).length > 0) {
           const apiData = res.data.data;
-          const { setCMSData } = await import('./utils/cmsStore');
           setCMSData(STORAGE_KEYS.SETTINGS, apiData, { silent: true });
           setSettings(apiData);
         }
@@ -227,7 +227,11 @@ const MainLayout = () => {
 
   // Safety guard: only show maintenance if specifically enabled on public routes and not admin or public navigation
   if (settings?.maintenanceMode === true && !location.pathname.startsWith('/espesp/admin')) {
-    return <MaintenanceMode settings={settings} />;
+    return (
+      <React.Suspense fallback={null}>
+        <MaintenanceMode settings={settings} />
+      </React.Suspense>
+    );
   }
 
   return (

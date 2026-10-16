@@ -386,15 +386,19 @@ img, video {
 }
 .animate-fade-up {
   animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
 }
 .animate-fade-up-delay-1 {
   animation: fadeUp 0.7s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
 }
 .animate-fade-up-delay-2 {
   animation: fadeUp 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
 }
 .animate-fade-up-delay-3 {
   animation: fadeUp 0.7s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
 }
 
 /* ── Hover Underline Effect (Resentii-style nav links) ───────────────────────── */
@@ -434,6 +438,7 @@ img, video {
 /* ── Card hover lift ─────────────────────────────────────────────────────────── */
 .card-lift {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  will-change: transform;
 }
 .card-lift:hover {
   transform: translateY(-4px);
@@ -484,7 +489,6 @@ img, video {
 }
 
 /* ── sliding-rolling cta button ─────────────────────────────────────────────── */
-/* ── sliding-rolling cta button ─────────────────────────────────────────────── */
 .btn-sliding-cta {
   display: inline-flex;
   align-items: center;
@@ -504,6 +508,9 @@ img, video {
   font-family: var(--font-sans), system-ui, sans-serif;
   text-decoration: none;
   white-space: nowrap;
+  contain: layout paint;
+  will-change: transform;
+  transform: translateZ(0);
   transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease, box-shadow 0.45s ease;
 }
 
@@ -523,6 +530,7 @@ img, video {
   transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
   white-space: nowrap;
+  will-change: top;
 }
 
 @media (min-width: 640px) {
@@ -585,6 +593,9 @@ img, video {
   font-family: var(--font-sans), system-ui, sans-serif;
   text-decoration: none;
   white-space: nowrap;
+  contain: layout paint;
+  will-change: transform;
+  transform: translateZ(0);
   transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease, box-shadow 0.45s ease;
 }
 
@@ -604,6 +615,7 @@ img, video {
   transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
   white-space: nowrap;
+  will-change: top;
 }
 
 @media (min-width: 640px) {

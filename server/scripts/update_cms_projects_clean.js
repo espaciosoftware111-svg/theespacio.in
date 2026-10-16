@@ -55,6 +55,8 @@ if (!pCelestial || !pCasaAlta || !pPanelled || !pDusk || !pGachibowli || !pKachi
 pCelestial.order = 1;
 pCelestial.location = 'Kukatpally, Hyderabad';
 pCelestial.title = 'The Celestial Curve Villa';
+pCelestial.heroImage = '/images/projects/dimmu_residence/dimmu_03.webp';
+pCelestial.hero_image = '/images/projects/dimmu_residence/dimmu_03.webp';
 
 pCasaAlta.order = 2;
 pCasaAlta.title = 'Casa Alta Residence';

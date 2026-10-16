@@ -112,7 +112,7 @@ const AdminProjects = () => {
   const [homeSectionForm, setHomeSectionForm] = useState({
     projects_visible: true,
     projects_subtitle: 'Selected Work',
-    projects_heading: 'Our Projects',
+    projects_heading: 'Our Featured Projects',
     projects_cta_text: 'All Projects ↗',
     projects_cta_link: '/projects'
   });
@@ -190,7 +190,7 @@ const AdminProjects = () => {
           setHomeSectionForm({
             projects_visible: s.projects_visible !== false,
             projects_subtitle: s.projects_subtitle || 'Selected Work',
-            projects_heading: s.projects_heading || 'Our Projects',
+            projects_heading: s.projects_heading === 'Our Projects' ? 'Our Featured Projects' : (s.projects_heading || 'Our Featured Projects'),
             projects_cta_text: s.projects_cta_text || 'All Projects ↗',
             projects_cta_link: s.projects_cta_link || '/projects'
           });

@@ -9,7 +9,7 @@ const QuoteModal = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [modalMode, setModalMode] = useState('estimate'); // 'estimate' or 'catalogue'
-  const [modalTitle, setModalTitle] = useState('Get Estimate');
+  const [modalTitle, setModalTitle] = useState('Book a Complimentary Design Consultation');
   const [productContext, setProductContext] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -62,7 +62,7 @@ const QuoteModal = () => {
         setProductContext(detail.context || null);
       } else {
         setModalMode('estimate');
-        setModalTitle('Get Estimate');
+        setModalTitle('Book a Complimentary Design Consultation');
         setProductContext(null);
       }
       setIsOpen(true);
@@ -190,7 +190,9 @@ const QuoteModal = () => {
       const formattedPhone = cleanPhone2 ? `${cleanPhone1} / ${cleanPhone2}` : cleanPhone1;
       const quoteSource = isProjects
         ? 'Projects Section (Get More Projects)'
-        : (isCatalogue ? `Catalogue Request (${productContext || 'Materials'})` : 'Estimate Request');
+        : (isCatalogue ? `Catalogue Request (${productContext || 'Materials'})` : 'Complimentary Design Consultation');
+      const targetSheet = isCatalogue ? 'Materials Leads' : 'Leads';
+      const generatedLeadId = `${isCatalogue ? 'MAT' : 'ESP'}-${Math.floor(100000 + Math.random() * 900000)}`;
 
       const leadPayload = {
         name: (formData.name || '').trim(),
@@ -199,8 +201,13 @@ const QuoteModal = () => {
         phone1: cleanPhone1,
         phone2: cleanPhone2,
         location: (formData.location || '').trim() || 'Hyderabad',
-        projectType: isProjects ? 'Projects Portfolio Unlock' : (isCatalogue ? 'Catalogue Request' : 'Estimate Request'),
+        projectType: isProjects ? 'Projects Portfolio Unlock' : (isCatalogue ? 'Catalogue Request' : 'Complimentary Design Consultation'),
         catalogueMaterial: isCatalogue ? productContext : undefined,
+        materialDetails: isCatalogue ? productContext : undefined,
+        isMaterials: isCatalogue,
+        targetSheet,
+        sheetName: targetSheet,
+        leadId: generatedLeadId,
         message: isProjects
           ? `Client requested to load more projects. Location: ${formData.location || 'Hyderabad'}`
           : (isCatalogue 
@@ -213,11 +220,15 @@ const QuoteModal = () => {
           phone2: cleanPhone2,
           email: (formData.email || '').trim(),
           location: (formData.location || '').trim() || 'Hyderabad',
-          requirement: isCatalogue ? (productContext || 'Materials') : (isProjects ? 'Architecture & Projects' : 'Estimate'),
+          requirement: isCatalogue ? (productContext || 'Materials') : (isProjects ? 'Architecture & Projects' : 'Design Consultation'),
           stage: 'Immediate (0-1 Month)',
           materialDetails: isCatalogue ? (productContext || '-') : '-',
           source: quoteSource,
-          notes: `Lead captured via Quote Modal. Location: ${formData.location || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`
+          isMaterials: isCatalogue,
+          targetSheet,
+          sheetName: targetSheet,
+          leadId: generatedLeadId,
+          notes: `Lead captured via Consultation Modal. Location: ${formData.location || 'Hyderabad'}. Secondary Phone: ${cleanPhone2 || 'None'}`
         }
       };
 
@@ -245,6 +256,10 @@ const QuoteModal = () => {
             body: JSON.stringify({
               timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
               source: quoteSource,
+              targetSheet,
+              sheetName: targetSheet,
+              isMaterials: isCatalogue,
+              leadId: generatedLeadId,
               name: (formData.name || '').trim(),
               phone1: cleanPhone1,
               phone2: cleanPhone2,
@@ -317,7 +332,7 @@ const QuoteModal = () => {
                       ? 'Please fill out the details below to unlock more premium design pages instantly.'
                       : modalMode === 'projects'
                       ? 'Please fill out your details below to unlock our exclusive interior projects and receive our private lookbook portfolio.'
-                      : 'Please fill out the enquiry below and we will get back to you as soon as possible.'
+                      : 'Please fill out the details below and our design team will connect with you to schedule your complimentary consultation.'
                     }
                   </p>
                 </div>
@@ -430,14 +445,14 @@ const QuoteModal = () => {
                     ? 'Catalogue Request Received!' 
                     : modalMode === 'projects'
                     ? 'Portfolio Access Unlocked!'
-                    : 'Requirement Request Received!'}
+                    : 'Consultation Request Received!'}
                 </h3>
                 <p className="font-sans text-sm text-ink-soft max-w-[380px] mx-auto leading-relaxed">
                   {modalMode === 'catalogue' 
                     ? <>Thank you, <strong>{formData.name || 'valued client'}</strong>. You will receive an SMS and email with details to access our full catalog library shortly.</>
                     : modalMode === 'projects'
                     ? <>Thank you, <strong>{formData.name || 'valued client'}</strong>! Our senior design consultancy team has unlocked our private portfolio and will also share our high-res project lookbooks and floor plans with you via WhatsApp.</>
-                    : <>Thank you, <strong>{formData.name || 'valued client'}</strong>. Your requirement request has been logged. Our principal design team will share your personalized estimate range on a quick call, since actual site conditions affect final BOQ significantly.</>
+                    : <>Thank you, <strong>{formData.name || 'valued client'}</strong>. Your consultation request has been logged. Our principal design team will connect with you shortly to schedule your complimentary design consultation.</>
                   }
                 </p>
                 <button

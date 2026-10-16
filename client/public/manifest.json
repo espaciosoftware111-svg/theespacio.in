@@ -1,0 +1,43 @@
+{
+  "short_name": "Espacio",
+  "name": "Espacio | Interior Design Hyderabad",
+  "description": "A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. Espacio Interiors & Modular Hyderabad.",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/espacio-profile-dp.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0E0F11",
+  "theme_color": "#F4EFEA",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}

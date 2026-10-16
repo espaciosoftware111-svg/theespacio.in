@@ -1,38 +1,61 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         FAVICON & PROFILE DP — Google Search & Multi-device compliant
+    ═══════════════════════════════════════════════════════════════════════ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#000000" />
-
-
+    <meta name="theme-color" content="#F4EFEA" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         PAGE TITLE & META — SEO optimized for Hyderabad interior design queries
+         HIGH SEO & CANONICAL TARGETING
     ═══════════════════════════════════════════════════════════════════════ -->
-    <title>ESPACIO — Premium Interior Design &amp; Architecture | Hyderabad</title>
-    <meta name="description" content="ESPACIO is Hyderabad's premier luxury interior design studio specializing in turn-key residential interiors, modular kitchens, commercial interiors, and premium materials supply." />
+    <title>Espacio | Interior Design Hyderabad (@theespacio.in)</title>
+    <meta name="description" content="A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors &amp; Modular #EspacioInteriors #InteriorDesignHyderabad" />
+    <meta name="keywords" content="interior design hyderabad, interior designers in hyderabad, luxury interior designers hyderabad, turnkey home interiors hyderabad, villa interiors hyderabad, modular kitchen hyderabad, best interior designers jubilee hills, banjara hills interiors, gachibowli interior designers, hitec city interiors, kokapet luxury interiors, financial district interiors, tellapur interiors, gandipet villa interiors, WPC wall panels hyderabad, espacio interiors" />
+    
+    <link rel="canonical" href="https://www.theespacio.in/" />
+    <link rel="alternate" hreflang="en-IN" href="https://www.theespacio.in/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.theespacio.in/" />
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HIGH GEO LOCAL TARGETING (Hyderabad, Telangana, India)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <meta name="geo.region" content="IN-TG" />
+    <meta name="geo.placename" content="Hyderabad" />
+    <meta name="geo.position" content="17.3375;78.3340" />
+    <meta name="ICBM" content="17.3375, 78.3340" />
+    <meta name="DC.title" content="Espacio | Interior Design Hyderabad (@theespacio.in)" />
+    <meta name="DC.creator" content="Espacio Interiors &amp; Modular" />
+    <meta name="DC.description" content="A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors &amp; Modular #EspacioInteriors #InteriorDesignHyderabad" />
+    <meta name="DC.coverage" content="Hyderabad, Telangana, India" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          RESOURCE HINTS — Tell the browser where to connect before it finds links
          PERF IMPACT: Eliminates DNS lookup + TLS handshake latency (~150–300ms saved)
     ═══════════════════════════════════════════════════════════════════════ -->
-    <!-- preconnect: Warm up TCP+TLS connection to Google Fonts CDN immediately -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <!-- preconnect + crossorigin: Required for CORS font file downloads from gstatic -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- PERF: Preconnect to Cloudinary CDN for instant image delivery -->
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
     <link rel="dns-prefetch" href="https://res.cloudinary.com" />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          GOOGLE FONTS — Non-blocking, async font loading pattern
-         PERF IMPACT: Fonts load without blocking HTML parsing or rendering
-         TECHNIQUE: media="print" trick defers CSS application until after parse
-         FALLBACK: <noscript> for JS-disabled environments
     ═══════════════════════════════════════════════════════════════════════ -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" media="print" onload="this.media='all'" />
@@ -42,7 +65,6 @@
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          LCP HERO IMAGE PRELOAD — Critical for PageSpeed / Core Web Vitals
-         PERF IMPACT: Background preload so hero section is ready when intro finishes
     ═══════════════════════════════════════════════════════════════════════ -->
     <link rel="preload" as="image" href="/images/hero/hero_bedroom_916.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
     <link rel="preload" as="image" href="/images/hero/hero_bedroom_4k.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
@@ -50,19 +72,105 @@
     <!-- ═══════════════════════════════════════════════════════════════════════
          OPEN GRAPH META — Social media card rendering (Facebook, LinkedIn, WhatsApp)
     ═══════════════════════════════════════════════════════════════════════ -->
-    <meta property="og:site_name" content="ESPACIO Interiors" />
+    <meta property="og:site_name" content="Espacio | Interior Design Hyderabad (@theespacio.in)" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="ESPACIO — Premium Interior Design &amp; Architecture" />
-    <meta property="og:description" content="Hyderabad's premier luxury interior design studio delivering turn-key full-home interiors, modular kitchens, and material supply." />
-    <meta property="og:image" content="/images/company/3bhk_lux/open_hall.png" />
+    <meta property="og:title" content="Espacio | Interior Design Hyderabad (@theespacio.in)" />
+    <meta property="og:description" content="A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors &amp; Modular #EspacioInteriors #InteriorDesignHyderabad" />
+    <meta property="og:url" content="https://www.theespacio.in/" />
+    <meta property="og:image" content="https://www.theespacio.in/espacio-profile-dp.png" />
+    <meta property="og:image:secure_url" content="https://www.theespacio.in/espacio-profile-dp.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Espacio Interior Design Hyderabad Logo" />
+    <meta property="og:locale" content="en_IN" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          TWITTER CARD META — Twitter/X link preview rendering
     ═══════════════════════════════════════════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ESPACIO — Premium Interior Design &amp; Architecture" />
-    <meta name="twitter:description" content="Hyderabad's premier luxury interior design studio delivering turn-key full-home interiors, modular kitchens, and material supply." />
-    <meta name="twitter:image" content="/images/company/3bhk_lux/open_hall.png" />
+    <meta name="twitter:title" content="Espacio | Interior Design Hyderabad (@theespacio.in)" />
+    <meta name="twitter:description" content="A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors &amp; Modular #EspacioInteriors #InteriorDesignHyderabad" />
+    <meta name="twitter:image" content="https://www.theespacio.in/espacio-profile-dp.png" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         JSON-LD STRUCTURED DATA — Master LocalBusiness & Geo Organization Schema
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.theespacio.in/#website",
+          "url": "https://www.theespacio.in/",
+          "name": "Espacio | Interior Design Hyderabad",
+          "alternateName": ["Espacio Interiors", "theespacio.in", "Espacio Hyderabad"],
+          "description": "A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors & Modular",
+          "publisher": {
+            "@id": "https://www.theespacio.in/#organization"
+          },
+          "inLanguage": "en-IN"
+        },
+        {
+          "@type": ["InteriorDesigner", "HomeAndConstructionBusiness", "LocalBusiness"],
+          "@id": "https://www.theespacio.in/#organization",
+          "name": "Espacio | Interior Design Hyderabad",
+          "alternateName": "Espacio Interiors & Modular",
+          "url": "https://www.theespacio.in/",
+          "logo": "https://www.theespacio.in/espacio-profile-dp.png",
+          "image": "https://www.theespacio.in/espacio-profile-dp.png",
+          "telephone": "+91 95051 51116",
+          "email": "Espacio.hyd@gmail.com",
+          "priceRange": "₹₹₹₹",
+          "currenciesAccepted": "INR",
+          "paymentAccepted": "Cash, Credit Card, Bank Transfer, UPI",
+          "hasMap": "https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Moinabad Road, Aziz Nagar",
+            "addressLocality": "Hyderabad",
+            "addressRegion": "Telangana",
+            "postalCode": "500075",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 17.3375,
+            "longitude": 78.3340
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Hyderabad" },
+            { "@type": "AdministrativeArea", "name": "Jubilee Hills" },
+            { "@type": "AdministrativeArea", "name": "Banjara Hills" },
+            { "@type": "AdministrativeArea", "name": "Hitec City" },
+            { "@type": "AdministrativeArea", "name": "Gachibowli" },
+            { "@type": "AdministrativeArea", "name": "Kokapet" },
+            { "@type": "AdministrativeArea", "name": "Financial District" },
+            { "@type": "AdministrativeArea", "name": "Madhapur" },
+            { "@type": "AdministrativeArea", "name": "Kondapur" },
+            { "@type": "AdministrativeArea", "name": "Tellapur" },
+            { "@type": "AdministrativeArea", "name": "Gandipet" },
+            { "@type": "AdministrativeArea", "name": "Aziz Nagar" },
+            { "@type": "AdministrativeArea", "name": "Moinabad" }
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "10:00",
+              "closes": "20:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/theespacio.in",
+            "https://www.facebook.com/share/1DkG2m4Ra7/",
+            "https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL",
+            "https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6"
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body class="bg-black text-ink font-sans antialiased" style="background-color: #000000; margin: 0; padding: 0;">

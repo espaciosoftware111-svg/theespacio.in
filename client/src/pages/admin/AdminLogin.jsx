@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import axios from 'axios';
 import { Loader2, Eye, EyeOff, Shield, CheckCircle2 } from 'lucide-react';
-import { supabase } from '../../lib/supabaseClient';
 import { getCMSData, STORAGE_KEYS } from '../../utils/cmsStore';
 import { logAuditEvent } from '../../utils/auditStore';
 
@@ -67,6 +66,7 @@ const AdminLogin = () => {
       // 1. SUPABASE AUTHENTICATION (Primary Provider)
       let supaRes = null;
       try {
+        const { supabase } = await import('../../lib/supabaseClient');
         supaRes = await supabase.auth.signInWithPassword({
           email: sanitizedEmail,
           password: password,

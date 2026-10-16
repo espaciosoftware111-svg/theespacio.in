@@ -4,7 +4,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { CheckCircle, ArrowRight, ArrowLeft, Loader2, Check, MapPin, Phone, Mail, Clock, ShieldCheck, FileText, Box, Award } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import axios from 'axios';
-import { db, collection, addDoc } from '../lib/firebaseClient';
 import { getCMSData, STORAGE_KEYS } from '../utils/cmsStore';
 
 const defaultContactCMS = {
@@ -364,6 +363,7 @@ const Contact = () => {
 
       // 1. Send to Firebase Firestore (non-blocking)
       try {
+        const { db, collection, addDoc } = await import('../lib/firebaseClient');
         await addDoc(collection(db, 'leads'), {
           name: formData.fullName,
           email: formData.email,
@@ -381,6 +381,13 @@ const Contact = () => {
 
       // 2. Send to local backend server (which performs Google Sheets synchronization)
       let backendSynced = false;
+      const targetSheet = isMaterials ? 'Materials Leads' : 'Leads';
+      const materialCategoriesStr = isMaterials
+        ? (formData.productCategories?.map(c => c === 'Others' ? `Others (${formData.otherMaterials})` : c).join(', ') || 'N/A')
+        : '-';
+      const quantityStr = isMaterials ? (formData.quantity || 'N/A') : '-';
+      const generatedLeadId = `${isMaterials ? 'MAT' : 'ESP'}-${Math.floor(100000 + Math.random() * 900000)}`;
+
       const contactPayload = {
         name: formData.fullName,
         email: formData.email,
@@ -391,6 +398,12 @@ const Contact = () => {
         projectType: formData.requirement,
         budget: isMaterials ? 'Materials Path' : formData.stage,
         message: `Mobile: ${formData.mobile}\n\n${notes}`,
+        isMaterials,
+        targetSheet,
+        sheetName: targetSheet,
+        leadId: generatedLeadId,
+        materialDetails: isMaterials ? materialCategoriesStr : undefined,
+        quantity: isMaterials ? quantityStr : undefined,
         propertyDetails: {
           propertyType: formData.propertyType === 'Others' ? formData.otherPropertyType : (formData.propertyType || 'N/A'),
           spaces: formData.spaces ? formData.spaces.map(s => s === 'Others' ? formData.otherSpaces : s).join(', ') : 'N/A',
@@ -404,7 +417,13 @@ const Contact = () => {
           ...googleSheetData,
           phone1: formData.mobile,
           phone2: '',
-          source: 'Contact Us (Consultation Form)'
+          source: isMaterials ? 'Contact Us (Materials Form)' : 'Contact Us (Consultation Form)',
+          isMaterials,
+          targetSheet,
+          sheetName: targetSheet,
+          leadId: generatedLeadId,
+          materialDetails: isMaterials ? materialCategoriesStr : '-',
+          quantity: quantityStr
         }
       };
 
@@ -430,14 +449,20 @@ const Contact = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-              source: 'Contact Us (Consultation Form)',
+              source: isMaterials ? 'Contact Us (Materials Form)' : 'Contact Us (Consultation Form)',
+              targetSheet,
+              sheetName: targetSheet,
+              isMaterials,
+              leadId: generatedLeadId,
               name: formData.fullName,
               phone1: formData.mobile,
               phone2: '',
               email: formData.email,
               location: formData.location || 'Hyderabad',
-              requirement: formData.requirement || 'Turnkey Interiors',
+              requirement: isMaterials ? 'Materials Inquiry' : (formData.requirement || 'Turnkey Interiors'),
               stage: formData.stage || 'N/A',
+              materialDetails: isMaterials ? materialCategoriesStr : '-',
+              quantity: quantityStr,
               notes: notes,
               status: 'NEW'
             })

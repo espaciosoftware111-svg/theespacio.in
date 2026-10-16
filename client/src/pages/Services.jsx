@@ -534,6 +534,7 @@ const QuotationCalculator = () => {
     } catch {}
 
     // 2. Dispatch lead to backend server & Google Sheets
+    const generatedLeadId = `ESP-${Math.floor(100000 + Math.random() * 900000)}`;
     const servicesPayload = {
       name: trimmedName,
       phone: trimmedPhone,
@@ -543,6 +544,10 @@ const QuotationCalculator = () => {
       location: `Property: ${propLabel}`,
       projectType: 'Design Consultation',
       serviceType: scopeLabel,
+      isMaterials: false,
+      targetSheet: 'Leads',
+      sheetName: 'Leads',
+      leadId: generatedLeadId,
       message: `Design Consultation — Property: ${propLabel}, Scope: ${scopeLabel}, Finish Grade: ${finishGrade}`,
       propertyDetails: {
         propertyType: propLabel,
@@ -562,6 +567,10 @@ const QuotationCalculator = () => {
         requirement: scopeLabel,
         stage: finishGrade,
         source: 'Services Page (Design Consultation)',
+        isMaterials: false,
+        targetSheet: 'Leads',
+        sheetName: 'Leads',
+        leadId: generatedLeadId,
         notes: `Property: ${propLabel}, Scope: ${scopeLabel}, Grade: ${finishGrade}`
       }
     };
@@ -590,6 +599,10 @@ const QuotationCalculator = () => {
           body: JSON.stringify({
             timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
             source: 'Services Page (Project Estimate)',
+            targetSheet: 'Leads',
+            sheetName: 'Leads',
+            isMaterials: false,
+            leadId: generatedLeadId,
             name: trimmedName,
             phone1: trimmedPhone,
             phone2: '',

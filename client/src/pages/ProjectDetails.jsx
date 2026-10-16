@@ -474,11 +474,11 @@ const ProjectDetails = () => {
       item.configuration = '3BHK Residence';
       item.category = 'apartment';
       item.title = 'Casa Alta Residence';
-      item.heroImage = CASA_ALTA_PHOTOS[0];
+      item.heroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png';
       item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg';
-      item.afterImage = CASA_ALTA_PHOTOS[0];
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png';
       item.beforeImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182841/espacio_gallery/hotcipl3uxkn3fk6hrfn.jpg'];
-      item.afterImages = [CASA_ALTA_PHOTOS[0]];
+      item.afterImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png'];
       item.story = {
         vision: "The family wanted a home that feels calm and open, modern in its restraint but warm the way traditional homes are. Light, timber and stone were meant to tie the rooms together, so the house feels like one story from the front door to the bedroom.",
         challenges: "With open living and dining areas, the home needed one design language running through it. Fluted panels, veneer and stone had to meet cleanly from room to room, and the false ceiling had to carry into the wall treatments so nothing felt like a separate space.",
@@ -532,11 +532,11 @@ const ProjectDetails = () => {
       item.configuration = '2BHK Apartment';
       item.category = 'apartment';
       item.title = 'The Restful Home';
-      item.heroImage = RESTFUL_HOME_PHOTOS[0];
+      item.heroImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png';
       item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg';
-      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg';
+      item.afterImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png';
       item.beforeImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182484/espacio_gallery/odpospayniste6bg3iui.jpg'];
-      item.afterImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791182169/espacio_gallery/k0lcgwlaxjnlvwlapgir.jpg'];
+      item.afterImages = ['https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png'];
       item.story = {
         vision: "After a long day at work, this young family wanted to come home and finally exhale. They asked for a simple, peaceful home with enough storage that nothing ever feels crowded, and a layout that can grow with their children.",
         challenges: "In a compact 2BHK layout, every inch matters. The challenge was ensuring every wall quietly carries its share of storage while keeping the rooms open, light, and uncluttered, preventing any feeling of confinement.",
@@ -619,7 +619,7 @@ const ProjectDetails = () => {
       item.category = 'villa';
       item.title = 'The Celestial Curve Villa';
       item.beforeImage = 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791181647/espacio_gallery/e1qshojaqimsqnxxk02t.jpg';
-      item.heroImage = '/images/projects/dimmu_residence/dimmu_02.webp';
+      item.heroImage = '/images/projects/dimmu_residence/dimmu_03.webp';
       item.beforeImages = [item.beforeImage];
       item.afterImages = [item.afterImage];
       const fallbackDef = (DEFAULT_PROJECTS || []).find(dp => dp.slug === 'dimmu-chachu-luxury-villa' || dp._id === 'proj_9_dimmu_chachu_residence') || {};
@@ -970,7 +970,7 @@ const ProjectDetails = () => {
           <MapPin className="text-gold shrink-0" size={20} />
           <div>
             <span className="font-sans text-[10px] text-walnut uppercase tracking-widest block">Location</span>
-            <span className="font-sans font-bold text-sm text-charcoal truncate block max-w-[130px]" title={p.location}>{p.location}</span>
+            <span className="font-sans font-bold text-sm text-charcoal block leading-snug" title={p.location}>{p.location}</span>
           </div>
         </div>
         <div className="flex items-center space-x-3">

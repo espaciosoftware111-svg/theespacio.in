@@ -116,9 +116,31 @@ const Navbar = () => {
       } catch {}
     };
 
+    const syncStoredNav = async () => {
+      try {
+        const { getCMSData, STORAGE_KEYS } = await import('../../utils/cmsStore');
+        const stored = getCMSData(STORAGE_KEYS.SETTINGS);
+        if (stored && stored.nav_items) {
+          const cmsLinks = stored.nav_items
+            .filter((item) => item.visible)
+            .map((item) => ({ 
+              name: normalizeNavLabel(item.label), 
+              path: normalizeNavPath(item.path) 
+            }));
+          if (cmsLinks.length > 0) {
+            setNavLinks(cmsLinks);
+            return true;
+          }
+        }
+      } catch {}
+      return false;
+    };
+
     fetchNav();
 
-    const handleSync = () => fetchNav();
+    const handleSync = () => {
+      syncStoredNav();
+    };
     window.addEventListener('espacio_cms_update', handleSync);
     window.addEventListener('storage', handleSync);
     return () => {

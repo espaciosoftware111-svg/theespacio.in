@@ -15,6 +15,21 @@ try {
     if (parsed) {
       if (parsed.maintenanceMode) parsed.maintenanceMode = false;
       if (parsed.data && parsed.data.maintenanceMode) parsed.data.maintenanceMode = false;
+      if (parsed.spaces_hero_visible === false) parsed.spaces_hero_visible = true;
+      if (parsed.spaces_grid_visible === false) parsed.spaces_grid_visible = true;
+      if (Array.isArray(parsed.spaces_list)) {
+        parsed.spaces_list.forEach((sp) => {
+          if (sp.slug === 'master-bedroom' && (!sp.heroImage || sp.heroImage.includes('drive_24') || sp.heroImage.includes('master_bedroom_after'))) {
+            sp.heroImage = '/images/spaces/bedroom/bedroom_drive_29.webp';
+          }
+          if (sp.slug === 'wardrobes' && (!sp.heroImage || sp.heroImage.includes('drive_25'))) {
+            sp.heroImage = '/images/spaces/wardrobes/wardrobe_drive_23.webp';
+          }
+          if (sp.slug === 'foyer' && (!sp.heroImage || sp.heroImage.includes('drive_22'))) {
+            sp.heroImage = '/images/spaces/foyer/foyer_drive_18.webp';
+          }
+        });
+      }
       localStorage.setItem(settingsKey, JSON.stringify(parsed));
     }
   }

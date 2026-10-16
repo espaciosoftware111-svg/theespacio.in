@@ -533,7 +533,7 @@ const Home = () => {
   const [homeSettings, setHomeSettings] = useState({
     hero_title: 'Engineering. Elegance. Experience.',
     hero_subtitle: 'Bespoke Luxury Interiors & Turned-Key Executions in Hyderabad',
-    hero_cta_text: 'Get Estimate',
+    hero_cta_text: 'Book a Complimentary Design Consultation',
     hero_visible: true,
 
     hero_bg_images: HERO_IMAGES,
@@ -577,7 +577,7 @@ const Home = () => {
     grid_stat3_subtext: 'Combined Legacy',
 
     projects_visible: true,
-    projects_heading: 'Our Projects',
+    projects_heading: 'Our Featured Projects',
     projects_subtitle: 'Selected Work',
     projects_cta_text: 'All Projects ↗',
     projects_cta_link: '/projects',
@@ -623,6 +623,12 @@ const Home = () => {
               return slide;
             });
           }
+          if (!sanitizedStored.projects_heading || sanitizedStored.projects_heading === 'Our Projects') {
+            sanitizedStored.projects_heading = 'Our Featured Projects';
+          }
+          if (sanitizedStored.hero_cta_text === 'Get Estimate') {
+            sanitizedStored.hero_cta_text = 'Book a Complimentary Design Consultation';
+          }
           setHomeSettings((prev) => ({ ...prev, ...sanitizedStored }));
         }
       } catch {}
@@ -631,6 +637,12 @@ const Home = () => {
         const res = await axios.get('/settings');
         if (res.data && res.data.success && res.data.data && Object.keys(res.data.data).length > 0) {
           const apiData = { ...res.data.data };
+          if (!apiData.projects_heading || apiData.projects_heading === 'Our Projects') {
+            apiData.projects_heading = 'Our Featured Projects';
+          }
+          if (apiData.hero_cta_text === 'Get Estimate') {
+            apiData.hero_cta_text = 'Book a Complimentary Design Consultation';
+          }
           if (apiData.intro_heading === 'Turnkey interiors, done properly.' || apiData.intro_heading === 'From Concept to Handover — ESPACIO Delivers Complete Interiors.' || !apiData.intro_heading) {
             apiData.intro_heading = 'From First Idea to Final Touch, We Make It Effortless.';
           }
@@ -909,13 +921,13 @@ const Home = () => {
 
   // Authentic canonical thumbnails matching the Project Section catalog exactly
   const CANONICAL_PROJECT_IMAGES = {
-    'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_05.webp',
-    'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040114/espacio_gallery/ues8rn6ddd052rkmlesl.png',
+    'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_03.webp',
+    'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png',
     'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
     'kondapur-minimalist-2bhk': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp',
     'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp',
     'kachiguda-fusion-duplex-villa': '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
-    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png'
+    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png'
   };
 
   const displayProjects = useMemo(() => {
@@ -934,10 +946,10 @@ const Home = () => {
       const location = p.slug === 'dimmu-chachu-luxury-villa' ? 'Kukatpally, Hyderabad' : (p.location || 'Hyderabad');
       const description = p.description || `A bespoke luxury ${category.toLowerCase()} interior design in ${location}, showcasing custom spatial architecture and premium materials.`;
       
-      // Match the exact project section thumbnail: prioritize project.heroImage, then canonical map
-      let heroImg = p.heroImage || p.hero_image;
+      // Match the exact project section thumbnail: prioritize canonical curated image, then project.heroImage
+      let heroImg = CANONICAL_PROJECT_IMAGES[p.slug] || p.heroImage || p.hero_image;
       if (!heroImg || (typeof heroImg === 'string' && (!heroImg.trim() || heroImg.includes('kokapet_tv_unit')))) {
-        heroImg = CANONICAL_PROJECT_IMAGES[p.slug] || p.afterImage || fallbackList[idx % fallbackList.length];
+        heroImg = p.afterImage || fallbackList[idx % fallbackList.length];
       }
       if (typeof heroImg === 'string' && heroImg.startsWith('/images/projects/')) {
         const sep = heroImg.includes('?') ? '&' : '?';
@@ -1134,34 +1146,58 @@ const Home = () => {
   return (
     <div className="bg-bg">
       <SEO
-        title="Luxury Interior Design & Architecture Studio, Hyderabad"
-        description="ESPACIO is Hyderabad's premier luxury interior design studio. Delivering turnkey full-home interiors, modular kitchens, commercial interiors, and premium material supply."
+        title="Espacio | Interior Design Hyderabad (@theespacio.in)"
+        description="A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors & Modular #EspacioInteriors #InteriorDesignHyderabad"
         url="/"
+        image="https://www.theespacio.in/espacio-profile-dp.png"
         schema={{
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
           '@id': 'https://www.theespacio.in/#business',
-          name: 'ESPACIO Interiors & Modular',
+          name: 'Espacio | Interior Design Hyderabad',
           url: 'https://www.theespacio.in',
-          logo: 'https://www.theespacio.in/favicon.svg',
-          image: '/images/company/3bhk_lux/open_hall.png',
-          description: "ESPACIO is Hyderabad's premier luxury interior design studio. Full-home interiors, modular kitchens, commercial offices, and material supply.",
+          logo: 'https://www.theespacio.in/espacio-profile-dp.png',
+          image: 'https://www.theespacio.in/espacio-profile-dp.png',
+          description: "A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors & Modular #EspacioInteriors #InteriorDesignHyderabad",
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Jubilee Hills / Gachibowli',
+            streetAddress: 'Moinabad Road, Aziz Nagar',
             addressLocality: 'Hyderabad',
             addressRegion: 'Telangana',
-            postalCode: '500033',
+            postalCode: '500075',
             addressCountry: 'IN'
           },
           geo: {
             '@type': 'GeoCoordinates',
-            latitude: 17.4399,
-            longitude: 78.3989
+            latitude: 17.3375,
+            longitude: 78.3340
           },
-          telephone: '+91 90000 00000',
-          priceRange: '₹₹₹',
-          sameAs: ['https://www.instagram.com/theespacio.in']
+          telephone: '+91 95051 51116',
+          priceRange: '₹₹₹₹',
+          currenciesAccepted: 'INR',
+          paymentAccepted: 'Cash, Credit Card, Bank Transfer, UPI',
+          hasMap: 'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6',
+          areaServed: [
+            { '@type': 'City', name: 'Hyderabad' },
+            { '@type': 'AdministrativeArea', name: 'Jubilee Hills' },
+            { '@type': 'AdministrativeArea', name: 'Banjara Hills' },
+            { '@type': 'AdministrativeArea', name: 'Hitec City' },
+            { '@type': 'AdministrativeArea', name: 'Gachibowli' },
+            { '@type': 'AdministrativeArea', name: 'Kokapet' },
+            { '@type': 'AdministrativeArea', name: 'Financial District' },
+            { '@type': 'AdministrativeArea', name: 'Madhapur' },
+            { '@type': 'AdministrativeArea', name: 'Kondapur' },
+            { '@type': 'AdministrativeArea', name: 'Tellapur' },
+            { '@type': 'AdministrativeArea', name: 'Gandipet' },
+            { '@type': 'AdministrativeArea', name: 'Aziz Nagar' },
+            { '@type': 'AdministrativeArea', name: 'Moinabad' }
+          ],
+          sameAs: [
+            'https://www.instagram.com/theespacio.in',
+            'https://www.facebook.com/share/1DkG2m4Ra7/',
+            'https://youtube.com/@theespacio?si=GMm6fUQ8t0W6MfRL',
+            'https://maps.app.goo.gl/q3zbxWmEt5wvRKbZ6'
+          ]
         }}
       />
 
@@ -1529,7 +1565,7 @@ const Home = () => {
                 </p>
               </div>
               <h2 className="font-display text-[clamp(28px,3vw,48px)] font-medium tracking-tight text-ink leading-[1.1]">
-                {homeSettings.projects_heading || 'Our Projects'}
+                {homeSettings.projects_heading || 'Our Featured Projects'}
               </h2>
             </Reveal>
 

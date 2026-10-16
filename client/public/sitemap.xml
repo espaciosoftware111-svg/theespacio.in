@@ -1,44 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Core Top-Level Pages -->
   <url>
     <loc>https://www.theespacio.in/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.theespacio.in/espacio-profile-dp.png</image:loc>
+      <image:title>Espacio Interior Design Hyderabad</image:title>
+      <image:caption>A sacred corner, designed with intention. Espacio Interiors Hyderabad.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.theespacio.in/services</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.theespacio.in/projects</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.theespacio.in/spaces</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.theespacio.in/materials</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.theespacio.in/about</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.theespacio.in/contact</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Featured Realised Projects in Hyderabad -->
+  <url>
+    <loc>https://www.theespacio.in/projects/dimmu-chachu-luxury-villa</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.theespacio.in/images/projects/dimmu_residence/dimmu_02.webp</image:loc>
+      <image:title>The Celestial Curve Villa - Luxury Interior Kukatpally Hyderabad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/projects/casa-alta-residence-kali-mandir</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png</image:loc>
+      <image:title>Casa Alta Residence - Contemporary Minimalist Hyderabad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/projects/gandipet-modern-retro-2bhk</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.theespacio.in/images/projects/gandipet_kiran_2bhk/kiran_gallery_4.webp</image:loc>
+      <image:title>The Panelled Muse - Modern Retro Timber Flat Gandipet Hyderabad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/projects/kondapur-minimalist-2bhk</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/r3jwfy0y/image/upload/f_auto/q_auto/71b2e914-cfd2-49fc-9d5a-47faa39b4bdd</image:loc>
+      <image:title>The Dusk Lounge - Contemporary Minimalist Kondapur Hyderabad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/projects/gachibowli-minimalist-beige-2bhk</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.theespacio.in/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_4.webp</image:loc>
+      <image:title>Minimalist Warm Beige 2BHK Gachibowli Hyderabad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/projects/kachiguda-fusion-duplex-villa</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/r3jwfy0y/image/upload/v1791178148/espacio_gallery/k21ayumhuuy0tmqj7rfg.jpg</image:loc>
+      <image:title>Modern and Desi Fusion 4BHK Duplex Kachiguda Hyderabad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/projects/the-restful-home-tellapur</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png</image:loc>
+      <image:title>The Restful Home - Japandi Serene Apartment Tellapur Hyderabad</image:title>
+    </image:image>
+  </url>
+
+  <!-- Spaces Categories -->
+  <url>
+    <loc>https://www.theespacio.in/spaces/modular-kitchen</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/master-bedroom</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/living-room</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/wardrobes</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/home-office</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/commercial-office</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/pooja-room</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/dining-room</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/tv-units</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/false-ceilings</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/foyer</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/spaces/walk-in-wardrobe</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Materials & Architecture Collections -->
+  <url>
+    <loc>https://www.theespacio.in/materials/acrylic-luxe-collection</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/digital-korean-poly-granite</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/charcoal-panels-luxe</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/fluted-pvc-luxe</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/lvt-luxe-flooring</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/fluted-acrylic-luxe</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/pvc-luxe-collection</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theespacio.in/materials/wpc-luxe-collection</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
