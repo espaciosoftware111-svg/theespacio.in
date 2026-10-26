@@ -982,9 +982,16 @@ const Home = () => {
           </div>
         ),
         content: (
-          <div className="h-full w-full relative overflow-hidden rounded-[24px] bg-[#1a1a1e]">
+          <div className="h-full w-full relative overflow-hidden rounded-[24px] bg-[#101014] flex items-center justify-center">
+            {/* Ambient luxury backdrop: soft blurred colors of the image fill any aspect-ratio margin */}
             <img
-              src={getOptimizedImageUrl(heroImg, 1200, 85)}
+              src={getOptimizedImageUrl(heroImg, 400, 35)}
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover blur-2xl scale-125 opacity-40 pointer-events-none select-none"
+            />
+            {/* Main crisp image: 100% contained inside the box so no details or edges are cut off */}
+            <img
+              src={getOptimizedImageUrl(heroImg, 1400, 88)}
               loading="lazy"
               decoding="async"
               onError={(e) => {
@@ -996,7 +1003,7 @@ const Home = () => {
                   target.src = fallback;
                 }
               }}
-              className="h-full w-full object-cover transition-transform duration-700 ease-out"
+              className="relative z-10 w-full h-full object-contain p-1 sm:p-2 transition-transform duration-500 ease-out select-none drop-shadow-2xl"
               alt={title}
             />
           </div>
