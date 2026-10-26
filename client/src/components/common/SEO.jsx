@@ -17,7 +17,7 @@ const SEO = ({
   const fullTitle = title
     ? (title.includes('Espacio') ? title : `${title} — ${suffix}`)
     : 'Espacio | Interior Design Hyderabad (@theespacio.in)';
-  const metaDesc = description || "A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors & Modular #EspacioInteriors #InteriorDesignHyderabad";
+  const metaDesc = description || "Your Home, Designed With Intention. ESPACIO brings together bespoke interiors, modular furniture, exceptional materials and master craftsmanship. 40 Years of Trust | Hyderabad. Free Consultation & Design Ideas.";
   const canonical = url ? `https://www.theespacio.in${url.startsWith('/') ? url : `/${url}`}` : 'https://www.theespacio.in';
   const metaKeywords = keywords || "interior design hyderabad, luxury interior designers, turnkey home interiors, modular kitchens hyderabad, WPC wall panels, fluted panels, luxury home fitouts, ESPACIO interiors";
 

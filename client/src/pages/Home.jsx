@@ -1147,7 +1147,7 @@ const Home = () => {
     <div className="bg-bg">
       <SEO
         title="Espacio | Interior Design Hyderabad (@theespacio.in)"
-        description="A sacred corner, designed with intention. ✨ Thoughtful details. Timeless design. 9505151116 | Espacio Interiors & Modular #EspacioInteriors #InteriorDesignHyderabad"
+        description="Your Home, Designed With Intention. ESPACIO brings together bespoke interiors, modular furniture, exceptional materials and master craftsmanship. 40 Years of Trust | Hyderabad. Free Consultation & Design Ideas."
         url="/"
         image="https://www.theespacio.in/espacio-profile-dp.png"
         schema={{
