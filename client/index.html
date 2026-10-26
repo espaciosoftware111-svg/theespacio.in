@@ -57,17 +57,17 @@
     <!-- ═══════════════════════════════════════════════════════════════════════
          GOOGLE FONTS — Non-blocking, async font loading pattern
     ═══════════════════════════════════════════════════════════════════════ -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" media="print" onload="this.media='all'" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" />
     </noscript>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          LCP HERO IMAGE PRELOAD — Critical for PageSpeed / Core Web Vitals
     ═══════════════════════════════════════════════════════════════════════ -->
-    <link rel="preload" as="image" href="/images/hero/hero_bedroom_916.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/hero/hero_bedroom_4k.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://res.cloudinary.com/r3jwfy0y/image/upload/c_limit,w_800,f_auto,q_auto/29bd1f5f-9c48-4b99-9df3-ae7452c6501c.png" media="(max-width: 1023px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://res.cloudinary.com/teg9ndhk/image/upload/c_limit,w_1600,f_auto,q_auto/ChatGPT_Image_Sep_21_2026_04_34_23_PM_1.png" media="(min-width: 1024px)" fetchpriority="high" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          OPEN GRAPH META — Social media card rendering (Facebook, LinkedIn, WhatsApp)
@@ -174,10 +174,8 @@
   </head>
 
   <body class="bg-black text-ink font-sans antialiased" style="background-color: #000000; margin: 0; padding: 0;">
-    <!-- React SPA mount point — instant dark shell prevents any 0ms white or cream paint lag -->
-    <div id="root">
-      <div id="espacio-instant-preloader-shell" style="position:fixed;inset:0;z-index:999999;width:100vw;height:100vh;background-color:#000000;"></div>
-    </div>
+    <!-- React SPA mount point -->
+    <div id="root"></div>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          ENTRY SCRIPT — type="module" enables native ES module loading

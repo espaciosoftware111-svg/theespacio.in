@@ -36,15 +36,19 @@ const HeroSlideshow = memo(({
   const [currentIndex, setCurrentIndex] = useState(0);
   const timerRef = useRef(null);
 
-  // Preload both mobile and desktop hero slides immediately so transitions are instantaneous
+  // Preload next hero slide just-in-time before transition to keep initial page load fast
   useEffect(() => {
-    if (slideCount > 0) {
+    if (slideCount > 1) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
       const targetList = isMobile ? mobileList : desktopList;
-      const urlsToPreload = targetList.map(url => getOptimizedImageUrl(url, isMobile ? 900 : 1600, 88));
-      preloadImages(urlsToPreload);
+      const nextIndex = (currentIndex + 1) % slideCount;
+      const nextUrl = targetList[nextIndex % targetList.length];
+      if (nextUrl) {
+        const urlToPreload = getOptimizedImageUrl(nextUrl, isMobile ? 800 : 1600, 88);
+        preloadImages([urlToPreload]);
+      }
     }
-  }, [slideCount]);
+  }, [currentIndex, slideCount]);
 
   // Notify parent on index change
   useEffect(() => {
@@ -117,7 +121,7 @@ const HeroSlideshow = memo(({
         const mSrc = mobileList[idx % mobileList.length] || dSrc;
 
         const desktopOptimized = getOptimizedImageUrl(dSrc, 1600, 88);
-        const mobileOptimized = getOptimizedImageUrl(mSrc, 900, 88);
+        const mobileOptimized = getOptimizedImageUrl(mSrc, 800, 88);
 
         return (
           <motion.picture
@@ -151,8 +155,8 @@ const HeroSlideshow = memo(({
               src={desktopOptimized || mobileOptimized}
               alt="ESPACIO Hero Showcase"
               decoding={idx === 0 ? 'sync' : 'async'}
-              loading="eager"
-              fetchPriority={idx === 0 ? "high" : "auto"}
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              fetchPriority={idx === 0 ? 'high' : 'low'}
               className="w-full h-full object-cover object-center select-none pointer-events-none rounded-[inherit]"
               style={{
                 imageRendering: 'auto',

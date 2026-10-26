@@ -40,14 +40,17 @@ export const getOptimizedImageUrl = (url, width = 1600, quality = 95) => {
   let result = url;
 
   // ── 1. Cloudinary ──────────────────────────────────────────────────────────
-  // Preserve normal maximum quality without lossy compression grain (avoid q_auto:good / q_auto:low)
   if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
-    if (!url.includes('f_auto') && !url.includes('q_auto')) {
-      // Use q_auto:best to prevent compression noise, grain, and blockiness
-      result = url.replace('/upload/', '/upload/f_auto,q_auto:best/');
-    } else {
-      // Replace any aggressive low-quality flags with high-fidelity normal quality
-      result = url.replace('q_auto:good', 'q_auto:best').replace('q_auto:low', 'q_auto:best').replace('q_auto:eco', 'q_auto:best');
+    const targetWidth = Math.min(Math.max(width || 800, 320), 2560);
+    const transform = `c_limit,w_${targetWidth},f_auto,q_auto`;
+    const match = url.match(/(https:\/\/res\.cloudinary\.com\/[^\/]+\/image\/upload\/)(.*)/);
+    if (match) {
+      const prefix = match[1];
+      let rest = match[2];
+      while (/^(?:[a-zA-Z0-9_,:\-]+\/)(?=v\d+|[a-zA-Z0-9_\-]+\.)/.test(rest) || /^(?:f_auto|q_auto|c_limit|w_\d+|c_\w+)[^\/]*\//.test(rest)) {
+        rest = rest.replace(/^[^\/]+\//, '');
+      }
+      result = `${prefix}${transform}/${rest}`;
     }
   }
 

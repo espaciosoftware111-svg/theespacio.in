@@ -75,6 +75,7 @@ export const StickyScroll = ({ content = [], className = "" }) => {
   const isInViewRef = useRef(true);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const observer = new IntersectionObserver(
@@ -92,6 +93,7 @@ export const StickyScroll = ({ content = [], className = "" }) => {
   }, [measureLayout, updateScrollProgress]);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     measureLayout();
     updateScrollProgress();
 

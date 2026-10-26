@@ -15,8 +15,8 @@ import axios from 'axios';
 // Lazy-loaded Components for Bundle & Performance Isolation
 const MaintenanceMode = React.lazy(() => import('./components/common/MaintenanceMode'));
 
-// Core Public Pages (Code-split for 10x faster initial page load with idle background prefetching)
-const Home = React.lazy(() => import('./pages/Home'));
+// Core Public Pages — Home is statically imported to eliminate any initial Suspense fallback layout shift on the footer
+import Home from './pages/Home';
 const About = React.lazy(() => import('./pages/About'));
 const Services = React.lazy(() => import('./pages/Services'));
 const Projects = React.lazy(() => import('./pages/Projects'));
@@ -307,7 +307,6 @@ function App() {
   // Background idle prefetching: downloads remaining pages during idle time so navbar clicks are instant (0ms)
   useEffect(() => {
     const prefetchRoutes = () => {
-      import('./pages/Home');
       import('./pages/About');
       import('./pages/Services');
       import('./pages/Projects');

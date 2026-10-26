@@ -327,10 +327,11 @@ const TeamProjectsShowcase = ({ customSlides }) => {
           >
             {/* Pure Ultra HD Crisp Image Layer */}
             <picture className="w-full h-full block">
-              <source media="(max-width: 1023px)" srcSet={getOptimizedImageUrl(HERO_IMAGES_MOBILE[idx % HERO_IMAGES_MOBILE.length], 900, 88)} />
+              <source media="(max-width: 1023px)" srcSet={getOptimizedImageUrl(HERO_IMAGES_MOBILE[idx % HERO_IMAGES_MOBILE.length], 800, 88)} />
               <img
                 src={getOptimizedImageUrl(current.projectImg, 1400, 88)}
                 alt={current.projectLabel}
+                loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover select-none pointer-events-none transform-gpu"
                 style={{ imageRendering: 'auto', backfaceVisibility: 'hidden' }}
@@ -984,6 +985,7 @@ const Home = () => {
           <div className="h-full w-full relative overflow-hidden rounded-[24px] bg-[#1a1a1e]">
             <img
               src={getOptimizedImageUrl(heroImg, 1200, 85)}
+              loading="lazy"
               decoding="async"
               onError={(e) => {
                 const target = e.currentTarget;
@@ -1295,6 +1297,7 @@ const Home = () => {
                                 <img
                                   src={desktopThumb}
                                   alt="Luxury interior showcase"
+                                  loading={imgIdx === 0 ? "eager" : "lazy"}
                                   decoding="async"
                                   className="w-full h-full object-cover select-none pointer-events-none"
                                 />

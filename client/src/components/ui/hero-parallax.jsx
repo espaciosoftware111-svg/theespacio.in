@@ -4,9 +4,9 @@ import { motion, useMotionValue, useAnimationFrame, useInView } from "framer-mot
 export const HeroParallax = ({ products = [] }) => {
   const baseFirst = products.slice(0, 8);
   const baseSecond = products.slice(8, 16);
-  // Duplicate 3x for seamless infinite marquee loop
-  const firstRow = [...baseFirst, ...baseFirst, ...baseFirst];
-  const secondRow = [...baseSecond, ...baseSecond, ...baseSecond];
+  // Duplicate 2x for seamless continuous marquee loop without DOM bloating
+  const firstRow = [...baseFirst, ...baseFirst];
+  const secondRow = [...baseSecond, ...baseSecond];
 
   return (
     <div className="w-full pt-0 pb-12 md:pb-16 overflow-hidden antialiased relative flex flex-col">
@@ -73,9 +73,9 @@ export const Header = () => {
         <span className="font-sans text-[10.5px] sm:text-[11px] uppercase tracking-[0.2em] text-[#9E7B3B] font-bold">
           Bespoke Design Services
         </span>
-        <h1 className="font-display text-[clamp(26px,3.5vw,52px)] font-medium leading-[1.08] tracking-tight text-ink mt-2 sm:mt-4">
+        <h2 className="font-display text-[clamp(26px,3.5vw,52px)] font-medium leading-[1.08] tracking-tight text-ink mt-2 sm:mt-4">
           We Sculpt <br />Inspiring Spaces
-        </h1>
+        </h2>
         <p className="max-w-xl font-sans text-[13px] sm:text-[14px] text-ink font-medium mt-2.5 sm:mt-5 leading-relaxed">
           From conceptual 3D visualizations to master turnkey handovers, ESPACIO brings unmatched structural excellence and premium material sourcing to residential, commercial, and modular kitchen spaces.
         </p>
