@@ -931,6 +931,16 @@ const Home = () => {
     'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png'
   };
 
+  const PROJECT_OBJECT_POSITIONS = {
+    'dimmu-chachu-luxury-villa': 'center 10%',
+    'the-restful-home-tellapur': 'center 15%',
+    'kachiguda-fusion-duplex-villa': 'center 20%',
+    'casa-alta-residence-kali-mandir': 'center center',
+    'gandipet-modern-retro-2bhk': 'center center',
+    'kondapur-minimalist-2bhk': 'center center',
+    'gachibowli-minimalist-beige-2bhk': 'center center'
+  };
+
   const displayProjects = useMemo(() => {
     const source = (projects && Array.isArray(projects) && projects.length > 0) ? projects : DEFAULT_PROJECTS;
     return [...source]
@@ -982,14 +992,7 @@ const Home = () => {
           </div>
         ),
         content: (
-          <div className="h-full w-full relative overflow-hidden rounded-[24px] bg-[#101014] flex items-center justify-center">
-            {/* Ambient luxury backdrop: soft blurred colors of the image fill any aspect-ratio margin */}
-            <img
-              src={getOptimizedImageUrl(heroImg, 400, 35)}
-              aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover blur-2xl scale-125 opacity-40 pointer-events-none select-none"
-            />
-            {/* Main crisp image: 100% contained inside the box so no details or edges are cut off */}
+          <div className="h-full w-full relative overflow-hidden rounded-[20px] sm:rounded-[26px]">
             <img
               src={getOptimizedImageUrl(heroImg, 1400, 88)}
               loading="lazy"
@@ -1003,7 +1006,10 @@ const Home = () => {
                   target.src = fallback;
                 }
               }}
-              className="relative z-10 w-full h-full object-contain p-1 sm:p-2 transition-transform duration-500 ease-out select-none drop-shadow-2xl"
+              style={{
+                objectPosition: PROJECT_OBJECT_POSITIONS[p.slug] || 'center center'
+              }}
+              className="w-full h-full object-cover rounded-[inherit] transition-transform duration-700 ease-out select-none"
               alt={title}
             />
           </div>

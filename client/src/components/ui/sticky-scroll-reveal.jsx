@@ -230,7 +230,7 @@ export const StickyScroll = ({ content = [], className = "" }) => {
           </div>
 
           {/* Right: full-height animated image showcase */}
-          <div className="w-[54%] shrink-0 h-full rounded-[26px] bg-bg-dark overflow-hidden border border-ink-border/40 shadow-2xl relative">
+          <div className="w-[54%] shrink-0 h-full rounded-[26px] overflow-hidden border border-ink-border/40 shadow-2xl relative">
             {content.map((item, index) => {
               const isCurrent = activeCard === index;
               const isNearby = Math.abs(activeCard - index) <= 1;
@@ -270,7 +270,7 @@ export const StickyScroll = ({ content = [], className = "" }) => {
               itemClassName="bg-[#FAF8F5] border border-ink-border/25 flex flex-col gap-2.5 sm:gap-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.1)] p-3.5 sm:p-5 pb-6 sm:pb-8 rounded-[24px] mb-12 sm:mb-16"
             >
               {/* Project Image Card */}
-              <div className="w-full aspect-[16/10] sm:aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm bg-neutral-900">
+              <div className="w-full aspect-[16/10] sm:aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm">
                 {item.content}
               </div>
               {/* Description */}
