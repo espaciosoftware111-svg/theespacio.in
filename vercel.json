@@ -42,6 +42,7 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.js" },
     { "source": "/uploads/(.*)", "destination": "/api/index.js" },
+    { "source": "/google13b069322a19c0ce.html", "destination": "/google13b069322a19c0ce.html" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
