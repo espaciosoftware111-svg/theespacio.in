@@ -1448,18 +1448,18 @@ export const CANONICAL_ROOM_WISE_GALLERIES = {
   ],
 
   // 7. The Restful Home (Tellapur)
-  // Bedroom (1–4) -> Hall / Living Lounge (5–7) -> Modular Kitchen & Dining (8–10) -> Pooja Mandir (11–13)
+  // Hall / Living Lounge (1–3) -> Bedrooms (4–7) -> Modular Kitchen & Dining (8–10) -> Pooja Mandir (11–13)
   'the-restful-home-tellapur': [
-    // ── Bedrooms (1–4) ──
+    // ── Hall / Living Lounge (1–3) ──
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png', // Living Hall Lounge & Architectural Walnut Partition
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png', // Living Room Fluted TV Feature Wall & Backlit Marble
+    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png', // Living Hall TV Unit & Curved Calacatta Marble Backlit Panel
+
+    // ── Bedrooms (4–7) ──
     'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039597/espacio_gallery/gl4os8hhxhsy9vke0cx1.png', // Master Bedroom Suite & Geometric Profile Lighting
     'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039600/espacio_gallery/ixrrcgxxhf1pytdjjhga.png', // Master Bedroom Sliding Wardrobes & Open Shelving
     'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039616/espacio_gallery/jmbconw0wz7rrzqqaiub.png', // Guest Bedroom Greige & Slate Sliding Wardrobes
     'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039619/espacio_gallery/b9negjore9wp71j24l8t.png', // Guest Bedroom Suite & Integrated Study Workstation
-
-    // ── Hall / Living Lounge (5–7) ──
-    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039645/espacio_gallery/exseh5lm0mz9sfni4lkv.png', // Living Hall Lounge & Architectural Walnut Partition
-    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png', // Living Room Fluted TV Feature Wall & Backlit Marble
-    'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png', // Living Hall TV Unit & Curved Calacatta Marble Backlit Panel
 
     // ── Modular Kitchen & Dining (8–10) ──
     'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039570/espacio_gallery/dntcpbg0dg78vu5hktwt.png', // Modular Kitchen Cooktop & Tinted Glass Cabinets

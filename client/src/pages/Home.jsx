@@ -924,11 +924,11 @@ const Home = () => {
   const CANONICAL_PROJECT_IMAGES = {
     'dimmu-chachu-luxury-villa': '/images/projects/dimmu_residence/dimmu_03.webp',
     'casa-alta-residence-kali-mandir': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791040132/espacio_gallery/s3eem08ug6sagt9hj2tz.png',
-    'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_2.webp',
+    'gandipet-modern-retro-2bhk': '/images/projects/gandipet_kiran_2bhk/kiran_gallery_18.webp',
     'kondapur-minimalist-2bhk': '/images/projects/kondapur_venkatesh_2bhk/venkatesh_after.webp',
     'gachibowli-minimalist-beige-2bhk': '/images/projects/gachibowli_koteswara_2bhk/koteswara_gallery_26.webp',
     'kachiguda-fusion-duplex-villa': '/images/projects/kachiguda_subbarao_duplex/subbarao_gallery_1.webp',
-    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039562/espacio_gallery/xivp043sbxsjdntmyeji.png'
+    'the-restful-home-tellapur': 'https://res.cloudinary.com/r3jwfy0y/image/upload/v1791039566/espacio_gallery/flfizkibqnyv1ktude6t.png'
   };
 
   const PROJECT_OBJECT_POSITIONS = {

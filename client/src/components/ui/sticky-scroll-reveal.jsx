@@ -179,11 +179,11 @@ export const StickyScroll = ({ content = [], className = "" }) => {
             top: '80px',
             willChange: 'transform'
           }}
-          className="sticky top-20 w-full h-[82vh] flex justify-between gap-8 xl:gap-12 rounded-[32px] p-6 lg:p-10 bg-bg border border-ink-border/30 items-center shadow-2xl"
+          className="sticky top-20 w-full h-[78vh] min-h-[520px] max-h-[660px] flex justify-between gap-8 xl:gap-12 rounded-[32px] p-6 lg:p-8 xl:p-10 bg-bg border border-ink-border/30 items-center shadow-2xl"
         >
           
           {/* Left: active project details with luxury vertical scrolling transitions */}
-          <div className="relative w-[44%] shrink-0 h-full flex flex-col justify-between py-3 px-2 lg:px-6">
+          <div className="relative w-[40%] xl:w-[38%] shrink-0 h-full flex flex-col justify-between py-2 px-2 lg:px-4">
 
             {/* Middle: Physical scrolling text column with centered alignment & gradient masks */}
             <div
@@ -229,8 +229,8 @@ export const StickyScroll = ({ content = [], className = "" }) => {
 
           </div>
 
-          {/* Right: full-height animated image showcase */}
-          <div className="w-[54%] shrink-0 h-full rounded-[26px] overflow-hidden border border-ink-border/40 shadow-2xl relative">
+          {/* Right: widescreen animated image showcase */}
+          <div className="w-[58%] xl:w-[60%] shrink-0 aspect-[17/10] max-h-[96%] rounded-[26px] overflow-hidden border border-ink-border/30 shadow-2xl relative my-auto">
             {content.map((item, index) => {
               const isCurrent = activeCard === index;
               const isNearby = Math.abs(activeCard - index) <= 1;
@@ -270,7 +270,7 @@ export const StickyScroll = ({ content = [], className = "" }) => {
               itemClassName="bg-[#FAF8F5] border border-ink-border/25 flex flex-col gap-2.5 sm:gap-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.1)] p-3.5 sm:p-5 pb-6 sm:pb-8 rounded-[24px] mb-12 sm:mb-16"
             >
               {/* Project Image Card */}
-              <div className="w-full aspect-[16/10] sm:aspect-[4/3] rounded-[18px] overflow-hidden shadow-sm">
+              <div className="w-full aspect-[16/11] sm:aspect-[4/3] rounded-[20px] overflow-hidden shadow-sm">
                 {item.content}
               </div>
               {/* Description */}
